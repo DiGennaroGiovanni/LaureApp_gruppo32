@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "337411088544",
+    "firebase_url": "https://laureapp-c28f7-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "laureapp-c28f7",
+    "storage_bucket": "laureapp-c28f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337411088544:android:132dbde8d145fca528a9c5",
+        "android_client_info": {
+          "package_name": "it.uniba.dib.sms222332"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337411088544-fdmk7jv1pd15ia93e6m6b9hh6i148v5u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb169I13XvEqe-G9l9AIB2MdGPt2fHWSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337411088544-fdmk7jv1pd15ia93e6m6b9hh6i148v5u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
