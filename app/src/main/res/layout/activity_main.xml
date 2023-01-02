@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <include layout="@layout/toolbar"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -22,4 +23,4 @@
         android:background="?android:attr/windowBackground"/>
 
 
-  </RelativeLayout>
+</RelativeLayout>
