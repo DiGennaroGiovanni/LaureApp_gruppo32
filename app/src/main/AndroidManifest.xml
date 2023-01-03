@@ -24,7 +24,8 @@
 
 
         </activity>
-        <activity android:name=".ProfileFragment"/>
+        <activity android:name=".StudentProfileFragment"/>
+        <activity android:name=".SettingsFragment"/>
     </application>
 
 </manifest>
