@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     private final NavigationBarView.OnItemSelectedListener navListener = item -> {
             Fragment selectedFragment;
 
