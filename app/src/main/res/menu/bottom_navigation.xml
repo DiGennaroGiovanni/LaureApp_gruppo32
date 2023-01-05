@@ -2,7 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home_button"
         android:icon="@drawable/icon_home"
         android:title="@string/home_button_text"/>
 

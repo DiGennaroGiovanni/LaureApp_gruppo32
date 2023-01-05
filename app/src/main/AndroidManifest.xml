@@ -3,6 +3,7 @@
     package="it.uniba.dib.sms222332">
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +13,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="MainActivity"
             android:theme="@style/Theme.LaureApp.NoActionBar">
 
             <intent-filter>

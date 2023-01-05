@@ -4,4 +4,6 @@
     <string name="home_button_text">Home</string>
     <string name="star_button_text">Preferiti</string>
     <string name="chat_button_text">Messaggi</string>
+    <string name="all_thesis_button">TESI DISPONIBILI</string>
+    <string name="your_thesis_button">LA TUA TESI</string>
 </resources>
