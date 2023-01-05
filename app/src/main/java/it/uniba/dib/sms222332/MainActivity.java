@@ -1,10 +1,6 @@
 package it.uniba.dib.sms222332;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-
 
 
 import com.google.android.material.navigation.NavigationBarView;
@@ -13,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toolbar;
 
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.ui.AppBarConfiguration;
 
@@ -24,11 +20,20 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
+
+        findViewById(R.id.icon_settings).setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               drawerLayout.openDrawer(GravityCompat.START);
+           }
+
+        });
 
         ImageView settingsIcon = findViewById(R.id.icon_settings);
         ImageView profileIcon = findViewById(R.id.icon_profile);
@@ -41,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        settingsIcon.setOnClickListener(new View.OnClickListener() {
+      /*  settingsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
             }
-        });
+        });*/
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnItemSelectedListener(navListener);

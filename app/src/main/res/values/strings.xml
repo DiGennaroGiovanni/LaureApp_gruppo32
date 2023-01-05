@@ -3,5 +3,5 @@
     <string name="home_button_text">Home</string>
     <string name="star_button_text">Favorites</string>
     <string name="chat_button_text">Messages</string>
-
+    <string name="titolo_della_pagina">Titolo della pagina</string>
 </resources>
