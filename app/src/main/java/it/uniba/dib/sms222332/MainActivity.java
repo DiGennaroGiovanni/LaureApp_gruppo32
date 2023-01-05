@@ -3,6 +3,9 @@ package it.uniba.dib.sms222332;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
+
 
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -10,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toolbar;
 
 import androidx.fragment.app.Fragment;
@@ -33,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
         profileIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, StudentProfileFragment.class));
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StudentProfileFragment()).commit();
             }
         });
 
         settingsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SettingsFragment.class));
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
             }
         });
 
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
     }
+
 
     private final NavigationBarView.OnItemSelectedListener navListener = item -> {
             Fragment selectedFragment;
@@ -71,6 +76,5 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
         return true;
     };
-
 
 }
