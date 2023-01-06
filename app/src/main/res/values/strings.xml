@@ -3,5 +3,10 @@
     <string name="home_button_text">Home</string>
     <string name="star_button_text">Favorites</string>
     <string name="chat_button_text">Messages</string>
-    <string name="titolo_della_pagina">Titolo della pagina</string>
+    <string name="lingua">Lingua</string>
+    <string name="esci">Esci</string>
+    <string name="profilo">Profilo</string>
+    <string name="altro">Altro</string>
+    <string name="principali">Principali</string>
+    <string name="language_selection" />
 </resources>
