@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="it.uniba.dib.sms222332.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"/>
+
+    <fragment
+        android:id="@+id/icon_profile"
+        android:name="it.uniba.dib.sms222332.StudentProfileFragment"
+        android:label="Profilo"
+        tools:layout="@layout/fragment_profile"/>
+</navigation>

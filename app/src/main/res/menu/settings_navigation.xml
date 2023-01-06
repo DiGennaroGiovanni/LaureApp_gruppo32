@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/principali">
+        <menu>
+            <item
+               android:id="@+id/icon_profile"
+               android:icon="@drawable/icon_profile"
+               android:title="@string/profilo" />
+        </menu>
+    </item>
+
+    <item android:title="@string/altro">
+        <menu>
+            <item
+                android:id="@+id/language"
+                android:icon="@drawable/icon_language"
+                android:title="@string/lingua"/>
+
+            <item
+                android:id="@+id/exit"
+                android:icon="@drawable/icon_exit"
+                android:title="@string/esci"/>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/languages"
+        android:icon="@drawable/icon_language"
+        android:title="@string/lingua"
+        app:showAsAction="never"/>
+
+</menu>
