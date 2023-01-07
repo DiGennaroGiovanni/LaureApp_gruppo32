@@ -6,22 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ContinuaRegistrazioneProfessoreActivity">
 
-    <Spinner
-        android:id="@+id/spinnerRuolo"
-        android:layout_width="187dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtCognome"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <EditText
-        android:id="@+id/edtRuolo"
+        android:id="@+id/edtRuoloProf"
         android:layout_width="187dp"
         android:layout_height="48dp"
+        android:autofillHints=""
         android:hint="@string/ruolo"
         android:inputType="text"
         android:minHeight="48dp"
@@ -29,29 +18,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerRuolo"
-        app:layout_constraintVertical_bias="0.219"
-        android:autofillHints="" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtCognome"
+        android:id="@+id/edtCognomeProf"
         android:layout_width="187dp"
         android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:autofillHints=""
         android:hint="@string/cognome"
         android:inputType="text"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/edtRuoloProf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtNome"
-        app:layout_constraintVertical_bias="0.121"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/edtNomeProf"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/edtNome"
+        android:id="@+id/edtNomeProf"
         android:layout_width="187dp"
         android:layout_height="48dp"
+        android:autofillHints=""
         android:hint="@string/nome"
         android:inputType="text"
         android:minHeight="48dp"
@@ -60,39 +49,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewContinuaRegistrazioneProfessore"
-        app:layout_constraintVertical_bias="0.073"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.073" />
 
     <TextView
         android:id="@+id/textViewContinuaRegistrazioneProfessore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/continua_registrazione_professore"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="52dp"
+        android:text="Inserisci i dati mancanti prima di concludere la registrazione"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonConcludi"
+        android:id="@+id/buttonConcludiProf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="@string/concludi_registrazione"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtRuolo" />
-
-    <TextView
-        android:id="@+id/textViewRuolo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/seleziona_ruolo"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerRuolo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.354"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtCognome"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/edtRuoloProf"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
