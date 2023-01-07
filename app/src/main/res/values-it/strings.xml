@@ -4,4 +4,44 @@
     <string name="home_button_text">Home</string>
     <string name="star_button_text">Preferiti</string>
     <string name="chat_button_text">Messaggi</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="registrati">Registrati</string>
+    <string name="accedi">Accedi</string>
+    <string name="nome">Nome</string>
+    <string name="cognome">Cognome</string>
+    <string name="continua_registrazione_come">Continua registrazione come:</string>
+    <string name="professore">Professore</string>
+    <string name="studente">Studente</string>
+    <string name="todo">TODO</string>
+    <string name="facolta">Facoltà</string>
+    <string name="ruolo">Ruolo</string>
+    <string name="continua_registrazione_professore">Continua registrazione come professore</string>
+    <string name="continua_registrazione_studente">Continua registrazione come alunno</string>
+    <string name="concludi_registrazione">Concludi registrazione</string>
+    <string name="matricola">Matricola</string>
+    <string name="testimage">testImage</string>
+    <string name="seleziona_facolta">seleziona facoltà</string>
+    <string name="seleziona_ruolo">seleziona ruolo</string>
+    <string-array name="ruolo_array">
+        <item>Prova</item>
+        <item>Test</item>
+    </string-array>
+    <string-array name="facolta_array">
+        <item>Biologia</item>
+        <item>Chimica</item>
+        <item>Economia</item>
+        <item>Farmacia</item>
+        <item>Filosofia</item>
+        <item>Giurisprudenza</item>
+        <item>Informatica</item>
+        <item>I.T.P.S.</item>
+        <item>Lettere</item>
+        <item>Matematica</item>
+        <item>Medicina</item>
+        <item>Scienze della Formazione</item>
+        <item>Scienze Agro-Ambientali e Territoriali</item>
+        <item>Scienze Biomediche</item>
+        <item>Scienze Politiche</item>
+    </string-array>
 </resources>

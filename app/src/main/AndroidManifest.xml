@@ -10,22 +10,45 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaureApp">
         <activity
+            android:name=".ContinuaRegistrazioneStudenteActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ContinuaRegistrazioneProfessoreActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".RegistratiActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="MainActivity"
-
-        android:theme="@style/Theme.LaureApp.NoActionBar">
-
-
+            android:theme="@style/Theme.LaureApp.NoActionBar">
             <intent-filter>
-               <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
-        <activity android:name=".StudentProfileFragment"/>
-        <activity android:name=".SettingsFragment"/>
+        <activity android:name=".StudentProfileFragment" />
+        <activity android:name=".SettingsFragment" />
     </application>
 
 </manifest>
