@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 
        // ImageView settingsIcon = findViewById(R.id.icon_settings);
-       /* ImageView profileIcon = findViewById(R.id.icon_profile);
+          ImageView profileIcon = findViewById(R.id.icon_profile);
 
 
         profileIcon.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StudentProfileFragment()).commit();
             }
-        });*/
+        });
 
       /*  settingsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,11 +67,13 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
-       /* codice per collegare il bottone profilo al fragment
+       /* codice per collegare il bottone profilo al fragment*/
 
         NavigationView navigationView = findViewById(R.id.navigationView);
-        NavController navController = Navigation.findNavController(this, R.id.fragment);
-        NavigationUI.setupWithNavController(navigationView, navController);*/
+        //NavController navController = Navigation.findNavController(this, R.id.fragment);
+
+       // NavigationUI.setupWithNavController(navigationView, navController);
+       // NavigationUI.setupWithNavController(bottomNav, navController);
 
     }
 
@@ -97,18 +99,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     };
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.languages:
-                // Mostra il sottomenu
-                return true;
-            case R.id.chat_button:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+
 
 
 }

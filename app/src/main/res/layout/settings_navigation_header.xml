@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/material_dynamic_primary20"
     android:padding="20dp">
 
     <com.makeramen.roundedimageview.RoundedImageView
@@ -10,10 +11,10 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/profile_image"
+        android:src="@drawable/profile_imag_white1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:riv_oval="true"/>
+        app:riv_oval="true" />
 
     <View
         android:id="@+id/viewSupporter"
@@ -29,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="Nome Cognome"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/viewSupporter"
