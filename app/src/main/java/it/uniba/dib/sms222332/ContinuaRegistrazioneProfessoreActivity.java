@@ -94,6 +94,7 @@ public class ContinuaRegistrazioneProfessoreActivity extends AppCompatActivity {
         infoProfessore.put("Nome",nome);
         infoProfessore.put("Cognome",cognome);
         infoProfessore.put("Ruolo",ruolo);
+        infoProfessore.put("Tipologia","P");
 
         if(nome.isEmpty())
             edtNomeProf.setError("Inserisci il tuo nome!");

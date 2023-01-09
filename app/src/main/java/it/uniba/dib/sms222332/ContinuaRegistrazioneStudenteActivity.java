@@ -98,6 +98,7 @@ public class ContinuaRegistrazioneStudenteActivity extends AppCompatActivity {
         infoStudente.put("Cognome",cognome);
         infoStudente.put("Matricola",matricola);
         infoStudente.put("Facoltà",facolta);
+        infoStudente.put("Tipologia","S");
 
 
         if(nome.isEmpty())
