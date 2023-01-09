@@ -5,4 +5,7 @@
     <string name="chat_button_text">Messages</string>
     <string name="all_thesis_button">AVAILABLE THESIS</string>
     <string name="your_thesis_button">YOUR THESIS</string>
+    <string name="add_thesis_button">ADD A NEW THESIS</string>
+    <string name="handle_thesis_button">HANDLE THESIS</string>
+    <string name="receipts_button">RECEIPTS</string>
 </resources>

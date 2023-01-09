@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StudentHomeFragment()).commit();
 
     }
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             default:
-                selectedFragment = new HomeFragment();
+                selectedFragment = new ProfessorHomeFragment();
         }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();

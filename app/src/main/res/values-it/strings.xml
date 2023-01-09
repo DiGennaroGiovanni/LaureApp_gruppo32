@@ -6,4 +6,7 @@
     <string name="chat_button_text">Messaggi</string>
     <string name="all_thesis_button">TESI DISPONIBILI</string>
     <string name="your_thesis_button">LA TUA TESI</string>
+    <string name="add_thesis_button">AGGIUNGI UNA TESI</string>
+    <string name="handle_thesis_button">GESTISCI TESI</string>
+    <string name="receipts_button">RICEVIMENTI</string>
 </resources>
