@@ -22,13 +22,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class RegistratiActivity extends AppCompatActivity {
 
     Button buttonContinuaProfessore, buttonContinuaStudente;
-    EditText edtEmailRegistrati, edtPasswordRegistrati;
+
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +36,17 @@ public class RegistratiActivity extends AppCompatActivity {
         // Dichiaro i pulsanti presenti nella schermata
         buttonContinuaProfessore = findViewById(R.id.buttonContinuaProfessore);
         buttonContinuaStudente = findViewById(R.id.buttonContinuaStudente);
-        edtEmailRegistrati = findViewById(R.id.edtEmailRegistrati);
-        edtPasswordRegistrati = findViewById(R.id.edtPasswordRegistrati);
 
-        progressDialog = new ProgressDialog(this);;
-        mAuth = FirebaseAuth.getInstance();;
-        mUser = mAuth.getCurrentUser();;
+        progressDialog = new ProgressDialog(this);
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
 
         // Passo alla schermata di continua registrazione per il professore
         buttonContinuaProfessore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PerfomrAuthProf();
-
+                continuaComeProfessore();
             }
         });
 
@@ -59,7 +54,7 @@ public class RegistratiActivity extends AppCompatActivity {
         buttonContinuaStudente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PerfomrAuthStud();
+                continuaComeStudente();
             }
         });
 
@@ -100,66 +95,7 @@ public class RegistratiActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void PerfomrAuthProf() {
-        String email = edtEmailRegistrati.getText().toString();
-        String password = edtPasswordRegistrati.getText().toString();
 
-        if(!email.matches(emailPattern))
-        {
-            edtEmailRegistrati.setError("Inserisci un'email valida!");
-        }else if(password.isEmpty() || password.length()<6){
-            edtPasswordRegistrati.setError("Inserisci una password valida (deve avere almeno 6 caratteri)");
-        }else{
-            //progressDialog.setMessage("Registrazione in corso..");
-            //progressDialog.setTitle("Registrazione");
-            //progressDialog.setCanceledOnTouchOutside(false);
-            //progressDialog.show();
 
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        //progressDialog.dismiss();
-                        Toast.makeText(RegistratiActivity.this, "Continua come professore!", Toast.LENGTH_SHORT).show();
-                        continuaComeProfessore();
 
-                    }else{
-                        //Toast.makeText(RegistratiActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(RegistratiActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-        }
-    }
-
-    private void PerfomrAuthStud() {
-        String email = edtEmailRegistrati.getText().toString();
-        String password = edtPasswordRegistrati.getText().toString();
-
-        if(!email.matches(emailPattern))
-        {
-            edtEmailRegistrati.setError("Inserisci un'email valida!");
-        }else if(password.isEmpty() || password.length()<6){
-            edtPasswordRegistrati.setError("Inserisci una password valida (deve avere almeno 6 caratteri)");
-        }else{
-            //progressDialog.setMessage("Registrazione in corso..");
-            //progressDialog.setTitle("Registrazione");
-            //progressDialog.setCanceledOnTouchOutside(false);
-            //progressDialog.show();
-
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        //progressDialog.dismiss();
-                        Toast.makeText(RegistratiActivity.this, "Continua come studente", Toast.LENGTH_SHORT).show();
-                        continuaComeStudente();
-
-                    }else{
-                        Toast.makeText(RegistratiActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-        }
-    }
 }

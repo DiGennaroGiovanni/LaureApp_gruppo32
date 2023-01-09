@@ -15,9 +15,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -25,29 +29,35 @@ import java.util.Map;
 
 public class ContinuaRegistrazioneStudenteActivity extends AppCompatActivity {
 
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    EditText edtNomeStudente,edtCognomeStudente, edtMatricolaStudente;
+    EditText edtNomeStudente,edtCognomeStudente, edtMatricolaStudente, edtEmailRegistrati, edtPasswordRegistrati;
     TextView txtFacoltaStudente;
     String userEmailId;
     Spinner spinnerFacolta;
     Button buttonConcludi;
     ProgressDialog progressDialog;
+    String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_continua_registrazione_studente);
 
+        edtEmailRegistrati = findViewById(R.id.edtEmailRegistrati);
+        edtPasswordRegistrati = findViewById(R.id.edtPasswordRegistrati);
         edtCognomeStudente = findViewById(R.id.edtCognomeStudente);
         edtNomeStudente = findViewById(R.id.edtNomeStudente);
         edtMatricolaStudente = findViewById(R.id.edtMatricolaStudente);
         spinnerFacolta = findViewById(R.id.spinnerFacolta);
         buttonConcludi = findViewById(R.id.buttonConcludi);
-        userEmailId = mAuth.getCurrentUser().getEmail();
         txtFacoltaStudente = findViewById(R.id.txtFacoltaStudente);
         progressDialog = new ProgressDialog(this);
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
 
         /*      GESTISCO LO SPINNER     */
         // Creo un ArrayAdapter che contiene i valori dello spinner e gli affiso il layout
@@ -62,16 +72,26 @@ public class ContinuaRegistrazioneStudenteActivity extends AppCompatActivity {
         buttonConcludi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertDataStudente(userEmailId);
+                PerfomrAuthStud();
+                insertDataStudente();
             }
         });
     }
 
-    private void insertDataStudente(String userEmailId) {
-        String nome = edtNomeStudente.getText().toString();
-        String cognome = edtCognomeStudente.getText().toString();
+    private void insertDataStudente() {
+        String nome = edtNomeStudente.getText().toString().toLowerCase();
+        char firstChar = Character.toUpperCase(nome.charAt(0));
+        nome = firstChar+nome.substring(1);
+
+        String cognome = edtCognomeStudente.getText().toString().toLowerCase();
+        firstChar = Character.toUpperCase(cognome.charAt(0));
+        cognome = firstChar+cognome.substring(1);
+
         String matricola = edtMatricolaStudente.getText().toString();
+
+
         String facolta = spinnerFacolta.getSelectedItem().toString();
+        String email = edtEmailRegistrati.getText().toString().toLowerCase();
 
         Map<String, String> infoStudente = new HashMap<>();
         infoStudente.put("Nome",nome);
@@ -85,12 +105,12 @@ public class ContinuaRegistrazioneStudenteActivity extends AppCompatActivity {
         else if(cognome.isEmpty())
             edtCognomeStudente.setError("Inserisci il tuo cognome!");
         else if(matricola.isEmpty())
-            edtMatricolaStudente.setError("Inserisci la tua matricola!");
+            edtMatricolaStudente.setError("Inserisci la tua matricola correttamente!");
         else if(facolta.isEmpty())
             txtFacoltaStudente.setError("Seleziona la tua facoltà!");
         else{
             //INSERIMENTO DATI NEL DB RIFERENDOSI AD UN DOCUMENTI IN PARTICOLARE
-            db.collection("studenti").document(userEmailId).set(infoStudente).addOnSuccessListener(new OnSuccessListener<Void>() {
+            db.collection("studenti").document(email).set(infoStudente).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             progressDialog.setMessage("Registrazione in corso...");
@@ -115,6 +135,33 @@ public class ContinuaRegistrazioneStudenteActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Registrazione non avvenuta! Riprova",Toast.LENGTH_LONG).show();
                         }
                     });
+        }
+    }
+
+    private void PerfomrAuthStud() {
+        String email = edtEmailRegistrati.getText().toString();
+        String password = edtPasswordRegistrati.getText().toString();
+
+        if(!email.matches(emailPattern))
+        {
+            edtEmailRegistrati.setError("Inserisci un'email valida!");
+        }else if(password.isEmpty() || password.length()<6){
+            edtPasswordRegistrati.setError("Inserisci una password valida (deve avere almeno 6 caratteri)");
+        }else{
+
+
+            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+
+                        //continuaComeStudente(); -> INSERIRE HOMEPAGE O PAGINA LOGIN
+
+                    }else{
+                        Toast.makeText(ContinuaRegistrazioneStudenteActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         }
     }
 }

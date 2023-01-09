@@ -16,8 +16,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -32,13 +35,15 @@ import java.util.Map;
 public class ContinuaRegistrazioneProfessoreActivity extends AppCompatActivity {
 
     //Istanze del database e del sistema di autenticazione di firebase
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
 
-    EditText edtNomeProf,edtCognomeProf, edtRuoloProf;
-    String userEmailId;
+    EditText edtNomeProf,edtCognomeProf, edtRuoloProf, edtEmailRegistrati, edtPasswordRegistrati;
     Button buttonConcludiProf;
     ProgressDialog progressDialog;
+
+    String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
 
 
     @Override
@@ -50,23 +55,40 @@ public class ContinuaRegistrazioneProfessoreActivity extends AppCompatActivity {
         edtCognomeProf = findViewById(R.id.edtCognomeProf);
         edtNomeProf = findViewById(R.id.edtNomeProf);
         edtRuoloProf = findViewById(R.id.edtRuoloProf);
-        userEmailId = mAuth.getCurrentUser().getEmail(); //VIENE USARO NELLA RACCOLTA COME IDENTIFICATIVO, E' LO STESSO DEL SISTEMA DI Authentication
+        edtEmailRegistrati = findViewById(R.id.edtEmailRegistrati);
+        edtPasswordRegistrati = findViewById(R.id.edtPasswordRegistrati);
+
         progressDialog = new ProgressDialog(this);
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
         /*      GESTISCO IL BOTTONE CONTINUA REGISTRAZIONE      */
         buttonConcludiProf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertDataProf(userEmailId); //MEMORIZZO I DATI DEL PROFESSORE
+                PerfomrAuthProf();
+                insertDataProf(); //MEMORIZZO I DATI DEL PROFESSORE
             }
         });
     }
 
-    private void insertDataProf(String id_email) {
+    private void insertDataProf() {
 
-        String nome = edtNomeProf.getText().toString();
-        String cognome = edtCognomeProf.getText().toString();
-        String ruolo = edtRuoloProf.getText().toString();
+
+        String nome = edtNomeProf.getText().toString().toLowerCase();
+        char firstChar = Character.toUpperCase(nome.charAt(0));
+        nome = firstChar+nome.substring(1);
+
+        String cognome = edtCognomeProf.getText().toString().toLowerCase();
+        firstChar = Character.toUpperCase(cognome.charAt(0));
+        cognome = firstChar+cognome.substring(1);
+
+        String ruolo = edtRuoloProf.getText().toString().toLowerCase();
+        firstChar = Character.toUpperCase(ruolo.charAt(0));
+        ruolo = firstChar+ruolo.substring(1);
+
+        String email = edtEmailRegistrati.getText().toString().toLowerCase();
+
 
         Map<String, String> infoProfessore = new HashMap<>();
         infoProfessore.put("Nome",nome);
@@ -81,7 +103,7 @@ public class ContinuaRegistrazioneProfessoreActivity extends AppCompatActivity {
             edtRuoloProf.setError("Inserisci il tuo ruolo!");
         else{
             //INSERIMENTO DATI NEL DB RIFERENDOSI AD UN DOCUMENTI IN PARTICOLARE
-            db.collection("professori").document(id_email).set(infoProfessore).addOnSuccessListener(new OnSuccessListener<Void>() {
+            db.collection("professori").document(email).set(infoProfessore).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             progressDialog.setMessage("Registrazione in corso...");
@@ -106,6 +128,32 @@ public class ContinuaRegistrazioneProfessoreActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Registrazione non avvenuta! Riprova",Toast.LENGTH_LONG).show();
                         }
                     });
+        }
+    }
+
+    private void PerfomrAuthProf() {
+        String email = edtEmailRegistrati.getText().toString();
+        String password = edtPasswordRegistrati.getText().toString();
+
+        if(!email.matches(emailPattern))
+        {
+            edtEmailRegistrati.setError("Inserisci un'email valida!");
+        }else if(password.isEmpty() || password.length()<6){
+            edtPasswordRegistrati.setError("Inserisci una password valida (deve avere almeno 6 caratteri)");
+        }else{
+
+            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+
+                        //continuaComeProfessore(); -> INSERIRE HOMEPAGE O PAGINA LOGIN
+
+                    }else{
+                        Toast.makeText(ContinuaRegistrazioneProfessoreActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         }
     }
 }
