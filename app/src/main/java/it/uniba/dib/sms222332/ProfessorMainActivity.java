@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class ProfessorMainActivity extends AppCompatActivity {
 
 
 

@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaureApp">
         <activity
-            android:name=".MainActivity"
+            android:name=".StudentMainActivity"
             android:exported="true"
             android:theme="@style/Theme.LaureApp.NoActionBar">
 
@@ -20,8 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
-
         </activity>
+        <activity android:name=".ProfessorMainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.LaureApp.NoActionBar"></activity>
     </application>
 
 </manifest>
