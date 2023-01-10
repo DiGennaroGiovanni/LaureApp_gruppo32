@@ -10,7 +10,7 @@
         android:layout_height="100sp"
         android:text="@string/add_thesis_button"
         android:textSize="34sp"
-        android:layout_marginTop="90sp"
+        android:layout_marginTop="50sp"
         android:textStyle="bold"
         android:layout_weight="1"/>
 
@@ -28,7 +28,7 @@
         android:layout_height="100sp"
         android:text="@string/receipts_button"
         android:textSize="34sp"
-        android:layout_marginBottom="90sp"
+        android:layout_marginBottom="50sp"
         android:textStyle="bold"
         android:layout_weight="1"/>
 

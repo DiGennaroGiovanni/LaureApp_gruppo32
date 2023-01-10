@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragmentS">
+    tools:context=".ProfileFragment">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:contentDescription="@string/menu_profile"
+        android:id="@+id/profile_pic"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/profile_image_black"
@@ -25,7 +26,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Nome Cognome"
+        android:text="@string/name_surname"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -9,4 +9,14 @@
     <string name="add_thesis_button">AGGIUNGI UNA TESI</string>
     <string name="handle_thesis_button">GESTISCI TESI</string>
     <string name="receipts_button">RICEVIMENTI</string>
+    <string name="name_surname">Nome Cognome</string>
+    <string name="profile_img">Profile Image</string>
+    <string name="user_profession">Professione</string>
+
+    <string name="open_nav">Apertura Navigation Drawer</string>
+    <string name="close_nav">Chiusura Navigation Drawer</string>
+    <string name="menu_profile">Profilo</string>
+    <string name="menu_settings">Impostazioni</string>
+    <string name="menu_language">Lingua</string>
+    <string name="menu_logout">Logout</string>
 </resources>
