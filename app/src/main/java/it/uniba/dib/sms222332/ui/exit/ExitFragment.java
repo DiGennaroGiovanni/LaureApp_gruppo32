@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import it.uniba.dib.sms222332.databinding.FragmentSlideshowBinding;
+import it.uniba.dib.sms222332.databinding.FragmentExitBinding;
 
 public class ExitFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentExitBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ExitViewModel slideshowViewModel =
                 new ViewModelProvider(this).get(ExitViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentExitBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;

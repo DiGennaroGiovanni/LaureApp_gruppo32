@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import it.uniba.dib.sms222332.databinding.FragmentHomeBinding;
+import it.uniba.dib.sms222332.databinding.FragmentLanguagesBinding;
 
 public class LanguagesFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentLanguagesBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         LanguagesViewModel homeViewModel =
                 new ViewModelProvider(this).get(LanguagesViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentLanguagesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;
