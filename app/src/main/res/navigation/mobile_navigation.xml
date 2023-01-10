@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="it.uniba.dib.sms222332.ui.languages.LanguagesFragment"
+        android:label="@string/menu_lingua"
+        tools:layout="@layout/fragment_languages" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="it.uniba.dib.sms222332.ui.profile.ProfileFragmentS"
+        android:label="@string/menu_profilo"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="it.uniba.dib.sms222332.ui.exit.ExitFragment"
+        android:label="@string/menu_exit"
+        tools:layout="@layout/fragment_exit" />
+</navigation>
