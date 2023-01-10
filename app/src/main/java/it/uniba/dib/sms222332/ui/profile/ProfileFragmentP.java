@@ -12,14 +12,14 @@ import androidx.lifecycle.ViewModelProvider;
 import it.uniba.dib.sms222332.databinding.FragmentProfileBinding;
 
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragmentP extends Fragment {
 
     private FragmentProfileBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ProfileViewModel profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
+        ProfileViewModelP profileViewModel =
+                new ViewModelProvider(this).get(ProfileViewModelP.class);
 
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
