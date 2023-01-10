@@ -20,9 +20,10 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".ProfessorMainActivity"
+        <activity
+            android:name=".ProfessorMainActivity"
             android:exported="true"
-            android:theme="@style/Theme.LaureApp.NoActionBar"></activity>
+            android:theme="@style/Theme.LaureApp.NoActionBar" />
     </application>
 
 </manifest>
