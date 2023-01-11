@@ -27,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ContinuaRegistrazioneStudenteActivity extends AppCompatActivity {
+public class RegistrazioneStudActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -72,8 +72,8 @@ public class ContinuaRegistrazioneStudenteActivity extends AppCompatActivity {
         buttonConcludi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PerfomrAuthStud();
-                insertDataStudente();
+                performAuthStud();
+
             }
         });
     }
@@ -139,7 +139,7 @@ public class ContinuaRegistrazioneStudenteActivity extends AppCompatActivity {
         }
     }
 
-    private void PerfomrAuthStud() {
+    private void performAuthStud() {
         String email = edtEmailRegistrati.getText().toString();
         String password = edtPasswordRegistrati.getText().toString();
 
@@ -156,10 +156,15 @@ public class ContinuaRegistrazioneStudenteActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
 
-                        //continuaComeStudente(); -> INSERIRE HOMEPAGE O PAGINA LOGIN
+                        insertDataStudente();
+                        Intent intent = new Intent(RegistrazioneStudActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        Toast.makeText(RegistrazioneStudActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
+
 
                     }else{
-                        Toast.makeText(ContinuaRegistrazioneStudenteActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrazioneStudActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
                     }
                 }
             });

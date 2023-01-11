@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,12 +56,12 @@ public class LoginActivity extends AppCompatActivity {
         btnAccedi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PerformLogin();
+                performLogin();
             }
         });
     }
 
-    private void PerformLogin() {
+    private void performLogin() {
         String email = edtEmailLogin.getText().toString();
         String password = edtPasswordLogin.getText().toString();
 
@@ -72,21 +71,21 @@ public class LoginActivity extends AppCompatActivity {
         }else if(password.isEmpty() || password.length()<6){
             edtPasswordLogin.setError("Inserisci una password valida (deve avere almeno 6 caratteri)");
         }else{
-            progressDialog.setMessage("Login in corso..");
-            progressDialog.setTitle("Login");
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.show();
 
             mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        progressDialog.dismiss();
-                        //sendUserToUploadFile(); //INSERIRE IL METODO PER PORTARE ALLA HOME PAGE
-                        Toast.makeText(LoginActivity.this, "Login avvenuto!", Toast.LENGTH_SHORT).show();
+
+                        //VERIFICARE LA TIPOLOGIA DI ACCOUNT
+
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        //TODO putextra (informarsi bene) passare il parametro come char "s" o "p"
+                        startActivity(intent);
+
 
                     }else{
-                        //Toast.makeText(LoginActivity.this, "Impossibile effettuare l'accesso "+task.getException(), Toast.LENGTH_SHORT).show();
                         Toast.makeText(LoginActivity.this, "Utente non trovato, effettua la registrazione o inserisci correttamente i dati ", Toast.LENGTH_LONG).show();
                     }
                 }
