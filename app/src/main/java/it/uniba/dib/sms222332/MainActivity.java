@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         bottomNav.setOnItemSelectedListener(navListener);
-
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StudentHomeFragment()).commit();
         }
