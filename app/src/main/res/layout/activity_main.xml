@@ -50,7 +50,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer"
+        app:menu="@menu/navigation_view"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"/>
 
