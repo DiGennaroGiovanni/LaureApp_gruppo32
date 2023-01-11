@@ -1,76 +1,118 @@
 package it.uniba.dib.sms222332;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationBarView;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toolbar;
-
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.ui.AppBarConfiguration;
 
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 
-    private AppBarConfiguration appBarConfiguration;
 
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    private DrawerLayout drawerLayout;
+    private BottomNavigationView bottomNav;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageView settingsIcon = findViewById(R.id.icon_settings);
-        ImageView profileIcon = findViewById(R.id.icon_profile);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        bottomNav = findViewById(R.id.bottom_navigation);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.open_nav, R.string.close_nav);
+
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
 
-        profileIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, StudentProfileFragment.class));
-            }
-        });
-
-        settingsIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SettingsFragment.class));
-            }
-        });
-
-        NavigationBarView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
+        if (savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StudentHomeFragment()).commit();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        Fragment selectedFragment = new StudentHomeFragment();
+
+        switch (item.getItemId()) {
+            case R.id.nav_profile:
+                selectedFragment = new ProfileFragment();
+                break;
+
+            case R.id.nav_language:
+                selectedFragment = new LanguagesFragment();
+                break;
+
+            case R.id.nav_logout:
+                Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START);
+
+        else
+            super.onBackPressed();
     }
 
     private final NavigationBarView.OnItemSelectedListener navListener = item -> {
-            Fragment selectedFragment;
+        Fragment selectedFragment;
 
-            switch (item.getItemId()) {
+        switch (item.getItemId()){
 
-                case R.id.star_button:
-                    selectedFragment = new FavoritesFragment();
-                    break;
+            case R.id.star_button:
+                selectedFragment = new FavoritesFragment();
+                break;
 
-                case R.id.chat_button:
-                    selectedFragment = new MessagesFragment();
-                    break;
+            case R.id.chat_button:
+                selectedFragment = new MessagesFragment();
+                break;
 
-                default:
-                    selectedFragment = new HomeFragment();
-            }
+            default:
+                selectedFragment = new StudentHomeFragment();
+        }
 
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+        selectBottomNavigationBarItem();
         return true;
     };
+
+    private void selectBottomNavigationBarItem() {
+        for (int i = 0; i < navigationView.getMenu().size(); i++) {
+            navigationView.getMenu().getItem(i).setChecked(false);
+        }
+    }
 
 
 }

@@ -12,16 +12,10 @@
         <activity
             android:name=".ContinuaRegistrazioneStudenteActivity"
             android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".ContinuaRegistrazioneProfessoreActivity"
             android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".LoginActivity"
@@ -37,19 +31,12 @@
         <activity
             android:name=".RegistratiActivity"
             android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="MainActivity"
+        <activity android:name=".MainActivity"
+            android:exported="true"
             android:theme="@style/Theme.LaureApp.NoActionBar">
 
         </activity>
-        <activity android:name=".StudentProfileFragment" />
-        <activity android:name=".SettingsFragment" />
     </application>
 
 </manifest>
