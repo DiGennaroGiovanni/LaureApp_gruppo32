@@ -100,17 +100,17 @@ public class RegistrazioneProfActivity extends AppCompatActivity {
             db.collection("professori").document(email).set(infoProfessore).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            progressDialog.setMessage("Registrazione in corso...");
-                            progressDialog.setTitle("Registrazione");
-                            progressDialog.setCanceledOnTouchOutside(false);
-                            progressDialog.show();
+//                            progressDialog.setMessage("Registrazione in corso...");   COMMENTATO PERCHÉ FA CRASHARE L'APP DOPO LA REGISTRAZIONE
+//                            progressDialog.setTitle("Registrazione");
+//                            progressDialog.setCanceledOnTouchOutside(false);
+//                            progressDialog.show();
 
                             //sendUserToUploadFile(); -> INSERIRE METODO CHE PORTA ALLA HOME DA LOGGATO
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     Toast.makeText(getApplicationContext(),"Registrazione conclusa!",Toast.LENGTH_LONG).show();
-                                    progressDialog.dismiss();
+//                                    progressDialog.dismiss();
                                 }
                             }, 2000); // 3000 milliseconds is 3 seconds
 
@@ -145,7 +145,7 @@ public class RegistrazioneProfActivity extends AppCompatActivity {
                         Intent intent = new Intent(RegistrazioneProfActivity.this, LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                        Toast.makeText(RegistrazioneProfActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(RegistrazioneProfActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
 
 
                     }else{
