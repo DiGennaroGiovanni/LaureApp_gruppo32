@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNav;
     private NavigationView navigationView;
+    private char tipologia = 'P';
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         bottomNav = findViewById(R.id.bottom_navigation);
+        setBottomNavigationBar();
+
+
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
@@ -48,7 +52,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         bottomNav.setOnItemSelectedListener(navListener);
         if (savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfessorHomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, getProperHome()).commit();
+        }
+    }
+
+    private void setBottomNavigationBar() {
+        bottomNav.getMenu().clear();
+        switch (tipologia) {
+            case 'S':
+                bottomNav.inflateMenu(R.menu.bottom_navigation_stud);
+                break;
+
+            case 'P':
+                bottomNav.inflateMenu(R.menu.bottom_navigation_prof);
+                break;
         }
     }
 
@@ -98,8 +115,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 selectedFragment = new MessagesFragment();
                 break;
 
+            case R.id.thesis_list_button:
+                selectedFragment = new ThesisListFragment();
+                break;
+
+            case R.id.home_button:
             default:
-                selectedFragment = new ProfessorHomeFragment();
+                selectedFragment = getProperHome();
         }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
@@ -111,6 +133,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         for (int i = 0; i < navigationView.getMenu().size(); i++) {
             navigationView.getMenu().getItem(i).setChecked(false);
         }
+    }
+
+    private Fragment getProperHome(){
+        Fragment toReturn;
+        switch (tipologia){
+            case 'S':
+                toReturn = new StudentHomeFragment();
+                break;
+
+            case 'P':
+            default:
+                toReturn = new ProfessorHomeFragment();
+                break;
+        }
+
+        return toReturn;
     }
 
 
