@@ -10,25 +10,26 @@
         android:layout_height="100sp"
         android:text="@string/add_thesis_button"
         android:textSize="34sp"
-        android:layout_marginTop="50sp"
+        android:layout_marginTop="120sp"
+        android:layout_marginBottom="90sp"
         android:textStyle="bold"
         android:layout_weight="1"/>
 
-    <Button
-        android:layout_width="300sp"
-        android:layout_height="100sp"
-        android:text="@string/handle_thesis_button"
-        android:textSize="34sp"
-        android:layout_marginVertical="50sp"
-        android:textStyle="bold"
-        android:layout_weight="1"/>
+<!--    <Button-->
+<!--        android:layout_width="300sp"-->
+<!--        android:layout_height="100sp"-->
+<!--        android:text="@string/handle_thesis_button"-->
+<!--        android:textSize="34sp"-->
+<!--        android:layout_marginVertical="50sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_weight="1"/>-->
 
     <Button
         android:layout_width="300sp"
         android:layout_height="100sp"
         android:text="@string/receipts_button"
         android:textSize="34sp"
-        android:layout_marginBottom="50sp"
+        android:layout_marginBottom="120sp"
         android:textStyle="bold"
         android:layout_weight="1"/>
 
