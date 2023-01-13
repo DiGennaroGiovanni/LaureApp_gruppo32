@@ -35,7 +35,6 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
 
     EditText edtNomeStudente,edtCognomeStudente, edtMatricolaStudente, edtEmailRegistrati, edtPasswordRegistrati;
     TextView txtFacoltaStudente;
-    String userEmailId;
     Spinner spinnerFacolta;
     Button buttonConcludi;
     String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
@@ -86,8 +85,6 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
         cognome = firstChar+cognome.substring(1);
 
         String matricola = edtMatricolaStudente.getText().toString();
-
-
         String facolta = spinnerFacolta.getSelectedItem().toString();
         String email = edtEmailRegistrati.getText().toString().toLowerCase();
 
@@ -96,8 +93,7 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
         infoStudente.put("Cognome",cognome);
         infoStudente.put("Matricola",matricola);
         infoStudente.put("Facoltà",facolta);
-        infoStudente.put("Tipologia","S");
-
+        infoStudente.put("Tipologia","Studente");
 
         if(nome.isEmpty())
             edtNomeStudente.setError("Inserisci il tuo nome!");
@@ -134,7 +130,6 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
 //                        Toast.makeText(RegistrazioneStudActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
-
 
                     }else{
                         Toast.makeText(RegistrazioneStudActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();

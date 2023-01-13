@@ -1,9 +1,9 @@
 package it.uniba.dib.sms222332;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,19 +15,26 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
     Button btnAccedi,btnRegistrati;
     EditText edtEmailLogin,edtPasswordLogin;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    ProgressDialog progressDialog;
+    private String tipologia ="";
+    private String matricola ="";
+    private String nome ="";
+    private String universita ="";
     FirebaseAuth mAuth;
-    FirebaseUser mUser;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         edtPasswordLogin = findViewById(R.id.edtPasswordLogin);
 
         mAuth = FirebaseAuth.getInstance();
-        mUser= mAuth.getCurrentUser();
 
         // Passo alla schermata di registrazione
         btnRegistrati.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void performLogin() {
+    private void performLogin( ) {
         String email = edtEmailLogin.getText().toString();
         String password = edtPasswordLogin.getText().toString();
 
@@ -77,15 +83,81 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
 
-                        //VERIFICARE LA TIPOLOGIA DI ACCOUNT
+                        //VERIFICARE LA TIPOLOGIA DI ACCOUNT -> STUDENTE
 
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        //TODO putextra (informarsi bene) passare il parametro come char "s" o "p"
-                        startActivity(intent);
+                        // Crea un riferimento alla raccolta studenti
+                        CollectionReference collectionReferenceStud = db.collection("studenti");
+                        // Crea un task per ottenere il documento con l'ID specifico
+                        Task<DocumentSnapshot> checkStud = collectionReferenceStud.document(email).get();
+                        // Aspetta che il task sia completato
+                        checkStud.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists()) {
+
+                                        Map<String,Object> datiStudente =  document.getData();
+
+
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                                        intent.putExtra("tipologia_utente",(String) datiStudente.get("Tipologia"));
+                                        intent.putExtra("nome_utente",(String) datiStudente.get("Nome"));
+                                        intent.putExtra("cognome_utente",(String) datiStudente.get("Cognome"));
+                                        intent.putExtra("matricola_utente",(String) datiStudente.get("Matricola"));
+                                        intent.putExtra("universita_utente",(String) datiStudente.get("Facoltà"));
+
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+
+                                    } else {
+
+                                        //VERIFICARE LA TIPOLOGIA DI ACCOUNT -> PROFESSORE
+                                        // Crea un riferimento alla raccolta studenti
+                                        CollectionReference collectionReferenceProf = db.collection("professori");
+                                        // Crea un task per ottenere il documento con l'ID specifico
+                                        Task<DocumentSnapshot> checkProf = collectionReferenceProf.document(email).get();
+                                        // Aspetta che il task sia completato
+                                        checkProf.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot document = task.getResult();
+                                                    if (document.exists()) {
+                                                        Map<String,Object> datiProfessore =  document.getData();
+
+                                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                                                        intent.putExtra("tipologia_utente",(String) datiProfessore.get("Tipologia"));
+                                                        intent.putExtra("nome_utente",(String) datiProfessore.get("Nome"));
+                                                        intent.putExtra("cognome_utente",(String) datiProfessore.get("Cognome"));
+                                                        intent.putExtra("ruolo_utente",(String) datiProfessore.get("Ruolo"));
+
+                                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                        startActivity(intent);
+                                                    }
+                                                } else {
+                                                    // Errore durante la lettura del documento
+                                                }
+                                            }
+                                        });
+
+
+
+
+                                    }
+                                    } else {
+                                           // Errore durante la lettura del documento
+                                        }
+                                    }
+                                });
+                        //----------------------------------------------------------------------------------------------------------------------
+
 
 
                     }else{
+
                         Toast.makeText(LoginActivity.this, "Utente non trovato, effettua la registrazione o inserisci correttamente i dati ", Toast.LENGTH_LONG).show();
                     }
                 }
