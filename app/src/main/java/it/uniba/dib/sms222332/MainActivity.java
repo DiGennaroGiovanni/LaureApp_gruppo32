@@ -31,14 +31,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNav;
     private NavigationView navigationView;
-    private String tipologia = "Professore";
 
-    String tipologiaUtente;
-    String nomeUtente;
-    String cognomeUtente;
-    String matricolaUtente;
-    String universitaUtente;
-    String ruolo_utente;
+
+    private String tipologia = "";
+    private String nomeUtente;
+    private String cognomeUtente;
+    private String matricolaUtente;
+    private String universitaUtente;
+    private String ruolo_utente;
+    private String email;
+
+    public Studente studente;
+    public Professore professore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +50,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         tipologiaUtente = getIntent().getStringExtra("tipologia_utente"); // -> LEGGE IL PARAMETRO S o P che viene passato da LoginActivity
-         nomeUtente = getIntent().getStringExtra("nome_utente");
-         cognomeUtente = getIntent().getStringExtra("cognome_utente");
-         matricolaUtente = getIntent().getStringExtra("matricola_utente");
-         universitaUtente = getIntent().getStringExtra("universita_utente");
-         ruolo_utente = getIntent().getStringExtra("ruolo_utente");
+         tipologia = getIntent().getStringExtra("tipologia_utente");
+         switch (tipologia){
+             case "Professore":
+                 generateProfessor();
+                 break;
+
+             case "Studente":
+                 generateStudent();
+                 break;
+         }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -76,6 +84,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, getProperHome()).commit();
         }
+    }
+
+    private void generateProfessor() {
+        nomeUtente = getIntent().getStringExtra("nome_utente");
+        cognomeUtente = getIntent().getStringExtra("cognome_utente");
+        ruolo_utente = getIntent().getStringExtra("ruolo_utente");
+        email = getIntent().getStringExtra("email");
+
+        professore = new Professore(nomeUtente, cognomeUtente, ruolo_utente, email);
+    }
+
+    private void generateStudent() {
+        nomeUtente = getIntent().getStringExtra("nome_utente");
+        cognomeUtente = getIntent().getStringExtra("cognome_utente");
+        matricolaUtente = getIntent().getStringExtra("matricola_utente");
+        universitaUtente = getIntent().getStringExtra("universita_utente");
+        email = getIntent().getStringExtra("email");
+
+        studente = new Studente(nomeUtente, cognomeUtente, matricolaUtente, universitaUtente, email);
     }
 
     private void setBottomNavigationBar() {
@@ -107,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        Fragment selectedFragment = new StudentHomeFragment();
+        Fragment selectedFragment = new LanguagesFragment();
 
         switch (item.getItemId()) {
             case R.id.nav_profile:
