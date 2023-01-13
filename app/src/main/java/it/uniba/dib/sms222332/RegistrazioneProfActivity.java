@@ -33,7 +33,6 @@ public class RegistrazioneProfActivity extends AppCompatActivity {
 
     EditText edtNomeProf,edtCognomeProf, edtRuoloProf, edtEmailRegistrati, edtPasswordRegistrati;
     Button buttonConcludiProf;
-    ProgressDialog progressDialog;
 
     String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
 
@@ -50,7 +49,7 @@ public class RegistrazioneProfActivity extends AppCompatActivity {
         edtEmailRegistrati = findViewById(R.id.edtEmailRegistrati);
         edtPasswordRegistrati = findViewById(R.id.edtPasswordRegistrati);
 
-        progressDialog = new ProgressDialog(this);
+
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
@@ -96,32 +95,7 @@ public class RegistrazioneProfActivity extends AppCompatActivity {
         else if(ruolo.isEmpty())
             edtRuoloProf.setError("Inserisci il tuo ruolo!");
         else{
-            //INSERIMENTO DATI NEL DB RIFERENDOSI AD UN DOCUMENTI IN PARTICOLARE
-            db.collection("professori").document(email).set(infoProfessore).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-//                            progressDialog.setMessage("Registrazione in corso...");   COMMENTATO PERCHÉ FA CRASHARE L'APP DOPO LA REGISTRAZIONE
-//                            progressDialog.setTitle("Registrazione");
-//                            progressDialog.setCanceledOnTouchOutside(false);
-//                            progressDialog.show();
-
-                            //sendUserToUploadFile(); -> INSERIRE METODO CHE PORTA ALLA HOME DA LOGGATO
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getApplicationContext(),"Registrazione conclusa!",Toast.LENGTH_LONG).show();
-//                                    progressDialog.dismiss();
-                                }
-                            }, 2000); // 3000 milliseconds is 3 seconds
-
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getApplicationContext(),"Registrazione non avvenuta! Riprova",Toast.LENGTH_LONG).show();
-                        }
-                    });
+            db.collection("professori").document(email).set(infoProfessore);
         }
     }
 
