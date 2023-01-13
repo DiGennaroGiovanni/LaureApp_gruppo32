@@ -33,7 +33,7 @@ public class RegistrazioneProfActivity extends AppCompatActivity {
 
     EditText edtNomeProf,edtCognomeProf, edtRuoloProf, edtEmailRegistrati, edtPasswordRegistrati;
     Button buttonConcludiProf;
-    ProgressDialog progressDialog;
+
 
     String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
 
@@ -50,7 +50,6 @@ public class RegistrazioneProfActivity extends AppCompatActivity {
         edtEmailRegistrati = findViewById(R.id.edtEmailRegistrati);
         edtPasswordRegistrati = findViewById(R.id.edtPasswordRegistrati);
 
-        progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 

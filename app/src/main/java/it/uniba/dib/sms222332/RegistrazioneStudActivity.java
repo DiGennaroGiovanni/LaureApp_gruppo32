@@ -35,10 +35,9 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
 
     EditText edtNomeStudente,edtCognomeStudente, edtMatricolaStudente, edtEmailRegistrati, edtPasswordRegistrati;
     TextView txtFacoltaStudente;
-    String userEmailId;
     Spinner spinnerFacolta;
     Button buttonConcludi;
-    ProgressDialog progressDialog;
+
     String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
 
     @Override
@@ -54,7 +53,6 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
         spinnerFacolta = findViewById(R.id.spinnerFacolta);
         buttonConcludi = findViewById(R.id.buttonConcludi);
         txtFacoltaStudente = findViewById(R.id.txtFacoltaStudente);
-        progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
@@ -88,8 +86,6 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
         cognome = firstChar+cognome.substring(1);
 
         String matricola = edtMatricolaStudente.getText().toString();
-
-
         String facolta = spinnerFacolta.getSelectedItem().toString();
         String email = edtEmailRegistrati.getText().toString().toLowerCase();
 
@@ -99,7 +95,6 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
         infoStudente.put("Matricola",matricola);
         infoStudente.put("Facoltà",facolta);
         infoStudente.put("Tipologia","Studente");
-
 
         if(nome.isEmpty())
             edtNomeStudente.setError("Inserisci il tuo nome!");
