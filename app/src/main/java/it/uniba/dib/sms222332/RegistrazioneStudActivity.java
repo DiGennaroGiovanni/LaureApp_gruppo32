@@ -44,7 +44,7 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_continua_registrazione_studente);
+        setContentView(R.layout.activity_registrazione_stud);
 
         edtEmailRegistrati = findViewById(R.id.edtEmailRegistrati);
         edtPasswordRegistrati = findViewById(R.id.edtPasswordRegistrati);
@@ -62,7 +62,7 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
         /*      GESTISCO LO SPINNER     */
         // Creo un ArrayAdapter che contiene i valori dello spinner e gli affiso il layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.facolta_array, android.R.layout.simple_spinner_item);
+                R.array.faculty_array, android.R.layout.simple_spinner_item);
         // Specifico il layout che appare quando viene cliccato sullo spinner
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Setto l'ArrayAdapter allo spinner
