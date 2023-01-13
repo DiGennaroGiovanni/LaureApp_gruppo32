@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNav;
     private NavigationView navigationView;
-    private char tipologia = 'P';
+    private String tipologia = "Professore";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +59,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void setBottomNavigationBar() {
         bottomNav.getMenu().clear();
         switch (tipologia) {
-            case 'S':
+            case "Studente":
                 bottomNav.inflateMenu(R.menu.bottom_navigation_stud);
                 break;
 
-            case 'P':
+            case "Professore":
                 bottomNav.inflateMenu(R.menu.bottom_navigation_prof);
                 break;
         }
@@ -138,11 +138,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Fragment getProperHome(){
         Fragment toReturn;
         switch (tipologia){
-            case 'S':
+            case "Studente":
                 toReturn = new StudentHomeFragment();
                 break;
 
-            case 'P':
+            case "Professore":
             default:
                 toReturn = new ProfessorHomeFragment();
                 break;
