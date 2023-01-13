@@ -20,44 +20,62 @@
     <string name="profile_img">Profile Image</string>
     <string name="user_profession">Profession</string>
 
+    <!-- FILIPPO -->
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="registrati">Registrati</string>
-    <string name="accedi">Accedi</string>
-    <string name="nome">Nome</string>
-    <string name="cognome">Cognome</string>
-    <string name="continua_registrazione_come">Continua registrazione come:</string>
-    <string name="professore">Professore</string>
-    <string name="studente">Studente</string>
-    <string name="todo">TODO</string>
-    <string name="facolta">Facoltà</string>
-    <string name="ruolo">Ruolo</string>
-    <string name="continua_registrazione_professore">Continua registrazione come professore</string>
-    <string name="continua_registrazione_studente">Continua registrazione come alunno</string>
-    <string name="concludi_registrazione">Concludi registrazione</string>
-    <string name="matricola">Matricola</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="proceed_with_sign_up">Proceed with sign up:</string>
+    <string name="professor">Professor</string>
+    <string name="student">Student</string>
+    <string name="faculty">Faculty</string>
+    <string name="role">Role</string>
+    <string name="proceed_with_sign_up_as_a_professor">Proceed with sign up as a professor</string>
+    <string name="proceed_with_sign_up_as_a_student">Proceed with sign up as a student</string>
+    <string name="complete_registration">Complete registration</string>
+    <string name="type_yout_student_data">Type your student data</string>
+    <string name="matriculation_number">Matriculation number</string>
     <string name="testimage">testImage</string>
-    <string name="seleziona_facolta">seleziona facoltà</string>
-    <string name="seleziona_ruolo">seleziona ruolo</string>
-    <string-array name="ruolo_array">
-        <item>Prova</item>
-        <item>Test</item>
-    </string-array>
-    <string-array name="facolta_array">
-        <item>Biologia</item>
-        <item>Chimica</item>
-        <item>Economia</item>
-        <item>Farmacia</item>
-        <item>Filosofia</item>
-        <item>Giurisprudenza</item>
-        <item>Informatica</item>
+    <string name="select_faculty">select faculty</string>
+    <string name="select_role">select role</string>
+    <string name="or">Or</string>
+    <string-array name="faculty_array">
+        <item>Biology</item>
+        <item>Chemistry</item>
+        <item>Economy</item>
+        <item>Pharmacy</item>
+        <item>Philosophy</item>
+        <item>Law</item>
+        <item>Computer Science</item>
         <item>I.T.P.S.</item>
-        <item>Lettere</item>
-        <item>Matematica</item>
-        <item>Medicina</item>
-        <item>Scienze della Formazione</item>
-        <item>Scienze Agro-Ambientali e Territoriali</item>
-        <item>Scienze Biomediche</item>
-        <item>Scienze Politiche</item>
+        <item>Humanities</item>
+        <item>Mathematics</item>
+        <item>Medicine</item>
+        <item>Education Science</item>
+        <item>Agro-Environmental and Territorial Sciences</item>
+        <item>Biochemical Sciences</item>
+        <item>Political Science</item>
     </string-array>
+    <string name="thesis_name">Thesis name</string>
+    <string name="type_name_of_thesis">type the name of the thesis</string>
+    <string name="experimental">Experimental</string>
+    <string name="compilation">Compilation</string>
+    <string name="main_subject">Main subject</string>
+    <string name="estimated_time">Estimated time</string>
+    <string name="create_thesis">create thesis</string>
+    <string name="related_projects">Related projects</string>
+    <string name="thesis_constraints">Thesis constraints</string>
+    <string name="add_material">Add material</string>
+    <string name="teaching_materials">Teaching materials</string>
+    <string name="thesis_description">Thesis description</string>
+    <string name="co_rapporteur">Co-rapporteur</string>
+    <string name="days">days</string>
+    <string name="type_thesis_constraints">type thesis constraints</string>
+    <string name="type_description_thesis">type the description of the thesis</string>
+    <string name="type_main_subject">type main subject</string>
+    <string name="type_related_projects">type related projects</string>
+    <string name="type_co_rapporteur">type co-rapporteur</string>
+    <!-- FINE FILIPPO -->
 </resources>

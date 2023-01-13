@@ -6,6 +6,7 @@
     android:gravity="center">
 
     <Button
+        android:id="@+id/buttonNuovaTesi"
         android:layout_width="300sp"
         android:layout_height="100sp"
         android:text="@string/add_thesis_button"

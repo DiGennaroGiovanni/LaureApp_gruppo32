@@ -98,8 +98,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START);
 
+        else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        }
         else
             super.onBackPressed();
+
+
     }
 
     private final NavigationBarView.OnItemSelectedListener navListener = item -> {

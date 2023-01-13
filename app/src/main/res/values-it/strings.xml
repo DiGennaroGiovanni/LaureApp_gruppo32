@@ -24,28 +24,25 @@
     <!-- FILIPPO -->
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="registrati">Registrati</string>
-    <string name="accedi">Accedi</string>
-    <string name="nome">Nome</string>
-    <string name="cognome">Cognome</string>
-    <string name="continua_registrazione_come">Continua registrazione come:</string>
-    <string name="professore">Professore</string>
-    <string name="studente">Studente</string>
-    <string name="todo">TODO</string>
-    <string name="facolta">Facoltà</string>
-    <string name="ruolo">Ruolo</string>
-    <string name="continua_registrazione_professore">Continua registrazione come professore</string>
-    <string name="continua_registrazione_studente">Continua registrazione come alunno</string>
-    <string name="concludi_registrazione">Concludi registrazione</string>
-    <string name="matricola">Matricola</string>
+    <string name="sign_up">Registrati</string>
+    <string name="sign_in">Accedi</string>
+    <string name="first_name">Nome</string>
+    <string name="last_name">Cognome</string>
+    <string name="proceed_with_sign_up">Continua registrazione come:</string>
+    <string name="professor">Professore</string>
+    <string name="student">Studente</string>
+    <string name="faculty">Facoltà</string>
+    <string name="role">Ruolo</string>
+    <string name="proceed_with_sign_up_as_a_professor">Continua registrazione come professore</string>
+    <string name="proceed_with_sign_up_as_a_student">Continua registrazione come alunno</string>
+    <string name="complete_registration">Concludi registrazione</string>
+    <string name="type_yout_student_data">Digita i tuoi dati studente</string>
+    <string name="matriculation_number">Matricola</string>
     <string name="testimage">testImage</string>
-    <string name="seleziona_facolta">seleziona facoltà</string>
-    <string name="seleziona_ruolo">seleziona ruolo</string>
-    <string-array name="ruolo_array">
-        <item>Prova</item>
-        <item>Test</item>
-    </string-array>
-    <string-array name="facolta_array">
+    <string name="select_faculty">seleziona facoltà</string>
+    <string name="select_role">seleziona ruolo</string>
+    <string name="or">Oppure</string>
+    <string-array name="faculty_array">
         <item>Biologia</item>
         <item>Chimica</item>
         <item>Economia</item>
@@ -62,4 +59,24 @@
         <item>Scienze Biomediche</item>
         <item>Scienze Politiche</item>
     </string-array>
+    <string name="thesis_name">Nome tesi</string>
+    <string name="type_name_of_thesis">digita il nome della tesi</string>
+    <string name="experimental">Sperimentale</string>
+    <string name="compilation">Compilativa</string>
+    <string name="main_subject">Materia principale</string>
+    <string name="estimated_time">Tempo stimato</string>
+    <string name="create_thesis">Crea tesi</string>
+    <string name="related_projects">Progetti correlati</string>
+    <string name="thesis_constraints">Vincoli di tesi</string>
+    <string name="add_material">Aggiungi materiale</string>
+    <string name="teaching_materials">Materiale didattico</string>
+    <string name="thesis_description">Descrizione tesi</string>
+    <string name="co_rapporteur">Co-relatore</string>
+    <string name="days">giorni</string>
+    <string name="type_thesis_constraints">digitare i vincoli di tesi</string>
+    <string name="type_description_thesis">digitare la descrizione della tesi</string>
+    <string name="type_main_subject">digitare la materia principale</string>
+    <string name="type_related_projects">digitare i progetti correlati</string>
+    <string name="type_co_rapporteur">digitare il co-relatore</string>
+    <!-- FINE FILIPPO -->
 </resources>
