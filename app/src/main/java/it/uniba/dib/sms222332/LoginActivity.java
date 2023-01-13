@@ -107,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                                         intent.putExtra("cognome_utente",(String) datiStudente.get("Cognome"));
                                         intent.putExtra("matricola_utente",(String) datiStudente.get("Matricola"));
                                         intent.putExtra("universita_utente",(String) datiStudente.get("Facoltà"));
+                                        intent.putExtra("email", email);
 
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
@@ -133,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         intent.putExtra("nome_utente",(String) datiProfessore.get("Nome"));
                                                         intent.putExtra("cognome_utente",(String) datiProfessore.get("Cognome"));
                                                         intent.putExtra("ruolo_utente",(String) datiProfessore.get("Ruolo"));
+                                                        intent.putExtra("email", email);
 
                                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                                         startActivity(intent);
