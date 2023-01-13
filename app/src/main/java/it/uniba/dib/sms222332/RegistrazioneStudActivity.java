@@ -111,31 +111,7 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
             txtFacoltaStudente.setError("Seleziona la tua facoltà!");
         else{
             //INSERIMENTO DATI NEL DB RIFERENDOSI AD UN DOCUMENTI IN PARTICOLARE
-            db.collection("studenti").document(email).set(infoStudente).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            progressDialog.setMessage("Registrazione in corso...");
-                            progressDialog.setTitle("Registrazione");
-                            progressDialog.setCanceledOnTouchOutside(false);
-                            progressDialog.show();
-
-                            //sendUserToUploadFile(); -> INSERIRE METODO CHE PORTA ALLA HOME DA LOGGATO
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getApplicationContext(),"Registrazione conclusa!",Toast.LENGTH_LONG).show();
-                                    progressDialog.dismiss();
-                                }
-                            }, 2000); // 3000 milliseconds is 3 seconds
-
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getApplicationContext(),"Registrazione non avvenuta! Riprova",Toast.LENGTH_LONG).show();
-                        }
-                    });
+            db.collection("studenti").document(email).set(infoStudente);
         }
     }
 
@@ -161,7 +137,6 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         Toast.makeText(RegistrazioneStudActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
-
 
                     }else{
                         Toast.makeText(RegistrazioneStudActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();

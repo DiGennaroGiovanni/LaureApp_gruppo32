@@ -11,32 +11,30 @@
         android:theme="@style/CustomTheme">
         <activity
             android:name=".RegistrazioneStudActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".RegistrazioneProfActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".RegistratiActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".MainActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.LaureApp.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.LaureApp.NoActionBar"></activity>
     </application>
 
 </manifest>
