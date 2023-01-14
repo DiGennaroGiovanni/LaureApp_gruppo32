@@ -68,7 +68,7 @@
     <string name="create_thesis">Crea tesi</string>
     <string name="related_projects">Progetti correlati</string>
     <string name="thesis_constraints">Vincoli di tesi</string>
-    <string name="add_material">Aggiungi materiale</string>
+    <string name="add_material">Aggiungi materiale (Solo PDF)</string>
     <string name="teaching_materials">Materiale didattico</string>
     <string name="thesis_description">Descrizione tesi</string>
     <string name="co_rapporteur">Co-relatore</string>
@@ -77,6 +77,6 @@
     <string name="type_description_thesis">digitare la descrizione della tesi</string>
     <string name="type_main_subject">digitare la materia principale</string>
     <string name="type_related_projects">digitare i progetti correlati</string>
-    <string name="type_co_rapporteur">digitare il co-relatore</string>
+    <string name="type_correlator">digitare il co-relatore</string>
     <!-- FINE FILIPPO -->
 </resources>

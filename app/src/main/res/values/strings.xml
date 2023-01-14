@@ -67,7 +67,7 @@
     <string name="create_thesis">create thesis</string>
     <string name="related_projects">Related projects</string>
     <string name="thesis_constraints">Thesis constraints</string>
-    <string name="add_material">Add material</string>
+    <string name="add_material">Add material (PDF only)</string>
     <string name="teaching_materials">Teaching materials</string>
     <string name="thesis_description">Thesis description</string>
     <string name="co_rapporteur">Co-rapporteur</string>
@@ -76,6 +76,6 @@
     <string name="type_description_thesis">type the description of the thesis</string>
     <string name="type_main_subject">type main subject</string>
     <string name="type_related_projects">type related projects</string>
-    <string name="type_co_rapporteur">type co-rapporteur</string>
+    <string name="type_correlator">type correlator</string>
     <!-- FINE FILIPPO -->
 </resources>

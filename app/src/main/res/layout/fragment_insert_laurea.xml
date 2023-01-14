@@ -6,6 +6,7 @@
     tools:context=".InsertLaureaFragment">
 
     <LinearLayout
+        android:id="@+id/first_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -14,6 +15,7 @@
         android:paddingEnd="20dp"
         android:paddingBottom="20dp">
 
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
@@ -21,7 +23,7 @@
             android:text="@string/thesis_name" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/edtThesisName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -63,7 +65,7 @@
             android:text="@string/main_subject" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/edtMainSubject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -75,6 +77,7 @@
             android:textColorHint="#546E7A" />
 
         <LinearLayout
+            android:id="@+id/second_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
@@ -90,7 +93,7 @@
                 android:textAlignment="viewEnd" />
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/edtEstimatedTime"
                 android:layout_width="10dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -118,13 +121,13 @@
             android:text="@string/co_rapporteur" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/edtCorrelator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:autofillHints=""
             android:ems="10"
-            android:hint="@string/type_co_rapporteur"
+            android:hint="@string/type_correlator"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:textColorHint="#546E7A"/>
@@ -136,7 +139,7 @@
             android:text="@string/thesis_description" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine3"
+            android:id="@+id/edtDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -155,13 +158,14 @@
             android:text="@string/teaching_materials" />
 
         <LinearLayout
+            android:id="@+id/my_layout3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/buttonUploadFile"
                 android:layout_width="15dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="10dp"
@@ -172,7 +176,7 @@
                 tools:ignore="HardcodedText,TextContrastCheck" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/txtAddMaterial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -188,7 +192,7 @@
             android:text="@string/thesis_constraints" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/edtThesisConstraints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -207,7 +211,7 @@
             android:text="@string/related_projects" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine2"
+            android:id="@+id/edtRelatedProjects"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -220,7 +224,7 @@
             android:textColorHint="#546E7A" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/buttonCreateThesis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/create_thesis" />
