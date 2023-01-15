@@ -11,11 +11,13 @@
         android:theme="@style/CustomTheme">
         <activity
             android:name=".RegistrazioneStudActivity"
-            android:exported="false">
+            android:exported="false"
+            android:label="Registrazione">
         </activity>
         <activity
             android:name=".RegistrazioneProfActivity"
-            android:exported="false">
+            android:exported="false"
+            android:label="Registrazione">
         </activity>
         <activity
             android:name=".LoginActivity"
@@ -27,7 +29,8 @@
         </activity>
         <activity
             android:name=".RegistratiActivity"
-            android:exported="false">
+            android:exported="false"
+            android:label="Registrazione">
         </activity>
         <activity android:name=".MainActivity"
             android:exported="true"
