@@ -60,21 +60,19 @@
 
         <TextView
             android:id="@+id/textView6"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/main_subject" />
 
-        <EditText
+        <Spinner
             android:id="@+id/edtMainSubject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/type_main_subject"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:textColorHint="#546E7A" />
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_width="187dp"
+            android:layout_height="48dp"
+            android:backgroundTint="#BFBABA"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <LinearLayout
             android:id="@+id/second_layout"
@@ -155,35 +153,41 @@
             android:id="@+id/textView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:text="@string/teaching_materials" />
 
-        <LinearLayout
-            android:id="@+id/my_layout3"
+        <RelativeLayout
+            android:id="@+id/third_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonUploadFile"
-                android:layout_width="15dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:text="+"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                tools:ignore="HardcodedText,TextContrastCheck" />
-
-            <TextView
-                android:id="@+id/txtAddMaterial"
+                android:id="@+id/addFile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="@string/add_material"
-                android:textSize="16sp"/>
+                android:text="+"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"/>
 
-        </LinearLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="70dp"
+                >
+                <LinearLayout
+                    android:id="@+id/layout_lista"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </ScrollView>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/textView9"

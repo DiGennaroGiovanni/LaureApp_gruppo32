@@ -29,10 +29,6 @@ public class LoginActivity extends AppCompatActivity {
     Button btnAccedi,btnRegistrati;
     EditText edtEmailLogin,edtPasswordLogin;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    private String tipologia ="";
-    private String matricola ="";
-    private String nome ="";
-    private String universita ="";
     FirebaseAuth mAuth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
