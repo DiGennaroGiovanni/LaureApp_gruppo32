@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -20,7 +21,11 @@ public class ProfessorHomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_professor, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.homeToolbar));
+
         buttonNuovaTesi = view.findViewById(R.id.buttonNuovaTesi);
+
+        buttonNuovaTesi.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.add_thesis_icon, 0);
         buttonNuovaTesi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

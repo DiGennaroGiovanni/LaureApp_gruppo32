@@ -20,6 +20,17 @@
     <string name="profile_img">Profile Image</string>
     <string name="user_profession">Profession</string>
 
+    <!--    TITOLI FRAGMENT-->
+    <string name="homeToolbar">Home</string>
+    <string name="createThesisToolbar">Create Thesis</string>
+    <string name="favoritesToolbar">Favorites</string>
+    <string name="profileToolbar">Profile</string>
+    <string name="thesisListToolbar">Handle Thesis</string>
+    <string name="messagesToolbar">Messages</string>
+    <string name="languagesToolbar">Languages</string>
+    <string name="chatToolbar">Chat</string>
+    <string name="settingsToolbar">Settings</string>
+
     <!-- FILIPPO -->
     <string name="email">Email</string>
     <string name="password">Password</string>

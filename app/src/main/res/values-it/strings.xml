@@ -21,6 +21,16 @@
     <string name="menu_language">Lingua</string>
     <string name="menu_logout">Logout</string>
 
+    <!--    TITOLI FRAGMENT-->
+    <string name="homeToolbar">Home</string>
+    <string name="createThesisToolbar">Crea Tesi</string>
+    <string name="favoritesToolbar">Preferiti</string>
+    <string name="profileToolbar">Profilo</string>
+    <string name="thesisListToolbar">Gestisci Tesi</string>
+    <string name="messagesToolbar">Messaggi</string>
+    <string name="languagesToolbar">Lingua</string>
+    <string name="chatToolbar">Chat</string>
+    <string name="settingsToolbar">Impostazioni</string>
     <!-- FILIPPO -->
     <string name="email">Email</string>
     <string name="password">Password</string>

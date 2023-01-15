@@ -26,15 +26,9 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button btnAccedi,btnRegistrati;
-    EditText edtEmailLogin,edtPasswordLogin;
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    private String tipologia ="";
-    private String matricola ="";
-    private String nome ="";
-    private String universita ="";
-    FirebaseAuth mAuth;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private EditText edtEmailLogin,edtPasswordLogin;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,24 +36,24 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Dichiaro i pulsanti presenti nella schermata
-        btnRegistrati = findViewById(R.id.btnRegistrati);
-        btnAccedi = findViewById(R.id.btnAccedi);
+        Button registerBtn = findViewById(R.id.btnRegistrati);
+        Button loginBtn = findViewById(R.id.btnAccedi);
         edtEmailLogin = findViewById(R.id.edtEmailLogin);
         edtPasswordLogin = findViewById(R.id.edtPasswordLogin);
 
         mAuth = FirebaseAuth.getInstance();
 
         // Passo alla schermata di registrazione
-        btnRegistrati.setOnClickListener(new View.OnClickListener() {
+        registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentRegistrati = new Intent(LoginActivity.this, RegistratiActivity.class);
-                startActivity(intentRegistrati);
+                Intent registerIntent = new Intent(LoginActivity.this, RegistratiActivity.class);
+                startActivity(registerIntent);
             }
         });
 
         // Passo alla schermata home
-        btnAccedi.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 performLogin();
@@ -70,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
     private void performLogin( ) {
         String email = edtEmailLogin.getText().toString();
         String password = edtPasswordLogin.getText().toString();
+
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         if(!email.matches(emailPattern))
         {
