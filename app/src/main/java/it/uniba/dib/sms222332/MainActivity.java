@@ -3,6 +3,7 @@ package it.uniba.dib.sms222332;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,22 +51,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         tipologia = getIntent().getStringExtra("tipologia_utente");
-         switch (tipologia){
-             case "Professore":
-                 generateProfessor();
-                 break;
 
-             case "Studente":
-                 generateStudent();
-                 break;
-         }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         bottomNav = findViewById(R.id.bottom_navigation);
-        setBottomNavigationBar();
+
+
 
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -78,6 +71,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView nameSurname = headerView.findViewById(R.id.nameSurnameTxt);
+        TextView profession = headerView.findViewById(R.id.professionTxt);
+
+        String nomeCognome = "";
+
+        tipologia = getIntent().getStringExtra("tipologia_utente");
+        switch (tipologia){
+            case "Professore":
+                generateProfessor();
+                nomeCognome = professore.getNome() + " " + professore.getCognome();
+                break;
+
+            case "Studente":
+                generateStudent();
+                nomeCognome = studente.getNome() + " " + studente.getCognome();
+                break;
+        }
+
+        setBottomNavigationBar();
+        nameSurname.setText(nomeCognome);
+        profession.setText(tipologia);
 
 
         bottomNav.setOnItemSelectedListener(navListener);
