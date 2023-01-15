@@ -5,17 +5,37 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 public class RicevimentoFragment extends Fragment {
 
+    Button buttonAddRicevimento;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_ricevimento, container, false);
+        View view = inflater.inflate(R.layout.fragment_ricevimento, container, false);
+        buttonAddRicevimento = view.findViewById(R.id.addRicevimento);
+
+        buttonAddRicevimento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                fragmentTransaction.replace(R.id.fragment_container, new AggiuntaRicevimentoFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+        //return inflater.inflate(R.layout.fragment_ricevimento, container, false);
+        return view;
     }
 }

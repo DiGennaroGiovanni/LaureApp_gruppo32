@@ -15,12 +15,14 @@ import androidx.fragment.app.FragmentTransaction;
 public class ProfessorHomeFragment extends Fragment {
 
     Button buttonNuovaTesi;
+    Button buttonRicevimento;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_professor, container, false);
         buttonNuovaTesi = view.findViewById(R.id.buttonNuovaTesi);
+        buttonRicevimento = view.findViewById(R.id.ricevimento);
         buttonNuovaTesi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,6 +33,17 @@ public class ProfessorHomeFragment extends Fragment {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
+            }
+        });
+        buttonRicevimento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                fragmentTransaction.replace(R.id.fragment_container, new RicevimentoFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
         return view;

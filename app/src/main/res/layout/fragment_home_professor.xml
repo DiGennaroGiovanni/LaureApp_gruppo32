@@ -26,6 +26,7 @@
 <!--        android:layout_weight="1"/>-->
 
     <Button
+        android:id="@+id/ricevimento"
         android:layout_width="300sp"
         android:layout_height="100sp"
         android:text="@string/receipts_button"
