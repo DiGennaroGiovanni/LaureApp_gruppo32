@@ -3,10 +3,8 @@ package it.uniba.dib.sms222332;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,8 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegistrazioneStudActivity extends AppCompatActivity {
+public class StudentRegisterActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -66,13 +62,7 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
         spinnerFacolta.setAdapter(adapter);
 
         /*      GESTISCO IL BOTTONE CONTINUA REGISTRAZIONE      */
-        buttonConcludi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                performAuthStud();
-
-            }
-        });
+        buttonConcludi.setOnClickListener(view -> performAuthStud());
     }
 
     private void insertDataStudente() {
@@ -120,20 +110,17 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
         }else{
 
 
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
+            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()){
 
-                        insertDataStudente();
-                        Intent intent = new Intent(RegistrazioneStudActivity.this, LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-//                        Toast.makeText(RegistrazioneStudActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
+                    insertDataStudente();
+                    Intent intent = new Intent(StudentRegisterActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+//                        Toast.makeText(StudentRegisterActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
 
-                    }else{
-                        Toast.makeText(RegistrazioneStudActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
-                    }
+                }else{
+                    Toast.makeText(StudentRegisterActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
                 }
             });
         }

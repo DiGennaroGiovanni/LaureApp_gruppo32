@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-public class RicevimentoFragment extends Fragment {
+public class ReceiptsFragment extends Fragment {
 
     Button buttonAddRicevimento;
 
@@ -24,16 +24,13 @@ public class RicevimentoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ricevimento, container, false);
         buttonAddRicevimento = view.findViewById(R.id.addRicevimento);
 
-        buttonAddRicevimento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        buttonAddRicevimento.setOnClickListener(view1 -> {
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                fragmentTransaction.replace(R.id.fragment_container, new AggiuntaRicevimentoFragment());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
+            fragmentTransaction.replace(R.id.fragment_container, new AggiuntaRicevimentoFragment());
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         });
         //return inflater.inflate(R.layout.fragment_ricevimento, container, false);
         return view;

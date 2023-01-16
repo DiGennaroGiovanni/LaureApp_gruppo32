@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/CustomTheme">
         <activity
-            android:name=".RegistrazioneStudActivity"
+            android:name=".StudentRegisterActivity"
             android:exported="false"
             android:label="Registrazione">
         </activity>
         <activity
-            android:name=".RegistrazioneProfActivity"
+            android:name=".ProfessorRegisterActivity"
             android:exported="false"
             android:label="Registrazione">
         </activity>

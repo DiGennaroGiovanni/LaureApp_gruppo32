@@ -3,18 +3,14 @@ package it.uniba.dib.sms222332;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegistrazioneProfActivity extends AppCompatActivity {
+public class ProfessorRegisterActivity extends AppCompatActivity {
 
     //Istanze del database e del sistema di autenticazione di firebase
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -54,14 +50,7 @@ public class RegistrazioneProfActivity extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
 
         /*      GESTISCO IL BOTTONE CONTINUA REGISTRAZIONE      */
-        buttonConcludiProf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                performAuthProf();
-
-
-            }
-        });
+        buttonConcludiProf.setOnClickListener(view -> performAuthProf());
     }
 
     private void insertDataProf() {
@@ -110,21 +99,18 @@ public class RegistrazioneProfActivity extends AppCompatActivity {
             edtPasswordRegistrati.setError("Inserisci una password valida (deve avere almeno 6 caratteri)");
         }else{
 
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        insertDataProf(); //MEMORIZZO I DATI DEL PROFESSORE
+            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()){
+                    insertDataProf(); //MEMORIZZO I DATI DEL PROFESSORE
 
-                        Intent intent = new Intent(RegistrazioneProfActivity.this, LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-//                        Toast.makeText(RegistrazioneProfActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ProfessorRegisterActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+//                        Toast.makeText(ProfessorRegisterActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
 
 
-                    }else{
-                        Toast.makeText(RegistrazioneProfActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
-                    }
+                }else{
+                    Toast.makeText(ProfessorRegisterActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
                 }
             });
         }
