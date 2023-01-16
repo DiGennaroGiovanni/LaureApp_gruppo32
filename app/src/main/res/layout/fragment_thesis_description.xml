@@ -14,7 +14,7 @@
     <TableRow>
 
         <TextView
-            android:id="@+id/txtName"
+            android:id="@+id/txtNameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thesis name"
@@ -24,6 +24,15 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:fontFamily="@font/cardo"/>
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textFontWeight="1000"
+            android:textSize="15sp" />
 
 
 
@@ -71,13 +80,13 @@
         <TextView
             android:id="@+id/txtDepartmentTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/cardo"
             android:text="Department"
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="16sp"
-            android:textStyle="italic"
-            android:fontFamily="@font/cardo"/>
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/txtDepartment"
