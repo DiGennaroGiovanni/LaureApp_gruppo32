@@ -23,20 +23,17 @@ public class ProfessorHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_professor, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.homeToolbar));
 
-        buttonNuovaTesi = view.findViewById(R.id.buttonNuovaTesi);
+        buttonNuovaTesi = view.findViewById(R.id.newThesisBtn);
 
         buttonNuovaTesi.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.add_thesis_icon, 0);
-        buttonNuovaTesi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        buttonNuovaTesi.setOnClickListener(view1 -> {
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                fragmentTransaction.replace(R.id.fragment_container, new InsertLaureaFragment());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.fragment_container, new InsertLaureaFragment());
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
 
-            }
         });
         return view;
         //return inflater.inflate(R.layout.fragment_home_professor, container, false);

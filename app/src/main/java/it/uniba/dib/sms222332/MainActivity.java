@@ -236,11 +236,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void setProfession(TextView profession, String accountType){
         switch (accountType){
             case "Professor":
-            case "Professore":
                 profession.setText(R.string.professor);
                 break;
 
-            case "Studente":
             case "Student":
                 profession.setText(R.string.student);
                 break;

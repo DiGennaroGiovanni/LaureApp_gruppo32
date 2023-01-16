@@ -7,7 +7,7 @@
     android:theme="@style/CustomTheme">
 
     <Button
-        android:id="@+id/buttonNuovaTesi"
+        android:id="@+id/newThesisBtn"
         android:layout_width="300sp"
         android:layout_height="100sp"
         android:text="@string/add_thesis_button"
@@ -15,7 +15,7 @@
         android:layout_marginTop="120sp"
         android:layout_marginBottom="90sp"
         android:textStyle="bold"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
 <!--    <Button-->
 <!--        android:layout_width="300sp"-->
@@ -27,6 +27,7 @@
 <!--        android:layout_weight="1"/>-->
 
     <Button
+        android:id="@+id/receiptsBtn"
         android:layout_width="300sp"
         android:layout_height="100sp"
         android:text="@string/receipts_button"
