@@ -86,7 +86,7 @@ public class RegistrazioneProfActivity extends AppCompatActivity {
         infoProfessore.put("Nome",nome);
         infoProfessore.put("Cognome",cognome);
         infoProfessore.put("Ruolo",ruolo);
-        infoProfessore.put("Tipologia","Professore");
+        infoProfessore.put("Tipologia","Professor");
 
         if(nome.isEmpty())
             edtNomeProf.setError("Inserisci il tuo nome!");

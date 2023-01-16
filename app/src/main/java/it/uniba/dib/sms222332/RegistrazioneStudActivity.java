@@ -93,7 +93,7 @@ public class RegistrazioneStudActivity extends AppCompatActivity {
         infoStudente.put("Cognome",cognome);
         infoStudente.put("Matricola",matricola);
         infoStudente.put("Facoltà",facolta);
-        infoStudente.put("Tipologia","Studente");
+        infoStudente.put("Tipologia","Student");
 
         if(nome.isEmpty())
             edtNomeStudente.setError("Inserisci il tuo nome!");

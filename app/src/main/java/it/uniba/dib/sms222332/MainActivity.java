@@ -1,13 +1,9 @@
 package it.uniba.dib.sms222332;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +20,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -34,17 +28,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private BottomNavigationView bottomNav;
     private NavigationView navigationView;
 
-
-    private String tipologia = "";
-    private String nomeUtente;
-    private String cognomeUtente;
-    private String matricolaUtente;
-    private String universitaUtente;
-    private String ruolo_utente;
-    private String email;
-
-    public Studente studente;
-    public Professore professore;
+    public Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         bottomNav = findViewById(R.id.bottom_navigation);
-
-
-
-
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
@@ -74,27 +54,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         View headerView = navigationView.getHeaderView(0);
-        TextView nameSurname = headerView.findViewById(R.id.nameSurnameTxt);
+        TextView nameDisplay = headerView.findViewById(R.id.nameSurnameTxt);
         TextView profession = headerView.findViewById(R.id.professionTxt);
 
-        String nomeCognome = "";
 
-        tipologia = getIntent().getStringExtra("tipologia_utente");
-        switch (tipologia){
-            case "Professore":
-                generateProfessor();
-                nomeCognome = professore.getNome() + " " + professore.getCognome();
-                break;
+        setAccount();
 
-            case "Studente":
-                generateStudent();
-                nomeCognome = studente.getNome() + " " + studente.getCognome();
-                break;
-        }
+        setBottomNavigationBar(account.getAccountType());
 
-        setBottomNavigationBar();
-        nameSurname.setText(nomeCognome);
-        profession.setText(tipologia);
+        String nameSurname = account.getName() + " " + account.getSurname();
+        nameDisplay.setText(nameSurname);
+        profession.setText(account.getAccountType());
 
 
         bottomNav.setOnItemSelectedListener(navListener);
@@ -103,49 +73,69 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void generateProfessor() {
-        nomeUtente = getIntent().getStringExtra("nome_utente");
-        cognomeUtente = getIntent().getStringExtra("cognome_utente");
-        ruolo_utente = getIntent().getStringExtra("ruolo_utente");
-        email = getIntent().getStringExtra("email");
+    /**
+     * Inserisce i dati del database nell'interfaccia Account
+     * L'account può essere di tipo Professor o Student
+     */
+    private void setAccount() {
+        switch (getIntent().getStringExtra("account_type")){
+            case "Professor":
+                generateProfessor();
+                break;
 
-        professore = new Professore(nomeUtente, cognomeUtente, ruolo_utente, email);
+            case "Student":
+                generateStudent();
+                break;
+        }
+    }
+
+    private void generateProfessor() {
+        String name = getIntent().getStringExtra("name");
+        String surname = getIntent().getStringExtra("surname");
+        String faculty = getIntent().getStringExtra("faculty");
+        String email = getIntent().getStringExtra("email");
+
+        account = new Professor(name, surname, faculty, email);
     }
 
     private void generateStudent() {
-        nomeUtente = getIntent().getStringExtra("nome_utente");
-        cognomeUtente = getIntent().getStringExtra("cognome_utente");
-        matricolaUtente = getIntent().getStringExtra("matricola_utente");
-        universitaUtente = getIntent().getStringExtra("universita_utente");
-        email = getIntent().getStringExtra("email");
+        String name = getIntent().getStringExtra("name");
+        String surname = getIntent().getStringExtra("surname");
+        String badgeNumber = getIntent().getStringExtra("badge_number");
+        String faculty = getIntent().getStringExtra("faculty");
+        String email = getIntent().getStringExtra("email");
 
-        studente = new Studente(nomeUtente, cognomeUtente, matricolaUtente, universitaUtente, email);
+        account = new Student(name, surname, badgeNumber, faculty, email);
     }
 
-    private void setBottomNavigationBar() {
+    private void setBottomNavigationBar(String accountType) {
         bottomNav.getMenu().clear();
-        switch (tipologia) {
-            case "Studente":
+        switch (accountType) {
+            case "Student":
                 bottomNav.inflateMenu(R.menu.bottom_navigation_stud);
                 break;
 
-            case "Professore":
+            case "Professor":
                 bottomNav.inflateMenu(R.menu.bottom_navigation_prof);
                 break;
         }
     }
 
-    private Fragment creazioneBundle(String nomeUtente, String cognomeUtente, String matricolaUtente, String universitaUtente) {
+    private Fragment profileBundle(Account account) {
         Bundle bundle = new Bundle();
-        bundle.putString("nome_utente", nomeUtente);
-        bundle.putString("cognome_utente", cognomeUtente);
-        bundle.putString("matricola_utente", matricolaUtente);
-        bundle.putString("universita_utente", universitaUtente);
+        bundle.putString("name", account.getName());
+        bundle.putString("surname", account.getSurname());
+        bundle.putString("email", account.getEmail());
+        bundle.putString("faculty", account.getFaculty());
 
-        ProfileFragment fragmentProfiloStud = new ProfileFragment();
-        fragmentProfiloStud.setArguments(bundle);
+        if (account.getAccountType().equals("Student") )
+            bundle.putString("badge_number", account.getBadgeNumber());
 
-        return fragmentProfiloStud;
+
+        ProfileFragment profileFragment = new ProfileFragment();
+        profileFragment.setArguments(bundle);
+
+        return profileFragment;
     }
 
     @Override
@@ -155,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()) {
             case R.id.nav_profile:
-                selectedFragment = creazioneBundle(nomeUtente, cognomeUtente, matricolaUtente, universitaUtente);
+                selectedFragment = profileBundle(account);
                 break;
 
             case R.id.nav_language:
@@ -225,12 +215,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Fragment getProperHome(){
         Fragment toReturn;
-        switch (tipologia){
-            case "Studente":
+        switch (account.getAccountType()){
+            case "Student":
                 toReturn = new StudentHomeFragment();
                 break;
 
-            case "Professore":
+            case "Professor":
             default:
                 toReturn = new ProfessorHomeFragment();
                 break;
