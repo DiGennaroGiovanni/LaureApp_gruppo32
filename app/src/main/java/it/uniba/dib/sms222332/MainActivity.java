@@ -21,6 +21,8 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -64,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         String nameSurname = account.getName() + " " + account.getSurname();
         nameDisplay.setText(nameSurname);
-        profession.setText(account.getAccountType());
 
+        setProfession(profession, account.getAccountType());
 
         bottomNav.setOnItemSelectedListener(navListener);
         if (savedInstanceState == null){
@@ -80,10 +82,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void setAccount() {
         switch (getIntent().getStringExtra("account_type")){
             case "Professor":
+            case "Professore":
                 generateProfessor();
                 break;
 
             case "Student":
+            case "Studente":
                 generateStudent();
                 break;
         }
@@ -227,6 +231,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return toReturn;
+    }
+
+    private void setProfession(TextView profession, String accountType){
+        switch (accountType){
+            case "Professor":
+            case "Professore":
+                profession.setText(R.string.professor);
+                break;
+
+            case "Studente":
+            case "Student":
+                profession.setText(R.string.student);
+                break;
+        }
     }
 
 
