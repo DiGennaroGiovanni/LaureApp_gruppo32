@@ -5,11 +5,10 @@
     android:layout_margin="20px"
     >
 
-    <TableRow android:background="#023FA6">
+    <TableRow android:background="#77787A">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#023FA6" />
+            android:layout_height="1sp" />
     </TableRow>
 
     <TableRow>
@@ -20,177 +19,264 @@
             android:layout_height="wrap_content"
             android:text="Thesis name"
             android:textAllCaps="true"
-            android:textColor="#00213A"
+            android:textColor="@android:color/black"
             android:textFontWeight="1000"
-            android:textSize="27sp"
-            android:textStyle="bold" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/cardo"/>
+
+
 
     </TableRow>
 
-    <TableRow android:background="#023FA6">
+    <TableRow android:background="#77787A">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#023FA6" />
+            android:layout_height="1sp" />
     </TableRow>
 
     <TableRow>
 
         <TextView
-            android:id="@+id/txtType"
+            android:id="@+id/txtTypeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thesis type"
             android:textColor="@color/black"
             android:textFontWeight="1000"
-            android:textSize="25sp" />
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:fontFamily="@font/cardo"/>
+
+        <TextView
+            android:id="@+id/txtType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textFontWeight="1000"
+            android:textSize="15sp"
+            />
 
     </TableRow>
 
-    <TableRow android:background="#023FA6">
+    <TableRow android:background="#77787A">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#023FA6" />
+            android:layout_height="1sp" />
     </TableRow>
 
     <TableRow>
 
         <TextView
-            android:id="@+id/txtDepartment"
+            android:id="@+id/txtDepartmentTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Department"
             android:textColor="@color/black"
             android:textFontWeight="1000"
-            android:textSize="25sp" />
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:fontFamily="@font/cardo"/>
+
+        <TextView
+            android:id="@+id/txtDepartment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textFontWeight="1000"
+            android:textSize="15sp" />
 
     </TableRow>
 
-    <TableRow android:background="#023FA6">
+    <TableRow android:background="#77787A">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#023FA6" />
+            android:layout_height="1sp" />
     </TableRow>
 
     <TableRow>
 
         <TextView
-            android:id="@+id/txtTime"
+            android:id="@+id/txtTimeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Estimated Time"
             android:textColor="@color/black"
             android:textFontWeight="1000"
-            android:textSize="25sp" />
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:fontFamily="@font/cardo"/>
+
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textFontWeight="1000"
+            android:textSize="15sp" />
+
+
 
     </TableRow>
 
-    <TableRow android:background="#023FA6">
+    <TableRow android:background="#77787A">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#023FA6" />
+            android:layout_height="1sp" />
     </TableRow>
 
     <TableRow>
 
         <TextView
-            android:id="@+id/txtCorrelator"
+            android:id="@+id/txtCorrelatorTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Correlator"
             android:textColor="@color/black"
             android:textFontWeight="1000"
-            android:textSize="25sp" />
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:fontFamily="@font/cardo"/>
+
+        <TextView
+            android:id="@+id/txtCorrelator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textFontWeight="1000"
+            android:textSize="15sp" />
 
     </TableRow>
 
-    <TableRow android:background="#023FA6">
+    <TableRow android:background="#77787A">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#023FA6" />
+            android:layout_height="1sp" />
     </TableRow>
 
     <TableRow>
 
         <TextView
-            android:id="@+id/txtDescription"
+            android:id="@+id/txtDescriptionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
             android:textColor="@color/black"
             android:textFontWeight="1000"
-            android:textSize="25sp" />
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:fontFamily="@font/cardo"/>
+
+        <TextView
+            android:id="@+id/txtDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textFontWeight="1000"
+            android:textSize="15sp" />
 
     </TableRow>
 
-    <TableRow android:background="#023FA6">
+    <TableRow android:background="#77787A">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#023FA6" />
+            android:layout_height="1sp" />
     </TableRow>
 
     <TableRow>
 
         <TextView
-            android:id="@+id/txtMaterials"
+            android:id="@+id/txtMaterialsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Materials"
             android:textColor="@color/black"
             android:textFontWeight="1000"
-            android:textSize="25sp" />
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:fontFamily="@font/cardo"/>
+
+        <TextView
+            android:id="@+id/txtMaterials"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textFontWeight="1000"
+            android:textSize="15sp" />
 
     </TableRow>
 
-    <TableRow android:background="#023FA6">
+    <TableRow android:background="#77787A">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#023FA6" />
+            android:layout_height="1sp" />
     </TableRow>
 
     <TableRow>
 
         <TextView
-            android:id="@+id/txtConstraints"
+            android:id="@+id/txtConstraintsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Constraints"
             android:textColor="@color/black"
             android:textFontWeight="1000"
-            android:textSize="25sp" />
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:fontFamily="@font/cardo"/>
+
+        <TextView
+            android:id="@+id/txtConstraints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textFontWeight="1000"
+            android:textSize="15sp" />
 
     </TableRow>
 
-    <TableRow android:background="#023FA6">
+    <TableRow android:background="#77787A">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1sp"
-            android:background="#023FA6" />
+            />
     </TableRow>
 
     <TableRow>
 
         <TextView
-            android:id="@+id/txtRelatedProjetcs"
-
-            android:text="Related projects"
+            android:id="@+id/txtRelatedProjectsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cardo"
+            android:text="Related Projects"
             android:textColor="@color/black"
             android:textFontWeight="1000"
-            android:textSize="25sp" />
+            android:textSize="16sp"
+            android:textStyle="italic"/>
+
+        <TextView
+            android:id="@+id/txtRelatedProjects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textFontWeight="1000"
+            android:textSize="15sp" />
 
     </TableRow>
 
-    <TableRow android:background="#023FA6">
+    <TableRow android:background="#77787A">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#023FA6" />
+            android:layout_height="1sp" />
     </TableRow>
 
     <RelativeLayout
