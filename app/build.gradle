@@ -60,8 +60,8 @@ android {
 dependencies {
 
 
-    implementation 'com.google.firebase:firebase-auth:21.0.2'
-    implementation 'com.google.firebase:firebase-firestore:24.0.2'
+    implementation 'com.google.firebase:firebase-auth:21.1.0'
+    implementation 'com.google.firebase:firebase-firestore:24.4.1'
     implementation 'com.google.firebase:firebase-storage:20.1.0'
     def nav_version = "2.5.3"
 
@@ -70,7 +70,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui:$nav_version"
 
     apply plugin: 'com.google.gms.google-services'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'

@@ -71,7 +71,6 @@ public class NewThesisFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.createThesisToolbar));
-        return inflater.inflate(R.layout.fragment_insert_laurea, container, false);
 
         View view = inflater.inflate(R.layout.fragment_insert_laurea, container, false);
 
@@ -107,36 +106,20 @@ public class NewThesisFragment extends Fragment {
         edtMainSubject.setAdapter(adapter);
 
 
-        buttonCreateThesis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                inserisciTesi();
+        buttonCreateThesis.setOnClickListener(view1 -> inserisciTesi());
 
-
-            }
-        });
-
-        addFile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                caricaPdf();
-
-            }
-        });
+        addFile.setOnClickListener(view12 -> caricaPdf());
 
         CollectionReference collectionRef = db.collection("professori");
 
-        collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        String nome = document.getString("Nome")+" "+ document.getString("Cognome");
-                        correlatori.add(nome);
-                    }
-                } else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
+        collectionRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    String nome = document.getString("Nome")+" "+ document.getString("Cognome");
+                    correlatori.add(nome);
                 }
+            } else {
+                Log.d(TAG, "Error getting documents: ", task.getException());
             }
         });
 
@@ -213,18 +196,14 @@ public class NewThesisFragment extends Fragment {
 
     private void addCard(String pdfName, Uri pdfUri) {
         View view = getLayoutInflater().inflate(R.layout.card, null);
-        //storageReference = FirebaseStorage.getInstance().getReference(edtThesisName.getText().toString()+"/"+pdfName);
         TextView nameView = view.findViewById(R.id.name);
         Button delete = view.findViewById(R.id.delete);
         filePdf.add(pdfUri);
         nameView.setText(pdfName);
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                layout.removeView(view);
-                filePdf.remove(pdfUri);
-            }
+        delete.setOnClickListener(v -> {
+            layout.removeView(view);
+            filePdf.remove(pdfUri);
         });
         layout.addView(view);
     }
@@ -238,8 +217,6 @@ public class NewThesisFragment extends Fragment {
             String pdfName = file.getName();
             addCard(pdfName,pdfUri);
 
-        } else {
-            //Toast.makeText(InsertLaureaFragment.this, "Seleziona un file", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -251,17 +228,11 @@ public class NewThesisFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference(edtThesisName.getText().toString()+"/"+pdfName);
         // Caricamento del file sul server
         storageReference.putFile(uri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        //Toast.makeText(Provalista.this, "Caricamento completato", Toast.LENGTH_SHORT).show();
-                    }
+                .addOnSuccessListener(taskSnapshot -> {
+                    //Toast.makeText(Provalista.this, "Caricamento completato", Toast.LENGTH_SHORT).show();
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        //Toast.makeText(Provalista.this, "Caricamento NON avvenuto", Toast.LENGTH_SHORT).show();
-                    }
+                .addOnFailureListener(e -> {
+                    //Toast.makeText(Provalista.this, "Caricamento NON avvenuto", Toast.LENGTH_SHORT).show();
                 });
     }
 }
