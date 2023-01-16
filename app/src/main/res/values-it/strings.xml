@@ -70,7 +70,7 @@
         <item>Scienze Politiche</item>
     </string-array>
     <string name="thesis_name">Nome tesi</string>
-    <string name="type_name_of_thesis">digita il nome della tesi</string>
+    <string name="type_name_of_thesis">digita il name della tesi</string>
     <string name="experimental">Sperimentale</string>
     <string name="compilation">Compilativa</string>
     <string name="main_subject">Materia principale</string>
