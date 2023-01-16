@@ -25,12 +25,17 @@
                     android:layout_height="wrap_content" >
 
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="2sp"
+                        android:background="#023FA6" />
+
+                    <TextView
                         android:id="@+id/txtName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Thesis name"
                         android:textAllCaps="true"
-                        android:textColor="#FF1100"
+                        android:textColor="#00213A"
                         android:layout_gravity="center"
                         android:textStyle="bold"
                         android:textFontWeight="1000"
@@ -73,34 +78,12 @@
                         android:textFontWeight="1000"
                         android:textSize="18sp" />
 
-                    <!--
-                    <RelativeLayout
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <Button
-                            android:gravity="center"
-                            android:id="@+id/btnDelete"
-                            android:layout_width="28dp"
-                            android:layout_height="25dp"
-                            android:layout_marginLeft="310sp"
-                            android:background="@drawable/delete_icon"
-                            android:textSize="12sp" />
-
-                        <Button
-                            android:id="@+id/btnModify"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="270sp"
-                            android:background="@drawable/pencil"
-                            android:textSize="12sp" />
-
-                    </RelativeLayout>
-                   -->
+                        android:layout_height="2sp"
+                        android:background="#023FA6" />
 
                 </LinearLayout>
-
 
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
