@@ -47,7 +47,7 @@
     <string name="proceed_with_sign_up_as_a_student">Proceed with sign up as a student</string>
     <string name="complete_registration">Complete registration</string>
     <string name="type_yout_student_data">Type your student data</string>
-    <string name="matriculation_number">Matriculation number</string>
+    <string name="matriculation_number">Badge number</string>
     <string name="testimage">testImage</string>
     <string name="select_faculty">select faculty</string>
     <string name="select_role">select role</string>
