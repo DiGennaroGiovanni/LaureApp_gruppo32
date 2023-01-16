@@ -6,6 +6,7 @@
     tools:context=".NewThesisFragment">
 
     <LinearLayout
+        android:id="@+id/first_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -14,6 +15,7 @@
         android:paddingEnd="20dp"
         android:paddingBottom="20dp">
 
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
@@ -21,7 +23,7 @@
             android:text="@string/thesis_name" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/edtThesisName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -58,23 +60,22 @@
 
         <TextView
             android:id="@+id/textView6"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/main_subject" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/type_main_subject"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:textColorHint="#546E7A" />
+        <Spinner
+            android:id="@+id/edtMainSubject"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_width="187dp"
+            android:layout_height="48dp"
+            android:backgroundTint="#BFBABA"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <LinearLayout
+            android:id="@+id/second_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
@@ -90,7 +91,7 @@
                 android:textAlignment="viewEnd" />
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/edtEstimatedTime"
                 android:layout_width="10dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -113,21 +114,19 @@
 
         <TextView
             android:id="@+id/textView8"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/co_rapporteur" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/type_co_rapporteur"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:textColorHint="#546E7A"/>
+        <Spinner
+            android:id="@+id/edtCorrelator"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_width="187dp"
+            android:layout_height="48dp"
+            android:backgroundTint="#BFBABA"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView11"
@@ -136,7 +135,7 @@
             android:text="@string/thesis_description" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine3"
+            android:id="@+id/edtDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -152,34 +151,41 @@
             android:id="@+id/textView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:text="@string/teaching_materials" />
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/third_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button3"
-                android:layout_width="15dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:text="+"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                tools:ignore="HardcodedText,TextContrastCheck" />
-
-            <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/addFile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="@string/add_material"
-                android:textSize="16sp"/>
+                android:text="+"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"/>
 
-        </LinearLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="70dp"
+                >
+                <LinearLayout
+                    android:id="@+id/layout_lista"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </ScrollView>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/textView9"
@@ -188,7 +194,7 @@
             android:text="@string/thesis_constraints" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/edtThesisConstraints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -207,7 +213,7 @@
             android:text="@string/related_projects" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine2"
+            android:id="@+id/edtRelatedProjects"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -220,7 +226,7 @@
             android:textColorHint="#546E7A" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/buttonCreateThesis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/create_thesis" />
