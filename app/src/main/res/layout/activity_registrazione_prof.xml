@@ -1,32 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfessorRegisterActivity">
+    tools:context=".ProfessorRegisterActivity"
+    android:orientation="vertical"
+    android:layout_gravity="center">
 
+
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/textViewContinuaRegistrazioneProfessore"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="52dp"
+        android:text="Insert your professor data"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtRuoloProf"
+        android:id="@+id/edtNomeProf"
         android:layout_width="187dp"
+        android:layout_gravity="center"
         android:layout_height="48dp"
         android:autofillHints=""
-        android:hint="@string/role"
+        android:hint="@string/first_name"
         android:inputType="text"
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewContinuaRegistrazioneProfessore"
+        app:layout_constraintVertical_bias="0.073" />
 
-    <EditText
+        <EditText
+
         android:id="@+id/edtCognomeProf"
         android:layout_width="187dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
+        android:layout_gravity="center"
         android:autofillHints=""
         android:hint="@string/last_name"
         android:inputType="text"
@@ -34,11 +54,13 @@
         android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/edtRuoloProf"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtNomeProf"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
+        android:layout_gravity="center"
         android:id="@+id/edtEmailRegistrati"
         android:layout_width="206dp"
         android:layout_height="46dp"
@@ -57,6 +79,7 @@
 
     <EditText
         android:id="@+id/edtPasswordRegistrati"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -73,27 +96,13 @@
         app:layout_constraintTop_toBottomOf="@+id/edtEmailRegistrati"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/edtNomeProf"
-        android:layout_width="187dp"
-        android:layout_height="48dp"
-        android:autofillHints=""
-        android:hint="@string/first_name"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewContinuaRegistrazioneProfessore"
-        app:layout_constraintVertical_bias="0.073" />
-
     <TextView
-        android:id="@+id/textViewContinuaRegistrazioneProfessore"
-        android:layout_width="260dp"
-        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:id="@+id/txtDepartment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="Inserisci i tuoi dati da professore"
+        android:text="Department of affiliation"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +110,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Spinner
+        android:id="@+id/spinnerDepartment"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_width="187dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#BFBABA"
+        tools:ignore="SpeakableTextPresentCheck" />
+
     <Button
+        android:layout_gravity="center"
         android:id="@+id/buttonConcludiProf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -113,4 +132,6 @@
         app:layout_constraintTop_toBottomOf="@+id/edtRuoloProf"
         app:layout_constraintVertical_bias="0.0" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

@@ -79,11 +79,11 @@ public class StudentRegisterActivity extends AppCompatActivity {
         String email = edtEmailRegistrati.getText().toString().toLowerCase();
 
         Map<String, String> infoStudente = new HashMap<>();
-        infoStudente.put("Nome",nome);
-        infoStudente.put("Cognome",cognome);
-        infoStudente.put("Matricola",matricola);
-        infoStudente.put("Facoltà",facolta);
-        infoStudente.put("Tipologia","Student");
+        infoStudente.put("Name",nome);
+        infoStudente.put("Surname",cognome);
+        infoStudente.put("Badge Number",matricola);
+        infoStudente.put("Faculty",facolta);
+        infoStudente.put("Account Type","Student");
 
         if(nome.isEmpty())
             edtNomeStudente.setError("Inserisci il tuo nome!");

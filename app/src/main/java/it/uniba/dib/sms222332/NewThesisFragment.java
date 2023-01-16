@@ -111,8 +111,11 @@ public class NewThesisFragment extends Fragment {
         collectionRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    String nome = document.getString("Nome")+" "+ document.getString("Cognome");
-                    correlatori.add(nome);
+                    if(!document.getId().equals(mUser.getEmail()))
+                    {
+                        String nome = document.getString("Name")+" "+ document.getString("Surname");
+                        correlatori.add(nome);
+                    }
                 }
             } else {
                 Log.d(TAG, "Error getting documents: ", task.getException());
@@ -158,15 +161,15 @@ public class NewThesisFragment extends Fragment {
         }
 
         Map<String,String> infoTesi = new HashMap<>();
-        infoTesi.put("Professore",professore);
-        infoTesi.put("Nome",thesisName);
-        infoTesi.put("Materia",mainSubject);
-        infoTesi.put("Tempo Stimato",estimatedTime);
-        infoTesi.put("Correlatore",correlator);
-        infoTesi.put("Descrizione",description);
-        infoTesi.put("Vincoli",thesisConstraints);
-        infoTesi.put("ProgettiCorrelati",relatedProjects);
-        infoTesi.put("Tipo",tipoTesi);
+        infoTesi.put("Professor",professore);
+        infoTesi.put("Name",thesisName);
+        infoTesi.put("Faculty",mainSubject);
+        infoTesi.put("Estimated Time",estimatedTime);
+        infoTesi.put("Correlator",correlator);
+        infoTesi.put("Description",description);
+        infoTesi.put("Constraints",thesisConstraints);
+        infoTesi.put("Related Projects",relatedProjects);
+        infoTesi.put("Type",tipoTesi);
 
         if(thesisName.isEmpty()){
             edtThesisName.setError("Inserisci il nome della tesi!");

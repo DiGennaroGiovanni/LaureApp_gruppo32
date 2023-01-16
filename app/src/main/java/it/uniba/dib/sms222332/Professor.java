@@ -2,13 +2,11 @@ package it.uniba.dib.sms222332;
 
 public class Professor implements Account{
 
-
     private String name;
     private String surname;
     private String faculty;
     private String email;
     private final String accountType = "Professor";
-
 
     public Professor(String name, String surname, String faculty, String email) {
         this.name = name;

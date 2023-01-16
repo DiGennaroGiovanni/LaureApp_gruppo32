@@ -63,7 +63,7 @@
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/main_subject" />
+            android:text="Faculty" />
 
         <Spinner
             android:id="@+id/edtMainSubject"
@@ -117,7 +117,7 @@
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/co_rapporteur" />
+            android:text="Correlator" />
 
         <Spinner
             android:id="@+id/edtCorrelator"
