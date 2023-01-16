@@ -56,7 +56,6 @@ public class ThesisListFragment extends Fragment {
                                 String professorEmail = document.getString("Professor");
                                 if(professorEmail.equals(mUser.getEmail())){
                                     addCardThesis(document);
-
                                 }
                             }
                         }
