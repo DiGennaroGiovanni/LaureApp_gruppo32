@@ -8,8 +8,7 @@
     <RelativeLayout
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -20,70 +19,137 @@
             android:layout_marginBottom="10dp"
             >
 
-            <LinearLayout
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:orientation="vertical"
                 android:background="@drawable/custom_shape">
 
-
                 <TextView
                     android:id="@+id/txtName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:layout_marginBottom="10dp"
                     android:text="Thesis name"
                     android:textAllCaps="true"
                     android:textColor="#00213A"
                     android:textFontWeight="1000"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/cardo" />
 
-                <TextView
-                    android:id="@+id/txtType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thesis type"
-                    android:layout_marginLeft="10sp"
-                    android:textColor="@color/black"
-                    android:textFontWeight="1000"
-                    android:textSize="18sp" />
+                <TableRow>
 
-                <TextView
-                    android:id="@+id/txtDepartment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:text="Department"
-                    android:textColor="@color/black"
-                    android:textFontWeight="1000"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/txtTypeTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Thesis type"
+                        android:textColor="@color/black"
+                        android:textFontWeight="1000"
+                        android:textSize="19sp"
+                        android:textStyle="italic"
+                        android:fontFamily="@font/cardo"/>
 
-                <TextView
-                    android:id="@+id/txtTime"
-                    android:layout_marginLeft="10sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Estimated Time"
-                    android:textColor="@color/black"
-                    android:textFontWeight="1000"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/txtType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Thesis type"
+                        android:textColor="@color/black"
+                        android:textFontWeight="1000"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/txtCorrelator"
-                    android:layout_marginLeft="10sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Correlator"
-                    android:textColor="@color/black"
-                    android:textFontWeight="1000"
-                    android:textSize="18sp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/txtDepartmentTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/cardo"
+                        android:text="Department"
+                        android:textColor="@color/black"
+                        android:textFontWeight="1000"
+                        android:textSize="19sp"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/txtDepartment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Department"
+                        android:textColor="@color/black"
+                        android:textFontWeight="1000"
+                        android:textSize="18sp" />
 
 
+                </TableRow>
 
-            </LinearLayout>
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/txtTimeTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="7sp"
+                        android:text="Estimated Time"
+                        android:textColor="@color/black"
+                        android:textFontWeight="1000"
+                        android:textSize="19sp"
+                        android:textStyle="italic"
+                        android:fontFamily="@font/cardo"/>
+
+                    <TextView
+                        android:id="@+id/txtTime"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="5sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Estimated Time"
+                        android:textColor="@color/black"
+                        android:textFontWeight="1000"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/txtCorrelatorTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Correlator"
+                        android:textColor="@color/black"
+                        android:textFontWeight="1000"
+                        android:textSize="19sp"
+                        android:textStyle="italic"
+                        android:fontFamily="@font/cardo"/>
+
+                    <TextView
+                        android:id="@+id/txtCorrelator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Correlator"
+                        android:textColor="@color/black"
+                        android:textFontWeight="1000"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+
+            </TableLayout>
 
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
