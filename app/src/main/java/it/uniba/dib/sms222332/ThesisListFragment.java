@@ -96,7 +96,7 @@ public class ThesisListFragment extends Fragment {
         layout_lista_tesi.addView(view);
 
 
-        view.setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(new View.OnClickListener() { //TODO FUNZIONA SOLO SE CLICCHI SUL BIANCO
             @Override
             public void onClick(View view) {
 
