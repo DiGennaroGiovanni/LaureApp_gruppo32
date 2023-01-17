@@ -10,39 +10,32 @@
         android:id="@+id/profile_pic"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="20sp"
         android:contentDescription="@string/menu_profile"
-        android:src="@drawable/profile_image_black"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20sp"/>
+        android:src="@drawable/profile_image_black" />
 
     <TextView
         android:id="@+id/txtNameSurname"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_pic"
         android:text="@string/name_surname"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/profile_pic"/>
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/txtFaculty"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Faculty"
-        android:textAlignment="center"
         android:textSize="20sp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/txtNameSurname"/>
 
     <TextView
         android:id="@+id/txtBadgeNumber"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Badge Number"
-        android:textAlignment="center"
         android:textSize="20sp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/txtFaculty" />
 
     <Button
@@ -50,7 +43,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Elimina Profilo"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/txtBadgeNumber" />
 
 
