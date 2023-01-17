@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<TableLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20px"
@@ -11,32 +17,22 @@
             android:layout_height="1sp" />
     </TableRow>
 
-    <TableRow>
+
 
         <TextView
             android:id="@+id/txtNameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/cardo"
             android:text="Thesis name"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
             android:textFontWeight="1000"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/cardo"/>
-
-        <TextView
-            android:id="@+id/txtName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/black"
-            android:textFontWeight="1000"
-            android:textSize="15sp" />
+            android:textStyle="bold" />
 
 
 
-    </TableRow>
 
     <TableRow android:background="#77787A">
         <TextView
@@ -48,14 +44,15 @@
 
         <TextView
             android:id="@+id/txtTypeTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="141dp"
             android:layout_height="wrap_content"
+            android:editable="false"
+            android:fontFamily="@font/cardo"
             android:text="Thesis type"
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="16sp"
-            android:textStyle="italic"
-            android:fontFamily="@font/cardo"/>
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/txtType"
@@ -314,3 +311,4 @@
     </RelativeLayout>
 
 </TableLayout>
+</LinearLayout>

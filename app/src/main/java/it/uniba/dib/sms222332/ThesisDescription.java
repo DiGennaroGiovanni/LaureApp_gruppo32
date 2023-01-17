@@ -27,10 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class ThesisDescription extends Fragment {
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
-    TextView txtName;
+    TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,txtDescription,txtRelatedProjects,txtConstraints;
 
 
     @Nullable
@@ -40,12 +37,37 @@ public class ThesisDescription extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_thesis_description, container, false);
 
-        txtName = view.findViewById(R.id.txtName);
+
+        txtNameTitle = view.findViewById(R.id.txtNameTitle);
+        txtDepartment = view.findViewById(R.id.txtDepartment);
+        txtType = view.findViewById(R.id.txtType);
+        txtTime = view.findViewById(R.id.txtTime);
+        txtCorrelator = view.findViewById(R.id.txtCorrelator);
+        txtDescription = view.findViewById(R.id.txtDescription);
+        txtRelatedProjects = view.findViewById(R.id.txtRelatedProjects);
+        txtConstraints = view.findViewById(R.id.txtConstraints);
+
+
         if (getArguments() != null) {
-            String value = getArguments().getString("Thesis Name");
-            txtName.setText(value);
-        }else
-            txtName.setText("Prova");
+            String constraints = getArguments().getString("constraints");
+            String correlator = getArguments().getString("correlator");
+            String description = getArguments().getString("description");
+            String estimated_time = getArguments().getString("estimated_time");
+            String faculty = getArguments().getString("faculty");
+            String name = getArguments().getString("name");
+            String type = getArguments().getString("type");
+            String related_projects = getArguments().getString("related_projects");
+
+            txtNameTitle.setText(name);
+            txtType.setText(type);
+            txtDepartment.setText(faculty);
+            txtTime.setText(estimated_time);
+            txtCorrelator.setText(correlator);
+            txtDescription.setText(description);
+            txtRelatedProjects.setText(related_projects);
+            txtConstraints.setText(constraints);
+
+        }
 
 
         return view;
