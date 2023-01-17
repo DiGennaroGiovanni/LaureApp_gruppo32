@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private BottomNavigationView bottomNav;
     private NavigationView navigationView;
 
-    public Account account;
+    public static Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,22 +125,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private Fragment profileBundle(Account account) {
-        Bundle bundle = new Bundle();
-        bundle.putString("name", account.getName());
-        bundle.putString("surname", account.getSurname());
-        bundle.putString("email", account.getEmail());
-        bundle.putString("faculty", account.getFaculty());
+    private final NavigationBarView.OnItemSelectedListener navListener = item -> {
+        Fragment selectedFragment;
 
-        if (account.getAccountType().equals("Student") )
-            bundle.putString("badge_number", account.getBadgeNumber());
+        switch (item.getItemId()){
 
+            case R.id.star_button:
+                selectedFragment = new FavoritesFragment();
+                break;
 
-        ProfileFragment profileFragment = new ProfileFragment();
-        profileFragment.setArguments(bundle);
+            case R.id.chat_button:
+                selectedFragment = new MessagesFragment();
+                break;
 
-        return profileFragment;
-    }
+            case R.id.thesis_list_button:
+                selectedFragment = new ThesisListFragment();
+                break;
+
+            case R.id.home_button:
+            default:
+                selectedFragment = getProperHome();
+        }
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+        selectBottomNavigationBarItem();
+        return true;
+    };
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -170,6 +181,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    private Fragment profileBundle(Account account) {
+        Bundle bundle = new Bundle();
+        bundle.putString("name", account.getName());
+        bundle.putString("surname", account.getSurname());
+        bundle.putString("email", account.getEmail());
+        bundle.putString("faculty", account.getFaculty());
+
+        if (account.getAccountType().equals("Student") )
+            bundle.putString("badge_number", account.getBadgeNumber());
+        else
+            bundle.putString("badge_number", "");
+
+        ProfileFragment profileFragment = new ProfileFragment();
+        profileFragment.setArguments(bundle);
+
+        return profileFragment;
+    }
+
+
     @Override
     public void onBackPressed(){
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
@@ -184,32 +214,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private final NavigationBarView.OnItemSelectedListener navListener = item -> {
-        Fragment selectedFragment;
 
-        switch (item.getItemId()){
-
-            case R.id.star_button:
-                selectedFragment = new FavoritesFragment();
-                break;
-
-            case R.id.chat_button:
-                selectedFragment = new MessagesFragment();
-                break;
-
-            case R.id.thesis_list_button:
-                selectedFragment = new ThesisListFragment();
-                break;
-
-            case R.id.home_button:
-            default:
-                selectedFragment = getProperHome();
-        }
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-        selectBottomNavigationBarItem();
-        return true;
-    };
 
     private void selectBottomNavigationBarItem() {
         for (int i = 0; i < navigationView.getMenu().size(); i++) {

@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-                                        intent.putExtra("account_type",(String) datiStudente.get("Tipologia"));
+                                        intent.putExtra("account_type",(String) datiStudente.get("Account Type"));
                                         intent.putExtra("name",(String) datiStudente.get("Name"));
                                         intent.putExtra("surname",(String) datiStudente.get("Surname"));
                                         intent.putExtra("badge_number",(String) datiStudente.get("Badge Number"));
