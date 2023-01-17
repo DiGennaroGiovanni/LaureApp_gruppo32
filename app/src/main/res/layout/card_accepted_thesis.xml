@@ -43,6 +43,32 @@
                 <TableRow>
 
                     <TextView
+                        android:id="@+id/txtStudentTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Student"
+                        android:textColor="@color/black"
+                        android:textFontWeight="1000"
+                        android:textSize="19sp"
+                        android:textStyle="italic"
+                        android:fontFamily="@font/cardo"/>
+
+                    <TextView
+                        android:id="@+id/txtStudent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Student"
+                        android:textColor="@color/black"
+                        android:textFontWeight="1000"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
                         android:id="@+id/txtTypeTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -72,6 +98,7 @@
                         android:id="@+id/txtDepartmentTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="7sp"
                         android:textAlignment="center"
                         android:fontFamily="@font/cardo"
                         android:text="Department"
@@ -90,64 +117,9 @@
                         android:textFontWeight="1000"
                         android:textSize="18sp" />
 
-
                 </TableRow>
 
-                <TableRow>
 
-                    <TextView
-                        android:id="@+id/txtTimeTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_marginLeft="7sp"
-                        android:text="Estimated Time"
-                        android:textColor="@color/black"
-                        android:textFontWeight="1000"
-                        android:textSize="19sp"
-                        android:textStyle="italic"
-                        android:fontFamily="@font/cardo"/>
-
-                    <TextView
-                        android:id="@+id/txtTime"
-                        android:textAlignment="center"
-                        android:layout_marginLeft="5sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Estimated Time"
-                        android:textColor="@color/black"
-                        android:textFontWeight="1000"
-                        android:textSize="18sp" />
-
-
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:id="@+id/txtCorrelatorTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:text="Correlator"
-                        android:textColor="@color/black"
-                        android:textFontWeight="1000"
-                        android:textSize="19sp"
-                        android:textStyle="italic"
-                        android:fontFamily="@font/cardo"/>
-
-                    <TextView
-                        android:id="@+id/txtCorrelator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:text="Correlator"
-                        android:textColor="@color/black"
-                        android:textFontWeight="1000"
-                        android:textSize="18sp" />
-
-
-                </TableRow>
 
             </TableLayout>
 
