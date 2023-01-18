@@ -170,6 +170,7 @@ public class NewThesisFragment extends Fragment {
         infoTesi.put("Constraints",thesisConstraints);
         infoTesi.put("Related Projects",relatedProjects);
         infoTesi.put("Type",tipoTesi);
+        infoTesi.put("Student","");
 
         if(thesisName.isEmpty()){
             edtThesisName.setError("Inserisci il nome della tesi!");

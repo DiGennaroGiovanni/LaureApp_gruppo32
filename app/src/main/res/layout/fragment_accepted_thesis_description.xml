@@ -361,15 +361,6 @@
                 android:gravity="center"
                 android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/btnModify"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="4sp"
-                android:layout_marginLeft="270sp"
-                android:background="@drawable/pencil"
-                android:textSize="12sp" />
-
         </RelativeLayout>
     </TableRow>
 

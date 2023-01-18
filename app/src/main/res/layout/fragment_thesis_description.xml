@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ThesisListFragment">
+
+<LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,7 +16,7 @@
 <TableLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20px"
+    android:layout_margin="5dp"
     >
 
     <TableRow android:background="#77787A">
@@ -18,20 +26,19 @@
     </TableRow>
 
 
-
-        <TextView
-            android:id="@+id/txtNameTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/cardo"
-            android:text="Thesis name"
-            android:textAllCaps="true"
-            android:textColor="@android:color/black"
-            android:textFontWeight="1000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-
+    <TextView
+        android:id="@+id/txtNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cardo"
+        android:text="Thesis name"
+        android:background="@null"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textFontWeight="1000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
 
 
     <TableRow android:background="#77787A">
@@ -312,3 +319,4 @@
 
 </TableLayout>
 </LinearLayout>
+</ScrollView>
