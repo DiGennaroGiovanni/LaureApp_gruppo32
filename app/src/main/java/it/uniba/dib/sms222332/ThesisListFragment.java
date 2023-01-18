@@ -86,12 +86,20 @@ public class ThesisListFragment extends Fragment {
         TextView txtDepartment = view.findViewById(R.id.txtDepartment);
         TextView txtTime = view.findViewById(R.id.txtTime);
         TextView txtCorrelator = view.findViewById(R.id.txtCorrelator);
+        TextView txtStudentThesis = view.findViewById(R.id.txtStudentThesis);
 
         txtName.setText(document.getString("Name"));
         txtType.setText(document.getString("Type"));
         txtDepartment.setText(document.getString("Faculty"));
         txtTime.setText(document.getString("Estimated Time"));
         txtCorrelator.setText(document.getString("Correlator"));
+
+        if(document.getString("Student").isEmpty())
+        {
+            txtStudentThesis.setText("No student yet");
+        }else{
+            txtStudentThesis.setText(document.getString("Student"));
+        }
 
         layout_lista_tesi.addView(view);
 
@@ -112,6 +120,7 @@ public class ThesisListFragment extends Fragment {
                 bundle.putString("name",(String) datiTesi.get("Name"));
                 bundle.putString("type",(String) datiTesi.get("Type"));
                 bundle.putString("related_projects",(String) datiTesi.get("Related Projects"));
+
 
                 thesisDescription.setArguments(bundle);
 
