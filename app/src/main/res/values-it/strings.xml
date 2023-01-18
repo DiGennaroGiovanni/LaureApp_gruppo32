@@ -31,6 +31,7 @@
     <string name="languagesToolbar">Lingua</string>
     <string name="chatToolbar">Chat</string>
     <string name="settingsToolbar">Impostazioni</string>
+    <string name="modifyThesisToolbar">Modifica Tesi</string>
     <!-- FILIPPO -->
     <string name="email">Email</string>
     <string name="password">Password</string>

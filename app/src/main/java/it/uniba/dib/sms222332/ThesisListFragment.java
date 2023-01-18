@@ -94,7 +94,7 @@ public class ThesisListFragment extends Fragment {
         txtTime.setText(document.getString("Estimated Time"));
         txtCorrelator.setText(document.getString("Correlator"));
 
-        if(document.getString("Student").isEmpty())
+        if(document.getString("Student").equals(""))
         {
             txtStudentThesis.setText("No student yet");
         }else{
@@ -104,12 +104,14 @@ public class ThesisListFragment extends Fragment {
         layout_lista_tesi.addView(view);
 
 
-        view.setOnClickListener(new View.OnClickListener() { //TODO FUNZIONA SOLO SE CLICCHI SUL BIANCO
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 bundle = new Bundle();
                 Fragment thesisDescription = new ThesisDescription();
+
+
 
                 Map<String,Object> datiTesi =  document.getData();
                 bundle.putString("constraints",(String) datiTesi.get("Constraints"));
@@ -123,6 +125,7 @@ public class ThesisListFragment extends Fragment {
 
 
                 thesisDescription.setArguments(bundle);
+
 
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

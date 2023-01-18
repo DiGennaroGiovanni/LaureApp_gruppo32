@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ThesisListFragment">
+
+<LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -19,10 +27,11 @@
 
 
 
-        <EditText
+        <TextView
             android:id="@+id/txtNameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:background="@null"
             android:fontFamily="@font/cardo"
             android:text="Thesis name"
@@ -47,7 +56,6 @@
                 android:id="@+id/txtTypeTitle"
                 android:layout_width="141dp"
                 android:layout_height="wrap_content"
-                android:editable="false"
                 android:fontFamily="@font/cardo"
                 android:text="Thesis type"
                 android:textColor="@color/black"
@@ -55,11 +63,12 @@
                 android:textSize="16sp"
                 android:textStyle="italic" />
 
-            <EditText
+            <TextView
                 android:id="@+id/txtType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
                 android:textFontWeight="1000"
@@ -87,7 +96,7 @@
                 android:textSize="16sp"
                 android:textStyle="italic" />
 
-            <EditText
+            <TextView
                 android:id="@+id/txtDepartment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,7 +120,7 @@
                 android:id="@+id/txtTimeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Estimated Time"
+                android:text="Estimated Time (Day)"
                 android:textColor="@color/black"
                 android:textFontWeight="1000"
                 android:textSize="16sp"
@@ -119,10 +128,10 @@
                 android:fontFamily="@font/cardo"/>
 
             <EditText
-                android:id="@+id/txtTime"
+                android:id="@+id/edtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
+                android:inputType="number"
                 android:text=""
                 android:textColor="@color/black"
                 android:textFontWeight="1000"
@@ -152,11 +161,12 @@
                 android:fontFamily="@font/cardo"/>
 
             <EditText
-                android:id="@+id/txtCorrelator"
+                android:id="@+id/edtCorrelator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:text=""
+                android:inputType="textMultiLine"
                 android:textColor="@color/black"
                 android:textFontWeight="1000"
                 android:textSize="15sp" />
@@ -183,10 +193,41 @@
                 android:fontFamily="@font/cardo"/>
 
             <EditText
-                android:id="@+id/txtDescription"
+                android:id="@+id/edtDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
+                android:inputType="textMultiLine"
+                android:text=""
+                android:textColor="@color/black"
+                android:textFontWeight="1000"
+                android:textSize="15sp" />
+
+        </TableRow>
+
+        <TableRow android:background="#77787A">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/txtRelatedProjectsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cardo"
+                android:text="Related Projects"
+                android:textColor="@color/black"
+                android:textFontWeight="1000"
+                android:textSize="16sp"
+                android:textStyle="italic"/>
+
+            <EditText
+                android:id="@+id/edtRelatedProjects"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
                 android:textFontWeight="1000"
@@ -215,8 +256,8 @@
 
             <Button
                 android:id="@+id/btnAddMaterials"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
                 android:text="+" />
 
         </TableRow>
@@ -242,8 +283,8 @@
 
             <Button
                 android:id="@+id/btnModifyConstraints"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
                 android:text="+" />
 
         </TableRow>
@@ -255,30 +296,7 @@
                 />
         </TableRow>
 
-        <TableRow>
 
-            <TextView
-                android:id="@+id/txtRelatedProjectsTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
-                android:text="Related Projects"
-                android:textColor="@color/black"
-                android:textFontWeight="1000"
-                android:textSize="16sp"
-                android:textStyle="italic"/>
-
-            <EditText
-                android:id="@+id/txtRelatedProjects"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:text=""
-                android:textColor="@color/black"
-                android:textFontWeight="1000"
-                android:textSize="15sp" />
-
-        </TableRow>
 
         <TableRow android:background="#77787A">
             <TextView
@@ -292,20 +310,11 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnDelete"
-                android:layout_width="28dp"
-                android:layout_height="25dp"
-                android:layout_gravity="right"
-                android:background="@drawable/delete_icon"
-                android:gravity="center"
-                android:textSize="12sp" />
-
-            <Button
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="SAVE"
+                android:text="Save"
                 android:fontFamily="@font/cardo"
                 android:textStyle="bold"/>
 
@@ -314,3 +323,4 @@
     </TableLayout>
 
 </LinearLayout>
+</ScrollView>

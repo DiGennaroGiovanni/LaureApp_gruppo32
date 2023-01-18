@@ -30,6 +30,7 @@
     <string name="languagesToolbar">Languages</string>
     <string name="chatToolbar">Chat</string>
     <string name="settingsToolbar">Settings</string>
+    <string name="modifyThesisToolbar">Modify Thesis</string>
 
     <!-- FILIPPO -->
     <string name="email">Email</string>

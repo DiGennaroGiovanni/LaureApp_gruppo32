@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +31,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class ThesisDescription extends Fragment {
 
     TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,txtDescription,txtRelatedProjects,txtConstraints;
+    Button btnModify;
 
     @Nullable
     @Override
@@ -46,9 +49,10 @@ public class ThesisDescription extends Fragment {
         txtDescription = view.findViewById(R.id.txtDescription);
         txtRelatedProjects = view.findViewById(R.id.txtRelatedProjects);
         txtConstraints = view.findViewById(R.id.txtConstraints);
-
+        btnModify = view.findViewById(R.id.btnModify);
 
         if (getArguments() != null) {
+
             String constraints = getArguments().getString("constraints");
             String correlator = getArguments().getString("correlator");
             String description = getArguments().getString("description");
@@ -65,9 +69,36 @@ public class ThesisDescription extends Fragment {
             txtCorrelator.setText(correlator);
             txtDescription.setText(description);
             txtRelatedProjects.setText(related_projects);
-            txtConstraints.setText(constraints);
+            txtConstraints.setText(constraints); //TODO DA SISTEMARE
 
         }
+
+        btnModify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment modifyThesis = new ModifyThesisFragment();
+                Bundle bundle = new Bundle();
+
+                bundle.putString("name",txtNameTitle.getText().toString());
+                bundle.putString("type",txtType.getText().toString());
+                bundle.putString("related_projects",txtRelatedProjects.getText().toString());
+                bundle.putString("department",txtDepartment.getText().toString());
+                bundle.putString("time",txtTime.getText().toString());
+                bundle.putString("correlator",txtCorrelator.getText().toString());
+                bundle.putString("description",txtDescription.getText().toString());
+                //TODO Bisogna passare i vincoli
+
+                modifyThesis.setArguments(bundle);
+
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, modifyThesis);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+
 
 
         return view;
