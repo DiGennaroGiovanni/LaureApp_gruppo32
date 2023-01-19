@@ -13,23 +13,11 @@
     android:layout_height="match_parent">
 
 
-<TableLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="5dp"
-    >
-
-    <TableRow android:background="#77787A">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1sp" />
-    </TableRow>
-
-
     <TextView
         android:id="@+id/txtNameTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:fontFamily="@font/cardo"
         android:text="Thesis name"
         android:background="@null"
@@ -40,22 +28,20 @@
         android:textStyle="bold"
         />
 
-
-    <TableRow android:background="#77787A">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1sp" />
-    </TableRow>
-
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtTypeTitle"
-            android:layout_width="141dp"
+            android:layout_weight="35"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:editable="false"
+            android:gravity="right"
+            android:paddingEnd="20sp"
             android:fontFamily="@font/cardo"
-            android:text="Thesis type"
+            android:text="Thesis type:"
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="16sp"
@@ -63,7 +49,8 @@
 
         <TextView
             android:id="@+id/txtType"
-            android:layout_width="wrap_content"
+            android:layout_weight="65"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
@@ -71,22 +58,22 @@
             android:textSize="15sp"
             />
 
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow android:background="#77787A">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1sp" />
-    </TableRow>
-
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtDepartmentTitle"
-            android:layout_width="wrap_content"
+            android:layout_weight="35"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingEnd="20sp"
             android:fontFamily="@font/cardo"
-            android:text="Department"
+            android:text="Department:"
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="16sp"
@@ -94,28 +81,29 @@
 
         <TextView
             android:id="@+id/txtDepartment"
-            android:layout_width="wrap_content"
+            android:layout_weight="65"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="15sp" />
 
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow android:background="#77787A">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1sp" />
-    </TableRow>
-
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtTimeTitle"
-            android:layout_width="wrap_content"
+            android:layout_weight="35"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:text="Estimated Time"
+            android:gravity="right"
+            android:paddingEnd="20sp"
+            android:text="Estimated Time:"
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="16sp"
@@ -124,30 +112,29 @@
 
         <TextView
             android:id="@+id/txtTime"
-            android:layout_width="wrap_content"
+            android:layout_weight="65"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="15sp" />
 
+    </LinearLayout>
 
-
-    </TableRow>
-
-    <TableRow android:background="#77787A">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1sp" />
-    </TableRow>
-
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtCorrelatorTitle"
-            android:layout_width="wrap_content"
+            android:layout_weight="35"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:text="Correlator"
+            android:gravity="right"
+            android:paddingEnd="20sp"
+            android:text="Correlator:"
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="16sp"
@@ -156,28 +143,29 @@
 
         <TextView
             android:id="@+id/txtCorrelator"
-            android:layout_width="wrap_content"
+            android:layout_weight="65"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="15sp" />
 
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow android:background="#77787A">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1sp" />
-    </TableRow>
-
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtDescriptionTitle"
-            android:layout_width="wrap_content"
+            android:layout_weight="35"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:gravity="right"
+            android:paddingEnd="20sp"
+            android:text="Description:"
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="16sp"
@@ -186,29 +174,59 @@
 
         <TextView
             android:id="@+id/txtDescription"
-            android:layout_width="wrap_content"
+            android:layout_weight="65"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="15sp" />
 
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow android:background="#77787A">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1sp" />
-    </TableRow>
-
-    <TableRow>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtMaterialsTitle"
-            android:layout_width="wrap_content"
+            android:layout_weight="35"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:text="Materials"
+            android:gravity="right"
+            android:paddingEnd="20sp"
+            android:text="Materials:"
+            android:textColor="@color/black"
+            android:textFontWeight="1000"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:fontFamily="@font/cardo"/>
+
+        <LinearLayout
+            android:id="@+id/layout_lista_file"
+            android:layout_weight="65"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtTitleAverageMarks"
+            android:layout_weight="35"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingEnd="20sp"
+            android:text="Average Marks:"
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="16sp"
@@ -216,31 +234,30 @@
             android:fontFamily="@font/cardo"/>
 
         <TextView
-            android:id="@+id/txtMaterials"
-            android:layout_width="wrap_content"
+            android:id="@+id/txtAverageMarks"
+            android:layout_weight="65"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="15sp" />
 
+    </LinearLayout>
 
-
-    </TableRow>
-
-    <TableRow android:background="#77787A">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1sp" />
-    </TableRow>
-
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txtConstraintsTitle"
-            android:layout_width="wrap_content"
+            android:id="@+id/txtTitleRequiredExams"
+            android:layout_weight="35"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:text="Constraints"
+            android:gravity="right"
+            android:paddingEnd="20sp"
+            android:text="Required Exams:"
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="16sp"
@@ -248,31 +265,31 @@
             android:fontFamily="@font/cardo"/>
 
         <TextView
-            android:id="@+id/txtConstraints"
-            android:layout_width="wrap_content"
+            android:id="@+id/txtRequiredExams"
+            android:layout_weight="65"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="15sp" />
 
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow android:background="#77787A">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1sp"
-            />
-    </TableRow>
-
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtRelatedProjectsTitle"
-            android:layout_width="wrap_content"
+            android:layout_weight="35"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingEnd="20sp"
             android:fontFamily="@font/cardo"
-            android:text="Related Projects"
+            android:text="Related Projects:"
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="16sp"
@@ -280,40 +297,26 @@
 
         <TextView
             android:id="@+id/txtRelatedProjects"
-            android:layout_width="wrap_content"
+            android:layout_weight="65"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="15sp" />
 
-    </TableRow>
-
-    <TableRow android:background="#77787A">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1sp" />
-    </TableRow>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/layout_lista_file"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="left">
-
-        </LinearLayout>
 
         <Button
             android:id="@+id/btnDelete"
             android:layout_width="28dp"
             android:layout_height="25dp"
             android:layout_marginTop="3sp"
-            android:layout_marginLeft="310sp"
+            android:layout_marginStart="310sp"
             android:background="@drawable/delete_icon"
             android:gravity="center"
             android:textSize="12sp" />
@@ -323,12 +326,12 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="3sp"
-            android:layout_marginLeft="270sp"
+            android:layout_marginStart="270sp"
             android:background="@drawable/pencil"
             android:textSize="12sp" />
 
     </RelativeLayout>
 
-</TableLayout>
 </LinearLayout>
+
 </ScrollView>

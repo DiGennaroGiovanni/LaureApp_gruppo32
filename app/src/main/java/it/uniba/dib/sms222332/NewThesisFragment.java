@@ -7,17 +7,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -31,23 +24,24 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class NewThesisFragment extends Fragment {
 
@@ -59,6 +53,7 @@ public class NewThesisFragment extends Fragment {
 
     //Istanze del database e del sistema di autenticazione di firebase
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference ref = db.collection("data");
     StorageReference storageReference;
     FirebaseStorage storage;
     FirebaseAuth mAuth;
@@ -141,7 +136,13 @@ public class NewThesisFragment extends Fragment {
         edtMainSubject.setAdapter(adapter);
 
 
-        buttonCreateThesis.setOnClickListener(view1 -> inserisciTesi());
+        buttonCreateThesis.setOnClickListener(view1 -> {
+            try {
+                inserisciTesi();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         addFile.setOnClickListener(view12 -> caricaPdf());
 
@@ -190,7 +191,7 @@ public class NewThesisFragment extends Fragment {
         startActivityForResult(intent, 86);
     }
 
-    private void inserisciTesi() {
+    private void inserisciTesi() throws IOException {
 
         String thesisName = edtThesisName.getText().toString();
         String mainSubject = edtMainSubject.getSelectedItem().toString();
@@ -255,6 +256,7 @@ public class NewThesisFragment extends Fragment {
             fragmentTransaction.commit();
             Toast.makeText(getActivity(),"Tesi inserita",Toast.LENGTH_LONG).show();
         }
+
     }
 
     private void addCard(String pdfName, Uri pdfUri) {
@@ -298,4 +300,7 @@ public class NewThesisFragment extends Fragment {
                     //Toast.makeText(Provalista.this, "Caricamento NON avvenuto", Toast.LENGTH_SHORT).show();
                 });
     }
+
+
+
 }
