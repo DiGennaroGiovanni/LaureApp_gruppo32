@@ -113,6 +113,19 @@
                 android:text="@string/days" />
         </LinearLayout>
 
+        <EditText
+            android:id="@+id/edtDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/type_description_thesis"
+            android:inputType="textMultiLine"
+            android:minHeight="48dp"
+            android:textColorHint="#546E7A" />
+
         <TextView
             android:id="@+id/textView8"
             android:textAlignment="center"
@@ -134,19 +147,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/thesis_description" />
-
-        <EditText
-            android:id="@+id/edtDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="@string/type_description_thesis"
-            android:inputType="textMultiLine"
-            android:minHeight="48dp"
-            android:textColorHint="#546E7A" />
 
         <TextView
             android:id="@+id/textView13"
@@ -193,7 +193,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/thesis_constraints" />
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <CheckBox
             android:id="@+id/avarageCheck"
             android:layout_width="wrap_content"
@@ -201,15 +204,6 @@
             android:layout_gravity="left"
             android:text="Media voti"
             tools:ignore="RtlHardcoded" />
-
-        <SeekBar
-            android:id="@+id/seekbar"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:min="18"
-            android:max="30"
-            android:progress="18" />
-
         <TextView
             android:id="@+id/progress_text"
             android:layout_width="23dp"
@@ -220,7 +214,15 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="18"
+            android:enabled="true"
+            />
 
+    </LinearLayout>
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -243,7 +245,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="none"
+            android:inputType="text"
             />
 
         <TextView

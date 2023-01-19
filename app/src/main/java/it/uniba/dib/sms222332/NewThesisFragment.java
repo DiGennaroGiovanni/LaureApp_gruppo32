@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -95,23 +96,31 @@ public class NewThesisFragment extends Fragment {
         addFile = view.findViewById(R.id.addFile);
         seekBar = view.findViewById(R.id.seekbar);
         progress_text = view.findViewById(R.id.progress_text);
+        //edtMaterieRichieste.setEnabled(false);
 
         buttonCreateThesis = view.findViewById(R.id.buttonCreateThesis);
-
+        edtMaterieRichieste.setEnabled(false);
         progress_text = view.findViewById(R.id.progress_text);
-        //@SuppressLint({"MissingInflatedId", "LocalSuppress"})
+
+        seekBar.setProgress(18);
+        seekBar.setMax(30);
+        seekBar.setMin(18);
+        seekBar.setEnabled(true);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                progress_text.setText(String.valueOf(progress));
-
+                String progressText = String.valueOf(progress);
+                progress_text.setText(progressText);
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+                // code to execute when the user starts moving the seekBar
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                // code to execute when the user stops moving the seekBar
             }
         });
 
@@ -158,6 +167,19 @@ public class NewThesisFragment extends Fragment {
         adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         edtCorrelator.setAdapter(adapterProf);
 
+
+        materieCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    edtMaterieRichieste.setEnabled(true);
+                } else {
+                    edtMaterieRichieste.setEnabled(false);
+
+                }
+            }
+        });
+
         return view;
     }
 
@@ -175,7 +197,7 @@ public class NewThesisFragment extends Fragment {
         String estimatedTime = edtEstimatedTime.getText().toString();
         String correlator = edtCorrelator.getSelectedItem().toString();
         String description = edtDescription.getText().toString();
-        //String thesisConstraints = edtThesisConstraints.getText().toString(); //TODO GESITRE I VINCOLI
+        String materieRichieste = "";
         String relatedProjects = edtRelatedProjects.getText().toString();
         String tipoTesi = "";
         String professore = mUser.getEmail();
@@ -184,6 +206,18 @@ public class NewThesisFragment extends Fragment {
             tipoTesi = radioButtonSperimentale.getText().toString();
         }else if(radioButtonCompilativa.isChecked()){
             tipoTesi = radioButtonCompilativa.getText().toString();
+        }
+
+        if(materieCheck.isChecked())
+        {
+            materieRichieste = edtMaterieRichieste.getText().toString();
+            if(materieRichieste.isEmpty())
+            {
+                edtMaterieRichieste.setError("Inserisci le materie richieste  ");
+            }else{
+                materieRichieste =edtMaterieRichieste.getText().toString();
+            }
+
         }
 
         if(correlator.equals("Nessuno")){
@@ -197,8 +231,9 @@ public class NewThesisFragment extends Fragment {
         infoTesi.put("Estimated Time",estimatedTime);
         infoTesi.put("Correlator",correlator);
         infoTesi.put("Description",description);
-        infoTesi.put("Constraints",""); //TODO GESITRE I VINCOLI
+        infoTesi.put("Constraints",""); //TODO ELIMINARE -> elimnare prima la lettura nella descrizione della tesi
         infoTesi.put("Related Projects",relatedProjects);
+        infoTesi.put("Required Subjects",materieRichieste);
         infoTesi.put("Type",tipoTesi);
         infoTesi.put("Student","");
 

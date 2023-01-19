@@ -116,10 +116,10 @@ public class ThesisListFragment extends Fragment {
                 bundle = new Bundle();
                 Fragment thesisDescription = new ThesisDescription();
 
-
-
                 Map<String,Object> datiTesi =  document.getData();
+                //TODO BISOGNA ELIMINARE QUESTO E METTERE Required Subjects e Media voti
                 bundle.putString("constraints",(String) datiTesi.get("Constraints"));
+
                 bundle.putString("correlator",(String) datiTesi.get("Correlator"));
                 bundle.putString("description",(String) datiTesi.get("Description"));
                 bundle.putString("estimated_time",(String) datiTesi.get("Estimated Time"));
