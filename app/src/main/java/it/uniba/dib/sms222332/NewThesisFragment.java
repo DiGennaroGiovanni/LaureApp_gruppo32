@@ -3,6 +3,7 @@ package it.uniba.dib.sms222332;
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,7 +22,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +67,7 @@ public class NewThesisFragment extends Fragment {
     ArrayList<Uri> filePdf = new ArrayList<>() ;
     ArrayList<String> correlatori = new ArrayList<>();
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.createThesisToolbar));
@@ -78,13 +82,33 @@ public class NewThesisFragment extends Fragment {
         edtEstimatedTime = view.findViewById(R.id.edtEstimatedTime);
         edtCorrelator = view.findViewById(R.id.edtCorrelator);
         edtDescription = view.findViewById(R.id.edtDescription);
-        edtThesisConstraints = view.findViewById(R.id.edtThesisConstraints);
+       // edtThesisConstraints = view.findViewById(R.id.edtThesisConstraints);
         edtRelatedProjects = view.findViewById(R.id.edtRelatedProjects);
         radioButtonSperimentale = view.findViewById(R.id.radioButtonSperimentale);
         radioButtonCompilativa = view.findViewById(R.id.radioButtonCompilativa);
         addFile = view.findViewById(R.id.addFile);
 
         buttonCreateThesis = view.findViewById(R.id.buttonCreateThesis);
+
+
+        SeekBar seekBar = view.findViewById(R.id.seekbar);
+        final TextView progressText = view.findViewById(R.id.progress_text);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView textView = view.findViewById(R.id.textView14);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                progressText.setText(String.valueOf(progress));
+
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
