@@ -1,10 +1,10 @@
 package it.uniba.dib.sms222332;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LogoutActivity extends AppCompatActivity {
 
@@ -22,8 +22,10 @@ public class LogoutActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+
         });
     }
+
 
     @Override
     public void onBackPressed() {
