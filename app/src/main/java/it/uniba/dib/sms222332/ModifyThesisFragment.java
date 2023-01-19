@@ -43,7 +43,7 @@ public class ModifyThesisFragment extends Fragment {
     Spinner spinnerCorrelator;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth;
-    String correlator,nome,name;
+    String correlator,nome,name,nomeFile;
     LinearLayout layout_lista_file;
     FirebaseUser mUser;
     ArrayList<String> correlatori = new ArrayList<>();
@@ -126,6 +126,11 @@ public class ModifyThesisFragment extends Fragment {
                    edtDescription.setError("Inserisci un valore minore di 180 giorni");
 
 
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference storageRef = storage.getReference().child(name).child(nomeFile);
+
+                storageRef.delete();
+
                 DocumentReference docRef = db.collection("Tesi").document(name);
                 Map<String, Object> updates = new HashMap<>();
                 updates.put("Estimated Time", edtTime.getText().toString());
@@ -150,7 +155,7 @@ public class ModifyThesisFragment extends Fragment {
                 List<String> fileNames = new ArrayList<>();
                 for (StorageReference item : listResult.getItems()) {
                     fileNames.add(item.getName());
-                    String nomeFile = item.getName();
+                    nomeFile = item.getName();
                     addCard(nomeFile);
                 }
                 Log.d("info", "Nomi dei file: " + fileNames);
@@ -171,13 +176,9 @@ public class ModifyThesisFragment extends Fragment {
         Button delete = view.findViewById(R.id.delete);
         nameView.setText(nomeFile);
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference().child(txtNameTitle.getText().toString());
 
         delete.setOnClickListener(v -> {
             layout_lista_file.removeView(view);
-
-            storageRef.delete();
 
         });
         layout_lista_file.addView(view);

@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -49,11 +50,11 @@ import java.util.Map;
 
 public class NewThesisFragment extends Fragment {
 
-    EditText edtThesisName, edtEstimatedTime,edtDescription, edtThesisConstraints,edtRelatedProjects;
+    EditText edtThesisName, edtEstimatedTime,edtDescription, edtMaterieRichieste,edtRelatedProjects;
     RadioButton radioButtonSperimentale,radioButtonCompilativa;
     Spinner edtMainSubject,edtCorrelator;
     Button addFile,buttonCreateThesis;
-    TextView textView6;
+    TextView txtFaculty;
 
     //Istanze del database e del sistema di autenticazione di firebase
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -63,6 +64,9 @@ public class NewThesisFragment extends Fragment {
     FirebaseUser mUser;
     Uri pdfUri;
     LinearLayout layout;
+    SeekBar seekBar;
+    TextView progress_text;
+    CheckBox avarageCheck,materieCheck;
 
     ArrayList<Uri> filePdf = new ArrayList<>() ;
     ArrayList<String> correlatori = new ArrayList<>();
@@ -76,29 +80,31 @@ public class NewThesisFragment extends Fragment {
 
         layout = view.findViewById(R.id.layout_lista);
 
-        textView6 = view.findViewById(R.id.textView6);
+        avarageCheck = view.findViewById(R.id.avarageCheck);
+        materieCheck = view.findViewById(R.id.materieCheck);
+        edtMaterieRichieste = view.findViewById(R.id.edtMaterieRichieste);
+        txtFaculty = view.findViewById(R.id.txtFaculty);
         edtThesisName = view.findViewById(R.id.edtThesisName);
         edtMainSubject = view.findViewById(R.id.edtMainSubject);
         edtEstimatedTime = view.findViewById(R.id.edtEstimatedTime);
         edtCorrelator = view.findViewById(R.id.edtCorrelator);
         edtDescription = view.findViewById(R.id.edtDescription);
-       // edtThesisConstraints = view.findViewById(R.id.edtThesisConstraints);
         edtRelatedProjects = view.findViewById(R.id.edtRelatedProjects);
         radioButtonSperimentale = view.findViewById(R.id.radioButtonSperimentale);
         radioButtonCompilativa = view.findViewById(R.id.radioButtonCompilativa);
         addFile = view.findViewById(R.id.addFile);
+        seekBar = view.findViewById(R.id.seekbar);
+        progress_text = view.findViewById(R.id.progress_text);
 
         buttonCreateThesis = view.findViewById(R.id.buttonCreateThesis);
 
-
-        SeekBar seekBar = view.findViewById(R.id.seekbar);
-        final TextView progressText = view.findViewById(R.id.progress_text);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView textView = view.findViewById(R.id.textView14);
+        progress_text = view.findViewById(R.id.progress_text);
+        //@SuppressLint({"MissingInflatedId", "LocalSuppress"})
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                progressText.setText(String.valueOf(progress));
+                progress_text.setText(String.valueOf(progress));
 
             }
             @Override
@@ -169,7 +175,7 @@ public class NewThesisFragment extends Fragment {
         String estimatedTime = edtEstimatedTime.getText().toString();
         String correlator = edtCorrelator.getSelectedItem().toString();
         String description = edtDescription.getText().toString();
-        String thesisConstraints = edtThesisConstraints.getText().toString();
+        //String thesisConstraints = edtThesisConstraints.getText().toString(); //TODO GESITRE I VINCOLI
         String relatedProjects = edtRelatedProjects.getText().toString();
         String tipoTesi = "";
         String professore = mUser.getEmail();
@@ -191,15 +197,13 @@ public class NewThesisFragment extends Fragment {
         infoTesi.put("Estimated Time",estimatedTime);
         infoTesi.put("Correlator",correlator);
         infoTesi.put("Description",description);
-        infoTesi.put("Constraints",thesisConstraints);
+        infoTesi.put("Constraints",""); //TODO GESITRE I VINCOLI
         infoTesi.put("Related Projects",relatedProjects);
         infoTesi.put("Type",tipoTesi);
         infoTesi.put("Student","");
 
         if(thesisName.isEmpty()){
             edtThesisName.setError("Inserisci il nome della tesi!");
-        }else if(mainSubject.isEmpty()){
-            textView6.setError("Inserisci la materia per questa tesi!");
         }else if(estimatedTime.isEmpty()){
             edtEstimatedTime.setError("Inserisci il tempo stimato per eseguire la tesi!");
         }else if(description.isEmpty()){

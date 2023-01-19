@@ -252,6 +252,13 @@
                 android:textStyle="italic"
                 android:fontFamily="@font/cardo"/>
 
+            <LinearLayout
+                android:id="@+id/layout_lista_file"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="left"></LinearLayout>
+
 
 
         </TableRow>
@@ -303,12 +310,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/layout_lista_file"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="left">
 
             <Button
                 android:id="@+id/btnSave"
@@ -319,7 +320,7 @@
                 android:fontFamily="@font/cardo"
                 android:textStyle="bold"/>
 
-        </LinearLayout>
+
         </LinearLayout>
 
     </TableLayout>
