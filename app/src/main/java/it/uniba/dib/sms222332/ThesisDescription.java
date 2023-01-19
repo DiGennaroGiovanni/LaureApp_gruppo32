@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,18 +21,31 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ThesisDescription extends Fragment {
 
     TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,txtDescription,txtRelatedProjects,txtConstraints;
-    Button btnModify;
+    Button btnModify,btnDelete;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    LinearLayout layout_lista_file;
+
 
     @Nullable
     @Override
@@ -40,7 +54,7 @@ public class ThesisDescription extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_thesis_description, container, false);
 
-
+        layout_lista_file = view.findViewById(R.id.layout_lista_file);
         txtNameTitle = view.findViewById(R.id.txtNameTitle);
         txtDepartment = view.findViewById(R.id.txtDepartment);
         txtType = view.findViewById(R.id.txtType);
@@ -50,6 +64,7 @@ public class ThesisDescription extends Fragment {
         txtRelatedProjects = view.findViewById(R.id.txtRelatedProjects);
         txtConstraints = view.findViewById(R.id.txtConstraints);
         btnModify = view.findViewById(R.id.btnModify);
+        btnDelete = view.findViewById(R.id.btnDelete);
 
         if (getArguments() != null) {
 
@@ -66,7 +81,12 @@ public class ThesisDescription extends Fragment {
             txtType.setText(type);
             txtDepartment.setText(faculty);
             txtTime.setText(estimated_time);
-            txtCorrelator.setText(correlator);
+
+            if(correlator.isEmpty())
+               txtCorrelator.setText("There is no correlator");
+            else
+                txtCorrelator.setText(correlator);
+
             txtDescription.setText(description);
             txtRelatedProjects.setText(related_projects);
             txtConstraints.setText(constraints); //TODO DA SISTEMARE
@@ -98,10 +118,64 @@ public class ThesisDescription extends Fragment {
             }
         });
 
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DocumentReference tesi = db.collection("Tesi").document(txtNameTitle.getText().toString());
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference storageRef = storage.getReference().child(txtNameTitle.getText().toString());
+
+                storageRef.delete();  //TODO Non elimina i file dal Cloud
+                tesi.delete();
+
+                Toast.makeText(getActivity(),"Tesi eliminata",Toast.LENGTH_LONG);
+
+                Fragment thesisListFragment = new ThesisListFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, thesisListFragment);
+                transaction.commit();
 
 
+
+
+
+                //TODO INSERIRE MESSAGGIO PER LA CANCELLAZIONE AVVENUTA
+
+            }
+        });
+
+        //AGGIUNGO CARTE IN BASE AI DOCUMENTI CHE CI SONO
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference().child(txtNameTitle.getText().toString());
+
+        storageRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+            @Override
+            public void onSuccess(ListResult listResult) {
+                List<String> fileNames = new ArrayList<>();
+                for (StorageReference item : listResult.getItems()) {
+                    fileNames.add(item.getName());
+                    String nomeFile = item.getName();
+                    addCard(nomeFile);
+                }
+                Log.d("info", "Nomi dei file: " + fileNames);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.w("info", "Errore nel recupero dei file.", exception);
+            }
+        });
 
         return view;
+    }
+
+    private void addCard(String nomeFile) {
+        View view = getLayoutInflater().inflate(R.layout.card_no_delete, null);
+        TextView nameView = view.findViewById(R.id.name);
+        nameView.setText(nomeFile);
+
+        layout_lista_file.addView(view);
     }
 
 }

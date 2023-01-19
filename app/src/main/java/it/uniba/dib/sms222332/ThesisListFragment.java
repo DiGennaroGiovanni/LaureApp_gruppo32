@@ -101,6 +101,11 @@ public class ThesisListFragment extends Fragment {
             txtStudentThesis.setText(document.getString("Student"));
         }
 
+        if(document.getString("Correlator").equals(""))
+        {
+            txtCorrelator.setText("There is no correlator");
+        }
+
         layout_lista_tesi.addView(view);
 
 

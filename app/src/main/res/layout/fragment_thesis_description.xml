@@ -203,6 +203,7 @@
 
     <TableRow>
 
+
         <TextView
             android:id="@+id/txtMaterialsTitle"
             android:layout_width="wrap_content"
@@ -222,6 +223,8 @@
             android:textColor="@color/black"
             android:textFontWeight="1000"
             android:textSize="15sp" />
+
+
 
     </TableRow>
 
@@ -295,6 +298,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout_lista_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="left">
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnDelete"

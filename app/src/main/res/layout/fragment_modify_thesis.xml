@@ -160,16 +160,14 @@
                 android:textStyle="italic"
                 android:fontFamily="@font/cardo"/>
 
-            <EditText
-                android:id="@+id/edtCorrelator"
+            <Spinner
+                android:id="@+id/spinnerCorrelator"
+                android:layout_gravity="center"
+                android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:text=""
-                android:inputType="textMultiLine"
-                android:textColor="@color/black"
-                android:textFontWeight="1000"
-                android:textSize="15sp" />
+                android:backgroundTint="#BFBABA"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </TableRow>
 
@@ -227,7 +225,7 @@
                 android:id="@+id/edtRelatedProjects"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
+                android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
                 android:textFontWeight="1000"
@@ -254,11 +252,7 @@
                 android:textStyle="italic"
                 android:fontFamily="@font/cardo"/>
 
-            <Button
-                android:id="@+id/btnAddMaterials"
-                android:layout_width="50sp"
-                android:layout_height="50sp"
-                android:text="+" />
+
 
         </TableRow>
 
@@ -309,6 +303,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/layout_lista_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="left">
+
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
@@ -318,6 +319,7 @@
                 android:fontFamily="@font/cardo"
                 android:textStyle="bold"/>
 
+        </LinearLayout>
         </LinearLayout>
 
     </TableLayout>
