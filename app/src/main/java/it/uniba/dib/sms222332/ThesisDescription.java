@@ -1,14 +1,11 @@
 package it.uniba.dib.sms222332;
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,18 +17,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
@@ -41,7 +30,7 @@ import java.util.List;
 
 public class ThesisDescription extends Fragment {
 
-    TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,txtDescription,txtRelatedProjects,txtConstraints;
+    TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams;
     Button btnModify,btnDelete;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layout_lista_file;
@@ -62,13 +51,12 @@ public class ThesisDescription extends Fragment {
         txtCorrelator = view.findViewById(R.id.txtCorrelator);
         txtDescription = view.findViewById(R.id.txtDescription);
         txtRelatedProjects = view.findViewById(R.id.txtRelatedProjects);
-        txtConstraints = view.findViewById(R.id.txtConstraints);
+        txtAverageMarks = view.findViewById(R.id.txtAverageMarks);
+        txtRequiredExams = view.findViewById(R.id.txtRequiredExams);
         btnModify = view.findViewById(R.id.btnModify);
         btnDelete = view.findViewById(R.id.btnDelete);
 
         if (getArguments() != null) {
-
-            String constraints = getArguments().getString("constraints");
             String correlator = getArguments().getString("correlator");
             String description = getArguments().getString("description");
             String estimated_time = getArguments().getString("estimated_time");
@@ -89,7 +77,6 @@ public class ThesisDescription extends Fragment {
 
             txtDescription.setText(description);
             txtRelatedProjects.setText(related_projects);
-            txtConstraints.setText(constraints); //TODO DA SISTEMARE
 
         }
 
