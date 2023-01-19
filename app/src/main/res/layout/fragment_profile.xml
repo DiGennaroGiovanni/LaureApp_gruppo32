@@ -1,98 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10sp"
     tools:context=".ProfileFragment">
 
-    <ImageView
-        android:contentDescription="@string/menu_profile"
-        android:id="@+id/profile_pic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/profile_image_black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.167"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.074" />
+    <!--    <ImageView-->
+    <!--        android:id="@+id/profile_pic"-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:layout_marginTop="20sp"-->
+    <!--        android:contentDescription="@string/menu_profile"-->
+    <!--        android:src="@drawable/profile_image_black" />-->
 
     <TextView
-        android:id="@+id/text_name"
-        android:layout_width="match_parent"
+        android:id="@+id/txtNameSurname"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/name_surname"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.354" />
+        android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/text_uni"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="ITPS"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.425" />
-
-    <TextView
-        android:id="@+id/text_uni_mat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Matricola"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.497" />
-
-    <Button
-        android:id="@+id/btnEliminaProfilo"
+        android:id="@+id/txtBadgeNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Elimina Profilo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+        android:layout_below="@+id/txtEmail"
+
+        android:text="Badge Number"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/txtFaculty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtBadgeNumber"
+        android:text="Faculty"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNameSurname"
+        android:text="email"
+        android:textSize="20sp"/>
+
 
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnDeleteProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Carica immagine"
-        app:layout_constraintBottom_toTopOf="@+id/text_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.932"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.364" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Elimina Profilo" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--    <Button-->
+    <!--        android:id="@+id/button2"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Carica immagine"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/text_name"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.932"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.364" />-->
+
+
+</RelativeLayout>

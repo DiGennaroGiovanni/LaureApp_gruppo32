@@ -1,8 +1,5 @@
 package it.uniba.dib.sms222332;
 
-import static android.content.ContentValues.TAG;
-import static android.content.Intent.getIntent;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,13 +20,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.concurrent.Executor;
+import com.google.firebase.firestore.util.Logger;
 
 
 public class ProfileFragment extends Fragment {
@@ -38,9 +29,9 @@ public class ProfileFragment extends Fragment {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser mUser = mAuth.getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    TextView txtNome, txtMatricola, txtUniversita;
-    Button btnEliminaProfilo;
-    String nome_utente, matricola_utente, universita_utente, cognome_utente;
+    TextView txtName, txtBadgeNumber, txtFaculty, txtEmail;
+    Button btnDeleteProfile;
+    String name, surname, badgeNumber, faculty, email;
 
     @Nullable
     @Override
@@ -50,34 +41,42 @@ public class ProfileFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-             nome_utente = bundle.getString("nome_utente");
-             matricola_utente = bundle.getString("matricola_utente");
-             universita_utente = bundle.getString("universita_utente");
-             cognome_utente = bundle.getString("cognome_utente");
+            name = bundle.getString("name");
+            surname = bundle.getString("surname");
+            badgeNumber = bundle.getString("badge_number");
+            faculty = bundle.getString("faculty");
+            email = bundle.getString("email");
         }
 
-        txtMatricola = view.findViewById(R.id.text_uni_mat);
-        txtNome = view.findViewById(R.id.text_name);
-        txtUniversita = view.findViewById(R.id.text_uni);
-        btnEliminaProfilo = view.findViewById(R.id.btnEliminaProfilo);
+        txtBadgeNumber = view.findViewById(R.id.txtBadgeNumber);
+        txtName = view.findViewById(R.id.txtNameSurname);
+        txtFaculty = view.findViewById(R.id.txtFaculty);
+        txtEmail = view.findViewById(R.id.txtEmail);
+        btnDeleteProfile = view.findViewById(R.id.btnDeleteProfile);
 
-        txtMatricola.setText(matricola_utente);
-        txtNome.setText(nome_utente+" "+cognome_utente);
-        txtUniversita.setText(universita_utente);
+        txtBadgeNumber.setText(badgeNumber);
+        String nameSurname = name +" "+ surname;
+        txtName.setText(nameSurname);
+        txtFaculty.setText(faculty);
+        txtEmail.setText(email);
 
-        String userEmailId = mAuth.getCurrentUser().getEmail();
-        DocumentReference documentReference = db.collection("studenti").document(userEmailId);
 
-        //AGGIUNGERE ACTIVITY INTERMEDIA INVECE DI ELIMINARE DIRETTAMENTE I DATI
-        btnEliminaProfilo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                documentReference.delete();
-                mUser.delete();
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
+        //TODO Confermare scelta e rimandare ad activity conclusiva
+        btnDeleteProfile.setOnClickListener(view1 -> {
+
+            DocumentReference documentReference;
+
+            if (badgeNumber.equals(""))
+                documentReference = db.collection("professori").document(email);
+            else
+                documentReference = db.collection("studenti").document(email);
+
+            mUser.delete();
+            documentReference.delete();
+
+            Intent intent = new Intent(getActivity(), LogoutActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         });
         return view;
     }

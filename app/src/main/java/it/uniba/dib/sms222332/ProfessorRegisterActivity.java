@@ -33,7 +33,7 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
     Button buttonConcludiProf;
     Spinner spinnerDepartment;
 
-    String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
+
 
 
     @Override
@@ -97,6 +97,7 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
         String email = edtEmailRegistrati.getText().toString();
         String password = edtPasswordRegistrati.getText().toString();
 
+        String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
         if(!email.matches(emailPattern))
         {
             edtEmailRegistrati.setError("Inserisci un'email valida!");
