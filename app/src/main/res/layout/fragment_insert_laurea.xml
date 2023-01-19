@@ -112,6 +112,11 @@
                 android:width="10dp"
                 android:text="@string/days" />
         </LinearLayout>
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/thesis_description" />
 
         <EditText
             android:id="@+id/edtDescription"
@@ -142,11 +147,7 @@
             android:backgroundTint="#BFBABA"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/thesis_description" />
+
 
         <TextView
             android:id="@+id/textView13"
@@ -195,32 +196,27 @@
             android:text="@string/thesis_constraints" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <CheckBox
             android:id="@+id/avarageCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="Media voti"
+            android:text="Media esami"
             tools:ignore="RtlHardcoded" />
-        <TextView
-            android:id="@+id/progress_text"
-            android:layout_width="23dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="-22dp"
-            android:text="18"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
-        <SeekBar
-            android:id="@+id/seekbar"
+        <EditText
+            android:id="@+id/edtAvarage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:progress="18"
-            android:enabled="true"
-            />
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:ems="10"
+            >
+
+        </EditText>
+
 
     </LinearLayout>
 
@@ -233,7 +229,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="Materie richieste"
+            android:text="Esami richiesti"
             tools:ignore="RtlHardcoded" />
 
 
@@ -245,8 +241,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            />
+            android:inputType="textMultiLine"/>
 
         <TextView
             android:id="@+id/textView10"

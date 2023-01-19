@@ -51,7 +51,9 @@ import java.util.Map;
 
 public class NewThesisFragment extends Fragment {
 
-    EditText edtThesisName, edtEstimatedTime,edtDescription, edtMaterieRichieste,edtRelatedProjects;
+
+
+    EditText edtThesisName, edtEstimatedTime,edtDescription, edtMaterieRichieste,edtRelatedProjects,edtAvarage;
     RadioButton radioButtonSperimentale,radioButtonCompilativa;
     Spinner edtMainSubject,edtCorrelator;
     Button addFile,buttonCreateThesis;
@@ -65,8 +67,7 @@ public class NewThesisFragment extends Fragment {
     FirebaseUser mUser;
     Uri pdfUri;
     LinearLayout layout;
-    SeekBar seekBar;
-    TextView progress_text;
+
     CheckBox avarageCheck,materieCheck;
 
     ArrayList<Uri> filePdf = new ArrayList<>() ;
@@ -85,6 +86,7 @@ public class NewThesisFragment extends Fragment {
         materieCheck = view.findViewById(R.id.materieCheck);
         edtMaterieRichieste = view.findViewById(R.id.edtMaterieRichieste);
         txtFaculty = view.findViewById(R.id.txtFaculty);
+        edtAvarage = view.findViewById(R.id.edtAvarage);
         edtThesisName = view.findViewById(R.id.edtThesisName);
         edtMainSubject = view.findViewById(R.id.edtMainSubject);
         edtEstimatedTime = view.findViewById(R.id.edtEstimatedTime);
@@ -94,36 +96,10 @@ public class NewThesisFragment extends Fragment {
         radioButtonSperimentale = view.findViewById(R.id.radioButtonSperimentale);
         radioButtonCompilativa = view.findViewById(R.id.radioButtonCompilativa);
         addFile = view.findViewById(R.id.addFile);
-        seekBar = view.findViewById(R.id.seekbar);
-        progress_text = view.findViewById(R.id.progress_text);
-        //edtMaterieRichieste.setEnabled(false);
-
         buttonCreateThesis = view.findViewById(R.id.buttonCreateThesis);
+
         edtMaterieRichieste.setEnabled(false);
-        progress_text = view.findViewById(R.id.progress_text);
-
-        seekBar.setProgress(18);
-        seekBar.setMax(30);
-        seekBar.setMin(18);
-        seekBar.setEnabled(true);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                String progressText = String.valueOf(progress);
-                progress_text.setText(progressText);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // code to execute when the user starts moving the seekBar
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // code to execute when the user stops moving the seekBar
-            }
-        });
-
+        edtAvarage.setEnabled(false);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -136,13 +112,10 @@ public class NewThesisFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.faculty_array, android.R.layout.simple_spinner_item);
         // Specifico il layout che appare quando viene cliccato sullo spinner
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Setto l'ArrayAdapter allo spinner
         edtMainSubject.setAdapter(adapter);
-
-
         buttonCreateThesis.setOnClickListener(view1 -> inserisciTesi());
-
         addFile.setOnClickListener(view12 -> caricaPdf());
 
         CollectionReference collectionRef = db.collection("professori");
@@ -167,15 +140,24 @@ public class NewThesisFragment extends Fragment {
         adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         edtCorrelator.setAdapter(adapterProf);
 
+        avarageCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(avarageCheck.isChecked()){
+                    edtAvarage.setEnabled(true);
+                }else{
+                    edtAvarage.setEnabled(false);
+                }
+            }
+        });
 
-        materieCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      materieCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+                if (materieCheck.isChecked()) {
                     edtMaterieRichieste.setEnabled(true);
                 } else {
                     edtMaterieRichieste.setEnabled(false);
-
                 }
             }
         });
@@ -198,9 +180,12 @@ public class NewThesisFragment extends Fragment {
         String correlator = edtCorrelator.getSelectedItem().toString();
         String description = edtDescription.getText().toString();
         String materieRichieste = "";
+        String mediaVoti = "";
         String relatedProjects = edtRelatedProjects.getText().toString();
         String tipoTesi = "";
         String professore = mUser.getEmail();
+        int  numeroIntero;
+
 
         if(radioButtonSperimentale.isChecked()){
             tipoTesi = radioButtonSperimentale.getText().toString();
@@ -211,14 +196,33 @@ public class NewThesisFragment extends Fragment {
         if(materieCheck.isChecked())
         {
             materieRichieste = edtMaterieRichieste.getText().toString();
+
             if(materieRichieste.isEmpty())
             {
-                edtMaterieRichieste.setError("Inserisci le materie richieste  ");
+                edtMaterieRichieste.setError("Inserisci le materie richieste");
             }else{
                 materieRichieste =edtMaterieRichieste.getText().toString();
             }
 
         }
+
+        if(avarageCheck.isChecked())
+        {
+            mediaVoti = edtAvarage.getText().toString();
+
+            if(mediaVoti.isEmpty())
+            {
+                edtAvarage.setError("Inserisci una vincolo valido");
+            }else{
+                numeroIntero = Integer.parseInt(mediaVoti);
+                if(numeroIntero > 30 || numeroIntero < 18)
+                    edtAvarage.setError("Inserisci una media tra il 18 ed il 30");
+                else
+                    mediaVoti = edtAvarage.getText().toString();
+
+            }
+        }
+
 
         if(correlator.equals("Nessuno")){
             correlator="";
@@ -231,9 +235,10 @@ public class NewThesisFragment extends Fragment {
         infoTesi.put("Estimated Time",estimatedTime);
         infoTesi.put("Correlator",correlator);
         infoTesi.put("Description",description);
-        infoTesi.put("Constraints",""); //TODO ELIMINARE -> elimnare prima la lettura nella descrizione della tesi
+        //infoTesi.put("Constraints",""); //TODO ELIMINARE -> elimnare prima la lettura nella descrizione della tesi
         infoTesi.put("Related Projects",relatedProjects);
-        infoTesi.put("Required Subjects",materieRichieste);
+        infoTesi.put("Required Exam",materieRichieste);
+        infoTesi.put("Avarage",mediaVoti);
         infoTesi.put("Type",tipoTesi);
         infoTesi.put("Student","");
 
@@ -299,3 +304,5 @@ public class NewThesisFragment extends Fragment {
                 });
     }
 }
+
+
