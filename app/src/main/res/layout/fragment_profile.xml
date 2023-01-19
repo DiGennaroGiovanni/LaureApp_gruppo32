@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10sp"
     tools:context=".ProfileFragment">
 
-    <ImageView
-        android:id="@+id/profile_pic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20sp"
-        android:contentDescription="@string/menu_profile"
-        android:src="@drawable/profile_image_black" />
+    <!--    <ImageView-->
+    <!--        android:id="@+id/profile_pic"-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:layout_marginTop="20sp"-->
+    <!--        android:contentDescription="@string/menu_profile"-->
+    <!--        android:src="@drawable/profile_image_black" />-->
 
     <TextView
         android:id="@+id/txtNameSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_pic"
         android:text="@string/name_surname"
         android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/txtFaculty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Faculty"
-        android:textSize="20sp"
-        android:layout_below="@+id/txtNameSurname"/>
 
     <TextView
         android:id="@+id/txtBadgeNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txtEmail"
+
         android:text="Badge Number"
-        android:textSize="20sp"
-        android:layout_below="@+id/txtFaculty" />
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/txtFaculty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtBadgeNumber"
+        android:text="Faculty"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNameSurname"
+        android:text="email"
+        android:textSize="20sp"/>
+
+
 
     <Button
         android:id="@+id/btnDeleteProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Elimina Profilo"
-        android:layout_below="@+id/txtBadgeNumber" />
-
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Elimina Profilo" />
 
 
     <!--    <Button-->
