@@ -17,9 +17,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -127,9 +130,15 @@ public class ModifyThesisFragment extends Fragment {
 
 
                 FirebaseStorage storage = FirebaseStorage.getInstance();
-                StorageReference storageRef = storage.getReference().child(name).child(nomeFile);
 
-                storageRef.delete();
+                try {
+                    StorageReference storageRef = storage.getReference().child(name).child(nomeFile);
+                    storageRef.delete();
+
+                } catch (Exception e) {
+                    Snackbar.make(view, "Errore", Snackbar.LENGTH_LONG).show();
+                }
+
 
                 DocumentReference docRef = db.collection("Tesi").document(name);
                 Map<String, Object> updates = new HashMap<>();
@@ -141,6 +150,14 @@ public class ModifyThesisFragment extends Fragment {
 
                 docRef.update(updates);
 
+                Snackbar.make(view, "Thesis updated", Snackbar.LENGTH_LONG).show();
+
+                Fragment thesisList = new ThesisListFragment();
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, thesisList);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
             }
         });

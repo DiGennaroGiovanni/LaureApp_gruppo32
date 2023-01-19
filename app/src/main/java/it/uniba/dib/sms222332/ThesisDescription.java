@@ -1,5 +1,6 @@
 package it.uniba.dib.sms222332;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -34,6 +36,7 @@ public class ThesisDescription extends Fragment {
     Button btnModify,btnDelete;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layout_lista_file;
+
 
 
     @Nullable
@@ -112,22 +115,37 @@ public class ThesisDescription extends Fragment {
                 DocumentReference tesi = db.collection("Tesi").document(txtNameTitle.getText().toString());
                 FirebaseStorage storage = FirebaseStorage.getInstance();
                 StorageReference storageRef = storage.getReference().child(txtNameTitle.getText().toString());
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Conferma eliminazione");
+                builder.setMessage("Sei sicuro di voler eliminare questo elemento?");
 
-                storageRef.delete();  //TODO Non elimina i file dal Cloud
-                tesi.delete();
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                Toast.makeText(getActivity(),"Tesi eliminata",Toast.LENGTH_LONG);
+                        storageRef.delete();
+                        tesi.delete();
 
-                Fragment thesisListFragment = new ThesisListFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, thesisListFragment);
-                transaction.commit();
+                        Snackbar.make(view, "Thesis eliminated", Snackbar.LENGTH_LONG).show();
 
+                        Fragment thesisListFragment = new ThesisListFragment();
+                        assert getFragmentManager() != null;
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.fragment_container, thesisListFragment);
+                        transaction.commit();
 
+                    }
+                });
 
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                    }
+                });
 
-                //TODO INSERIRE MESSAGGIO PER LA CANCELLAZIONE AVVENUTA
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
             }
         });
