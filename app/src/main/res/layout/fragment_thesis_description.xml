@@ -10,7 +10,7 @@
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <TextView
@@ -23,38 +23,34 @@
         android:background="@null"
         android:textAllCaps="true"
         android:textColor="@android:color/black"
-        android:textFontWeight="1000"
         android:textSize="20sp"
         android:textStyle="bold"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/txtTypeTitle"
+            android:id="@+id/txtTypologyTitle"
             android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:paddingEnd="20sp"
             android:fontFamily="@font/cardo"
             android:text="Thesis type:"
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="16sp"
-            android:textStyle="italic" />
+            android:textStyle="bold|italic"/>
 
         <TextView
-            android:id="@+id/txtType"
+            android:id="@+id/txtTypology"
             android:layout_weight="65"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="15sp"
             />
 
@@ -70,14 +66,13 @@
             android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:paddingEnd="20sp"
             android:fontFamily="@font/cardo"
             android:text="Department:"
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="16sp"
-            android:textStyle="italic" />
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtDepartment"
@@ -86,7 +81,6 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -101,13 +95,12 @@
             android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:paddingEnd="20sp"
             android:text="Estimated Time:"
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="16sp"
-            android:textStyle="italic"
+            android:textStyle="bold|italic"
             android:fontFamily="@font/cardo"/>
 
         <TextView
@@ -117,7 +110,6 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -132,13 +124,12 @@
             android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:paddingEnd="20sp"
             android:text="Correlator:"
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="16sp"
-            android:textStyle="italic"
+            android:textStyle="bold|italic"
             android:fontFamily="@font/cardo"/>
 
         <TextView
@@ -148,7 +139,6 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -163,13 +153,12 @@
             android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:paddingEnd="20sp"
             android:text="Description:"
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="16sp"
-            android:textStyle="italic"
+            android:textStyle="bold|italic"
             android:fontFamily="@font/cardo"/>
 
         <TextView
@@ -179,7 +168,6 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -194,13 +182,12 @@
             android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:paddingEnd="20sp"
             android:text="Materials:"
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="16sp"
-            android:textStyle="italic"
+            android:textStyle="bold|italic"
             android:fontFamily="@font/cardo"/>
 
         <LinearLayout
@@ -224,13 +211,12 @@
             android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:paddingEnd="20sp"
             android:text="Average Marks:"
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="16sp"
-            android:textStyle="italic"
+            android:textStyle="bold|italic"
             android:fontFamily="@font/cardo"/>
 
         <TextView
@@ -240,7 +226,6 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -255,13 +240,12 @@
             android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:paddingEnd="20sp"
             android:text="Required Exams:"
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="16sp"
-            android:textStyle="italic"
+            android:textStyle="bold|italic"
             android:fontFamily="@font/cardo"/>
 
         <TextView
@@ -271,7 +255,6 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -286,14 +269,13 @@
             android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:paddingEnd="20sp"
             android:fontFamily="@font/cardo"
             android:text="Related Projects:"
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="16sp"
-            android:textStyle="italic"/>
+            android:textStyle="bold|italic"/>
 
         <TextView
             android:id="@+id/txtRelatedProjects"
@@ -302,7 +284,6 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/black"
-            android:textFontWeight="1000"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -313,22 +294,23 @@
 
         <Button
             android:id="@+id/btnDelete"
-            android:layout_width="28dp"
-            android:layout_height="25dp"
+            android:layout_width="27sp"
+            android:layout_height="27sp"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="3sp"
-            android:layout_marginStart="310sp"
+            android:layout_marginEnd="30sp"
             android:background="@drawable/delete_icon"
-            android:gravity="center"
-            android:textSize="12sp" />
+            android:contentDescription="@string/delete_thesis" />
 
         <Button
             android:id="@+id/btnModify"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="3sp"
-            android:layout_marginStart="270sp"
-            android:background="@drawable/pencil"
-            android:textSize="12sp" />
+            android:layout_width="27sp"
+            android:layout_height="27sp"
+            android:layout_alignTop="@+id/btnDelete"
+            android:layout_toStartOf="@+id/btnDelete"
+            android:background="@drawable/icon_edit"
+            android:contentDescription="@string/modify_thesis"
+            />
 
     </RelativeLayout>
 

@@ -69,7 +69,7 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/txtTypeTitle"
+                        android:id="@+id/txtTypologyTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
@@ -81,7 +81,7 @@
                         android:fontFamily="@font/cardo"/>
 
                     <TextView
-                        android:id="@+id/txtType"
+                        android:id="@+id/txtTypology"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"

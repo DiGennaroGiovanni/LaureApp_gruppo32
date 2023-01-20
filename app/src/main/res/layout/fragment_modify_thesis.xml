@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -21,7 +21,6 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
-            android:textFontWeight="1000"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -31,27 +30,25 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtTypeTitle"
+                android:id="@+id/txtTypologyTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingEnd="20sp"
                 android:text="Thesis type:"
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="16sp"
                 android:textStyle="italic" />
 
             <TextView
-                android:id="@+id/txtType"
+                android:id="@+id/txtTypology"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -71,7 +68,6 @@
                 android:fontFamily="@font/cardo"
                 android:text="Department:"
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="16sp"
                 android:textStyle="italic" />
 
@@ -82,7 +78,6 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -101,7 +96,6 @@
                 android:paddingEnd="20sp"
                 android:text="Estimated Time:"
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="16sp"
                 android:textStyle="italic"
                 android:fontFamily="@font/cardo"/>
@@ -114,7 +108,6 @@
                 android:inputType="number"
                 android:text=""
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -129,12 +122,11 @@
                 android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingEnd="20sp"
                 android:text="Correlator:"
                 android:fontFamily="@font/cardo"
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="16sp"
                 android:textStyle="italic" />
 
@@ -160,12 +152,11 @@
                 android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingEnd="20sp"
                 android:text="Description:"
                 android:fontFamily="@font/cardo"
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="16sp"
                 android:textStyle="italic"/>
 
@@ -177,7 +168,6 @@
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -192,11 +182,10 @@
                 android:layout_weight="34"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingEnd="20sp"
                 android:text="Materials:"
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="16sp"
                 android:textStyle="italic"
                 android:fontFamily="@font/cardo"/>
@@ -211,8 +200,7 @@
                 <Button
                     android:id="@+id/button"
                     android:layout_width="45dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="45dp"
                     android:textAlignment="center"
                     android:layout_gravity="center"
                     android:text="+" />
@@ -231,11 +219,10 @@
                 android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingEnd="20sp"
                 android:text="Average Marks:"
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="16sp"
                 android:textStyle="italic"
                 android:fontFamily="@font/cardo"/>
@@ -247,7 +234,6 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -262,11 +248,10 @@
                 android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingEnd="20sp"
                 android:text="Required Exams:"
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="16sp"
                 android:textStyle="italic"
                 android:fontFamily="@font/cardo"/>
@@ -278,7 +263,6 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -293,12 +277,11 @@
                 android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingEnd="20sp"
                 android:fontFamily="@font/cardo"
                 android:text="Related Projects:"
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="16sp"
                 android:textStyle="italic"/>
 
@@ -309,7 +292,6 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/black"
-                android:textFontWeight="1000"
                 android:textSize="15sp" />
 
         </LinearLayout>

@@ -58,7 +58,7 @@ public class ModifyThesisFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_modify_thesis, container, false);
 
-        txtType = view.findViewById(R.id.txtType);
+        txtType = view.findViewById(R.id.txtTypology);
         txtDepartment = view.findViewById(R.id.txtDepartment);
         edtTime = view.findViewById(R.id.edtTime);
         spinnerCorrelator = view.findViewById(R.id.spinnerCorrelator);
@@ -117,87 +117,73 @@ public class ModifyThesisFragment extends Fragment {
             spinnerCorrelator.setSelection(adapterProf.getPosition(correlator)); //TODO DA SISTEMARE PERCHè NON FUNZIONA
         }
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnSave.setOnClickListener(view1 -> {
 
-                if(edtTime.getText().toString().isEmpty()){
-                    edtTime.setError("Inserisci un tempo stimato per la tesi");
-                }else if(edtDescription.getText().toString().isEmpty()) {
-                    edtDescription.setError("Inserisci una descrizione valida");
-                } else if(Integer.parseInt(edtTime.getText().toString()) >180)
-                   edtDescription.setError("Inserisci un valore minore di 180 giorni");
+            if(edtTime.getText().toString().isEmpty()){
+                edtTime.setError("Inserisci un tempo stimato per la tesi");
+            }else if(edtDescription.getText().toString().isEmpty()) {
+                edtDescription.setError("Inserisci una descrizione valida");
+            } else if(Integer.parseInt(edtTime.getText().toString()) >180)
+               edtDescription.setError("Inserisci un valore minore di 180 giorni");
 
 
-                FirebaseStorage storage = FirebaseStorage.getInstance();
+            FirebaseStorage storage = FirebaseStorage.getInstance();
 
-                try {
-                    StorageReference storageRef = storage.getReference().child(name).child(nomeFile);
-                    storageRef.delete();
+            try {
+                StorageReference storageRef = storage.getReference().child(name).child(nomeFile);
+                storageRef.delete();
 
-                } catch (Exception e) {
-                    Snackbar.make(view, "Errore", Snackbar.LENGTH_LONG).show();
-                }
-
-
-                DocumentReference docRef = db.collection("Tesi").document(name);
-                Map<String, Object> updates = new HashMap<>();
-                updates.put("Estimated Time", edtTime.getText().toString());
-                updates.put("Description", edtDescription.getText().toString());
-                updates.put("Related Projects",edtRelatedProjects.getText().toString());
-                updates.put("Correlator",spinnerCorrelator.getSelectedItem().toString());
-                //TODO GESTIRE CORRELATORE, MATERIALI, VINCOLI, PROGETTI CORRELATI
-
-                docRef.update(updates);
-
-                Snackbar.make(view, "Thesis updated", Snackbar.LENGTH_LONG).show();
-
-                Fragment thesisList = new ThesisListFragment();
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, thesisList);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-
+            } catch (Exception e) {
+                Snackbar.make(view1, "Errore", Snackbar.LENGTH_LONG).show();
             }
+
+
+            DocumentReference docRef = db.collection("Tesi").document(name);
+            Map<String, Object> updates = new HashMap<>();
+            updates.put("Estimated Time", edtTime.getText().toString());
+            updates.put("Description", edtDescription.getText().toString());
+            updates.put("Related Projects",edtRelatedProjects.getText().toString());
+            updates.put("Correlator",spinnerCorrelator.getSelectedItem().toString());
+            //TODO GESTIRE CORRELATORE, MATERIALI, VINCOLI, PROGETTI CORRELATI
+
+            docRef.update(updates);
+
+            Snackbar.make(view1, "Thesis updated", Snackbar.LENGTH_LONG).show();
+
+            Fragment thesisList = new ThesisListFragment();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, thesisList);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
         });
 
         //AGGIUNGO CARTE IN BASE AI DOCUMENTI CHE CI SONO
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference().child(name);
 
-        storageRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
-            @Override
-            public void onSuccess(ListResult listResult) {
-                List<String> fileNames = new ArrayList<>();
-                for (StorageReference item : listResult.getItems()) {
-                    fileNames.add(item.getName());
-                    nomeFile = item.getName();
-                    addCard(nomeFile);
-                }
-                Log.d("info", "Nomi dei file: " + fileNames);
+        storageRef.listAll().addOnSuccessListener(listResult -> {
+            List<String> fileNames = new ArrayList<>();
+            for (StorageReference item : listResult.getItems()) {
+                fileNames.add(item.getName());
+                nomeFile = item.getName();
+                addCard(nomeFile);
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Log.w("info", "Errore nel recupero dei file.", exception);
-            }
-        });
+            Log.d("info", "Nomi dei file: " + fileNames);
+        }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
 
         return view;
     }
 
     private void addCard(String nomeFile) {
-        View view = getLayoutInflater().inflate(R.layout.card, null);
-        TextView nameView = view.findViewById(R.id.name);
-        Button delete = view.findViewById(R.id.delete);
+        View view = getLayoutInflater().inflate(R.layout.card_material, null);
+        TextView nameView = view.findViewById(R.id.materialName);
+        Button delete = view.findViewById(R.id.deleteMaterial);
         nameView.setText(nomeFile);
 
 
-        delete.setOnClickListener(v -> {
-            layout_lista_file.removeView(view);
-
-        });
+        delete.setOnClickListener(v -> layout_lista_file.removeView(view));
         layout_lista_file.addView(view);
     }
 }

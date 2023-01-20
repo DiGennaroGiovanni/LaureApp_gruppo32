@@ -24,7 +24,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,9 +65,9 @@ public class NewThesisFragment extends Fragment {
     Uri pdfUri;
     LinearLayout layout;
 
-    CheckBox avarageCheck,materieCheck;
+    CheckBox averageCheck, subjectCheck;
 
-    ArrayList<Uri> filePdf = new ArrayList<>() ;
+    ArrayList<Uri> filePdf = new ArrayList<>();
     ArrayList<String> correlatori = new ArrayList<>();
 
 
@@ -80,8 +79,8 @@ public class NewThesisFragment extends Fragment {
 
         layout = view.findViewById(R.id.layout_lista);
 
-        avarageCheck = view.findViewById(R.id.avarageCheck);
-        materieCheck = view.findViewById(R.id.materieCheck);
+        averageCheck = view.findViewById(R.id.avarageCheck);
+        subjectCheck = view.findViewById(R.id.materieCheck);
         edtMaterieRichieste = view.findViewById(R.id.edtMaterieRichieste);
         txtFaculty = view.findViewById(R.id.txtFaculty);
         edtAvarage = view.findViewById(R.id.edtAvarage);
@@ -138,25 +137,17 @@ public class NewThesisFragment extends Fragment {
         adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         edtCorrelator.setAdapter(adapterProf);
 
-        avarageCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        averageCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(avarageCheck.isChecked()){
-                    edtAvarage.setEnabled(true);
-                }else{
-                    edtAvarage.setEnabled(false);
-                }
+                edtAvarage.setEnabled(averageCheck.isChecked());
             }
         });
 
-      materieCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      subjectCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (materieCheck.isChecked()) {
-                    edtMaterieRichieste.setEnabled(true);
-                } else {
-                    edtMaterieRichieste.setEnabled(false);
-                }
+                edtMaterieRichieste.setEnabled(subjectCheck.isChecked());
             }
         });
 
@@ -191,7 +182,7 @@ public class NewThesisFragment extends Fragment {
             tipoTesi = radioButtonCompilativa.getText().toString();
         }
 
-        if(materieCheck.isChecked())
+        if(subjectCheck.isChecked())
         {
             materieRichieste = edtMaterieRichieste.getText().toString();
 
@@ -204,7 +195,7 @@ public class NewThesisFragment extends Fragment {
 
         }
 
-        if(avarageCheck.isChecked())
+        if(averageCheck.isChecked())
         {
             mediaVoti = edtAvarage.getText().toString();
 
@@ -260,10 +251,10 @@ public class NewThesisFragment extends Fragment {
         }
     }
 
-    private void addCard(String pdfName, Uri pdfUri) {
-        View view = getLayoutInflater().inflate(R.layout.card, null);
-        TextView nameView = view.findViewById(R.id.name);
-        Button delete = view.findViewById(R.id.delete);
+    private void addMaterialItem(String pdfName, Uri pdfUri) {
+        View view = getLayoutInflater().inflate(R.layout.card_material, null);
+        TextView nameView = view.findViewById(R.id.materialName);
+        Button delete = view.findViewById(R.id.deleteMaterial);
         filePdf.add(pdfUri);
         nameView.setText(pdfName);
 
@@ -281,7 +272,7 @@ public class NewThesisFragment extends Fragment {
             pdfUri = data.getData();
             File file = new File(pdfUri.getPath());
             String pdfName = file.getName();
-            addCard(pdfName,pdfUri);
+            addMaterialItem(pdfName,pdfUri);
 
         }
     }
