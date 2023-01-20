@@ -47,15 +47,12 @@ public class ThesisListFragment extends Fragment {
 
         db.collection("Tesi")
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String professorEmail = document.getString("Professor");
-                                if(professorEmail.equals(mUser.getEmail())){
-                                    addCardThesis(document);
-                                }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String professorEmail = document.getString("Professor");
+                            if(professorEmail.equals(mUser.getEmail())){
+                                addCardThesis(document);
                             }
                         }
                     }
@@ -65,31 +62,29 @@ public class ThesisListFragment extends Fragment {
     }
 
     private void addCardThesis(QueryDocumentSnapshot document) {
-        View view = getLayoutInflater().inflate(R.layout.card_thesis, null);
+        View view = getLayoutInflater().inflate(R.layout.card_my_thesis, null);
 
         TextView txtName = view.findViewById(R.id.txtName);
-        TextView txtType = view.findViewById(R.id.txtType);
+        TextView txtType = view.findViewById(R.id.txtTypology);
         TextView txtDepartment = view.findViewById(R.id.txtDepartment);
-        TextView txtTime = view.findViewById(R.id.txtTime);
         TextView txtCorrelator = view.findViewById(R.id.txtCorrelator);
         TextView txtStudentThesis = view.findViewById(R.id.txtStudentThesis);
 
         txtName.setText(document.getString("Name"));
         txtType.setText(document.getString("Type"));
         txtDepartment.setText(document.getString("Faculty"));
-        txtTime.setText(document.getString("Estimated Time"));
         txtCorrelator.setText(document.getString("Correlator"));
 
         if(document.getString("Student").equals(""))
         {
-            txtStudentThesis.setText("No student yet");
+            txtStudentThesis.setText("None");
         }else{
             txtStudentThesis.setText(document.getString("Student"));
         }
 
         if(document.getString("Correlator").equals(""))
         {
-            txtCorrelator.setText("There is no correlator");
+            txtCorrelator.setText("None");
         }
 
         layout_lista_tesi.addView(view);

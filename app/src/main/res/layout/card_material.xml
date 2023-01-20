@@ -45,6 +45,7 @@
         android:layout_height="18sp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:contentDescription="@string/delete_material"
         android:background="@drawable/delete_icon" />
 
 </RelativeLayout>
