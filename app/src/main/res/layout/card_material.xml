@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemMaterial"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/info_tesi_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3sp"
+        android:padding="4sp"
+        android:layout_toStartOf="@+id/deleteMaterial">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/materialName"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome_file"
+            android:textSize="13sp"
+            android:maxLines="1"
+            android:paddingHorizontal="4sp"
+            android:layout_alignParentEnd="true"
+            android:textAlignment="textEnd"/>
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/deleteMaterial"
+        android:layout_width="18sp"
+        android:layout_height="18sp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/delete_icon" />
+
+</RelativeLayout>
