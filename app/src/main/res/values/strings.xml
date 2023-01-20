@@ -31,6 +31,9 @@
     <string name="chatToolbar">Chat</string>
     <string name="settingsToolbar">Settings</string>
     <string name="modifyThesisToolbar">Modify Thesis</string>
+    <string name="delete_thesis">Delete Thesis</string>
+    <string name="delete_material">Delete Material</string>
+    <string name="modify_thesis">Modify Thesis</string>
 
     <!-- FILIPPO -->
     <string name="email">Email</string>

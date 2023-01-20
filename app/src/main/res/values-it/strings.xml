@@ -20,6 +20,9 @@
     <string name="menu_settings">Impostazioni</string>
     <string name="menu_language">Lingua</string>
     <string name="menu_logout">Logout</string>
+    <string name="delete_thesis">Elimina Tesi</string>
+    <string name="delete_material">Elimina Materiale</string>
+    <string name="modify_thesis">Modifica Tesi</string>
 
     <!--    TITOLI FRAGMENT-->
     <string name="homeToolbar">Home</string>
