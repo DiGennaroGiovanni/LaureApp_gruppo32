@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/CustomTheme">
         <activity
-            android:name=".LogoutActivity"
+            android:name=".DeleteProfileActivity"
             android:exported="false">
 
         </activity>

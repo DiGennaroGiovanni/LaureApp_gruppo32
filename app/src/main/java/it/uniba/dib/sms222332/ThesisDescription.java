@@ -119,7 +119,14 @@ public class ThesisDescription extends Fragment {
                 builder.setTitle("Conferma eliminazione");
                 builder.setMessage("Sei sicuro di voler eliminare questo elemento?");
 
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -129,17 +136,9 @@ public class ThesisDescription extends Fragment {
                         Snackbar.make(view, "Thesis eliminated", Snackbar.LENGTH_LONG).show();
 
                         Fragment thesisListFragment = new ThesisListFragment();
-                        assert getFragmentManager() != null;
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                         transaction.replace(R.id.fragment_container, thesisListFragment);
                         transaction.commit();
-
-                    }
-                });
-
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
                     }
                 });

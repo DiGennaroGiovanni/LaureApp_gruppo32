@@ -6,17 +6,16 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class LogoutActivity extends AppCompatActivity {
+public class DeleteProfileActivity extends AppCompatActivity {
 
     Button btnContinue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logout);
+        setContentView(R.layout.activity_delete_profile);
 
         btnContinue = findViewById(R.id.btnContinue);
-
         btnContinue.setOnClickListener(view -> {
 
             Intent intent = new Intent(this, LoginActivity.class);

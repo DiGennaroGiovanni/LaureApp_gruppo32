@@ -8,16 +8,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Logout effettuato!"
-        android:textSize="20sp"/>
+        android:text="Profile Eliminated!"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/btnContinue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="torna al login"
+        android:text="Torna al login"
         android:layout_below="@id/txtLogout"
         android:layout_centerHorizontal="true"/>
-
 
 </RelativeLayout>
