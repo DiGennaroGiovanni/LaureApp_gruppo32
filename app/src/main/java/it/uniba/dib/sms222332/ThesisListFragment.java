@@ -14,13 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Map;
 
@@ -95,7 +92,7 @@ public class ThesisListFragment extends Fragment {
             public void onClick(View view) {
 
                 bundle = new Bundle();
-                Fragment thesisDescription = new ThesisDescription();
+                Fragment thesisDescription = new ThesisDescriptionFragment();
 
                 Map<String,Object> datiTesi =  document.getData();
                 //TODO BISOGNA ELIMINARE QUESTO E METTERE Required Subjects e Media voti
