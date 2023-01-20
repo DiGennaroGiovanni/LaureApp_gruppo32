@@ -1,75 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10sp"
     tools:context=".ProfileFragment">
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/profile_pic"-->
-    <!--        android:layout_width="100dp"-->
-    <!--        android:layout_height="100dp"-->
-    <!--        android:layout_marginTop="20sp"-->
-    <!--        android:contentDescription="@string/menu_profile"-->
-    <!--        android:src="@drawable/profile_image_black" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtNameSurname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_surname"
-        android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txtBadgeNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtEmail"
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/menu_profile"
+                android:src="@drawable/profile_image_black" />
 
-        android:text="Badge Number"
-        android:textSize="20sp" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
-    <TextView
-        android:id="@+id/txtFaculty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtBadgeNumber"
-        android:text="Faculty"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/txtNameTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="45"
+                android:fontFamily="@font/cardo"
+                android:gravity="left"
+                android:paddingEnd="20sp"
+                android:text="Name:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txtEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtNameSurname"
-        android:text="email"
-        android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/txtNameSurname"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="55"
+                android:text="@string/name_surname"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
 
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btnDeleteProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Elimina Profilo" />
+            <TextView
+                android:id="@+id/txtFacultyTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="45"
+                android:fontFamily="@font/cardo"
+                android:gravity="left"
+                android:paddingEnd="20sp"
+                android:text="Faculty:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/txtFaculty"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="55"
+                android:text="Faculty"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
 
-    <!--    <Button-->
-    <!--        android:id="@+id/button2"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Carica immagine"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/text_name"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.932"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintVertical_bias="0.364" />-->
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/txtEmailTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="45"
+                android:fontFamily="@font/cardo"
+                android:gravity="left"
+                android:paddingEnd="20sp"
+                android:text="Email:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="55"
+                android:text="email"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtBadgeTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="45"
+                android:fontFamily="@font/cardo"
+                android:gravity="left"
+                android:paddingEnd="20sp"
+                android:text="Badge Number:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtBadgeNumber"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="55"
+                android:text="Badge Number"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnDeleteProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Delete profile" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>
