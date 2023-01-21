@@ -225,7 +225,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
         <CheckBox
-            android:id="@+id/materieCheck"
+            android:id="@+id/requiredExamsCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -233,7 +233,7 @@
             tools:ignore="RtlHardcoded" />
 
     <EditText
-        android:id="@+id/edtMaterieRichieste"
+        android:id="@+id/edtRequiredExams"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"

@@ -239,27 +239,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/averageCheck"
+            <TextView
+                android:id="@+id/averageMarksTitle"
                 android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="Average Marks:"
+                android:gravity="end"
                 android:paddingEnd="20sp"
                 android:fontFamily="@font/cardo"
+                android:text="Average Marks:"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="italic"/>
 
+            <CheckBox
+                android:id="@+id/averageCheck"
+                android:layout_weight="7"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content" />
+
             <EditText
                 android:id="@+id/edtAverage"
-                android:layout_weight="65"
+                android:layout_weight="58"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:textSize="15sp"
-                >
+                android:textSize="15sp">
 
             </EditText>
 
@@ -270,30 +275,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <CheckBox
-                android:id="@+id/materieCheck"
+
+            <TextView
+                android:id="@+id/requiredExamsTitle"
                 android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="Required Exams:"
+                android:gravity="end"
                 android:paddingEnd="20sp"
                 android:fontFamily="@font/cardo"
+                android:text="Required Exams:"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic"/>
+                android:textStyle="italic" />
+
+            <CheckBox
+                android:id="@+id/requiredExamsCheck"
+                android:layout_weight="7"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content" />
 
             <EditText
-                android:id="@+id/edtMaterieRichieste"
-                android:layout_weight="65"
+                android:id="@+id/edtRequiredExams"
+                android:layout_weight="58"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:inputType="textMultiLine"/>
+                android:inputType="number"
+                android:textSize="15sp">
+
+            </EditText>
 
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -343,7 +356,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/cardo"
-                android:text="Save"
+                android:text="@string/save_thesis"
                 android:textStyle="bold" />
 
         </LinearLayout>

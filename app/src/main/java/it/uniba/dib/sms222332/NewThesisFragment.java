@@ -80,8 +80,8 @@ public class NewThesisFragment extends Fragment {
         layout = view.findViewById(R.id.layout_lista);
 
         averageCheck = view.findViewById(R.id.averageCheck);
-        subjectCheck = view.findViewById(R.id.materieCheck);
-        edtMaterieRichieste = view.findViewById(R.id.edtMaterieRichieste);
+        subjectCheck = view.findViewById(R.id.requiredExamsCheck);
+        edtMaterieRichieste = view.findViewById(R.id.edtRequiredExams);
         txtFaculty = view.findViewById(R.id.txtFaculty);
         edtAverage = view.findViewById(R.id.edtAverage);
         edtThesisName = view.findViewById(R.id.edtThesisName);
