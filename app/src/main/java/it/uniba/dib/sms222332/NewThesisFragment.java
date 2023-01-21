@@ -156,7 +156,7 @@ public class NewThesisFragment extends Fragment {
 
     private void caricaPdf() {
         Intent intent = new Intent();
-        intent.setType("application/pdf");
+        intent.setType("*/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 86);
     }
@@ -192,7 +192,6 @@ public class NewThesisFragment extends Fragment {
             }else{
                 materieRichieste =edtMaterieRichieste.getText().toString();
             }
-
         }
 
         if(averageCheck.isChecked())
@@ -212,7 +211,6 @@ public class NewThesisFragment extends Fragment {
             }
         }
 
-
         if(correlator.equals("Nessuno")){
             correlator="";
         }
@@ -224,7 +222,6 @@ public class NewThesisFragment extends Fragment {
         infoTesi.put("Estimated Time",estimatedTime);
         infoTesi.put("Correlator",correlator);
         infoTesi.put("Description",description);
-        //infoTesi.put("Constraints",""); //TODO ELIMINARE -> elimnare prima la lettura nella descrizione della tesi
         infoTesi.put("Related Projects",relatedProjects);
         infoTesi.put("Required Exam",materieRichieste);
         infoTesi.put("Avarage",mediaVoti);
@@ -281,7 +278,6 @@ public class NewThesisFragment extends Fragment {
         // Creazione del riferimento al file sul server di Firebase
         File file = new File(uri.getPath());
         String pdfName = file.getName();
-        //StorageReference ref = storageReference.child("pdfs/" + System.currentTimeMillis() + ".pdf");
         storageReference = FirebaseStorage.getInstance().getReference(edtThesisName.getText().toString()+"/"+pdfName);
         // Caricamento del file sul server
         storageReference.putFile(uri)

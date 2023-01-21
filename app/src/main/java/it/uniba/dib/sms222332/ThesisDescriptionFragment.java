@@ -1,5 +1,7 @@
 package it.uniba.dib.sms222332;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,10 +19,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
@@ -28,7 +33,8 @@ import java.util.List;
 
 public class ThesisDescriptionFragment extends Fragment {
 
-    TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams;
+    TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,
+            txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtStudentTitle,txtStudent;
     Button btnModify,btnDelete;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layout_lista_file;
@@ -43,6 +49,7 @@ public class ThesisDescriptionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_thesis_description, container, false);
 
         layout_lista_file = view.findViewById(R.id.layout_lista_file);
+
         txtNameTitle = view.findViewById(R.id.txtNameTitle);
         txtDepartment = view.findViewById(R.id.txtDepartment);
         txtType = view.findViewById(R.id.txtTypology);
@@ -54,6 +61,9 @@ public class ThesisDescriptionFragment extends Fragment {
         txtRequiredExams = view.findViewById(R.id.txtRequiredExams);
         btnModify = view.findViewById(R.id.btnModify);
         btnDelete = view.findViewById(R.id.btnDelete);
+        txtStudentTitle = view.findViewById(R.id.txtStudentTitle);
+        txtStudent = view.findViewById(R.id.txtStudent);
+
 
         if (getArguments() != null) {
             String correlator = getArguments().getString("correlator");
@@ -63,24 +73,46 @@ public class ThesisDescriptionFragment extends Fragment {
             String name = getArguments().getString("name");
             String type = getArguments().getString("type");
             String related_projects = getArguments().getString("related_projects");
+            String avarage_marks = getArguments().getString("avarage_marks");
+            String required_exam = getArguments().getString("required_exam");
+            String student = getArguments().getString("student");
 
             txtNameTitle.setText(name);
             txtType.setText(type);
             txtDepartment.setText(faculty);
             txtTime.setText(estimated_time);
+            txtDescription.setText(description);
+
 
             if(correlator.isEmpty())
-               txtCorrelator.setText("There is no correlator");
+               txtCorrelator.setText("None");
             else
                 txtCorrelator.setText(correlator);
 
-            txtDescription.setText(description);
-            txtRelatedProjects.setText(related_projects);
+            if(student.isEmpty()){
+                txtStudent.setText("None");
+            }else
+                txtStudent.setText(student);
+
+            if(avarage_marks.isEmpty()){
+                txtAverageMarks.setText("None");
+            }else
+                txtAverageMarks.setText(avarage_marks);
+
+            if(required_exam.isEmpty()){
+                txtRequiredExams.setText("None");
+            }else
+                txtRequiredExams.setText(required_exam);
+
+            if(related_projects.isEmpty()){
+                txtRelatedProjects.setText("None");
+            }else
+                txtRelatedProjects.setText(related_projects);
 
         }
 
         btnModify.setOnClickListener(view1 -> {
-            Fragment modifyThesis = new ModifyThesisFragment();
+            Fragment modifyThesis = new EditThesisFragment();
             Bundle bundle = new Bundle();
 
             bundle.putString("name",txtNameTitle.getText().toString());
@@ -90,7 +122,9 @@ public class ThesisDescriptionFragment extends Fragment {
             bundle.putString("time",txtTime.getText().toString());
             bundle.putString("correlator",txtCorrelator.getText().toString());
             bundle.putString("description",txtDescription.getText().toString());
-            //TODO Bisogna passare i vincoli
+            bundle.putString("student",txtStudent.getText().toString());
+            bundle.putString("required_exam",txtRequiredExams.getText().toString());
+            bundle.putString("avarage_marks",txtAverageMarks.getText().toString());
 
             modifyThesis.setArguments(bundle);
 
@@ -104,19 +138,38 @@ public class ThesisDescriptionFragment extends Fragment {
         btnDelete.setOnClickListener(view12 -> {
 
             DocumentReference tesi = db.collection("Tesi").document(txtNameTitle.getText().toString());
+
             FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference storageRef = storage.getReference().child(txtNameTitle.getText().toString());
+            StorageReference storageRef = storage.getReference();
+            StorageReference folderRef = storageRef.child(txtNameTitle.getText().toString());
+
+
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("Conferma eliminazione");
-            builder.setMessage("Sei sicuro di voler eliminare questo elemento?");
-
+            builder.setMessage("Sei sicuro di voler eliminare questa tesi ed i suoi materiali?");
             builder.setPositiveButton("No", (dialog, which) -> {
 
             });
 
             builder.setNegativeButton("Yes", (dialog, which) -> {
 
-                storageRef.delete();
+                folderRef.listAll()
+                        .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                            @Override
+                            public void onSuccess(ListResult listResult) {
+                                for (StorageReference item : listResult.getItems()) {
+                                    item.delete();
+                                }
+                                folderRef.delete();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.e(TAG, "Error deleting folder: " + e.getMessage());
+                            }
+                        });
+
                 tesi.delete();
 
                 Snackbar.make(view12, "Thesis eliminated", Snackbar.LENGTH_LONG).show();
@@ -142,7 +195,7 @@ public class ThesisDescriptionFragment extends Fragment {
             for (StorageReference item : listResult.getItems()) {
                 fileNames.add(item.getName());
                 String nomeFile = item.getName();
-                addCard(nomeFile);
+                addMaterialItem(nomeFile);
             }
             Log.d("info", "Nomi dei file: " + fileNames);
         }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
@@ -150,7 +203,9 @@ public class ThesisDescriptionFragment extends Fragment {
         return view;
     }
 
-    private void addCard(String nomeFile) {
+
+
+    private void addMaterialItem(String nomeFile) {
         View view = getLayoutInflater().inflate(R.layout.card_material_without_delete, null);
         TextView nameView = view.findViewById(R.id.materialName);
         nameView.setText(nomeFile);

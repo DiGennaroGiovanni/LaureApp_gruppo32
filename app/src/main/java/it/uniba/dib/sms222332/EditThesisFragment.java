@@ -14,14 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +27,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
@@ -38,7 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ModifyThesisFragment extends Fragment {
+public class EditThesisFragment extends Fragment {
 
     EditText edtTime,edtDescription,edtRelatedProjects;
     TextView txtDepartment,txtNameTitle,txtType;
@@ -56,7 +52,7 @@ public class ModifyThesisFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.modifyThesisToolbar));
         //TODO INSERIRE NOME PAGINA
 
-        View view = inflater.inflate(R.layout.fragment_modify_thesis, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_thesis, container, false);
 
         txtType = view.findViewById(R.id.txtTypology);
         txtDepartment = view.findViewById(R.id.txtDepartment);

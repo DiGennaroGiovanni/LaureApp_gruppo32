@@ -29,8 +29,6 @@ public class ThesisListFragment extends Fragment {
     LinearLayout layout_lista_tesi;
     Bundle bundle;
 
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -95,9 +93,6 @@ public class ThesisListFragment extends Fragment {
                 Fragment thesisDescription = new ThesisDescriptionFragment();
 
                 Map<String,Object> datiTesi =  document.getData();
-                //TODO BISOGNA ELIMINARE QUESTO E METTERE Required Subjects e Media voti
-                bundle.putString("constraints",(String) datiTesi.get("Constraints"));
-
                 bundle.putString("correlator",(String) datiTesi.get("Correlator"));
                 bundle.putString("description",(String) datiTesi.get("Description"));
                 bundle.putString("estimated_time",(String) datiTesi.get("Estimated Time"));
@@ -105,6 +100,9 @@ public class ThesisListFragment extends Fragment {
                 bundle.putString("name",(String) datiTesi.get("Name"));
                 bundle.putString("type",(String) datiTesi.get("Type"));
                 bundle.putString("related_projects",(String) datiTesi.get("Related Projects"));
+                bundle.putString("avarage_marks",(String) datiTesi.get("Avarage"));
+                bundle.putString("required_exam",(String) datiTesi.get("Required Exam"));
+                bundle.putString("student",(String) datiTesi.get("Student"));
 
                 thesisDescription.setArguments(bundle);
 
