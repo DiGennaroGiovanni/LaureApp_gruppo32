@@ -93,5 +93,6 @@
     <string name="type_related_projects">type related projects (if there are)</string>
     <string name="type_correlator">type correlator</string>
     <string name="save_thesis">Save</string>
+    <string name="splash_image">Splash Image</string>
     <!-- FINE FILIPPO -->
 </resources>

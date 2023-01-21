@@ -95,8 +95,8 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("faculty",(String) datiStudente.get("Faculty"));
                                 intent.putExtra("email", email);
 
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
+                                finish();
 
                             } else {
 
@@ -120,8 +120,8 @@ public class LoginActivity extends AppCompatActivity {
                                             intent.putExtra("faculty",(String) datiProfessore.get("Faculty"));
                                             intent.putExtra("email", email);
 
-                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(intent);
+                                            finish();
                                         }
                                     } else {
                                         // Errore durante la lettura del documento
