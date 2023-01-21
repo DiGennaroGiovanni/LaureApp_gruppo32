@@ -310,6 +310,8 @@
             android:textStyle="bold|italic"
             android:fontFamily="@font/cardo"/>
 
+
+
         <LinearLayout
             android:id="@+id/layout_lista_file"
             android:layout_weight="65"

@@ -63,11 +63,12 @@ public class NewThesisFragment extends Fragment {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     Uri pdfUri;
+    ArrayList<Uri> files = new ArrayList<>();
     LinearLayout layout;
 
     CheckBox averageCheck, subjectCheck;
 
-    ArrayList<Uri> filePdf = new ArrayList<>();
+
     ArrayList<String> correlatori = new ArrayList<>();
 
 
@@ -113,7 +114,7 @@ public class NewThesisFragment extends Fragment {
         // Setto l'ArrayAdapter allo spinner
         edtMainSubject.setAdapter(adapter);
         buttonCreateThesis.setOnClickListener(view1 -> inserisciTesi());
-        addFile.setOnClickListener(view12 -> caricaPdf());
+        addFile.setOnClickListener(view12 -> caricaFile());
 
         CollectionReference collectionRef = db.collection("professori");
 
@@ -158,7 +159,7 @@ public class NewThesisFragment extends Fragment {
         return view;
     }
 
-    private void caricaPdf() {
+    private void caricaFile() {
         Intent intent = new Intent();
         intent.setType("*/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -193,8 +194,6 @@ public class NewThesisFragment extends Fragment {
             if(materieRichieste.isEmpty())
             {
                 edtMaterieRichieste.setError("Inserisci le materie richieste");
-            }else{
-                materieRichieste =edtMaterieRichieste.getText().toString();
             }
         }
 
@@ -209,9 +208,6 @@ public class NewThesisFragment extends Fragment {
                 numeroIntero = Integer.parseInt(mediaVoti);
                 if(numeroIntero > 30 || numeroIntero < 18)
                     edtAverage.setError("Inserisci una media tra il 18 ed il 30");
-                else
-                    mediaVoti = edtAverage.getText().toString();
-
             }
         }
 
@@ -240,8 +236,8 @@ public class NewThesisFragment extends Fragment {
             edtDescription.setError("Inserisci una descrizione per la tua tesi!");
         }else{
             db.collection("Tesi").document(thesisName).set(infoTesi);
-            for(Uri pdf: filePdf){
-                uploadPdf(pdf);
+            for(Uri file: files){
+                uploadFile(file);
             }
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -252,16 +248,16 @@ public class NewThesisFragment extends Fragment {
         }
     }
 
-    private void addMaterialItem(String pdfName, Uri pdfUri) {
+    private void addMaterialItem(String fileName, Uri fileUri) {
         View view = getLayoutInflater().inflate(R.layout.card_material, null);
         TextView nameView = view.findViewById(R.id.materialName);
         Button delete = view.findViewById(R.id.deleteMaterial);
-        filePdf.add(pdfUri);
-        nameView.setText(pdfName);
+        files.add(fileUri);
+        nameView.setText(fileName);
 
         delete.setOnClickListener(v -> {
             layout.removeView(view);
-            filePdf.remove(pdfUri);
+            files.remove(fileUri);
         });
         layout.addView(view);
     }
@@ -272,13 +268,13 @@ public class NewThesisFragment extends Fragment {
         if (requestCode == 86 && resultCode == RESULT_OK && data != null) { //CONDIZIONE PER IL CARICAMENTO DEL PDF
             pdfUri = data.getData();
             File file = new File(pdfUri.getPath());
-            String pdfName = file.getName();
-            addMaterialItem(pdfName,pdfUri);
+            String fileName = file.getName();
+            addMaterialItem(fileName,pdfUri);
 
         }
     }
 
-    private void uploadPdf(Uri uri) {
+    private void uploadFile(Uri uri) {
         // Creazione del riferimento al file sul server di Firebase
         File file = new File(uri.getPath());
         String pdfName = file.getName();

@@ -38,6 +38,10 @@ public class ThesisDescriptionFragment extends Fragment {
     Button btnModify,btnDelete;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layout_lista_file;
+    String related_projects = "" ;
+    String average_marks = "" ;
+    String required_exam = "";
+
 
 
 
@@ -72,9 +76,9 @@ public class ThesisDescriptionFragment extends Fragment {
             String faculty = getArguments().getString("faculty");
             String name = getArguments().getString("name");
             String type = getArguments().getString("type");
-            String related_projects = getArguments().getString("related_projects");
-            String average_marks = getArguments().getString("average_marks");
-            String required_exam = getArguments().getString("required_exam");
+             related_projects = getArguments().getString("related_projects");
+             average_marks = getArguments().getString("average_marks");
+             required_exam = getArguments().getString("required_exam");
             String student = getArguments().getString("student");
 
             txtNameTitle.setText(name);
@@ -117,14 +121,14 @@ public class ThesisDescriptionFragment extends Fragment {
 
             bundle.putString("name",txtNameTitle.getText().toString());
             bundle.putString("type",txtType.getText().toString());
-            bundle.putString("related_projects",txtRelatedProjects.getText().toString());
+            bundle.putString("related_projects",related_projects);
             bundle.putString("department",txtDepartment.getText().toString());
             bundle.putString("time",txtTime.getText().toString());
             bundle.putString("correlator",txtCorrelator.getText().toString());
             bundle.putString("description",txtDescription.getText().toString());
             bundle.putString("student",txtStudent.getText().toString());
-            bundle.putString("required_exam",txtRequiredExams.getText().toString());
-            bundle.putString("average_marks",txtAverageMarks.getText().toString());
+            bundle.putString("required_exam",required_exam);
+            bundle.putString("average_marks",average_marks);
 
             editThesisFragment.setArguments(bundle);
 
@@ -191,13 +195,13 @@ public class ThesisDescriptionFragment extends Fragment {
         StorageReference storageRef = storage.getReference().child(txtNameTitle.getText().toString());
 
         storageRef.listAll().addOnSuccessListener(listResult -> {
-            List<String> fileNames = new ArrayList<>();
+
             for (StorageReference item : listResult.getItems()) {
-                fileNames.add(item.getName());
+
                 String nomeFile = item.getName();
                 addMaterialItem(nomeFile);
             }
-            Log.d("info", "Nomi dei file: " + fileNames);
+
         }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
 
         return view;
