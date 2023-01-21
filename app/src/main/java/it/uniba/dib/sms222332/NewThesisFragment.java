@@ -50,7 +50,7 @@ public class NewThesisFragment extends Fragment {
 
 
 
-    EditText edtThesisName, edtEstimatedTime,edtDescription, edtMaterieRichieste,edtRelatedProjects,edtAvarage;
+    EditText edtThesisName, edtEstimatedTime,edtDescription, edtMaterieRichieste,edtRelatedProjects, edtAverage;
     RadioButton radioButtonSperimentale,radioButtonCompilativa;
     Spinner edtMainSubject,edtCorrelator;
     Button addFile,buttonCreateThesis;
@@ -75,15 +75,15 @@ public class NewThesisFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.createThesisToolbar));
 
-        View view = inflater.inflate(R.layout.fragment_insert_laurea, container, false);
+        View view = inflater.inflate(R.layout.fragment_new_thesis, container, false);
 
         layout = view.findViewById(R.id.layout_lista);
 
-        averageCheck = view.findViewById(R.id.avarageCheck);
+        averageCheck = view.findViewById(R.id.averageCheck);
         subjectCheck = view.findViewById(R.id.materieCheck);
         edtMaterieRichieste = view.findViewById(R.id.edtMaterieRichieste);
         txtFaculty = view.findViewById(R.id.txtFaculty);
-        edtAvarage = view.findViewById(R.id.edtAvarage);
+        edtAverage = view.findViewById(R.id.edtAverage);
         edtThesisName = view.findViewById(R.id.edtThesisName);
         edtMainSubject = view.findViewById(R.id.edtMainSubject);
         edtEstimatedTime = view.findViewById(R.id.edtEstimatedTime);
@@ -96,7 +96,7 @@ public class NewThesisFragment extends Fragment {
         buttonCreateThesis = view.findViewById(R.id.buttonCreateThesis);
 
         edtMaterieRichieste.setEnabled(false);
-        edtAvarage.setEnabled(false);
+        edtAverage.setEnabled(false);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -140,7 +140,7 @@ public class NewThesisFragment extends Fragment {
         averageCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                edtAvarage.setEnabled(averageCheck.isChecked());
+                edtAverage.setEnabled(averageCheck.isChecked());
             }
         });
 
@@ -196,17 +196,17 @@ public class NewThesisFragment extends Fragment {
 
         if(averageCheck.isChecked())
         {
-            mediaVoti = edtAvarage.getText().toString();
+            mediaVoti = edtAverage.getText().toString();
 
             if(mediaVoti.isEmpty())
             {
-                edtAvarage.setError("Inserisci una vincolo valido");
+                edtAverage.setError("Inserisci una vincolo valido");
             }else{
                 numeroIntero = Integer.parseInt(mediaVoti);
                 if(numeroIntero > 30 || numeroIntero < 18)
-                    edtAvarage.setError("Inserisci una media tra il 18 ed il 30");
+                    edtAverage.setError("Inserisci una media tra il 18 ed il 30");
                 else
-                    mediaVoti = edtAvarage.getText().toString();
+                    mediaVoti = edtAverage.getText().toString();
 
             }
         }
@@ -224,7 +224,7 @@ public class NewThesisFragment extends Fragment {
         infoTesi.put("Description",description);
         infoTesi.put("Related Projects",relatedProjects);
         infoTesi.put("Required Exam",materieRichieste);
-        infoTesi.put("Avarage",mediaVoti);
+        infoTesi.put("Average",mediaVoti);
         infoTesi.put("Type",tipoTesi);
         infoTesi.put("Student","");
 

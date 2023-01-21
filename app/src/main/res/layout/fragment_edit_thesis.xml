@@ -88,6 +88,65 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/txtCorrelatorTitle"
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:text="Correlator:"
+                android:fontFamily="@font/cardo"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <Spinner
+                android:id="@+id/spinnerCorrelator"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#BFBABA"
+                android:textAlignment="center"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtStudentTitle"
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingEnd="20sp"
+                android:fontFamily="@font/cardo"
+                android:text="Student:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="italic"/>
+
+            <TextView
+                android:id="@+id/txtStudent"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
                 android:id="@+id/txtTimeTitle"
                 android:layout_weight="35"
                 android:layout_width="0sp"
@@ -112,35 +171,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txtCorrelatorTitle"
-                android:layout_weight="35"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:paddingEnd="20sp"
-                android:text="Correlator:"
-                android:fontFamily="@font/cardo"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
-
-            <Spinner
-                android:id="@+id/spinnerCorrelator"
-                android:layout_weight="65"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#BFBABA"
-                android:textAlignment="center"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -178,101 +209,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtMaterialsTitle"
-                android:layout_weight="34"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:paddingEnd="20sp"
-                android:text="Materials:"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic"
-                android:fontFamily="@font/cardo"/>
-
-            <LinearLayout
-                android:id="@+id/layout_lista_file"
-                android:layout_weight="65"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:text="+" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtTitleAverageMarks"
-                android:layout_weight="35"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:paddingEnd="20sp"
-                android:text="Average Marks:"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic"
-                android:fontFamily="@font/cardo"/>
-
-            <EditText
-                android:id="@+id/edtAverageMarks"
-                android:layout_weight="65"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtTitleRequiredExams"
-                android:layout_weight="35"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:paddingEnd="20sp"
-                android:text="Required Exams:"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic"
-                android:fontFamily="@font/cardo"/>
-
-            <EditText
-                android:id="@+id/edtRequiredExams"
-                android:layout_weight="65"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
                 android:id="@+id/txtRelatedProjectsTitle"
                 android:layout_weight="35"
                 android:layout_width="0sp"
@@ -296,6 +232,106 @@
 
         </LinearLayout>
 
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/averageCheck"
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="Average Marks:"
+                android:paddingEnd="20sp"
+                android:fontFamily="@font/cardo"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="italic"/>
+
+            <EditText
+                android:id="@+id/edtAverage"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="15sp"
+                >
+
+            </EditText>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <CheckBox
+                android:id="@+id/materieCheck"
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="Required Exams:"
+                android:paddingEnd="20sp"
+                android:fontFamily="@font/cardo"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="italic"/>
+
+            <EditText
+                android:id="@+id/edtMaterieRichieste"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:inputType="textMultiLine"/>
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtMaterialsTitle"
+            android:layout_weight="34"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingEnd="20sp"
+            android:text="Materials:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:fontFamily="@font/cardo"/>
+
+        <LinearLayout
+            android:id="@+id/layout_lista_file"
+            android:layout_weight="65"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="+" />
+
+        </LinearLayout>
+
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -311,6 +347,8 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 

@@ -91,6 +91,64 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/txtCorrelatorTitle"
+            android:layout_weight="35"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingEnd="20sp"
+            android:text="Correlator:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:fontFamily="@font/cardo"/>
+
+        <TextView
+            android:id="@+id/txtCorrelator"
+            android:layout_weight="65"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtStudentTitle"
+            android:layout_weight="35"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingEnd="20sp"
+            android:fontFamily="@font/cardo"
+            android:text="Student:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"/>
+
+        <TextView
+            android:id="@+id/txtStudent"
+            android:layout_weight="65"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
             android:id="@+id/txtTimeTitle"
             android:layout_weight="35"
             android:layout_width="0sp"
@@ -114,34 +172,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/txtCorrelatorTitle"
-            android:layout_weight="35"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:paddingEnd="20sp"
-            android:text="Correlator:"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold|italic"
-            android:fontFamily="@font/cardo"/>
-
-        <TextView
-            android:id="@+id/txtCorrelator"
-            android:layout_weight="65"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -178,28 +209,30 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txtMaterialsTitle"
+            android:id="@+id/txtRelatedProjectsTitle"
             android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingEnd="20sp"
-            android:text="Materials:"
+            android:fontFamily="@font/cardo"
+            android:text="Related Projects:"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold|italic"
-            android:fontFamily="@font/cardo"/>
+            android:textStyle="bold|italic"/>
 
-        <LinearLayout
-            android:id="@+id/layout_lista_file"
+        <TextView
+            android:id="@+id/txtRelatedProjects"
             android:layout_weight="65"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -265,57 +298,30 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txtRelatedProjectsTitle"
+            android:id="@+id/txtMaterialsTitle"
             android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingEnd="20sp"
-            android:fontFamily="@font/cardo"
-            android:text="Related Projects:"
+            android:text="Materials:"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic"
+            android:fontFamily="@font/cardo"/>
 
-        <TextView
-            android:id="@+id/txtRelatedProjects"
+        <LinearLayout
+            android:id="@+id/layout_lista_file"
             android:layout_weight="65"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:orientation="vertical">
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/txtStudentTitle"
-            android:layout_weight="35"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:paddingEnd="20sp"
-            android:fontFamily="@font/cardo"
-            android:text="Student:"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold|italic"/>
-
-        <TextView
-            android:id="@+id/txtStudent"
-            android:layout_weight="65"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

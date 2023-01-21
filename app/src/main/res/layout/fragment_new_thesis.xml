@@ -200,19 +200,19 @@
         android:orientation="vertical">
 
         <CheckBox
-            android:id="@+id/avarageCheck"
+            android:id="@+id/averageCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="Media esami"
+            android:text="Average Marks"
             tools:ignore="RtlHardcoded" />
 
         <EditText
-            android:id="@+id/edtAvarage"
+            android:id="@+id/edtAverage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="number"
-            android:ems="10"
+            android:textSize="15sp"
             >
 
         </EditText>
@@ -223,7 +223,7 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
         <CheckBox
             android:id="@+id/materieCheck"
             android:layout_width="wrap_content"
@@ -232,16 +232,17 @@
             android:text="Esami richiesti"
             tools:ignore="RtlHardcoded" />
 
+    <EditText
+        android:id="@+id/edtMaterieRichieste"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:inputType="textMultiLine"/>
+
 
 </LinearLayout>
 
 
-        <EditText
-            android:id="@+id/edtMaterieRichieste"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textMultiLine"/>
 
         <TextView
             android:id="@+id/textView10"

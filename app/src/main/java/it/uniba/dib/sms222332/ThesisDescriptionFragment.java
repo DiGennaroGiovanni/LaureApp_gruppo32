@@ -73,7 +73,7 @@ public class ThesisDescriptionFragment extends Fragment {
             String name = getArguments().getString("name");
             String type = getArguments().getString("type");
             String related_projects = getArguments().getString("related_projects");
-            String avarage_marks = getArguments().getString("avarage_marks");
+            String average_marks = getArguments().getString("average_marks");
             String required_exam = getArguments().getString("required_exam");
             String student = getArguments().getString("student");
 
@@ -94,10 +94,10 @@ public class ThesisDescriptionFragment extends Fragment {
             }else
                 txtStudent.setText(student);
 
-            if(avarage_marks.isEmpty()){
+            if(average_marks.isEmpty()){
                 txtAverageMarks.setText("None");
             }else
-                txtAverageMarks.setText(avarage_marks);
+                txtAverageMarks.setText(average_marks);
 
             if(required_exam.isEmpty()){
                 txtRequiredExams.setText("None");
@@ -112,7 +112,7 @@ public class ThesisDescriptionFragment extends Fragment {
         }
 
         btnModify.setOnClickListener(view1 -> {
-            Fragment modifyThesis = new EditThesisFragment();
+            Fragment editThesisFragment = new EditThesisFragment();
             Bundle bundle = new Bundle();
 
             bundle.putString("name",txtNameTitle.getText().toString());
@@ -124,13 +124,13 @@ public class ThesisDescriptionFragment extends Fragment {
             bundle.putString("description",txtDescription.getText().toString());
             bundle.putString("student",txtStudent.getText().toString());
             bundle.putString("required_exam",txtRequiredExams.getText().toString());
-            bundle.putString("avarage_marks",txtAverageMarks.getText().toString());
+            bundle.putString("average_marks",txtAverageMarks.getText().toString());
 
-            modifyThesis.setArguments(bundle);
+            editThesisFragment.setArguments(bundle);
 
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, modifyThesis);
+            fragmentTransaction.replace(R.id.fragment_container, editThesisFragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });

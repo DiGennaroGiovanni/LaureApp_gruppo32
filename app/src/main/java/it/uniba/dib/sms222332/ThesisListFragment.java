@@ -100,7 +100,7 @@ public class ThesisListFragment extends Fragment {
                 bundle.putString("name",(String) datiTesi.get("Name"));
                 bundle.putString("type",(String) datiTesi.get("Type"));
                 bundle.putString("related_projects",(String) datiTesi.get("Related Projects"));
-                bundle.putString("avarage_marks",(String) datiTesi.get("Avarage"));
+                bundle.putString("average_marks",(String) datiTesi.get("Average"));
                 bundle.putString("required_exam",(String) datiTesi.get("Required Exam"));
                 bundle.putString("student",(String) datiTesi.get("Student"));
 
