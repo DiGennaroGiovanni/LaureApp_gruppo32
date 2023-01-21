@@ -1,11 +1,14 @@
 package it.uniba.dib.sms222332;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +25,13 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +42,7 @@ public class ThesisDescriptionFragment extends Fragment {
     Button btnModify,btnDelete;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layout_lista_file;
-
+    ImageView qr_code_thesis;
 
 
     @Nullable
@@ -54,6 +64,7 @@ public class ThesisDescriptionFragment extends Fragment {
         txtRequiredExams = view.findViewById(R.id.txtRequiredExams);
         btnModify = view.findViewById(R.id.btnModify);
         btnDelete = view.findViewById(R.id.btnDelete);
+        qr_code_thesis = view.findViewById(R.id.qr_code_thesis);
 
         if (getArguments() != null) {
             String correlator = getArguments().getString("correlator");
@@ -77,7 +88,10 @@ public class ThesisDescriptionFragment extends Fragment {
             txtDescription.setText(description);
             txtRelatedProjects.setText(related_projects);
 
+            showQr(name, type, faculty, estimated_time, correlator, description, related_projects, qr_code_thesis);
+
         }
+
 
         btnModify.setOnClickListener(view1 -> {
             Fragment modifyThesis = new ModifyThesisFragment();
@@ -156,6 +170,39 @@ public class ThesisDescriptionFragment extends Fragment {
         nameView.setText(nomeFile);
 
         layout_lista_file.addView(view);
+    }
+
+    private void showQr(String name, String type, String faculty, String estimated_time, String correlator, String description, String related_projects, ImageView qr_code_thesis) {
+        // NEW
+        JSONObject jsonDatiTesi = new JSONObject();
+
+        try {
+            jsonDatiTesi.put("nome", name);
+            jsonDatiTesi.put("tipo", type);
+            jsonDatiTesi.put("dipartimento", faculty);
+            jsonDatiTesi.put("tempo_stimato", estimated_time);
+            jsonDatiTesi.put("correlatore", correlator);
+            jsonDatiTesi.put("descrizione", description);
+            // da gestire i dati riferiti ai materiali e i vincoli
+            //jsonDatiTesi.put("materiali", materials);
+            //jsonDatiTesi.put("vincoli", constraints);
+            jsonDatiTesi.put("progetti_correlati", related_projects);
+
+            QRCodeWriter qrCodeWriter = new QRCodeWriter();
+            BitMatrix bitMatrix = qrCodeWriter.encode(jsonDatiTesi.toString(), BarcodeFormat.QR_CODE, 350, 350);
+            Bitmap bitmap = Bitmap.createBitmap(350, 350, Bitmap.Config.RGB_565);
+
+            for (int x = 0; x < 350; x++) {
+                for (int y = 0; y < 350; y++) {
+                    bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                }
+            }
+
+            qr_code_thesis.setImageBitmap(bitmap);
+
+        } catch (WriterException | JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -92,5 +92,6 @@
     <string name="type_main_subject">digitare la materia principale</string>
     <string name="type_related_projects">digitare i progetti correlati(se ci sono)</string>
     <string name="type_correlator">digitare il co-relatore</string>
+    <string name="qr_code_thesis">qr_code_thesis</string>
     <!-- FINE FILIPPO -->
 </resources>
