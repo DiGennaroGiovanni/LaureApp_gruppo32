@@ -26,9 +26,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nome_file"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:maxLines="1"
-            android:paddingHorizontal="4sp"
+            android:ellipsize="end"
+            android:padding="4sp"
             android:layout_alignParentEnd="true"
             android:textAlignment="textEnd"/>
 
@@ -41,8 +42,8 @@
 
     <Button
         android:id="@+id/deleteMaterial"
-        android:layout_width="18sp"
-        android:layout_height="18sp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/delete_material"
