@@ -98,20 +98,25 @@ public class EditThesisFragment extends Fragment {
                         correlatori.add(nome);
                     }
                 }
+
+                correlatori.add("Nessuno");
+
+                ArrayAdapter<String> adapterProf = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, correlatori );
+                adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerCorrelator.setAdapter(adapterProf);
+
+                if(!correlator.equals(""))
+                    spinnerCorrelator.setSelection(adapterProf.getPosition(correlator));
+                else
+                    spinnerCorrelator.setSelection(adapterProf.getPosition("Nessuno"));
+
             } else {
                 Log.d(TAG, "Error getting documents: ", task.getException());
             }
         });
 
-        correlatori.add("Nessuno");
 
-        ArrayAdapter<String> adapterProf = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, correlatori );
-        adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCorrelator.setAdapter(adapterProf);
 
-        if(!correlator.equals("")){
-            spinnerCorrelator.setSelection(adapterProf.getPosition(correlator)); //TODO DA SISTEMARE PERCHè NON FUNZIONA
-        }
 
         btnSave.setOnClickListener(view1 -> {
 
