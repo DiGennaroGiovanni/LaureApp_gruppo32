@@ -119,6 +119,9 @@ public class NewThesisFragment extends Fragment {
 
         collectionRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+
+                correlatori.add("Nessuno");
+
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     if(!document.getId().equals(mUser.getEmail()))
                     {
@@ -126,16 +129,17 @@ public class NewThesisFragment extends Fragment {
                         correlatori.add(nome);
                     }
                 }
+
+                ArrayAdapter<String> adapterProf = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, correlatori );
+                adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                edtCorrelator.setAdapter(adapterProf);
+
             } else {
                 Log.d(TAG, "Error getting documents: ", task.getException());
             }
         });
 
-        correlatori.add("Nessuno");
 
-        ArrayAdapter<String> adapterProf = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, correlatori );
-        adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        edtCorrelator.setAdapter(adapterProf);
 
         averageCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
