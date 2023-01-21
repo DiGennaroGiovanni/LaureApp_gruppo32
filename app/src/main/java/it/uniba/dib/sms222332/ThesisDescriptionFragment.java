@@ -166,7 +166,7 @@ public class ThesisDescriptionFragment extends Fragment {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Log.e(TAG, "Error deleting folder: " + e.getMessage());
+                                Log.e(TAG, "Error deleting folder: " + e.getMessage()); //TODO INSERIRE MESSAGGIO ERRORE
                             }
                         });
 

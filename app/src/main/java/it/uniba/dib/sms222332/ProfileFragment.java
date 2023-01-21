@@ -1,8 +1,11 @@
 package it.uniba.dib.sms222332;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
 
@@ -101,9 +107,27 @@ public class ProfileFragment extends Fragment {
                                                 String professorEmail = document.getString("Professor");
 
                                                 if(professorEmail.equals(mUser.getEmail())){
+
                                                     FirebaseStorage storage = FirebaseStorage.getInstance();
                                                     StorageReference storageRef = storage.getReference().child(document.getString("Name"));
-                                                    storageRef.delete(); // TODO NON FUNZIONA QUESTO COMANDO, STA ANCHE IN thesis_description
+
+                                                    storageRef.listAll()
+                                                            .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                                                                @Override
+                                                                public void onSuccess(ListResult listResult) {
+                                                                    for (StorageReference item : listResult.getItems()) {
+                                                                        item.delete();
+                                                                    }
+                                                                    storageRef.delete();
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    Log.e(TAG, "Error deleting folder: " + e.getMessage());
+                                                                }
+                                                            });
+
                                                     document.getReference().delete();
                                                 }
                                             }
