@@ -87,33 +87,30 @@ public class ThesisListFragment extends Fragment {
         layout_lista_tesi.addView(view);
 
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        view.setOnClickListener(view1 -> {
 
-                bundle = new Bundle();
-                Fragment thesisDescription = new ThesisDescriptionFragment();
+            bundle = new Bundle();
+            Fragment thesisDescription = new ThesisDescriptionFragment();
 
-                Map<String,Object> datiTesi =  document.getData();
-                bundle.putString("correlator",(String) datiTesi.get("Correlator"));
-                bundle.putString("description",(String) datiTesi.get("Description"));
-                bundle.putString("estimated_time",(String) datiTesi.get("Estimated Time"));
-                bundle.putString("faculty",(String) datiTesi.get("Faculty"));
-                bundle.putString("name",(String) datiTesi.get("Name"));
-                bundle.putString("type",(String) datiTesi.get("Type"));
-                bundle.putString("related_projects",(String) datiTesi.get("Related Projects"));
-                bundle.putString("average_marks",(String) datiTesi.get("Average"));
-                bundle.putString("required_exam",(String) datiTesi.get("Required Exam"));
-                bundle.putString("student",(String) datiTesi.get("Student"));
+            Map<String,Object> datiTesi =  document.getData();
+            bundle.putString("correlator",(String) datiTesi.get("Correlator"));
+            bundle.putString("description",(String) datiTesi.get("Description"));
+            bundle.putString("estimated_time",(String) datiTesi.get("Estimated Time"));
+            bundle.putString("faculty",(String) datiTesi.get("Faculty"));
+            bundle.putString("name",(String) datiTesi.get("Name"));
+            bundle.putString("type",(String) datiTesi.get("Type"));
+            bundle.putString("related_projects",(String) datiTesi.get("Related Projects"));
+            bundle.putString("average_marks",(String) datiTesi.get("Average"));
+            bundle.putString("required_exam",(String) datiTesi.get("Required Exam"));
+            bundle.putString("student",(String) datiTesi.get("Student"));
 
-                thesisDescription.setArguments(bundle);
+            thesisDescription.setArguments(bundle);
 
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, thesisDescription);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, thesisDescription);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         });
     }
 }

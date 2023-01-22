@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-public class ReceiptsFragment extends Fragment {
+public class ReceiptsListFragment extends Fragment {
 
     Button buttonAddRicevimento;
 

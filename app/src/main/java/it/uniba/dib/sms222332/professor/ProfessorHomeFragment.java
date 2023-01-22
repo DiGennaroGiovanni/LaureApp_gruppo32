@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import it.uniba.dib.sms222332.R;
-import it.uniba.dib.sms222332.ReceiptsFragment;
+import it.uniba.dib.sms222332.ReceiptsListFragment;
 
 public class ProfessorHomeFragment extends Fragment {
 
@@ -44,7 +44,7 @@ public class ProfessorHomeFragment extends Fragment {
         buttonRicevimento.setOnClickListener(view2 -> {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new ReceiptsFragment());
+            fragmentTransaction.replace(R.id.fragment_container, new ReceiptsListFragment());
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
