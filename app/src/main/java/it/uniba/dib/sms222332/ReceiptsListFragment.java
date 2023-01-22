@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,7 +27,7 @@ public class ReceiptsListFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     Button btnNewReceipt;
-    String thesisName;
+
 
     @Nullable
     @Override
@@ -45,7 +47,9 @@ public class ReceiptsListFragment extends Fragment {
             fragmentTransaction.commit();
         });
 
-        View listView = view.findViewById(R.id.layoutReceiptsList);
+        LinearLayout listView = view.findViewById(R.id.layoutReceiptsList);
+        TextView thesisName = view.findViewById(R.id.txtThesisName);
+        thesisName.setText("Prova di una tesi dal nome molto lungo per vedere quanto fa schifo nella visualizzazione di gestione delle tesi");
 
 
         //TODO IMPLEMENTARE PRIMA PAGINA NUOVO RICEVIMENTO POI TORNARE QUA
@@ -60,11 +64,15 @@ public class ReceiptsListFragment extends Fragment {
 //
 //                })
 
-        //prova di lista task
+        //prova di lista ricevimenti
 
-//        for (int i = 0; i < 20; i++){
-//
-//        }
+        for (int i = 0; i < 20; i++){
+            View v = getLayoutInflater().inflate(R.layout.card_receipt, null);
+
+
+            listView.addView(v);
+
+        }
 
 
 

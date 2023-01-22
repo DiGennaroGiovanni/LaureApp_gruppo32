@@ -218,7 +218,7 @@ public class NewThesisFragment extends Fragment {
         }
 
         Map<String,String> infoTesi = new HashMap<>();
-        infoTesi.put("ProfessorAccount",professore);
+        infoTesi.put("Professor",professore);
         infoTesi.put("Name",thesisName);
         infoTesi.put("Faculty",mainSubject);
         infoTesi.put("Estimated Time",estimatedTime);
@@ -228,7 +228,7 @@ public class NewThesisFragment extends Fragment {
         infoTesi.put("Required Exam",materieRichieste);
         infoTesi.put("Average",mediaVoti);
         infoTesi.put("Type",tipoTesi);
-        infoTesi.put("StudentAccount","");
+        infoTesi.put("Student","");
 
         if(thesisName.isEmpty()){
             edtThesisName.setError("Inserisci il nome della tesi!");
