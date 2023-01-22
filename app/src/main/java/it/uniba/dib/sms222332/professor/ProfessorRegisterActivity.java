@@ -79,7 +79,7 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
         infoProfessore.put("Name",nome);
         infoProfessore.put("Surname",cognome);
         infoProfessore.put("Faculty",department);
-        infoProfessore.put("Account Type","ProfessorAccount");
+        infoProfessore.put("Account Type","Professor");
 
         if(nome.isEmpty())
             edtNomeProf.setError("Inserisci il tuo nome!");

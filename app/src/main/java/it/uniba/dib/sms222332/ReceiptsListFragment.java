@@ -27,29 +27,48 @@ public class ReceiptsListFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     Button btnNewReceipt;
-
+    private String student, thesisName;
+    private TextView txtThesisName, txtStudent;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_receipts_list, container, false);
 
+        txtThesisName = view.findViewById(R.id.txtThesisName);
+        txtStudent = view.findViewById(R.id.txtStudentNameSurname);
+
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            thesisName = bundle.getString("thesis_name");
+            student = bundle.getString("student");
+            txtThesisName.setText(thesisName);
+            txtStudent.setText(student);
+        }
 
 
 
         btnNewReceipt = view.findViewById(R.id.btnNewReceipt);
         btnNewReceipt.setOnClickListener(view1 -> {
+
+            Bundle newReceiptBundle = new Bundle();
+            newReceiptBundle.putString("thesis_name", txtThesisName.getText().toString());
+            newReceiptBundle.putString("student", txtStudent.getText().toString());
+
+            Fragment newReceiptFragment = new NewReceiptFragment();
+            newReceiptFragment.setArguments(newReceiptBundle);
+
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            fragmentTransaction.replace(R.id.fragment_container, new NewReceiptFragment());
+
+            fragmentTransaction.replace(R.id.fragment_container, newReceiptFragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
 
         LinearLayout listView = view.findViewById(R.id.layoutReceiptsList);
-        TextView thesisName = view.findViewById(R.id.txtThesisName);
-        thesisName.setText("Prova di una tesi dal nome molto lungo per vedere quanto fa schifo nella visualizzazione di gestione delle tesi");
+
 
 
         //TODO IMPLEMENTARE PRIMA PAGINA NUOVO RICEVIMENTO POI TORNARE QUA

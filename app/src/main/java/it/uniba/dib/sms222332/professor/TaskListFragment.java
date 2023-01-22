@@ -33,9 +33,8 @@ public class TaskListFragment extends Fragment {
 
     Button addTaskButton;
     TextView txtNomeStudente, txtNomeTesi;
-    String studentName,thesisName,description;
+    String studentName,thesisName;
     LinearLayout taskListLayout;
-    Bundle bundle;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Nullable
@@ -65,8 +64,8 @@ public class TaskListFragment extends Fragment {
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-
-                    addCardTask(document);
+                    if(document.getString("Thesis").equals(txtNomeTesi.getText().toString()))
+                        addCardTask(document);
                 }
             } else {
 
@@ -102,8 +101,8 @@ public class TaskListFragment extends Fragment {
         TextView txtTaskName = view.findViewById(R.id.txtTaskName);
         TextView txtState = view.findViewById(R.id.txtState);
         TextView txtDescription = view.findViewById(R.id.txtDescription);
-        description = document.getString("Description");
-        Button btnModify = view.findViewById(R.id.btnModify);
+        String description = document.getString("Description");
+        Button btnEdit = view.findViewById(R.id.btnModify);
         Button btnDelete = view.findViewById(R.id.btnDelete);
 
         txtTaskName.setText(document.getString("Name"));
@@ -133,9 +132,9 @@ public class TaskListFragment extends Fragment {
 
 
 
-        btnModify.setOnClickListener(view1 -> {
+        btnEdit.setOnClickListener(view1 -> {
 
-            bundle = new Bundle();
+            Bundle bundle = new Bundle();
             Fragment editTask = new EditTaskFragment();
 
             bundle.putString("student",studentName);

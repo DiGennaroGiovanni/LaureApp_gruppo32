@@ -1,113 +1,210 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
 
-    <EditText
-        android:id="@+id/editDate"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/textDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Data"
-        app:layout_constraintBottom_toTopOf="@+id/editDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.264"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.631" />
 
-    <TextView
-        android:id="@+id/textTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="400dp"
-        android:text="Orario"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.27"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDate"
-        app:layout_constraintVertical_bias="0.071" />
+        <TextView
+            android:id="@+id/txtThesisName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:fontFamily="@font/cardo"
+            android:text="Thesis name"
+            android:background="@null"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
 
-    <EditText
-        android:id="@+id/editTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="324dp"
-        android:ems="10"
-        android:inputType="time"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDate"
-        app:layout_constraintVertical_bias="0.209"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textStudent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Studente"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.281"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTime"
-        app:layout_constraintVertical_bias="0.067" />
+            <TextView
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:text="Student:"
+                android:fontFamily="@font/cardo"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
 
-    <Spinner
-        android:id="@+id/spinnerStudent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTime"
-        app:layout_constraintVertical_bias="0.151"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            <TextView
+                android:id="@+id/txtStudentNameSurname"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="65"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Note"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerStudent"
-        app:layout_constraintVertical_bias="0.101" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btnNewReceipt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aggiungi"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.265" />
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:fontFamily="@font/cardo"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:text="Date:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/edtReceiptDate"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cardo"
+                android:textSize="16sp"
+                android:layout_weight="65"
+                android:inputType="date" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:fontFamily="@font/cardo"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:text="Start time:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/edtReceiptStartTime"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cardo"
+                android:layout_weight="65"
+                android:inputType="time" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:fontFamily="@font/cardo"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:text="End time:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/edtReceiptEndTime"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cardo"
+                android:layout_weight="65"
+                android:inputType="time" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:text="Description:"
+                android:fontFamily="@font/cardo"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/edtDescription"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:text=""
+                android:textColor="@color/black"
+                android:fontFamily="@font/cardo"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:text="Addressed tasks:"
+                android:fontFamily="@font/cardo"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/layoutAddressedTasks"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="65"
+                android:orientation="vertical">
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnAddReceipt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add receipt"
+            android:fontFamily="@font/cardo"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</ScrollView>
+
+

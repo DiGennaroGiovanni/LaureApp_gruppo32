@@ -81,7 +81,7 @@ public class StudentRegisterActivity extends AppCompatActivity {
         infoStudente.put("Surname",cognome);
         infoStudente.put("Badge Number",matricola);
         infoStudente.put("Faculty",facolta);
-        infoStudente.put("Account Type","StudentAccount");
+        infoStudente.put("Account Type","Student");
 
         if(nome.isEmpty())
             edtNomeStudente.setError("Inserisci il tuo nome!");

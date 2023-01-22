@@ -28,9 +28,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.ReceiptsListFragment;
 
@@ -38,7 +35,7 @@ public class ThesisDescriptionFragment extends Fragment {
 
     TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,
             txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtStudentTitle,txtStudent;
-    Button btnModify,btnDelete,btnReceipt,btnTask;
+    Button btnEdit,btnDelete,btnReceipt,btnTask;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layout_lista_file;
     String related_projects = "" ;
@@ -67,7 +64,7 @@ public class ThesisDescriptionFragment extends Fragment {
         txtRelatedProjects = view.findViewById(R.id.txtRelatedProjects);
         txtAverageMarks = view.findViewById(R.id.txtAverageMarks);
         txtRequiredExams = view.findViewById(R.id.txtRequiredExams);
-        btnModify = view.findViewById(R.id.btnModify);
+        btnEdit = view.findViewById(R.id.btnModify);
         btnDelete = view.findViewById(R.id.btnDelete);
         txtStudentTitle = view.findViewById(R.id.txtStudentTitle);
         txtStudent = view.findViewById(R.id.txtStudent);
@@ -82,10 +79,10 @@ public class ThesisDescriptionFragment extends Fragment {
             String faculty = getArguments().getString("faculty");
             String name = getArguments().getString("name");
             String type = getArguments().getString("type");
-             related_projects = getArguments().getString("related_projects");
-             average_marks = getArguments().getString("average_marks");
-             required_exam = getArguments().getString("required_exam");
-             student = getArguments().getString("student");
+            related_projects = getArguments().getString("related_projects");
+            average_marks = getArguments().getString("average_marks");
+            required_exam = getArguments().getString("required_exam");
+            student = getArguments().getString("student");
 
             txtNameTitle.setText(name);
             txtType.setText(type);
@@ -126,7 +123,7 @@ public class ThesisDescriptionFragment extends Fragment {
             btnReceipt.setVisibility(View.VISIBLE);
         }
 
-        btnModify.setOnClickListener(view1 -> {
+        btnEdit.setOnClickListener(view1 -> {
             Fragment editThesisFragment = new EditThesisFragment();
             Bundle bundle = new Bundle();
 
@@ -217,9 +214,15 @@ public class ThesisDescriptionFragment extends Fragment {
 
         btnReceipt.setOnClickListener(v -> {
 
+            Bundle bundle = new Bundle();
+            bundle.putString("thesis_name",txtNameTitle.getText().toString());
+            bundle.putString("student",txtStudent.getText().toString());
+            Fragment receiptsListFragment = new ReceiptsListFragment();
+            receiptsListFragment.setArguments(bundle);
+
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new ReceiptsListFragment());
+            fragmentTransaction.replace(R.id.fragment_container, receiptsListFragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 
