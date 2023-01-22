@@ -8,7 +8,7 @@ public class ProfessorAccount implements Account {
     private String surname;
     private String faculty;
     private String email;
-    private final String accountType = "ProfessorAccount";
+    private final String accountType = "Professor";
 
     public ProfessorAccount(String name, String surname, String faculty, String email) {
         this.name = name;

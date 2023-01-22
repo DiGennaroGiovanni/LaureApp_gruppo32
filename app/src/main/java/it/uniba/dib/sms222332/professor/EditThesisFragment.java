@@ -89,6 +89,8 @@ public class EditThesisFragment extends Fragment {
         edtRequiredExams = view.findViewById(R.id.edtRequiredExams);
         buttonAdd = view.findViewById(R.id.buttonAdd);
 
+
+
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 

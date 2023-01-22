@@ -349,6 +349,24 @@
             android:contentDescription="@string/modify_thesis"
             />
 
+        <Button
+            android:id="@+id/btnReceipt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/receipt"
+            android:layout_alignParentStart="true"
+            android:visibility="invisible"
+            />
+
+        <Button
+            android:id="@+id/btnTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Task"
+            android:layout_toEndOf="@id/btnReceipt"
+            android:visibility="invisible"
+            />
+
     </RelativeLayout>
 
 </LinearLayout>

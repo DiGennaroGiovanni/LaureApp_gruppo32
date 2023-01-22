@@ -10,7 +10,7 @@ public class StudentAccount implements Account {
     private String badgeNumber;
     private String faculty;
     private String email;
-    private final String accountType = "StudentAccount";
+    private final String accountType = "Student";
 
 
     public StudentAccount(String name, String surname, String badgeNumber, String faculty, String email) {

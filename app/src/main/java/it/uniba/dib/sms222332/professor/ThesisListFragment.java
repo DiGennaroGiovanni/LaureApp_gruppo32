@@ -47,7 +47,7 @@ public class ThesisListFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            String professorEmail = document.getString("ProfessorAccount");
+                            String professorEmail = document.getString("Professor");
                             if(professorEmail.equals(mUser.getEmail())){
                                 addCardThesis(document);
                             }
@@ -72,11 +72,11 @@ public class ThesisListFragment extends Fragment {
         txtDepartment.setText(document.getString("Faculty"));
         txtCorrelator.setText(document.getString("Correlator"));
 
-        if(document.getString("StudentAccount").equals(""))
+        if(document.getString("Student").equals(""))
         {
             txtStudentThesis.setText("None");
         }else{
-            txtStudentThesis.setText(document.getString("StudentAccount"));
+            txtStudentThesis.setText(document.getString("Student"));
         }
 
         if(document.getString("Correlator").equals(""))
@@ -104,7 +104,7 @@ public class ThesisListFragment extends Fragment {
                 bundle.putString("related_projects",(String) datiTesi.get("Related Projects"));
                 bundle.putString("average_marks",(String) datiTesi.get("Average"));
                 bundle.putString("required_exam",(String) datiTesi.get("Required Exam"));
-                bundle.putString("student",(String) datiTesi.get("StudentAccount"));
+                bundle.putString("student",(String) datiTesi.get("Student"));
 
                 thesisDescription.setArguments(bundle);
 

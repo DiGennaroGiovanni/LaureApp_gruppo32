@@ -37,12 +37,13 @@ public class ThesisDescriptionFragment extends Fragment {
 
     TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,
             txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtStudentTitle,txtStudent;
-    Button btnModify,btnDelete;
+    Button btnModify,btnDelete,btnReceipt,btnTask;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layout_lista_file;
     String related_projects = "" ;
     String average_marks = "" ;
     String required_exam = "";
+    String student = "";
 
 
 
@@ -69,6 +70,8 @@ public class ThesisDescriptionFragment extends Fragment {
         btnDelete = view.findViewById(R.id.btnDelete);
         txtStudentTitle = view.findViewById(R.id.txtStudentTitle);
         txtStudent = view.findViewById(R.id.txtStudent);
+        btnReceipt = view.findViewById(R.id.btnReceipt);
+        btnTask = view.findViewById(R.id.btnTask);
 
 
         if (getArguments() != null) {
@@ -81,7 +84,7 @@ public class ThesisDescriptionFragment extends Fragment {
              related_projects = getArguments().getString("related_projects");
              average_marks = getArguments().getString("average_marks");
              required_exam = getArguments().getString("required_exam");
-            String student = getArguments().getString("student");
+             student = getArguments().getString("student");
 
             txtNameTitle.setText(name);
             txtType.setText(type);
@@ -115,6 +118,11 @@ public class ThesisDescriptionFragment extends Fragment {
             }else
                 txtRelatedProjects.setText(related_projects);
 
+        }
+
+        if(!student.isEmpty()){
+            btnTask.setVisibility(View.VISIBLE);
+            btnReceipt.setVisibility(View.VISIBLE);
         }
 
         btnModify.setOnClickListener(view1 -> {
