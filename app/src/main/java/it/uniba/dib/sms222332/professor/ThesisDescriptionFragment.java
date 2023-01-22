@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.ReceiptsListFragment;
 
 public class ThesisDescriptionFragment extends Fragment {
 
@@ -200,7 +201,7 @@ public class ThesisDescriptionFragment extends Fragment {
 
         });
 
-        //AGGIUNGO CARTE IN BASE AI DOCUMENTI CHE CI SONO
+        //AGGIUNGO MATERIALI DEL DATABASE
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference().child(txtNameTitle.getText().toString());
 
@@ -214,8 +215,18 @@ public class ThesisDescriptionFragment extends Fragment {
 
         }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
 
+        btnReceipt.setOnClickListener(v -> {
 
-        btnTask.setOnClickListener(view13 -> {
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, new ReceiptsListFragment());
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
+
+
+        btnTask.setOnClickListener(v -> {
 
             Fragment taskListFragment = new TaskListFragment();
             Bundle bundle = new Bundle();

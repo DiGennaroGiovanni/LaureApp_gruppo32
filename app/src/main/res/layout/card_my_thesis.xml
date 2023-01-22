@@ -5,22 +5,15 @@
     android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/thesisCard"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_margin="10dp">
 
             <LinearLayout
-                android:id="@+id/cardMaterial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="3sp"
-                android:layout_marginTop="3sp"
-                android:layout_marginEnd="3sp"
-                android:layout_marginBottom="3sp"
+                android:layout_margin="3dp"
                 android:background="@drawable/custom_shape"
                 android:orientation="vertical"
                 android:padding="4sp">
@@ -35,7 +28,7 @@
                     android:text="Thesis name"
                     android:textAllCaps="true"
                     android:textColor="#00213A"
-                    android:textSize="22sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
 
@@ -48,10 +41,10 @@
                         android:layout_width="0sp"
                         android:layout_height="wrap_content"
                         android:layout_weight="35"
-                        android:fontFamily="@font/cardo"
                         android:gravity="end"
                         android:paddingEnd="10sp"
                         android:text="Thesis typology:"
+                        android:fontFamily="@font/cardo"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -62,8 +55,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="65"
                         android:text=""
+                        android:fontFamily="@font/cardo"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -91,8 +85,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="65"
                         android:text=""
+                        android:fontFamily="@font/cardo"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -120,8 +115,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="65"
                         android:text=""
+                        android:fontFamily="@font/cardo"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -149,8 +145,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="65"
                         android:text=""
+                        android:fontFamily="@font/cardo"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 

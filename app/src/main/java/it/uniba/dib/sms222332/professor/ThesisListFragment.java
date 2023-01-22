@@ -40,7 +40,7 @@ public class ThesisListFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        layout_lista_tesi = view.findViewById(R.id.layout_lista_tesi);
+        layout_lista_tesi = view.findViewById(R.id.layoutThesisList);
 
         db.collection("Tesi")
                 .get()
