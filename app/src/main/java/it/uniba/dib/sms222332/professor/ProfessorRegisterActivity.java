@@ -2,14 +2,15 @@ package it.uniba.dib.sms222332.professor;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -17,8 +18,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.uniba.dib.sms222332.commonActivities.LoginActivity;
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.LoginActivity;
 
 public class ProfessorRegisterActivity extends AppCompatActivity {
 
@@ -79,7 +80,7 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
         infoProfessore.put("Name",nome);
         infoProfessore.put("Surname",cognome);
         infoProfessore.put("Faculty",department);
-        infoProfessore.put("Account Type","ProfessorAccount");
+        infoProfessore.put("Account Type","Professor");
 
         if(nome.isEmpty())
             edtNomeProf.setError("Inserisci il tuo nome!");
@@ -108,12 +109,12 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(ProfessorRegisterActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("signed up", true);
                     startActivity(intent);
-//                        Toast.makeText(ProfessorRegisterActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
-
 
                 }else{
-                    Toast.makeText(ProfessorRegisterActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
+                    View view = findViewById(android.R.id.content);
+                    Snackbar.make(view, R.string.email_already_existent, Snackbar.LENGTH_SHORT).show();
                 }
             });
         }

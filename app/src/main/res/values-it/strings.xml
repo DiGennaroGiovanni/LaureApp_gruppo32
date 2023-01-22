@@ -98,5 +98,6 @@
     <string name="save_thesis">Salva</string>
     <string name="splash_image">Immagine di Splash</string>
     <string name="receipt">Ricevimento</string>
+    <string name="email_already_existent">Email già in uso, riprova!</string>
     <!-- FINE FILIPPO -->
 </resources>
