@@ -13,18 +13,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 
 public class ReceiptsListFragment extends Fragment {
 
-    Button buttonAddRicevimento;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    Button btnNewReceipt;
+    String thesisName;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ricevimento, container, false);
-        buttonAddRicevimento = view.findViewById(R.id.addRicevimento);
+        View view = inflater.inflate(R.layout.fragment_receipts_list, container, false);
 
-        buttonAddRicevimento.setOnClickListener(view1 -> {
+
+
+
+        btnNewReceipt = view.findViewById(R.id.btnNewReceipt);
+        btnNewReceipt.setOnClickListener(view1 -> {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -32,6 +44,30 @@ public class ReceiptsListFragment extends Fragment {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
+
+        View listView = view.findViewById(R.id.layoutReceiptsList);
+
+
+        //TODO IMPLEMENTARE PRIMA PAGINA NUOVO RICEVIMENTO POI TORNARE QUA
+//        db.collection("ricevimenti")
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if(task.isSuccessful()){
+//                        for (QueryDocumentSnapshot document : task.getResult()){
+//                            if
+//                        }
+//                    }
+//
+//                })
+
+        //prova di lista task
+
+//        for (int i = 0; i < 20; i++){
+//
+//        }
+
+
+
 
         return view;
     }

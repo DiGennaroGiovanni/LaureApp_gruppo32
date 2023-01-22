@@ -95,5 +95,6 @@
     <string name="save_thesis">Save</string>
     <string name="splash_image">Splash Image</string>
     <string name="receipt">Receipt</string>
+    <string name="info_button">Info Button</string>
     <!-- FINE FILIPPO -->
 </resources>

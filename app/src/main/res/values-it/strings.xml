@@ -74,7 +74,7 @@
         <item>Scienze Politiche</item>
     </string-array>
     <string name="thesis_name">Nome tesi</string>
-    <string name="type_name_of_thesis">digita il nome della tesi</string>
+    <string name="type_name_of_thesis">Digita il nome della tesi</string>
     <string name="experimental">Sperimentale</string>
     <string name="compilation">Compilativa</string>
     <string name="main_subject">Materia principale</string>
@@ -87,12 +87,14 @@
     <string name="thesis_description">Descrizione tesi</string>
     <string name="co_rapporteur">Co-relatore</string>
     <string name="days">giorni</string>
-    <string name="type_thesis_constraints">digitare i vincoli di tesi (se ci sono)</string>
-    <string name="type_description_thesis">digitare la descrizione della tesi</string>
-    <string name="type_main_subject">digitare la materia principale</string>
-    <string name="type_related_projects">digitare i progetti correlati(se ci sono)</string>
-    <string name="type_correlator">digitare il co-relatore</string>
+    <string name="type_thesis_constraints">Digitare i vincoli di tesi (se ci sono)</string>
+    <string name="type_description_thesis">Digitare la descrizione della tesi</string>
+    <string name="type_main_subject">Digitare la materia principale</string>
+    <string name="type_related_projects">Digitare i progetti correlati(se ci sono)</string>
+    <string name="type_correlator">Digitare il co-relatore</string>
     <string name="save_thesis">Salva</string>
     <string name="splash_image">Immagine di Splash</string>
+    <string name="receipt">Ricevimento</string>
+    <string name="info_button">Bottone Info</string>
     <!-- FINE FILIPPO -->
 </resources>
