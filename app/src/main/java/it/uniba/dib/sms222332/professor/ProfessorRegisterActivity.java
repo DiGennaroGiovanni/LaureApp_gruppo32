@@ -35,7 +35,7 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrazione_prof);
+        setContentView(R.layout.activity_signup_prof);
 
         buttonConcludiProf = findViewById(R.id.buttonConcludiProf);
         edtCognomeProf = findViewById(R.id.edtCognomeProf);
