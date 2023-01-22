@@ -290,7 +290,7 @@ public class EditThesisFragment extends Fragment {
         nameView.setText(nomeFile);
 
         delete.setOnClickListener(viewDelete -> {
-            layout_lista_file.removeView(view); //NON ELIMINA LA TESI
+            layout_lista_file.removeView(view);
             files.remove(uri);
         });
 

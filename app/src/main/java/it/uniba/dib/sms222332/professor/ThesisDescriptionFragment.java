@@ -214,6 +214,25 @@ public class ThesisDescriptionFragment extends Fragment {
 
         }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
 
+
+        btnTask.setOnClickListener(view13 -> {
+
+            Fragment taskListFragment = new TaskListFragment();
+            Bundle bundle = new Bundle();
+
+            bundle.putString("thesisName",txtNameTitle.getText().toString());
+            bundle.putString("student",txtStudent.getText().toString());
+
+            taskListFragment.setArguments(bundle);
+
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, taskListFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
+
         return view;
     }
 

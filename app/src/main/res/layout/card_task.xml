@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/thesisCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:id="@+id/cardMaterial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3sp"
+            android:layout_marginTop="3sp"
+            android:layout_marginEnd="3sp"
+            android:layout_marginBottom="3sp"
+            android:background="@drawable/custom_shape"
+            android:orientation="vertical"
+            android:padding="4sp">
+
+            <TextView
+                android:id="@+id/txtTaskName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/cardo"
+                android:text="Task name"
+                android:textAllCaps="true"
+                android:textColor="#00213A"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtStateTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="10sp"
+                    android:text="Task state:"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtState"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtDescriptionTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="10sp"
+                    android:text="Task description:"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtDescription"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+                <Button
+                    android:id="@+id/btnModify"
+                    android:layout_width="27sp"
+                    android:layout_height="27sp"
+                    android:background="@drawable/icon_edit"
+                    android:contentDescription="@string/modify_thesis"
+                    />
+
+                <Button
+                    android:id="@+id/btnDelete"
+                    android:layout_width="27sp"
+                    android:layout_height="27sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="3sp"
+                    android:layout_marginEnd="30sp"
+                    android:background="@drawable/delete_icon"
+                    android:contentDescription="@string/delete_thesis" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</RelativeLayout>
+

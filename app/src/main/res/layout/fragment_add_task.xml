@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+    <TextView
+        android:id="@+id/txtThesisName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:fontFamily="@font/cardo"
+        android:text="Thesis name"
+        android:background="@null"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtStudentTitle"
+            android:layout_weight="35"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingEnd="20sp"
+            android:text="Student:"
+            android:fontFamily="@font/cardo"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="italic"/>
+
+        <TextView
+            android:id="@+id/txtStudent"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="65"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtNameTask"
+            android:layout_weight="35"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingEnd="20sp"
+            android:text="Task Name:"
+            android:fontFamily="@font/cardo"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="italic"/>
+
+        <EditText
+            android:id="@+id/edtNameTask"
+            android:layout_weight="65"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtDescriptionTitle"
+            android:layout_weight="35"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingEnd="20sp"
+            android:text="Description:"
+            android:fontFamily="@font/cardo"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="italic"/>
+
+        <EditText
+            android:id="@+id/edtDescription"
+            android:layout_weight="65"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/create_task_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD TASK"
+        android:fontFamily="@font/cardo"
+        android:textStyle="bold"/>
+
+</LinearLayout>
+
+
+

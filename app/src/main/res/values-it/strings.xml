@@ -35,6 +35,9 @@
     <string name="chatToolbar">Chat</string>
     <string name="settingsToolbar">Impostazioni</string>
     <string name="modifyThesisToolbar">Modifica Tesi</string>
+    <string name="addTaskToolbar">Aggiungi Task</string>
+    <string name="taskListToolbar">Lista Task</string>
+    <string name="editTaskToolbar">Modifica Task</string>
     <!-- FILIPPO -->
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -94,5 +97,6 @@
     <string name="type_correlator">digitare il co-relatore</string>
     <string name="save_thesis">Salva</string>
     <string name="splash_image">Immagine di Splash</string>
+    <string name="receipt">Ricevimento</string>
     <!-- FINE FILIPPO -->
 </resources>
