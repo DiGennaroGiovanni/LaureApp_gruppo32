@@ -94,5 +94,6 @@
     <string name="type_correlator">digitare il co-relatore</string>
     <string name="save_thesis">Salva</string>
     <string name="splash_image">Immagine di Splash</string>
+    <string name="change_lang">Cambia lingua:</string>
     <!-- FINE FILIPPO -->
 </resources>

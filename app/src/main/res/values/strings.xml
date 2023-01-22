@@ -95,5 +95,6 @@
     <string name="save_thesis">Save</string>
     <string name="splash_image">Splash Image</string>
     <string name="receipt">Receipt</string>
+    <string name="change_lang">Change language:</string>
     <!-- FINE FILIPPO -->
 </resources>

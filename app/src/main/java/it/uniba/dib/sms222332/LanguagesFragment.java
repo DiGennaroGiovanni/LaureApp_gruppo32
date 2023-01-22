@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +26,13 @@ public class LanguagesFragment extends Fragment {
         ImageButton it = view.findViewById(R.id.btn_it);
         LanguageManager lang = new LanguageManager(getActivity());
         lang.updateResource(lang.getLang());
+
+        en.setScaleType(ImageView.ScaleType.FIT_XY);
+        it.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(150, 150);
+        en.setLayoutParams(params);
+        it.setLayoutParams(params);
 
         en.setOnClickListener(v -> {
             lang.updateResource("en");
