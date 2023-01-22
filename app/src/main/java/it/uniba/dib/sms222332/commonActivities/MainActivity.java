@@ -1,12 +1,10 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.commonActivities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -20,8 +18,17 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+
+import it.uniba.dib.sms222332.LanguagesFragment;
+import it.uniba.dib.sms222332.MessagesFragment;
+import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.professor.ProfessorAccount;
+import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
+import it.uniba.dib.sms222332.professor.ThesisListFragment;
+import it.uniba.dib.sms222332.student.FavoritesFragment;
+import it.uniba.dib.sms222332.student.StudentAccount;
+import it.uniba.dib.sms222332.student.StudentHomeFragment;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -77,16 +84,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /**
      * Inserisce i dati del database nell'interfaccia Account
-     * L'account può essere di tipo Professor o Student
+     * L'account può essere di tipo ProfessorAccount o StudentAccount
      */
     private void setAccount() {
         switch (getIntent().getStringExtra("account_type")){
-            case "Professor":
+            case "ProfessorAccount":
             case "Professore":
                 generateProfessor();
                 break;
 
-            case "Student":
+            case "StudentAccount":
             case "Studente":
                 generateStudent();
                 break;
@@ -99,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String faculty = getIntent().getStringExtra("faculty");
         String email = getIntent().getStringExtra("email");
 
-        account = new Professor(name, surname, faculty, email);
+        account = new ProfessorAccount(name, surname, faculty, email);
     }
 
     private void generateStudent() {
@@ -109,17 +116,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String faculty = getIntent().getStringExtra("faculty");
         String email = getIntent().getStringExtra("email");
 
-        account = new Student(name, surname, badgeNumber, faculty, email);
+        account = new StudentAccount(name, surname, badgeNumber, faculty, email);
     }
 
     private void setBottomNavigationBar(String accountType) {
         bottomNav.getMenu().clear();
         switch (accountType) {
-            case "Student":
+            case "StudentAccount":
                 bottomNav.inflateMenu(R.menu.bottom_navigation_stud);
                 break;
 
-            case "Professor":
+            case "ProfessorAccount":
                 bottomNav.inflateMenu(R.menu.bottom_navigation_prof);
                 break;
         }
@@ -203,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bundle.putString("email", account.getEmail());
         bundle.putString("faculty", account.getFaculty());
 
-        if (account.getAccountType().equals("Student") )
+        if (account.getAccountType().equals("StudentAccount") )
             bundle.putString("badge_number", account.getBadgeNumber());
         else
             bundle.putString("badge_number", "");
@@ -240,11 +247,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Fragment getProperHome(){
         Fragment toReturn;
         switch (account.getAccountType()){
-            case "Student":
+            case "StudentAccount":
                 toReturn = new StudentHomeFragment();
                 break;
 
-            case "Professor":
+            case "ProfessorAccount":
             default:
                 toReturn = new ProfessorHomeFragment();
                 break;
@@ -255,11 +262,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setProfession(TextView profession, String accountType){
         switch (accountType){
-            case "Professor":
+            case "ProfessorAccount":
                 profession.setText(R.string.professor);
                 break;
 
-            case "Student":
+            case "StudentAccount":
                 profession.setText(R.string.student);
                 break;
         }

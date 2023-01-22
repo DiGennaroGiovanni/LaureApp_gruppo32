@@ -1,14 +1,16 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.professor;
 
-public class Professor implements Account{
+import it.uniba.dib.sms222332.commonActivities.Account;
+
+public class ProfessorAccount implements Account {
 
     private String name;
     private String surname;
     private String faculty;
     private String email;
-    private final String accountType = "Professor";
+    private final String accountType = "ProfessorAccount";
 
-    public Professor(String name, String surname, String faculty, String email) {
+    public ProfessorAccount(String name, String surname, String faculty, String email) {
         this.name = name;
         this.surname = surname;
         this.faculty = faculty;

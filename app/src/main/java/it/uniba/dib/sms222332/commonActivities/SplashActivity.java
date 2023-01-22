@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.commonActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
+
+import it.uniba.dib.sms222332.R;
 
 public class SplashActivity extends AppCompatActivity {
     private final int SPLASH_DISPLAY_LENGTH = 2000; // 2 seconds

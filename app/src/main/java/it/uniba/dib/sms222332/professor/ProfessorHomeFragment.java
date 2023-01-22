@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.professor;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.ReceiptsFragment;
 
 public class ProfessorHomeFragment extends Fragment {
 

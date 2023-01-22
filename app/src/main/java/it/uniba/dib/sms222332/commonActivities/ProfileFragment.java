@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.commonActivities;
 
 import static android.content.ContentValues.TAG;
 
@@ -31,6 +31,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
+
+import it.uniba.dib.sms222332.R;
 
 
 public class ProfileFragment extends Fragment {
@@ -104,7 +106,7 @@ public class ProfileFragment extends Fragment {
                                         if (task.isSuccessful()) {
 
                                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                                String professorEmail = document.getString("Professor");
+                                                String professorEmail = document.getString("ProfessorAccount");
 
                                                 if(professorEmail.equals(mUser.getEmail())){
 
@@ -142,7 +144,7 @@ public class ProfileFragment extends Fragment {
                     mUser.delete();
                     documentReference.delete();
 
-                    Intent intent = new Intent(getActivity(), DeleteProfileActivity.class);
+                    Intent intent = new Intent(getActivity(), ProfileDeletedActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
 

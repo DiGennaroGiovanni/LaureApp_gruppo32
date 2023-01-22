@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.commonActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,14 +6,16 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class DeleteProfileActivity extends AppCompatActivity {
+import it.uniba.dib.sms222332.R;
+
+public class ProfileDeletedActivity extends AppCompatActivity {
 
     Button btnContinue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_profile);
+        setContentView(R.layout.activity_profile_deleted);
 
         btnContinue = findViewById(R.id.btnContinue);
         btnContinue.setOnClickListener(view -> {

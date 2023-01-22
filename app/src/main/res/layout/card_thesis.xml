@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/info_tesi_layout"
+            android:id="@+id/thesisCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"

@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.professor;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.Map;
+
+import it.uniba.dib.sms222332.R;
 
 public class ThesisListFragment extends Fragment {
 
@@ -45,7 +47,7 @@ public class ThesisListFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            String professorEmail = document.getString("Professor");
+                            String professorEmail = document.getString("ProfessorAccount");
                             if(professorEmail.equals(mUser.getEmail())){
                                 addCardThesis(document);
                             }
@@ -70,11 +72,11 @@ public class ThesisListFragment extends Fragment {
         txtDepartment.setText(document.getString("Faculty"));
         txtCorrelator.setText(document.getString("Correlator"));
 
-        if(document.getString("Student").equals(""))
+        if(document.getString("StudentAccount").equals(""))
         {
             txtStudentThesis.setText("None");
         }else{
-            txtStudentThesis.setText(document.getString("Student"));
+            txtStudentThesis.setText(document.getString("StudentAccount"));
         }
 
         if(document.getString("Correlator").equals(""))
@@ -102,7 +104,7 @@ public class ThesisListFragment extends Fragment {
                 bundle.putString("related_projects",(String) datiTesi.get("Related Projects"));
                 bundle.putString("average_marks",(String) datiTesi.get("Average"));
                 bundle.putString("required_exam",(String) datiTesi.get("Required Exam"));
-                bundle.putString("student",(String) datiTesi.get("Student"));
+                bundle.putString("student",(String) datiTesi.get("StudentAccount"));
 
                 thesisDescription.setArguments(bundle);
 

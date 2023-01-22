@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/CustomTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name=".commonActivities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,27 +26,27 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DeleteProfileActivity"
+            android:name=".commonActivities.ProfileDeletedActivity"
             android:exported="false"/>
         <activity
-            android:name=".StudentRegisterActivity"
+            android:name=".student.StudentRegisterActivity"
             android:exported="false"
             android:label="Registrazione" />
         <activity
-            android:name=".ProfessorRegisterActivity"
+            android:name=".professor.ProfessorRegisterActivity"
             android:exported="false"
             android:label="Registrazione" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".commonActivities.LoginActivity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".RegistratiActivity"
+            android:name=".commonActivities.RegisterActivity"
             android:exported="false"
             android:label="Registrazione" />
         <activity
-            android:name=".MainActivity"
+            android:name=".commonActivities.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.LaureApp.NoActionBar"
             android:windowSoftInputMode="adjustPan"> <!-- Per non far muovere la bottom navigation view quando si apre la tastiera -->

@@ -28,11 +28,11 @@ public class ReceiptsFragment extends Fragment {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            fragmentTransaction.replace(R.id.fragment_container, new AggiuntaRicevimentoFragment());
+            fragmentTransaction.replace(R.id.fragment_container, new NewReceiptFragment());
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
-        //return inflater.inflate(R.layout.fragment_ricevimento, container, false);
+
         return view;
     }
 }

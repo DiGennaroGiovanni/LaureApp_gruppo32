@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.professor;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import it.uniba.dib.sms222332.commonActivities.LoginActivity;
+import it.uniba.dib.sms222332.R;
 
 public class ProfessorRegisterActivity extends AppCompatActivity {
 
@@ -76,7 +79,7 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
         infoProfessore.put("Name",nome);
         infoProfessore.put("Surname",cognome);
         infoProfessore.put("Faculty",department);
-        infoProfessore.put("Account Type","Professor");
+        infoProfessore.put("Account Type","ProfessorAccount");
 
         if(nome.isEmpty())
             edtNomeProf.setError("Inserisci il tuo nome!");

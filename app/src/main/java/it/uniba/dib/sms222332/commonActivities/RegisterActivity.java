@@ -1,19 +1,20 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.commonActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class RegistratiActivity extends AppCompatActivity {
+import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.professor.ProfessorRegisterActivity;
+import it.uniba.dib.sms222332.student.StudentRegisterActivity;
+
+public class RegisterActivity extends AppCompatActivity {
 
     Button buttonContinuaProfessore, buttonContinuaStudente;
 
@@ -47,13 +48,13 @@ public class RegistratiActivity extends AppCompatActivity {
     private void continuaComeProfessore() {
 
 
-        Intent intent = new Intent(RegistratiActivity.this, ProfessorRegisterActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, ProfessorRegisterActivity.class);
         startActivity(intent);
     }
 
     private void continuaComeStudente() {
 
-        Intent intent = new Intent(RegistratiActivity.this, StudentRegisterActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, StudentRegisterActivity.class);
         startActivity(intent);
     }
 

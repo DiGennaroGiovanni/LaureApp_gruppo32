@@ -1,6 +1,8 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.student;
 
-public class Student implements Account{
+import it.uniba.dib.sms222332.commonActivities.Account;
+
+public class StudentAccount implements Account {
 
 
     private String name;
@@ -8,10 +10,10 @@ public class Student implements Account{
     private String badgeNumber;
     private String faculty;
     private String email;
-    private final String accountType = "Student";
+    private final String accountType = "StudentAccount";
 
 
-    public Student(String name, String surname, String badgeNumber, String faculty, String email) {
+    public StudentAccount(String name, String surname, String badgeNumber, String faculty, String email) {
         this.name = name;
         this.surname = surname;
         this.badgeNumber = badgeNumber;

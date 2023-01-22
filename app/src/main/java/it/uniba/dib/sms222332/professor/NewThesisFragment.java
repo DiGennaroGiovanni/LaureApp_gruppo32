@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.professor;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
@@ -44,6 +44,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import it.uniba.dib.sms222332.R;
 
 
 public class NewThesisFragment extends Fragment {
@@ -216,7 +218,7 @@ public class NewThesisFragment extends Fragment {
         }
 
         Map<String,String> infoTesi = new HashMap<>();
-        infoTesi.put("Professor",professore);
+        infoTesi.put("ProfessorAccount",professore);
         infoTesi.put("Name",thesisName);
         infoTesi.put("Faculty",mainSubject);
         infoTesi.put("Estimated Time",estimatedTime);
@@ -226,7 +228,7 @@ public class NewThesisFragment extends Fragment {
         infoTesi.put("Required Exam",materieRichieste);
         infoTesi.put("Average",mediaVoti);
         infoTesi.put("Type",tipoTesi);
-        infoTesi.put("Student","");
+        infoTesi.put("StudentAccount","");
 
         if(thesisName.isEmpty()){
             edtThesisName.setError("Inserisci il nome della tesi!");

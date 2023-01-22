@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.professor;
 
 import static android.content.ContentValues.TAG;
 
@@ -30,6 +30,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import it.uniba.dib.sms222332.R;
 
 public class ThesisDescriptionFragment extends Fragment {
 
