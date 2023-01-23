@@ -2,12 +2,15 @@ package it.uniba.dib.sms222332.professor;
 
 import static android.content.ContentValues.TAG;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,6 +30,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import it.uniba.dib.sms222332.R;
 
@@ -53,7 +63,6 @@ public class ThesisDescriptionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_thesis_description, container, false);
 
         layout_lista_file = view.findViewById(R.id.layout_lista_file);
-
         txtNameTitle = view.findViewById(R.id.txtNameTitle);
         txtDepartment = view.findViewById(R.id.txtDepartment);
         txtType = view.findViewById(R.id.txtTypology);
@@ -149,7 +158,6 @@ public class ThesisDescriptionFragment extends Fragment {
         btnDelete.setOnClickListener(view12 -> {
 
             DocumentReference tesi = db.collection("Tesi").document(txtNameTitle.getText().toString());
-
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
             StorageReference folderRef = storageRef.child(txtNameTitle.getText().toString());

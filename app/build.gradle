@@ -82,4 +82,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    // Dipendenza libreria generazione pdf
+    implementation 'com.itextpdf:itextpdf:5.5.13'
+    // Dipendenza libreria generazione qr code
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+
 }
