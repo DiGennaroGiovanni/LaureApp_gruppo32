@@ -1,16 +1,17 @@
 package it.uniba.dib.sms222332.student;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,8 +19,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.uniba.dib.sms222332.commonActivities.LoginActivity;
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.LoginActivity;
 
 public class StudentRegisterActivity extends AppCompatActivity {
 
@@ -115,11 +116,12 @@ public class StudentRegisterActivity extends AppCompatActivity {
                     insertDataStudente();
                     Intent intent = new Intent(StudentRegisterActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("signed up", true);
                     startActivity(intent);
-//                        Toast.makeText(StudentRegisterActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
 
                 }else{
-                    Toast.makeText(StudentRegisterActivity.this, "Email già in uso, ripova!", Toast.LENGTH_LONG).show();
+                    View view = findViewById(android.R.id.content);
+                    Snackbar.make(view, R.string.email_already_existent, Snackbar.LENGTH_SHORT).show();
                 }
             });
         }

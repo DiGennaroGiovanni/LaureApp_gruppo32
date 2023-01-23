@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,6 +33,11 @@ public class LoginActivity extends AppCompatActivity {
         if(getIntent().getBooleanExtra("logout", false)){
             View view = findViewById(android.R.id.content);
             Snackbar.make(view, "Logout effettuato!", Snackbar.LENGTH_SHORT).show();
+        }
+
+        else if(getIntent().getBooleanExtra("signed up", false)){
+            View view = findViewById(android.R.id.content);
+            Snackbar.make(view, "Registrazione completata", Snackbar.LENGTH_SHORT).show();
         }
 
         // Dichiaro i pulsanti presenti nella schermata
@@ -140,8 +144,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 }else{
-
-                    Toast.makeText(LoginActivity.this, "Utente non trovato, effettua la registrazione o inserisci correttamente i dati ", Toast.LENGTH_LONG).show();
+                    View view = findViewById(android.R.id.content);
+                    Snackbar.make(view, "Utente non trovato, effettua la registrazione o inserisci correttamente i dati", Snackbar.LENGTH_SHORT).show();
                 }
             });
         }

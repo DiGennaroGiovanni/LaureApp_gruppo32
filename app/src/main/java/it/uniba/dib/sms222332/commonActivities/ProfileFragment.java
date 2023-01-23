@@ -106,7 +106,7 @@ public class ProfileFragment extends Fragment {
                                         if (task.isSuccessful()) {
 
                                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                                String professorEmail = document.getString("ProfessorAccount");
+                                                String professorEmail = document.getString("Professor");
 
                                                 if(professorEmail.equals(mUser.getEmail())){
 
