@@ -2,13 +2,13 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cardMaterial"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/thesisCard"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3sp"
         android:padding="4sp"
@@ -30,7 +30,6 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:padding="4sp"
-            android:layout_alignParentEnd="true"
             android:textAlignment="textEnd"/>
 
 
@@ -42,8 +41,8 @@
 
     <Button
         android:id="@+id/deleteMaterial"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/delete_material"
