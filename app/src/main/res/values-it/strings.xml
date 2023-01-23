@@ -93,5 +93,7 @@
     <string name="type_related_projects">digitare i progetti correlati(se ci sono)</string>
     <string name="type_correlator">digitare il co-relatore</string>
     <string name="qr_code_thesis">qr_code_thesis</string>
+    <string name="share_thesis_info">CONDIVIDI INFO DELLA TESI</string>
+    <string name="close">CHIUDI</string>
     <!-- FINE FILIPPO -->
 </resources>

@@ -93,5 +93,7 @@
     <string name="type_related_projects">type related projects (if there are)</string>
     <string name="type_correlator">type correlator</string>
     <string name="qr_code_thesis">qr_code_thesis</string>
+    <string name="share_thesis_info">SHARE THESIS INFO</string>
+    <string name="close">CLOSE</string>
     <!-- FINE FILIPPO -->
 </resources>

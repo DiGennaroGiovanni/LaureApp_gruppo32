@@ -42,7 +42,7 @@ public class ThesisDescriptionFragment extends Fragment {
     Button btnModify,btnDelete;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layout_lista_file;
-    ImageView qr_code_thesis;
+    /*ImageView qr_code_thesis;*/
 
 
     @Nullable
@@ -64,7 +64,7 @@ public class ThesisDescriptionFragment extends Fragment {
         txtRequiredExams = view.findViewById(R.id.txtRequiredExams);
         btnModify = view.findViewById(R.id.btnModify);
         btnDelete = view.findViewById(R.id.btnDelete);
-        qr_code_thesis = view.findViewById(R.id.qr_code_thesis);
+        /*qr_code_thesis = view.findViewById(R.id.qr_code_thesis);*/
 
         if (getArguments() != null) {
             String correlator = getArguments().getString("correlator");
@@ -88,7 +88,7 @@ public class ThesisDescriptionFragment extends Fragment {
             txtDescription.setText(description);
             txtRelatedProjects.setText(related_projects);
 
-            showQr(name, type, faculty, estimated_time, correlator, description, related_projects, qr_code_thesis);
+
 
         }
 
@@ -172,37 +172,6 @@ public class ThesisDescriptionFragment extends Fragment {
         layout_lista_file.addView(view);
     }
 
-    private void showQr(String name, String type, String faculty, String estimated_time, String correlator, String description, String related_projects, ImageView qr_code_thesis) {
-        // NEW
-        JSONObject jsonDatiTesi = new JSONObject();
 
-        try {
-            jsonDatiTesi.put("nome", name);
-            jsonDatiTesi.put("tipo", type);
-            jsonDatiTesi.put("dipartimento", faculty);
-            jsonDatiTesi.put("tempo_stimato", estimated_time);
-            jsonDatiTesi.put("correlatore", correlator);
-            jsonDatiTesi.put("descrizione", description);
-            // da gestire i dati riferiti ai materiali e i vincoli
-            //jsonDatiTesi.put("materiali", materials);
-            //jsonDatiTesi.put("vincoli", constraints);
-            jsonDatiTesi.put("progetti_correlati", related_projects);
-
-            QRCodeWriter qrCodeWriter = new QRCodeWriter();
-            BitMatrix bitMatrix = qrCodeWriter.encode(jsonDatiTesi.toString(), BarcodeFormat.QR_CODE, 350, 350);
-            Bitmap bitmap = Bitmap.createBitmap(350, 350, Bitmap.Config.RGB_565);
-
-            for (int x = 0; x < 350; x++) {
-                for (int y = 0; y < 350; y++) {
-                    bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
-                }
-            }
-
-            qr_code_thesis.setImageBitmap(bitmap);
-
-        } catch (WriterException | JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
 }
