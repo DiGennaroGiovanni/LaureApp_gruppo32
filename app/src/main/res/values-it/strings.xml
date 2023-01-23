@@ -35,9 +35,11 @@
     <string name="chatToolbar">Chat</string>
     <string name="settingsToolbar">Impostazioni</string>
     <string name="modifyThesisToolbar">Modifica Tesi</string>
-    <string name="addTaskToolbar">Aggiungi Task</string>
+    <string name="newTaskToolbar">Nuovo Task</string>
     <string name="taskListToolbar">Lista Task</string>
     <string name="editTaskToolbar">Modifica Task</string>
+    <string name="newReceiptToolbar">Nuovo Ricevimento</string>
+
     <!-- FILIPPO -->
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -99,5 +101,8 @@
     <string name="splash_image">Immagine di Splash</string>
     <string name="receipt">Ricevimento</string>
     <string name="info_button">Bottone Info</string>
+    <string name="select_date">seleziona data</string>
+    <string name="select_start_time">seleziona orario d\'inizio</string>
+    <string name="select_end_time">seleziona orario di fine</string>
     <!-- FINE FILIPPO -->
 </resources>

@@ -34,9 +34,10 @@
     <string name="delete_thesis">Delete Thesis</string>
     <string name="delete_material">Delete Material</string>
     <string name="modify_thesis">Modify Thesis</string>
-    <string name="addTaskToolbar">Add Task</string>
+    <string name="newTaskToolbar">New Task</string>
     <string name="taskListToolbar">Task List</string>
     <string name="editTaskToolbar">Edit Task</string>
+    <string name="newReceiptToolbar">New Receipt</string>
 
     <!-- FILIPPO -->
     <string name="email">Email</string>
@@ -100,6 +101,8 @@
     <string name="receipt">Receipt</string>
     <string name="info_button">Info Button</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_date">select date</string>
+    <string name="select_start_time">select start time</string>
+    <string name="select_end_time">select end time</string>
     <!-- FINE FILIPPO -->
 </resources>
