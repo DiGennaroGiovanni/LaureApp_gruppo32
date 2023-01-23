@@ -96,5 +96,8 @@
     <string name="splash_image">Splash Image</string>
     <string name="receipt">Receipt</string>
     <string name="change_lang">Change language:</string>
+    <string name="thesis_type">Thesis type</string>
+    <string name="department">Department</string>
+    <string name="correlator">Correlator</string>
     <!-- FINE FILIPPO -->
 </resources>

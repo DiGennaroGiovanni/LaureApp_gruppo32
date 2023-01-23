@@ -95,5 +95,8 @@
     <string name="save_thesis">Salva</string>
     <string name="splash_image">Immagine di Splash</string>
     <string name="change_lang">Cambia lingua:</string>
+    <string name="thesis_type">Tipo di tesi</string>
+    <string name="department">Dipartimento</string>
+    <string name="correlator">Correlatore</string>
     <!-- FINE FILIPPO -->
 </resources>
