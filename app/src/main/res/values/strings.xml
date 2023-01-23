@@ -85,7 +85,7 @@
     <string name="main_subject">Main subject</string>
     <string name="estimated_time">Estimated time</string>
     <string name="create_thesis">create thesis</string>
-    <string name="related_projects">Related projects</string>
+    <string name="related_projects">Related projects:</string>
     <string name="thesis_constraints">Thesis constraints</string>
     <string name="add_material">Add material (PDF only)</string>
     <string name="teaching_materials">Teaching materials</string>
@@ -136,5 +136,6 @@
     <string name="we_are_sorry_to_see_you_leave">We are sorry to see you leave</string>
     <string name="you_are_always_welocome_to_join_laureapp_again">You are always welocome to join LaureApp again!</string>
     <string name="back_to_login">Back to login</string>
+    <string name="requirement_met">Requirement met:</string>
     <!-- FINE FILIPPO -->
 </resources>

@@ -87,7 +87,7 @@
     <string name="main_subject">Materia principale</string>
     <string name="estimated_time">Tempo stimato</string>
     <string name="create_thesis">Crea tesi</string>
-    <string name="related_projects">Progetti correlati</string>
+    <string name="related_projects">Progetti correlati:</string>
     <string name="thesis_constraints">Vincoli di tesi</string>
     <string name="add_material">Aggiungi materiale (Solo PDF)</string>
     <string name="teaching_materials">Materiale didattico</string>
@@ -137,5 +137,6 @@
     <string name="we_are_sorry_to_see_you_leave">Ci dispiace vederti andar via</string>
     <string name="you_are_always_welocome_to_join_laureapp_again">Sarai sempre il benvenuto su LaureApp!</string>
     <string name="back_to_login">Torna al login</string>
+    <string name="requirement_met">Requisito Rispettato:</string>
     <!-- FINE FILIPPO -->
 </resources>

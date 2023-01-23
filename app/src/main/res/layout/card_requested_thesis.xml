@@ -23,20 +23,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Data: "
+                    android:text="Thesis: "
                     android:fontFamily="@font/cardo"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtReceiptDateCard"
+                    android:id="@+id/txtThesisName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="dataRicevimento"
+                    android:text="thesisName"
                     android:fontFamily="@font/cardo"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textSize="18sp"/>
 
             </LinearLayout>
 
@@ -47,92 +47,35 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Orario di inizio: "
+                    android:text="Student: "
                     android:fontFamily="@font/cardo"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtReceiptStartTimeCard"
+                    android:id="@+id/txtStudentNameSurname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="oraInizio"
+                    android:text="studentName"
                     android:fontFamily="@font/cardo"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textSize="18sp"/>
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Orario di fine: "
-                    android:fontFamily="@font/cardo"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/icon_info"
+                    android:layout_alignParentEnd="true"/>
 
-                <TextView
-                    android:id="@+id/txtReceiptEndTimeCard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="oraFine"
-                    android:fontFamily="@font/cardo"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"/>
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Task trattati: "
-                    android:fontFamily="@font/cardo"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/addressedTasksCard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="task list"
-                    android:fontFamily="@font/cardo"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Descrizione: "
-                    android:fontFamily="@font/cardo"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/txtReceiptDescriptionCard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="descrizione"
-                    android:fontFamily="@font/cardo"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"/>
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

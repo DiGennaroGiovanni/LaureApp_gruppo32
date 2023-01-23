@@ -201,13 +201,9 @@ public class NewReceiptFragment extends Fragment {
                 String title = txtThesisName.getText().toString() +":"+ time;
                 db.collection("ricevimenti").document(title).set(infoReceipt);
                 Snackbar.make(view12, "Receipt added!", Snackbar.LENGTH_LONG).show();
-                getActivity().onBackPressed();
-
+                getParentFragmentManager().popBackStack();
             }
-
-
         });
-
 
 
         return view;
