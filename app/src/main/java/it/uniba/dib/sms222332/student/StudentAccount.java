@@ -58,5 +58,9 @@ public class StudentAccount implements Account {
         return faculty;
     }
 
+    @Override
+    public void setRequest(String request){
+        this.request = request;
+    }
 
 }

@@ -202,6 +202,7 @@ public class NewReceiptFragment extends Fragment {
                 db.collection("ricevimenti").document(title).set(infoReceipt);
                 Snackbar.make(view12, "Receipt added!", Snackbar.LENGTH_LONG).show();
                 getParentFragmentManager().popBackStack();
+
             }
         });
 

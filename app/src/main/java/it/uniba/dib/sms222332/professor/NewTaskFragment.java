@@ -72,7 +72,7 @@ public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup c
 
             db.collection("tasks").document(nameTask).set(infoTask);
             Snackbar.make(view1, "Task added!", Snackbar.LENGTH_LONG).show();
-            getActivity().onBackPressed();
+            getParentFragmentManager().popBackStack();
 
         }
 

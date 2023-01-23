@@ -86,7 +86,9 @@ public class ThesisRequestFragment extends Fragment {
             txtRequiredExams.setText(required_exams);
         }
 
+
         btnThesisRequest.setOnClickListener(view1 -> {
+
             String average = "";
             String exams = "";
             String requestName = "";
@@ -103,11 +105,11 @@ public class ThesisRequestFragment extends Fragment {
 
 
 
-            if(!rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()){
-               txtExamsConstraint.setError("You have to choice!");
-               Snackbar.make(view1, "You have to choice!", Snackbar.LENGTH_LONG).show();
+            if(!required_exams.equals("None") && !rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()){
+                txtExamsConstraint.setError("You have to choice!");
+                Snackbar.make(view1, "You have to choice!", Snackbar.LENGTH_LONG).show();
 
-            }else if(!rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()){
+            }else if(!average_marks.equals("None") && !rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()){
                 txtAverageConstraint.setError("You have to choice!");
                 Snackbar.make(view1, "You have to choice!", Snackbar.LENGTH_LONG).show();
             }else{
@@ -117,9 +119,18 @@ public class ThesisRequestFragment extends Fragment {
                 request.put("Exams Constraint", exams);
                 request.put("Note", edtNote.getText().toString());
                 request.put("Professor",professore_email);
+                request.put("Student",MainActivity.account.getEmail());
+                request.put("Thesis Name",thesis_name);
                 requestName = thesis_name + "_" + MainActivity.account.getEmail();
 
                 db.collection("richieste").document(requestName).set(request);
+
+                Map <String, Object> update = new HashMap<>();
+                update.put("Request","yes");
+
+                db.collection("studenti").document(MainActivity.account.getEmail()).update(update);
+
+                MainActivity.account.setRequest("yes");
 
                 Snackbar.make(view1, "Request made!", Snackbar.LENGTH_LONG).show();
 

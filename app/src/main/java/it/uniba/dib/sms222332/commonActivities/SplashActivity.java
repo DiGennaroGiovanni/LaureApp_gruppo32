@@ -52,6 +52,7 @@ public class SplashActivity extends AppCompatActivity {
                             intent.putExtra("badge_number", (String) datiStudente.get("Badge Number"));
                             intent.putExtra("faculty", (String) datiStudente.get("Faculty"));
                             intent.putExtra("email", email);
+                            intent.putExtra("request",(String) datiStudente.get("Request"));
                             startActivity(intent);
                             finish();
 

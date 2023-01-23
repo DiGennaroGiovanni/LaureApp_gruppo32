@@ -8,4 +8,6 @@ public interface Account {
     String getFaculty();
     String getEmail();
     String getRequest();
+
+    void setRequest(String request);
 }

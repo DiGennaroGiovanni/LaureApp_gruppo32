@@ -86,7 +86,7 @@ public class EditTaskFragment extends Fragment {
 
                 Snackbar.make(view1, "Task updated", Snackbar.LENGTH_LONG).show();
 
-                getActivity().onBackPressed();
+                getParentFragmentManager().popBackStack();
             }
         });
 
