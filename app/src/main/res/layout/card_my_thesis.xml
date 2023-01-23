@@ -25,7 +25,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/cardo"
-                    android:text="Thesis name"
+                    android:text="@string/thesis_name"
                     android:textAllCaps="true"
                     android:textColor="#00213A"
                     android:textSize="24sp"
@@ -43,8 +43,8 @@
                         android:layout_weight="35"
                         android:gravity="end"
                         android:paddingEnd="10sp"
-                        android:text="Thesis typology:"
                         android:fontFamily="@font/cardo"
+                        android:text="@string/thesis_type"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -74,7 +74,7 @@
                         android:fontFamily="@font/cardo"
                         android:gravity="end"
                         android:paddingEnd="10sp"
-                        android:text="Department:"
+                        android:text="@string/department"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -104,7 +104,7 @@
                         android:fontFamily="@font/cardo"
                         android:gravity="end"
                         android:paddingEnd="10sp"
-                        android:text="Correlator:"
+                        android:text="@string/correlator"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -134,7 +134,7 @@
                         android:fontFamily="@font/cardo"
                         android:gravity="end"
                         android:paddingEnd="10sp"
-                        android:text="Student:"
+                        android:text="@string/student"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
