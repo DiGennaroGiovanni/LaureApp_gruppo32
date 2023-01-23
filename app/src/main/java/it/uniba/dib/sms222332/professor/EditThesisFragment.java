@@ -65,7 +65,7 @@ public class EditThesisFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.modifyThesisToolbar));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.editThesisToolbar));
 
         View view = inflater.inflate(R.layout.fragment_edit_thesis, container, false);
 

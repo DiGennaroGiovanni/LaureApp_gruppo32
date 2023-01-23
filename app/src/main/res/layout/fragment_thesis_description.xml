@@ -346,7 +346,7 @@
             android:layout_alignTop="@+id/btnDelete"
             android:layout_toStartOf="@+id/btnDelete"
             android:background="@drawable/icon_edit"
-            android:contentDescription="@string/modify_thesis"
+            android:contentDescription="@string/edit_thesis"
             />
 
         <Button

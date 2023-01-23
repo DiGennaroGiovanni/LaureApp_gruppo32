@@ -24,6 +24,7 @@ public class StudentThesisFragment extends Fragment {
     String related_projects = "" ;
     String average_marks = "" ;
     String required_exam = "";
+    String professore_email = "";
     Button btnThesisRequest, btnContactProf;
 
     @Nullable
@@ -57,6 +58,7 @@ public class StudentThesisFragment extends Fragment {
             related_projects = getArguments().getString("related_projects");
             average_marks = getArguments().getString("average_marks");
             required_exam = getArguments().getString("required_exams");
+            professore_email = getArguments().getString("professor_email");
 
             txtNameTitle.setText(name);
             txtType.setText(type);
@@ -105,7 +107,7 @@ public class StudentThesisFragment extends Fragment {
            bundle.putString("average_marks",txtAverageMarks.getText().toString());
            bundle.putString("required_exams", txtRequiredExams.getText().toString());
            bundle.putString("thesis_name", txtNameTitle.getText().toString());
-
+           bundle.putString("professor",professore_email);
 
            thesisRequest.setArguments(bundle);
 

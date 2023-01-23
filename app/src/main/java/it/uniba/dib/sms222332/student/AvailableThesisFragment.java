@@ -112,6 +112,7 @@ public class AvailableThesisFragment extends Fragment {
             bundle.putString("average_marks",(String) datiTesi.get("Average"));
             bundle.putString("required_exams",(String) datiTesi.get("Required Exam"));
             bundle.putString("professor",txtProfessor.getText().toString());
+            bundle.putString("professor_email",professorEmail);
 
             studentThesis.setArguments(bundle);
 

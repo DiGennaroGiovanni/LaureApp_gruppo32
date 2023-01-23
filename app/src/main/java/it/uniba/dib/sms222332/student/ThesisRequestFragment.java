@@ -32,6 +32,7 @@ public class ThesisRequestFragment extends Fragment {
     String average_marks = "" ;
     String required_exams = "";
     String thesis_name = "";
+    String professore_email ="";
     LinearLayout averageMarksLayout, requiredExamsLayout;
     TextView txtExamsConstraint, txtAverageConstraint, txtAverageMarks, txtRequiredExams;
     RadioGroup examsRadioGroup, averageRadioGroup;
@@ -66,6 +67,7 @@ public class ThesisRequestFragment extends Fragment {
             average_marks = getArguments().getString("average_marks");
             required_exams = getArguments().getString("required_exams");
             thesis_name = getArguments().getString("thesis_name");
+            professore_email = getArguments().getString("professor");
         }
 
         if(average_marks.equals("None")) {
@@ -88,30 +90,33 @@ public class ThesisRequestFragment extends Fragment {
             String average = "";
             String exams = "";
             String requestName = "";
-            if(rdbAverageYes.isChecked()) {
-                average = rdbAverageYes.getText().toString();
 
-            } else if(rdbAverageNo.isChecked()) {
+            if(rdbAverageYes.isChecked())
+                average = rdbAverageYes.getText().toString();
+            else if(rdbAverageNo.isChecked())
                 average = rdbAverageNo.getText().toString();
 
-            }else if(rdbExamsYes.isChecked()) {
+            if(rdbExamsYes.isChecked())
                 exams = rdbExamsYes.getText().toString();
-
-            } else if(rdbExamsNo.isChecked()) {
+            else if(rdbExamsNo.isChecked())
                 exams = rdbExamsNo.getText().toString();
 
-            }else if(!rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()) {
-                txtExamsConstraint.setError("You have to choice!");
-                Snackbar.make(view1, "You have to choice!", Snackbar.LENGTH_LONG).show();
-            }else if(!rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()) {
+
+
+            if(!rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()){
+               txtExamsConstraint.setError("You have to choice!");
+               Snackbar.make(view1, "You have to choice!", Snackbar.LENGTH_LONG).show();
+
+            }else if(!rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()){
                 txtAverageConstraint.setError("You have to choice!");
                 Snackbar.make(view1, "You have to choice!", Snackbar.LENGTH_LONG).show();
-            }else {
+            }else{
 
                 Map<String, String> request = new HashMap<>();
                 request.put("Average Constraint", average);
                 request.put("Exams Constraint", exams);
                 request.put("Note", edtNote.getText().toString());
+                request.put("Professor",professore_email);
                 requestName = thesis_name + "_" + MainActivity.account.getEmail();
 
                 db.collection("richieste").document(requestName).set(request);
@@ -119,9 +124,7 @@ public class ThesisRequestFragment extends Fragment {
                 Snackbar.make(view1, "Request made!", Snackbar.LENGTH_LONG).show();
 
                 getActivity().onBackPressed();
-
             }
-
         });
 
         return view;
