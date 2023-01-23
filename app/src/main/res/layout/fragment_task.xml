@@ -9,7 +9,7 @@
         android:id="@+id/task_name_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Task name"
+        android:hint="@string/task_name"
         android:inputType="text" />
 
     <LinearLayout
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Estimated time"
+            android:hint="@string/estimated_time"
             android:inputType="number" />
 
         <TextView
@@ -37,7 +37,7 @@
         android:id="@+id/task_description_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Task description"
+        android:hint="@string/task_description"
         android:inputType="text" />
 
     <RadioGroup
@@ -50,26 +50,26 @@
             android:id="@+id/task_status_not_started"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Non iniziato" />
+            android:text="@string/non_iniziato" />
 
         <RadioButton
             android:id="@+id/task_status_in_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="In corso" />
+            android:text="@string/in_corso" />
 
         <RadioButton
             android:id="@+id/task_status_completed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Completato" />
+            android:text="@string/completato" />
     </RadioGroup>
 
     <Button
         android:id="@+id/create_task_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ADD TASK"
+        android:text="@string/add_task"
         android:fontFamily="@font/cardo"
         android:textStyle="bold"/>
 
