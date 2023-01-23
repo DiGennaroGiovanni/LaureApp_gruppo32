@@ -1,8 +1,14 @@
 package it.uniba.dib.sms222332.professor;
 
 import static android.content.ContentValues.TAG;
+import static android.content.Context.DOWNLOAD_SERVICE;
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
+import android.app.DownloadManager;
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,11 +30,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
+
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class ThesisDescriptionFragment extends Fragment {
 
@@ -41,6 +52,8 @@ public class ThesisDescriptionFragment extends Fragment {
     String average_marks = "" ;
     String required_exam = "";
     String student = "";
+    StorageReference storageReference, ref;
+    FirebaseStorage storage;
 
 
 
@@ -69,6 +82,9 @@ public class ThesisDescriptionFragment extends Fragment {
         txtStudent = view.findViewById(R.id.txtStudent);
         btnReceipt = view.findViewById(R.id.btnReceipt);
         btnTask = view.findViewById(R.id.btnTask);
+
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
 
 
         if (getArguments() != null) {
@@ -256,7 +272,37 @@ public class ThesisDescriptionFragment extends Fragment {
         TextView nameView = view.findViewById(R.id.materialName);
         nameView.setText(nomeFile);
 
+        Button downloadMaterial;
+        downloadMaterial = view.findViewById(R.id.downloadMaterial);
+
+        downloadMaterial.setOnClickListener(view1 -> {
+            download(nomeFile);
+            Snackbar.make(view1, "Downloading "+nomeFile, Snackbar.LENGTH_LONG).show();
+        });
+
         layout_lista_file.addView(view);
     }
 
+    private void download(String nomeFile) {
+
+        storageReference = storage.getInstance().getReference();
+        ref = storageReference.child(txtNameTitle.getText().toString()).child(nomeFile);
+
+        ref.getDownloadUrl().addOnSuccessListener(uri -> {
+            String url  = uri.toString();
+                downloadFile(getActivity(), nomeFile,"", DIRECTORY_DOWNLOADS,url );
+
+        }).addOnFailureListener(e -> {
+      });
+    }
+
+    private void downloadFile(Context context, String nomeFile, String fileExtension, String destinationDirectory, String url ) {
+         DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+         Uri uri = Uri.parse(url);
+         DownloadManager.Request request = new DownloadManager.Request(uri);
+
+         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+         request.setDestinationInExternalFilesDir(context, destinationDirectory, nomeFile + fileExtension);
+         downloadManager.enqueue(request);
+    }
 }
