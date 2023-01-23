@@ -25,7 +25,7 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nome_file"
+            android:text="@string/nome_file"
             android:textSize="18sp"
             android:maxLines="1"
             android:ellipsize="end"

@@ -64,7 +64,7 @@
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Faculty" />
+            android:text="@string/faculty" />
 
         <Spinner
             android:id="@+id/edtMainSubject"
@@ -136,7 +136,7 @@
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Correlator" />
+            android:text="@string/correlator" />
 
         <Spinner
             android:id="@+id/edtCorrelator"
@@ -167,7 +167,7 @@
                 android:id="@+id/addFile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+"
+                android:text="@string/button_add_material"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
                 android:layout_centerHorizontal="true"
@@ -198,7 +198,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="Average Marks"
+            android:text="@string/average_marks"
             tools:ignore="RtlHardcoded" />
 
         <EditText
@@ -223,7 +223,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="Esami richiesti"
+            android:text="@string/required_exams"
             tools:ignore="RtlHardcoded" />
 
     <EditText

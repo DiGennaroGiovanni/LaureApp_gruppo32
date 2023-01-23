@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:text="Account deleted"
+            android:text="@string/account_deleted"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:text="We are sorry to see you leave"
+            android:text="@string/we_are_sorry_to_see_you_leave"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="italic" />
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:text="You are always welocome to join LaureApp again!"
+            android:text="@string/you_are_always_welocome_to_join_laureapp_again"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="italic" />
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:textStyle="bold"
-                android:text="Back to login" />
+                android:text="@string/back_to_login" />
 
         </RelativeLayout>
 
