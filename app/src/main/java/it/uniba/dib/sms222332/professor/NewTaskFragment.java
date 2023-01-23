@@ -21,7 +21,7 @@ import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
 
-public class AddTaskFragment extends Fragment {
+public class NewTaskFragment extends Fragment {
 
 
     TextView txtStudent, txtThesisName;
@@ -33,7 +33,7 @@ public class AddTaskFragment extends Fragment {
 @Nullable
 @Override
 public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.addTaskToolbar));
+    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.newTaskToolbar));
 
     View view = inflater.inflate(R.layout.fragment_new_task, container, false);
 
@@ -70,8 +70,8 @@ public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup c
             infoTask.put("Thesis",thesisName);
             infoTask.put("State","Non Iniziato");
 
-            db.collection("task").document(nameTask).set(infoTask);
-            Snackbar.make(view1, "Task insert!", Snackbar.LENGTH_LONG).show();
+            db.collection("tasks").document(nameTask).set(infoTask);
+            Snackbar.make(view1, "Task added!", Snackbar.LENGTH_LONG).show();
             getActivity().onBackPressed();
 
         }

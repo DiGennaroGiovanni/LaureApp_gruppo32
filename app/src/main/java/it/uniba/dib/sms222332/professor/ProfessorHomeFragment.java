@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import it.uniba.dib.sms222332.R;
-import it.uniba.dib.sms222332.ReceiptsListFragment;
 
 public class ProfessorHomeFragment extends Fragment {
 

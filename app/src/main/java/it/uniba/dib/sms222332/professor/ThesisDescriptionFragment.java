@@ -29,7 +29,6 @@ import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
 import it.uniba.dib.sms222332.R;
-import it.uniba.dib.sms222332.ReceiptsListFragment;
 
 public class ThesisDescriptionFragment extends Fragment {
 

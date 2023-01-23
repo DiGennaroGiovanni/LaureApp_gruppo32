@@ -34,12 +34,14 @@
     <string name="languagesToolbar">Lingua</string>
     <string name="chatToolbar">Chat</string>
     <string name="settingsToolbar">Impostazioni</string>
-    <string name="modifyThesisToolbar">Modifica Tesi</string>
-    <string name="addTaskToolbar">Aggiungi Task</string>
+    <string name="editThesisToolbar">Modifica Tesi</string>
+    <string name="newTaskToolbar">Nuovo Task</string>
     <string name="taskListToolbar">Lista Task</string>
     <string name="editTaskToolbar">Modifica Task</string>
     <string name="availableThesisTooolbar">>Tesi Disponibili</string>
     <string name="thesisRequestTooolbar">Richiesta Tesi</string>
+
+    <string name="newReceiptToolbar">Nuovo Ricevimento</string>
 
     <!-- FILIPPO -->
     <string name="email">Email</string>
@@ -101,6 +103,9 @@
     <string name="save_thesis">Salva</string>
     <string name="splash_image">Immagine di Splash</string>
     <string name="receipt">Ricevimento</string>
+    <string name="select_date">seleziona data</string>
+    <string name="select_start_time">seleziona orario d\'inizio</string>
+    <string name="select_end_time">seleziona orario di fine</string>
     <string name="email_already_existent">Email già utilizzata, riprova!</string>
     <string name="info_button">Bottone info</string>
     <!-- FINE FILIPPO -->

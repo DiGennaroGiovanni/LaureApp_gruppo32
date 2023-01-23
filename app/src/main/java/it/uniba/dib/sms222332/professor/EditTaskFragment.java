@@ -71,7 +71,7 @@ public class EditTaskFragment extends Fragment {
                 edtDescription.setError("Inserisci una descrizione per il task");
             else{
 
-                DocumentReference docRef = db.collection("task").document(txtTaskTitle.getText().toString());
+                DocumentReference docRef = db.collection("tasks").document(txtTaskTitle.getText().toString());
                 Map<String, Object> updates = new HashMap<>();
                 updates.put("Description", edtDescription.getText().toString());
 

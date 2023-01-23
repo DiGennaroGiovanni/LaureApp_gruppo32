@@ -188,19 +188,15 @@ public class NewThesisFragment extends Fragment {
             materieRichieste = edtMaterieRichieste.getText().toString();
 
             if(materieRichieste.isEmpty())
-            {
                 edtMaterieRichieste.setError("Inserisci le materie richieste");
-            }
         }
 
-        if(averageCheck.isChecked())
-        {
+        if(averageCheck.isChecked()) {
             mediaVoti = edtAverage.getText().toString();
 
             if(mediaVoti.isEmpty())
-            {
                 edtAverage.setError("Inserisci una vincolo valido");
-            }else{
+            else{
                 numeroIntero = Integer.parseInt(mediaVoti);
                 if(numeroIntero > 30 || numeroIntero < 18)
                     edtAverage.setError("Inserisci una media tra il 18 ed il 30");

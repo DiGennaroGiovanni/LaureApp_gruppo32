@@ -1,13 +1,11 @@
 package it.uniba.dib.sms222332.professor;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,14 +16,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
 
@@ -60,12 +53,12 @@ public class TaskListFragment extends Fragment {
         taskListLayout = view.findViewById(R.id.taskListLayout);
 
 
-        CollectionReference collectionReference = db.collection("task");
+        CollectionReference collectionReference = db.collection("tasks");
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     if(document.getString("Thesis").equals(txtNomeTesi.getText().toString()))
-                        addCardTask(document);
+                        addTaskCard(document);
                 }
             } else {
 
@@ -75,7 +68,7 @@ public class TaskListFragment extends Fragment {
 
         addTaskButton.setOnClickListener(view1 -> {
 
-            Fragment addTaskFragment = new AddTaskFragment();
+            Fragment addTaskFragment = new NewTaskFragment();
             Bundle bundle = new Bundle();
 
             bundle.putString("thesisName",thesisName);
@@ -95,7 +88,7 @@ public class TaskListFragment extends Fragment {
         return view;
     }
 
-    private void addCardTask(QueryDocumentSnapshot document) {
+    private void addTaskCard(QueryDocumentSnapshot document) {
         View view = getLayoutInflater().inflate(R.layout.card_task, null);
 
         TextView txtTaskName = view.findViewById(R.id.txtTaskName);
@@ -123,7 +116,7 @@ public class TaskListFragment extends Fragment {
             });
             builder.setNegativeButton("Yes", (dialog, which) -> {
                 taskListLayout.removeView(view);
-                db.collection("task").document(txtTaskName.getText().toString()).delete();
+                db.collection("tasks").document(txtTaskName.getText().toString()).delete();
 
             });
             AlertDialog dialog = builder.create();
