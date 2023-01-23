@@ -12,6 +12,7 @@
         android:fontFamily="@font/cardo"
         android:text="Task name"
         android:padding="8sp"
+        android:layout_margin="3sp"
         android:background="@drawable/item_task_background"/>
 
 </RelativeLayout>

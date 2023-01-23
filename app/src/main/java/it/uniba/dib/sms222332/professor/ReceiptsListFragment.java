@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.professor;
 
 import android.os.Bundle;
 
@@ -8,18 +8,27 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+import it.uniba.dib.sms222332.R;
 
 
 public class ReceiptsListFragment extends Fragment {
@@ -27,8 +36,9 @@ public class ReceiptsListFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     Button btnNewReceipt;
-    private String student, thesisName;
     private TextView txtThesisName, txtStudent;
+    LinearLayout listView;
+
 
     @Nullable
     @Override
@@ -40,8 +50,8 @@ public class ReceiptsListFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if(bundle != null){
-            thesisName = bundle.getString("thesis_name");
-            student = bundle.getString("student");
+            String thesisName = bundle.getString("thesis_name");
+            String student = bundle.getString("student");
             txtThesisName.setText(thesisName);
             txtStudent.setText(student);
         }
@@ -67,35 +77,49 @@ public class ReceiptsListFragment extends Fragment {
             fragmentTransaction.commit();
         });
 
-        LinearLayout listView = view.findViewById(R.id.layoutReceiptsList);
+         listView = view.findViewById(R.id.layoutReceiptsList);
 
 
+        db.collection("ricevimenti")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        for (QueryDocumentSnapshot document : task.getResult()){
+                            if(document.getString("Thesis").equals(txtThesisName.getText().toString()))
+                                addReceiptCard(document);
+                        }
+                    }
 
-        //TODO IMPLEMENTARE PRIMA PAGINA NUOVO RICEVIMENTO POI TORNARE QUA
-//        db.collection("ricevimenti")
-//                .get()
-//                .addOnCompleteListener(task -> {
-//                    if(task.isSuccessful()){
-//                        for (QueryDocumentSnapshot document : task.getResult()){
-//                            if
-//                        }
-//                    }
-//
-//                })
-
-        //prova di lista ricevimenti
-
-        for (int i = 0; i < 20; i++){
-            View v = getLayoutInflater().inflate(R.layout.card_receipt, null);
-
-
-            listView.addView(v);
-
-        }
-
-
+                });
 
 
         return view;
+    }
+
+    private void addReceiptCard(QueryDocumentSnapshot document) {
+        View v = getLayoutInflater().inflate(R.layout.card_receipt, null);
+
+        TextView date = v.findViewById(R.id.txtReceiptDateCard);
+        TextView startTime = v.findViewById(R.id.txtReceiptStartTimeCard);
+        TextView endTime = v.findViewById(R.id.txtReceiptEndTimeCard);
+        TextView description = v.findViewById(R.id.txtReceiptDescriptionCard);
+        TextView tasks = v.findViewById(R.id.addressedTasksCard);
+
+        date.setText(document.getString("Date"));
+        startTime.setText((document.getString("Start Time")));
+        endTime.setText(document.getString("End Time"));
+        description.setText(document.getString("Description"));
+
+
+        Map<String, Object> map = document.getData();
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            if (entry.getKey().equals("Tasks")) {
+                String value = entry.getValue().toString();
+                tasks.setText(value.substring(1, value.length()-1));
+            }
+        }
+
+        listView.addView(v);
+
     }
 }
