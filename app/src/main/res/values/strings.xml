@@ -37,6 +37,8 @@
     <string name="delete_thesis">Delete Thesis</string>
     <string name="delete_material">Delete Material</string>
     <string name="modify_thesis">Modify Thesis</string>
+    <string name="availableThesisTooolbar">Available Thesis</string>
+    <string name="thesisRequestTooolbar">Thesis Request</string>
 
     <!-- FILIPPO -->
     <string name="email">Email</string>
@@ -98,6 +100,7 @@
     <string name="save_thesis">Save</string>
     <string name="splash_image">Splash image</string>
     <string name="receipt">Receipt</string>
+    <string name="info_button">Info Button</string>
     <string name="email_already_existent">Email already existent, retry!</string>
     <!-- FINE FILIPPO -->
 </resources>

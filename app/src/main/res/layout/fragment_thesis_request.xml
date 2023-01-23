@@ -11,6 +11,7 @@
         android:layout_margin="13dp">
 
         <TextView
+            android:visibility="visible"
             android:id="@+id/txtAverageConstraint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,6 +23,8 @@
             android:textStyle="bold"/>
 
         <LinearLayout
+            android:visibility="visible"
+            android:id="@+id/averageMarksLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -47,6 +50,8 @@
         </LinearLayout>
 
         <RadioGroup
+            android:visibility="visible"
+            android:id="@+id/averageRadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -80,6 +85,7 @@
         </RadioGroup>
 
         <TextView
+            android:visibility="visible"
             android:id="@+id/txtExamsConstraint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,6 +97,8 @@
             android:textStyle="bold"/>
 
         <LinearLayout
+            android:visibility="visible"
+            android:id="@+id/requiredExamsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -116,6 +124,8 @@
         </LinearLayout>
 
         <RadioGroup
+            android:visibility="visible"
+            android:id="@+id/examsRadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -171,7 +181,7 @@
             android:fontFamily="@font/cardo"
             android:layout_marginTop="15dp"
             android:text="Send request"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"
             />

@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import it.uniba.dib.sms222332.R;
 
@@ -24,6 +26,19 @@ public class StudentHomeFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.homeToolbar));
 
         buttonAllThesis = view.findViewById(R.id.allThesisBtn);
+
+        buttonAllThesis.setOnClickListener(view1 -> {
+
+            Fragment availableThesisFragment = new AvailableThesisFragment();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, availableThesisFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
+
+
 
 
         return view;

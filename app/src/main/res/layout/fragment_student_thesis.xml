@@ -311,7 +311,7 @@
                 android:fontFamily="@font/cardo"
                 android:layout_margin="5dp"
                 android:text="Request thesis"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 />
