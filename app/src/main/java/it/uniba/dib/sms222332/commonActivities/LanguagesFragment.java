@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332;
+package it.uniba.dib.sms222332.commonActivities;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,12 +13,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import java.util.Objects;
+
+import it.uniba.dib.sms222332.R;
+
 public class LanguagesFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.languagesToolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.languagesToolbar));
 
         View view = inflater.inflate(R.layout.fragment_languages, container, false);
 

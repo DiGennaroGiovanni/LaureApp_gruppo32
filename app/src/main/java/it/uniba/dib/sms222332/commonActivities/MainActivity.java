@@ -20,7 +20,6 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import it.uniba.dib.sms222332.LanguagesFragment;
 import it.uniba.dib.sms222332.MessagesFragment;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.professor.ProfessorAccount;
