@@ -68,14 +68,14 @@
                 android:textStyle="bold" />
 
 
-            <EditText
-                android:id="@+id/edtReceiptDate"
+            <TextView
+                android:id="@+id/txtReceiptDate"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:text="select date"
                 android:fontFamily="@font/cardo"
                 android:textSize="16sp"
-                android:layout_weight="65"
-                android:inputType="date" />
+                android:layout_weight="65" />
 
 
         </LinearLayout>

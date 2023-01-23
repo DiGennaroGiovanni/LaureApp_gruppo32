@@ -1,13 +1,15 @@
 package it.uniba.dib.sms222332;
 
+import android.app.DatePickerDialog;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,27 +22,48 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class NewReceiptFragment extends Fragment {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private String student, thesisName;
-    private TextView txtStudent, txtThesisName;
     LinearLayout allTasks;
     ArrayList<String> addressedTasks = new ArrayList<>();
+    private TextView txtReceiptDate;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new_receipt, container, false);
 
-        txtStudent = view.findViewById(R.id.txtStudentNameSurname);
-        txtThesisName = view.findViewById(R.id.txtThesisName);
+        TextView txtStudent = view.findViewById(R.id.txtStudentNameSurname);
+        TextView txtThesisName = view.findViewById(R.id.txtThesisName);
+
+        txtReceiptDate = view.findViewById(R.id.txtReceiptDate);
+        txtReceiptDate.setPaintFlags(txtReceiptDate.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        final Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        txtReceiptDate.setOnClickListener(view1 -> {
+
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), (datePicker, i, i1, i2) -> {
+
+                i1 = i1 + 1;
+                String date = i2 + "/"+i1+"/"+year;
+                txtReceiptDate.setText(date);
+                txtReceiptDate.setTextColor(Color.BLACK);
+            }, year, month, day);
+            dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+            dialog.show();
+        });
 
         Bundle bundle = getArguments();
         if (bundle != null){
-            student = bundle.getString("student");
-            thesisName = bundle.getString("thesis_name");
+            String student = bundle.getString("student");
+            String thesisName = bundle.getString("thesis_name");
             txtStudent.setText(student);
             txtThesisName.setText(thesisName);
         }
@@ -55,7 +78,7 @@ public class NewReceiptFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            if(thesisName.equals(document.getString("Thesis")))
+                            if(txtThesisName.getText().toString().equals(document.getString("Thesis")))
                                 addTask(document.getString("Name"));
 
                         }
