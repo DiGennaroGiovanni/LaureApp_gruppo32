@@ -1,12 +1,9 @@
 package it.uniba.dib.sms222332;
 
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +25,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
-public class ThesisListFragment extends Fragment {
+import it.uniba.dib.sms222332.tools.PDFUtility;
+
+public class ThesisListFragment extends Fragment implements PDFUtility.OnDocumentClose{
+
+    private static final String TAG = ThesisListFragment.class.getSimpleName();
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth;
@@ -98,7 +97,7 @@ public class ThesisListFragment extends Fragment {
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View viewCardThesis) {
-                sharePdf();
+                sharePdf(viewCardThesis, "FILIPPO TESI", "Sperimental", "I.T.P.S.", "25", "No correlator", "Provo a scrivere una descrizione", "None");
             }
         });
 
@@ -131,23 +130,23 @@ public class ThesisListFragment extends Fragment {
         });
     }
 
-    private void sharePdf() {
-        // Crea un documento vuoto
-        PdfDocument document = new PdfDocument();
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(300, 600, 1).create();
-        PdfDocument.Page page1 = document.startPage(pageInfo);
-        Canvas canvas = page1.getCanvas();
-        Paint paint = new Paint();
-        paint.setColor(Color.BLUE);
-        canvas.drawCircle(50, 50, 30, paint);
-        document.finishPage(page1);
-
-        File outputFile = new File(requireContext().getExternalFilesDir(null), "tesi.pdf");
-        Uri uri = FileProvider.getUriForFile(requireContext(), "it.uniba.dib.sms222332", outputFile);
+    private void sharePdf(View v, String name, String type, String faculty, String estimated_time, String correlator, String description, String related_projects) {
 
         try {
-            document.writeTo(new FileOutputStream(outputFile));
-            document.close();
+
+            File outputFile = new File(requireContext().getExternalFilesDir(null), "tesi.pdf");
+            Uri uri = FileProvider.getUriForFile(requireContext(), "it.uniba.dib.sms222332", outputFile);
+
+            Map<String, String> datiTesi = new HashMap<>();
+            datiTesi.put("name", name);
+            datiTesi.put("type", type);
+            datiTesi.put("faculty", faculty);
+            datiTesi.put("estimated_time", estimated_time);
+            datiTesi.put("correlator", correlator);
+            datiTesi.put("description", description);
+            datiTesi.put("related_project", related_projects);
+
+            PDFUtility.createPdf(requireContext(), ThesisListFragment.this, datiTesi, name, true, outputFile);
 
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
@@ -155,8 +154,15 @@ public class ThesisListFragment extends Fragment {
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
             startActivity(Intent.createChooser(shareIntent, "Condividi informazioni tesi"));
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Log.e(TAG,"Errore nella creazione del pdf");
         }
     }
+
+
+    @Override
+    public void onPDFDocumentClose(File file) {
+        if(file.exists()) Log.e(TAG, "File pdf creato.");
+    }
+
 }
