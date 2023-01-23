@@ -10,15 +10,17 @@ public class StudentAccount implements Account {
     private String badgeNumber;
     private String faculty;
     private String email;
+    private String request;
     private final String accountType = "Student";
 
 
-    public StudentAccount(String name, String surname, String badgeNumber, String faculty, String email) {
+    public StudentAccount(String name, String surname, String badgeNumber, String faculty, String email, String request) {
         this.name = name;
         this.surname = surname;
         this.badgeNumber = badgeNumber;
         this.faculty = faculty;
         this.email = email;
+        this.request = request;
     }
 
     @Override
@@ -34,6 +36,11 @@ public class StudentAccount implements Account {
     @Override
     public String getSurname() {
         return surname;
+    }
+
+    @Override
+    public String getRequest() {
+        return request;
     }
 
     @Override

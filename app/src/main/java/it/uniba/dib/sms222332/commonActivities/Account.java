@@ -7,4 +7,5 @@ public interface Account {
     String getAccountType();
     String getFaculty();
     String getEmail();
+    String getRequest();
 }

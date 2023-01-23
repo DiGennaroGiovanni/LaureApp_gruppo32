@@ -28,6 +28,11 @@ public class ProfessorAccount implements Account {
     }
 
     @Override
+    public String getRequest() {
+        return null;
+    }
+
+    @Override
     public String getBadgeNumber() {
         return null;
     }

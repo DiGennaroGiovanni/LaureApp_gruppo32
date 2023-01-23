@@ -112,8 +112,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String badgeNumber = getIntent().getStringExtra("badge_number");
         String faculty = getIntent().getStringExtra("faculty");
         String email = getIntent().getStringExtra("email");
+        String request = getIntent().getStringExtra("request");
 
-        account = new StudentAccount(name, surname, badgeNumber, faculty, email);
+        account = new StudentAccount(name, surname, badgeNumber, faculty, email, request);
     }
 
     private void setBottomNavigationBar(String accountType) {

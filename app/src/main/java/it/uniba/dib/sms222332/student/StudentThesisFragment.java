@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class StudentThesisFragment extends Fragment {
 
@@ -90,6 +91,12 @@ public class StudentThesisFragment extends Fragment {
         btnContactProf.setOnClickListener(view1 -> {
 
         });
+
+        String requestStudent = MainActivity.account.getRequest();
+
+        //if(requestStudent.equals("yes"))
+         //   btnThesisRequest.setVisibility(View.GONE);
+
 
        btnThesisRequest.setOnClickListener(view12 -> {
            Fragment thesisRequest = new ThesisRequestFragment();
