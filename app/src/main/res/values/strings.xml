@@ -52,6 +52,7 @@
     <string name="proceed_with_sign_up">Proceed with sign up:</string>
     <string name="professor">Professor</string>
     <string name="student">Student:</string>
+    <string name="studentProfession">Student</string>
     <string name="faculty">Faculty</string>
     <string name="proceed_with_sign_up_as_a_professor">Proceed with sign up as a professor</string>
     <string name="proceed_with_sign_up_as_a_student">Proceed with sign up as a student</string>

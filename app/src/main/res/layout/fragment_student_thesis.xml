@@ -3,7 +3,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0808275A">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,14 +15,20 @@
             android:id="@+id/txtNameTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
             android:fontFamily="@font/cardo"
             android:text="Thesis name"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
+
+        <!--        lineetta divisiva      -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10sp"
+            android:background="#4D000000"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,8 +44,8 @@
                 android:paddingEnd="20sp"
                 android:text="Thesis type:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtTypology"
@@ -47,7 +54,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -66,8 +73,8 @@
                 android:paddingEnd="20sp"
                 android:text="Department:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtDepartment"
@@ -76,7 +83,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -95,8 +102,8 @@
                 android:paddingEnd="20sp"
                 android:text="Professor:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtProfessor"
@@ -105,7 +112,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -124,8 +131,8 @@
                 android:paddingEnd="20sp"
                 android:text="Correlator:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtCorrelator"
@@ -134,7 +141,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -153,8 +160,8 @@
                 android:paddingEnd="20sp"
                 android:text="Estimated Time:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtTime"
@@ -163,7 +170,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -183,8 +190,8 @@
                 android:paddingEnd="20sp"
                 android:text="Description:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtDescription"
@@ -193,7 +200,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -212,8 +219,8 @@
                 android:paddingEnd="20sp"
                 android:text="Related Projects:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtRelatedProjects"
@@ -222,7 +229,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -242,8 +249,8 @@
                 android:paddingEnd="20sp"
                 android:text="Average Marks:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtAverageMarks"
@@ -252,7 +259,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -271,8 +278,8 @@
                 android:paddingEnd="20sp"
                 android:text="Required Exams:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtRequiredExams"
@@ -281,7 +288,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -297,24 +304,25 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:text="Message"
-                android:backgroundTint="@android:color/transparent"
+                android:backgroundTint="@color/white"
                 android:layout_margin="5dp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/cardo"
-                android:textStyle="bold" />
+                android:elevation="2dp"
+                 />
 
             <Button
                 android:id="@+id/btnThesisRequest"
+                android:textSize="15sp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:fontFamily="@font/cardo"
-                android:layout_margin="5dp"
                 android:text="Request thesis"
+                android:layout_margin="5dp"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:elevation="2dp"
                 />
+
+
 
         </LinearLayout>
 

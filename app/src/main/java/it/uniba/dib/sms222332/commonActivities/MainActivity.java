@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case "Student":
-                profession.setText(R.string.student);
+                profession.setText(R.string.studentProfession);
                 break;
         }
     }

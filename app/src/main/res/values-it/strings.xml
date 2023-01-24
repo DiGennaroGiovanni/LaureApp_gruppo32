@@ -54,6 +54,8 @@
     <string name="proceed_with_sign_up">Continua registrazione come:</string>
     <string name="professor">Professore</string>
     <string name="student">Studente:</string>
+    <string name="studentProfession">Studente</string>
+
     <string name="faculty">Facoltà:</string>
     <string name="proceed_with_sign_up_as_a_professor">Continua registrazione come professore</string>
     <string name="proceed_with_sign_up_as_a_student">Continua registrazione come alunno</string>
