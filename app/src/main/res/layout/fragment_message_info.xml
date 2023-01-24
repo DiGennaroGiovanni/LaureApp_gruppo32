@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".professor.ThesisListFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/txtNameTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:fontFamily="@font/cardo"
+            android:text="@string/thesis_name"
+            android:background="@null"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            />
+
+        <!--        lineetta divisiva      -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10sp"
+            android:background="#4D000000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtObjectTitle"
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:fontFamily="@font/cardo"
+                android:text="Object"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txtObject"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtMessageTitle"
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:fontFamily="@font/cardo"
+                android:text="Your message:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtMessage"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtAnswerTitle"
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:text="Professor answer"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cardo"/>
+
+            <TextView
+                android:id="@+id/txtAnswer"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

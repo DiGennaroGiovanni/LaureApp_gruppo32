@@ -16,8 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,6 +70,10 @@ public class StudentMessageFragment extends Fragment {
                     edtDescription.setError("Insert message description!");
                 else{
 
+                    LocalDateTime date = LocalDateTime.now();
+                    date = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
                     Map<String, String> message = new HashMap<>();
                     message.put("Thesis Name", thesisName);
                     message.put("Professor", professor);
@@ -74,6 +81,7 @@ public class StudentMessageFragment extends Fragment {
                     message.put("Object",object);
                     message.put("Student Message",description);
                     message.put("Professor Message","");
+                    message.put("Date", date.format(formatter));
 
 
                     db.collection("messaggi").document().set(message);

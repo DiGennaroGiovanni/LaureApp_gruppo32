@@ -33,6 +33,7 @@ public class StudentListMessageFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<String> listaTesi = new ArrayList<String>();
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class StudentListMessageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_student_list_message, container, false);
 
         messageListLayout = view.findViewById(R.id.layoutMessagesList);
+
 
         CollectionReference collectionReference = db.collection("messaggi");
         collectionReference.get().addOnCompleteListener(task -> {
@@ -52,10 +54,9 @@ public class StudentListMessageFragment extends Fragment {
                             listaTesi.add(document.getString("Thesis Name"));
                         }
                 }
-            } else {
-
             }
         });
+
 
         return view;
     }
@@ -71,6 +72,8 @@ public class StudentListMessageFragment extends Fragment {
         String professor_message = document.getString("Professor Message");
         String student_message = document.getString("Student Message");
         String thesis_name = document.getString("Thesis Name");
+        String date = document.getString("Date");
+
 
         txtName.setText(thesis_name);
         txtProfessor.setText(professor);
@@ -81,7 +84,22 @@ public class StudentListMessageFragment extends Fragment {
         bundle.putString("professore_message",professor_message);
         bundle.putString("student_message",student_message);
         bundle.putString("thesis_name",thesis_name);
+        bundle.putString("date",date);
 
+
+        view.setOnClickListener(view1 -> {
+
+            Fragment info = new MessageStudentInfoFragment();
+
+            info.setArguments(bundle);
+
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, info);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
 
 
         messageListLayout.addView(view);

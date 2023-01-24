@@ -92,7 +92,8 @@ public class StudentThesisFragment extends Fragment {
 
         }
 
-        if(MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no"))
+        if(MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no")
+        || MainActivity.account.getRequest().equals(txtNameTitle.getText().toString()))
             btnContactProf.setOnClickListener(view1 -> {
 
                 Fragment thesisMessage = new StudentMessageFragment();
@@ -103,19 +104,17 @@ public class StudentThesisFragment extends Fragment {
 
                 thesisMessage.setArguments(bundle);
 
-
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, thesisMessage);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
-
             });
 
         else{
             btnContactProf.setOnClickListener(view12 -> {
-                Snackbar.make(view12,"You can send messages only for your thesis!",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view12,"You can send messages only for '" + MainActivity.account.getRequest()+ "' thesis!",Snackbar.LENGTH_LONG).show();
             });
         }
 
