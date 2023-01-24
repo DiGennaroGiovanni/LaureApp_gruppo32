@@ -38,7 +38,7 @@
                 android:fontFamily="@font/cardo"
                 android:gravity="left"
                 android:paddingEnd="20sp"
-                android:text="Name:"
+                android:text="@string/name_surname"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -66,7 +66,7 @@
                 android:fontFamily="@font/cardo"
                 android:gravity="left"
                 android:paddingEnd="20sp"
-                android:text="Faculty:"
+                android:text="@string/faculty"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -76,7 +76,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="55"
-                android:text="Faculty"
+                android:text="@string/faculty"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -94,7 +94,7 @@
                 android:fontFamily="@font/cardo"
                 android:gravity="left"
                 android:paddingEnd="20sp"
-                android:text="Email:"
+                android:text="@string/email"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -104,7 +104,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="55"
-                android:text="email"
+                android:text="@string/email"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -122,7 +122,7 @@
                 android:fontFamily="@font/cardo"
                 android:gravity="left"
                 android:paddingEnd="20sp"
-                android:text="Badge Number:"
+                android:text="@string/matriculation_number"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -132,7 +132,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="55"
-                android:text="Badge Number"
+                android:text="@string/matriculation_number"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -148,7 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="Delete profile" />
+                android:text="@string/delete_profile" />
 
         </RelativeLayout>
 

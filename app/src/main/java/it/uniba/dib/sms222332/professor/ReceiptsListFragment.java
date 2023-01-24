@@ -115,7 +115,8 @@ public class ReceiptsListFragment extends Fragment {
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             if (entry.getKey().equals("Tasks")) {
                 String value = entry.getValue().toString();
-                tasks.setText(value.substring(1, value.length()-1));
+                if(!value.isEmpty())
+                    tasks.setText(value.substring(1, value.length()-1));
             }
         }
 

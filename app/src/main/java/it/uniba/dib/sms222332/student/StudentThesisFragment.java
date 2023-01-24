@@ -14,7 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class StudentThesisFragment extends Fragment {
 
@@ -23,6 +26,7 @@ public class StudentThesisFragment extends Fragment {
     String related_projects = "" ;
     String average_marks = "" ;
     String required_exam = "";
+    String professore_email = "";
     Button btnThesisRequest, btnContactProf;
 
     @Nullable
@@ -56,6 +60,7 @@ public class StudentThesisFragment extends Fragment {
             related_projects = getArguments().getString("related_projects");
             average_marks = getArguments().getString("average_marks");
             required_exam = getArguments().getString("required_exams");
+            professore_email = getArguments().getString("professor_email");
 
             txtNameTitle.setText(name);
             txtType.setText(type);
@@ -87,28 +92,57 @@ public class StudentThesisFragment extends Fragment {
 
         }
 
-        btnContactProf.setOnClickListener(view1 -> {
+        if(MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no"))
+            btnContactProf.setOnClickListener(view1 -> {
 
-        });
+                Fragment thesisMessage = new StudentMessageFragment();
+                Bundle bundle = new Bundle();
 
-       btnThesisRequest.setOnClickListener(view12 -> {
-           Fragment thesisRequest = new ThesisRequestFragment();
-           Bundle bundle = new Bundle();
+                bundle.putString("thesis_name", txtNameTitle.getText().toString());
+                bundle.putString("professor",professore_email);
 
-           bundle.putString("average_marks",txtAverageMarks.getText().toString());
-           bundle.putString("required_exams", txtRequiredExams.getText().toString());
-           bundle.putString("thesis_name", txtNameTitle.getText().toString());
+                thesisMessage.setArguments(bundle);
 
 
-           thesisRequest.setArguments(bundle);
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, thesisMessage);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
-           FragmentManager fragmentManager = getParentFragmentManager();
-           FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-           fragmentTransaction.replace(R.id.fragment_container, thesisRequest);
-           fragmentTransaction.addToBackStack(null);
-           fragmentTransaction.commit();
 
-       });
+            });
+
+        else{
+            btnContactProf.setOnClickListener(view12 -> {
+                Snackbar.make(view12,"You can send messages only for your thesis!",Snackbar.LENGTH_LONG).show();
+            });
+        }
+
+        if(!MainActivity.account.getRequest().equals("no")){
+            btnThesisRequest.setOnClickListener(view13 -> {
+                Snackbar.make(view13,"Already requested a thesis!",Snackbar.LENGTH_LONG).show();
+            });
+        }else{
+            btnThesisRequest.setOnClickListener(view12 -> {
+                Fragment thesisRequest = new ThesisRequestFragment();
+                Bundle bundle = new Bundle();
+
+                bundle.putString("average_marks",txtAverageMarks.getText().toString());
+                bundle.putString("required_exams", txtRequiredExams.getText().toString());
+                bundle.putString("thesis_name", txtNameTitle.getText().toString());
+                bundle.putString("professor",professore_email);
+
+                thesisRequest.setArguments(bundle);
+
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, thesisRequest);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            });
+        }
 
         return view;
     }

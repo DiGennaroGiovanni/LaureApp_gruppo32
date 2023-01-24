@@ -20,8 +20,6 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import it.uniba.dib.sms222332.LanguagesFragment;
-import it.uniba.dib.sms222332.MessagesFragment;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.professor.ProfessorAccount;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
@@ -29,6 +27,8 @@ import it.uniba.dib.sms222332.professor.ThesisListFragment;
 import it.uniba.dib.sms222332.student.FavoritesFragment;
 import it.uniba.dib.sms222332.student.StudentAccount;
 import it.uniba.dib.sms222332.student.StudentHomeFragment;
+import it.uniba.dib.sms222332.student.StudentListMessageFragment;
+import it.uniba.dib.sms222332.student.StudentMessageFragment;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -112,8 +112,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String badgeNumber = getIntent().getStringExtra("badge_number");
         String faculty = getIntent().getStringExtra("faculty");
         String email = getIntent().getStringExtra("email");
+        String request = getIntent().getStringExtra("request");
 
-        account = new StudentAccount(name, surname, badgeNumber, faculty, email);
+        account = new StudentAccount(name, surname, badgeNumber, faculty, email, request);
     }
 
     private void setBottomNavigationBar(String accountType) {
@@ -139,7 +140,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.chat_button:
-                selectedFragment = new MessagesFragment();
+                if(MainActivity.account.getAccountType().equals("Student"))
+                    selectedFragment = new StudentListMessageFragment();
+                else
+                    selectedFragment = new StudentListMessageFragment(); //TODO DA METTERE LA CHAT DEL PROFESSORE
+
                 break;
 
             case R.id.thesis_list_button:
@@ -264,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case "Student":
-                profession.setText(R.string.student);
+                profession.setText(R.string.studentProfession);
                 break;
         }
     }

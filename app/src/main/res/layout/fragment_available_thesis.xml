@@ -21,7 +21,7 @@
             android:layout_margin="10dp"
             android:layout_weight="90"
             android:iconifiedByDefault="false"
-            android:queryHint="Search...">
+            android:queryHint="Search Thesis...">
 
         </SearchView>
 

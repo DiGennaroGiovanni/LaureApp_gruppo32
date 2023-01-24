@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".professor.ThesisListFragment"
+    android:background="#0808275A">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/txtNameTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:fontFamily="@font/cardo"
+            android:text="@string/thesis_name"
+            android:background="@null"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            />
+
+        <!--        lineetta divisiva      -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10sp"
+            android:background="#4D000000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:fontFamily="@font/cardo"
+                android:text="@string/student"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txtStudent"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:fontFamily="@font/cardo"
+                android:text="@string/department"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtDepartment"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:text="@string/average_marks"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cardo"/>
+
+            <TextView
+                android:id="@+id/txtAverageMarks"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20sp"
+                android:textAlignment="textEnd"
+                android:text="@string/requirement_met"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cardo"/>
+
+            <TextView
+                android:id="@+id/txtMarksRequiredOrNot"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:text="@string/required_exams"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cardo"/>
+
+            <TextView
+                android:id="@+id/txtRequiredExams"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_weight="35"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="20sp"
+                android:text="@string/requirement_met"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cardo"/>
+
+            <TextView
+                android:id="@+id/txtExamsRequiredOrNot"
+                android:layout_weight="65"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="10sp"
+           android:elevation="2dp"
+           android:background="@drawable/custom_shape">
+
+           <TextView
+               android:id="@+id/txtMessageFromStudent"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:paddingStart="20sp"
+               android:paddingEnd="20sp"
+               android:text="messageFromStudent"
+               android:textColor="@color/black"
+               android:textSize="18sp"
+               android:textStyle="normal"
+               android:fontFamily="@font/cardo"
+               android:paddingHorizontal="10sp"
+               android:paddingVertical="5sp"/>
+       </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="Accept"
+                android:elevation="2dp"/>
+
+            <Button
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                android:text="Decline"
+                android:outlineProvider="background"
+                android:elevation="2dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

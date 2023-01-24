@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:background="#0808275A">
 
 
     <LinearLayout
@@ -26,6 +27,7 @@
 
             />
 
+<!--        lineetta divisiva      -->
        <RelativeLayout
            android:layout_width="match_parent"
            android:layout_height="1dp"

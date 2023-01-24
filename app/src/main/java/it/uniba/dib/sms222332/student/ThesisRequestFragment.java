@@ -2,10 +2,12 @@ package it.uniba.dib.sms222332.student;
 
 import static android.view.View.GONE;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -32,6 +34,7 @@ public class ThesisRequestFragment extends Fragment {
     String average_marks = "" ;
     String required_exams = "";
     String thesis_name = "";
+    String professore_email ="";
     LinearLayout averageMarksLayout, requiredExamsLayout;
     TextView txtExamsConstraint, txtAverageConstraint, txtAverageMarks, txtRequiredExams;
     RadioGroup examsRadioGroup, averageRadioGroup;
@@ -66,6 +69,7 @@ public class ThesisRequestFragment extends Fragment {
             average_marks = getArguments().getString("average_marks");
             required_exams = getArguments().getString("required_exams");
             thesis_name = getArguments().getString("thesis_name");
+            professore_email = getArguments().getString("professor");
         }
 
         if(average_marks.equals("None")) {
@@ -84,44 +88,60 @@ public class ThesisRequestFragment extends Fragment {
             txtRequiredExams.setText(required_exams);
         }
 
+
         btnThesisRequest.setOnClickListener(view1 -> {
+
             String average = "";
             String exams = "";
             String requestName = "";
-            if(rdbAverageYes.isChecked()) {
-                average = rdbAverageYes.getText().toString();
 
-            } else if(rdbAverageNo.isChecked()) {
+            if(rdbAverageYes.isChecked())
+                average = rdbAverageYes.getText().toString();
+            else if(rdbAverageNo.isChecked())
                 average = rdbAverageNo.getText().toString();
 
-            }else if(rdbExamsYes.isChecked()) {
+            if(rdbExamsYes.isChecked())
                 exams = rdbExamsYes.getText().toString();
-
-            } else if(rdbExamsNo.isChecked()) {
+            else if(rdbExamsNo.isChecked())
                 exams = rdbExamsNo.getText().toString();
 
-            }else if(!rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()) {
+
+
+            if(!required_exams.equals("None") && !rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()){
                 txtExamsConstraint.setError("You have to choice!");
                 Snackbar.make(view1, "You have to choice!", Snackbar.LENGTH_LONG).show();
-            }else if(!rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()) {
+
+            }else if(!average_marks.equals("None") && !rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()){
                 txtAverageConstraint.setError("You have to choice!");
                 Snackbar.make(view1, "You have to choice!", Snackbar.LENGTH_LONG).show();
-            }else {
+            }else{
 
                 Map<String, String> request = new HashMap<>();
                 request.put("Average Constraint", average);
                 request.put("Exams Constraint", exams);
                 request.put("Note", edtNote.getText().toString());
+                request.put("Professor",professore_email);
+                request.put("Student",MainActivity.account.getEmail());
+                request.put("Thesis Name",thesis_name);
                 requestName = thesis_name + "_" + MainActivity.account.getEmail();
 
                 db.collection("richieste").document(requestName).set(request);
 
+                Map <String, Object> update = new HashMap<>();
+                update.put("Request","yes");
+
+                db.collection("studenti").document(MainActivity.account.getEmail()).update(update);
+
+                MainActivity.account.setRequest("yes");
+
+                // chiusura della tastiera quando viene effettuato un cambio di fragment
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
+
                 Snackbar.make(view1, "Request made!", Snackbar.LENGTH_LONG).show();
 
                 getActivity().onBackPressed();
-
             }
-
         });
 
         return view;

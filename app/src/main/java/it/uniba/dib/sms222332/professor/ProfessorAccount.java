@@ -17,6 +17,7 @@ public class ProfessorAccount implements Account {
         this.email = email;
     }
 
+
     @Override
     public String getName() {
         return name;
@@ -25,6 +26,11 @@ public class ProfessorAccount implements Account {
     @Override
     public String getSurname() {
         return surname;
+    }
+
+    @Override
+    public String getRequest() {
+        return null;
     }
 
     @Override
@@ -45,6 +51,11 @@ public class ProfessorAccount implements Account {
     @Override
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public void setRequest(String request){
+
     }
 
 

@@ -11,8 +11,8 @@
         </style>
 
         <style name="CustomButtonTextAppearance" parent="TextAppearance.AppCompat.Button">
-            <item name="android:textSize">20sp</item>
-            <item name="android:fontFamily">sans-serif</item>
+
+
             <item name="android:backgroundTint">#0E3C5F</item>
         </style>
 </resources>

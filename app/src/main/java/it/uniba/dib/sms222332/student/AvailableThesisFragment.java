@@ -1,10 +1,13 @@
 package it.uniba.dib.sms222332.student;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,6 +49,66 @@ public class AvailableThesisFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         layout_lista_tesi = view.findViewById(R.id.layout_tesi_disponibili);
+        SearchView searchView = view.findViewById(R.id.search_view);
+
+        /*
+        Creazione query per la ricerca all'interno del database del nome di una specifica tesi.
+        La ricerca non è case sensitive e permette di ottenere risultati anche cercando una specifica
+        parola del titolo della tesi. La ricerca viene effettuata solo per le tesi del dipartimento
+        di cui fa parte lo studente.
+         */
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
+                    layout_lista_tesi.removeAllViews();
+
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+
+                        String faculty = document.getString("Faculty");
+
+                        if (faculty.equals(MainActivity.account.getFaculty())) {
+
+                            if (document.get("Name").toString().toLowerCase().contains(newText.trim().toLowerCase())) {
+                                addCardThesis(document);
+                            }
+
+                        }
+                    }
+                });
+
+                if (newText.equals("")) {
+                    db.collection("Tesi")
+                            .get()
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    layout_lista_tesi.removeAllViews();
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        String faculty = document.getString("Faculty");
+                                        if (faculty.equals(MainActivity.account.getFaculty())) {
+
+                                            // chiusura della tastiera
+                                            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+                                            addCardThesis(document);
+                                        }
+                                    }
+                                }
+                            });
+
+                }
+
+
+                return true;
+            }
+        });
 
 
         db.collection("Tesi")
@@ -79,11 +142,9 @@ public class AvailableThesisFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot document = task.getResult();
-                txtProfessor.setText(document.getString("Name")+ " " + document.getString("Surname"));
+                txtProfessor.setText(document.getString("Name") + " " + document.getString("Surname"));
             }
         });
-
-
 
         txtName.setText(document.getString("Name"));
         txtType.setText(document.getString("Type"));
@@ -101,17 +162,18 @@ public class AvailableThesisFragment extends Fragment {
             bundle = new Bundle();
             Fragment studentThesis = new StudentThesisFragment();
 
-            Map<String,Object> datiTesi =  document.getData();
-            bundle.putString("correlator",(String) datiTesi.get("Correlator"));
-            bundle.putString("description",(String) datiTesi.get("Description"));
-            bundle.putString("estimated_time",(String) datiTesi.get("Estimated Time"));
-            bundle.putString("faculty",(String) datiTesi.get("Faculty"));
-            bundle.putString("name",(String) datiTesi.get("Name"));
-            bundle.putString("type",(String) datiTesi.get("Type"));
-            bundle.putString("related_projects",(String) datiTesi.get("Related Projects"));
-            bundle.putString("average_marks",(String) datiTesi.get("Average"));
-            bundle.putString("required_exams",(String) datiTesi.get("Required Exam"));
-            bundle.putString("professor",txtProfessor.getText().toString());
+            Map<String, Object> datiTesi = document.getData();
+            bundle.putString("correlator", (String) datiTesi.get("Correlator"));
+            bundle.putString("description", (String) datiTesi.get("Description"));
+            bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
+            bundle.putString("faculty", (String) datiTesi.get("Faculty"));
+            bundle.putString("name", (String) datiTesi.get("Name"));
+            bundle.putString("type", (String) datiTesi.get("Type"));
+            bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
+            bundle.putString("average_marks", (String) datiTesi.get("Average"));
+            bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
+            bundle.putString("professor", txtProfessor.getText().toString());
+            bundle.putString("professor_email", professorEmail);
 
             studentThesis.setArguments(bundle);
 

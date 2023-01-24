@@ -40,7 +40,8 @@
     <string name="editTaskToolbar">Modifica Task</string>
     <string name="availableThesisTooolbar">>Tesi Disponibili</string>
     <string name="thesisRequestTooolbar">Richiesta Tesi</string>
-
+    <string name="thesisContactTooolbar">Contatto Professore</string>
+    <string name="messageContactTooolbar">Lista Messaggi</string>
     <string name="newReceiptToolbar">Nuovo Ricevimento</string>
 
     <!-- FILIPPO -->
@@ -52,9 +53,10 @@
     <string name="last_name">Cognome</string>
     <string name="proceed_with_sign_up">Continua registrazione come:</string>
     <string name="professor">Professore</string>
-    <string name="student">Studente</string>
-    <string name="faculty">Facoltà</string>
-    <string name="role">Ruolo</string>
+    <string name="student">Studente:</string>
+    <string name="studentProfession">Studente</string>
+
+    <string name="faculty">Facoltà:</string>
     <string name="proceed_with_sign_up_as_a_professor">Continua registrazione come professore</string>
     <string name="proceed_with_sign_up_as_a_student">Continua registrazione come alunno</string>
     <string name="complete_registration">Concludi registrazione</string>
@@ -88,7 +90,7 @@
     <string name="main_subject">Materia principale</string>
     <string name="estimated_time">Tempo stimato</string>
     <string name="create_thesis">Crea tesi</string>
-    <string name="related_projects">Progetti correlati</string>
+    <string name="related_projects">Progetti correlati:</string>
     <string name="thesis_constraints">Vincoli di tesi</string>
     <string name="add_material">Aggiungi materiale (Solo PDF)</string>
     <string name="teaching_materials">Materiale didattico</string>
@@ -108,6 +110,37 @@
     <string name="select_end_time">seleziona orario di fine</string>
     <string name="email_already_existent">Email già utilizzata, riprova!</string>
     <string name="info_button">Bottone info</string>
+    <string name="change_lang">Cambia lingua:</string>
+    <string name="thesis_type">Tipo di tesi:</string>
+    <string name="department">Dipartimento:</string>
+    <string name="correlator">Correlatore:</string>
+    <string name="description">Descrizione:</string>
+    <string name="average_marks">Media voti:</string>
+    <string name="required_exams">Esami richiesti:</string>
+    <string name="materials">Materiale:</string>
+    <string name="button_add_material">+</string>
+    <string name="nome_file">Nome file</string>
+    <string name="department_of_affiliation">Dipartimento di affiliazione</string>
+    <string name="insert_your_professor_data">Inserisci i dati da professore</string>
+    <string name="account_deleted">Account eliminato</string>
+    <string name="continua_la_registrazione">Continua la registrazione</string>
+    <string name="data">Data</string>
+    <string name="orario">Orario</string>
+    <string name="note">Note</string>
+    <string name="aggiungi">Aggiungi</string>
+    <string name="name">Nome</string>
+    <string name="delete_profile">Elimina profilo</string>
+    <string name="task_name">Nome task</string>
+    <string name="task_description">Descrizione task</string>
+    <string name="non_iniziato">Non iniziato</string>
+    <string name="completato">Completato</string>
+    <string name="in_corso">In corso</string>
+    <string name="add_task">AGGIUNGI TASK</string>
+    <string name="task">Task</string>
+    <string name="we_are_sorry_to_see_you_leave">Ci dispiace vederti andar via</string>
+    <string name="you_are_always_welocome_to_join_laureapp_again">Sarai sempre il benvenuto su LaureApp!</string>
+    <string name="back_to_login">Torna al login</string>
+    <string name="requirement_met">Requisito Rispettato:</string>
     <string name="qr_code_thesis">qr_code_thesis</string>
     <string name="share_thesis_info">CONDIVIDI INFO DELLA TESI</string>
     <string name="close">CHIUDI</string>
