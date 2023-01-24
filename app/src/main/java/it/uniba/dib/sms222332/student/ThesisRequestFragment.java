@@ -2,10 +2,12 @@ package it.uniba.dib.sms222332.student;
 
 import static android.view.View.GONE;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -131,6 +133,10 @@ public class ThesisRequestFragment extends Fragment {
                 db.collection("studenti").document(MainActivity.account.getEmail()).update(update);
 
                 MainActivity.account.setRequest("yes");
+
+                // chiusura della tastiera quando viene effettuato un cambio di fragment
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
 
                 Snackbar.make(view1, "Request made!", Snackbar.LENGTH_LONG).show();
 
