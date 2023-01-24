@@ -140,5 +140,8 @@
     <string name="you_are_always_welocome_to_join_laureapp_again">You are always welocome to join LaureApp again!</string>
     <string name="back_to_login">Back to login</string>
     <string name="requirement_met">Requirement met:</string>
+    <string name="qr_code_thesis">qr_code_thesis</string>
+    <string name="share_thesis_info">SHARE THESIS INFO</string>
+    <string name="close">CLOSE</string>
     <!-- FINE FILIPPO -->
 </resources>

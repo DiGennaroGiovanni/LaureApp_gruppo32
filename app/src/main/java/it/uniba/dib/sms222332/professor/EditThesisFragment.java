@@ -115,7 +115,7 @@ public class EditThesisFragment extends Fragment {
             edtRelatedProjects.setText(related_projects);
             edtAverage.setText(average);
             edtRequiredExams.setText(required_exam);
-                    }
+        }
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -179,7 +179,7 @@ public class EditThesisFragment extends Fragment {
 
         btnSave.setOnClickListener(view1 -> {
 
-             if(averageCheck.isChecked()){
+            if(averageCheck.isChecked()){
                 mediaVoti = edtAverage.getText().toString();
 
                 if(mediaVoti.isEmpty())

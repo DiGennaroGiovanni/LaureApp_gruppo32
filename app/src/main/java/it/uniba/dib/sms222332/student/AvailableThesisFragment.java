@@ -51,6 +51,12 @@ public class AvailableThesisFragment extends Fragment {
         layout_lista_tesi = view.findViewById(R.id.layout_tesi_disponibili);
         SearchView searchView = view.findViewById(R.id.search_view);
 
+        /*
+        Creazione query per la ricerca all'interno del database del nome di una specifica tesi.
+        La ricerca non è case sensitive e permette di ottenere risultati anche cercando una specifica
+        parola del titolo della tesi. La ricerca viene effettuata solo per le tesi del dipartimento
+        di cui fa parte lo studente.
+         */
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
