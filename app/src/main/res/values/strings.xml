@@ -41,6 +41,7 @@
     <string name="availableThesisTooolbar">Available Thesis</string>
     <string name="thesisRequestTooolbar">Thesis Request</string>
     <string name="thesisContactTooolbar">Contact Professor</string>
+    <string name="messageContactTooolbar">Messages List</string>
 
     <!-- FILIPPO -->
     <string name="email">Email</string>

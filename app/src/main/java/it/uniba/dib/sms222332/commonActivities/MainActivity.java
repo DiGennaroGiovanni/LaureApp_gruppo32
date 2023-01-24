@@ -27,6 +27,8 @@ import it.uniba.dib.sms222332.professor.ThesisListFragment;
 import it.uniba.dib.sms222332.student.FavoritesFragment;
 import it.uniba.dib.sms222332.student.StudentAccount;
 import it.uniba.dib.sms222332.student.StudentHomeFragment;
+import it.uniba.dib.sms222332.student.StudentListMessageFragment;
+import it.uniba.dib.sms222332.student.StudentMessageFragment;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -138,7 +140,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.chat_button:
-                selectedFragment = new MessagesFragment();
+                if(MainActivity.account.getAccountType().equals("Student"))
+                    selectedFragment = new StudentListMessageFragment();
+                else
+                    selectedFragment = new StudentListMessageFragment(); //TODO DA METTERE LA CHAT DEL PROFESSORE
+
                 break;
 
             case R.id.thesis_list_button:
