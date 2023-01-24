@@ -89,6 +89,7 @@ public class EditTaskFragment extends Fragment {
             else if (rdbCompletato.isChecked())
                 updates.put("State", rdbCompletato.getText().toString());
 
+
             docRef.update(updates);
 
             // chiusura della tastiera quando viene effettuato un cambio di fragment
