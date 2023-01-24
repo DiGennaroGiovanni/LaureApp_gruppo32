@@ -8,25 +8,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 
@@ -46,7 +38,7 @@ public class ReceiptsListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_receipts_list, container, false);
 
         txtThesisName = view.findViewById(R.id.txtThesisName);
-        txtStudent = view.findViewById(R.id.txtStudentNameSurname);
+        txtStudent = view.findViewById(R.id.txtStudentEmail);
 
         Bundle bundle = getArguments();
         if(bundle != null){

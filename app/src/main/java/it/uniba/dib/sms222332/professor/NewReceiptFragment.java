@@ -50,7 +50,7 @@ public class NewReceiptFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.newReceiptToolbar));
 
 
-        TextView txtStudent = view.findViewById(R.id.txtStudentNameSurname);
+        TextView txtStudent = view.findViewById(R.id.txtStudentEmail);
         TextView txtThesisName = view.findViewById(R.id.txtThesisName);
 
         Bundle bundle = getArguments();

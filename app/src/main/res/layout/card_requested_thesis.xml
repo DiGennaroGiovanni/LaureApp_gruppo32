@@ -54,10 +54,10 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtStudentNameSurname"
+                    android:id="@+id/txtStudentEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="studentName"
+                    android:text="studentEmail"
                     android:fontFamily="@font/cardo"
                     android:textColor="@color/black"
                     android:textSize="18sp"/>

@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.student;
+package it.uniba.dib.sms222332.student.Messages;
 
 import android.content.Context;
 import android.os.Bundle;

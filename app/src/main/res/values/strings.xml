@@ -9,6 +9,7 @@
     <string name="add_thesis_button">ADD A NEW THESIS</string>
     <string name="handle_thesis_button">HANDLE THESIS</string>
     <string name="receipts_button">RECEIPTS</string>
+    <string name="requests_button">Requests</string>
 
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
@@ -30,7 +31,7 @@
     <string name="languagesToolbar">Languages</string>
     <string name="chatToolbar">Chat</string>
     <string name="settingsToolbar">Settings</string>
-    <string name="editThesisToolbar">Modify Thesis</string>
+    <string name="editThesisToolbar">Edit Thesis</string>
     <string name="delete_thesis">Delete Thesis</string>
     <string name="delete_material">Delete Material</string>
     <string name="edit_thesis">Modify Thesis</string>

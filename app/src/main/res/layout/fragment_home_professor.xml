@@ -30,7 +30,7 @@
         android:id="@+id/receiptsBtn"
         android:layout_width="300sp"
         android:layout_height="100sp"
-        android:text="@string/receipts_button"
+        android:text="@string/requests_button"
         android:textSize="34sp"
         android:layout_marginBottom="120sp"
         android:textStyle="bold"

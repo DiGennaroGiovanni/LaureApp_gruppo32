@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
+import it.uniba.dib.sms222332.student.Messages.StudentMessageFragment;
 
 public class StudentThesisFragment extends Fragment {
 

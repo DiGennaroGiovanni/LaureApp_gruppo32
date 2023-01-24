@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.student;
+package it.uniba.dib.sms222332.student.Messages;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,8 +20,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
-import org.w3c.dom.Text;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;

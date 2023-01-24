@@ -1,16 +1,14 @@
-package it.uniba.dib.sms222332.student;
+package it.uniba.dib.sms222332.student.Messages;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -24,7 +22,6 @@ import java.util.ArrayList;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
-import it.uniba.dib.sms222332.professor.EditTaskFragment;
 
 
 public class StudentListMessageFragment extends Fragment {
@@ -100,8 +97,6 @@ public class StudentListMessageFragment extends Fragment {
             fragmentTransaction.commit();
 
         });
-
-
         messageListLayout.addView(view);
 
 

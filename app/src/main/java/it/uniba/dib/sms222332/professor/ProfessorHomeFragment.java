@@ -17,8 +17,8 @@ import it.uniba.dib.sms222332.R;
 
 public class ProfessorHomeFragment extends Fragment {
 
-    Button buttonNuovaTesi;
-    Button buttonRicevimento;
+    Button btnNewThesis;
+    Button btnRequests;
 
     @Nullable
     @Override
@@ -26,10 +26,10 @@ public class ProfessorHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_professor, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.homeToolbar));
 
-        buttonNuovaTesi = view.findViewById(R.id.newThesisBtn);
+        btnNewThesis = view.findViewById(R.id.newThesisBtn);
 
-        buttonNuovaTesi.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.add_thesis_icon, 0);
-        buttonNuovaTesi.setOnClickListener(view1 -> {
+        btnNewThesis.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.add_thesis_icon, 0);
+        btnNewThesis.setOnClickListener(view1 -> {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, new NewThesisFragment());
@@ -38,12 +38,12 @@ public class ProfessorHomeFragment extends Fragment {
         });
 
 
-        buttonRicevimento = view.findViewById(R.id.receiptsBtn);
+        btnRequests = view.findViewById(R.id.receiptsBtn);
 
-        buttonRicevimento.setOnClickListener(view2 -> {
+        btnRequests.setOnClickListener(view2 -> {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new ReceiptsListFragment());
+            fragmentTransaction.replace(R.id.fragment_container, new RequestsListFragment());
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });

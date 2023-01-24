@@ -27,8 +27,7 @@ import it.uniba.dib.sms222332.professor.ThesisListFragment;
 import it.uniba.dib.sms222332.student.FavoritesFragment;
 import it.uniba.dib.sms222332.student.StudentAccount;
 import it.uniba.dib.sms222332.student.StudentHomeFragment;
-import it.uniba.dib.sms222332.student.StudentListMessageFragment;
-import it.uniba.dib.sms222332.student.StudentMessageFragment;
+import it.uniba.dib.sms222332.student.Messages.StudentListMessageFragment;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
