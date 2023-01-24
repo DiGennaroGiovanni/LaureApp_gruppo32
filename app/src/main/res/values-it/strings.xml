@@ -108,11 +108,6 @@
     <string name="select_end_time">seleziona orario di fine</string>
     <string name="email_already_existent">Email già utilizzata, riprova!</string>
     <string name="info_button">Bottone info</string>
-    <string name="type_thesis_constraints">digitare i vincoli di tesi (se ci sono)</string>
-    <string name="type_description_thesis">digitare la descrizione della tesi</string>
-    <string name="type_main_subject">digitare la materia principale</string>
-    <string name="type_related_projects">digitare i progetti correlati(se ci sono)</string>
-    <string name="type_correlator">digitare il co-relatore</string>
     <string name="qr_code_thesis">qr_code_thesis</string>
     <string name="share_thesis_info">CONDIVIDI INFO DELLA TESI</string>
     <string name="close">CHIUDI</string>

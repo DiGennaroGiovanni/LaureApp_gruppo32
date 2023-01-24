@@ -179,10 +179,6 @@ public class ThesisListFragment extends Fragment implements PDFUtility.OnDocumen
         layout_lista_tesi.addView(view);
 
         view.setOnClickListener(view1 -> {
-        layout_lista_tesi.addView(view);
-
-
-        view.setOnClickListener(view1 -> {
 
             bundle = new Bundle();
             Fragment thesisDescription = new ThesisDescriptionFragment();

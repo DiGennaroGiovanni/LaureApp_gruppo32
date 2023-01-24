@@ -65,7 +65,7 @@ public class EditThesisFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.modifyThesisToolbar));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.editThesisToolbar));
 
         View view = inflater.inflate(R.layout.fragment_edit_thesis, container, false);
 
@@ -113,7 +113,7 @@ public class EditThesisFragment extends Fragment {
             edtRelatedProjects.setText(related_projects);
             edtAverage.setText(average);
             edtRequiredExams.setText(required_exam);
-                    }
+        }
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -177,7 +177,7 @@ public class EditThesisFragment extends Fragment {
 
         btnSave.setOnClickListener(view1 -> {
 
-             if(averageCheck.isChecked()){
+            if(averageCheck.isChecked()){
                 mediaVoti = edtAverage.getText().toString();
 
                 if(mediaVoti.isEmpty())
