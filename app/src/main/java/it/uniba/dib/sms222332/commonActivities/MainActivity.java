@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        Fragment selectedFragment = getProperHome();
+        Fragment selectedFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
         switch (item.getItemId()) {
             case R.id.nav_profile:
@@ -180,7 +180,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 builder.setTitle("Conferma logout");
                 builder.setMessage("Sei sicuro di voler effettuare il logout?");
 
-                builder.setNegativeButton("Yes", (dialog, which) -> {
+                builder.setNegativeButton("No", (dialog, which) -> {
+
+                });
+
+                builder.setPositiveButton("Yes", (dialog, which) -> {
 
                     FirebaseAuth.getInstance().signOut();
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -189,16 +193,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(intent);
                 });
 
-                builder.setPositiveButton("No", (dialog, which) -> {
-
-                });
-
                 AlertDialog dialog = builder.create();
                 dialog.show();
                 break;
 
         }
-
+        getSupportFragmentManager().beginTransaction().addToBackStack(null);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
