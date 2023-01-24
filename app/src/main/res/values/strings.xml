@@ -40,6 +40,7 @@
     <string name="newReceiptToolbar">New Receipt</string>
     <string name="availableThesisTooolbar">Available Thesis</string>
     <string name="thesisRequestTooolbar">Thesis Request</string>
+    <string name="thesisContactTooolbar">Contact Professor</string>
 
     <!-- FILIPPO -->
     <string name="email">Email</string>

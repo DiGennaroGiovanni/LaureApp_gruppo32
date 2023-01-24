@@ -92,11 +92,33 @@ public class StudentThesisFragment extends Fragment {
 
         }
 
-        btnContactProf.setOnClickListener(view1 -> {
+        if(MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no"))
+            btnContactProf.setOnClickListener(view1 -> {
 
-        });
+                Fragment thesisMessage = new StudentMessageFragment();
+                Bundle bundle = new Bundle();
 
-        if(MainActivity.account.getRequest().equals("yes")){
+                bundle.putString("thesis_name", txtNameTitle.getText().toString());
+                bundle.putString("professor",professore_email);
+
+                thesisMessage.setArguments(bundle);
+
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, thesisMessage);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+
+            });
+
+        else{
+            btnContactProf.setOnClickListener(view12 -> {
+                Snackbar.make(view12,"You can send messages only for your thesis!",Snackbar.LENGTH_LONG).show();
+            });
+        }
+
+        if(!MainActivity.account.getRequest().equals("no")){
             btnThesisRequest.setOnClickListener(view13 -> {
                 Snackbar.make(view13,"Already requested a thesis!",Snackbar.LENGTH_LONG).show();
             });
@@ -120,10 +142,6 @@ public class StudentThesisFragment extends Fragment {
 
             });
         }
-
-
-
-
         return view;
     }
 }

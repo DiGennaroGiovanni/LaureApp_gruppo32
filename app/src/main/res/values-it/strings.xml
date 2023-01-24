@@ -40,6 +40,7 @@
     <string name="editTaskToolbar">Modifica Task</string>
     <string name="availableThesisTooolbar">>Tesi Disponibili</string>
     <string name="thesisRequestTooolbar">Richiesta Tesi</string>
+    <string name="thesisContactTooolbar">Contatto Professore</string>
 
     <string name="newReceiptToolbar">Nuovo Ricevimento</string>
 
