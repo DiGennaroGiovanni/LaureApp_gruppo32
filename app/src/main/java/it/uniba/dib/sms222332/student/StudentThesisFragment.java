@@ -1,11 +1,9 @@
 package it.uniba.dib.sms222332.student;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -145,6 +143,7 @@ public class StudentThesisFragment extends Fragment {
 
             });
         }
+
         return view;
     }
 }
