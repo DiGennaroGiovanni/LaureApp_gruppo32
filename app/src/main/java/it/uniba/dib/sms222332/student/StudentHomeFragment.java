@@ -17,7 +17,7 @@ import it.uniba.dib.sms222332.R;
 
 public class StudentHomeFragment extends Fragment {
 
-    private Button buttonAllThesis;
+    private Button buttonAllThesis, myThesisBtn;
 
     @Nullable
     @Override
@@ -26,6 +26,7 @@ public class StudentHomeFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.homeToolbar));
 
         buttonAllThesis = view.findViewById(R.id.allThesisBtn);
+        myThesisBtn = view.findViewById(R.id.myThesisBtn);
 
         buttonAllThesis.setOnClickListener(view1 -> {
 
@@ -38,7 +39,14 @@ public class StudentHomeFragment extends Fragment {
 
         });
 
-
+        myThesisBtn.setOnClickListener(view12 -> {
+            Fragment myThesis = new StudentThesisInfoFragment();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, myThesis);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        });
 
 
         return view;

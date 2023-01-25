@@ -193,8 +193,6 @@ public class EditThesisFragment extends Fragment {
                      uploadToDatabase(uri);
                  }
 
-
-
 //                 // chiusura della tastiera quando viene effettuato un cambio di fragment
 //                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 //                 imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);

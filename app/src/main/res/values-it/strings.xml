@@ -44,6 +44,7 @@
     <string name="thesisContactTooolbar">Contatto Professore</string>
     <string name="messageContactTooolbar">Lista Messaggi</string>
     <string name="newReceiptToolbar">Nuovo Ricevimento</string>
+    <string name="thesisInfoTooolbar">Info Tesi</string>
 
     <!-- FILIPPO -->
     <string name="email">Email</string>
@@ -89,7 +90,7 @@
     <string name="experimental">Sperimentale</string>
     <string name="compilation">Compilativa</string>
     <string name="main_subject">Materia principale</string>
-    <string name="estimated_time">Tempo stimato</string>
+    <string name="estimated_time">Tempo stimato (Giorni)</string>
     <string name="create_thesis">Crea tesi</string>
     <string name="related_projects">Progetti correlati:</string>
     <string name="thesis_constraints">Vincoli di tesi</string>

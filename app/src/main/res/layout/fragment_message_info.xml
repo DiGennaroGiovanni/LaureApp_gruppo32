@@ -40,20 +40,19 @@
 
             <TextView
                 android:id="@+id/txtObjectTitle"
-                android:layout_weight="35"
+                android:layout_weight="50"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:paddingEnd="20sp"
+                android:gravity="start"
+                android:paddingStart="10sp"
                 android:fontFamily="@font/cardo"
-                android:text="Object"
+                android:text="Object:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="22sp"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/txtObject"
-                android:layout_weight="65"
+                android:layout_weight="60"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -69,21 +68,38 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtMessageTitle"
-                android:layout_weight="35"
+                android:id="@+id/txtObject"
+                android:layout_weight="50"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:paddingEnd="20sp"
+                android:gravity="start"
+                android:paddingStart="10sp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:fontFamily="@font/cardo"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtMessageTitle"
+                android:layout_weight="50"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:paddingStart="10sp"
                 android:fontFamily="@font/cardo"
                 android:text="Your message:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtMessage"
-                android:layout_weight="65"
+                android:layout_weight="60"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -98,26 +114,62 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtAnswerTitle"
-                android:layout_weight="35"
+                android:id="@+id/txtMessage"
+                android:layout_weight="50"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:paddingEnd="20sp"
-                android:text="Professor answer"
+                android:gravity="start"
+                android:paddingStart="10sp"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="18sp"
+                android:fontFamily="@font/cardo" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtAnswerTitle"
+                android:layout_weight="50"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:paddingStart="10sp"
+                android:text="Professor answer:"
+                android:textColor="@color/black"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/cardo"/>
 
             <TextView
-                android:id="@+id/txtAnswer"
-                android:layout_weight="65"
+                android:layout_weight="60"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/txtAnswer"
+                android:layout_weight="50"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:paddingStart="10sp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:fontFamily="@font/cardo" />
 
         </LinearLayout>
 

@@ -43,6 +43,7 @@
     <string name="thesisRequestTooolbar">Thesis Request</string>
     <string name="thesisContactTooolbar">Contact Professor</string>
     <string name="messageContactTooolbar">Messages List</string>
+    <string name="thesisInfoTooolbar">Thesis Info</string>
 
     <!-- FILIPPO -->
     <string name="email">Email</string>
@@ -87,7 +88,7 @@
     <string name="experimental">Experimental</string>
     <string name="compilation">Compilation</string>
     <string name="main_subject">Main subject</string>
-    <string name="estimated_time">Estimated time</string>
+    <string name="estimated_time">Estimated time (Days)</string>
     <string name="create_thesis">create thesis</string>
     <string name="related_projects">Related projects:</string>
     <string name="thesis_constraints">Thesis constraints</string>
