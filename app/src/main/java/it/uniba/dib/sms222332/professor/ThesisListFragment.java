@@ -1,7 +1,5 @@
 package it.uniba.dib.sms222332.professor;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -111,68 +109,64 @@ public class ThesisListFragment extends Fragment implements PDFUtility.OnDocumen
             txtCorrelator.setText("None");
         }
 
-        btnShare.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View viewCardThesis) {
+        btnShare.setOnClickListener(viewCardThesis -> {
 
-                // Istanzio l'AlertDialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+            // Istanzio l'AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
-                // Imposto il titolo customizzato
-                TextView titleView = new TextView(requireContext());
-                titleView.setText("Share thesis information");
-                titleView.setGravity(Gravity.CENTER);
-                titleView.setTextSize(25);
-                titleView.setTypeface(null, Typeface.BOLD);
-                titleView.setTextColor(Color.BLACK);
-                titleView.setPadding(0, 50, 0, 0);
-                builder.setCustomTitle(titleView);
+            // Imposto il titolo customizzato
+            TextView titleView = new TextView(requireContext());
+            titleView.setText("Share thesis information");
+            titleView.setGravity(Gravity.CENTER);
+            titleView.setTextSize(25);
+            titleView.setTypeface(null, Typeface.BOLD);
+            titleView.setTextColor(Color.BLACK);
+            titleView.setPadding(0, 50, 0, 0);
+            builder.setCustomTitle(titleView);
 
-                // Definisco il layout per l'inserimento del qr code
-                LinearLayout qrLayout = new LinearLayout(requireContext());
-                qrLayout.setOrientation(LinearLayout.VERTICAL);
+            // Definisco il layout per l'inserimento del qr code
+            LinearLayout qrLayout = new LinearLayout(requireContext());
+            qrLayout.setOrientation(LinearLayout.VERTICAL);
 
-                // Definisco l'ImageView che contiene il qr code generato
-                ImageView qr_code_IW = new ImageView(requireContext());
-                qr_code_IW.setImageBitmap(createQr("FILIPPO TESI"));
+            // Definisco l'ImageView che contiene il qr code generato
+            ImageView qr_code_IW = new ImageView(requireContext());
+            qr_code_IW.setImageBitmap(createQr("FILIPPO TESI"));
 
-                // Definisco il TextView per la descrizione del qr code
-                TextView qr_description = new TextView(requireContext());
-                qr_description.setText("Scan me and show thesis in your LaureApp!");
-                qr_description.setGravity(Gravity.CENTER);
-                qr_description.setPadding(0, 0, 0, 30);
+            // Definisco il TextView per la descrizione del qr code
+            TextView qr_description = new TextView(requireContext());
+            qr_description.setText("Scan me and show thesis in your LaureApp!");
+            qr_description.setGravity(Gravity.CENTER);
+            qr_description.setPadding(0, 0, 0, 30);
 
-                // Definisco il bottone sotto l'ImageView
-                Button buttonShare = new Button(requireContext());
-                buttonShare.setText(R.string.share_thesis_info);
-                buttonShare.setGravity(Gravity.CENTER);
-                buttonShare.setOnClickListener(view12 -> {
-                    // successivamente il pdf verrà scaricato dal database ( in cui è già presente perché creato successivamente all'inserimento di una nuova tesi )
-                    sharePdf(viewCardThesis, "FILIPPO TESI", "Sperimental", "I.T.P.S.", "25", "No correlator", "Provo a scrivere una descrizione", "None");
-                });
+            // Definisco il bottone sotto l'ImageView
+            Button buttonShare = new Button(requireContext());
+            buttonShare.setText(R.string.share_thesis_info);
+            buttonShare.setGravity(Gravity.CENTER);
+            buttonShare.setOnClickListener(view12 -> {
+                // successivamente il pdf verrà scaricato dal database ( in cui è già presente perché creato successivamente all'inserimento di una nuova tesi )
+                sharePdf(viewCardThesis, "FILIPPO TESI", "Sperimental", "I.T.P.S.", "25", "No correlator", "Provo a scrivere una descrizione", "None");
+            });
 
-                // Imposto i parametri di layout per il bottone
-                LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(700, 170);
-                buttonParams.gravity = Gravity.CENTER;
-                buttonShare.setLayoutParams(buttonParams);
+            // Imposto i parametri di layout per il bottone
+            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(700, 170);
+            buttonParams.gravity = Gravity.CENTER;
+            buttonShare.setLayoutParams(buttonParams);
 
-                // Aggiungo gli elementi creati al layout
-                qrLayout.addView(qr_code_IW);
-                qrLayout.addView(qr_description);
-                qrLayout.addView(buttonShare);
+            // Aggiungo gli elementi creati al layout
+            qrLayout.addView(qr_code_IW);
+            qrLayout.addView(qr_description);
+            qrLayout.addView(buttonShare);
 
-                builder.setNegativeButton(R.string.close, (dialog, which) -> {
-                });
+            builder.setNegativeButton(R.string.close, (dialog, which) -> {
+            });
 
-                // Aggiungo il layout all'AlertDialog
-                builder.setView(qrLayout);
+            // Aggiungo il layout all'AlertDialog
+            builder.setView(qrLayout);
 
-                try {
-                    builder.create().show();
-                } catch (Exception e) {
-                    Log.e(TAG, "Errore nell'onClick del shareButton : " + e.toString());
-                }
+            try {
+                builder.create().show();
+            } catch (Exception e) {
+                Log.e(TAG, "Errore nell'onClick del shareButton : " + e.toString());
             }
         });
 
