@@ -148,4 +148,6 @@
     <string name="hint_average_marks">type average marks</string>
     <string name="hint_required_exams">type required exams</string>
     <string name="toast_thesis_created">Thesis created</string>
+    <string name="alertdialog_title">Share thesis information</string>
+    <string name="dialogalert_qr_subtitle">Scan me with LaureApp!</string>
 </resources>

@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -138,7 +139,7 @@ public class ThesisListFragment extends Fragment  {
 
             // Definisco il TextView per la descrizione del qr code
             TextView qr_description = new TextView(requireContext());
-            qr_description.setText("Scan me and show thesis in your LaureApp!");
+            qr_description.setText(R.string.dialogalert_qr_subtitle);
             qr_description.setGravity(Gravity.CENTER);
             qr_description.setPadding(0, 0, 0, 30);
 
@@ -147,7 +148,11 @@ public class ThesisListFragment extends Fragment  {
                 buttonShare.setText(R.string.share_thesis_info);
                 buttonShare.setGravity(Gravity.CENTER);
                 buttonShare.setOnClickListener(view12 -> {
-                    sharePDF(thesisName);
+                    try {
+                        sharePDF(thesisName);
+                    } catch (Exception e) {
+                        Log.e("ERRORE", "errore = " + e.getMessage());
+                    }
                 });
 
             // Imposto i parametri di layout per il bottone
@@ -233,15 +238,15 @@ public class ThesisListFragment extends Fragment  {
         StorageReference fileRef = storageRef.child("PDF_tesi/" + thesisName + ".pdf");
 
         try {
-            /*final File localFile = File.createTempFile(thesisName, ".pdf");*/
             final File localFile = new File(requireContext().getExternalFilesDir(null), thesisName + ".pdf");
             fileRef.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
-
+                Uri uri = FileProvider.getUriForFile(requireContext(), "it.uniba.dib.sms222332", localFile);
                 // in questa uri va il link del pdf creato e salvato nello storage
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
                 shareIntent.setType("application/pdf");
-                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(localFile));
+                /*shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(localFile));*/
+                shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
                 startActivity(Intent.createChooser(shareIntent, "Condividi PDF informazioni tesi"));
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

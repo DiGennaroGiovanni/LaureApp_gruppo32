@@ -39,7 +39,7 @@
     <string name="newTaskToolbar">Nuovo Task</string>
     <string name="taskListToolbar">Lista Task</string>
     <string name="editTaskToolbar">Modifica Task</string>
-    <string name="availableThesisTooolbar">>Tesi Disponibili</string>
+    <string name="availableThesisTooolbar">Tesi Disponibili</string>
     <string name="thesisRequestTooolbar">Richiesta Tesi</string>
     <string name="thesisContactTooolbar">Contatto Professore</string>
     <string name="messageContactTooolbar">Lista Messaggi</string>
@@ -150,5 +150,7 @@
     <string name="hint_average_marks">digita la media del voti</string>
     <string name="hint_required_exams">digitare gli esami richiesti</string>
     <string name="toast_thesis_created">Tesi creata</string>
+    <string name="alertdialog_title">Condividi informazioni tesi</string>
+    <string name="dialogalert_qr_subtitle">Scansionami con LaureApp!</string>
     <!-- FINE FILIPPO -->
 </resources>
