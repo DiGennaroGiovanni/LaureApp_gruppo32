@@ -145,5 +145,9 @@
     <string name="qr_code_thesis">qr_code_thesis</string>
     <string name="share_thesis_info">CONDIVIDI INFO DELLA TESI</string>
     <string name="close">CHIUDI</string>
+    <string name="pdf_title">UNIBA - Documento di riepilogo tesi</string>
+    <string name="hint_average_marks">digita la media del voti</string>
+    <string name="hint_required_exams">digitare gli esami richiesti</string>
+    <string name="toast_thesis_created">Tesi creata</string>
     <!-- FINE FILIPPO -->
 </resources>
