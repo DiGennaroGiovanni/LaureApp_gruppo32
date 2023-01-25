@@ -235,10 +235,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if(!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ProfessorHomeFragment) && !(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof StudentHomeFragment ) )
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, getProperHome()).commit();
 
-        else
-            super.onBackPressed();
+        else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Conferma uscita");
+            builder.setMessage("Sei sicuro di voler uscire?");
 
+            builder.setNegativeButton("No", (dialog, which) -> {
 
+            });
+
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+                super.onBackPressed();
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 
 
