@@ -1,6 +1,5 @@
 package it.uniba.dib.sms222332.professor;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -49,9 +48,9 @@ import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
 
-public class ThesisListFragment extends Fragment  {
+public class ThesesListFragment extends Fragment  {
 
-    private static final String TAG = ThesisListFragment.class.getSimpleName();
+    private static final String TAG = ThesesListFragment.class.getSimpleName();
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth;
@@ -183,7 +182,7 @@ public class ThesisListFragment extends Fragment  {
         view.setOnClickListener(view1 -> {
 
             bundle = new Bundle();
-            Fragment thesisDescription = new ThesisDescriptionFragment();
+            Fragment thesisDescription = new ThesisDescriptionProfessorFragment();
 
             Map<String,Object> datiTesi =  document.getData();
             bundle.putString("correlator",(String) datiTesi.get("Correlator"));

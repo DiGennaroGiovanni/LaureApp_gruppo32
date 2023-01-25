@@ -35,7 +35,7 @@ import com.google.firebase.storage.StorageReference;
 
 import it.uniba.dib.sms222332.R;
 
-public class ThesisDescriptionFragment extends Fragment {
+public class ThesisDescriptionProfessorFragment extends Fragment {
 
     TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,
             txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtStudentTitle,txtStudent;
@@ -58,7 +58,7 @@ public class ThesisDescriptionFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisListToolbar));
 
-        View view = inflater.inflate(R.layout.fragment_thesis_description, container, false);
+        View view = inflater.inflate(R.layout.fragment_thesis_description_professor, container, false);
 
         layout_lista_file = view.findViewById(R.id.layout_lista_file);
         txtNameTitle = view.findViewById(R.id.txtNameTitle);
@@ -196,7 +196,7 @@ public class ThesisDescriptionFragment extends Fragment {
                 Snackbar.make(view12, "Thesis eliminated", Snackbar.LENGTH_LONG).show();
 
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, new ThesisListFragment());
+                transaction.replace(R.id.fragment_container, new ThesesListFragment());
                 transaction.commit();
 
             });

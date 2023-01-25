@@ -60,7 +60,7 @@ import java.util.Map;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
-public class AvailableThesisFragment extends Fragment {
+public class AvailableThesesListFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -77,7 +77,7 @@ public class AvailableThesisFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.availableThesisTooolbar));
 
-        View view = inflater.inflate(R.layout.fragment_available_thesis, container, false);
+        View view = inflater.inflate(R.layout.fragment_available_theses_list, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -421,7 +421,7 @@ public class AvailableThesisFragment extends Fragment {
         view.setOnClickListener(view1 -> {
 
             bundle = new Bundle();
-            Fragment studentThesis = new StudentThesisFragment();
+            Fragment studentThesis = new ThesisDescriptionStudentFragment();
 
             Map<String, Object> datiTesi = document.getData();
             bundle.putString("correlator", (String) datiTesi.get("Correlator"));

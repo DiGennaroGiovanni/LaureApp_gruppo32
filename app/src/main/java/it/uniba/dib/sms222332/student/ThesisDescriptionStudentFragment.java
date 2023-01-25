@@ -20,7 +20,7 @@ import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.student.Messages.StudentMessageFragment;
 
-public class StudentThesisFragment extends Fragment {
+public class ThesisDescriptionStudentFragment extends Fragment {
 
     TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,
             txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams, txtProfessor;
@@ -35,7 +35,7 @@ public class StudentThesisFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.availableThesisTooolbar));
 
-        View view = inflater.inflate(R.layout.fragment_student_thesis, container, false);
+        View view = inflater.inflate(R.layout.fragment_thesis_description_student, container, false);
 
         txtNameTitle = view.findViewById(R.id.txtNameTitle);
         txtDepartment = view.findViewById(R.id.txtDepartment);
@@ -125,7 +125,7 @@ public class StudentThesisFragment extends Fragment {
             });
         }else{
             btnThesisRequest.setOnClickListener(view12 -> {
-                Fragment thesisRequest = new ThesisRequestFragment();
+                Fragment thesisRequest = new NewRequestFragment();
                 Bundle bundle = new Bundle();
 
                 bundle.putString("average_marks",txtAverageMarks.getText().toString());

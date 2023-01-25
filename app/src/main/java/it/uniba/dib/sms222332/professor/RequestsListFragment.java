@@ -55,14 +55,24 @@ public class RequestsListFragment extends Fragment {
         thesisName.setText(document.getString("Thesis Name"));
         studentEmail.setText(document.getString("Student"));
 
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        v.setOnClickListener(view -> {
 
-                Bundle bundle = new Bundle();
+            Bundle bundle = new Bundle();
+            bundle.putString("thesis_name", document.getString("Thesis"));
+            bundle.putString("student", document.getString("Student"));
+            bundle.putString("avg", document.getString("Average"));
+            bundle.putString("avg_constraint_met", document.getString("Average Constraint Met"));
+            bundle.putString("exams", document.getString("Exams"));
+            bundle.putString("exams_constraint_met", document.getString("Exams Constraint Met"));
+            bundle.putString("message", document.getString("Message"));
+
+            Fragment requestDescriptionFragment = new RequestDescriptionFragment();
+            requestDescriptionFragment.setArguments(bundle);
+
+            getParentFragmentManager().beginTransaction().addToBackStack(null);
+            getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, requestDescriptionFragment).commit();
 
 
-            }
         });
 
         layoutRequestsList.addView(v);

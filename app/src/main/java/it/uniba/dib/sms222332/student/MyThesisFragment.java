@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -31,22 +30,15 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.api.Distribution;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -54,7 +46,7 @@ import it.uniba.dib.sms222332.professor.ReceiptsListFragment;
 import it.uniba.dib.sms222332.professor.TaskListFragment;
 import it.uniba.dib.sms222332.student.Messages.StudentMessageFragment;
 
-public class StudentThesisInfoFragment extends Fragment {
+public class MyThesisFragment extends Fragment {
 
     TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,txtState,
             txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtProfessor,txtNoRequest;
@@ -75,7 +67,7 @@ public class StudentThesisInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisInfoTooolbar));
 
-        View view = inflater.inflate(R.layout.fragment_student_thesis_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_thesis, container, false);
 
         layoutButtonRequest=view.findViewById(R.id.layoutButtonRequest);
         btnDeleteRequest = view.findViewById(R.id.btnDeleteRequest);

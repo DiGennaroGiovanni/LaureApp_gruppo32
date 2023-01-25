@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.professor.ProfessorAccount;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
-import it.uniba.dib.sms222332.professor.ThesisListFragment;
+import it.uniba.dib.sms222332.professor.ThesesListFragment;
 import it.uniba.dib.sms222332.student.FavoritesFragment;
 import it.uniba.dib.sms222332.student.StudentAccount;
 import it.uniba.dib.sms222332.student.StudentHomeFragment;
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.thesis_list_button:
-                selectedFragment = new ThesisListFragment();
+                selectedFragment = new ThesesListFragment();
                 break;
 
             case R.id.home_button:
