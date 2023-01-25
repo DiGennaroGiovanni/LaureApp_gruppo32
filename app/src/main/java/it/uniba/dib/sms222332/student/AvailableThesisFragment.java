@@ -1,17 +1,27 @@
 package it.uniba.dib.sms222332.student;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -37,6 +47,10 @@ public class AvailableThesisFragment extends Fragment {
     FirebaseUser mUser;
     LinearLayout layout_lista_tesi;
     Bundle bundle;
+    Button btnFilter;
+    int seekBarValue = 30;
+    boolean isRequestedExamChecked = false;
+    CheckBox examsCheckbox;
 
 
     @Nullable
@@ -50,6 +64,118 @@ public class AvailableThesisFragment extends Fragment {
         mUser = mAuth.getCurrentUser();
         layout_lista_tesi = view.findViewById(R.id.layout_tesi_disponibili);
         SearchView searchView = view.findViewById(R.id.search_view);
+        btnFilter = view.findViewById(R.id.btnFilter);
+
+        btnFilter.setOnClickListener(view1 -> {
+
+
+            // chiusura della tastiera
+            closeKeyboard(view);
+
+            // Istanzio l'AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+
+            // Imposto il titolo customizzato
+            TextView titleView = new TextView(requireContext());
+            titleView.setText("Research a thesis by setting filters on the constraints");
+            titleView.setGravity(Gravity.CENTER);
+            titleView.setTextSize(18);
+            titleView.setTypeface(null, Typeface.BOLD);
+            titleView.setTextColor(Color.BLACK);
+            titleView.setPadding(0, 50, 0, 0);
+            builder.setCustomTitle(titleView);
+
+            // Definisco il layout per l'inserimento del qr code
+            LinearLayout researchLayout = new LinearLayout(requireContext());
+            researchLayout.setOrientation(LinearLayout.VERTICAL);
+
+
+            SeekBar seekBar = new SeekBar(requireContext());
+            final TextView average = new TextView(requireContext());
+
+            seekBar.setProgress(seekBarValue - 18);
+            average.setText("Average lower than: " + seekBarValue);
+            average.setTextColor(Color.BLACK);
+            seekBar.setMax(12);
+
+            int initialSeekBarValue = seekBarValue;
+            boolean initialChecked = isRequestedExamChecked;
+
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                    int selectedValue = progress + 18;
+                    average.setText("Average lower than: " + selectedValue);
+                    seekBarValue = selectedValue;
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
+
+            examsCheckbox = new CheckBox(requireContext());
+            examsCheckbox.setChecked(isRequestedExamChecked);
+            examsCheckbox.setText("Hide thesis with required exams");
+            examsCheckbox.setOnCheckedChangeListener((compoundButton, b) -> isRequestedExamChecked = b);
+
+            // Definisco il bottone di ricerca
+            builder.setPositiveButton("Research", (dialogInterface, i) ->
+            {
+                searchView.setQuery("", true);
+                db.collection("Tesi")
+                        .get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                layout_lista_tesi.removeAllViews();
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                    String faculty = document.getString("Faculty");
+
+                                    if (faculty.equals(MainActivity.account.getFaculty())) {
+
+                                        addCheckConstraint(document);
+
+                                    }
+                                }
+                            }
+                        });
+            });
+
+            // Aggiungo gli elementi creati al layout
+            researchLayout.addView(examsCheckbox);
+            researchLayout.addView(average);
+            researchLayout.addView(seekBar);
+
+
+            builder.setNegativeButton(R.string.close, (dialog, which) -> {
+                seekBar.setProgress(initialSeekBarValue - 18);
+                isRequestedExamChecked = initialChecked;
+                examsCheckbox.setChecked(isRequestedExamChecked);
+            });
+
+            builder.setOnCancelListener(dialogInterface -> {
+                seekBar.setProgress(initialSeekBarValue - 18);
+                isRequestedExamChecked = initialChecked;
+                examsCheckbox.setChecked(isRequestedExamChecked);
+            });
+
+            // Aggiungo il layout all'AlertDialog
+            builder.setView(researchLayout);
+
+            try {
+                builder.create().show();
+            } catch (Exception e) {
+                Log.e(TAG, "Errore nell'onClick del btnResearch : " + e.toString());
+            }
+
+        });
 
         /*
         Creazione query per la ricerca all'interno del database del nome di una specifica tesi.
@@ -76,7 +202,8 @@ public class AvailableThesisFragment extends Fragment {
                         if (faculty.equals(MainActivity.account.getFaculty())) {
 
                             if (document.get("Name").toString().toLowerCase().contains(newText.trim().toLowerCase())) {
-                                addCardThesis(document);
+
+                                addCheckConstraint(document);
                             }
 
                         }
@@ -84,6 +211,7 @@ public class AvailableThesisFragment extends Fragment {
                 });
 
                 if (newText.equals("")) {
+
                     db.collection("Tesi")
                             .get()
                             .addOnCompleteListener(task -> {
@@ -94,10 +222,9 @@ public class AvailableThesisFragment extends Fragment {
                                         if (faculty.equals(MainActivity.account.getFaculty())) {
 
                                             // chiusura della tastiera
-                                            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                                            closeKeyboard(view);
 
-                                            addCardThesis(document);
+                                            addCheckConstraint(document);
                                         }
                                     }
                                 }
@@ -125,6 +252,57 @@ public class AvailableThesisFragment extends Fragment {
                 });
 
         return view;
+    }
+
+    private void closeKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    private void addCheckConstraint(QueryDocumentSnapshot document) {
+        int thesisAverage;
+
+        if (document.getString("Average").toString().equals("")) {
+            thesisAverage = 18;
+
+        } else {
+            thesisAverage = Integer.parseInt(document.getString("Average").toString());
+        }
+
+        if (thesisAverage <= seekBarValue) {
+
+            if (examsCheckbox.isChecked() && document.getString("Required Exam").toString().equals("")) {
+
+                addCardThesis(document);
+
+            } else if (!examsCheckbox.isChecked()) {
+                addCardThesis(document);
+            }
+
+        }
+    }
+
+    @Override
+    public void onResume() {
+
+        examsCheckbox = new CheckBox(requireContext());
+
+        db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
+            layout_lista_tesi.removeAllViews();
+
+            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+
+                String faculty = document.getString("Faculty");
+
+                if (faculty.equals(MainActivity.account.getFaculty())) {
+
+                    addCheckConstraint(document);
+
+                }
+            }
+        });
+
+        super.onResume();
     }
 
     private void addCardThesis(QueryDocumentSnapshot document) {
