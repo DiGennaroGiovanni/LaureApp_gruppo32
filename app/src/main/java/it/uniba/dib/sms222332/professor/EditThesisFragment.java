@@ -19,9 +19,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,10 +35,12 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
+import it.uniba.dib.sms222332.tools.ThesisPDF;
 
 public class EditThesisFragment extends Fragment {
 
@@ -50,10 +55,13 @@ public class EditThesisFragment extends Fragment {
     ArrayList<String> correlators = new ArrayList<>();
     ArrayList<Uri> newMaterials = new ArrayList<>();
     ArrayList<String> deletedOldMaterials = new ArrayList<>();
+    LinkedHashMap<String, String> infoTesi = new LinkedHashMap<>();
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     StorageReference storageReference;
     FirebaseStorage storage;
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,6 +86,8 @@ public class EditThesisFragment extends Fragment {
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
         String correlator = "";
 
@@ -163,9 +173,18 @@ public class EditThesisFragment extends Fragment {
                 edtDescription.setError("Inserisci una descrizione valida");
 
              else if(Integer.parseInt(edtTime.getText().toString()) >180)
-                edtDescription.setError("Inserisci un valore minore di 180 giorni");
+                edtTime.setError("Inserisci un valore minore di 180 giorni");
 
              else{
+                 infoTesi.put("Name", txtThesisName.getText().toString());
+                 infoTesi.put("Type", txtTypology.getText().toString());
+                 infoTesi.put("Faculty", txtDepartment.getText().toString());
+                 infoTesi.put("Professor", mUser.getEmail());
+                 infoTesi.put("Correlator", spinnerCorrelators.getSelectedItem().toString());
+                 infoTesi.put("Description", edtDescription.getText().toString());
+                 infoTesi.put("Estimated Time", edtTime.getText().toString());
+                 infoTesi.put("Related Projects",edtRelatedProjects.getText().toString());
+
                  DocumentReference docRef = db.collection("Tesi").document(txtThesisName.getText().toString());
                  Map<String, Object> updates = new HashMap<>();
                  updates.put("Estimated Time", edtTime.getText().toString());
@@ -173,15 +192,22 @@ public class EditThesisFragment extends Fragment {
                  updates.put("Related Projects",edtRelatedProjects.getText().toString());
                  updates.put("Correlator", spinnerCorrelators.getSelectedItem().toString());
 
-                 if(checkAvg.isChecked())
-                     updates.put("Average",edtAverage.getText().toString());
-                 else
-                     updates.put("Average","");
-
-                 if(checkExams.isChecked())
-                     updates.put("Required Exam",edtRequiredExams.getText().toString());
-                 else
-                     updates.put("Required Exam","");
+                 if(checkAvg.isChecked()) {
+                     updates.put("Average", edtAverage.getText().toString());
+                     infoTesi.put("Average", edtAverage.getText().toString());
+                 }
+                 else {
+                     updates.put("Average", "");
+                     infoTesi.put("Average", "");
+                 }
+                 if(checkExams.isChecked()) {
+                     updates.put("Required Exam", edtRequiredExams.getText().toString());
+                     infoTesi.put("Required Exam", edtRequiredExams.getText().toString());
+                 }
+                 else {
+                     updates.put("Required Exam", "");
+                     infoTesi.put("Required Exam", "");
+                 }
 
                  docRef.update(updates);
 
@@ -191,6 +217,17 @@ public class EditThesisFragment extends Fragment {
 
                  for(Uri uri: newMaterials){
                      uploadToDatabase(uri);
+                 }
+
+
+                 try {
+                     ThesisPDF thesisPDF = new ThesisPDF();
+                     thesisPDF.makePdf(requireContext(), infoTesi);
+                     File outputFile = new File(requireContext().getExternalFilesDir(null), infoTesi.get("Name") + ".pdf");
+                     Uri uri = FileProvider.getUriForFile(requireContext(), "it.uniba.dib.sms222332", outputFile);
+                     uploadPDF(uri);
+                 } catch(Exception e) {
+                     Log.e("PDF ERROR", "Errore nella creazione del pdf");
                  }
 
 //                 // chiusura della tastiera quando viene effettuato un cambio di fragment
@@ -290,5 +327,13 @@ public class EditThesisFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference(txtThesisName.getText().toString()).child(pdfName);
         // Caricamento del file sul server
         storageReference.putFile(uri);
+    }
+
+    private void uploadPDF(Uri uriPDF) {
+        File filePDF = new File(uriPDF.getPath());
+        String pdfName = filePDF.getName();
+        storageReference.child("PDF_tesi").child(pdfName + ".pdf").delete();
+        storageReference = FirebaseStorage.getInstance().getReference("PDF_tesi" +"/" + pdfName);
+        storageReference.putFile(uriPDF);
     }
 }

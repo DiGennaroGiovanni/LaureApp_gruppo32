@@ -45,7 +45,6 @@
     <string name="messageContactTooolbar">Messages List</string>
     <string name="thesisInfoTooolbar">Thesis Info</string>
 
-    <!-- FILIPPO -->
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_up">Sign up</string>
@@ -145,5 +144,8 @@
     <string name="qr_code_thesis">qr_code_thesis</string>
     <string name="share_thesis_info">SHARE THESIS INFO</string>
     <string name="close">CLOSE</string>
-    <!-- FINE FILIPPO -->
+    <string name="pdf_title">UNIBA - Summary thesis document</string>
+    <string name="hint_average_marks">type average marks</string>
+    <string name="hint_required_exams">type required exams</string>
+    <string name="toast_thesis_created">Thesis created</string>
 </resources>

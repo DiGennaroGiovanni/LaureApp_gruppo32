@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -40,6 +41,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.tools.ThesisPDF;
 
 
 public class NewThesisFragment extends Fragment {
@@ -226,13 +228,22 @@ public class NewThesisFragment extends Fragment {
             for(Uri file: files){
                 uploadFile(file);
             }
+
+            try {
+                ThesisPDF thesisPDF = new ThesisPDF();
+                thesisPDF.makePdf(requireContext(), infoTesi);
+                File outputFile = new File(requireContext().getExternalFilesDir(null), thesisName + ".pdf");
+                Uri uri = FileProvider.getUriForFile(requireContext(), "it.uniba.dib.sms222332", outputFile);
+                uploadPDF(uri);
+            } catch(Exception e) {
+                Log.e("PDF ERROR", "Errore nella creazione del pdf");
+            }
+
+            Snackbar.make(requireView(), R.string.toast_thesis_created, Snackbar.LENGTH_SHORT).show();
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
             fragmentTransaction.replace(R.id.fragment_container, new ProfessorHomeFragment());
             fragmentTransaction.commit();
-            View view = getLayoutInflater().inflate(R.layout.card_material, null);
-            Snackbar.make(view, "Tesi inserita", Snackbar.LENGTH_SHORT).show();
         }
     }
 
@@ -280,6 +291,14 @@ public class NewThesisFragment extends Fragment {
                 })
                 .addOnFailureListener(e -> {
                 });
+    }
+
+    private void uploadPDF(Uri uriPDF) {
+        File filePDF = new File(uriPDF.getPath());
+        String pdfName = filePDF.getName();
+        storageReference = FirebaseStorage.getInstance().getReference("PDF_tesi" +"/" + pdfName);
+        // Caricamento del file sul server
+        storageReference.putFile(uriPDF);
     }
 }
 

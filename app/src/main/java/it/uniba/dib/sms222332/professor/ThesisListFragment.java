@@ -1,5 +1,6 @@
 package it.uniba.dib.sms222332.professor;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -20,15 +21,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageException;
+import com.google.firebase.storage.StorageReference;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
@@ -38,13 +44,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
-import it.uniba.dib.sms222332.tools.PDFUtility;
 
-public class ThesisListFragment extends Fragment implements PDFUtility.OnDocumentClose {
+public class ThesisListFragment extends Fragment  {
 
     private static final String TAG = ThesisListFragment.class.getSimpleName();
 
@@ -87,14 +91,14 @@ public class ThesisListFragment extends Fragment implements PDFUtility.OnDocumen
         View view = getLayoutInflater().inflate(R.layout.card_my_thesis, null);
         btnShare = view.findViewById(R.id.shareBtn);
 
-
         TextView txtName = view.findViewById(R.id.txtName);
         TextView txtType = view.findViewById(R.id.txtTypology);
         TextView txtDepartment = view.findViewById(R.id.txtDepartment);
         TextView txtCorrelator = view.findViewById(R.id.txtCorrelator);
         TextView txtStudentThesis = view.findViewById(R.id.txtStudentThesis);
 
-        txtName.setText(document.getString("Name"));
+        String thesisName = document.getString("Name");
+        txtName.setText(thesisName);
         txtType.setText(document.getString("Type"));
         txtDepartment.setText(document.getString("Faculty"));
         txtCorrelator.setText(document.getString("Correlator"));
@@ -128,9 +132,9 @@ public class ThesisListFragment extends Fragment implements PDFUtility.OnDocumen
             LinearLayout qrLayout = new LinearLayout(requireContext());
             qrLayout.setOrientation(LinearLayout.VERTICAL);
 
-            // Definisco l'ImageView che contiene il qr code generato
-            ImageView qr_code_IW = new ImageView(requireContext());
-            qr_code_IW.setImageBitmap(createQr("FILIPPO TESI"));
+                // Definisco l'ImageView che contiene il qr code generato
+                ImageView qr_code_IW = new ImageView(requireContext());
+                qr_code_IW.setImageBitmap(createQr(thesisName));
 
             // Definisco il TextView per la descrizione del qr code
             TextView qr_description = new TextView(requireContext());
@@ -138,14 +142,13 @@ public class ThesisListFragment extends Fragment implements PDFUtility.OnDocumen
             qr_description.setGravity(Gravity.CENTER);
             qr_description.setPadding(0, 0, 0, 30);
 
-            // Definisco il bottone sotto l'ImageView
-            Button buttonShare = new Button(requireContext());
-            buttonShare.setText(R.string.share_thesis_info);
-            buttonShare.setGravity(Gravity.CENTER);
-            buttonShare.setOnClickListener(view12 -> {
-                // successivamente il pdf verrà scaricato dal database ( in cui è già presente perché creato successivamente all'inserimento di una nuova tesi )
-                sharePdf(viewCardThesis, "FILIPPO TESI", "Sperimental", "I.T.P.S.", "25", "No correlator", "Provo a scrivere una descrizione", "None");
-            });
+                // Definisco il bottone sotto l'ImageView
+                Button buttonShare = new Button(requireContext());
+                buttonShare.setText(R.string.share_thesis_info);
+                buttonShare.setGravity(Gravity.CENTER);
+                buttonShare.setOnClickListener(view12 -> {
+                    sharePDF(thesisName);
+                });
 
             // Imposto i parametri di layout per il bottone
             LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(700, 170);
@@ -199,41 +202,6 @@ public class ThesisListFragment extends Fragment implements PDFUtility.OnDocumen
         });
     }
 
-    private void sharePdf(View v, String name, String type, String faculty, String estimated_time, String correlator, String description, String related_projects) {
-
-        try {
-
-            File outputFile = new File(requireContext().getExternalFilesDir(null), "tesi.pdf");
-            Uri uri = FileProvider.getUriForFile(requireContext(), "it.uniba.dib.sms222332", outputFile);
-
-            Map<String, String> datiTesi = new HashMap<>();
-            datiTesi.put("name", name);
-            datiTesi.put("type", type);
-            datiTesi.put("faculty", faculty);
-            datiTesi.put("estimated_time", estimated_time);
-            datiTesi.put("correlator", correlator);
-            datiTesi.put("description", description);
-            datiTesi.put("related_project", related_projects);
-
-            PDFUtility.createPdf(requireContext(), ThesisListFragment.this, datiTesi, name, true, outputFile);
-
-            Intent shareIntent = new Intent();
-            shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.setType("application/pdf");
-            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-            startActivity(Intent.createChooser(shareIntent, "Condividi informazioni tesi"));
-
-        } catch (Exception e) {
-            Log.e(TAG, "Errore nella creazione del pdf");
-        }
-    }
-
-
-    @Override
-    public void onPDFDocumentClose(File file) {
-        if (file.exists()) Log.e(TAG, "File pdf creato.");
-    }
-
     private Bitmap createQr(String name) {
 
         int width = 700;
@@ -254,13 +222,46 @@ public class ThesisListFragment extends Fragment implements PDFUtility.OnDocumen
                     bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
                 }
             }
-
         } catch (WriterException | JSONException e) {
             e.printStackTrace();
         }
-
         return bitmap;
-
     }
 
+    private void sharePDF(String thesisName) {
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference fileRef = storageRef.child("PDF_tesi/" + thesisName + ".pdf");
+
+        try {
+            /*final File localFile = File.createTempFile(thesisName, ".pdf");*/
+            final File localFile = new File(requireContext().getExternalFilesDir(null), thesisName + ".pdf");
+            fileRef.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
+
+                // in questa uri va il link del pdf creato e salvato nello storage
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.setType("application/pdf");
+                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(localFile));
+                startActivity(Intent.createChooser(shareIntent, "Condividi PDF informazioni tesi"));
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // Controllo se l'error code è riferito al fatto che il dispositivo non è connesso ad internet
+                    if(e instanceof FirebaseNetworkException) {
+                        Snackbar.make(requireView(), "No internet connection", Snackbar.LENGTH_LONG).show();
+                    } else if(e instanceof StorageException) {
+                        // Controllo se l'error code è riferito al fatto che non esiste il file sul database
+                        if (((StorageException)e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
+                            Snackbar.make(requireView(), "File does not exist", Snackbar.LENGTH_LONG).show();
+                        }
+                    } else {
+                        // Stampo nella console il messaggio di errore nel caso in cui è di un altro tipo
+                        Log.w("Firebas storage ERROR", e.getMessage());
+                    }
+                }
+            });
+        } catch (Exception e) {
+            Log.e("ERROR", "Errore nel download del PDF dal database: " + e.getMessage());
+        }
+    }
 }

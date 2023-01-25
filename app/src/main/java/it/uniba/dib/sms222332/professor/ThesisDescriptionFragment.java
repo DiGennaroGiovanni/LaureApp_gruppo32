@@ -48,6 +48,7 @@ public class ThesisDescriptionFragment extends Fragment {
     String student = "";
     StorageReference storageReference, ref;
     FirebaseStorage storage;
+    String nameThesis = "";
 
 
 
@@ -85,14 +86,14 @@ public class ThesisDescriptionFragment extends Fragment {
             String description = getArguments().getString("description");
             String estimated_time = getArguments().getString("estimated_time");
             String faculty = getArguments().getString("faculty");
-            String name = getArguments().getString("name");
+            nameThesis = getArguments().getString("name");
             String type = getArguments().getString("type");
             related_projects = getArguments().getString("related_projects");
             average_marks = getArguments().getString("average_marks");
             required_exam = getArguments().getString("required_exam");
             student = getArguments().getString("student");
 
-            txtNameTitle.setText(name);
+            txtNameTitle.setText(nameThesis);
             txtType.setText(type);
             txtDepartment.setText(faculty);
             txtTime.setText(estimated_time);
@@ -189,13 +190,13 @@ public class ThesisDescriptionFragment extends Fragment {
                             }
                         });
 
+                storageReference.child("PDF_tesi").child(nameThesis + ".pdf").delete();
                 tesi.delete();
 
                 Snackbar.make(view12, "Thesis eliminated", Snackbar.LENGTH_LONG).show();
 
-                Fragment thesisListFragment = new ThesisListFragment();
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, thesisListFragment);
+                transaction.replace(R.id.fragment_container, new ThesisListFragment());
                 transaction.commit();
 
             });
