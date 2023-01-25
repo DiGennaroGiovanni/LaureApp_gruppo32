@@ -4,10 +4,10 @@ import it.uniba.dib.sms222332.commonActivities.Account;
 
 public class ProfessorAccount implements Account {
 
-    private String name;
-    private String surname;
-    private String faculty;
-    private String email;
+    private final String name;
+    private final String surname;
+    private final String faculty;
+    private final String email;
     private final String accountType = "Professor";
 
     public ProfessorAccount(String name, String surname, String faculty, String email) {
