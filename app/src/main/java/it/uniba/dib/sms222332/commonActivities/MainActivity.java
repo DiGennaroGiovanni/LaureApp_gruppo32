@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 selectedFragment = getProperHome();
         }
 
+        getSupportFragmentManager().beginTransaction().addToBackStack(null);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
         selectBottomNavigationBarItem();
         return true;
@@ -188,9 +189,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     FirebaseAuth.getInstance().signOut();
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("logout", true);
                     startActivity(intent);
+                    finish();
                 });
 
                 AlertDialog dialog = builder.create();

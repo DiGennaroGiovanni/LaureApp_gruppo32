@@ -155,12 +155,7 @@ public class NewThesisFragment extends Fragment {
         return view;
     }
 
-    private void caricaFile() {
-        Intent intent = new Intent();
-        intent.setType("*/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, 86);
-    }
+
 
     private void inserisciTesi() {
 
@@ -253,6 +248,13 @@ public class NewThesisFragment extends Fragment {
             files.remove(fileUri);
         });
         layout.addView(view);
+    }
+
+    private void caricaFile() {
+        Intent intent = new Intent();
+        intent.setType("*/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 86);
     }
 
     @Override
