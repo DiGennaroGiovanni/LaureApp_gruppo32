@@ -3,7 +3,9 @@ package it.uniba.dib.sms222332.professor;
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
@@ -51,6 +56,7 @@ public class EditThesisFragment extends Fragment {
     CheckBox checkAvg, checkExams;
     LinearLayout layoutMaterialsList;
     Uri fileUri;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
 
     ArrayList<String> correlators = new ArrayList<>();
     ArrayList<Uri> newMaterials = new ArrayList<>();
@@ -150,9 +156,24 @@ public class EditThesisFragment extends Fragment {
 
         }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
 
-        btnAddMaterial.setOnClickListener(view12 -> uploadFile());
+        btnAddMaterial.setOnClickListener(view13 -> {
 
-        btnSave.setOnClickListener(view1 -> {
+
+            int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE);
+
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+            } else {
+                // permesso già concesso, procedi con la lettura dei file
+                uploadFile();
+            }
+
+        });
+
+  btnSave.setOnClickListener(view1 -> {
 
             String avgMarks = edtAverage.getText().toString();
             String requiredExams = edtRequiredExams.getText().toString();
@@ -336,4 +357,23 @@ public class EditThesisFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference("PDF_tesi" +"/" + pdfName);
         storageReference.putFile(uriPDF);
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permesso concesso, procedi con la lettura dei file
+                } else {
+                    // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
+                }
+                return;
+            }
+        }
+    }
+
+
+
 }

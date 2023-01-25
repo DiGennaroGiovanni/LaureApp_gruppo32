@@ -25,13 +25,11 @@ import java.util.ArrayList;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
-
 public class StudentListMessageFragment extends Fragment {
 
     LinearLayout messageListLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<String> listaTesi = new ArrayList<String>();
-
 
     @Nullable
     @Override
@@ -57,8 +55,6 @@ public class StudentListMessageFragment extends Fragment {
                 }
             }
         });
-
-
         return view;
     }
 
@@ -82,10 +78,8 @@ public class StudentListMessageFragment extends Fragment {
             txtProfessor.setVisibility(View.GONE);
         }
 
-
         txtProfessor.setText(professor);
         txtName.setText(thesis_name);
-
 
         Bundle bundle = new Bundle();
         bundle.putString("object",object);
@@ -95,7 +89,6 @@ public class StudentListMessageFragment extends Fragment {
         bundle.putString("thesis_name",thesis_name);
         bundle.putString("date",date);
         bundle.putString("idMessage",idMessage);
-
 
         view.setOnClickListener(view1 -> {
 
@@ -111,7 +104,5 @@ public class StudentListMessageFragment extends Fragment {
 
         });
         messageListLayout.addView(view);
-
-
     }
 }
