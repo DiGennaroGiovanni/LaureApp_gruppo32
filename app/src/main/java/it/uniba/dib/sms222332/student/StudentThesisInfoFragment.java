@@ -8,6 +8,7 @@ import static android.os.Environment.DIRECTORY_DOWNLOADS;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -106,11 +107,11 @@ public class StudentThesisInfoFragment extends Fragment {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     if(document.getString("Student").equals(MainActivity.account.getEmail())){
                         thesisName = document.getString("Thesis Name");
-                        if(MainActivity.account.getRequest().equals(thesisName))//TODO GESTIRE SE LO STUDENTE  HA UNA TESI
+                        if(MainActivity.account.getRequest().equals(thesisName))//LO STUDENTE  HA UNA TESI
                             studenteHaveThesis();
                         else if(MainActivity.account.getRequest().equals("no")) //LO STUDENTE NON HA ANCORA FATTO RICHIESTA
                             studentNotRequest();
-                        else//TODO LO STUDENTE HA FATTO RICHIESTA MA NON E' STATA ANCORA ACCETTATA
+                        else// LO STUDENTE HA FATTO RICHIESTA MA NON E' STATA ANCORA ACCETTATA
                            studentYesRequest();
                     }
                 }
@@ -123,6 +124,72 @@ public class StudentThesisInfoFragment extends Fragment {
 
     private void studentYesRequest() {
         layoutState.setVisibility(View.VISIBLE);
+
+
+
+
+        //TODO BISOGNA ANDARE NELLE RICHIESTE E PRENDERE IL NOME DELLA TESI IN BASE
+        //ToDO ALL'EMAIL DELLO STUDENTE E SALVARE IL NOME ALL'INTERNO DI thesis_name
+        CollectionReference collectionReference = db.collection("richieste");
+        collectionReference.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    if(document.getString("Student").equals(MainActivity.account.getEmail()))
+                        thesisName = document.getString("Thesis Name");
+                }
+            }
+        });
+
+
+        db.collection("Tesi")
+                .document(thesisName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                txtNameTitle.setText(thesisName);
+                                txtType.setText(document.getString("Type"));
+                                txtDepartment.setText(document.getString("Faculty"));
+                                txtProfessor.setText(document.getString("Professor"));
+
+                                if(document.getString("Correlator").equals(""))
+                                    txtCorrelator.setText("None");
+                                else
+                                    txtCorrelator.setText(document.getString("Correlator"));
+
+                                String estimatedTime = document.getString("Estimated Time")+" days";
+                                txtTime.setText(estimatedTime);
+
+                                txtDescription.setText(document.getString("Description"));
+
+                                if(document.getString("Related Projects").equals(""))
+                                    txtRelatedProjects.setText("None");
+                                else
+                                    txtRelatedProjects.setText(document.getString("Related Projects"));
+
+                                if(document.getString("Average").equals(""))
+                                    txtAverageMarks.setText("None");
+                                else
+                                    txtAverageMarks.setText(document.getString("Average"));
+
+                                if(document.getString("Required Exam").equals(""))
+                                    txtRequiredExams.setText("None");
+                                else
+                                    txtRequiredExams.setText(document.getString("Required Exam"));
+
+                                String state = "Not accepted yet";
+                                txtState.setTextColor(Color.RED);
+                                txtState.setText(state);
+
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
     }
 
     private void studentNotRequest() {
@@ -322,6 +389,5 @@ public class StudentThesisInfoFragment extends Fragment {
         request.setDestinationInExternalFilesDir(context, destinationDirectory, nomeFile + fileExtension);
         downloadManager.enqueue(request);
     }
-
 
 }
