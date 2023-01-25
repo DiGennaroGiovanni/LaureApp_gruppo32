@@ -253,8 +253,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-
-
     private void selectBottomNavigationBarItem() {
         for (int i = 0; i < navigationView.getMenu().size(); i++) {
             navigationView.getMenu().getItem(i).setChecked(false);
@@ -288,6 +286,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
     }
-
 
 }
