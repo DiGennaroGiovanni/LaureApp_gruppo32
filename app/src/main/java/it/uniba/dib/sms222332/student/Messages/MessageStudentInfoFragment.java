@@ -20,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.itextpdf.text.pdf.parser.Line;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -27,10 +28,11 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 public class MessageStudentInfoFragment extends Fragment {
 
     LinearLayout messageListLayout;
-    TextView txtNomeProfessore,txtNomeTesi;
-    String object, professor,professore_message,student_message,thesis_name;
+    TextView txtNomeProfessore,txtNomeTesi, txtProf;
+    String object, professor,professore_message,student_message,thesis_name,idMessage;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button addMessageButton;
+
 
     @Nullable
     @Override
@@ -43,14 +45,18 @@ public class MessageStudentInfoFragment extends Fragment {
         txtNomeProfessore = view.findViewById(R.id.txtNomeProfessore);
         txtNomeTesi = view.findViewById(R.id.txtNomeTesi);
         addMessageButton = view.findViewById(R.id.addMessageButton);
+        txtProf =  view.findViewById(R.id.txtProf);
+
 
 
         if(getArguments() != null){
+
             object = getArguments().getString("object");
             professor = getArguments().getString("professor");
             professore_message = getArguments().getString("professore_message");
             student_message = getArguments().getString("student_message");
             thesis_name = getArguments().getString("thesis_name");
+            idMessage = getArguments().getString("idMessage");
 
             txtNomeProfessore.setText(professor);
             txtNomeTesi.setText(thesis_name);
@@ -61,16 +67,25 @@ public class MessageStudentInfoFragment extends Fragment {
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if(document.getString("Student").equals(MainActivity.account.getEmail()) &&
-                    document.getString("Thesis Name").equals(thesis_name))
-                            addMessageCard(document);
+                    if((document.getString("Student").equals(MainActivity.account.getEmail()) &&
+                        document.getString("Thesis Name").equals(thesis_name)) ||
+                            document.getString("Professor").equals(MainActivity.account.getEmail()) &&
+                                    document.getString("Thesis Name").equals(thesis_name) ){
+                        addMessageCard(document);
 
+                    }
                 }
             }
         });
 
-        if(MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no")
-        || MainActivity.account.getRequest().equals(thesis_name)){
+        if(MainActivity.account.getAccountType().equals("Professor")){
+            txtNomeProfessore.setVisibility(View.GONE);
+
+            txtProf.setVisibility(View.GONE);
+        }
+
+        if(MainActivity.account.getAccountType().equals("Student") && (MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no")
+        || MainActivity.account.getRequest().equals(thesis_name) )){
             addMessageButton.setOnClickListener(view1 -> {
 
                 Bundle bundle = new Bundle();
@@ -87,15 +102,14 @@ public class MessageStudentInfoFragment extends Fragment {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             });
-        }else
+        }else if(MainActivity.account.getAccountType().equals("Professor"))
+        addMessageButton.setVisibility(View.GONE);
+        else
         {
             addMessageButton.setOnClickListener(view12 -> {
                 Snackbar.make(view12,"You can send messages only for '" + MainActivity.account.getRequest()+ "' thesis!",Snackbar.LENGTH_LONG).show();
             });
         }
-
-
-
         return view;
     }
 
@@ -106,12 +120,17 @@ public class MessageStudentInfoFragment extends Fragment {
         TextView txtObject = view.findViewById(R.id.txtObject);
         TextView txtDate = view.findViewById(R.id.txtDate);
         TextView txtState = view.findViewById(R.id.txtState);
+        TextView txtStudente = view.findViewById(R.id.txtStudente);
+        TextView txtStudentTitle = view.findViewById(R.id.txtStudentTitle);
+        LinearLayout layoutTxtStudent = view.findViewById(R.id.layoutTxtStudent);
 
         String object = document.getString("Object");
         String professor_message = document.getString("Professor Message");
         String student_message = document.getString("Student Message");
         String date = document.getString("Date");
         String state = document.getString("State");
+
+
 
         txtObject.setText(object);
         txtDate.setText(date);
@@ -122,6 +141,13 @@ public class MessageStudentInfoFragment extends Fragment {
         else
             txtState.setTextColor(Color.GREEN);
 
+        if(MainActivity.account.getAccountType().equals("Professor")){
+            txtStudente.setVisibility(View.VISIBLE);
+            txtStudentTitle.setVisibility(View.VISIBLE);
+
+            txtStudente.setText(document.getString("Student"));
+        }else
+            layoutTxtStudent.setVisibility(View.GONE);
 
         messageListLayout.addView(view);
 
@@ -132,6 +158,7 @@ public class MessageStudentInfoFragment extends Fragment {
             bundle.putString("professor_message",professor_message);
             bundle.putString("student_message",student_message);
             bundle.putString("thesis_name",thesis_name);
+            bundle.putString("idMessage",idMessage);
 
             Fragment infoMessage = new MessageInfoFragment();
 

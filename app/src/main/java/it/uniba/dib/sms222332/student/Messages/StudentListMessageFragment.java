@@ -14,9 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.api.Distribution;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.itextpdf.text.pdf.parser.Line;
 
 import java.util.ArrayList;
 
@@ -45,11 +47,13 @@ public class StudentListMessageFragment extends Fragment {
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if(document.getString("Student").equals(MainActivity.account.getEmail()))
+                    if(document.getString("Student").equals(MainActivity.account.getEmail()) ||
+                            document.getString("Professor").equals(MainActivity.account.getEmail())){
                         if(!listaTesi.contains(document.getString("Thesis Name"))){
                             addMessageCard(document);
                             listaTesi.add(document.getString("Thesis Name"));
                         }
+                    }
                 }
             }
         });
@@ -61,6 +65,7 @@ public class StudentListMessageFragment extends Fragment {
     private void addMessageCard(QueryDocumentSnapshot document) {
         View view = getLayoutInflater().inflate(R.layout.card_student_message, null);
 
+        TextView txtProfessorTitle = view.findViewById(R.id.txtProfessorTitle);
         TextView txtName = view.findViewById(R.id.txtName);
         TextView txtProfessor = view.findViewById(R.id.txtProfessor);
 
@@ -70,10 +75,17 @@ public class StudentListMessageFragment extends Fragment {
         String student_message = document.getString("Student Message");
         String thesis_name = document.getString("Thesis Name");
         String date = document.getString("Date");
+        String idMessage = document.getId();
+
+        if(MainActivity.account.getAccountType().equals("Professor")){
+            txtProfessorTitle.setVisibility(View.GONE);
+            txtProfessor.setVisibility(View.GONE);
+        }
 
 
-        txtName.setText(thesis_name);
         txtProfessor.setText(professor);
+        txtName.setText(thesis_name);
+
 
         Bundle bundle = new Bundle();
         bundle.putString("object",object);
@@ -82,6 +94,7 @@ public class StudentListMessageFragment extends Fragment {
         bundle.putString("student_message",student_message);
         bundle.putString("thesis_name",thesis_name);
         bundle.putString("date",date);
+        bundle.putString("idMessage",idMessage);
 
 
         view.setOnClickListener(view1 -> {

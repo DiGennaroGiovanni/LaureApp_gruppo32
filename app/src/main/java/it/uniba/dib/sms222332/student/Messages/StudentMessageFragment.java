@@ -58,6 +58,7 @@ public class StudentMessageFragment extends Fragment {
         }
 
 
+
             btnSendMessage.setOnClickListener(view1 -> {
 
                 object = edtObject.getText().toString();
@@ -82,7 +83,7 @@ public class StudentMessageFragment extends Fragment {
                     message.put("Student Message",description);
                     message.put("Professor Message","");
                     message.put("Date", date.format(formatter));
-
+                    message.put("State","Not answered");
 
                     db.collection("messaggi").document().set(message);
 
@@ -95,7 +96,6 @@ public class StudentMessageFragment extends Fragment {
 
                 }
             });
-
 
         return view;
     }

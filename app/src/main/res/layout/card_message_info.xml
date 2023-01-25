@@ -53,6 +53,38 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutTxtStudent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtStudentTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="10sp"
+                    tools:ignore="RtlSymmetry"
+                    android:text="Student:"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtStudente"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:fontFamily="@font/cardo"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

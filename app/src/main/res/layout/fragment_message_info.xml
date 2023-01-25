@@ -93,7 +93,7 @@
                 android:gravity="start"
                 android:paddingStart="10sp"
                 android:fontFamily="@font/cardo"
-                android:text="Your message:"
+                android:text="Student message:"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -144,10 +144,24 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/cardo"/>
 
-            <TextView
-                android:layout_weight="60"
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/edtAnswer"
+                android:layout_weight="65"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -157,19 +171,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:visibility="visible">
 
 
-            <TextView
-                android:id="@+id/txtAnswer"
-                android:layout_weight="50"
-                android:layout_width="0sp"
+            <Button
+                android:id="@+id/btnAnswer"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:paddingStart="10sp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:fontFamily="@font/cardo" />
+                android:layout_gravity="center"
+                android:fontFamily="@font/cardo"
+                android:text="Add answer"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

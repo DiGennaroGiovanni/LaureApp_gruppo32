@@ -393,9 +393,14 @@
         <RelativeLayout
             android:id="@+id/layoutButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            >
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnSendMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Message"
+                android:layout_toEndOf="@id/btnTask"/>
 
             <Button
                 android:id="@+id/btnSave"
@@ -407,9 +412,9 @@
 
             <Button
                 android:id="@+id/btnReceipt"
+                android:text="@string/receipt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/receipt"
                 android:layout_marginStart="20sp"
                 android:layout_alignParentStart="true"/>
 
@@ -419,6 +424,21 @@
                 android:layout_height="wrap_content"
                 android:text="@string/task"
                 android:layout_toEndOf="@id/btnReceipt"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutButtonRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnDeleteRequest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete Request"
+                />
 
         </RelativeLayout>
 
