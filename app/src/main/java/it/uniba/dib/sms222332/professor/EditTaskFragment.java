@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class EditTaskFragment extends Fragment {
 
@@ -57,8 +58,10 @@ public class EditTaskFragment extends Fragment {
             txtStudent.setText(getArguments().getString("student"));
             edtDescription.setText(getArguments().getString("description"));
             state = getArguments().getString("state");
-
         }
+
+        if(!MainActivity.account.getAccountType().equals("Professor"))
+            edtDescription.setEnabled(false);
 
         if(state.equals("Completato"))
             rdbCompletato.setChecked(true);
@@ -73,6 +76,8 @@ public class EditTaskFragment extends Fragment {
     }
 
     private void onClick(View view1) {
+
+
 
         if (edtDescription.getText().toString().isEmpty())
             edtDescription.setError("Inserisci una descrizione per il task");

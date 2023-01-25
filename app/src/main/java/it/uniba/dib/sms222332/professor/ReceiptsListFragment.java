@@ -21,6 +21,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 
 public class ReceiptsListFragment extends Fragment {
@@ -28,7 +29,7 @@ public class ReceiptsListFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     Button btnNewReceipt;
-    private TextView txtThesisName, txtStudent;
+    private TextView txtThesisName, txtStudent,txtProfessor;
     LinearLayout listView;
 
 
@@ -39,11 +40,19 @@ public class ReceiptsListFragment extends Fragment {
 
         txtThesisName = view.findViewById(R.id.txtThesisName);
         txtStudent = view.findViewById(R.id.txtStudentEmail);
+        txtProfessor = view.findViewById(R.id.txtProfessor);
 
         Bundle bundle = getArguments();
         if(bundle != null){
             String thesisName = bundle.getString("thesis_name");
             String student = bundle.getString("student");
+            String professor = bundle.getString("professor");
+
+            if(!professor.equals("")){
+                txtProfessor.setText("Professor: ");
+                txtStudent.setText(professor);
+            }
+
             txtThesisName.setText(thesisName);
             txtStudent.setText(student);
         }
@@ -51,26 +60,31 @@ public class ReceiptsListFragment extends Fragment {
 
 
         btnNewReceipt = view.findViewById(R.id.btnNewReceipt);
-        btnNewReceipt.setOnClickListener(view1 -> {
 
-            Bundle newReceiptBundle = new Bundle();
-            newReceiptBundle.putString("thesis_name", txtThesisName.getText().toString());
-            newReceiptBundle.putString("student", txtStudent.getText().toString());
+        if(MainActivity.account.getAccountType().equals("Student"))
+        {
+            btnNewReceipt.setVisibility(View.GONE);
+        }else{
+            btnNewReceipt.setOnClickListener(view1 -> {
 
-            Fragment newReceiptFragment = new NewReceiptFragment();
-            newReceiptFragment.setArguments(newReceiptBundle);
+                Bundle newReceiptBundle = new Bundle();
+                newReceiptBundle.putString("thesis_name", txtThesisName.getText().toString());
+                newReceiptBundle.putString("student", txtStudent.getText().toString());
 
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment newReceiptFragment = new NewReceiptFragment();
+                newReceiptFragment.setArguments(newReceiptBundle);
+
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 
-            fragmentTransaction.replace(R.id.fragment_container, newReceiptFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        });
+                fragmentTransaction.replace(R.id.fragment_container, newReceiptFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            });
+        }
 
          listView = view.findViewById(R.id.layoutReceiptsList);
-
 
         db.collection("ricevimenti")
                 .get()
