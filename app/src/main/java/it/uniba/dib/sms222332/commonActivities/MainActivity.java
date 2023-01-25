@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
         }
-        else if(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ProfessorHomeFragment || getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof StudentHomeFragment  )
+        else if(!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ProfessorHomeFragment) && !(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof StudentHomeFragment ) )
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, getProperHome()).commit();
 
         else
