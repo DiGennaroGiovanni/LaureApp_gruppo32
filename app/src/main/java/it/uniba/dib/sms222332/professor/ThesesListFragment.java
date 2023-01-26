@@ -25,7 +25,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,7 +47,7 @@ import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
 
-public class ThesesListFragment extends Fragment  {
+public class ThesesListFragment extends Fragment {
 
     private static final String TAG = ThesesListFragment.class.getSimpleName();
 
@@ -63,7 +62,7 @@ public class ThesesListFragment extends Fragment  {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisListToolbar));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisListToolbar));
 
         View view = inflater.inflate(R.layout.fragment_thesis_list, container, false);
 
@@ -115,66 +114,7 @@ public class ThesesListFragment extends Fragment  {
 
         btnShare.setOnClickListener(viewCardThesis -> {
 
-            // Istanzio l'AlertDialog
-            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-
-            // Imposto il titolo customizzato
-            TextView titleView = new TextView(requireContext());
-            titleView.setText("Share thesis information");
-            titleView.setGravity(Gravity.CENTER);
-            titleView.setTextSize(25);
-            titleView.setTypeface(null, Typeface.BOLD);
-            titleView.setTextColor(Color.BLACK);
-            titleView.setPadding(0, 50, 0, 0);
-            builder.setCustomTitle(titleView);
-
-            // Definisco il layout per l'inserimento del qr code
-            LinearLayout qrLayout = new LinearLayout(requireContext());
-            qrLayout.setOrientation(LinearLayout.VERTICAL);
-
-                // Definisco l'ImageView che contiene il qr code generato
-                ImageView qr_code_IW = new ImageView(requireContext());
-                qr_code_IW.setImageBitmap(createQr(thesisName));
-
-            // Definisco il TextView per la descrizione del qr code
-            TextView qr_description = new TextView(requireContext());
-            qr_description.setText(R.string.dialogalert_qr_subtitle);
-            qr_description.setGravity(Gravity.CENTER);
-            qr_description.setPadding(0, 0, 0, 30);
-
-                // Definisco il bottone sotto l'ImageView
-                Button buttonShare = new Button(requireContext());
-                buttonShare.setText(R.string.share_thesis_info);
-                buttonShare.setGravity(Gravity.CENTER);
-                buttonShare.setOnClickListener(view12 -> {
-                    try {
-                        sharePDF(thesisName);
-                    } catch (Exception e) {
-                        Log.e("ERRORE", "errore = " + e.getMessage());
-                    }
-                });
-
-            // Imposto i parametri di layout per il bottone
-            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(700, 170);
-            buttonParams.gravity = Gravity.CENTER;
-            buttonShare.setLayoutParams(buttonParams);
-
-            // Aggiungo gli elementi creati al layout
-            qrLayout.addView(qr_code_IW);
-            qrLayout.addView(qr_description);
-            qrLayout.addView(buttonShare);
-
-            builder.setNegativeButton(R.string.close, (dialog, which) -> {
-            });
-
-            // Aggiungo il layout all'AlertDialog
-            builder.setView(qrLayout);
-
-            try {
-                builder.create().show();
-            } catch (Exception e) {
-                Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
-            }
+            btnShareOnClick(thesisName);
         });
 
         layout_lista_tesi.addView(view);
@@ -184,17 +124,17 @@ public class ThesesListFragment extends Fragment  {
             bundle = new Bundle();
             Fragment thesisDescription = new ThesisDescriptionProfessorFragment();
 
-            Map<String,Object> datiTesi =  document.getData();
-            bundle.putString("correlator",(String) datiTesi.get("Correlator"));
-            bundle.putString("description",(String) datiTesi.get("Description"));
-            bundle.putString("estimated_time",(String) datiTesi.get("Estimated Time"));
-            bundle.putString("faculty",(String) datiTesi.get("Faculty"));
-            bundle.putString("name",(String) datiTesi.get("Name"));
-            bundle.putString("type",(String) datiTesi.get("Type"));
-            bundle.putString("related_projects",(String) datiTesi.get("Related Projects"));
-            bundle.putString("average_marks",(String) datiTesi.get("Average"));
-            bundle.putString("required_exam",(String) datiTesi.get("Required Exam"));
-            bundle.putString("student",(String) datiTesi.get("Student"));
+            Map<String, Object> datiTesi = document.getData();
+            bundle.putString("correlator", (String) datiTesi.get("Correlator"));
+            bundle.putString("description", (String) datiTesi.get("Description"));
+            bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
+            bundle.putString("faculty", (String) datiTesi.get("Faculty"));
+            bundle.putString("name", (String) datiTesi.get("Name"));
+            bundle.putString("type", (String) datiTesi.get("Type"));
+            bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
+            bundle.putString("average_marks", (String) datiTesi.get("Average"));
+            bundle.putString("required_exam", (String) datiTesi.get("Required Exam"));
+            bundle.putString("student", (String) datiTesi.get("Student"));
 
             thesisDescription.setArguments(bundle);
 
@@ -204,6 +144,69 @@ public class ThesesListFragment extends Fragment  {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
+    }
+
+    private void btnShareOnClick(String thesisName) {
+        // Istanzio l'AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+
+        // Imposto il titolo customizzato
+        TextView titleView = new TextView(requireContext());
+        titleView.setText(R.string.alertdialog_title);
+        titleView.setGravity(Gravity.CENTER);
+        titleView.setTextSize(25);
+        titleView.setTypeface(null, Typeface.BOLD);
+        titleView.setTextColor(Color.BLACK);
+        titleView.setPadding(0, 50, 0, 0);
+        builder.setCustomTitle(titleView);
+
+        // Definisco il layout per l'inserimento del qr code
+        LinearLayout qrLayout = new LinearLayout(requireContext());
+        qrLayout.setOrientation(LinearLayout.VERTICAL);
+
+        // Definisco l'ImageView che contiene il qr code generato
+        ImageView qr_code_IW = new ImageView(requireContext());
+        qr_code_IW.setImageBitmap(createQr(thesisName));
+
+        // Definisco il TextView per la descrizione del qr code
+        TextView qr_description = new TextView(requireContext());
+        qr_description.setText(R.string.dialogalert_qr_subtitle);
+        qr_description.setGravity(Gravity.CENTER);
+        qr_description.setPadding(0, 0, 0, 30);
+
+        // Definisco il bottone sotto l'ImageView
+        Button buttonShare = new Button(requireContext());
+        buttonShare.setText(R.string.share_thesis_info);
+        buttonShare.setGravity(Gravity.CENTER);
+        buttonShare.setOnClickListener(view12 -> {
+            try {
+                sharePDF(thesisName);
+            } catch (Exception e) {
+                Log.e("ERRORE", getString(R.string.error) + e.getMessage());
+            }
+        });
+
+        // Imposto i parametri di layout per il bottone
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(700, 170);
+        buttonParams.gravity = Gravity.CENTER;
+        buttonShare.setLayoutParams(buttonParams);
+
+        // Aggiungo gli elementi creati al layout
+        qrLayout.addView(qr_code_IW);
+        qrLayout.addView(qr_description);
+        qrLayout.addView(buttonShare);
+
+        builder.setNegativeButton(R.string.close, (dialog, which) -> {
+        });
+
+        // Aggiungo il layout all'AlertDialog
+        builder.setView(qrLayout);
+
+        try {
+            builder.create().show();
+        } catch (Exception e) {
+            Log.e(TAG, getString(R.string.error_share_button) + e);
+        }
     }
 
     private Bitmap createQr(String name) {
@@ -247,25 +250,24 @@ public class ThesesListFragment extends Fragment  {
                 /*shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(localFile));*/
                 shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
                 startActivity(Intent.createChooser(shareIntent, "Condividi PDF informazioni tesi"));
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    // Controllo se l'error code è riferito al fatto che il dispositivo non è connesso ad internet
-                    if(e instanceof FirebaseNetworkException) {
-                        Snackbar.make(requireView(), "No internet connection", Snackbar.LENGTH_LONG).show();
-                    } else if(e instanceof StorageException) {
-                        // Controllo se l'error code è riferito al fatto che non esiste il file sul database
-                        if (((StorageException)e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
-                            Snackbar.make(requireView(), "File does not exist", Snackbar.LENGTH_LONG).show();
-                        }
-                    } else {
-                        // Stampo nella console il messaggio di errore nel caso in cui è di un altro tipo
-                        Log.w("Firebas storage ERROR", e.getMessage());
+            }).addOnFailureListener(e -> {
+
+                // Controllo se l'error code è riferito al fatto che il dispositivo non è connesso ad internet
+                if (e instanceof FirebaseNetworkException) {
+                    Snackbar.make(requireView(), R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                } else if (e instanceof StorageException) {
+
+                    // Controllo se l'error code è riferito al fatto che non esiste il file sul database
+                    if (((StorageException) e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
+                        Snackbar.make(requireView(), R.string.file_doesnt_exist, Snackbar.LENGTH_LONG).show();
                     }
+                } else {
+                    // Stampo nella console il messaggio di errore nel caso in cui è di un altro tipo
+                    Log.w(getString(R.string.firebase_error), e.getMessage());
                 }
             });
         } catch (Exception e) {
-            Log.e("ERROR", "Errore nel download del PDF dal database: " + e.getMessage());
+            Log.e("ERROR", getString(R.string.error_downloading_pdf) + e.getMessage());
         }
     }
 }

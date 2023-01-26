@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -28,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -61,12 +63,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Map;
-import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.tools.CaptureAct;
-import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 
 public class AvailableThesesListFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -74,6 +74,7 @@ public class AvailableThesesListFragment extends Fragment {
     FirebaseUser mUser;
     LinearLayout layout_lista_tesi;
     Bundle bundle;
+    LinearLayout allTasks;
     Button btnFilter, btnCamera;
     int seekBarValue = 30;
     boolean isRequestedExamChecked = false;
@@ -356,6 +357,34 @@ public class AvailableThesesListFragment extends Fragment {
         });
 
         txtName.setText(thesisName);
+
+        final Button btnStar = view.findViewById(R.id.btnStar);
+        final String id_thesis = txtName.getText().toString();
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        boolean isButtonSelected = preferences.getBoolean("button_selected_" + id_thesis,false);
+
+        if (isButtonSelected) {
+            btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_clicked_star));
+            btnStar.setSelected(true);
+        }
+        btnStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (btnStar.isSelected()) {
+                    btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_star));
+                    btnStar.setSelected(false);
+                    editor.putBoolean("button_selected_" + id_thesis, false);
+                } else {
+                    btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_clicked_star));
+                    btnStar.setSelected(true);
+                    editor.putBoolean("button_selected_" + id_thesis, true);
+                }
+                editor.apply();
+            }
+        });
+
+        txtName.setText(document.getString("Name"));
         txtType.setText(document.getString("Type"));
         txtDepartment.setText(document.getString("Faculty"));
         txtCorrelator.setText(document.getString("Correlator"));
@@ -386,7 +415,7 @@ public class AvailableThesesListFragment extends Fragment {
 
                 // Definisco l'ImageView che contiene il qr code generato
                 ImageView qr_code_IW = new ImageView(requireContext());
-                qr_code_IW.setImageBitmap(createQr(thesisName));
+             //   qr_code_IW.setImageBitmap(createQr(thesisName));
 
                 // Definisco il TextView per la descrizione del qr code
                 TextView qr_description = new TextView(requireContext());

@@ -1,30 +1,29 @@
 package it.uniba.dib.sms222332.student;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import it.uniba.dib.sms222332.R;
 
 public class ThesisDescriptionGuestFragment extends Fragment {
 
-    TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,
-            txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams, txtProfessor;
-    String related_projects = "" ;
-    String average_marks = "" ;
+    TextView txtNameTitle, txtType, txtDepartment, txtTime, txtCorrelator,
+            txtDescription, txtRelatedProjects, txtAverageMarks, txtRequiredExams, txtProfessor;
+    String related_projects = "";
+    String average_marks = "";
     String required_exam = "";
     String professore_email = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Thesis information");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.thesis_info);
 
         View view = inflater.inflate(R.layout.fragment_thesis_description_guest, container, false);
 
@@ -40,48 +39,52 @@ public class ThesisDescriptionGuestFragment extends Fragment {
         txtProfessor = view.findViewById(R.id.txtProfessor);
 
         if (getArguments() != null) {
-            String correlator = getArguments().getString("correlator");
-            String description = getArguments().getString("description");
-            String estimated_time = getArguments().getString("estimated_time") + " days";
-            String faculty = getArguments().getString("faculty");
-            String name = getArguments().getString("name");
-            String type = getArguments().getString("type");
-            String professor = getArguments().getString("professor");
-            related_projects = getArguments().getString("related_projects");
-            average_marks = getArguments().getString("average_marks");
-            required_exam = getArguments().getString("required_exams");
-            professore_email = getArguments().getString("professor_email");
-
-            txtNameTitle.setText(name);
-            txtType.setText(type);
-            txtDepartment.setText(faculty);
-            txtTime.setText(estimated_time);
-            txtDescription.setText(description);
-            txtProfessor.setText(professor);
-
-
-            if(correlator.isEmpty())
-                txtCorrelator.setText("None");
-            else
-                txtCorrelator.setText(correlator);
-
-            if(average_marks.isEmpty()){
-                txtAverageMarks.setText("None");
-            }else
-                txtAverageMarks.setText(average_marks);
-
-            if(required_exam.isEmpty()){
-                txtRequiredExams.setText("None");
-            }else
-                txtRequiredExams.setText(required_exam);
-
-            if(related_projects.isEmpty()){
-                txtRelatedProjects.setText("None");
-            }else
-                txtRelatedProjects.setText(related_projects);
+            getDataFromPreviousFragment();
 
         }
 
         return view;
+    }
+
+    private void getDataFromPreviousFragment() {
+        String correlator = getArguments().getString("correlator");
+        String description = getArguments().getString("description");
+        String estimated_time = getArguments().getString("estimated_time") + " " + R.string.days;
+        String faculty = getArguments().getString("faculty");
+        String name = getArguments().getString("name");
+        String type = getArguments().getString("type");
+        String professor = getArguments().getString("professor");
+        related_projects = getArguments().getString("related_projects");
+        average_marks = getArguments().getString("average_marks");
+        required_exam = getArguments().getString("required_exams");
+        professore_email = getArguments().getString("professor_email");
+
+        txtNameTitle.setText(name);
+        txtType.setText(type);
+        txtDepartment.setText(faculty);
+        txtTime.setText(estimated_time);
+        txtDescription.setText(description);
+        txtProfessor.setText(professor);
+
+
+        if (correlator.isEmpty())
+            txtCorrelator.setText("None");
+        else
+            txtCorrelator.setText(correlator);
+
+        if (average_marks.isEmpty()) {
+            txtAverageMarks.setText("None");
+        } else
+            txtAverageMarks.setText(average_marks);
+
+        if (required_exam.isEmpty()) {
+            txtRequiredExams.setText("None");
+        } else
+            txtRequiredExams.setText(required_exam);
+
+        if (related_projects.isEmpty()) {
+            txtRelatedProjects.setText("None");
+        } else
+            txtRelatedProjects.setText(related_projects);
     }
 }

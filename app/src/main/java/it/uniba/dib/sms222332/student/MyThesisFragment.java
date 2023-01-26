@@ -47,23 +47,23 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.professor.ReceiptsListFragment;
 import it.uniba.dib.sms222332.professor.TaskListFragment;
 
-public class MyThesisFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback{
+public class MyThesisFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback {
 
-    TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,txtState,
-            txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtProfessor,txtNoRequest;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
+    TextView txtNameTitle, txtType, txtDepartment, txtTime, txtCorrelator, txtState,
+            txtDescription, txtRelatedProjects, txtAverageMarks, txtRequiredExams, txtProfessor, txtNoRequest;
     String thesisName;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    LinearLayout layoutThesisAccepted,layoutMaterials,layoutRequiredExams,layoutState,layoutAverageMarks,layoutNoThesis;
+    LinearLayout layoutThesisAccepted, layoutMaterials, layoutRequiredExams, layoutState, layoutAverageMarks, layoutNoThesis;
     LinearLayout layout_lista_file;
     RelativeLayout layoutButton, layoutButtonCancelRequest;
     StorageReference storageReference, ref;
     FirebaseStorage storage;
-    Button buttonAdd,btnSave,btnTask,btnReceipt,btnSendMessage, btnCancelRequest;
+    Button buttonAdd, btnSave, btnTask, btnReceipt, btnSendMessage, btnCancelRequest;
     Uri fileUri;
     ArrayList<Uri> newMaterials = new ArrayList<>();
     ArrayList<String> deletedOldMaterials = new ArrayList<>();
-    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
 
     @Nullable
     @Override
@@ -72,7 +72,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
         View view = inflater.inflate(R.layout.fragment_my_thesis, container, false);
 
-        layoutButtonCancelRequest =view.findViewById(R.id.layoutButtonRequest);
+        layoutButtonCancelRequest = view.findViewById(R.id.layoutButtonRequest);
         btnCancelRequest = view.findViewById(R.id.btnDeleteRequest);
         btnSendMessage = view.findViewById(R.id.btnSendMessage);
         btnSave = view.findViewById(R.id.btnSave);
@@ -109,9 +109,9 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     @Override
     public void onResume() {
         super.onResume();
-        if(!MainActivity.account.getRequest().equals("no") && !MainActivity.account.getRequest().equals("yes"))//LO STUDENTE  HA UNA TESI
+        if (!MainActivity.account.getRequest().equals("no") && !MainActivity.account.getRequest().equals("yes"))//LO STUDENTE  HA UNA TESI
             studenteHaveThesis();
-        else if(MainActivity.account.getRequest().equals("no")) //LO STUDENTE NON HA ANCORA FATTO RICHIESTA
+        else if (MainActivity.account.getRequest().equals("no")) //LO STUDENTE NON HA ANCORA FATTO RICHIESTA
             studentNotRequest();
         else// LO STUDENTE HA FATTO RICHIESTA MA NON E' STATA ANCORA ACCETTATA
             studentYesRequest();
@@ -126,7 +126,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         btnCancelRequest.setOnClickListener(view -> {
 
             db.collection("richieste").document(MainActivity.account.getEmail()).delete().addOnSuccessListener(unused ->
-                    Snackbar.make(requireView(), "Request canceled.", Snackbar.LENGTH_LONG).show());
+                    Snackbar.make(requireView(), R.string.request_canceled, Snackbar.LENGTH_LONG).show());
 
             db.collection("studenti").document(MainActivity.account.getEmail()).update("Request", "no");
 
@@ -136,58 +136,57 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         });
 
 
-
         db.collection("richieste").document(MainActivity.account.getEmail()).get().addOnSuccessListener(documentSnapshot ->
                 thesisName = documentSnapshot.getString("Thesis")).continueWith(task -> {
-                    if(!task.isSuccessful()){
-                        return null;
-                    }
-                    return db.collection("Tesi")
-                            .document(thesisName)
-                            .get()
-                            .addOnCompleteListener(task2 -> {
-                                if(task2.isSuccessful()) {
-                                    DocumentSnapshot document = task2.getResult();
-                                    if(document.exists()) {
-                                        txtNameTitle.setText(thesisName);
-                                        txtType.setText(document.getString("Type"));
-                                        txtDepartment.setText(document.getString("Faculty"));
-                                        txtProfessor.setText(document.getString("Professor"));
+            if (!task.isSuccessful()) {
+                return null;
+            }
+            return db.collection("Tesi")
+                    .document(thesisName)
+                    .get()
+                    .addOnCompleteListener(task2 -> {
+                        if (task2.isSuccessful()) {
+                            DocumentSnapshot document = task2.getResult();
+                            if (document.exists()) {
+                                txtNameTitle.setText(thesisName);
+                                txtType.setText(document.getString("Type"));
+                                txtDepartment.setText(document.getString("Faculty"));
+                                txtProfessor.setText(document.getString("Professor"));
 
-                                        if(document.getString("Correlator").equals(""))
-                                            txtCorrelator.setText("None");
-                                        else
-                                            txtCorrelator.setText(document.getString("Correlator"));
+                                if (document.getString("Correlator").equals(""))
+                                    txtCorrelator.setText(R.string.none);
+                                else
+                                    txtCorrelator.setText(document.getString("Correlator"));
 
-                                        String estimatedTime = document.getString("Estimated Time") + " days";
-                                        txtTime.setText(estimatedTime);
+                                String estimatedTime = document.getString("Estimated Time") + " days";
+                                txtTime.setText(estimatedTime);
 
-                                        txtDescription.setText(document.getString("Description"));
+                                txtDescription.setText(document.getString("Description"));
 
-                                        if(document.getString("Related Projects").equals(""))
-                                            txtRelatedProjects.setText("None");
-                                        else
-                                            txtRelatedProjects.setText(document.getString("Related Projects"));
+                                if (document.getString("Related Projects").equals(""))
+                                    txtRelatedProjects.setText(R.string.none);
+                                else
+                                    txtRelatedProjects.setText(document.getString("Related Projects"));
 
-                                        if(document.getString("Average").equals(""))
-                                            txtAverageMarks.setText("None");
-                                        else
-                                            txtAverageMarks.setText(document.getString("Average"));
+                                if (document.getString("Average").equals(""))
+                                    txtAverageMarks.setText(R.string.none);
+                                else
+                                    txtAverageMarks.setText(document.getString("Average"));
 
-                                        if(document.getString("Required Exam").equals(""))
-                                            txtRequiredExams.setText("None");
-                                        else
-                                            txtRequiredExams.setText(document.getString("Required Exam"));
+                                if (document.getString("Required Exam").equals(""))
+                                    txtRequiredExams.setText(R.string.none);
+                                else
+                                    txtRequiredExams.setText(document.getString("Required Exam"));
 
-                                        String state = "Not accepted yet";
-                                        txtState.setTextColor(Color.RED);
-                                        txtState.setText(state);
+                                String state = getString(R.string.not_accepted_yet);
+                                txtState.setTextColor(Color.RED);
+                                txtState.setText(state);
 
-                                    }
-                                } else {
-                                    Log.d(TAG, "get failed with ", task2.getException());
-                                }
-                            });
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task2.getException());
+                        }
+                    });
         });
 
 
@@ -221,20 +220,20 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                                 txtDepartment.setText(document.getString("Faculty"));
                                 txtProfessor.setText(document.getString("Professor"));
 
-                                    if(document.getString("Correlator").equals(""))
-                                        txtCorrelator.setText("None");
-                                    else
-                                        txtCorrelator.setText(document.getString("Correlator"));
+                                if (document.getString("Correlator").equals(""))
+                                    txtCorrelator.setText("None");
+                                else
+                                    txtCorrelator.setText(document.getString("Correlator"));
 
-                                String estimatedTime = document.getString("Estimated Time")+" days";
+                                String estimatedTime = document.getString("Estimated Time") + " days";
                                 txtTime.setText(estimatedTime);
 
                                 txtDescription.setText(document.getString("Description"));
 
-                                if(document.getString("Related Projects").equals(""))
+                                if (document.getString("Related Projects").equals(""))
                                     txtRelatedProjects.setText("None");
                                 else
-                                   txtRelatedProjects.setText(document.getString("Related Projects"));
+                                    txtRelatedProjects.setText(document.getString("Related Projects"));
                             }
                         } else {
                             Log.d(TAG, "get failed with ", task.getException());
@@ -254,90 +253,114 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                 addMaterialItem(nomeFile);
             }
 
-        }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
+        }).addOnFailureListener(exception -> Log.w("info", getString(R.string.error_file), exception));
 
         buttonAdd.setOnClickListener(view -> {
 
-            int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
-                    Manifest.permission.READ_EXTERNAL_STORAGE);
-
-            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-            } else {
-                // permesso già concesso, procedi con la lettura dei file
-                uploadFile();
-            }
+            buttonAddOnClick();
 
 
         });
 
         btnSave.setOnClickListener(view -> {
-            for (String fileName : deletedOldMaterials){
-                storageReference.child(thesis_name).child(fileName).delete();
-            }
 
-            for(Uri uri: newMaterials){
-                uploadToDatabase(uri);
-            }
+            btnSaveOnClick(thesis_name, view);
 
-            Snackbar.make(view, "Thesis updated", Snackbar.LENGTH_LONG).show();
-
-            getParentFragmentManager().popBackStack();
         });
 
         btnTask.setOnClickListener(view -> {
 
-            Fragment taskListFragment = new TaskListFragment();
-            Bundle bundle = new Bundle();
-
-            bundle.putString("thesisName",thesis_name);
-            bundle.putString("professor",txtProfessor.getText().toString());
-
-            taskListFragment.setArguments(bundle);
-
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, taskListFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            btnTaskOnClick(thesis_name);
 
         });
 
         btnReceipt.setOnClickListener(view -> {
 
-            Bundle bundle = new Bundle();
-            bundle.putString("thesis_name",thesis_name);
-            bundle.putString("professor",txtProfessor.getText().toString());
-            Fragment receiptsListFragment = new ReceiptsListFragment();
-            receiptsListFragment.setArguments(bundle);
-
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, receiptsListFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            btnReceiptOnClick(thesis_name);
 
         });
 
 
         btnSendMessage.setOnClickListener(view -> {
-            Fragment thesisMessage = new NewMessageFragment();
-            Bundle bundle = new Bundle();
 
-            bundle.putString("thesis_name", thesis_name);
-            bundle.putString("professor",txtProfessor.getText().toString());
+            btnSendMessageOnClick(thesis_name);
 
-            thesisMessage.setArguments(bundle);
-
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, thesisMessage);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
         });
 
+    }
+
+    private void btnSendMessageOnClick(String thesis_name) {
+        Fragment thesisMessage = new NewMessageFragment();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("thesis_name", thesis_name);
+        bundle.putString("professor", txtProfessor.getText().toString());
+
+        thesisMessage.setArguments(bundle);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, thesisMessage);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void btnReceiptOnClick(String thesis_name) {
+        Bundle bundle = new Bundle();
+        bundle.putString("thesis_name", thesis_name);
+        bundle.putString("professor", txtProfessor.getText().toString());
+        Fragment receiptsListFragment = new ReceiptsListFragment();
+        receiptsListFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, receiptsListFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void btnTaskOnClick(String thesis_name) {
+        Fragment taskListFragment = new TaskListFragment();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("thesisName", thesis_name);
+        bundle.putString("professor", txtProfessor.getText().toString());
+
+        taskListFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, taskListFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void btnSaveOnClick(String thesis_name, View view) {
+        for (String fileName : deletedOldMaterials) {
+            storageReference.child(thesis_name).child(fileName).delete();
+        }
+
+        for (Uri uri : newMaterials) {
+            uploadToDatabase(uri);
+        }
+
+        Snackbar.make(view, R.string.thesis_updated, Snackbar.LENGTH_LONG).show();
+
+        getParentFragmentManager().popBackStack();
+    }
+
+    private void buttonAddOnClick() {
+        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+        } else {
+            // permesso già concesso, procedi con la lettura dei file
+            uploadFile();
+        }
     }
 
     private void uploadFile() {
@@ -402,7 +425,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
             } else {
                 // permesso già concesso, procedi con la lettura dei file
                 download(nomeFile);
-                Snackbar.make(view1, "Downloading "+nomeFile, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view1, R.string.downloading + nomeFile, Snackbar.LENGTH_LONG).show();
             }
 
         });
@@ -416,14 +439,14 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         ref = storageReference.child(MainActivity.account.getRequest()).child(nomeFile);
 
         ref.getDownloadUrl().addOnSuccessListener(uri -> {
-            String url  = uri.toString();
-            downloadFile(getActivity(), nomeFile,"", DIRECTORY_DOWNLOADS,url );
+            String url = uri.toString();
+            downloadFile(getActivity(), nomeFile, "", DIRECTORY_DOWNLOADS, url);
 
         }).addOnFailureListener(e -> {
         });
     }
 
-    private void downloadFile(Context context, String nomeFile, String fileExtension, String destinationDirectory, String url ) {
+    private void downloadFile(Context context, String nomeFile, String fileExtension, String destinationDirectory, String url) {
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
         Uri uri = Uri.parse(url);
         DownloadManager.Request request = new DownloadManager.Request(uri);
@@ -452,7 +475,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                     uploadFile();
                 } else {
                     buttonAdd.setOnClickListener(view -> {
-                        Snackbar.make(getView(),"Non hai i permessi di lettura",Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(getView(), R.string.not_read_permissions, Snackbar.LENGTH_LONG).show();
                     });
                     // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
                 }

@@ -43,9 +43,9 @@ public class ThesesMessagesListFragment extends Fragment {
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if(document.getString("Student").equals(MainActivity.account.getEmail()) ||
-                            document.getString("Professor").equals(MainActivity.account.getEmail())){
-                        if(!listaTesi.contains(document.getString("Thesis Name"))){
+                    if (document.getString("Student").equals(MainActivity.account.getEmail()) ||
+                            document.getString("Professor").equals(MainActivity.account.getEmail())) {
+                        if (!listaTesi.contains(document.getString("Thesis Name"))) {
                             addMessageCard(document);
                             listaTesi.add(document.getString("Thesis Name"));
                         }
@@ -71,7 +71,7 @@ public class ThesesMessagesListFragment extends Fragment {
         String date = document.getString("Date");
         String idMessage = document.getId();
 
-        if(MainActivity.account.getAccountType().equals("Professor")){
+        if (MainActivity.account.getAccountType().equals("Professor")) {
             txtProfessorTitle.setVisibility(View.GONE);
             txtProfessor.setVisibility(View.GONE);
         }
@@ -80,27 +80,31 @@ public class ThesesMessagesListFragment extends Fragment {
         txtName.setText(thesis_name);
 
         Bundle bundle = new Bundle();
-        bundle.putString("object",object);
-        bundle.putString("professor",professor);
-        bundle.putString("professore_message",professor_message);
-        bundle.putString("student_message",student_message);
-        bundle.putString("thesis_name",thesis_name);
-        bundle.putString("date",date);
-        bundle.putString("idMessage",idMessage);
+        bundle.putString("object", object);
+        bundle.putString("professor", professor);
+        bundle.putString("professore_message", professor_message);
+        bundle.putString("student_message", student_message);
+        bundle.putString("thesis_name", thesis_name);
+        bundle.putString("date", date);
+        bundle.putString("idMessage", idMessage);
 
         view.setOnClickListener(view1 -> {
 
-            Fragment info = new MessagesListFragment();
-
-            info.setArguments(bundle);
-
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, info);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            viewOnClick(bundle);
 
         });
         messageListLayout.addView(view);
+    }
+
+    private void viewOnClick(Bundle bundle) {
+        Fragment info = new MessagesListFragment();
+
+        info.setArguments(bundle);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, info);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

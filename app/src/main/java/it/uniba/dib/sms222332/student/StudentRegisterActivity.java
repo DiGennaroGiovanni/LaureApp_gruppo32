@@ -28,7 +28,7 @@ public class StudentRegisterActivity extends AppCompatActivity {
     FirebaseUser mUser;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    EditText edtNomeStudente,edtCognomeStudente, edtMatricolaStudente, edtEmailRegistrati, edtPasswordRegistrati;
+    EditText edtNomeStudente, edtCognomeStudente, edtMatricolaStudente, edtEmailRegistrati, edtPasswordRegistrati;
     TextView txtFacoltaStudente;
     Spinner spinnerFacolta;
     Button buttonConcludi;
@@ -67,33 +67,33 @@ public class StudentRegisterActivity extends AppCompatActivity {
     private void insertDataStudente() {
         String nome = edtNomeStudente.getText().toString().toLowerCase();
         char firstChar = Character.toUpperCase(nome.charAt(0));
-        nome = firstChar+nome.substring(1);
+        nome = firstChar + nome.substring(1);
 
         String cognome = edtCognomeStudente.getText().toString().toLowerCase();
         firstChar = Character.toUpperCase(cognome.charAt(0));
-        cognome = firstChar+cognome.substring(1);
+        cognome = firstChar + cognome.substring(1);
 
         String matricola = edtMatricolaStudente.getText().toString();
         String facolta = spinnerFacolta.getSelectedItem().toString();
         String email = edtEmailRegistrati.getText().toString().toLowerCase();
 
         Map<String, String> infoStudente = new HashMap<>();
-        infoStudente.put("Name",nome);
-        infoStudente.put("Surname",cognome);
-        infoStudente.put("Badge Number",matricola);
-        infoStudente.put("Faculty",facolta);
-        infoStudente.put("Account Type","Student");
-        infoStudente.put("Request","no");
+        infoStudente.put("Name", nome);
+        infoStudente.put("Surname", cognome);
+        infoStudente.put("Badge Number", matricola);
+        infoStudente.put("Faculty", facolta);
+        infoStudente.put("Account Type", "Student");
+        infoStudente.put("Request", "no");
 
-        if(nome.isEmpty())
-            edtNomeStudente.setError("Inserisci il tuo nome!");
-        else if(cognome.isEmpty())
-            edtCognomeStudente.setError("Inserisci il tuo cognome!");
-        else if(matricola.isEmpty())
-            edtMatricolaStudente.setError("Inserisci la tua matricola correttamente!");
-        else if(facolta.isEmpty())
-            txtFacoltaStudente.setError("Seleziona la tua facoltà!");
-        else{
+        if (nome.isEmpty())
+            edtNomeStudente.setError(getString(R.string.enter_name));
+        else if (cognome.isEmpty())
+            edtCognomeStudente.setError(getString(R.string.enter_surname));
+        else if (matricola.isEmpty())
+            edtMatricolaStudente.setError(getString(R.string.enter_badge_number));
+        else if (facolta.isEmpty())
+            txtFacoltaStudente.setError(getString(R.string.select_department));
+        else {
             db.collection("studenti").document(email).set(infoStudente);
         }
     }
@@ -103,24 +103,23 @@ public class StudentRegisterActivity extends AppCompatActivity {
         String password = edtPasswordRegistrati.getText().toString();
 
         String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
-        if(!email.matches(emailPattern))
-        {
-            edtEmailRegistrati.setError("Inserisci un'email valida!");
-        }else if(password.isEmpty() || password.length()<6){
-            edtPasswordRegistrati.setError("Inserisci una password valida (deve avere almeno 6 caratteri)");
-        }else{
+        if (!email.matches(emailPattern)) {
+            edtEmailRegistrati.setError(getString(R.string.enter_valid_email));
+        } else if (password.isEmpty() || password.length() < 6) {
+            edtPasswordRegistrati.setError(getString(R.string.enter_valid_password));
+        } else {
 
 
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
-                if (task.isSuccessful()){
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
 
                     insertDataStudente();
                     Intent intent = new Intent(StudentRegisterActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("signed up", true);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(getString(R.string.signed_up), true);
                     startActivity(intent);
 
-                }else{
+                } else {
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, R.string.email_already_existent, Snackbar.LENGTH_SHORT).show();
                 }

@@ -10,8 +10,8 @@ public class StudentAccount implements Account {
     private final String badgeNumber;
     private final String faculty;
     private final String email;
-    private String request;
     private final String accountType = "Student";
+    private String request;
 
 
     public StudentAccount(String name, String surname, String badgeNumber, String faculty, String email, String request) {
@@ -44,6 +44,11 @@ public class StudentAccount implements Account {
     }
 
     @Override
+    public void setRequest(String request) {
+        this.request = request;
+    }
+
+    @Override
     public String getBadgeNumber() {
         return badgeNumber;
     }
@@ -56,11 +61,6 @@ public class StudentAccount implements Account {
     @Override
     public String getFaculty() {
         return faculty;
-    }
-
-    @Override
-    public void setRequest(String request){
-        this.request = request;
     }
 
 }

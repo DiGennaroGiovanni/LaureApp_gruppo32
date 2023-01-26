@@ -31,10 +31,10 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class NewRequestFragment extends Fragment {
 
-    String average_marks = "" ;
+    String average_marks = "";
     String required_exams = "";
     String thesis_name = "";
-    String professore_email ="";
+    String professore_email = "";
     LinearLayout averageMarksLayout, requiredExamsLayout;
     TextView txtExamsConstraint, txtAverageConstraint, txtAverageMarks, txtRequiredExams;
     RadioGroup examsRadioGroup, averageRadioGroup;
@@ -72,7 +72,7 @@ public class NewRequestFragment extends Fragment {
             professore_email = getArguments().getString("professor");
         }
 
-        if(average_marks.equals("None")) {
+        if (average_marks.equals("None")) {
             averageMarksLayout.setVisibility(GONE);
             txtAverageConstraint.setVisibility(GONE);
             averageRadioGroup.setVisibility(GONE);
@@ -80,7 +80,7 @@ public class NewRequestFragment extends Fragment {
             txtAverageMarks.setText(average_marks);
         }
 
-        if(required_exams.equals("None")) {
+        if (required_exams.equals("None")) {
             requiredExamsLayout.setVisibility(GONE);
             txtExamsConstraint.setVisibility(GONE);
             examsRadioGroup.setVisibility(GONE);
@@ -91,62 +91,66 @@ public class NewRequestFragment extends Fragment {
 
         btnThesisRequest.setOnClickListener(view1 -> {
 
-            String average = "";
-            String exams = "";
-            String requestName = "";
+            btnThesisRequestOnClick(view1);
 
-            if(rdbAverageYes.isChecked())
-                average = rdbAverageYes.getText().toString();
-            else if(rdbAverageNo.isChecked())
-                average = rdbAverageNo.getText().toString();
-
-            if(rdbExamsYes.isChecked())
-                exams = rdbExamsYes.getText().toString();
-            else if(rdbExamsNo.isChecked())
-                exams = rdbExamsNo.getText().toString();
-
-
-
-            if(!required_exams.equals("None") && !rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()){
-                txtExamsConstraint.setError("You have to choice!");
-                Snackbar.make(view1, "You have to choice!", Snackbar.LENGTH_LONG).show();
-
-            }else if(!average_marks.equals("None") && !rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()){
-                txtAverageConstraint.setError("You have to choice!");
-                Snackbar.make(view1, "You have to choice!", Snackbar.LENGTH_LONG).show();
-            }else{
-
-                Map<String, String> request = new HashMap<>();
-                request.put("Average", txtAverageMarks.getText().toString());
-                request.put("Average Constraint Met", average);
-                request.put("Exams", txtRequiredExams.getText().toString());
-                request.put("Exams Constraint Met", exams);
-                request.put("Message", edtNote.getText().toString());
-                request.put("Professor",professore_email);
-                request.put("Student",MainActivity.account.getEmail());
-                request.put("Thesis",thesis_name);
-
-                requestName =MainActivity.account.getEmail();
-
-                db.collection("richieste").document(requestName).set(request);
-
-                Map <String, Object> update = new HashMap<>();
-                update.put("Request","yes");
-
-                db.collection("studenti").document(MainActivity.account.getEmail()).update(update);
-
-                MainActivity.account.setRequest("yes");
-
-                // chiusura della tastiera quando viene effettuato un cambio di fragment
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
-
-                Snackbar.make(view1, "Request made!", Snackbar.LENGTH_LONG).show();
-
-                getParentFragmentManager().popBackStack();
-            }
         });
 
         return view;
+    }
+
+    private void btnThesisRequestOnClick(View view1) {
+        String average = "";
+        String exams = "";
+        String requestName = "";
+
+        if (rdbAverageYes.isChecked())
+            average = rdbAverageYes.getText().toString();
+        else if (rdbAverageNo.isChecked())
+            average = rdbAverageNo.getText().toString();
+
+        if (rdbExamsYes.isChecked())
+            exams = rdbExamsYes.getText().toString();
+        else if (rdbExamsNo.isChecked())
+            exams = rdbExamsNo.getText().toString();
+
+
+        if (!required_exams.equals("None") && !rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()) {
+            txtExamsConstraint.setError(getString(R.string.have_to_choice));
+            Snackbar.make(view1, R.string.have_to_choice, Snackbar.LENGTH_LONG).show();
+
+        } else if (!average_marks.equals("None") && !rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()) {
+            txtAverageConstraint.setError(getString(R.string.have_to_choice));
+            Snackbar.make(view1, R.string.have_to_choice, Snackbar.LENGTH_LONG).show();
+        } else {
+
+            Map<String, String> request = new HashMap<>();
+            request.put("Average", txtAverageMarks.getText().toString());
+            request.put("Average Constraint Met", average);
+            request.put("Exams", txtRequiredExams.getText().toString());
+            request.put("Exams Constraint Met", exams);
+            request.put("Message", edtNote.getText().toString());
+            request.put("Professor", professore_email);
+            request.put("Student", MainActivity.account.getEmail());
+            request.put("Thesis", thesis_name);
+
+            requestName = MainActivity.account.getEmail();
+
+            db.collection("richieste").document(requestName).set(request);
+
+            Map<String, Object> update = new HashMap<>();
+            update.put("Request", "yes");
+
+            db.collection("studenti").document(MainActivity.account.getEmail()).update(update);
+
+            MainActivity.account.setRequest("yes");
+
+            // chiusura della tastiera quando viene effettuato un cambio di fragment
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
+
+            Snackbar.make(view1, R.string.request_made, Snackbar.LENGTH_LONG).show();
+
+            getParentFragmentManager().popBackStack();
+        }
     }
 }
