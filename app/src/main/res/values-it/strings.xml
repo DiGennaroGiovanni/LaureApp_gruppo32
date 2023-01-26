@@ -45,6 +45,8 @@
     <string name="messageContactTooolbar">Lista Messaggi</string>
     <string name="newReceiptToolbar">Nuovo Ricevimento</string>
     <string name="thesisInfoTooolbar">Info Tesi</string>
+
+    <!-- FILIPPO -->
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_up">Registrati</string>
@@ -149,6 +151,9 @@
     <string name="toast_thesis_created">Tesi creata</string>
     <string name="alertdialog_title">Condividi informazioni tesi</string>
     <string name="dialogalert_qr_subtitle">Scansionami con LaureApp!</string>
+    <string name="request_thesis">Richiedi Tesi</string>
+    <string name="cancel_request">Annulla Richiesta</string>
+    <!-- FINE FILIPPO -->
     <string name="question_register_activity">Sei uno studente o un professore?</string>
     <string name="thesis_name_card">Nome Tesi</string>
     <string name="nome_file_card">Nome File</string>
@@ -207,7 +212,7 @@
     <string name="decline">Rifiuta</string>
     <string name="message_">Messaggio:</string>
     <string name="send_message">INVIA MESSAGGIO</string>
-    <string name="request_thesis">Richiedi Tesi</string>
+
     <string name="do_you_satisfy_the_average_constraint">SODDISFI IL VINCOLO SULLA MEDIA?</string>
     <string name="average_marks_">Media voti: </string>
     <string name="yes">SI</string>

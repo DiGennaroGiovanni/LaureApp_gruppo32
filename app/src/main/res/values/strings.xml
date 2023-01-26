@@ -150,6 +150,9 @@
     <string name="toast_thesis_created">Thesis created</string>
     <string name="alertdialog_title">Share thesis information</string>
     <string name="dialogalert_qr_subtitle">Scan me with LaureApp!</string>
+    <string name="request_thesis">Request thesis</string>
+    <string name="cancel_request">Cancel Request</string>
+
     <string name="question_register_activity">Are you a student or a professor?</string>
     <string name="thesis_name_card">Thesis name</string>
     <string name="nome_file_card">file\'s name</string>
@@ -208,7 +211,6 @@
     <string name="decline">Decline</string>
     <string name="message_">Message:</string>
     <string name="send_message">SEND MESSAGE</string>
-    <string name="request_thesis">Request thesis</string>
     <string name="do_you_satisfy_the_average_constraint">DO YOU SATISFY THE AVERAGE CONSTRAINT?</string>
     <string name="average_marks_">Average Marks:</string>
     <string name="yes">YES</string>
@@ -216,4 +218,5 @@
     <string name="do_you_satisfy_the_exams_constraint">DO YOU SATISFY THE EXAMS CONSTRAINT?</string>
     <string name="notes_">NOTES</string>
     <string name="send_request">Send request</string>
+
 </resources>
