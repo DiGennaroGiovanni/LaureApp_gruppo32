@@ -61,6 +61,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -79,7 +80,7 @@ public class AvailableThesesListFragment extends Fragment {
     CheckBox examsCheckbox;
     private CaptureManager capture;
     private DecoratedBarcodeView barcodeScannerView;
-    TextView txtProfessor;
+    String professor = "";
 
     @Nullable
     @Override
@@ -280,8 +281,7 @@ public class AvailableThesesListFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            String faculty = document.getString("Faculty");
-                            if (faculty.equals(MainActivity.account.getFaculty())) {
+                            if (document.getString("Student").equals("") && document.getString("Faculty").equals(MainActivity.account.getFaculty())) {
                                 addCardThesis(document);
                             }
                         }
@@ -321,20 +321,12 @@ public class AvailableThesesListFragment extends Fragment {
 
     @Override
     public void onResume() {
-
         examsCheckbox = new CheckBox(requireContext());
-
         db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
             layout_lista_tesi.removeAllViews();
-
             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-
-                String faculty = document.getString("Faculty");
-
-                if (faculty.equals(MainActivity.account.getFaculty())) {
-
+                if (document.getString("Student").equals("") && document.getString("Faculty").equals(MainActivity.account.getFaculty())) {
                     addCheckConstraint(document);
-
                 }
             }
         });
@@ -348,7 +340,7 @@ public class AvailableThesesListFragment extends Fragment {
         TextView txtName = view.findViewById(R.id.txtName);
         TextView txtType = view.findViewById(R.id.txtTypology);
         TextView txtDepartment = view.findViewById(R.id.txtDepartment);
-        txtProfessor = view.findViewById(R.id.txtProfessor);
+        TextView txtProfessor = view.findViewById(R.id.txtProfessor);
         TextView txtCorrelator = view.findViewById(R.id.txtCorrelator);
         String professorEmail = document.getString("Professor");
         Button shareBtn = view.findViewById(R.id.shareBtn);
@@ -559,30 +551,35 @@ public class AvailableThesesListFragment extends Fragment {
                     if (student.equals(onlineUser)) {
                         getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyThesisFragment()).commit();
                     } else {
+
                         bundle = new Bundle();
                         Fragment guestThesis = new ThesisDescriptionGuestFragment();
 
                         Map<String, Object> datiTesi = document.getData();
-                        bundle.putString("correlator", (String) datiTesi.get("Correlator"));
-                        bundle.putString("description", (String) datiTesi.get("Description"));
-                        bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
-                        bundle.putString("faculty", (String) datiTesi.get("Faculty"));
-                        bundle.putString("name", (String) datiTesi.get("Name"));
-                        bundle.putString("type", (String) datiTesi.get("Type"));
-                        bundle.putString("professor", txtProfessor.getText().toString());
-                        bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
-                        bundle.putString("average_marks", (String) datiTesi.get("Average"));
-                        bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
-                        bundle.putString("professor_email", txtProfessor.getText().toString());
+                        db.collection("professori").document(datiTesi.get("Professor").toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if(task.isSuccessful()) {
+                                    bundle.putString("professor", task.getResult().get("Name").toString() + " " + task.getResult().get("Surname").toString());
+                                    bundle.putString("correlator", (String) datiTesi.get("Correlator"));
+                                    bundle.putString("description", (String) datiTesi.get("Description"));
+                                    bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
+                                    bundle.putString("faculty", (String) datiTesi.get("Faculty"));
+                                    bundle.putString("name", (String) datiTesi.get("Name"));
+                                    bundle.putString("type", (String) datiTesi.get("Type"));
+                                    bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
+                                    bundle.putString("average_marks", (String) datiTesi.get("Average"));
+                                    bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
+                                    bundle.putString("professor_email", (String) datiTesi.get("Professor"));
 
-
-                        guestThesis.setArguments(bundle);
-                        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-
+                                    guestThesis.setArguments(bundle);
+                                    FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
+                                    fragmentTransaction.addToBackStack(null);
+                                    fragmentTransaction.commit();
+                                }
+                            }
+                        });
                     }
-
                 }
             });
         }
