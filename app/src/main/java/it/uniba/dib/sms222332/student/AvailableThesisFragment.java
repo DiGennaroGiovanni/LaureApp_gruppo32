@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -14,8 +15,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -66,6 +68,7 @@ public class AvailableThesisFragment extends Fragment {
     FirebaseUser mUser;
     LinearLayout layout_lista_tesi;
     Bundle bundle;
+    LinearLayout allTasks;
     Button btnFilter;
     int seekBarValue = 30;
     boolean isRequestedExamChecked = false;
@@ -346,6 +349,34 @@ public class AvailableThesisFragment extends Fragment {
         });
 
         txtName.setText(thesisName);
+
+        final Button btnStar = view.findViewById(R.id.btnStar);
+        final String id_thesis = txtName.getText().toString();
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        boolean isButtonSelected = preferences.getBoolean("button_selected_" + id_thesis,false);
+
+        if (isButtonSelected) {
+            btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_clicked_star));
+            btnStar.setSelected(true);
+        }
+        btnStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (btnStar.isSelected()) {
+                    btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_star));
+                    btnStar.setSelected(false);
+                    editor.putBoolean("button_selected_" + id_thesis, false);
+                } else {
+                    btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_clicked_star));
+                    btnStar.setSelected(true);
+                    editor.putBoolean("button_selected_" + id_thesis, true);
+                }
+                editor.apply();
+            }
+        });
+
+        txtName.setText(document.getString("Name"));
         txtType.setText(document.getString("Type"));
         txtDepartment.setText(document.getString("Faculty"));
         txtCorrelator.setText(document.getString("Correlator"));
@@ -376,7 +407,7 @@ public class AvailableThesisFragment extends Fragment {
 
                 // Definisco l'ImageView che contiene il qr code generato
                 ImageView qr_code_IW = new ImageView(requireContext());
-                qr_code_IW.setImageBitmap(createQr(thesisName));
+             //   qr_code_IW.setImageBitmap(createQr(thesisName));
 
                 // Definisco il TextView per la descrizione del qr code
                 TextView qr_description = new TextView(requireContext());
