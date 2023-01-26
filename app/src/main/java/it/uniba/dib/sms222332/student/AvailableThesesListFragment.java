@@ -37,6 +37,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseNetworkException;
@@ -62,6 +63,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
@@ -77,7 +79,6 @@ public class AvailableThesesListFragment extends Fragment {
     LinearLayout layout_lista_tesi;
     Bundle bundle;
     LinearLayout allTasks;
-    Button btnFilter;
     Button btnFilter, btnCamera;
     int seekBarValue = 30;
     boolean isRequestedExamChecked = false;
@@ -85,6 +86,7 @@ public class AvailableThesesListFragment extends Fragment {
     private CaptureManager capture;
     private DecoratedBarcodeView barcodeScannerView;
     String professor = "";
+    ArrayList<String> tesiPreferite = new ArrayList<>();
 
     @Nullable
     @Override
@@ -99,6 +101,20 @@ public class AvailableThesesListFragment extends Fragment {
         SearchView searchView = view.findViewById(R.id.search_view);
         btnFilter = view.findViewById(R.id.btnFilter);
         btnCamera = view.findViewById(R.id.btnCamera);
+
+        DocumentReference docRef = db.collection("studenti").document(MainActivity.account.getEmail());
+       docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+
+                    //tesiPreferite = documentSnapshot.get("Prefered", ArrayList.class);
+                    tesiPreferite = (ArrayList<String>)documentSnapshot.get("Prefered");
+
+                }
+            }
+        });
+
 
         btnFilter.setOnClickListener(view1 -> {
 
@@ -374,14 +390,29 @@ public class AvailableThesesListFragment extends Fragment {
         btnStar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DocumentReference docRef = db.collection("studenti").document(MainActivity.account.getEmail());
                 if (btnStar.isSelected()) {
                     btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_star));
                     btnStar.setSelected(false);
                     editor.putBoolean("button_selected_" + id_thesis, false);
+
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if(task.isSuccessful()) {
+                               // docRef.update("Prefered", "False");
+                            }
+                        }
+                    });
+
                 } else {
                     btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_clicked_star));
                     btnStar.setSelected(true);
                     editor.putBoolean("button_selected_" + id_thesis, true);
+
+                  //  docRef.update("Prefered", thesisName);
+                    tesiPreferite.add(thesisName);
+                    docRef.set(tesiPreferite);
                 }
                 editor.apply();
             }

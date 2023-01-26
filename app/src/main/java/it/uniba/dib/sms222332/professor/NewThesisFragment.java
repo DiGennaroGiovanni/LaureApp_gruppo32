@@ -235,6 +235,7 @@ public class NewThesisFragment extends Fragment {
         infoTesi.put("Average",mediaVoti);
         infoTesi.put("Type",tipoTesi);
         infoTesi.put("Student","");
+        infoTesi.put("Prefered","False");
 
         if(thesisName.isEmpty()){
             edtThesisName.setError("Inserisci il nome della tesi!");
