@@ -1,10 +1,8 @@
 package it.uniba.dib.sms222332.commonActivities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -23,7 +21,7 @@ import it.uniba.dib.sms222332.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText edtEmailLogin,edtPasswordLogin;
+    private EditText edtEmailLogin, edtPasswordLogin;
     private FirebaseAuth mAuth;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -32,14 +30,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if(getIntent().getBooleanExtra("logout", false)){
+        if (getIntent().getBooleanExtra("logout", false)) {
             View view = findViewById(android.R.id.content);
-            Snackbar.make(view, "Logout effettuato!", Snackbar.LENGTH_SHORT).show();
-        }
-
-        else if(getIntent().getBooleanExtra("signed up", false)){
+            Snackbar.make(view, R.string.logged_out, Snackbar.LENGTH_SHORT).show();
+        } else if (getIntent().getBooleanExtra("signed up", false)) {
             View view = findViewById(android.R.id.content);
-            Snackbar.make(view, "Registrazione completata", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(view, R.string.registration_completed, Snackbar.LENGTH_SHORT).show();
         }
 
         // Dichiaro i pulsanti presenti nella schermata
@@ -47,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         Button loginBtn = findViewById(R.id.btnAccedi);
         edtEmailLogin = findViewById(R.id.edtEmailLogin);
         edtPasswordLogin = findViewById(R.id.edtPasswordLogin);
-
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -62,21 +57,20 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(view -> performLogin());
     }
 
-    private void performLogin( ) {
+    private void performLogin() {
         String email = edtEmailLogin.getText().toString();
         String password = edtPasswordLogin.getText().toString();
 
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-        if(!email.matches(emailPattern))
-        {
-            edtEmailLogin.setError("Inserisci un'email valida!");
-        }else if(password.isEmpty() || password.length()<6){
-            edtPasswordLogin.setError("Inserisci una password valida (deve avere almeno 6 caratteri)");
-        }else{
+        if (!email.matches(emailPattern)) {
+            edtEmailLogin.setError(getString(R.string.enter_valid_email));
+        } else if (password.isEmpty() || password.length() < 6) {
+            edtPasswordLogin.setError(getString(R.string.enter_valid_password));
+        } else {
 
-            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
-                if (task.isSuccessful()){
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
 
                     //VERIFICARE LA TIPOLOGIA DI ACCOUNT -> STUDENTE
 
@@ -89,22 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task12.isSuccessful()) {
                             DocumentSnapshot document = task12.getResult();
                             if (document.exists()) {
-
-                                Map<String,Object> datiStudente =  document.getData();
-
-
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-                                intent.putExtra("account_type",(String) datiStudente.get("Account Type"));
-                                intent.putExtra("name",(String) datiStudente.get("Name"));
-                                intent.putExtra("surname",(String) datiStudente.get("Surname"));
-                                intent.putExtra("badge_number",(String) datiStudente.get("Badge Number"));
-                                intent.putExtra("faculty",(String) datiStudente.get("Faculty"));
-                                intent.putExtra("email", email);
-                                intent.putExtra("request",(String) datiStudente.get("Request"));
-
-                                startActivity(intent);
-                                finish();
+                                studentLogin(email, document);
 
                             } else {
 
@@ -118,18 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if (task1.isSuccessful()) {
                                         DocumentSnapshot document1 = task1.getResult();
                                         if (document1.exists()) {
-                                            Map<String,Object> datiProfessore =  document1.getData();
-
-                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-                                            intent.putExtra("account_type",(String) datiProfessore.get("Account Type"));
-                                            intent.putExtra("name",(String) datiProfessore.get("Name"));
-                                            intent.putExtra("surname",(String) datiProfessore.get("Surname"));
-                                            intent.putExtra("faculty",(String) datiProfessore.get("Faculty"));
-                                            intent.putExtra("email", email);
-
-                                            startActivity(intent);
-                                            finish();
+                                            professorLogin(email, document1);
                                         }
                                     } else {
                                         // Errore durante la lettura del documento
@@ -137,22 +105,50 @@ public class LoginActivity extends AppCompatActivity {
                                 });
 
 
-
-
                             }
-                            } else {
-                                   // Errore durante la lettura del documento
-                                }
-                            });
-                    //----------------------------------------------------------------------------------------------------------------------
+                        } else {
+                            // Errore durante la lettura del documento
+                        }
+                    });
 
-
-
-                }else{
+                } else {
                     View view = findViewById(android.R.id.content);
-                    Snackbar.make(view, "Utente non trovato, effettua la registrazione o inserisci correttamente i dati", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(view, R.string.user_not_found, Snackbar.LENGTH_SHORT).show();
                 }
             });
         }
+    }
+
+    private void professorLogin(String email, DocumentSnapshot document1) {
+        Map<String, Object> datiProfessore = document1.getData();
+
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+        intent.putExtra("account_type", (String) datiProfessore.get("Account Type"));
+        intent.putExtra("name", (String) datiProfessore.get("Name"));
+        intent.putExtra("surname", (String) datiProfessore.get("Surname"));
+        intent.putExtra("faculty", (String) datiProfessore.get("Faculty"));
+        intent.putExtra("email", email);
+
+        startActivity(intent);
+        finish();
+    }
+
+    private void studentLogin(String email, DocumentSnapshot document) {
+        Map<String, Object> datiStudente = document.getData();
+
+
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+        intent.putExtra("account_type", (String) datiStudente.get("Account Type"));
+        intent.putExtra("name", (String) datiStudente.get("Name"));
+        intent.putExtra("surname", (String) datiStudente.get("Surname"));
+        intent.putExtra("badge_number", (String) datiStudente.get("Badge Number"));
+        intent.putExtra("faculty", (String) datiStudente.get("Faculty"));
+        intent.putExtra("email", email);
+        intent.putExtra("request", (String) datiStudente.get("Request"));
+
+        startActivity(intent);
+        finish();
     }
 }

@@ -26,8 +26,8 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 public class TaskListFragment extends Fragment {
 
     Button addTaskButton;
-    TextView txtNomeStudente, txtNomeTesi,txtProfessor;
-    String studentName,thesisName;
+    TextView txtNomeStudente, txtNomeTesi, txtProfessor;
+    String studentName, thesisName;
     LinearLayout taskListLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -52,7 +52,7 @@ public class TaskListFragment extends Fragment {
 
             String professor = getArguments().getString("professor");
 
-            if(!professor.equals("")){
+            if (!professor.equals("")) {
                 txtProfessor.setText("Professor: ");
                 txtNomeStudente.setText(professor);
             }
@@ -66,7 +66,7 @@ public class TaskListFragment extends Fragment {
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if(document.getString("Thesis").equals(txtNomeTesi.getText().toString()))
+                    if (document.getString("Thesis").equals(txtNomeTesi.getText().toString()))
                         addTaskCard(document);
                 }
             } else {
@@ -74,31 +74,34 @@ public class TaskListFragment extends Fragment {
             }
         });
 
-        if(MainActivity.account.getAccountType().equals("Student")){
+        if (MainActivity.account.getAccountType().equals("Student")) {
             addTaskButton.setVisibility(View.GONE);
-        }else{
+        } else {
             addTaskButton.setOnClickListener(view1 -> {
 
-                Fragment addTaskFragment = new NewTaskFragment();
-                Bundle bundle = new Bundle();
-
-                bundle.putString("thesisName",thesisName);
-                bundle.putString("student",studentName);
-
-                addTaskFragment.setArguments(bundle);
-
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, addTaskFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                addTaskOnClick();
 
             });
         }
 
 
-
         return view;
+    }
+
+    private void addTaskOnClick() {
+        Fragment addTaskFragment = new NewTaskFragment();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("thesisName", thesisName);
+        bundle.putString("student", studentName);
+
+        addTaskFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, addTaskFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     private void addTaskCard(QueryDocumentSnapshot document) {
@@ -119,47 +122,55 @@ public class TaskListFragment extends Fragment {
         taskListLayout.addView(view);
 
 
-        if(MainActivity.account.getAccountType().equals("Student")){
+        if (MainActivity.account.getAccountType().equals("Student")) {
             btnDelete.setVisibility(View.GONE);
-        }else{
+        } else {
             btnDelete.setOnClickListener(view12 -> {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Conferma eliminazione");
-                builder.setMessage("Sei sicuro di voler questo task?");
-                builder.setPositiveButton("No", (dialog, which) -> {
-
-                });
-                builder.setNegativeButton("Yes", (dialog, which) -> {
-                    taskListLayout.removeView(view);
-                    db.collection("tasks").document(txtTaskName.getText().toString()).delete();
-
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                btnDeleteOnClick(view, txtTaskName);
             });
         }
 
         btnEdit.setOnClickListener(view1 -> {
 
-            Bundle bundle = new Bundle();
-            Fragment editTask = new EditTaskFragment();
-
-            bundle.putString("student",studentName);
-            bundle.putString("name",txtTaskName.getText().toString());
-            bundle.putString("thesis name",thesisName);
-            bundle.putString("description",description);
-            bundle.putString("state",txtState.getText().toString());
-
-
-            editTask.setArguments(bundle);
-
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, editTask);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            btnEditOnClick(txtTaskName, txtState, description);
         });
+    }
+
+    private void btnEditOnClick(TextView txtTaskName, TextView txtState, String description) {
+        Bundle bundle = new Bundle();
+        Fragment editTask = new EditTaskFragment();
+
+        bundle.putString("student", studentName);
+        bundle.putString("name", txtTaskName.getText().toString());
+        bundle.putString("thesis name", thesisName);
+        bundle.putString("description", description);
+        bundle.putString("state", txtState.getText().toString());
+
+
+        editTask.setArguments(bundle);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, editTask);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void btnDeleteOnClick(View view, TextView txtTaskName) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.confirm_deletion);
+        builder.setMessage(R.string.task_delete_question);
+        builder.setPositiveButton(R.string.no, (dialog, which) -> {
+
+        });
+        builder.setNegativeButton(R.string.yes, (dialog, which) -> {
+            taskListLayout.removeView(view);
+            db.collection("tasks").document(txtTaskName.getText().toString()).delete();
+
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }

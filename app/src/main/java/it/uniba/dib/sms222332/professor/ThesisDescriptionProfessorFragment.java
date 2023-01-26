@@ -24,39 +24,33 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
 import it.uniba.dib.sms222332.R;
 
 public class ThesisDescriptionProfessorFragment extends Fragment {
 
-    TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,
-            txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtStudentTitle,txtStudent;
-    Button btnEdit,btnDelete,btnReceipt,btnTask;
+    TextView txtNameTitle, txtType, txtDepartment, txtTime, txtCorrelator,
+            txtDescription, txtRelatedProjects, txtAverageMarks, txtRequiredExams, txtStudentTitle, txtStudent;
+    Button btnEdit, btnDelete, btnReceipt, btnTask;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layout_lista_file;
-    String related_projects = "" ;
-    String average_marks = "" ;
+    String related_projects = "";
+    String average_marks = "";
     String required_exam = "";
     String student = "";
     StorageReference storageReference, ref;
     FirebaseStorage storage;
     String nameThesis = "";
 
-
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisListToolbar));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisListToolbar));
 
         View view = inflater.inflate(R.layout.fragment_thesis_description_professor, container, false);
 
@@ -82,128 +76,21 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
 
         if (getArguments() != null) {
-            String correlator = getArguments().getString("correlator");
-            String description = getArguments().getString("description");
-            String estimated_time = getArguments().getString("estimated_time");
-            String faculty = getArguments().getString("faculty");
-            nameThesis = getArguments().getString("name");
-            String type = getArguments().getString("type");
-            related_projects = getArguments().getString("related_projects");
-            average_marks = getArguments().getString("average_marks");
-            required_exam = getArguments().getString("required_exam");
-            student = getArguments().getString("student");
-
-            txtNameTitle.setText(nameThesis);
-            txtType.setText(type);
-            txtDepartment.setText(faculty);
-            txtTime.setText(estimated_time);
-            txtDescription.setText(description);
-
-
-            if(correlator.isEmpty())
-               txtCorrelator.setText("None");
-            else
-                txtCorrelator.setText(correlator);
-
-            if(student.isEmpty()){
-                txtStudent.setText("None");
-            }else
-                txtStudent.setText(student);
-
-            if(average_marks.isEmpty()){
-                txtAverageMarks.setText("None");
-            }else
-                txtAverageMarks.setText(average_marks);
-
-            if(required_exam.isEmpty()){
-                txtRequiredExams.setText("None");
-            }else
-                txtRequiredExams.setText(required_exam);
-
-            if(related_projects.isEmpty()){
-                txtRelatedProjects.setText("None");
-            }else
-                txtRelatedProjects.setText(related_projects);
+            getDataFromPreviousFragment();
 
         }
 
-        if(!student.isEmpty()){
+        if (!student.isEmpty()) {
             btnTask.setVisibility(View.VISIBLE);
             btnReceipt.setVisibility(View.VISIBLE);
         }
 
         btnEdit.setOnClickListener(view1 -> {
-            Fragment editThesisFragment = new EditThesisFragment();
-            Bundle bundle = new Bundle();
-
-            bundle.putString("name",txtNameTitle.getText().toString());
-            bundle.putString("type",txtType.getText().toString());
-            bundle.putString("related_projects",related_projects);
-            bundle.putString("department",txtDepartment.getText().toString());
-            bundle.putString("time",txtTime.getText().toString());
-            bundle.putString("correlator",txtCorrelator.getText().toString());
-            bundle.putString("description",txtDescription.getText().toString());
-            bundle.putString("student",txtStudent.getText().toString());
-            bundle.putString("required_exam",required_exam);
-            bundle.putString("average_marks",average_marks);
-
-            editThesisFragment.setArguments(bundle);
-
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, editThesisFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            btnEditOnClick();
         });
 
         btnDelete.setOnClickListener(view12 -> {
-
-            DocumentReference tesi = db.collection("Tesi").document(txtNameTitle.getText().toString());
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference storageRef = storage.getReference();
-            StorageReference folderRef = storageRef.child(txtNameTitle.getText().toString());
-
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Conferma eliminazione");
-            builder.setMessage("Sei sicuro di voler eliminare questa tesi ed i suoi materiali?");
-            builder.setPositiveButton("No", (dialog, which) -> {
-
-            });
-
-            builder.setNegativeButton("Yes", (dialog, which) -> {
-
-                folderRef.listAll()
-                        .addOnSuccessListener(new OnSuccessListener<ListResult>() {
-                            @Override
-                            public void onSuccess(ListResult listResult) {
-                                for (StorageReference item : listResult.getItems()) {
-                                    item.delete();
-                                }
-                                folderRef.delete();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.e(TAG, "Error deleting folder: " + e.getMessage()); //TODO INSERIRE MESSAGGIO ERRORE
-                            }
-                        });
-
-                storageReference.child("PDF_tesi").child(nameThesis + ".pdf").delete();
-                tesi.delete();
-
-                Snackbar.make(view12, "Thesis eliminated", Snackbar.LENGTH_LONG).show();
-
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, new ThesesListFragment());
-                transaction.commit();
-
-            });
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
+            btnDeleteOnClick(view12);
         });
 
         //AGGIUNGO MATERIALI DEL DATABASE
@@ -218,46 +105,168 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
                 addMaterialItem(nomeFile);
             }
 
-        }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
+        }).addOnFailureListener(exception -> Log.w("info", getString(R.string.error_documents), exception));
 
         btnReceipt.setOnClickListener(v -> {
 
-            Bundle bundle = new Bundle();
-            bundle.putString("thesis_name",txtNameTitle.getText().toString());
-            bundle.putString("student",txtStudent.getText().toString());
-            Fragment receiptsListFragment = new ReceiptsListFragment();
-            receiptsListFragment.setArguments(bundle);
-
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, receiptsListFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            btnReceiptOnClick();
 
         });
 
 
         btnTask.setOnClickListener(v -> {
 
-            Fragment taskListFragment = new TaskListFragment();
-            Bundle bundle = new Bundle();
-
-            bundle.putString("thesisName",txtNameTitle.getText().toString());
-            bundle.putString("student",txtStudent.getText().toString());
-
-            taskListFragment.setArguments(bundle);
-
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, taskListFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            btnTaskOnClick();
 
         });
 
         return view;
     }
 
+    private void getDataFromPreviousFragment() {
+        String correlator = getArguments().getString("correlator");
+        String description = getArguments().getString("description");
+        String estimated_time = getArguments().getString("estimated_time");
+        String faculty = getArguments().getString("faculty");
+        nameThesis = getArguments().getString("name");
+        String type = getArguments().getString("type");
+        related_projects = getArguments().getString("related_projects");
+        average_marks = getArguments().getString("average_marks");
+        required_exam = getArguments().getString("required_exam");
+        student = getArguments().getString("student");
+
+        txtNameTitle.setText(nameThesis);
+        txtType.setText(type);
+        txtDepartment.setText(faculty);
+        txtTime.setText(estimated_time);
+        txtDescription.setText(description);
+
+
+        if (correlator.isEmpty())
+            txtCorrelator.setText(R.string.none);
+        else
+            txtCorrelator.setText(correlator);
+
+        if (student.isEmpty()) {
+            txtStudent.setText(R.string.none);
+        } else
+            txtStudent.setText(student);
+
+        if (average_marks.isEmpty()) {
+            txtAverageMarks.setText(R.string.none);
+        } else
+            txtAverageMarks.setText(average_marks);
+
+        if (required_exam.isEmpty()) {
+            txtRequiredExams.setText(R.string.none);
+        } else
+            txtRequiredExams.setText(required_exam);
+
+        if (related_projects.isEmpty()) {
+            txtRelatedProjects.setText(R.string.none);
+        } else
+            txtRelatedProjects.setText(related_projects);
+    }
+
+    private void btnTaskOnClick() {
+        Fragment taskListFragment = new TaskListFragment();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("thesisName", txtNameTitle.getText().toString());
+        bundle.putString("student", txtStudent.getText().toString());
+
+        taskListFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, taskListFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void btnReceiptOnClick() {
+        Bundle bundle = new Bundle();
+        bundle.putString("thesis_name", txtNameTitle.getText().toString());
+        bundle.putString("student", txtStudent.getText().toString());
+        Fragment receiptsListFragment = new ReceiptsListFragment();
+        receiptsListFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, receiptsListFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void btnDeleteOnClick(View view12) {
+        DocumentReference tesi = db.collection("Tesi").document(txtNameTitle.getText().toString());
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference folderRef = storageRef.child(txtNameTitle.getText().toString());
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.confirm_deletion);
+        builder.setMessage(R.string.thesis_materials_delete_question);
+        builder.setPositiveButton(R.string.no, (dialog, which) -> {
+
+        });
+
+        builder.setNegativeButton(R.string.yes, (dialog, which) -> {
+
+            thesisDeletion(view12, tesi, folderRef);
+
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void thesisDeletion(View view12, DocumentReference tesi, StorageReference folderRef) {
+        folderRef.listAll()
+                .addOnSuccessListener(listResult -> {
+                    for (StorageReference item : listResult.getItems()) {
+                        item.delete();
+                    }
+                    folderRef.delete();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, getString(R.string.error_deleting_folder) + e.getMessage()); //TODO INSERIRE MESSAGGIO ERRORE
+                });
+
+        storageReference.child("PDF_tesi").child(nameThesis + ".pdf").delete();
+        tesi.delete();
+
+        Snackbar.make(view12, R.string.thesis_eliminated, Snackbar.LENGTH_LONG).show();
+
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new ThesesListFragment());
+        transaction.commit();
+    }
+
+    private void btnEditOnClick() {
+        Fragment editThesisFragment = new EditThesisFragment();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("name", txtNameTitle.getText().toString());
+        bundle.putString("type", txtType.getText().toString());
+        bundle.putString("related_projects", related_projects);
+        bundle.putString("department", txtDepartment.getText().toString());
+        bundle.putString("time", txtTime.getText().toString());
+        bundle.putString("correlator", txtCorrelator.getText().toString());
+        bundle.putString("description", txtDescription.getText().toString());
+        bundle.putString("student", txtStudent.getText().toString());
+        bundle.putString("required_exam", required_exam);
+        bundle.putString("average_marks", average_marks);
+
+        editThesisFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, editThesisFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
 
 
     private void addMaterialItem(String nomeFile) {
@@ -270,7 +279,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
         downloadMaterial.setOnClickListener(view1 -> {
             download(nomeFile);
-            Snackbar.make(view1, "Downloading "+nomeFile, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(view1, getString(R.string.downloading) + nomeFile, Snackbar.LENGTH_LONG).show();
         });
 
         layout_lista_file.addView(view);
@@ -282,20 +291,20 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
         ref = storageReference.child(txtNameTitle.getText().toString()).child(nomeFile);
 
         ref.getDownloadUrl().addOnSuccessListener(uri -> {
-            String url  = uri.toString();
-                downloadFile(getActivity(), nomeFile,"", DIRECTORY_DOWNLOADS,url );
+            String url = uri.toString();
+            downloadFile(getActivity(), nomeFile, "", DIRECTORY_DOWNLOADS, url);
 
         }).addOnFailureListener(e -> {
-      });
+        });
     }
 
-    private void downloadFile(Context context, String nomeFile, String fileExtension, String destinationDirectory, String url ) {
-         DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
-         Uri uri = Uri.parse(url);
-         DownloadManager.Request request = new DownloadManager.Request(uri);
+    private void downloadFile(Context context, String nomeFile, String fileExtension, String destinationDirectory, String url) {
+        DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(url);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
 
-         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-         request.setDestinationInExternalFilesDir(context, destinationDirectory, nomeFile + fileExtension);
-         downloadManager.enqueue(request);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalFilesDir(context, destinationDirectory, nomeFile + fileExtension);
+        downloadManager.enqueue(request);
     }
 }

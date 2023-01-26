@@ -31,13 +31,43 @@ import it.uniba.dib.sms222332.student.StudentHomeFragment;
 import it.uniba.dib.sms222332.commonActivities.Messages.ThesesMessagesListFragment;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static Account account;
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNav;
     private NavigationView navigationView;
+    private final NavigationBarView.OnItemSelectedListener navListener = item -> {
+        Fragment selectedFragment;
 
-    public static Account account;
+        switch (item.getItemId()) {
+
+            case R.id.star_button:
+                selectedFragment = new FavoritesFragment();
+                break;
+
+            case R.id.chat_button:
+                selectedFragment = new ThesesMessagesListFragment();
+                break;
+
+            case R.id.thesis_list_button:
+                selectedFragment = new ThesesListFragment();
+                break;
+
+            case R.id.home_button:
+            default:
+                selectedFragment = getProperHome();
+        }
+
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+        selectBottomNavigationBarItem();
+        return true;
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setProfession(profession, account.getAccountType());
 
         bottomNav.setOnItemSelectedListener(navListener);
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, getProperHome()).commit();
         }
     }
@@ -85,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * L'account può essere di tipo ProfessorAccount o StudentAccount
      */
     private void setAccount() {
-        switch (getIntent().getStringExtra("account_type")){
+        switch (getIntent().getStringExtra("account_type")) {
 
             case "Professor":
                 generateProfessor();
@@ -130,40 +160,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private final NavigationBarView.OnItemSelectedListener navListener = item -> {
-        Fragment selectedFragment;
-
-        switch (item.getItemId()){
-
-            case R.id.star_button:
-                selectedFragment = new FavoritesFragment();
-                break;
-
-            case R.id.chat_button:
-                selectedFragment = new ThesesMessagesListFragment();
-                break;
-
-            case R.id.thesis_list_button:
-                selectedFragment = new ThesesListFragment();
-                break;
-
-            case R.id.home_button:
-            default:
-                selectedFragment = getProperHome();
-        }
-
-
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-
-        selectBottomNavigationBarItem();
-        return true;
-    };
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -180,14 +176,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_logout:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Conferma logout");
-                builder.setMessage("Sei sicuro di voler effettuare il logout?");
+                builder.setTitle(R.string.logout_confirm);
+                builder.setMessage(R.string.logout_question);
 
-                builder.setNegativeButton("No", (dialog, which) -> {
+                builder.setNegativeButton(R.string.no, (dialog, which) -> {
 
                 });
 
-                builder.setPositiveButton("Yes", (dialog, which) -> {
+                builder.setPositiveButton(R.string.yes, (dialog, which) -> {
 
                     FirebaseAuth.getInstance().signOut();
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -217,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bundle.putString("email", account.getEmail());
         bundle.putString("faculty", account.getFaculty());
 
-        if (account.getAccountType().equals("Student") )
+        if (account.getAccountType().equals("Student"))
             bundle.putString("badge_number", account.getBadgeNumber());
         else
             bundle.putString("badge_number", "");
@@ -230,26 +226,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     @Override
-    public void onBackPressed(){
-        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START);
 
         else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
-        }
-        else if(!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ProfessorHomeFragment) && !(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof StudentHomeFragment ) )
+        } else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ProfessorHomeFragment) && !(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof StudentHomeFragment))
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, getProperHome()).commit();
 
-        else{
+        else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Conferma uscita");
-            builder.setMessage("Sei sicuro di voler uscire?");
+            builder.setTitle(R.string.exit_app_confirm);
+            builder.setMessage(R.string.exit_app_question);
 
-            builder.setNegativeButton("No", (dialog, which) -> {
+            builder.setNegativeButton(R.string.no, (dialog, which) -> {
 
             });
 
-            builder.setPositiveButton("Yes", (dialog, which) -> {
+            builder.setPositiveButton(R.string.yes, (dialog, which) -> {
                 super.onBackPressed();
             });
 
@@ -264,9 +259,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private Fragment getProperHome(){
+    private Fragment getProperHome() {
         Fragment toReturn;
-        switch (account.getAccountType()){
+        switch (account.getAccountType()) {
             case "Student":
                 toReturn = new StudentHomeFragment();
                 break;
@@ -280,8 +275,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return toReturn;
     }
 
-    private void setProfession(TextView profession, String accountType){
-        switch (accountType){
+    private void setProfession(TextView profession, String accountType) {
+        switch (accountType) {
             case "Professor":
                 profession.setText(R.string.professor);
                 break;

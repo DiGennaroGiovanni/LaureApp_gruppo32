@@ -23,32 +23,42 @@ public class StudentHomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_student, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.homeToolbar));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.homeToolbar));
 
         buttonAllThesis = view.findViewById(R.id.allThesisBtn);
         myThesisBtn = view.findViewById(R.id.myThesisBtn);
 
         buttonAllThesis.setOnClickListener(view1 -> {
 
-            Fragment availableThesisFragment = new AvailableThesesListFragment();
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, availableThesisFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            buttonAllThesisOnClick();
 
         });
 
         myThesisBtn.setOnClickListener(view12 -> {
-            Fragment myThesis = new MyThesisFragment();
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, myThesis);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+
+            myThesisBtnOnClick();
+
         });
 
 
         return view;
+    }
+
+    private void myThesisBtnOnClick() {
+        Fragment myThesis = new MyThesisFragment();
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, myThesis);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void buttonAllThesisOnClick() {
+        Fragment availableThesisFragment = new AvailableThesesListFragment();
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, availableThesisFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

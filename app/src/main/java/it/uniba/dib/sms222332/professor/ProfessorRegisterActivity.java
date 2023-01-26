@@ -28,7 +28,7 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
-    EditText edtNomeProf,edtCognomeProf, edtRuoloProf, edtEmailRegistrati, edtPasswordRegistrati;
+    EditText edtNomeProf, edtCognomeProf, edtEmailRegistrati, edtPasswordRegistrati;
     Button buttonConcludiProf;
     Spinner spinnerDepartment;
 
@@ -65,28 +65,28 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
 
         String nome = edtNomeProf.getText().toString().toLowerCase();
         char firstChar = Character.toUpperCase(nome.charAt(0));
-        nome = firstChar+nome.substring(1);
+        nome = firstChar + nome.substring(1);
 
         String cognome = edtCognomeProf.getText().toString().toLowerCase();
         firstChar = Character.toUpperCase(cognome.charAt(0));
-        cognome = firstChar+cognome.substring(1);
+        cognome = firstChar + cognome.substring(1);
 
-        String department =  spinnerDepartment.getSelectedItem().toString();
+        String department = spinnerDepartment.getSelectedItem().toString();
 
         String email = edtEmailRegistrati.getText().toString().toLowerCase();
 
 
         Map<String, String> infoProfessore = new HashMap<>();
-        infoProfessore.put("Name",nome);
-        infoProfessore.put("Surname",cognome);
-        infoProfessore.put("Faculty",department);
-        infoProfessore.put("Account Type","Professor");
+        infoProfessore.put("Name", nome);
+        infoProfessore.put("Surname", cognome);
+        infoProfessore.put("Faculty", department);
+        infoProfessore.put("Account Type", "Professor");
 
-        if(nome.isEmpty())
-            edtNomeProf.setError("Inserisci il tuo nome!");
-        else if(cognome.isEmpty())
-            edtCognomeProf.setError("Inserisci il tuo cognome!");
-        else{
+        if (nome.isEmpty())
+            edtNomeProf.setError(getString(R.string.enter_name));
+        else if (cognome.isEmpty())
+            edtCognomeProf.setError(getString(R.string.enter_surname));
+        else {
             db.collection("professori").document(email).set(infoProfessore);
         }
     }
@@ -96,23 +96,22 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
         String password = edtPasswordRegistrati.getText().toString();
 
         String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
-        if(!email.matches(emailPattern))
-        {
-            edtEmailRegistrati.setError("Inserisci un'email valida!");
-        }else if(password.isEmpty() || password.length()<6){
-            edtPasswordRegistrati.setError("Inserisci una password valida (deve avere almeno 6 caratteri)");
-        }else{
+        if (!email.matches(emailPattern)) {
+            edtEmailRegistrati.setError(getString(R.string.enter_valid_email));
+        } else if (password.isEmpty() || password.length() < 6) {
+            edtPasswordRegistrati.setError(getString(R.string.enter_valid_password));
+        } else {
 
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
-                if (task.isSuccessful()){
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
                     insertDataProf(); //MEMORIZZO I DATI DEL PROFESSORE
 
                     Intent intent = new Intent(ProfessorRegisterActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("signed up", true);
                     startActivity(intent);
 
-                }else{
+                } else {
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, R.string.email_already_existent, Snackbar.LENGTH_SHORT).show();
                 }

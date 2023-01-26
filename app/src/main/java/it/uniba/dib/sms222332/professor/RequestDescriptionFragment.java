@@ -12,13 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import it.uniba.dib.sms222332.R;
 
@@ -44,7 +40,7 @@ public class RequestDescriptionFragment extends Fragment {
         LinearLayout layoutForExamsConstraint = view.findViewById(R.id.layoutForExamsConstraint);
 
         Bundle bundle = getArguments();
-        if (bundle != null){
+        if (bundle != null) {
             String thesisName = bundle.getString("thesis_name");
             String student = bundle.getString("student");
             String avgMarks = bundle.getString("avg");
@@ -57,26 +53,24 @@ public class RequestDescriptionFragment extends Fragment {
             txtThesisName.setText(thesisName);
             txtMessage.setText(message);
 
-           if(avgMarks.equals(""))
-               layoutForAvgConstraint.setVisibility(View.GONE);
-           else {
-               txtAvgMarks.setText(avgMarks);
-               txtAvgConstraint.setText(avgConstraint);
-           }
+            if (avgMarks.equals(""))
+                layoutForAvgConstraint.setVisibility(View.GONE);
+            else {
+                txtAvgMarks.setText(avgMarks);
+                txtAvgConstraint.setText(avgConstraint);
+            }
 
-           if(examsRequired.equals(""))
-               layoutForExamsConstraint.setVisibility(View.GONE);
-           else {
-               txtExamsRequired.setText(examsRequired);
-               txtExamsConstraint.setText(examsConstraint);
-           }
+            if (examsRequired.equals(""))
+                layoutForExamsConstraint.setVisibility(View.GONE);
+            else {
+                txtExamsRequired.setText(examsRequired);
+                txtExamsConstraint.setText(examsConstraint);
+            }
 
         }
 
         btnAccept = view.findViewById(R.id.btnAccept);
         btnDecline = view.findViewById(R.id.btnDecline);
-
-
 
 
         return view;
@@ -88,39 +82,45 @@ public class RequestDescriptionFragment extends Fragment {
 
         btnAccept.setOnClickListener(view1 -> {
 
-            db.collection("Tesi").document(txtThesisName.getText().toString()).update("Student", txtStudent.getText().toString());
-
-            db.collection("studenti").document(txtStudent.getText().toString()).update("Request", txtThesisName.getText().toString());
-
-            db.collection("richieste").get().addOnCompleteListener(task -> {
-                if(task.isSuccessful()){
-                    for (QueryDocumentSnapshot request : task.getResult()){
-                        if(request.getString("Thesis").equals(txtThesisName.getText().toString())){
-                            request.getReference().delete();
-                            if(!request.getId().equals(txtStudent.getText().toString()))
-                                db.collection("studenti").document(request.getId()).update("Request", "no");
-                        }
-                    }
-                }
-                Snackbar.make(requireView(), "Request accepted.", Snackbar.LENGTH_LONG).show();
-                getParentFragmentManager().popBackStack();
-            });
+            btnAcceptOnClick();
 
         });
-
 
 
         btnDecline.setOnClickListener(view12 -> {
 
-
-            db.collection("richieste").document(txtStudent.getText().toString()).delete().addOnSuccessListener(unused ->
-                    Snackbar.make(requireView(), "Request declined.", Snackbar.LENGTH_LONG).show());
-
-            db.collection("studenti").document(txtStudent.getText().toString()).update("Request", "no");
-
-            getParentFragmentManager().popBackStack();
+            btnDeclineOnClick();
 
         });
 
+    }
+
+    private void btnDeclineOnClick() {
+        db.collection("richieste").document(txtStudent.getText().toString()).delete().addOnSuccessListener(unused ->
+                Snackbar.make(requireView(), R.string.request_declined, Snackbar.LENGTH_LONG).show());
+
+        db.collection("studenti").document(txtStudent.getText().toString()).update("Request", "no");
+
+        getParentFragmentManager().popBackStack();
+    }
+
+    private void btnAcceptOnClick() {
+        db.collection("Tesi").document(txtThesisName.getText().toString()).update("Student", txtStudent.getText().toString());
+
+        db.collection("studenti").document(txtStudent.getText().toString()).update("Request", txtThesisName.getText().toString());
+
+        db.collection("richieste").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot request : task.getResult()) {
+                    if (request.getString("Thesis").equals(txtThesisName.getText().toString())) {
+                        request.getReference().delete();
+                        if (!request.getId().equals(txtStudent.getText().toString()))
+                            db.collection("studenti").document(request.getId()).update("Request", "no");
+                    }
+                }
+            }
+            Snackbar.make(requireView(), R.string.request_accepted, Snackbar.LENGTH_LONG).show();
+            getParentFragmentManager().popBackStack();
+        });
     }
 }

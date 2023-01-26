@@ -1,10 +1,10 @@
 package it.uniba.dib.sms222332.commonActivities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,8 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(RegisterActivity.this, StudentRegisterActivity.class);
         startActivity(intent);
     }
-
-
 
 
 }

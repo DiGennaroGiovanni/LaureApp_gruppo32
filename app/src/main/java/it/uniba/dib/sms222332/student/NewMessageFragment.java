@@ -28,8 +28,8 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class NewMessageFragment extends Fragment {
 
-    TextView txtNameTitle,txtProfessor;
-    EditText edtObject,edtDescription;
+    TextView txtNameTitle, txtProfessor;
+    EditText edtObject, edtDescription;
     Button btnSendMessage;
     String thesisName, professor, student, object, description;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -49,7 +49,7 @@ public class NewMessageFragment extends Fragment {
 
         student = MainActivity.account.getEmail();
 
-        if(getArguments() != null){
+        if (getArguments() != null) {
             thesisName = getArguments().getString("thesis_name");
             professor = getArguments().getString("professor");
             txtNameTitle.setText(thesisName);
@@ -57,45 +57,49 @@ public class NewMessageFragment extends Fragment {
         }
 
 
+        btnSendMessage.setOnClickListener(view1 -> {
 
-            btnSendMessage.setOnClickListener(view1 -> {
+            btnSendMessageOnClick(view1);
 
-                object = edtObject.getText().toString();
-                description = edtDescription.getText().toString();
-
-                if(object.isEmpty())
-                    edtObject.setError("Insert message object");
-
-                else if(description.isEmpty())
-                    edtDescription.setError("Insert message description!");
-                else{
-
-                    LocalDateTime date = LocalDateTime.now();
-                    date = LocalDateTime.now();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-
-                    Map<String, String> message = new HashMap<>();
-                    message.put("Thesis Name", thesisName);
-                    message.put("Professor", professor);
-                    message.put("Student", student);
-                    message.put("Object",object);
-                    message.put("Student Message",description);
-                    message.put("Professor Message","");
-                    message.put("Date", date.format(formatter));
-                    message.put("State","Not answered");
-
-                    db.collection("messaggi").document().set(message);
-
-                    // chiusura della tastiera quando viene effettuato un cambio di fragment
-                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
-                    Snackbar.make(view1, "Message send!", Snackbar.LENGTH_LONG).show();
-
-                    getActivity().onBackPressed();
-
-                }
-            });
+        });
 
         return view;
+    }
+
+    private void btnSendMessageOnClick(View view1) {
+        object = edtObject.getText().toString();
+        description = edtDescription.getText().toString();
+
+        if (object.isEmpty())
+            edtObject.setError(getString(R.string.message_object));
+
+        else if (description.isEmpty())
+            edtDescription.setError(getString(R.string.message_description));
+        else {
+
+            LocalDateTime date = LocalDateTime.now();
+            date = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+            Map<String, String> message = new HashMap<>();
+            message.put("Thesis Name", thesisName);
+            message.put("Professor", professor);
+            message.put("Student", student);
+            message.put("Object", object);
+            message.put("Student Message", description);
+            message.put("Professor Message", "");
+            message.put("Date", date.format(formatter));
+            message.put("State", "Not answered");
+
+            db.collection("messaggi").document().set(message);
+
+            // chiusura della tastiera quando viene effettuato un cambio di fragment
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
+            Snackbar.make(view1, R.string.message_send, Snackbar.LENGTH_LONG).show();
+
+            getActivity().onBackPressed();
+
+        }
     }
 }
