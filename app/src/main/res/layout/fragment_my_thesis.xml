@@ -431,13 +431,14 @@
             android:id="@+id/layoutButtonRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/btnDeleteRequest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delete Request"
+                android:text="@string/cancel_request"
                 />
 
         </RelativeLayout>
@@ -460,7 +461,6 @@
          android:textAlignment="center"
          android:fontFamily="@font/cardo"
          android:text="NO THESIS YET"
-         android:background="@null"
          android:textAllCaps="true"
          android:textColor="@android:color/black"
          android:textSize="28sp"

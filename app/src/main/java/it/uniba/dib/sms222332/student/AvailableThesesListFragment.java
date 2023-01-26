@@ -191,7 +191,7 @@ public class AvailableThesesListFragment extends Fragment {
             try {
                 builder.create().show();
             } catch (Exception e) {
-                Log.e(TAG, "Errore nell'onClick del btnResearch : " + e.toString());
+                Log.e(TAG, "Errore nell'onClick del btnResearch : " + e);
             }
 
         });
@@ -281,16 +281,16 @@ public class AvailableThesesListFragment extends Fragment {
     private void addCheckConstraint(QueryDocumentSnapshot document) {
         int thesisAverage;
 
-        if (document.getString("Average").toString().equals("")) {
+        if (document.getString("Average").equals("")) {
             thesisAverage = 18;
 
         } else {
-            thesisAverage = Integer.parseInt(document.getString("Average").toString());
+            thesisAverage = Integer.parseInt(document.getString("Average"));
         }
 
         if (thesisAverage <= seekBarValue) {
 
-            if (examsCheckbox.isChecked() && document.getString("Required Exam").toString().equals("")) {
+            if (examsCheckbox.isChecked() && document.getString("Required Exam").equals("")) {
 
                 addCardThesis(document);
 
@@ -411,7 +411,7 @@ public class AvailableThesesListFragment extends Fragment {
                 try {
                     builder.create().show();
                 } catch (Exception e) {
-                    Log.e(TAG, "Errore nell'onClick del shareButton : " + e.toString());
+                    Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
                 }
             }
         });
@@ -491,11 +491,11 @@ public class AvailableThesesListFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     // Controllo se l'error code è riferito al fatto che il dispositivo non è connesso ad internet
-                    if(e instanceof FirebaseNetworkException) {
+                    if (e instanceof FirebaseNetworkException) {
                         Snackbar.make(requireView(), "No internet connection", Snackbar.LENGTH_LONG).show();
-                    } else if(e instanceof StorageException) {
+                    } else if (e instanceof StorageException) {
                         // Controllo se l'error code è riferito al fatto che non esiste il file sul database
-                        if (((StorageException)e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
+                        if (((StorageException) e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
                             Snackbar.make(requireView(), "File does not exist", Snackbar.LENGTH_LONG).show();
                         }
                     } else {

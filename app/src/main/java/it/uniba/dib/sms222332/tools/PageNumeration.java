@@ -15,8 +15,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class PageNumeration extends PdfPageEventHelper {
 
-    private static String TAG = PageNumeration.class.getSimpleName();
-    private static Font FONT_FOOTER = new Font(Font.FontFamily.TIMES_ROMAN, 8, Font.NORMAL, BaseColor.DARK_GRAY);
+    private static final String TAG = PageNumeration.class.getSimpleName();
+    private static final Font FONT_FOOTER = new Font(Font.FontFamily.TIMES_ROMAN, 8, Font.NORMAL, BaseColor.DARK_GRAY);
 
     PageNumeration() {
     }

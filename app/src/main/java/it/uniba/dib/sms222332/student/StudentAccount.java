@@ -5,11 +5,11 @@ import it.uniba.dib.sms222332.commonActivities.Account;
 public class StudentAccount implements Account {
 
 
-    private String name;
-    private String surname;
-    private String badgeNumber;
-    private String faculty;
-    private String email;
+    private final String name;
+    private final String surname;
+    private final String badgeNumber;
+    private final String faculty;
+    private final String email;
     private String request;
     private final String accountType = "Student";
 

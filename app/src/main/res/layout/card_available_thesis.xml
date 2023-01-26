@@ -31,7 +31,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/cardo"
-                android:text="Thesis name"
+                android:text="@string/thesis_name_card"
                 android:textAllCaps="true"
                 android:textColor="#00213A"
                 android:textSize="22sp"

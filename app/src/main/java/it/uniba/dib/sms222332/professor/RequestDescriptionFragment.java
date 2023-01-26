@@ -76,17 +76,16 @@ public class RequestDescriptionFragment extends Fragment {
 
 
         btnAccept.setOnClickListener(view1 -> {
-         //TODO LIST: 1) IMPOSTARE NELLA TESI IL CAMPO STUDENTE. 2) IMPOSTARE IN STUDENTE IL CAMPO REQUEST COL NOME TESI. 3) ELIMINARE TUTTE LE RICHIESTE DI QUESTA TESI
 
-            db.collection("Tesi").document(txtThesisName.toString()).update("Student", txtStudent.toString()).addOnSuccessListener(unused ->
+            db.collection("Tesi").document(txtThesisName.getText().toString()).update("Student", txtStudent.getText().toString()).addOnSuccessListener(unused ->
                     Snackbar.make(requireView(), "Request accepted.", Snackbar.LENGTH_LONG).show());
 
-            db.collection("studenti").document(txtStudent.toString()).update("Request", txtThesisName.toString());
+            db.collection("studenti").document(txtStudent.getText().toString()).update("Request", txtThesisName.getText().toString());
 
             db.collection("richieste").get().addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     for (QueryDocumentSnapshot request : task.getResult()){
-                        if(request.getString("Thesis").equals(txtThesisName.toString())){
+                        if(request.getString("Thesis").equals(txtThesisName.getText().toString())){
                             request.getReference().delete();
                         }
                     }
@@ -97,13 +96,12 @@ public class RequestDescriptionFragment extends Fragment {
 
 
         btnDecline.setOnClickListener(view12 -> {
-        //TODO: 1) CANCELLATA LA RICHIESTA SPECIFICA. 2) IMPOSTATO VALORE REQUEST DI STUDENTE A "no"
 
 
-            db.collection("richieste").document(txtStudent.toString()).delete().addOnSuccessListener(unused ->
+            db.collection("richieste").document(txtStudent.getText().toString()).delete().addOnSuccessListener(unused ->
                     Snackbar.make(requireView(), "Request declined.", Snackbar.LENGTH_LONG).show());
 
-            db.collection("studenti").document(txtStudent.toString()).update("Request", "no");
+            db.collection("studenti").document(txtStudent.getText().toString()).update("Request", "no");
 
             getParentFragmentManager().popBackStack();
 

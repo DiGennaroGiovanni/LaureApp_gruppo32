@@ -278,7 +278,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
     private void download(String nomeFile) {
 
-        storageReference = storage.getInstance().getReference();
+        storageReference = FirebaseStorage.getInstance().getReference();
         ref = storageReference.child(txtNameTitle.getText().toString()).child(nomeFile);
 
         ref.getDownloadUrl().addOnSuccessListener(uri -> {

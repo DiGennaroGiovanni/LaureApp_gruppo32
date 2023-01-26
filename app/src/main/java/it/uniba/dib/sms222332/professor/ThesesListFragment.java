@@ -173,7 +173,7 @@ public class ThesesListFragment extends Fragment  {
             try {
                 builder.create().show();
             } catch (Exception e) {
-                Log.e(TAG, "Errore nell'onClick del shareButton : " + e.toString());
+                Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
             }
         });
 
