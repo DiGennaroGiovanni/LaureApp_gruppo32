@@ -5,9 +5,11 @@ import static android.content.ContentValues.TAG;
 import static android.content.Context.DOWNLOAD_SERVICE;
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
+import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +25,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -46,7 +50,7 @@ import it.uniba.dib.sms222332.professor.ReceiptsListFragment;
 import it.uniba.dib.sms222332.professor.TaskListFragment;
 import it.uniba.dib.sms222332.student.Messages.StudentMessageFragment;
 
-public class MyThesisFragment extends Fragment {
+public class MyThesisFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback{
 
     TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,txtState,
             txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtProfessor,txtNoRequest;
@@ -61,6 +65,8 @@ public class MyThesisFragment extends Fragment {
     Uri fileUri;
     ArrayList<Uri> newMaterials = new ArrayList<>();
     ArrayList<String> deletedOldMaterials = new ArrayList<>();
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
 
     @Nullable
     @Override
@@ -250,7 +256,19 @@ public class MyThesisFragment extends Fragment {
         }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
 
         buttonAdd.setOnClickListener(view -> {
-            uploadFile();
+
+            int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE);
+
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+            } else {
+                // permesso già concesso, procedi con la lettura dei file
+                uploadFile();
+            }
+
 
         });
 
@@ -372,8 +390,20 @@ public class MyThesisFragment extends Fragment {
         downloadMaterial = view.findViewById(R.id.downloadMaterial);
 
         downloadMaterial.setOnClickListener(view1 -> {
-            download(nomeFile);
-            Snackbar.make(view1, "Downloading "+nomeFile, Snackbar.LENGTH_LONG).show();
+
+            int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+            } else {
+                // permesso già concesso, procedi con la lettura dei file
+                download(nomeFile);
+                Snackbar.make(view1, "Downloading "+nomeFile, Snackbar.LENGTH_LONG).show();
+            }
+
         });
 
         layout_lista_file.addView(view);
@@ -382,7 +412,7 @@ public class MyThesisFragment extends Fragment {
     private void download(String nomeFile) {
 
         storageReference = storage.getInstance().getReference();
-        ref = storageReference.child(thesisName).child(nomeFile);
+        ref = storageReference.child(MainActivity.account.getRequest()).child(nomeFile);
 
         ref.getDownloadUrl().addOnSuccessListener(uri -> {
             String url  = uri.toString();
@@ -400,6 +430,34 @@ public class MyThesisFragment extends Fragment {
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         request.setDestinationInExternalFilesDir(context, destinationDirectory, nomeFile + fileExtension);
         downloadManager.enqueue(request);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permesso concesso, procedi con la lettura dei file
+                } else {
+                    // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
+                }
+                return;
+            }
+            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    uploadFile();
+                } else {
+                    buttonAdd.setOnClickListener(view -> {
+                        Snackbar.make(getView(),"Non hai i permessi di lettura",Snackbar.LENGTH_LONG).show();
+                    });
+                    // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
+                }
+                return;
+            }
+        }
     }
 
 }
