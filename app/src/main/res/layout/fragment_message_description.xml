@@ -7,6 +7,7 @@
     tools:context=".professor.ThesesListFragment">
 
     <LinearLayout
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -37,12 +38,10 @@
 
             <TextView
                 android:id="@+id/txtObjectTitle"
-                android:layout_width="0sp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
                 android:fontFamily="@font/cardo"
                 android:gravity="start"
-                android:paddingStart="10sp"
                 android:text="@string/object_info_message"
                 android:textColor="@color/black"
                 android:textSize="22sp"
@@ -65,9 +64,8 @@
 
             <TextView
                 android:id="@+id/txtObject"
-                android:layout_width="0sp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
                 android:fontFamily="@font/cardo"
                 android:gravity="start"
                 android:paddingStart="10sp"
@@ -83,12 +81,10 @@
 
             <TextView
                 android:id="@+id/txtMessageTitle"
-                android:layout_width="0sp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
                 android:fontFamily="@font/cardo"
                 android:gravity="start"
-                android:paddingStart="10sp"
                 android:text="@string/student_info_message"
                 android:textColor="@color/black"
                 android:textSize="22sp"
@@ -111,9 +107,8 @@
 
             <TextView
                 android:id="@+id/txtMessage"
-                android:layout_width="0sp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
                 android:fontFamily="@font/cardo"
                 android:gravity="start"
                 android:paddingStart="10sp"
@@ -129,12 +124,10 @@
 
             <TextView
                 android:id="@+id/txtAnswerTitle"
-                android:layout_width="0sp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
                 android:fontFamily="@font/cardo"
                 android:gravity="start"
-                android:paddingStart="10sp"
                 android:text="@string/professor_info_message"
                 android:textColor="@color/black"
                 android:textSize="22sp"
@@ -152,9 +145,8 @@
 
             <EditText
                 android:id="@+id/edtAnswer"
-                android:layout_width="0sp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"

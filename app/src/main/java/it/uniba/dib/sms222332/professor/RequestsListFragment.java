@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -52,7 +54,7 @@ public class RequestsListFragment extends Fragment {
         TextView thesisName = v.findViewById(R.id.txtThesisName);
         TextView studentEmail = v.findViewById(R.id.txtStudentEmail);
 
-        thesisName.setText(document.getString("Thesis Name"));
+        thesisName.setText(document.getString("Thesis"));
         studentEmail.setText(document.getString("Student"));
 
         v.setOnClickListener(view -> {
@@ -66,13 +68,15 @@ public class RequestsListFragment extends Fragment {
             bundle.putString("exams_constraint_met", document.getString("Exams Constraint Met"));
             bundle.putString("message", document.getString("Message"));
 
+
             Fragment requestDescriptionFragment = new RequestDescriptionFragment();
             requestDescriptionFragment.setArguments(bundle);
 
-            getParentFragmentManager().beginTransaction().addToBackStack(null);
-            getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, requestDescriptionFragment).commit();
-
-
+//            CODICE DA UTILIZZARE IN OGNI PASSAGGIO FRAGMENT
+            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, requestDescriptionFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         });
 
         layoutRequestsList.addView(v);

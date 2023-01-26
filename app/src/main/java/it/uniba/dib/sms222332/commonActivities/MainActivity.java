@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -27,7 +28,7 @@ import it.uniba.dib.sms222332.professor.ThesesListFragment;
 import it.uniba.dib.sms222332.student.FavoritesFragment;
 import it.uniba.dib.sms222332.student.StudentAccount;
 import it.uniba.dib.sms222332.student.StudentHomeFragment;
-import it.uniba.dib.sms222332.student.Messages.StudentListMessageFragment;
+import it.uniba.dib.sms222332.commonActivities.Messages.ThesesMessagesListFragment;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -139,11 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.chat_button:
-                if(MainActivity.account.getAccountType().equals("Student"))
-                    selectedFragment = new StudentListMessageFragment();
-                else
-                    selectedFragment = new StudentListMessageFragment(); //TODO DA METTERE LA CHAT DEL PROFESSORE
-
+                selectedFragment = new ThesesMessagesListFragment();
                 break;
 
             case R.id.thesis_list_button:
@@ -155,8 +152,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 selectedFragment = getProperHome();
         }
 
-        getSupportFragmentManager().beginTransaction().addToBackStack(null);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
         selectBottomNavigationBarItem();
         return true;
     };
@@ -199,8 +201,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
         }
-        getSupportFragmentManager().beginTransaction().addToBackStack(null);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

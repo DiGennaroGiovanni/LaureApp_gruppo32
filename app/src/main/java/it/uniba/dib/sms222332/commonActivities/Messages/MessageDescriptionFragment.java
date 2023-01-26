@@ -1,10 +1,7 @@
-package it.uniba.dib.sms222332.student.Messages;
+package it.uniba.dib.sms222332.commonActivities.Messages;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -32,7 +27,7 @@ import java.util.Map;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
-public class MessageInfoFragment extends Fragment {
+public class MessageDescriptionFragment extends Fragment {
 
     String object,professore_message,student_message,thesis_name,idMessage;
     TextView txtNameTitle,txtObject,txtMessage;
@@ -45,7 +40,7 @@ public class MessageInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.messageContactTooolbar));
 
-        View view = inflater.inflate(R.layout.fragment_message_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_message_description, container, false);
 
         btnAnswer = view.findViewById(R.id.btnAnswer);
         txtNameTitle = view.findViewById(R.id.txtNameTitle);

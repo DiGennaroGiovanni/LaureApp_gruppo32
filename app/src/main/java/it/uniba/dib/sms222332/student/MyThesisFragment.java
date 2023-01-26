@@ -34,10 +34,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -48,7 +46,6 @@ import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.professor.ReceiptsListFragment;
 import it.uniba.dib.sms222332.professor.TaskListFragment;
-import it.uniba.dib.sms222332.student.Messages.StudentMessageFragment;
 
 public class MyThesisFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback{
 
@@ -58,10 +55,10 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layoutThesisAccepted,layoutMaterials,layoutRequiredExams,layoutState,layoutAverageMarks,layoutNoThesis;
     LinearLayout layout_lista_file;
-    RelativeLayout layoutButton,layoutButtonRequest;
+    RelativeLayout layoutButton, layoutButtonCancelRequest;
     StorageReference storageReference, ref;
     FirebaseStorage storage;
-    Button buttonAdd,btnSave,btnTask,btnReceipt,btnSendMessage, btnDeleteRequest ;
+    Button buttonAdd,btnSave,btnTask,btnReceipt,btnSendMessage, btnCancelRequest;
     Uri fileUri;
     ArrayList<Uri> newMaterials = new ArrayList<>();
     ArrayList<String> deletedOldMaterials = new ArrayList<>();
@@ -75,8 +72,8 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
         View view = inflater.inflate(R.layout.fragment_my_thesis, container, false);
 
-        layoutButtonRequest=view.findViewById(R.id.layoutButtonRequest);
-        btnDeleteRequest = view.findViewById(R.id.btnDeleteRequest);
+        layoutButtonCancelRequest =view.findViewById(R.id.layoutButtonRequest);
+        btnCancelRequest = view.findViewById(R.id.btnDeleteRequest);
         btnSendMessage = view.findViewById(R.id.btnSendMessage);
         btnSave = view.findViewById(R.id.btnSave);
         btnTask = view.findViewById(R.id.btnTask);
@@ -106,45 +103,52 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
+        return view;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         if(!MainActivity.account.getRequest().equals("no") && !MainActivity.account.getRequest().equals("yes"))//LO STUDENTE  HA UNA TESI
             studenteHaveThesis();
         else if(MainActivity.account.getRequest().equals("no")) //LO STUDENTE NON HA ANCORA FATTO RICHIESTA
             studentNotRequest();
         else// LO STUDENTE HA FATTO RICHIESTA MA NON E' STATA ANCORA ACCETTATA
             studentYesRequest();
-
-        return view;
     }
 
     private void studentYesRequest() {
         layoutState.setVisibility(View.VISIBLE);
         layoutButton.setVisibility(View.GONE);
-        layoutButtonRequest.setVisibility((View.VISIBLE));
+        layoutButtonCancelRequest.setVisibility((View.VISIBLE));
 
 
-        btnDeleteRequest.setOnClickListener(view -> {
-            //TODO ELIMINARE LA RICHIESTA, CODICE DI BEPPE + ALERT DIALOG YES/NO
+        btnCancelRequest.setOnClickListener(view -> {
+
+            db.collection("richieste").document(MainActivity.account.getEmail()).delete().addOnSuccessListener(unused ->
+                    Snackbar.make(requireView(), "Request canceled.", Snackbar.LENGTH_LONG).show());
+
+            db.collection("studenti").document(MainActivity.account.getEmail()).update("Request", "no");
+
+            MainActivity.account.setRequest("no");
+            onResume();
+
         });
 
 
-        CollectionReference collectionReference = db.collection("richieste");
-        collectionReference.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    if(document.getString("Student").equals(MainActivity.account.getEmail()))
-                        thesisName = document.getString("Thesis Name");
 
-                }
-                db.collection("Tesi")
-                        .document(thesisName)
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
+        db.collection("richieste").document(MainActivity.account.getEmail()).get().addOnSuccessListener(documentSnapshot ->
+                thesisName = documentSnapshot.getString("Thesis")).continueWith(task -> {
+                    if(!task.isSuccessful()){
+                        return null;
+                    }
+                    return db.collection("Tesi")
+                            .document(thesisName)
+                            .get()
+                            .addOnCompleteListener(task2 -> {
+                                if(task2.isSuccessful()) {
+                                    DocumentSnapshot document = task2.getResult();
+                                    if(document.exists()) {
                                         txtNameTitle.setText(thesisName);
                                         txtType.setText(document.getString("Type"));
                                         txtDepartment.setText(document.getString("Faculty"));
@@ -155,7 +159,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                                         else
                                             txtCorrelator.setText(document.getString("Correlator"));
 
-                                        String estimatedTime = document.getString("Estimated Time")+" days";
+                                        String estimatedTime = document.getString("Estimated Time") + " days";
                                         txtTime.setText(estimatedTime);
 
                                         txtDescription.setText(document.getString("Description"));
@@ -181,13 +185,10 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
                                     }
                                 } else {
-                                    Log.d(TAG, "get failed with ", task.getException());
+                                    Log.d(TAG, "get failed with ", task2.getException());
                                 }
-                            }
-                        });
-            }
+                            });
         });
-
 
 
     }
@@ -322,7 +323,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
 
         btnSendMessage.setOnClickListener(view -> {
-            Fragment thesisMessage = new StudentMessageFragment();
+            Fragment thesisMessage = new NewMessageFragment();
             Bundle bundle = new Bundle();
 
             bundle.putString("thesis_name", thesis_name);

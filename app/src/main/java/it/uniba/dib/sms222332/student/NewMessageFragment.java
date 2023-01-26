@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.student.Messages;
+package it.uniba.dib.sms222332.student;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.time.LocalDateTime;
@@ -27,7 +26,7 @@ import java.util.Map;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
-public class StudentMessageFragment extends Fragment {
+public class NewMessageFragment extends Fragment {
 
     TextView txtNameTitle,txtProfessor;
     EditText edtObject,edtDescription;
@@ -40,7 +39,7 @@ public class StudentMessageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.availableThesisTooolbar));
 
-        View view = inflater.inflate(R.layout.fragment_student_message, container, false);
+        View view = inflater.inflate(R.layout.fragment_new_message, container, false);
 
         txtNameTitle = view.findViewById(R.id.txtNameTitle);
         txtProfessor = view.findViewById(R.id.txtProfessor);

@@ -28,15 +28,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="10">
+            android:layout_weight="27"
+            android:layout_marginEnd="10dp"
+            >
 
             <Button
                 android:id="@+id/btnFilter"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/ic_filter"></Button>
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/ic_filter" />
+
+            <Button
+                android:id="@+id/btnCamera"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_camera_icon" />
 
         </RelativeLayout>
 
@@ -47,11 +58,12 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/search_view">
 
-        <LinearLayout
-            android:id="@+id/layout_tesi_disponibili"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_tesi_disponibili"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
 
     </ScrollView>
 
