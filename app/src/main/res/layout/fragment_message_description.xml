@@ -68,7 +68,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cardo"
                 android:gravity="start"
-                android:paddingStart="10sp"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -111,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cardo"
                 android:gravity="start"
-                android:paddingStart="10sp"
+
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 

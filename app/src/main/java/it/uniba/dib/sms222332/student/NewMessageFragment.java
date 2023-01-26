@@ -79,7 +79,7 @@ public class NewMessageFragment extends Fragment {
 
             LocalDateTime date = LocalDateTime.now();
             date = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
             Map<String, String> message = new HashMap<>();
             message.put("Thesis Name", thesisName);
@@ -93,10 +93,10 @@ public class NewMessageFragment extends Fragment {
 
             db.collection("messaggi").document().set(message);
 
-            // chiusura della tastiera quando viene effettuato un cambio di fragment
-            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
-            Snackbar.make(view1, R.string.message_send, Snackbar.LENGTH_LONG).show();
+                    // chiusura della tastiera quando viene effettuato un cambio di fragment
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
+                    Snackbar.make(view1, "Message sent!", Snackbar.LENGTH_LONG).show();
 
             getActivity().onBackPressed();
 
