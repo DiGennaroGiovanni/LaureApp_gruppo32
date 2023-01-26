@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".student.StudentRegisterActivity"
+    android:layout_gravity="center"
     android:orientation="vertical"
-    android:layout_gravity="center">
+    tools:context=".student.StudentRegisterActivity">
 
     <TextView
         android:id="@+id/textViewContinuaRegistrazioneStudente"
         android:layout_width="262dp"
         android:layout_height="57dp"
+        android:layout_gravity="center"
         android:text="@string/type_yout_student_data"
         android:textAlignment="center"
         android:textSize="16sp"
-        android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -28,8 +27,8 @@
         android:id="@+id/edtNomeStudente"
         android:layout_width="187dp"
         android:layout_height="48dp"
-        android:autofillHints=""
         android:layout_gravity="center"
+        android:autofillHints=""
         android:hint="@string/first_name"
         android:inputType="text"
         android:minHeight="48dp"
@@ -44,20 +43,19 @@
         android:id="@+id/edtCognomeStudente"
         android:layout_width="187dp"
         android:layout_height="48dp"
+        android:layout_gravity="center"
         android:autofillHints=""
         android:hint="@string/last_name"
         android:inputType="text"
         android:minHeight="48dp"
-        android:textColorHint="#757575"
-        android:layout_gravity="center"
-         />
+        android:textColorHint="#757575" />
 
     <EditText
         android:id="@+id/edtEmailRegistrati"
         android:layout_width="192dp"
         android:layout_height="48dp"
-        android:autofillHints=""
         android:layout_gravity="center"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
@@ -69,13 +67,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.431" />
+
     <EditText
         android:id="@+id/edtPasswordRegistrati"
         android:layout_width="185dp"
         android:layout_height="48dp"
+        android:layout_gravity="center"
         android:layout_marginTop="28dp"
         android:autofillHints=""
-        android:layout_gravity="center"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
@@ -92,12 +91,12 @@
         android:id="@+id/edtMatricolaStudente"
         android:layout_width="187dp"
         android:layout_height="48dp"
+        android:layout_gravity="center"
         android:autofillHints=""
         android:hint="@string/matriculation_number"
         android:inputType="number"
         android:maxLength="6"
         android:minHeight="48dp"
-        android:layout_gravity="center"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,6 +104,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.808" />
+
     <TextView
         android:id="@+id/txtFacoltaStudente"
         android:layout_width="wrap_content"
@@ -117,11 +117,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtCognomeStudente"
         app:layout_constraintVertical_bias="1.0" />
+
     <Spinner
         android:id="@+id/spinnerFacolta"
-        android:layout_gravity="center"
         android:layout_width="187dp"
         android:layout_height="48dp"
+        android:layout_gravity="center"
         android:backgroundTint="#BFBABA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,13 +136,12 @@
         android:id="@+id/buttonConcludi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginBottom="36dp"
         android:text="@string/complete_registration"
-        android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 
 </LinearLayout>

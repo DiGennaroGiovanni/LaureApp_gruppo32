@@ -10,15 +10,14 @@
         android:id="@+id/txtThesisName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:fontFamily="@font/cardo"
-        android:text="Thesis name"
         android:background="@null"
+        android:fontFamily="@font/cardo"
+        android:text="@string/thesis_name"
+        android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,16 +26,16 @@
 
         <TextView
             android:id="@+id/txtStudentTitle"
-            android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:layout_weight="35"
+            android:fontFamily="@font/cardo"
             android:gravity="end"
             android:paddingEnd="20sp"
-            android:text="Student:"
-            android:fontFamily="@font/cardo"
+            android:text="@string/student"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/txtStudent"
@@ -56,22 +55,22 @@
 
         <TextView
             android:id="@+id/txtNameTask"
-            android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:layout_weight="35"
+            android:fontFamily="@font/cardo"
             android:gravity="end"
             android:paddingEnd="20sp"
-            android:text="Task Name:"
-            android:fontFamily="@font/cardo"
+            android:text="@string/task_name_"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
 
         <EditText
             android:id="@+id/edtNameTask"
-            android:layout_weight="65"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:layout_weight="65"
             android:inputType="textMultiLine"
             android:text=""
             android:textColor="@color/black"
@@ -86,22 +85,22 @@
 
         <TextView
             android:id="@+id/txtDescriptionTitle"
-            android:layout_weight="35"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:layout_weight="35"
+            android:fontFamily="@font/cardo"
             android:gravity="end"
             android:paddingEnd="20sp"
-            android:text="Description:"
-            android:fontFamily="@font/cardo"
+            android:text="@string/description"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
 
         <EditText
             android:id="@+id/edtDescription"
-            android:layout_weight="65"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:layout_weight="65"
             android:inputType="textMultiLine"
             android:text=""
             android:textColor="@color/black"
@@ -114,9 +113,9 @@
         android:id="@+id/create_task_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ADD TASK"
         android:fontFamily="@font/cardo"
-        android:textStyle="bold"/>
+        android:text="@string/add_task"
+        android:textStyle="bold" />
 
 </LinearLayout>
 

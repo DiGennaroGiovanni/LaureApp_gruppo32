@@ -12,21 +12,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/change_lang"
             android:textSize="20sp" />
+
         <ImageButton
             android:id="@+id/btn_eng"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/eng" />
+
         <ImageButton
             android:id="@+id/btn_it"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/it" />
+
     </LinearLayout>
+
 </LinearLayout>
