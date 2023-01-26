@@ -61,34 +61,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="35"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:paddingEnd="20sp"
-                android:text="@string/department"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtDepartment"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="65"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/layoutForAvgConstraint"

@@ -14,17 +14,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
-import it.uniba.dib.sms222332.student.Messages.StudentMessageFragment;
 
 public class ThesisDescriptionStudentFragment extends Fragment {
 
@@ -104,7 +99,7 @@ public class ThesisDescriptionStudentFragment extends Fragment {
         || MainActivity.account.getRequest().equals(txtNameTitle.getText().toString()))
             btnContactProf.setOnClickListener(view1 -> {
 
-                Fragment thesisMessage = new StudentMessageFragment();
+                Fragment thesisMessage = new NewMessageFragment();
                 Bundle bundle = new Bundle();
 
                 bundle.putString("thesis_name", txtNameTitle.getText().toString());
@@ -120,17 +115,14 @@ public class ThesisDescriptionStudentFragment extends Fragment {
 
             });
 
-        else{
-            btnContactProf.setOnClickListener(view12 -> {
-                Snackbar.make(view12,"You can send messages only for '" + MainActivity.account.getRequest()+ "' thesis!",Snackbar.LENGTH_LONG).show();
-            });
-        }
+        else
+            btnContactProf.setOnClickListener(view12 -> Snackbar.make(view12,"You can send messages only for '" + MainActivity.account.getRequest()+ "' thesis!",Snackbar.LENGTH_LONG).show());
 
 
         db.collection("richieste").document(MainActivity.account.getEmail()).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
+            if(task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
+                if(document.exists()) {
                     String thesisName = document.getString("Thesis");
                     if(MainActivity.account.getRequest().equals("yes") && txtNameTitle.getText().toString().equals(thesisName)) {
 
@@ -148,16 +140,15 @@ public class ThesisDescriptionStudentFragment extends Fragment {
                         });
 
 
-                    }
-                } else if(!MainActivity.account.getRequest().equals("no")){
-                    btnThesisRequest.setOnClickListener(view13 -> {
-                        Snackbar.make(view13,"Already requested a thesis!",Snackbar.LENGTH_LONG).show();
-                    });
-                }else{
-                    setRequestButton();
+                    } else if(!MainActivity.account.getRequest().equals("no")) {
+                        btnThesisRequest.setOnClickListener(view13 -> {
+                            Snackbar.make(view13, "Already requested a thesis!", Snackbar.LENGTH_LONG).show();
+                        });
+                    }else
+                        setRequestButton();
                 }
             } else {
-
+               //error with task
             }
         });
 

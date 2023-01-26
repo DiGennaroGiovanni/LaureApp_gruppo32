@@ -25,15 +25,17 @@ import it.uniba.dib.sms222332.R;
 public class RequestDescriptionFragment extends Fragment {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    Button btnAccept, btnDecline;
+    TextView txtStudent, txtThesisName;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate(R.layout.fragment_request_description, container, false);
 
-        TextView txtStudent = view.findViewById(R.id.txtStudent);
-        TextView txtThesisName = view.findViewById(R.id.txtThesisName);
-        TextView txtavgMarks = view.findViewById(R.id.txtAverageMarks);
+        txtStudent = view.findViewById(R.id.txtStudent);
+        txtThesisName = view.findViewById(R.id.txtThesisName);
+        TextView txtAvgMarks = view.findViewById(R.id.txtAverageMarks);
         TextView txtAvgConstraint = view.findViewById(R.id.txtMarksRequiredOrNot);
         TextView txtExamsRequired = view.findViewById(R.id.txtRequiredExams);
         TextView txtExamsConstraint = view.findViewById(R.id.txtExamsRequiredOrNot);
@@ -58,7 +60,7 @@ public class RequestDescriptionFragment extends Fragment {
            if(avgMarks.equals(""))
                layoutForAvgConstraint.setVisibility(View.GONE);
            else {
-               txtavgMarks.setText(avgMarks);
+               txtAvgMarks.setText(avgMarks);
                txtAvgConstraint.setText(avgConstraint);
            }
 
@@ -71,14 +73,22 @@ public class RequestDescriptionFragment extends Fragment {
 
         }
 
-        Button btnAccept = view.findViewById(R.id.btnAccept);
-        Button btnDecline = view.findViewById(R.id.btnDecline);
+        btnAccept = view.findViewById(R.id.btnAccept);
+        btnDecline = view.findViewById(R.id.btnDecline);
 
+
+
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         btnAccept.setOnClickListener(view1 -> {
 
-            db.collection("Tesi").document(txtThesisName.getText().toString()).update("Student", txtStudent.getText().toString()).addOnSuccessListener(unused ->
-                    Snackbar.make(requireView(), "Request accepted.", Snackbar.LENGTH_LONG).show());
+            db.collection("Tesi").document(txtThesisName.getText().toString()).update("Student", txtStudent.getText().toString());
 
             db.collection("studenti").document(txtStudent.getText().toString()).update("Request", txtThesisName.getText().toString());
 
@@ -87,12 +97,17 @@ public class RequestDescriptionFragment extends Fragment {
                     for (QueryDocumentSnapshot request : task.getResult()){
                         if(request.getString("Thesis").equals(txtThesisName.getText().toString())){
                             request.getReference().delete();
+                            if(!request.getId().equals(txtStudent.getText().toString()))
+                                db.collection("studenti").document(request.getId()).update("Request", "no");
                         }
                     }
                 }
-
+                Snackbar.make(requireView(), "Request accepted.", Snackbar.LENGTH_LONG).show();
+                getParentFragmentManager().popBackStack();
             });
+
         });
+
 
 
         btnDecline.setOnClickListener(view12 -> {
@@ -107,6 +122,5 @@ public class RequestDescriptionFragment extends Fragment {
 
         });
 
-        return view;
     }
 }

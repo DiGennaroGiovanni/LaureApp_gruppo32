@@ -46,7 +46,6 @@ import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.professor.ReceiptsListFragment;
 import it.uniba.dib.sms222332.professor.TaskListFragment;
-import it.uniba.dib.sms222332.student.Messages.StudentMessageFragment;
 
 public class MyThesisFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback{
 
@@ -324,7 +323,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
 
         btnSendMessage.setOnClickListener(view -> {
-            Fragment thesisMessage = new StudentMessageFragment();
+            Fragment thesisMessage = new NewMessageFragment();
             Bundle bundle = new Bundle();
 
             bundle.putString("thesis_name", thesis_name);
