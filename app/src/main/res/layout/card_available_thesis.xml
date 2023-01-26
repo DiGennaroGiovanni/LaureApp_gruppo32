@@ -34,8 +34,15 @@
                 android:text="@string/thesis_name_card"
                 android:textAllCaps="true"
                 android:textColor="#00213A"
-                android:textSize="22sp"
+                android:textSize="28sp"
                 android:textStyle="bold" />
+
+            <!--        lineetta divisiva      -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="10sp"
+                android:background="#4D000000" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,7 +58,7 @@
                     android:paddingEnd="10sp"
                     android:text="Thesis typology:"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -61,7 +68,7 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -80,7 +87,7 @@
                     android:paddingEnd="10sp"
                     android:text="Department:"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -90,7 +97,7 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -109,7 +116,7 @@
                     android:paddingEnd="10sp"
                     android:text="Professor:"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -119,7 +126,7 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -138,7 +145,7 @@
                     android:paddingEnd="10sp"
                     android:text="Correlator:"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -148,7 +155,7 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 

@@ -179,7 +179,7 @@
     <string name="professor_message">Professore:</string>
     <string name="task_name_card">Nome Task</string>
     <string name="task_state">Stato Task:</string>
-    <string name="task_description_card">Descrizione Task:</string>
+    <string name="task_description_card">Descrizione:</string>
     <string name="task_name_edit">Nome Task</string>
     <string name="thesis_name_edit">Nome Tesi:</string>
     <string name="student_edit_task">Studente:</string>
@@ -296,6 +296,7 @@
     <string name="signed_up">Accesso effettuato</string>
     <string name="thesis_info">Informazioni Tesi</string>
     <string name="already_request">Hai già richiesto una tesi!</string>
+    <string name="faculty_">Facoltà</string>
 
     <string name="messages">Messaggi</string>
 </resources>

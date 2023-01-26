@@ -78,7 +78,7 @@ public class MessageDescriptionFragment extends Fragment {
                 btnAnswer.setOnClickListener(view1 -> {
 
                     if(edtAnswer.getText().toString().isEmpty())
-                        edtAnswer.setError(getString(R.string.add_an_answer);
+                        edtAnswer.setError(getString(R.string.add_an_answer));
 
                     else{
                         LocalDateTime date;

@@ -88,6 +88,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/newTaskToolbar"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:fontFamily="@font/cardo"
         android:layout_alignParentBottom="true"/>
 </RelativeLayout>

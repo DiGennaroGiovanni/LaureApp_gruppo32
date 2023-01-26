@@ -66,7 +66,7 @@
                 android:fontFamily="@font/cardo"
                 android:gravity="left"
                 android:paddingEnd="20sp"
-                android:text="@string/faculty"
+                android:text="@string/faculty_"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -76,7 +76,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="55"
-                android:text="@string/faculty"
+                android:text="@string/faculty_"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -148,7 +148,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="@string/delete_profile" />
+                android:text="@string/delete_profile"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
 
         </RelativeLayout>
 

@@ -91,5 +91,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/cardo"
-        android:text="@string/newReceiptToolbar" />
+        android:text="@string/newReceiptToolbar"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 </RelativeLayout>

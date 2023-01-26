@@ -4,7 +4,7 @@
     <string name="star_button_text">Favorites</string>
     <string name="chat_button_text">Messages</string>
     <string name="list_button_text">Your Thesis</string>
-    <string name="all_thesis_button">AVAILABLE THESIS</string>
+    <string name="all_thesis_button">AVAILABLE THESES</string>
     <string name="your_thesis_button">YOUR THESIS</string>
     <string name="add_thesis_button">ADD A NEW THESIS</string>
     <string name="handle_thesis_button">HANDLE THESIS</string>
@@ -179,7 +179,7 @@
     <string name="professor_message">Professor:</string>
     <string name="task_name_card">Task name</string>
     <string name="task_state">Task state:</string>
-    <string name="task_description_card">Task description:</string>
+    <string name="task_description_card">Description:</string>
     <string name="task_name_edit">Task name</string>
     <string name="thesis_name_edit">Thesis name:</string>
     <string name="student_edit_task">Student:</string>
@@ -295,5 +295,6 @@
     <string name="signed_up">Signed up</string>
     <string name="thesis_info">Thesis information</string>
     <string name="already_request">Already requested a thesis!</string>
+    <string name="faculty_">Faculty</string>
 
 </resources>
