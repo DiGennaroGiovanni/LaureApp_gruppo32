@@ -142,7 +142,7 @@
     <string name="back_to_login">Back to login</string>
     <string name="requirement_met">Requirement met:</string>
     <string name="qr_code_thesis">qr_code_thesis</string>
-    <string name="share_thesis_info">SHARE THESIS INFO</string>
+    <string name="share_thesis_info">SHARE INFO</string>
     <string name="close">CLOSE</string>
     <string name="pdf_title">UNIBA - Summary thesis document</string>
     <string name="hint_average_marks">type average marks</string>

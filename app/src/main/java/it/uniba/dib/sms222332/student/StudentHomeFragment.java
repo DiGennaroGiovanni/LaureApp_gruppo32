@@ -17,7 +17,7 @@ import it.uniba.dib.sms222332.R;
 
 public class StudentHomeFragment extends Fragment {
 
-    private Button buttonAllThesis, myThesisBtn;
+    Button buttonAllThesis, myThesisBtn;
 
     @Nullable
     @Override

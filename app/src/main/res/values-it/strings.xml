@@ -144,7 +144,7 @@
     <string name="back_to_login">Torna al login</string>
     <string name="requirement_met">Requisito Rispettato:</string>
     <string name="qr_code_thesis">qr_code_thesis</string>
-    <string name="share_thesis_info">CONDIVIDI INFO DELLA TESI</string>
+    <string name="share_thesis_info">CONDIVIDI INFO</string>
     <string name="close">CHIUDI</string>
     <string name="pdf_title">UNIBA - Documento di riepilogo tesi</string>
     <string name="hint_average_marks">digita la media del voti</string>
