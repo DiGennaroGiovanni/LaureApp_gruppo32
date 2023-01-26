@@ -63,7 +63,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/search_view">
+        android:background="#0808275A">
 
             <LinearLayout
                 android:id="@+id/layout_tesi_disponibili"
