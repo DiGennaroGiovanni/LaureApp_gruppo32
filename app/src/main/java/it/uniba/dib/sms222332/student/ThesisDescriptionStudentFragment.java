@@ -15,12 +15,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
-import it.uniba.dib.sms222332.student.Messages.StudentMessageFragment;
 
-public class StudentThesisFragment extends Fragment {
+public class ThesisDescriptionStudentFragment extends Fragment {
 
     TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,
             txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams, txtProfessor;
@@ -29,13 +30,14 @@ public class StudentThesisFragment extends Fragment {
     String required_exam = "";
     String professore_email = "";
     Button btnThesisRequest, btnContactProf;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.availableThesisTooolbar));
 
-        View view = inflater.inflate(R.layout.fragment_student_thesis, container, false);
+        View view = inflater.inflate(R.layout.fragment_thesis_description_student, container, false);
 
         txtNameTitle = view.findViewById(R.id.txtNameTitle);
         txtDepartment = view.findViewById(R.id.txtDepartment);
@@ -97,7 +99,7 @@ public class StudentThesisFragment extends Fragment {
         || MainActivity.account.getRequest().equals(txtNameTitle.getText().toString()))
             btnContactProf.setOnClickListener(view1 -> {
 
-                Fragment thesisMessage = new StudentMessageFragment();
+                Fragment thesisMessage = new NewMessageFragment();
                 Bundle bundle = new Bundle();
 
                 bundle.putString("thesis_name", txtNameTitle.getText().toString());
@@ -113,37 +115,65 @@ public class StudentThesisFragment extends Fragment {
 
             });
 
-        else{
-            btnContactProf.setOnClickListener(view12 -> {
-                Snackbar.make(view12,"You can send messages only for '" + MainActivity.account.getRequest()+ "' thesis!",Snackbar.LENGTH_LONG).show();
-            });
-        }
+        else
+            btnContactProf.setOnClickListener(view12 -> Snackbar.make(view12,"You can send messages only for '" + MainActivity.account.getRequest()+ "' thesis!",Snackbar.LENGTH_LONG).show());
 
-        if(!MainActivity.account.getRequest().equals("no")){
-            btnThesisRequest.setOnClickListener(view13 -> {
-                Snackbar.make(view13,"Already requested a thesis!",Snackbar.LENGTH_LONG).show();
-            });
-        }else{
-            btnThesisRequest.setOnClickListener(view12 -> {
-                Fragment thesisRequest = new ThesisRequestFragment();
-                Bundle bundle = new Bundle();
 
-                bundle.putString("average_marks",txtAverageMarks.getText().toString());
-                bundle.putString("required_exams", txtRequiredExams.getText().toString());
-                bundle.putString("thesis_name", txtNameTitle.getText().toString());
-                bundle.putString("professor",professore_email);
+        db.collection("richieste").document(MainActivity.account.getEmail()).get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if(document.exists()) {
+                    String thesisName = document.getString("Thesis");
+                    if(MainActivity.account.getRequest().equals("yes") && txtNameTitle.getText().toString().equals(thesisName)) {
 
-                thesisRequest.setArguments(bundle);
+                        btnThesisRequest.setText(R.string.cancel_request);
+                        btnThesisRequest.setOnClickListener(view14 -> {
 
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, thesisRequest);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                            db.collection("richieste").document(MainActivity.account.getEmail()).delete().addOnSuccessListener(unused ->
+                                    Snackbar.make(requireView(), "Request cenceled.", Snackbar.LENGTH_LONG).show());
 
-            });
-        }
+                            db.collection("studenti").document(MainActivity.account.getEmail()).update("Request", "no");
+
+                            MainActivity.account.setRequest("no");
+                            btnThesisRequest.setText(R.string.request_thesis);
+                            setRequestButton();
+                        });
+
+
+                    } else if(!MainActivity.account.getRequest().equals("no")) {
+                        btnThesisRequest.setOnClickListener(view13 -> {
+                            Snackbar.make(view13, "Already requested a thesis!", Snackbar.LENGTH_LONG).show();
+                        });
+                    }else
+                        setRequestButton();
+                }
+            } else {
+               //error with task
+            }
+        });
 
         return view;
+    }
+
+    private void setRequestButton() {
+
+        btnThesisRequest.setOnClickListener(view12 -> {
+            Fragment thesisRequest = new NewRequestFragment();
+            Bundle bundle = new Bundle();
+
+            bundle.putString("average_marks",txtAverageMarks.getText().toString());
+            bundle.putString("required_exams", txtRequiredExams.getText().toString());
+            bundle.putString("thesis_name", txtNameTitle.getText().toString());
+            bundle.putString("professor",professore_email);
+
+            thesisRequest.setArguments(bundle);
+
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, thesisRequest);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
     }
 }

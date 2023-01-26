@@ -68,7 +68,7 @@ final public class PDFUtility {
         try {
             pdfWriter.close();
         } catch (Exception ex) {
-            Log.e(TAG, "Error While Closing pdfWriter : " + ex.toString());
+            Log.e(TAG, "Error While Closing pdfWriter : " + ex);
         }
 
         if (mCallback != null) {

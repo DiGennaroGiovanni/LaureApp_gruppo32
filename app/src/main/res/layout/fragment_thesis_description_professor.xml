@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/txtNameTitle"
             android:layout_width="match_parent"
@@ -21,13 +22,19 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
+
+        <!--        lineetta divisiva      -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10sp"
+            android:background="#4D000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/txtTypologyTitle"
@@ -40,7 +47,7 @@
                 android:text="@string/thesis_type"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtTypology"
@@ -64,12 +71,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingEnd="20sp"
                 android:text="@string/department"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtDepartment"
@@ -98,17 +105,16 @@
                 android:text="@string/correlator"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/spinnerCorrelator"
+            <TextView
+                android:id="@+id/txtCorrelator"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
-                android:backgroundTint="#BFBABA"
-                android:textAlignment="center"
-                tools:ignore="SpeakableTextPresentCheck" />
-
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -123,12 +129,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingEnd="20sp"
-                android:text="@string/student_edit_thesis"
+                android:text="@string/student"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtStudent"
@@ -152,19 +158,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingEnd="20sp"
                 android:text="@string/estimated_time"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/edtTime"
+            <TextView
+                android:id="@+id/txtTime"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
-                android:inputType="number"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -188,14 +193,13 @@
                 android:text="@string/description"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/edtDescription"
+            <TextView
+                android:id="@+id/txtDescription"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
-                android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -218,10 +222,10 @@
                 android:text="@string/related_projects"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/edtRelatedProjects"
+            <TextView
+                android:id="@+id/txtRelatedProjects"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
@@ -238,7 +242,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/averageMarksTitle"
+                android:id="@+id/txtTitleAverageMarks"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
@@ -248,24 +252,16 @@
                 android:text="@string/average_marks"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/averageCheck"
+            <TextView
+                android:id="@+id/txtAverageMarks"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="7" />
-
-            <EditText
-                android:id="@+id/edtAverage"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="58"
-                android:inputType="number"
-                android:textSize="15sp">
-
-            </EditText>
-
+                android:layout_weight="65"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -275,7 +271,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/requiredExamsTitle"
+                android:id="@+id/txtTitleRequiredExams"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
@@ -285,27 +281,18 @@
                 android:text="@string/required_exams"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/requiredExamsCheck"
+            <TextView
+                android:id="@+id/txtRequiredExams"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="7" />
-
-            <EditText
-                android:id="@+id/edtRequiredExams"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="58"
-                android:inputType="textMultiLine"
-                android:textSize="15sp">
-
-            </EditText>
-
+                android:layout_weight="65"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -316,14 +303,15 @@
                 android:id="@+id/txtMaterialsTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="34"
+                android:layout_weight="35"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
                 android:paddingEnd="20sp"
                 android:text="@string/materials"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
+
 
             <LinearLayout
                 android:id="@+id/layout_lista_file"
@@ -332,34 +320,51 @@
                 android:layout_weight="65"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/buttonAdd"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:text="@string/button_add_material"
-                    android:textAlignment="center" />
-
             </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/btnSave"
+                android:id="@+id/btnDelete"
+                android:layout_width="27sp"
+                android:layout_height="27sp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="3sp"
+                android:layout_marginEnd="30sp"
+                android:background="@drawable/delete_icon"
+                android:contentDescription="@string/delete_thesis" />
+
+            <Button
+                android:id="@+id/btnModify"
+                android:layout_width="27sp"
+                android:layout_height="27sp"
+                android:layout_alignTop="@+id/btnDelete"
+                android:layout_toStartOf="@+id/btnDelete"
+                android:background="@drawable/icon_edit"
+                android:contentDescription="@string/edit_thesis" />
+
+            <Button
+                android:id="@+id/btnReceipt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/cardo"
-                android:text="@string/save_thesis"
-                android:textStyle="bold" />
+                android:layout_alignParentStart="true"
+                android:text="@string/receipt"
+                android:visibility="invisible" />
 
-        </LinearLayout>
+            <Button
+                android:id="@+id/btnTask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/btnReceipt"
+                android:text="@string/task"
+                android:visibility="invisible" />
 
+        </RelativeLayout>
 
     </LinearLayout>
 

@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".professor.ThesisListFragment"
-    android:background="#0808275A">
+    android:background="#0808275A"
+    tools:context=".professor.ThesesListFragment">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
 
         <TextView
             android:id="@+id/txtThesisName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:background="@null"
             android:fontFamily="@font/cardo"
             android:text="@string/thesis_name"
-            android:background="@null"
+            android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
             android:textSize="28sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <!--        lineetta divisiva      -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginHorizontal="10sp"
-            android:background="#4D000000"/>
+            android:background="#4D000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,50 +39,22 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:fontFamily="@font/cardo"
                 android:gravity="end"
                 android:paddingEnd="20sp"
-                android:fontFamily="@font/cardo"
                 android:text="@string/student"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/txtStudent"
-                android:layout_weight="65"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_weight="35"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:paddingEnd="20sp"
-                android:fontFamily="@font/cardo"
-                android:text="@string/department"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtDepartment"
-                android:layout_weight="65"
+                android:id="@+id/txtStudent"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -93,10 +63,10 @@
 
 
         <LinearLayout
+            android:id="@+id/layoutForAvgConstraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/layoutForAvgConstraint">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -159,10 +129,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layoutForExamsConstraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/layoutForExamsConstraint">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -223,27 +193,27 @@
 
         </LinearLayout>
 
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_margin="10sp"
-           android:elevation="2dp"
-           android:background="@drawable/custom_shape">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:background="@drawable/custom_shape"
+            android:elevation="2dp">
 
-           <TextView
-               android:id="@+id/txtMessageFromStudent"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:paddingStart="20sp"
-               android:paddingEnd="20sp"
-               android:text="messageFromStudent"
-               android:textColor="@color/black"
-               android:textSize="18sp"
-               android:textStyle="normal"
-               android:fontFamily="@font/cardo"
-               android:paddingHorizontal="10sp"
-               android:paddingVertical="5sp"/>
-       </RelativeLayout>
+            <TextView
+                android:id="@+id/txtMessageFromStudent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cardo"
+                android:paddingHorizontal="10sp"
+                android:paddingVertical="5sp"
+                android:paddingStart="20sp"
+                android:paddingEnd="20sp"
+                android:text="@string/messagefromstudent"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -253,22 +223,22 @@
                 android:id="@+id/btnAccept"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_margin="5dp"
-                android:text="Accept"
-                android:elevation="2dp"/>
+                android:layout_weight="1"
+                android:elevation="2dp"
+                android:text="@string/accept" />
 
             <Button
                 android:id="@+id/btnDecline"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_margin="5dp"
-                android:textColor="@color/black"
+                android:layout_weight="1"
                 android:backgroundTint="@color/white"
-                android:text="Decline"
+                android:elevation="2dp"
                 android:outlineProvider="background"
-                android:elevation="2dp"/>
+                android:text="@string/decline"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 

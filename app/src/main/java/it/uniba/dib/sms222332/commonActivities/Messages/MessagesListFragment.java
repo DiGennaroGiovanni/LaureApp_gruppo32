@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.student.Messages;
+package it.uniba.dib.sms222332.commonActivities.Messages;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,12 +20,12 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.itextpdf.text.pdf.parser.Line;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
+import it.uniba.dib.sms222332.student.NewMessageFragment;
 
-public class MessageStudentInfoFragment extends Fragment {
+public class MessagesListFragment extends Fragment {
 
     LinearLayout messageListLayout;
     TextView txtNomeProfessore,txtNomeTesi, txtProf;
@@ -39,7 +39,7 @@ public class MessageStudentInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.messageContactTooolbar));
 
-        View view = inflater.inflate(R.layout.fragment_message_student_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_messages_list, container, false);
         messageListLayout = view.findViewById(R.id.messageListLayout);
 
         txtNomeProfessore = view.findViewById(R.id.txtNomeProfessore);
@@ -92,7 +92,7 @@ public class MessageStudentInfoFragment extends Fragment {
                 bundle.putString("thesis_name",thesis_name);
                 bundle.putString("professor",professor);
 
-                Fragment thesisMessage = new StudentMessageFragment();
+                Fragment thesisMessage = new NewMessageFragment();
 
                 thesisMessage.setArguments(bundle);
 
@@ -160,7 +160,7 @@ public class MessageStudentInfoFragment extends Fragment {
             bundle.putString("thesis_name",thesis_name);
             bundle.putString("idMessage",idMessage);
 
-            Fragment infoMessage = new MessageInfoFragment();
+            Fragment infoMessage = new MessageDescriptionFragment();
 
             infoMessage.setArguments(bundle);
 

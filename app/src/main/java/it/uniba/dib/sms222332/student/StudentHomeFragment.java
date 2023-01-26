@@ -17,7 +17,7 @@ import it.uniba.dib.sms222332.R;
 
 public class StudentHomeFragment extends Fragment {
 
-    private Button buttonAllThesis, myThesisBtn;
+    Button buttonAllThesis, myThesisBtn;
 
     @Nullable
     @Override
@@ -30,7 +30,7 @@ public class StudentHomeFragment extends Fragment {
 
         buttonAllThesis.setOnClickListener(view1 -> {
 
-            Fragment availableThesisFragment = new AvailableThesisFragment();
+            Fragment availableThesisFragment = new AvailableThesesListFragment();
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, availableThesisFragment);
@@ -40,7 +40,7 @@ public class StudentHomeFragment extends Fragment {
         });
 
         myThesisBtn.setOnClickListener(view12 -> {
-            Fragment myThesis = new StudentThesisInfoFragment();
+            Fragment myThesis = new MyThesisFragment();
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, myThesis);

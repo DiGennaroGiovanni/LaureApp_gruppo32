@@ -24,6 +24,7 @@ import android.widget.SearchView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -52,17 +53,24 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.journeyapps.barcodescanner.CaptureManager;
+import com.journeyapps.barcodescanner.DecoratedBarcodeView;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
+import it.uniba.dib.sms222332.tools.CaptureAct;
+import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 
-public class AvailableThesisFragment extends Fragment {
+public class AvailableThesesListFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -70,23 +78,27 @@ public class AvailableThesisFragment extends Fragment {
     Bundle bundle;
     LinearLayout allTasks;
     Button btnFilter;
+    Button btnFilter, btnCamera;
     int seekBarValue = 30;
     boolean isRequestedExamChecked = false;
     CheckBox examsCheckbox;
-
+    private CaptureManager capture;
+    private DecoratedBarcodeView barcodeScannerView;
+    String professor = "";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.availableThesisTooolbar));
 
-        View view = inflater.inflate(R.layout.fragment_available_thesis, container, false);
+        View view = inflater.inflate(R.layout.fragment_available_theses_list, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         layout_lista_tesi = view.findViewById(R.id.layout_tesi_disponibili);
         SearchView searchView = view.findViewById(R.id.search_view);
         btnFilter = view.findViewById(R.id.btnFilter);
+        btnCamera = view.findViewById(R.id.btnCamera);
 
         btnFilter.setOnClickListener(view1 -> {
 
@@ -194,10 +206,18 @@ public class AvailableThesisFragment extends Fragment {
             try {
                 builder.create().show();
             } catch (Exception e) {
-                Log.e(TAG, "Errore nell'onClick del btnResearch : " + e.toString());
+                Log.e(TAG, "Errore nell'onClick del btnResearch : " + e);
             }
 
         });
+
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scanQrCode();
+            }
+        });
+
 
         /*
         Creazione query per la ricerca all'interno del database del nome di una specifica tesi.
@@ -265,8 +285,7 @@ public class AvailableThesisFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            String faculty = document.getString("Faculty");
-                            if (faculty.equals(MainActivity.account.getFaculty())) {
+                            if (document.getString("Student").equals("") && document.getString("Faculty").equals(MainActivity.account.getFaculty())) {
                                 addCardThesis(document);
                             }
                         }
@@ -284,16 +303,16 @@ public class AvailableThesisFragment extends Fragment {
     private void addCheckConstraint(QueryDocumentSnapshot document) {
         int thesisAverage;
 
-        if (document.getString("Average").toString().equals("")) {
+        if (document.getString("Average").equals("")) {
             thesisAverage = 18;
 
         } else {
-            thesisAverage = Integer.parseInt(document.getString("Average").toString());
+            thesisAverage = Integer.parseInt(document.getString("Average"));
         }
 
         if (thesisAverage <= seekBarValue) {
 
-            if (examsCheckbox.isChecked() && document.getString("Required Exam").toString().equals("")) {
+            if (examsCheckbox.isChecked() && document.getString("Required Exam").equals("")) {
 
                 addCardThesis(document);
 
@@ -306,20 +325,12 @@ public class AvailableThesisFragment extends Fragment {
 
     @Override
     public void onResume() {
-
         examsCheckbox = new CheckBox(requireContext());
-
         db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
             layout_lista_tesi.removeAllViews();
-
             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-
-                String faculty = document.getString("Faculty");
-
-                if (faculty.equals(MainActivity.account.getFaculty())) {
-
+                if (document.getString("Student").equals("") && document.getString("Faculty").equals(MainActivity.account.getFaculty())) {
                     addCheckConstraint(document);
-
                 }
             }
         });
@@ -442,7 +453,7 @@ public class AvailableThesisFragment extends Fragment {
                 try {
                     builder.create().show();
                 } catch (Exception e) {
-                    Log.e(TAG, "Errore nell'onClick del shareButton : " + e.toString());
+                    Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
                 }
             }
         });
@@ -452,7 +463,7 @@ public class AvailableThesisFragment extends Fragment {
         view.setOnClickListener(view1 -> {
 
             bundle = new Bundle();
-            Fragment studentThesis = new StudentThesisFragment();
+            Fragment studentThesis = new ThesisDescriptionStudentFragment();
 
             Map<String, Object> datiTesi = document.getData();
             bundle.putString("correlator", (String) datiTesi.get("Correlator"));
@@ -522,11 +533,11 @@ public class AvailableThesisFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     // Controllo se l'error code è riferito al fatto che il dispositivo non è connesso ad internet
-                    if(e instanceof FirebaseNetworkException) {
+                    if (e instanceof FirebaseNetworkException) {
                         Snackbar.make(requireView(), "No internet connection", Snackbar.LENGTH_LONG).show();
-                    } else if(e instanceof StorageException) {
+                    } else if (e instanceof StorageException) {
                         // Controllo se l'error code è riferito al fatto che non esiste il file sul database
-                        if (((StorageException)e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
+                        if (((StorageException) e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
                             Snackbar.make(requireView(), "File does not exist", Snackbar.LENGTH_LONG).show();
                         }
                     } else {
@@ -540,5 +551,70 @@ public class AvailableThesisFragment extends Fragment {
         }
     }
 
+    private void scanQrCode() {
+        ScanOptions options = new ScanOptions();
+        options.setPrompt("Volume up to flash on ");
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(true);
+        options.setCaptureActivity(CaptureAct.class);
+        barLauncher.launch(options);
+    }
+
+    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result ->  {
+        if(result.getContents() != null) {
+            Log.w("LETTURA QR", result.getContents());
+            String onlineUser = MainActivity.account.getEmail();
+            String jsonInput = result.getContents();
+            String thesisName = "";
+            try {
+                JSONObject json = new JSONObject(jsonInput);
+                thesisName = json.getString("name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            DocumentReference docRef = db.collection("Tesi").document(thesisName);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot document = task.getResult();
+                    String student = document.getString("Student");
+
+                    if (student.equals(onlineUser)) {
+                        getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyThesisFragment()).commit();
+                    } else {
+
+                        bundle = new Bundle();
+                        Fragment guestThesis = new ThesisDescriptionGuestFragment();
+
+                        Map<String, Object> datiTesi = document.getData();
+                        db.collection("professori").document(datiTesi.get("Professor").toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if(task.isSuccessful()) {
+                                    bundle.putString("professor", task.getResult().get("Name").toString() + " " + task.getResult().get("Surname").toString());
+                                    bundle.putString("correlator", (String) datiTesi.get("Correlator"));
+                                    bundle.putString("description", (String) datiTesi.get("Description"));
+                                    bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
+                                    bundle.putString("faculty", (String) datiTesi.get("Faculty"));
+                                    bundle.putString("name", (String) datiTesi.get("Name"));
+                                    bundle.putString("type", (String) datiTesi.get("Type"));
+                                    bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
+                                    bundle.putString("average_marks", (String) datiTesi.get("Average"));
+                                    bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
+                                    bundle.putString("professor_email", (String) datiTesi.get("Professor"));
+
+                                    guestThesis.setArguments(bundle);
+                                    FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
+                                    fragmentTransaction.addToBackStack(null);
+                                    fragmentTransaction.commit();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
 }
 

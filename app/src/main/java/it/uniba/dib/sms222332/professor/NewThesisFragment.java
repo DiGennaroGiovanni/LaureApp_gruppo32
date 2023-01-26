@@ -3,7 +3,9 @@ package it.uniba.dib.sms222332.professor;
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +23,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -53,6 +57,7 @@ public class NewThesisFragment extends Fragment {
     Spinner edtMainSubject,edtCorrelator;
     Button addFile,buttonCreateThesis;
     TextView txtFaculty;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
 
     //Istanze del database e del sistema di autenticazione di firebase
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -112,7 +117,21 @@ public class NewThesisFragment extends Fragment {
         // Setto l'ArrayAdapter allo spinner
         edtMainSubject.setAdapter(adapter);
         buttonCreateThesis.setOnClickListener(view1 -> inserisciTesi());
-        addFile.setOnClickListener(view12 -> caricaFile());
+
+
+        addFile.setOnClickListener(view12 -> {
+            int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE);
+
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+            } else {
+                // permesso già concesso, procedi con la lettura dei file
+                caricaFile();
+            }
+        });
 
         CollectionReference collectionRef = db.collection("professori");
 
@@ -299,6 +318,24 @@ public class NewThesisFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference("PDF_tesi" +"/" + pdfName);
         // Caricamento del file sul server
         storageReference.putFile(uriPDF);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permesso concesso, procedi con la lettura dei file
+
+                } else {
+                    caricaFile();
+                    // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
+                }
+                return;
+            }
+        }
     }
 }
 

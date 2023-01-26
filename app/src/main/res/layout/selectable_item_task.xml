@@ -7,12 +7,12 @@
         android:id="@+id/txtTaskName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="#B308275A"
-        android:fontFamily="@font/cardo"
-        android:text="Task name"
-        android:padding="8sp"
         android:layout_margin="3sp"
-        android:background="@drawable/item_task_background"/>
+        android:background="@drawable/item_task_background"
+        android:fontFamily="@font/cardo"
+        android:padding="8sp"
+        android:text="@string/task_name"
+        android:textColor="#B308275A"
+        android:textSize="20sp" />
 
 </RelativeLayout>

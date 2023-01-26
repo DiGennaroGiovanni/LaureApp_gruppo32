@@ -7,33 +7,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="13dp">
+        android:layout_margin="10dp"
+        android:orientation="vertical">
 
         <TextView
-            android:visibility="visible"
             android:id="@+id/txtAverageConstraint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="DO YOU SATISFY THE AVERAGE CONSTRAINT?"
             android:fontFamily="@font/cardo"
+            android:text="@string/do_you_satisfy_the_average_constraint"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:visibility="visible" />
 
         <LinearLayout
-            android:visibility="visible"
             android:id="@+id/averageMarksLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/txtTitleAverageMarks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cardo"
-                android:text="Average Marks: "
+                android:text="@string/average_marks_"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="italic" />
@@ -45,28 +45,28 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <RadioGroup
-            android:visibility="visible"
             android:id="@+id/averageRadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="5dp"
             android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:visibility="visible">
 
             <RadioButton
                 android:id="@+id/rdbAverageYes"
-                android:fontFamily="@font/cardo"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="YES">
+                android:fontFamily="@font/cardo"
+                android:text="@string/yes"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="italic">
 
             </RadioButton>
 
@@ -75,39 +75,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cardo"
+                android:text="@string/no"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:text="NO">
+                android:textStyle="italic">
 
             </RadioButton>
 
         </RadioGroup>
 
         <TextView
-            android:visibility="visible"
             android:id="@+id/txtExamsConstraint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="DO YOU SATISFY THE EXAMS CONSTRAINT?"
             android:fontFamily="@font/cardo"
+            android:text="@string/do_you_satisfy_the_exams_constraint"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:visibility="visible" />
 
         <LinearLayout
-            android:visibility="visible"
             android:id="@+id/requiredExamsLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/txtTitleRequiredExams"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cardo"
-                android:text="Required Exams:"
+                android:text="@string/required_exams"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="italic" />
@@ -119,28 +119,28 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <RadioGroup
-            android:visibility="visible"
             android:id="@+id/examsRadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="5dp"
             android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:visibility="visible">
 
             <RadioButton
                 android:id="@+id/rdbExamsYes"
-                android:fontFamily="@font/cardo"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="YES">
+                android:fontFamily="@font/cardo"
+                android:text="@string/yes"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="italic">
 
             </RadioButton>
 
@@ -149,22 +149,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cardo"
+                android:text="@string/no"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:text="NO">
+                android:textStyle="italic">
 
             </RadioButton>
 
         </RadioGroup>
 
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/cardo"
+            android:text="@string/notes_"
             android:textColor="@color/black"
-            android:text="NOTE:"
             android:textStyle="bold" />
 
         <EditText
@@ -178,13 +178,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/cardo"
             android:layout_marginTop="15dp"
-            android:text="Send request"
+            android:fontFamily="@font/cardo"
+            android:text="@string/send_request"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
     </LinearLayout>
 

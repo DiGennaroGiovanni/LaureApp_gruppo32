@@ -5,9 +5,11 @@ import static android.content.ContentValues.TAG;
 import static android.content.Context.DOWNLOAD_SERVICE;
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
+import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,7 +17,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -24,6 +25,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -31,30 +34,20 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.api.Distribution;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.professor.ReceiptsListFragment;
 import it.uniba.dib.sms222332.professor.TaskListFragment;
-import it.uniba.dib.sms222332.student.Messages.StudentMessageFragment;
 
-public class StudentThesisInfoFragment extends Fragment {
+public class MyThesisFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback{
 
     TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,txtState,
             txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtProfessor,txtNoRequest;
@@ -62,23 +55,25 @@ public class StudentThesisInfoFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layoutThesisAccepted,layoutMaterials,layoutRequiredExams,layoutState,layoutAverageMarks,layoutNoThesis;
     LinearLayout layout_lista_file;
-    RelativeLayout layoutButton,layoutButtonRequest;
+    RelativeLayout layoutButton, layoutButtonCancelRequest;
     StorageReference storageReference, ref;
     FirebaseStorage storage;
-    Button buttonAdd,btnSave,btnTask,btnReceipt,btnSendMessage, btnDeleteRequest ;
+    Button buttonAdd,btnSave,btnTask,btnReceipt,btnSendMessage, btnCancelRequest;
     Uri fileUri;
     ArrayList<Uri> newMaterials = new ArrayList<>();
     ArrayList<String> deletedOldMaterials = new ArrayList<>();
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisInfoTooolbar));
 
-        View view = inflater.inflate(R.layout.fragment_student_thesis_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_thesis, container, false);
 
-        layoutButtonRequest=view.findViewById(R.id.layoutButtonRequest);
-        btnDeleteRequest = view.findViewById(R.id.btnDeleteRequest);
+        layoutButtonCancelRequest =view.findViewById(R.id.layoutButtonRequest);
+        btnCancelRequest = view.findViewById(R.id.btnDeleteRequest);
         btnSendMessage = view.findViewById(R.id.btnSendMessage);
         btnSave = view.findViewById(R.id.btnSave);
         btnTask = view.findViewById(R.id.btnTask);
@@ -108,45 +103,52 @@ public class StudentThesisInfoFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
+        return view;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         if(!MainActivity.account.getRequest().equals("no") && !MainActivity.account.getRequest().equals("yes"))//LO STUDENTE  HA UNA TESI
             studenteHaveThesis();
         else if(MainActivity.account.getRequest().equals("no")) //LO STUDENTE NON HA ANCORA FATTO RICHIESTA
             studentNotRequest();
         else// LO STUDENTE HA FATTO RICHIESTA MA NON E' STATA ANCORA ACCETTATA
             studentYesRequest();
-
-        return view;
     }
 
     private void studentYesRequest() {
         layoutState.setVisibility(View.VISIBLE);
         layoutButton.setVisibility(View.GONE);
-        layoutButtonRequest.setVisibility((View.VISIBLE));
+        layoutButtonCancelRequest.setVisibility((View.VISIBLE));
 
 
-        btnDeleteRequest.setOnClickListener(view -> {
-            //TODO ELIMINARE LA RICHIESTA, CODICE DI BEPPE + ALERT DIALOG YES/NO
+        btnCancelRequest.setOnClickListener(view -> {
+
+            db.collection("richieste").document(MainActivity.account.getEmail()).delete().addOnSuccessListener(unused ->
+                    Snackbar.make(requireView(), "Request canceled.", Snackbar.LENGTH_LONG).show());
+
+            db.collection("studenti").document(MainActivity.account.getEmail()).update("Request", "no");
+
+            MainActivity.account.setRequest("no");
+            onResume();
+
         });
 
 
-        CollectionReference collectionReference = db.collection("richieste");
-        collectionReference.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    if(document.getString("Student").equals(MainActivity.account.getEmail()))
-                        thesisName = document.getString("Thesis Name");
 
-                }
-                db.collection("Tesi")
-                        .document(thesisName)
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
+        db.collection("richieste").document(MainActivity.account.getEmail()).get().addOnSuccessListener(documentSnapshot ->
+                thesisName = documentSnapshot.getString("Thesis")).continueWith(task -> {
+                    if(!task.isSuccessful()){
+                        return null;
+                    }
+                    return db.collection("Tesi")
+                            .document(thesisName)
+                            .get()
+                            .addOnCompleteListener(task2 -> {
+                                if(task2.isSuccessful()) {
+                                    DocumentSnapshot document = task2.getResult();
+                                    if(document.exists()) {
                                         txtNameTitle.setText(thesisName);
                                         txtType.setText(document.getString("Type"));
                                         txtDepartment.setText(document.getString("Faculty"));
@@ -157,7 +159,7 @@ public class StudentThesisInfoFragment extends Fragment {
                                         else
                                             txtCorrelator.setText(document.getString("Correlator"));
 
-                                        String estimatedTime = document.getString("Estimated Time")+" days";
+                                        String estimatedTime = document.getString("Estimated Time") + " days";
                                         txtTime.setText(estimatedTime);
 
                                         txtDescription.setText(document.getString("Description"));
@@ -183,13 +185,10 @@ public class StudentThesisInfoFragment extends Fragment {
 
                                     }
                                 } else {
-                                    Log.d(TAG, "get failed with ", task.getException());
+                                    Log.d(TAG, "get failed with ", task2.getException());
                                 }
-                            }
-                        });
-            }
+                            });
         });
-
 
 
     }
@@ -258,7 +257,19 @@ public class StudentThesisInfoFragment extends Fragment {
         }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
 
         buttonAdd.setOnClickListener(view -> {
-            uploadFile();
+
+            int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE);
+
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+            } else {
+                // permesso già concesso, procedi con la lettura dei file
+                uploadFile();
+            }
+
 
         });
 
@@ -312,7 +323,7 @@ public class StudentThesisInfoFragment extends Fragment {
 
 
         btnSendMessage.setOnClickListener(view -> {
-            Fragment thesisMessage = new StudentMessageFragment();
+            Fragment thesisMessage = new NewMessageFragment();
             Bundle bundle = new Bundle();
 
             bundle.putString("thesis_name", thesis_name);
@@ -380,8 +391,20 @@ public class StudentThesisInfoFragment extends Fragment {
         downloadMaterial = view.findViewById(R.id.downloadMaterial);
 
         downloadMaterial.setOnClickListener(view1 -> {
-            download(nomeFile);
-            Snackbar.make(view1, "Downloading "+nomeFile, Snackbar.LENGTH_LONG).show();
+
+            int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+            } else {
+                // permesso già concesso, procedi con la lettura dei file
+                download(nomeFile);
+                Snackbar.make(view1, "Downloading "+nomeFile, Snackbar.LENGTH_LONG).show();
+            }
+
         });
 
         layout_lista_file.addView(view);
@@ -390,7 +413,7 @@ public class StudentThesisInfoFragment extends Fragment {
     private void download(String nomeFile) {
 
         storageReference = storage.getInstance().getReference();
-        ref = storageReference.child(thesisName).child(nomeFile);
+        ref = storageReference.child(MainActivity.account.getRequest()).child(nomeFile);
 
         ref.getDownloadUrl().addOnSuccessListener(uri -> {
             String url  = uri.toString();
@@ -408,6 +431,34 @@ public class StudentThesisInfoFragment extends Fragment {
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         request.setDestinationInExternalFilesDir(context, destinationDirectory, nomeFile + fileExtension);
         downloadManager.enqueue(request);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permesso concesso, procedi con la lettura dei file
+                } else {
+                    // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
+                }
+                return;
+            }
+            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    uploadFile();
+                } else {
+                    buttonAdd.setOnClickListener(view -> {
+                        Snackbar.make(getView(),"Non hai i permessi di lettura",Snackbar.LENGTH_LONG).show();
+                    });
+                    // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
+                }
+                return;
+            }
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.student.Messages;
+package it.uniba.dib.sms222332.commonActivities.Messages;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,31 +14,27 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.api.Distribution;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.itextpdf.text.pdf.parser.Line;
 
 import java.util.ArrayList;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
-
-public class StudentListMessageFragment extends Fragment {
+public class ThesesMessagesListFragment extends Fragment {
 
     LinearLayout messageListLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<String> listaTesi = new ArrayList<String>();
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.messageContactTooolbar));
 
-        View view = inflater.inflate(R.layout.fragment_student_list_message, container, false);
+        View view = inflater.inflate(R.layout.fragment_theses_messages_list, container, false);
 
         messageListLayout = view.findViewById(R.id.layoutMessagesList);
 
@@ -57,8 +53,6 @@ public class StudentListMessageFragment extends Fragment {
                 }
             }
         });
-
-
         return view;
     }
 
@@ -82,10 +76,8 @@ public class StudentListMessageFragment extends Fragment {
             txtProfessor.setVisibility(View.GONE);
         }
 
-
         txtProfessor.setText(professor);
         txtName.setText(thesis_name);
-
 
         Bundle bundle = new Bundle();
         bundle.putString("object",object);
@@ -96,10 +88,9 @@ public class StudentListMessageFragment extends Fragment {
         bundle.putString("date",date);
         bundle.putString("idMessage",idMessage);
 
-
         view.setOnClickListener(view1 -> {
 
-            Fragment info = new MessageStudentInfoFragment();
+            Fragment info = new MessagesListFragment();
 
             info.setArguments(bundle);
 
@@ -111,7 +102,5 @@ public class StudentListMessageFragment extends Fragment {
 
         });
         messageListLayout.addView(view);
-
-
     }
 }

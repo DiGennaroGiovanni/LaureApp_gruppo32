@@ -12,19 +12,30 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import it.uniba.dib.sms222332.R;
 
 public class RequestDescriptionFragment extends Fragment {
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    Button btnAccept, btnDecline;
+    TextView txtStudent, txtThesisName;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate(R.layout.fragment_request_description, container, false);
 
-        TextView txtStudent = view.findViewById(R.id.txtStudent);
-        TextView txtThesisName = view.findViewById(R.id.txtThesisName);
-        TextView txtavgMarks = view.findViewById(R.id.txtAverageMarks);
+        txtStudent = view.findViewById(R.id.txtStudent);
+        txtThesisName = view.findViewById(R.id.txtThesisName);
+        TextView txtAvgMarks = view.findViewById(R.id.txtAverageMarks);
         TextView txtAvgConstraint = view.findViewById(R.id.txtMarksRequiredOrNot);
         TextView txtExamsRequired = view.findViewById(R.id.txtRequiredExams);
         TextView txtExamsConstraint = view.findViewById(R.id.txtExamsRequiredOrNot);
@@ -37,9 +48,9 @@ public class RequestDescriptionFragment extends Fragment {
             String thesisName = bundle.getString("thesis_name");
             String student = bundle.getString("student");
             String avgMarks = bundle.getString("avg");
-            String avgConstraint = bundle.getString("avg_constraint");
+            String avgConstraint = bundle.getString("avg_constraint_met");
             String examsRequired = bundle.getString("exams");
-            String examsConstraint = bundle.getString("exams_constraint");
+            String examsConstraint = bundle.getString("exams_constraint_met");
             String message = bundle.getString("message");
 
             txtStudent.setText(student);
@@ -49,7 +60,7 @@ public class RequestDescriptionFragment extends Fragment {
            if(avgMarks.equals(""))
                layoutForAvgConstraint.setVisibility(View.GONE);
            else {
-               txtavgMarks.setText(avgMarks);
+               txtAvgMarks.setText(avgMarks);
                txtAvgConstraint.setText(avgConstraint);
            }
 
@@ -62,20 +73,54 @@ public class RequestDescriptionFragment extends Fragment {
 
         }
 
-        Button btnAccept = view.findViewById(R.id.btnAccept);
-        Button btnDecline = view.findViewById(R.id.btnDecline);
+        btnAccept = view.findViewById(R.id.btnAccept);
+        btnDecline = view.findViewById(R.id.btnDecline);
 
 
-        btnAccept.setOnClickListener(view1 -> {
-         //TODO LIST: 1) IMPOSTARE NELLA TESI IL CAMPO STUDENTE. 2) IMPOSTARE IN STUDENTE IL CAMPO REQUEST COL NOME TESI. 3) ELIMINARE TUTTE LE RICHIESTE DI QUESTA TESI
 
-        });
-
-        btnDecline.setOnClickListener(view12 -> {
-        //TODO: 1) CANCELLATA LA RICHIESTA SPECIFICA. 2) IMPOSTATO VALORE REQUEST DI STUDENTE A "no"
-
-        });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        btnAccept.setOnClickListener(view1 -> {
+
+            db.collection("Tesi").document(txtThesisName.getText().toString()).update("Student", txtStudent.getText().toString());
+
+            db.collection("studenti").document(txtStudent.getText().toString()).update("Request", txtThesisName.getText().toString());
+
+            db.collection("richieste").get().addOnCompleteListener(task -> {
+                if(task.isSuccessful()){
+                    for (QueryDocumentSnapshot request : task.getResult()){
+                        if(request.getString("Thesis").equals(txtThesisName.getText().toString())){
+                            request.getReference().delete();
+                            if(!request.getId().equals(txtStudent.getText().toString()))
+                                db.collection("studenti").document(request.getId()).update("Request", "no");
+                        }
+                    }
+                }
+                Snackbar.make(requireView(), "Request accepted.", Snackbar.LENGTH_LONG).show();
+                getParentFragmentManager().popBackStack();
+            });
+
+        });
+
+
+
+        btnDecline.setOnClickListener(view12 -> {
+
+
+            db.collection("richieste").document(txtStudent.getText().toString()).delete().addOnSuccessListener(unused ->
+                    Snackbar.make(requireView(), "Request declined.", Snackbar.LENGTH_LONG).show());
+
+            db.collection("studenti").document(txtStudent.getText().toString()).update("Request", "no");
+
+            getParentFragmentManager().popBackStack();
+
+        });
+
     }
 }

@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -52,17 +54,29 @@ public class RequestsListFragment extends Fragment {
         TextView thesisName = v.findViewById(R.id.txtThesisName);
         TextView studentEmail = v.findViewById(R.id.txtStudentEmail);
 
-        thesisName.setText(document.getString("Thesis Name"));
+        thesisName.setText(document.getString("Thesis"));
         studentEmail.setText(document.getString("Student"));
 
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        v.setOnClickListener(view -> {
 
-                Bundle bundle = new Bundle();
+            Bundle bundle = new Bundle();
+            bundle.putString("thesis_name", document.getString("Thesis"));
+            bundle.putString("student", document.getString("Student"));
+            bundle.putString("avg", document.getString("Average"));
+            bundle.putString("avg_constraint_met", document.getString("Average Constraint Met"));
+            bundle.putString("exams", document.getString("Exams"));
+            bundle.putString("exams_constraint_met", document.getString("Exams Constraint Met"));
+            bundle.putString("message", document.getString("Message"));
 
 
-            }
+            Fragment requestDescriptionFragment = new RequestDescriptionFragment();
+            requestDescriptionFragment.setArguments(bundle);
+
+//            CODICE DA UTILIZZARE IN OGNI PASSAGGIO FRAGMENT
+            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, requestDescriptionFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         });
 
         layoutRequestsList.addView(v);

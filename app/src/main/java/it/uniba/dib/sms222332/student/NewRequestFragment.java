@@ -29,7 +29,7 @@ import java.util.Map;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
-public class ThesisRequestFragment extends Fragment {
+public class NewRequestFragment extends Fragment {
 
     String average_marks = "" ;
     String required_exams = "";
@@ -48,7 +48,7 @@ public class ThesisRequestFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisRequestTooolbar));
 
-        View view = inflater.inflate(R.layout.fragment_thesis_request, container, false);
+        View view = inflater.inflate(R.layout.fragment_new_request, container, false);
 
         averageMarksLayout = view.findViewById(R.id.averageMarksLayout);
         requiredExamsLayout = view.findViewById(R.id.requiredExamsLayout);
@@ -117,13 +117,16 @@ public class ThesisRequestFragment extends Fragment {
             }else{
 
                 Map<String, String> request = new HashMap<>();
-                request.put("Average Constraint", average);
-                request.put("Exams Constraint", exams);
-                request.put("Note", edtNote.getText().toString());
+                request.put("Average", txtAverageMarks.getText().toString());
+                request.put("Average Constraint Met", average);
+                request.put("Exams", txtRequiredExams.getText().toString());
+                request.put("Exams Constraint Met", exams);
+                request.put("Message", edtNote.getText().toString());
                 request.put("Professor",professore_email);
                 request.put("Student",MainActivity.account.getEmail());
-                request.put("Thesis Name",thesis_name);
-                requestName = thesis_name + "_" + MainActivity.account.getEmail();
+                request.put("Thesis",thesis_name);
+
+                requestName =MainActivity.account.getEmail();
 
                 db.collection("richieste").document(requestName).set(request);
 
@@ -140,7 +143,7 @@ public class ThesisRequestFragment extends Fragment {
 
                 Snackbar.make(view1, "Request made!", Snackbar.LENGTH_LONG).show();
 
-                getActivity().onBackPressed();
+                getParentFragmentManager().popBackStack();
             }
         });
 

@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:fontFamily="@font/cardo"
-            android:text="Thesis name"
+            android:text="@string/thesis_name"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
@@ -37,7 +37,7 @@
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
                 android:paddingEnd="20sp"
-                android:text="Professor:"
+                android:text="@string/professor_message"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold|italic" />
@@ -66,16 +66,16 @@
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
                 android:paddingEnd="20sp"
-                android:text="Object:"
+                android:text="@string/object_info_message"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold|italic" />
 
             <EditText
                 android:id="@+id/edtObject"
-                android:layout_weight="65"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="65"
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
@@ -90,22 +90,22 @@
 
             <TextView
                 android:id="@+id/txtDescriptionTitle"
-                android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:fontFamily="@font/cardo"
                 android:gravity="end"
                 android:paddingEnd="20sp"
-                android:text="Message:"
-                android:fontFamily="@font/cardo"
+                android:text="@string/message_"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold|italic"/>
+                android:textStyle="bold|italic" />
 
             <EditText
                 android:id="@+id/edtDescription"
-                android:layout_weight="65"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="65"
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
@@ -120,15 +120,15 @@
 
             <Button
                 android:id="@+id/btnSendMessage"
-                android:textSize="15sp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="SEND MESSAGE"
-                android:backgroundTint="@android:color/transparent"
                 android:layout_margin="5dp"
-                android:textColor="@color/black"
+                android:layout_weight="5"
+                android:backgroundTint="@android:color/transparent"
                 android:fontFamily="@font/cardo"
+                android:text="@string/send_message"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
 
