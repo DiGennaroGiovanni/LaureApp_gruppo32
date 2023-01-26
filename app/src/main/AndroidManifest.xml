@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
 
     <application
         android:allowBackup="true"
@@ -63,6 +65,11 @@
             android:theme="@style/Theme.LaureApp.NoActionBar"
             android:windowSoftInputMode="adjustPan"> <!-- Per non far muovere la bottom navigation view quando si apre la tastiera -->
         </activity>
+        <activity
+            android:name=".tools.CaptureAct"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            />
 
         <meta-data
             android:name="preloaded_fonts"
