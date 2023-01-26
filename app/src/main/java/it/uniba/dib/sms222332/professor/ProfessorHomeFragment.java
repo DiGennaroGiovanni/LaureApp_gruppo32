@@ -40,6 +40,7 @@ public class ProfessorHomeFragment extends Fragment {
 
         btnRequests = view.findViewById(R.id.receiptsBtn);
 
+        btnRequests.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.icon_check, 0);
         btnRequests.setOnClickListener(view2 -> {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
