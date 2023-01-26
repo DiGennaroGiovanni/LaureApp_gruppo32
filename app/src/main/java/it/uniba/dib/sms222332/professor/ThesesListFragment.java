@@ -46,6 +46,7 @@ import java.io.File;
 import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class ThesesListFragment extends Fragment {
 
@@ -76,7 +77,8 @@ public class ThesesListFragment extends Fragment {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             String professorEmail = document.getString("Professor");
-                            if (professorEmail.equals(mUser.getEmail())) {
+                            String correlatorEmail = document.getString("Correlator");
+                            if (professorEmail.equals(MainActivity.account.getEmail()) || correlatorEmail.equals(MainActivity.account.getEmail())) {
                                 addCardThesis(document);
                             }
                         }

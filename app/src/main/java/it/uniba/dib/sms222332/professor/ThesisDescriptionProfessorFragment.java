@@ -150,40 +150,32 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Conferma eliminazione");
-            builder.setMessage("Sei sicuro di voler eliminare questa tesi ed i suoi materiali?");
-            builder.setPositiveButton("No", (dialog, which) -> {
-
-            });
-
-            builder.setNegativeButton("Yes", (dialog, which) -> {
+            builder.setTitle(R.string.confirm_deletion);
+            builder.setMessage(R.string.thesis_materials_delete_question);
+            builder.setPositiveButton(R.string.yes, (dialog, which) -> {
 
                 folderRef.listAll()
-                        .addOnSuccessListener(new OnSuccessListener<ListResult>() {
-                            @Override
-                            public void onSuccess(ListResult listResult) {
-                                for (StorageReference item : listResult.getItems()) {
-                                    item.delete();
-                                }
-                                folderRef.delete();
+                        .addOnSuccessListener(listResult -> {
+                            for (StorageReference item : listResult.getItems()) {
+                                item.delete();
                             }
+                            folderRef.delete();
                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.e(TAG, "Error deleting folder: " + e.getMessage());
-                            }
-                        });
+                        .addOnFailureListener(e -> Log.e(TAG, R.string.error_deleting_folder + e.getMessage()));
 
                 storageReference.child("PDF_tesi").child(txtThesisName.getText().toString() + ".pdf").delete();
                 tesi.delete();
 
 
-                Snackbar.make(view12, "Thesis eliminated", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view12, R.string.thesis_eliminated, Snackbar.LENGTH_LONG).show();
 
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, new ThesesListFragment());
                 transaction.commit();
+
+            });
+
+            builder.setNegativeButton(R.string.no, (dialog, which) -> {
 
             });
 
@@ -256,7 +248,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
         downloadMaterial.setOnClickListener(view1 -> {
             download(nomeFile);
-            Snackbar.make(view1, "Downloading "+nomeFile, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(view1, R.string.downloading + nomeFile, Snackbar.LENGTH_LONG).show();
         });
 
         layout_lista_file.addView(view);
