@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -28,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -51,6 +53,8 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.journeyapps.barcodescanner.CaptureManager;
+import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
@@ -70,68 +74,14 @@ public class AvailableThesesListFragment extends Fragment {
     FirebaseUser mUser;
     LinearLayout layout_lista_tesi;
     Bundle bundle;
+    LinearLayout allTasks;
     Button btnFilter, btnCamera;
     int seekBarValue = 30;
     boolean isRequestedExamChecked = false;
     CheckBox examsCheckbox;
-
-    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
-        if (result.getContents() != null) {
-            Log.w(getString(R.string.qr_code_reading), result.getContents());
-            String onlineUser = MainActivity.account.getEmail();
-            String jsonInput = result.getContents();
-            String thesisName = "";
-            try {
-                JSONObject json = new JSONObject(jsonInput);
-                thesisName = json.getString("name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            DocumentReference docRef = db.collection("Tesi").document(thesisName);
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    DocumentSnapshot document = task.getResult();
-                    String student = document.getString("Student");
-
-                    if (student.equals(onlineUser)) {
-                        getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyThesisFragment()).commit();
-                    } else {
-
-                        bundle = new Bundle();
-                        Fragment guestThesis = new ThesisDescriptionGuestFragment();
-
-                        Map<String, Object> datiTesi = document.getData();
-                        db.collection("professori").document(datiTesi.get("Professor").toString()).get().addOnCompleteListener(task1 -> {
-                            if (task1.isSuccessful()) {
-                                getDataFromPreviousFragment(guestThesis, datiTesi, task1);
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    });
-
-    private void getDataFromPreviousFragment(Fragment guestThesis, Map<String, Object> datiTesi, Task<DocumentSnapshot> task1) {
-        bundle.putString("professor", task1.getResult().get("Name").toString() + " " + task1.getResult().get("Surname").toString());
-        bundle.putString("correlator", (String) datiTesi.get("Correlator"));
-        bundle.putString("description", (String) datiTesi.get("Description"));
-        bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
-        bundle.putString("faculty", (String) datiTesi.get("Faculty"));
-        bundle.putString("name", (String) datiTesi.get("Name"));
-        bundle.putString("type", (String) datiTesi.get("Type"));
-        bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
-        bundle.putString("average_marks", (String) datiTesi.get("Average"));
-        bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
-        bundle.putString("professor_email", (String) datiTesi.get("Professor"));
-
-        guestThesis.setArguments(bundle);
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
+    private CaptureManager capture;
+    private DecoratedBarcodeView barcodeScannerView;
+    String professor = "";
 
     @Nullable
     @Override
@@ -149,11 +99,121 @@ public class AvailableThesesListFragment extends Fragment {
 
         btnFilter.setOnClickListener(view1 -> {
 
-            btnFilterOnClick(view, searchView);
+
+            // chiusura della tastiera
+            closeKeyboard(view);
+
+            // Istanzio l'AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+
+            // Imposto il titolo customizzato
+            TextView titleView = new TextView(requireContext());
+            titleView.setText("Research a thesis by setting filters on the constraints");
+            titleView.setGravity(Gravity.CENTER);
+            titleView.setTextSize(18);
+            titleView.setTypeface(null, Typeface.BOLD);
+            titleView.setTextColor(Color.BLACK);
+            titleView.setPadding(0, 50, 0, 0);
+            builder.setCustomTitle(titleView);
+
+            // Definisco il layout per l'inserimento del qr code
+            LinearLayout researchLayout = new LinearLayout(requireContext());
+            researchLayout.setOrientation(LinearLayout.VERTICAL);
+
+
+            SeekBar seekBar = new SeekBar(requireContext());
+            final TextView average = new TextView(requireContext());
+
+            seekBar.setProgress(seekBarValue - 18);
+            average.setText("Average lower than: " + seekBarValue);
+            average.setTextColor(Color.BLACK);
+            seekBar.setMax(12);
+
+            int initialSeekBarValue = seekBarValue;
+            boolean initialChecked = isRequestedExamChecked;
+
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                    int selectedValue = progress + 18;
+                    average.setText("Average lower than: " + selectedValue);
+                    seekBarValue = selectedValue;
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
+
+            examsCheckbox = new CheckBox(requireContext());
+            examsCheckbox.setChecked(isRequestedExamChecked);
+            examsCheckbox.setText("Hide thesis with required exams");
+            examsCheckbox.setOnCheckedChangeListener((compoundButton, b) -> isRequestedExamChecked = b);
+
+            // Definisco il bottone di ricerca
+            builder.setPositiveButton("Research", (dialogInterface, i) ->
+            {
+                searchView.setQuery("", true);
+                db.collection("Tesi")
+                        .get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                layout_lista_tesi.removeAllViews();
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                    String faculty = document.getString("Faculty");
+
+                                    if (faculty.equals(MainActivity.account.getFaculty())) {
+
+                                        addCheckConstraint(document);
+
+                                    }
+                                }
+                            }
+                        });
+            });
+
+            // Aggiungo gli elementi creati al layout
+            researchLayout.addView(examsCheckbox);
+            researchLayout.addView(average);
+            researchLayout.addView(seekBar);
+
+
+            builder.setNegativeButton(R.string.close, (dialog, which) -> {
+                seekBar.setProgress(initialSeekBarValue - 18);
+                isRequestedExamChecked = initialChecked;
+                examsCheckbox.setChecked(isRequestedExamChecked);
+            });
+
+            builder.setOnCancelListener(dialogInterface -> {
+                seekBar.setProgress(initialSeekBarValue - 18);
+                isRequestedExamChecked = initialChecked;
+                examsCheckbox.setChecked(isRequestedExamChecked);
+            });
+
+            // Aggiungo il layout all'AlertDialog
+            builder.setView(researchLayout);
+
+            try {
+                builder.create().show();
+            } catch (Exception e) {
+                Log.e(TAG, "Errore nell'onClick del btnResearch : " + e);
+            }
 
         });
 
-        btnCamera.setOnClickListener(view12 -> scanQrCode());
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scanQrCode();
+            }
+        });
 
 
         /*
@@ -171,7 +231,48 @@ public class AvailableThesesListFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                return queryResult(newText, view);
+                db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
+                    layout_lista_tesi.removeAllViews();
+
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+
+                        String faculty = document.getString("Faculty");
+
+                        if (faculty.equals(MainActivity.account.getFaculty())) {
+
+                            if (document.get("Name").toString().toLowerCase().contains(newText.trim().toLowerCase())) {
+
+                                addCheckConstraint(document);
+                            }
+
+                        }
+                    }
+                });
+
+                if (newText.equals("")) {
+
+                    db.collection("Tesi")
+                            .get()
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    layout_lista_tesi.removeAllViews();
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        String faculty = document.getString("Faculty");
+                                        if (faculty.equals(MainActivity.account.getFaculty())) {
+
+                                            // chiusura della tastiera
+                                            closeKeyboard(view);
+
+                                            addCheckConstraint(document);
+                                        }
+                                    }
+                                }
+                            });
+
+                }
+
+
+                return true;
             }
         });
 
@@ -189,163 +290,6 @@ public class AvailableThesesListFragment extends Fragment {
                 });
 
         return view;
-    }
-
-    private boolean queryResult(String newText, View view) {
-        db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
-            layout_lista_tesi.removeAllViews();
-
-            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-
-                String faculty = document.getString("Faculty");
-
-                if (faculty.equals(MainActivity.account.getFaculty())) {
-
-                    if (document.get("Name").toString().toLowerCase().contains(newText.trim().toLowerCase())) {
-
-                        addCheckConstraint(document);
-                    }
-
-                }
-            }
-        });
-
-        if (newText.equals("")) {
-
-            db.collection("Tesi")
-                    .get()
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            layout_lista_tesi.removeAllViews();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String faculty = document.getString("Faculty");
-                                if (faculty.equals(MainActivity.account.getFaculty())) {
-
-                                    // chiusura della tastiera
-                                    closeKeyboard(view);
-
-                                    addCheckConstraint(document);
-                                }
-                            }
-                        }
-                    });
-
-        }
-
-        return true;
-    }
-
-    private void btnFilterOnClick(View view, SearchView searchView) {
-        // chiusura della tastiera
-        closeKeyboard(view);
-
-        // Istanzio l'AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-
-        // Imposto il titolo customizzato
-        TextView titleView = new TextView(requireContext());
-        titleView.setText(R.string.research_title);
-        titleView.setGravity(Gravity.CENTER);
-        titleView.setTextSize(18);
-        titleView.setTypeface(null, Typeface.BOLD);
-        titleView.setTextColor(Color.BLACK);
-        titleView.setPadding(0, 50, 0, 0);
-        builder.setCustomTitle(titleView);
-
-        // Definisco il layout per l'inserimento del qr code
-        LinearLayout researchLayout = new LinearLayout(requireContext());
-        researchLayout.setOrientation(LinearLayout.VERTICAL);
-
-
-        SeekBar seekBar = new SeekBar(requireContext());
-        final TextView average = new TextView(requireContext());
-
-        seekBar.setProgress(seekBarValue - 18);
-        average.setText(getString(R.string.average_lower_than) + seekBarValue);
-        average.setTextColor(Color.BLACK);
-        seekBar.setMax(12);
-
-        int initialSeekBarValue = seekBarValue;
-        boolean initialChecked = isRequestedExamChecked;
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                int selectedValue = progress + 18;
-                average.setText(getString(R.string.average_lower_than) + selectedValue);
-                seekBarValue = selectedValue;
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        examsCheckbox = new CheckBox(requireContext());
-        examsCheckbox.setChecked(isRequestedExamChecked);
-        examsCheckbox.setText(R.string.hide_thesis_exams_constraint);
-        examsCheckbox.setOnCheckedChangeListener((compoundButton, b) -> isRequestedExamChecked = b);
-
-        // Definisco il bottone di ricerca
-        builder.setPositiveButton(R.string.research, (dialogInterface, i) -> {
-            researchThesis(searchView);
-        });
-
-        // Aggiungo gli elementi creati al layout
-        researchLayout.addView(examsCheckbox);
-        researchLayout.addView(average);
-        researchLayout.addView(seekBar);
-
-
-        builder.setNegativeButton(R.string.close, (dialog, which) -> {
-            resetValues(seekBar, initialSeekBarValue, initialChecked);
-        });
-
-        builder.setOnCancelListener(dialogInterface -> {
-            resetValues(seekBar, initialSeekBarValue, initialChecked);
-        });
-
-        // Aggiungo il layout all'AlertDialog
-        builder.setView(researchLayout);
-
-        try {
-            builder.create().show();
-        } catch (Exception e) {
-            Log.e(TAG, getString(R.string.error_btnResearch) + e);
-        }
-    }
-
-    private void resetValues(SeekBar seekBar, int initialSeekBarValue, boolean initialChecked) {
-        seekBar.setProgress(initialSeekBarValue - 18);
-        isRequestedExamChecked = initialChecked;
-        examsCheckbox.setChecked(isRequestedExamChecked);
-    }
-
-    private void researchThesis(SearchView searchView) {
-        searchView.setQuery("", true);
-        db.collection("Tesi")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        layout_lista_tesi.removeAllViews();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-
-                            String faculty = document.getString("Faculty");
-
-                            if (faculty.equals(MainActivity.account.getFaculty())) {
-
-                                addCheckConstraint(document);
-
-                            }
-                        }
-                    }
-                });
     }
 
     private void closeKeyboard(View view) {
@@ -413,110 +357,133 @@ public class AvailableThesesListFragment extends Fragment {
         });
 
         txtName.setText(thesisName);
+
+        final Button btnStar = view.findViewById(R.id.btnStar);
+        final String id_thesis = txtName.getText().toString();
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        boolean isButtonSelected = preferences.getBoolean("button_selected_" + id_thesis,false);
+
+        if (isButtonSelected) {
+            btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_clicked_star));
+            btnStar.setSelected(true);
+        }
+        btnStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (btnStar.isSelected()) {
+                    btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_star));
+                    btnStar.setSelected(false);
+                    editor.putBoolean("button_selected_" + id_thesis, false);
+                } else {
+                    btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_clicked_star));
+                    btnStar.setSelected(true);
+                    editor.putBoolean("button_selected_" + id_thesis, true);
+                }
+                editor.apply();
+            }
+        });
+
+        txtName.setText(document.getString("Name"));
         txtType.setText(document.getString("Type"));
         txtDepartment.setText(document.getString("Faculty"));
         txtCorrelator.setText(document.getString("Correlator"));
 
         if (document.getString("Correlator").equals("")) {
-            txtCorrelator.setText(R.string.none);
+            txtCorrelator.setText("None");
         }
 
-        shareBtn.setOnClickListener(view13 -> {
-            shareBtnOnClick(thesisName);
+        shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Istanzio l'AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+
+                // Imposto il titolo customizzato
+                TextView titleView = new TextView(requireContext());
+                titleView.setText(R.string.alertdialog_title);
+                titleView.setGravity(Gravity.CENTER);
+                titleView.setTextSize(25);
+                titleView.setTypeface(null, Typeface.BOLD);
+                titleView.setTextColor(Color.BLACK);
+                titleView.setPadding(0, 50, 0, 0);
+                builder.setCustomTitle(titleView);
+
+                // Definisco il layout per l'inserimento del qr code
+                LinearLayout qrLayout = new LinearLayout(requireContext());
+                qrLayout.setOrientation(LinearLayout.VERTICAL);
+
+                // Definisco l'ImageView che contiene il qr code generato
+                ImageView qr_code_IW = new ImageView(requireContext());
+             //   qr_code_IW.setImageBitmap(createQr(thesisName));
+
+                // Definisco il TextView per la descrizione del qr code
+                TextView qr_description = new TextView(requireContext());
+                qr_description.setText(R.string.dialogalert_qr_subtitle);
+                qr_description.setGravity(Gravity.CENTER);
+                qr_description.setPadding(0, 0, 0, 30);
+
+                // Definisco il bottone sotto l'ImageView
+                Button buttonShare = new Button(requireContext());
+                buttonShare.setText(R.string.share_thesis_info);
+                buttonShare.setGravity(Gravity.CENTER);
+                buttonShare.setOnClickListener(view12 -> {
+                    sharePDF(thesisName);
+                });
+
+                // Imposto i parametri di layout per il bottone
+                LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(700, 170);
+                buttonParams.gravity = Gravity.CENTER;
+                buttonShare.setLayoutParams(buttonParams);
+
+                // Aggiungo gli elementi creati al layout
+                qrLayout.addView(qr_code_IW);
+                qrLayout.addView(qr_description);
+                qrLayout.addView(buttonShare);
+
+                builder.setNegativeButton(R.string.close, (dialog, which) -> {
+                });
+
+                // Aggiungo il layout all'AlertDialog
+                builder.setView(qrLayout);
+
+                try {
+                    builder.create().show();
+                } catch (Exception e) {
+                    Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
+                }
+            }
         });
 
         layout_lista_tesi.addView(view);
 
         view.setOnClickListener(view1 -> {
 
-            getThesisData(document, txtProfessor, professorEmail);
+            bundle = new Bundle();
+            Fragment studentThesis = new ThesisDescriptionStudentFragment();
+
+            Map<String, Object> datiTesi = document.getData();
+            bundle.putString("correlator", (String) datiTesi.get("Correlator"));
+            bundle.putString("description", (String) datiTesi.get("Description"));
+            bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
+            bundle.putString("faculty", (String) datiTesi.get("Faculty"));
+            bundle.putString("name", (String) datiTesi.get("Name"));
+            bundle.putString("type", (String) datiTesi.get("Type"));
+            bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
+            bundle.putString("average_marks", (String) datiTesi.get("Average"));
+            bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
+            bundle.putString("professor", txtProfessor.getText().toString());
+            bundle.putString("professor_email", professorEmail);
+
+            studentThesis.setArguments(bundle);
+
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, studentThesis);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         });
 
-    }
-
-    private void getThesisData(QueryDocumentSnapshot document, TextView txtProfessor, String professorEmail) {
-        bundle = new Bundle();
-        Fragment studentThesis = new ThesisDescriptionStudentFragment();
-
-        Map<String, Object> datiTesi = document.getData();
-        bundle.putString("correlator", (String) datiTesi.get("Correlator"));
-        bundle.putString("description", (String) datiTesi.get("Description"));
-        bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
-        bundle.putString("faculty", (String) datiTesi.get("Faculty"));
-        bundle.putString("name", (String) datiTesi.get("Name"));
-        bundle.putString("type", (String) datiTesi.get("Type"));
-        bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
-        bundle.putString("average_marks", (String) datiTesi.get("Average"));
-        bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
-        bundle.putString("professor", txtProfessor.getText().toString());
-        bundle.putString("professor_email", professorEmail);
-
-        studentThesis.setArguments(bundle);
-
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, studentThesis);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-
-    private void shareBtnOnClick(String thesisName) {
-        // Istanzio l'AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-
-        // Imposto il titolo customizzato
-        TextView titleView = new TextView(requireContext());
-        titleView.setText(R.string.alertdialog_title);
-        titleView.setGravity(Gravity.CENTER);
-        titleView.setTextSize(25);
-        titleView.setTypeface(null, Typeface.BOLD);
-        titleView.setTextColor(Color.BLACK);
-        titleView.setPadding(0, 50, 0, 0);
-        builder.setCustomTitle(titleView);
-
-        // Definisco il layout per l'inserimento del qr code
-        LinearLayout qrLayout = new LinearLayout(requireContext());
-        qrLayout.setOrientation(LinearLayout.VERTICAL);
-
-        // Definisco l'ImageView che contiene il qr code generato
-        ImageView qr_code_IW = new ImageView(requireContext());
-        qr_code_IW.setImageBitmap(createQr(thesisName));
-
-        // Definisco il TextView per la descrizione del qr code
-        TextView qr_description = new TextView(requireContext());
-        qr_description.setText(R.string.dialogalert_qr_subtitle);
-        qr_description.setGravity(Gravity.CENTER);
-        qr_description.setPadding(0, 0, 0, 30);
-
-        // Definisco il bottone sotto l'ImageView
-        Button buttonShare = new Button(requireContext());
-        buttonShare.setText(R.string.share_thesis_info);
-        buttonShare.setGravity(Gravity.CENTER);
-        buttonShare.setOnClickListener(view12 -> {
-            sharePDF(thesisName);
-        });
-
-        // Imposto i parametri di layout per il bottone
-        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(700, 170);
-        buttonParams.gravity = Gravity.CENTER;
-        buttonShare.setLayoutParams(buttonParams);
-
-        // Aggiungo gli elementi creati al layout
-        qrLayout.addView(qr_code_IW);
-        qrLayout.addView(qr_description);
-        qrLayout.addView(buttonShare);
-
-        builder.setNegativeButton(R.string.close, (dialog, which) -> {
-        });
-
-        // Aggiungo il layout all'AlertDialog
-        builder.setView(qrLayout);
-
-        try {
-            builder.create().show();
-        } catch (Exception e) {
-            Log.e(TAG, getString(R.string.error_shareButton) + e);
-        }
     }
 
     private Bitmap createQr(String name) {
@@ -564,30 +531,87 @@ public class AvailableThesesListFragment extends Fragment {
                 public void onFailure(@NonNull Exception e) {
                     // Controllo se l'error code è riferito al fatto che il dispositivo non è connesso ad internet
                     if (e instanceof FirebaseNetworkException) {
-                        Snackbar.make(requireView(), R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(requireView(), "No internet connection", Snackbar.LENGTH_LONG).show();
                     } else if (e instanceof StorageException) {
                         // Controllo se l'error code è riferito al fatto che non esiste il file sul database
                         if (((StorageException) e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
-                            Snackbar.make(requireView(), R.string.file_doesnt_exist, Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), "File does not exist", Snackbar.LENGTH_LONG).show();
                         }
                     } else {
                         // Stampo nella console il messaggio di errore nel caso in cui è di un altro tipo
-                        Log.w(getString(R.string.firebase_error), e.getMessage());
+                        Log.w("Firebas storage ERROR", e.getMessage());
                     }
                 }
             });
         } catch (Exception e) {
-            Log.e("ERROR", R.string.error_downloading_pdf + e.getMessage());
+            Log.e("ERROR", "Errore nel download del PDF dal database: " + e.getMessage());
         }
     }
 
     private void scanQrCode() {
         ScanOptions options = new ScanOptions();
-        options.setPrompt(getString(R.string.flash_on));
+        options.setPrompt("Volume up to flash on ");
         options.setBeepEnabled(true);
         options.setOrientationLocked(true);
         options.setCaptureActivity(CaptureAct.class);
         barLauncher.launch(options);
     }
+
+    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result ->  {
+        if(result.getContents() != null) {
+            Log.w("LETTURA QR", result.getContents());
+            String onlineUser = MainActivity.account.getEmail();
+            String jsonInput = result.getContents();
+            String thesisName = "";
+            try {
+                JSONObject json = new JSONObject(jsonInput);
+                thesisName = json.getString("name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            DocumentReference docRef = db.collection("Tesi").document(thesisName);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot document = task.getResult();
+                    String student = document.getString("Student");
+
+                    if (student.equals(onlineUser)) {
+                        getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyThesisFragment()).commit();
+                    } else {
+
+                        bundle = new Bundle();
+                        Fragment guestThesis = new ThesisDescriptionGuestFragment();
+
+                        Map<String, Object> datiTesi = document.getData();
+                        db.collection("professori").document(datiTesi.get("Professor").toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if(task.isSuccessful()) {
+                                    bundle.putString("professor", task.getResult().get("Name").toString() + " " + task.getResult().get("Surname").toString());
+                                    bundle.putString("correlator", (String) datiTesi.get("Correlator"));
+                                    bundle.putString("description", (String) datiTesi.get("Description"));
+                                    bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
+                                    bundle.putString("faculty", (String) datiTesi.get("Faculty"));
+                                    bundle.putString("name", (String) datiTesi.get("Name"));
+                                    bundle.putString("type", (String) datiTesi.get("Type"));
+                                    bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
+                                    bundle.putString("average_marks", (String) datiTesi.get("Average"));
+                                    bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
+                                    bundle.putString("professor_email", (String) datiTesi.get("Professor"));
+
+                                    guestThesis.setArguments(bundle);
+                                    FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
+                                    fragmentTransaction.addToBackStack(null);
+                                    fragmentTransaction.commit();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
 }
 
