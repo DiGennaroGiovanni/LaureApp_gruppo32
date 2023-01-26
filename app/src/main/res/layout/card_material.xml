@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cardMaterial"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -11,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3sp"
-        android:padding="4sp"
-        android:layout_toStartOf="@+id/deleteMaterial">
+        android:layout_toStartOf="@+id/deleteMaterial"
+        android:padding="4sp">
 
 
         <RelativeLayout
@@ -20,18 +19,17 @@
             android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/materialName"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nome_file"
-            android:textSize="18sp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:padding="4sp"
-            android:textAlignment="textEnd"/>
-
+            <TextView
+                android:id="@+id/materialName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="4sp"
+                android:text="@string/nome_file"
+                android:textAlignment="textEnd"
+                android:textSize="18sp" />
 
 
         </RelativeLayout>
@@ -45,7 +43,7 @@
         android:layout_height="28dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:contentDescription="@string/delete_material"
-        android:background="@drawable/delete_icon" />
+        android:background="@drawable/delete_icon"
+        android:contentDescription="@string/delete_material" />
 
 </RelativeLayout>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -61,18 +60,18 @@
 
         <TextView
             android:id="@+id/txtFaculty"
-            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/faculty" />
+            android:text="@string/faculty"
+            android:textAlignment="center" />
 
         <Spinner
             android:id="@+id/edtMainSubject"
-            android:layout_gravity="center"
-            android:textAlignment="center"
             android:layout_width="187dp"
             android:layout_height="48dp"
+            android:layout_gravity="center"
             android:backgroundTint="#BFBABA"
+            android:textAlignment="center"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <LinearLayout
@@ -112,6 +111,7 @@
                 android:width="10dp"
                 android:text="@string/days" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/textView11"
             android:layout_width="match_parent"
@@ -133,28 +133,27 @@
 
         <TextView
             android:id="@+id/textView8"
-            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/correlator" />
+            android:text="@string/correlator"
+            android:textAlignment="center" />
 
         <Spinner
             android:id="@+id/edtCorrelator"
-            android:layout_gravity="center"
-            android:textAlignment="center"
             android:layout_width="187dp"
             android:layout_height="48dp"
+            android:layout_gravity="center"
             android:backgroundTint="#BFBABA"
+            android:textAlignment="center"
             tools:ignore="SpeakableTextPresentCheck" />
-
 
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/teaching_materials" />
+            android:text="@string/teaching_materials"
+            android:textAlignment="center" />
 
         <RelativeLayout
             android:id="@+id/third_layout"
@@ -167,19 +166,19 @@
                 android:id="@+id/addFile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/button_add_material"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"/>
+                android:text="@string/button_add_material" />
 
-                <LinearLayout
-                    android:id="@+id/layout_lista"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/layout_lista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                </LinearLayout>
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -188,55 +187,56 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/thesis_constraints" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <CheckBox
-            android:id="@+id/averageCheck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="@string/average_marks"
-            tools:ignore="RtlHardcoded" />
-
-        <EditText
-            android:id="@+id/edtAverage"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="number"
-            android:textSize="15sp"
-            android:hint="@string/hint_average_marks">
-
-        </EditText>
-
-
-    </LinearLayout>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-        <CheckBox
-            android:id="@+id/requiredExamsCheck"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="@string/required_exams"
-            tools:ignore="RtlHardcoded" />
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edtRequiredExams"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:inputType="textMultiLine"
-        android:hint="@string/hint_required_exams"/>
+            <CheckBox
+                android:id="@+id/averageCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/average_marks"
+                tools:ignore="RtlHardcoded" />
+
+            <EditText
+                android:id="@+id/edtAverage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_average_marks"
+                android:inputType="number"
+                android:textSize="15sp">
+
+            </EditText>
 
 
-</LinearLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/requiredExamsCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/required_exams"
+                tools:ignore="RtlHardcoded" />
+
+            <EditText
+                android:id="@+id/edtRequiredExams"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_required_exams"
+                android:inputType="textMultiLine"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
 
 
         <TextView

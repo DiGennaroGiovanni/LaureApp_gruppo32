@@ -1,474 +1,453 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content" >
-
-    <LinearLayout
-        android:id="@+id/layoutThesisAccepted"
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <TextView
-            android:id="@+id/txtNameTitle"
+        <LinearLayout
+            android:id="@+id/layoutThesisAccepted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:fontFamily="@font/cardo"
-            android:text="@string/thesis_name"
-            android:background="@null"
-            android:textAllCaps="true"
-            android:textColor="@android:color/black"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtNameTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:fontFamily="@font/cardo"
+                android:text="@string/thesis_name"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="10sp"
+                android:background="#4D000000" />
+
+            <LinearLayout
+                android:id="@+id/layoutState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txtStateTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="20sp"
+                    android:text="@string/state"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtState"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="10sp"
-            android:background="#4D000000"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <TextView
+                    android:id="@+id/txtTypologyTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="20sp"
+                    android:text="@string/thesis_type"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtTypology"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtDepartmentTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="20sp"
+                    android:text="@string/department"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtDepartment"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtProfessorTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="20sp"
+                    android:text="@string/professor_message"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtProfessor"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtCorrelatorTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="20sp"
+                    android:text="@string/correlator"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtCorrelator"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTimeTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="20sp"
+                    android:text="@string/estimated_time"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtDescriptionTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="20sp"
+                    android:text="@string/description"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtDescription"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutRelatedProject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtRelatedProjectsTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="20sp"
+                    android:text="@string/related_projects"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtRelatedProjects"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutAverageMarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTitleAverageMarks"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="20sp"
+                    android:text="@string/average_marks"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtAverageMarks"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutRequiredExams"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTitleRequiredExams"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="20sp"
+                    android:text="@string/required_exams"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtRequiredExams"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutMaterials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txtMaterialsTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="35"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="end"
+                    android:paddingEnd="20sp"
+                    android:text="@string/materials"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:id="@+id/layout_lista_file"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:orientation="vertical">
+
+
+                    <Button
+                        android:id="@+id/buttonAdd"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:text="@string/button_add_material"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btnSendMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/btnTask"
+                    android:text="@string/message" />
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20sp"
+                    android:text="@string/save_thesis" />
+
+                <Button
+                    android:id="@+id/btnReceipt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="20sp"
+                    android:text="@string/receipt" />
+
+                <Button
+                    android:id="@+id/btnTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/btnReceipt"
+                    android:text="@string/task" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutButtonRequest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btnDeleteRequest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete_request" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
 
         <LinearLayout
-
-         android:id="@+id/layoutState"
-            android:visibility="gone"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal">
-
-         <TextView
-             android:id="@+id/txtStateTitle"
-             android:layout_weight="35"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:gravity="end"
-             android:paddingEnd="20sp"
-             android:text="State:"
-             android:textColor="@color/black"
-             android:textSize="16sp"
-             android:textStyle="bold"
-             android:fontFamily="@font/cardo"/>
-
-         <TextView
-             android:id="@+id/txtState"
-             android:layout_weight="65"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:text=""
-             android:textColor="@color/black"
-             android:textSize="15sp" />
-
-     </LinearLayout>
-
-
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content">
-
-         <TextView
-             android:id="@+id/txtTypologyTitle"
-             android:layout_weight="35"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:gravity="end"
-             android:paddingEnd="20sp"
-             android:fontFamily="@font/cardo"
-             android:text="@string/thesis_type"
-             android:textColor="@color/black"
-             android:textSize="16sp"
-             android:textStyle="bold"/>
-
-         <TextView
-             android:id="@+id/txtTypology"
-             android:layout_weight="65"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:text=""
-             android:textColor="@color/black"
-             android:textSize="15sp"
-             />
-
-     </LinearLayout>
-
-
-
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal">
-
-         <TextView
-             android:id="@+id/txtDepartmentTitle"
-             android:layout_weight="35"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:gravity="end"
-             android:paddingEnd="20sp"
-             android:fontFamily="@font/cardo"
-             android:text="@string/department"
-             android:textColor="@color/black"
-             android:textSize="16sp"
-             android:textStyle="bold" />
-
-         <TextView
-             android:id="@+id/txtDepartment"
-             android:layout_weight="65"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:text=""
-             android:textColor="@color/black"
-             android:textSize="15sp" />
-
-     </LinearLayout>
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal">
-
-         <TextView
-             android:id="@+id/txtProfessorTitle"
-             android:layout_weight="35"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:gravity="end"
-             android:paddingEnd="20sp"
-             android:fontFamily="@font/cardo"
-             android:text="Professor:"
-             android:textColor="@color/black"
-             android:textSize="16sp"
-             android:textStyle="bold"/>
-
-         <TextView
-             android:id="@+id/txtProfessor"
-             android:layout_weight="65"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:text=""
-             android:textColor="@color/black"
-             android:textSize="15sp" />
-
-     </LinearLayout>
-
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal">
-
-         <TextView
-             android:id="@+id/txtCorrelatorTitle"
-             android:layout_weight="35"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:gravity="end"
-             android:paddingEnd="20sp"
-             android:text="@string/correlator"
-             android:textColor="@color/black"
-             android:textSize="16sp"
-             android:textStyle="bold"
-             android:fontFamily="@font/cardo"/>
-
-         <TextView
-             android:id="@+id/txtCorrelator"
-             android:layout_weight="65"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:text=""
-             android:textColor="@color/black"
-             android:textSize="15sp" />
-
-     </LinearLayout>
-
-
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal">
-
-         <TextView
-             android:id="@+id/txtTimeTitle"
-             android:layout_weight="35"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:gravity="end"
-             android:paddingEnd="20sp"
-             android:text="@string/estimated_time"
-             android:textColor="@color/black"
-             android:textSize="16sp"
-             android:textStyle="bold"
-             android:fontFamily="@font/cardo"/>
-
-         <TextView
-             android:id="@+id/txtTime"
-             android:layout_weight="65"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:text=""
-             android:textColor="@color/black"
-             android:textSize="15sp" />
-
-     </LinearLayout>
-
-
-
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal">
-
-         <TextView
-             android:id="@+id/txtDescriptionTitle"
-             android:layout_weight="35"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:gravity="end"
-             android:paddingEnd="20sp"
-             android:text="@string/description"
-             android:textColor="@color/black"
-             android:textSize="16sp"
-             android:textStyle="bold"
-             android:fontFamily="@font/cardo"/>
-
-         <TextView
-             android:id="@+id/txtDescription"
-             android:layout_weight="65"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:text=""
-             android:textColor="@color/black"
-             android:textSize="15sp" />
-
-     </LinearLayout>
-
-     <LinearLayout
-         android:id="@+id/layoutRelatedProject"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal">
-
-         <TextView
-             android:id="@+id/txtRelatedProjectsTitle"
-             android:layout_weight="35"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:gravity="end"
-             android:paddingEnd="20sp"
-             android:fontFamily="@font/cardo"
-             android:text="@string/related_projects"
-             android:textColor="@color/black"
-             android:textSize="16sp"
-             android:textStyle="bold"/>
-
-         <TextView
-             android:id="@+id/txtRelatedProjects"
-             android:layout_weight="65"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:text=""
-             android:textColor="@color/black"
-             android:textSize="15sp" />
-
-     </LinearLayout>
-
-
-
-     <LinearLayout
-         android:id="@+id/layoutAverageMarks"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal">
-
-         <TextView
-             android:id="@+id/txtTitleAverageMarks"
-             android:layout_weight="35"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:gravity="end"
-             android:paddingEnd="20sp"
-             android:text="@string/average_marks"
-             android:textColor="@color/black"
-             android:textSize="16sp"
-             android:textStyle="bold"
-             android:fontFamily="@font/cardo"/>
-
-         <TextView
-             android:id="@+id/txtAverageMarks"
-             android:layout_weight="65"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:text=""
-             android:textColor="@color/black"
-             android:textSize="15sp" />
-
-     </LinearLayout>
-
-     <LinearLayout
-         android:id="@+id/layoutRequiredExams"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal">
-
-         <TextView
-             android:id="@+id/txtTitleRequiredExams"
-             android:layout_weight="35"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:gravity="end"
-             android:paddingEnd="20sp"
-             android:text="@string/required_exams"
-             android:textColor="@color/black"
-             android:textSize="16sp"
-             android:textStyle="bold"
-             android:fontFamily="@font/cardo"/>
-
-         <TextView
-             android:id="@+id/txtRequiredExams"
-             android:layout_weight="65"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:text=""
-             android:textColor="@color/black"
-             android:textSize="15sp" />
-
-     </LinearLayout>
-
-
-     <LinearLayout
-         android:id="@+id/layoutMaterials"
-         android:visibility="gone"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal">
-
-         <TextView
-             android:id="@+id/txtMaterialsTitle"
-             android:layout_weight="35"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:gravity="end"
-             android:paddingEnd="20sp"
-             android:text="@string/materials"
-             android:textColor="@color/black"
-             android:textSize="16sp"
-             android:textStyle="bold"
-             android:fontFamily="@font/cardo"/>
-
-
-
-
-
-         <LinearLayout
-             android:id="@+id/layout_lista_file"
-             android:layout_weight="65"
-             android:layout_width="0sp"
-             android:layout_height="wrap_content"
-             android:orientation="vertical"             >
-
-
-
-             <Button
-                 android:id="@+id/buttonAdd"
-                 android:layout_width="45dp"
-                 android:layout_height="45dp"
-                 android:textAlignment="center"
-                 android:layout_gravity="center"
-                 android:text="@string/button_add_material" />
-
-         </LinearLayout>
-
-
-
-     </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/layoutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/btnSendMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Message"
-                android:layout_toEndOf="@id/btnTask"/>
-
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20sp"
-                android:text="@string/save_thesis" />
-
-            <Button
-                android:id="@+id/btnReceipt"
-                android:text="@string/receipt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20sp"
-                android:layout_alignParentStart="true"/>
-
-            <Button
-                android:id="@+id/btnTask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/task"
-                android:layout_toEndOf="@id/btnReceipt"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/layoutButtonRequest"
+            android:id="@+id/layoutNoThesis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:layout_below="@id/layoutThesisAccepted"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-            <Button
-                android:id="@+id/btnDeleteRequest"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/txtNoRequest"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Delete Request"
-                />
+                android:background="@null"
+                android:fontFamily="@font/cardo"
+                android:text="@string/no_thesis_yet"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
-
- </LinearLayout>
-
- <LinearLayout
-     android:orientation="vertical"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     android:id="@+id/layoutNoThesis"
-     android:visibility="gone"
-     android:layout_below="@id/layoutThesisAccepted">
-
-     <TextView
-         android:id="@+id/txtNoRequest"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:textAlignment="center"
-         android:fontFamily="@font/cardo"
-         android:text="NO THESIS YET"
-         android:background="@null"
-         android:textAllCaps="true"
-         android:textColor="@android:color/black"
-         android:textSize="28sp"
-         android:textStyle="bold"
-         />
-
- </LinearLayout>
-
-</RelativeLayout>
+    </RelativeLayout>
 
 </ScrollView>

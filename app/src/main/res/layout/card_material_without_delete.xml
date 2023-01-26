@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cardMaterialWithoutDelete"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -11,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3sp"
-        android:padding="4sp"
-        android:layout_toStartOf="@+id/downloadMaterial">
+        android:layout_toStartOf="@+id/downloadMaterial"
+        android:padding="4sp">
 
 
         <RelativeLayout
@@ -22,28 +21,27 @@
 
             <TextView
                 android:id="@+id/materialName"
-                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nome_file"
-                android:textSize="18sp"
-                android:maxLines="1"
+                android:layout_centerVertical="true"
                 android:ellipsize="end"
-                android:padding="4sp"/>
+                android:maxLines="1"
+                android:padding="4sp"
+                android:text="@string/nome_file_card"
+                android:textSize="18sp" />
 
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-        <Button
-            android:id="@+id/downloadMaterial"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/delete_material"
-            android:background="@drawable/download_icon" />
 
-
+    <Button
+        android:id="@+id/downloadMaterial"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/download_icon"
+        android:contentDescription="@string/delete_material" />
 
 
 </RelativeLayout>

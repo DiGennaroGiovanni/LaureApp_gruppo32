@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:id="@+id/studInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="#1A023FA6"
         android:elevation="4dp"
+        android:orientation="vertical"
         android:padding="4sp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/txtProf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Professore: "
                 android:fontFamily="@font/cardo"
+                android:text="@string/professor_info_message_student"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/txtNomeProfessore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="nomeProf"
                 android:fontFamily="@font/cardo"
+                android:text="@string/nomeprof"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tesi: "
                 android:fontFamily="@font/cardo"
+                android:text="@string/thesis_info_message_student"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/txtNomeTesi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="nomeTesi"
                 android:fontFamily="@font/cardo"
+                android:text="@string/thesisName_info_message_student"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -66,14 +68,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/studInfo"
-        android:layout_above="@+id/addMessageButton">
+        android:layout_above="@+id/addMessageButton"
+        android:layout_below="@+id/studInfo">
 
         <LinearLayout
             android:id="@+id/messageListLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
         </LinearLayout>
 
@@ -83,9 +85,9 @@
         android:id="@+id/addMessageButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="5dp"
-        android:text="New Message"
         android:fontFamily="@font/cardo"
-        android:layout_alignParentBottom="true"/>
+        android:text="@string/new_message_info_message_student" />
 
 </RelativeLayout>

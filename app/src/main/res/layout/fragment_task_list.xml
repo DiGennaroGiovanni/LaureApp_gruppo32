@@ -20,7 +20,7 @@
                 android:id="@+id/txtProfessor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Studente: "
+                android:text="@string/student"
                 android:fontFamily="@font/cardo"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -31,7 +31,7 @@
                 android:id="@+id/txtNomeStudente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="nomeStudente"
+                android:text="@string/student_name_"
                 android:fontFamily="@font/cardo"
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
@@ -43,7 +43,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tesi: "
+                android:text="@string/thesis"
                 android:fontFamily="@font/cardo"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -54,7 +54,7 @@
                 android:id="@+id/txtNomeTesi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="nomeTesi"
+                android:text="@string/thesis_name_"
                 android:fontFamily="@font/cardo"
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
@@ -87,7 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="New Task"
+        android:text="@string/newTaskToolbar"
         android:fontFamily="@font/cardo"
         android:layout_alignParentBottom="true"/>
 </RelativeLayout>

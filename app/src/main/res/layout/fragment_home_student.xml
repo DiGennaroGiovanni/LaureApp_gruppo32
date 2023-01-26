@@ -2,17 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     android:theme="@style/CustomTheme">
 
     <Button
         android:id="@+id/allThesisBtn"
         android:layout_width="300sp"
         android:layout_height="100sp"
-        android:layout_weight="1"
         android:layout_marginTop="120sp"
         android:layout_marginBottom="90sp"
+        android:layout_weight="1"
         android:text="@string/all_thesis_button"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -21,9 +21,9 @@
         android:id="@+id/myThesisBtn"
         android:layout_width="300sp"
         android:layout_height="100sp"
+        android:layout_marginBottom="120sp"
         android:layout_weight="1"
         android:text="@string/your_thesis_button"
-        android:layout_marginBottom="120sp"
         android:textSize="34sp"
         android:textStyle="bold" />
 

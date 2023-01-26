@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".professor.ProfessorRegisterActivity"
+    android:layout_gravity="center"
     android:orientation="vertical"
-    android:layout_gravity="center">
+    tools:context=".professor.ProfessorRegisterActivity">
 
 
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/textViewContinuaRegistrazioneProfessore"
         android:layout_width="260dp"
         android:layout_height="50dp"
+        android:layout_gravity="center"
         android:layout_marginTop="52dp"
         android:text="@string/insert_your_professor_data"
         android:textAlignment="center"
@@ -27,8 +26,8 @@
     <EditText
         android:id="@+id/edtNomeProf"
         android:layout_width="187dp"
-        android:layout_gravity="center"
         android:layout_height="48dp"
+        android:layout_gravity="center"
         android:autofillHints=""
         android:hint="@string/first_name"
         android:inputType="text"
@@ -40,13 +39,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewContinuaRegistrazioneProfessore"
         app:layout_constraintVertical_bias="0.073" />
 
-        <EditText
+    <EditText
 
         android:id="@+id/edtCognomeProf"
         android:layout_width="187dp"
         android:layout_height="48dp"
-        android:layout_marginTop="40dp"
         android:layout_gravity="center"
+        android:layout_marginTop="40dp"
         android:autofillHints=""
         android:hint="@string/last_name"
         android:inputType="text"
@@ -60,16 +59,16 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:layout_gravity="center"
         android:id="@+id/edtEmailRegistrati"
         android:layout_width="206dp"
         android:layout_height="46dp"
+        android:layout_gravity="center"
         android:autofillHints=""
         android:ems="10"
-        android:textColorHint="#757575"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:textColorHint="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -79,9 +78,9 @@
 
     <EditText
         android:id="@+id/edtPasswordRegistrati"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:autofillHints=""
         android:ems="10"
@@ -97,10 +96,10 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/txtDepartment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="52dp"
         android:text="@string/department_of_affiliation"
         android:textAlignment="center"
@@ -112,18 +111,18 @@
 
     <Spinner
         android:id="@+id/spinnerDepartment"
-        android:layout_gravity="center"
-        android:textAlignment="center"
         android:layout_width="187dp"
         android:layout_height="48dp"
+        android:layout_gravity="center"
         android:backgroundTint="#BFBABA"
+        android:textAlignment="center"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:layout_gravity="center"
         android:id="@+id/buttonConcludiProf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="56dp"
         android:text="@string/complete_registration"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -131,7 +130,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtRuoloProf"
         app:layout_constraintVertical_bias="0.0" />
-
 
 
 </LinearLayout>

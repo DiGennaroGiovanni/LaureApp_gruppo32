@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:fontFamily="@font/cardo"
-            android:text="Task name"
+            android:text="@string/task_name_edit"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
@@ -37,7 +37,7 @@
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
                 android:paddingEnd="20sp"
-                android:text="Thesis name:"
+                android:text="@string/thesis_name_edit"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="italic" />
@@ -60,22 +60,22 @@
 
             <TextView
                 android:id="@+id/txtStudentTitle"
-                android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:fontFamily="@font/cardo"
                 android:gravity="right"
                 android:paddingEnd="20sp"
-                android:fontFamily="@font/cardo"
-                android:text="Student:"
+                android:text="@string/student_edit_task"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic"/>
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/txtStudent"
-                android:layout_weight="65"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -89,22 +89,22 @@
 
             <TextView
                 android:id="@+id/txtDescriptionTitle"
-                android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:fontFamily="@font/cardo"
                 android:gravity="end"
                 android:paddingEnd="20sp"
-                android:text="Description:"
-                android:fontFamily="@font/cardo"
+                android:text="@string/description_edit_task"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic"/>
+                android:textStyle="italic" />
 
             <EditText
                 android:id="@+id/edtDescription"
-                android:layout_weight="65"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="65"
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
@@ -120,16 +120,16 @@
 
             <TextView
                 android:id="@+id/txtState"
-                android:layout_weight="35"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:fontFamily="@font/cardo"
                 android:gravity="end"
                 android:paddingEnd="20sp"
-                android:text="Task state:"
-                android:fontFamily="@font/cardo"
+                android:text="@string/task_state_edit"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic"/>
+                android:textStyle="italic" />
 
             <RadioGroup
                 android:layout_width="0sp"
@@ -141,13 +141,13 @@
 
                 <RadioButton
                     android:id="@+id/rdbDaCompletare"
-                    android:fontFamily="@font/cardo"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="italic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Da Completare">
+                    android:fontFamily="@font/cardo"
+                    android:text="@string/to_complete_task"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="italic">
 
                 </RadioButton>
 
@@ -156,31 +156,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cardo"
+                    android:text="@string/completed_task"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="italic"
-                    android:text="Completato">
+                    android:textStyle="italic">
 
                 </RadioButton>
+
                 <RadioButton
                     android:id="@+id/rdbNonIniziato"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Non Iniziato"
                     android:fontFamily="@font/cardo"
+                    android:text="@string/not_started_task"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="italic">
-                </RadioButton>
+                    android:textStyle="italic"></RadioButton>
 
 
             </RadioGroup>
 
 
         </LinearLayout>
-
-
-
 
 
         <LinearLayout
@@ -198,7 +195,6 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>
