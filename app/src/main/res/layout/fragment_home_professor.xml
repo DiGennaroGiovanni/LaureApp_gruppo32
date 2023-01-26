@@ -2,39 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     android:theme="@style/CustomTheme">
 
     <Button
         android:id="@+id/newThesisBtn"
         android:layout_width="300sp"
         android:layout_height="100sp"
-        android:text="@string/add_thesis_button"
-        android:textSize="34sp"
         android:layout_marginTop="120sp"
         android:layout_marginBottom="90sp"
-        android:textStyle="bold"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:text="@string/add_thesis_button"
+        android:textSize="34sp"
+        android:textStyle="bold" />
 
-<!--    <Button-->
-<!--        android:layout_width="300sp"-->
-<!--        android:layout_height="100sp"-->
-<!--        android:text="@string/handle_thesis_button"-->
-<!--        android:textSize="34sp"-->
-<!--        android:layout_marginVertical="50sp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:layout_weight="1"/>-->
+    <!--    <Button-->
+    <!--        android:layout_width="300sp"-->
+    <!--        android:layout_height="100sp"-->
+    <!--        android:text="@string/handle_thesis_button"-->
+    <!--        android:textSize="34sp"-->
+    <!--        android:layout_marginVertical="50sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        android:layout_weight="1"/>-->
 
     <Button
         android:id="@+id/receiptsBtn"
         android:layout_width="300sp"
         android:layout_height="100sp"
+        android:layout_marginBottom="120sp"
+        android:layout_weight="1"
         android:text="@string/requests_button"
         android:textSize="34sp"
-        android:layout_marginBottom="120sp"
-        android:textStyle="bold"
-        android:layout_weight="1"/>
+        android:textStyle="bold" />
 
 </LinearLayout>
 

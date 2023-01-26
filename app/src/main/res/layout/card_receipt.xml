@@ -8,13 +8,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="10sp">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3sp"
-            android:padding="4sp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="4sp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -23,8 +22,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Data: "
                     android:fontFamily="@font/cardo"
+                    android:text="@string/receipt_date"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -33,10 +32,10 @@
                     android:id="@+id/txtReceiptDateCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="dataRicevimento"
                     android:fontFamily="@font/cardo"
+                    android:text="@string/receipt_date_txt"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -47,8 +46,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Orario di inizio: "
                     android:fontFamily="@font/cardo"
+                    android:text="@string/receipt_starting_time"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -57,10 +56,10 @@
                     android:id="@+id/txtReceiptStartTimeCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="oraInizio"
                     android:fontFamily="@font/cardo"
+                    android:text="@string/receipt_starting_time_txt"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -71,20 +70,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Orario di fine: "
                     android:fontFamily="@font/cardo"
+                    android:text="@string/receipt_ending_time"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtReceiptEndTimeCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="oraFine"
                     android:fontFamily="@font/cardo"
+                    android:text="@string/receipt_ending_time_txt"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -94,20 +93,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Task trattati: "
                     android:fontFamily="@font/cardo"
+                    android:text="@string/receipt_tasks_handled"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/addressedTasksCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="task list"
                     android:fontFamily="@font/cardo"
+                    android:text="@string/receipt_tasks_lis"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -118,20 +117,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Descrizione: "
                     android:fontFamily="@font/cardo"
+                    android:text="@string/receipt_description"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtReceiptDescriptionCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="descrizione"
                     android:fontFamily="@font/cardo"
+                    android:text="@string/receipt_description_txt"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </LinearLayout>
