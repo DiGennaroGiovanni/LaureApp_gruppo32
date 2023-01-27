@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0808275A"
     tools:context=".professor.ThesesListFragment">
 
     <LinearLayout
@@ -44,7 +45,7 @@
                 android:gravity="start"
                 android:text="@string/object_info_message"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -69,7 +70,7 @@
                 android:fontFamily="@font/cardo"
                 android:gravity="start"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -86,7 +87,7 @@
                 android:gravity="start"
                 android:text="@string/student_info_message"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -112,7 +113,7 @@
                 android:gravity="start"
 
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -129,7 +130,7 @@
                 android:gravity="start"
                 android:text="@string/professor_info_message"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
 
@@ -149,7 +150,7 @@
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -166,9 +167,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/cardo"
-                android:text="Add answer"
-                android:textStyle="bold" />
+                android:text="@string/add_answer"
+                 />
 
         </LinearLayout>
 

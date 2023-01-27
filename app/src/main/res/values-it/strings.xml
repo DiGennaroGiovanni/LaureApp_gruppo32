@@ -299,4 +299,6 @@
     <string name="faculty_">Facoltà</string>
 
     <string name="messages">Messaggi</string>
+    <string name="no_message_yet">Ancora nessun messaggio</string>
+    <string name="add_answer">Aggiungi Risposta</string>
 </resources>

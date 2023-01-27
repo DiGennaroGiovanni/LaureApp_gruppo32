@@ -296,5 +296,7 @@
     <string name="thesis_info">Thesis information</string>
     <string name="already_request">Already requested a thesis!</string>
     <string name="faculty_">Faculty</string>
+    <string name="no_message_yet">No message yet</string>
+    <string name="add_answer">Add Answer</string>
 
 </resources>

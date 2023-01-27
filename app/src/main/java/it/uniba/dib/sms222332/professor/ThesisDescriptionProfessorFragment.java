@@ -24,16 +24,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Objects;
+
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class ThesisDescriptionProfessorFragment extends Fragment {
 
@@ -43,11 +43,12 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     LinearLayout layout_lista_file;
+    String relator;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisListToolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisListToolbar));
 
         View view = inflater.inflate(R.layout.fragment_thesis_description_professor, container, false);
 
@@ -61,8 +62,8 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
         txtRelatedProjects = view.findViewById(R.id.txtRelatedProjects);
         txtAverageMarks = view.findViewById(R.id.txtAverageMarks);
         txtRequiredExams = view.findViewById(R.id.txtRequiredExams);
-        btnEdit = view.findViewById(R.id.btnModify);
-        btnDelete = view.findViewById(R.id.btnDelete);
+        btnEdit = view.findViewById(R.id.btnEditThesis);
+        btnDelete = view.findViewById(R.id.btnDeleteThesis);
         txtStudent = view.findViewById(R.id.txtStudent);
         btnReceipt = view.findViewById(R.id.btnReceipt);
         btnTask = view.findViewById(R.id.btnTask);
@@ -78,6 +79,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
             String averageMarks = getArguments().getString("average_marks");
             String requiredExam = getArguments().getString("required_exam");
             String student = getArguments().getString("student");
+            relator = getArguments().getString("professor");
 
             txtThesisName.setText(thesisName);
             txtType.setText(type);
@@ -87,32 +89,32 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
 
             if(correlator.isEmpty())
-               txtCorrelator.setText("None");
+               txtCorrelator.setText(R.string.none );
             else
                 txtCorrelator.setText(correlator);
 
             if(student.isEmpty())
-                txtStudent.setText("None");
+                txtStudent.setText(R.string.none);
             else
                 txtStudent.setText(student);
 
             if(averageMarks.isEmpty())
-                txtAverageMarks.setText("None");
+                txtAverageMarks.setText(R.string.none);
             else
                 txtAverageMarks.setText(averageMarks);
 
             if(requiredExam.isEmpty())
-                txtRequiredExams.setText("None");
+                txtRequiredExams.setText(R.string.none);
             else
                 txtRequiredExams.setText(requiredExam);
 
             if(relatedProjects.isEmpty())
-                txtRelatedProjects.setText("None");
+                txtRelatedProjects.setText(R.string.none);
             else
                 txtRelatedProjects.setText(relatedProjects);
         }
 
-        if(!txtStudent.getText().toString().equals("None")){
+        if(!txtStudent.getText().toString().equals(getResources().getString(R.string.none))){
             btnTask.setVisibility(View.VISIBLE);
             btnReceipt.setVisibility(View.VISIBLE);
         }
@@ -141,48 +143,57 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
             fragmentTransaction.commit();
         });
 
-        btnDelete.setOnClickListener(view12 -> {
+        if(txtCorrelator.getText().toString().equals(MainActivity.account.getName() + " " + MainActivity.account.getSurname()))
+            btnDelete.setVisibility(View.INVISIBLE);
 
-            DocumentReference tesi = db.collection("Tesi").document(txtThesisName.getText().toString());
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference storageRef = storage.getReference();
-            StorageReference folderRef = storageRef.child(txtThesisName.getText().toString());
+        else{
+            btnDelete.setOnClickListener(view12 -> {
 
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle(R.string.confirm_deletion);
-            builder.setMessage(R.string.thesis_materials_delete_question);
-            builder.setPositiveButton(R.string.yes, (dialog, which) -> {
-
-                folderRef.listAll()
-                        .addOnSuccessListener(listResult -> {
-                            for (StorageReference item : listResult.getItems()) {
-                                item.delete();
-                            }
-                            folderRef.delete();
-                        })
-                        .addOnFailureListener(e -> Log.e(TAG, R.string.error_deleting_folder + e.getMessage()));
-
-                storageReference.child("PDF_tesi").child(txtThesisName.getText().toString() + ".pdf").delete();
-                tesi.delete();
+                DocumentReference tesi = db.collection("Tesi").document(txtThesisName.getText().toString());
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference storageRef = storage.getReference();
+                StorageReference folderRef = storageRef.child(txtThesisName.getText().toString());
 
 
-                Snackbar.make(view12, R.string.thesis_eliminated, Snackbar.LENGTH_LONG).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.confirm_deletion);
+                builder.setMessage(R.string.thesis_materials_delete_question);
+                builder.setPositiveButton(R.string.yes, (dialog, which) -> {
 
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, new ThesesListFragment());
-                transaction.commit();
+                    folderRef.listAll()
+                            .addOnSuccessListener(listResult -> {
+                                for (StorageReference item : listResult.getItems()) {
+                                    item.delete();
+                                }
+                                folderRef.delete();
+                            })
+                            .addOnFailureListener(e -> Log.e(TAG, R.string.error_deleting_folder + e.getMessage()));
+
+                    storageReference.child("PDF_tesi").child(txtThesisName.getText().toString() + ".pdf").delete();
+                    tesi.delete();
+
+
+                    Snackbar.make(view12, R.string.thesis_eliminated, Snackbar.LENGTH_LONG).show();
+
+                    FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, new ThesesListFragment());
+                    transaction.commit();
+
+                });
+
+                builder.setNegativeButton(R.string.no, (dialog, which) -> {
+
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
             });
+        }
 
-            builder.setNegativeButton(R.string.no, (dialog, which) -> {
 
-            });
 
-            AlertDialog dialog = builder.create();
-            dialog.show();
 
-        });
 
         //AGGIUNGO MATERIALI DEL DATABASE
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -203,6 +214,12 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("thesis_name", txtThesisName.getText().toString());
             bundle.putString("student",txtStudent.getText().toString());
+
+            if(relator.equals(MainActivity.account.getEmail()))
+                bundle.putString("professor", "");
+            else
+                bundle.putString("professor", relator);
+
             Fragment receiptsListFragment = new ReceiptsListFragment();
             receiptsListFragment.setArguments(bundle);
 
@@ -222,6 +239,11 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
             bundle.putString("thesisName", txtThesisName.getText().toString());
             bundle.putString("student",txtStudent.getText().toString());
+
+            if(relator.equals(MainActivity.account.getEmail()))
+                bundle.putString("professor", "");
+            else
+                bundle.putString("professor", relator);
 
             taskListFragment.setArguments(bundle);
 
@@ -260,18 +282,18 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
         ref.getDownloadUrl().addOnSuccessListener(uri -> {
             String url  = uri.toString();
-            downloadFile(getActivity(), nomeFile,"", DIRECTORY_DOWNLOADS,url );
+            downloadFile(requireActivity(), nomeFile, DIRECTORY_DOWNLOADS,url );
 
         });
     }
 
-    private void downloadFile(Context context, String nomeFile, String fileExtension, String destinationDirectory, String url ) {
+    private void downloadFile(Context context, String nomeFile, String destinationDirectory, String url) {
          DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
          Uri uri = Uri.parse(url);
          DownloadManager.Request request = new DownloadManager.Request(uri);
 
          request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-         request.setDestinationInExternalFilesDir(context, destinationDirectory, nomeFile + fileExtension);
+         request.setDestinationInExternalFilesDir(context, destinationDirectory, nomeFile + "");
          downloadManager.enqueue(request);
     }
 }

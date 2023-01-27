@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -29,7 +30,8 @@ public class ReceiptsListFragment extends Fragment {
 
     Button btnNewReceipt;
     LinearLayout listView;
-    private TextView txtThesisName, txtStudent, txtProfessor;
+    private TextView txtThesisName;
+    private TextView txtStudent;
 
     @Nullable
     @Override
@@ -38,7 +40,7 @@ public class ReceiptsListFragment extends Fragment {
 
         txtThesisName = view.findViewById(R.id.txtThesisName);
         txtStudent = view.findViewById(R.id.txtStudentEmail);
-        txtProfessor = view.findViewById(R.id.txtProfessor);
+        TextView txtProfessor = view.findViewById(R.id.txtProfessor);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -47,12 +49,14 @@ public class ReceiptsListFragment extends Fragment {
             String professor = bundle.getString("professor");
 
             if (!professor.equals("")) {
-                txtProfessor.setText("Professor: ");
+                String label = getResources().getString(R.string.professor_info_message_student) + " ";
+                txtProfessor.setText(label);
                 txtStudent.setText(professor);
-            }
+            }else
+                txtStudent.setText(student);
 
             txtThesisName.setText(thesisName);
-            txtStudent.setText(student);
+
         }
 
         btnNewReceipt = view.findViewById(R.id.btnNewReceipt);
@@ -60,10 +64,7 @@ public class ReceiptsListFragment extends Fragment {
         if (MainActivity.account.getAccountType().equals("Student")) {
             btnNewReceipt.setVisibility(View.GONE);
         } else {
-            btnNewReceipt.setOnClickListener(view1 -> {
-
-                btnNewReceiptOnClick();
-            });
+            btnNewReceipt.setOnClickListener(view1 -> btnNewReceiptOnClick());
         }
 
         listView = view.findViewById(R.id.layoutReceiptsList);
@@ -73,7 +74,7 @@ public class ReceiptsListFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            if (document.getString("Thesis").equals(txtThesisName.getText().toString()))
+                            if (Objects.equals(document.getString("Thesis"), txtThesisName.getText().toString()))
                                 addReceiptCard(document);
                         }
                     }

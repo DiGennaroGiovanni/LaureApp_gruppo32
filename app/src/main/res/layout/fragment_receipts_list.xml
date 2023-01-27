@@ -69,7 +69,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btnNewReceipt"
-        android:layout_below="@+id/studInfo">
+        android:layout_below="@+id/studInfo"
+        android:background="#0808275A">
 
 
         <LinearLayout

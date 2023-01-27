@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
+    android:background="#0808275A"
     tools:context=".professor.ProfessorRegisterActivity">
 
 
