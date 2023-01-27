@@ -30,12 +30,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -324,24 +326,6 @@ public class NewThesisFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference("PDF_tesi" + "/" + pdfName);
         // Caricamento del file sul server
         storageReference.putFile(uriPDF);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permesso concesso, procedi con la lettura dei file
-
-                } else {
-                    caricaFile();
-                    // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
-                }
-                return;
-            }
-        }
     }
 }
 

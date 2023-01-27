@@ -339,7 +339,7 @@ public class FavoritesFragment extends Fragment {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 Map<String, Object> map = document.getData();
-                                tesiPreferite = (List<String>) map.get("Prefered");
+                                tesiPreferite = (List<String>) map.get("Favorites");
                             }
                         }
                         callback.onResult(tesiPreferite);

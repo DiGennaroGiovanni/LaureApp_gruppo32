@@ -2,9 +2,11 @@ package it.uniba.dib.sms222332.student;
 
 import static android.content.ContentValues.TAG;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -25,10 +27,12 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -67,6 +71,7 @@ import java.util.Map;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.tools.CaptureAct;
+import static android.Manifest.permission.CAMERA;
 
 public class AvailableThesesListFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -79,6 +84,7 @@ public class AvailableThesesListFragment extends Fragment {
     boolean isRequestedExamChecked = false;
     CheckBox examsCheckbox;
     List<String> tesiPreferite = new ArrayList<>();
+    private static final int PERMISSION_REQUEST_CODE = 200;
 
     @Nullable
     @Override
@@ -201,7 +207,7 @@ public class AvailableThesesListFragment extends Fragment {
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scanQrCode();
+                if(checkPermission()) scanQrCode();
             }
         });
 
@@ -485,7 +491,7 @@ public class AvailableThesesListFragment extends Fragment {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 Map<String, Object> map = document.getData();
-                                tesiPreferite = (List<String>) map.get("Prefered");
+                                tesiPreferite = (List<String>) map.get("Favorites");
                             }
                         }
                         callback.onResult(tesiPreferite);
@@ -575,7 +581,6 @@ public class AvailableThesesListFragment extends Fragment {
 
     ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result ->  {
         if(result.getContents() != null) {
-            Log.w("LETTURA QR", result.getContents());
             String onlineUser = MainActivity.account.getEmail();
             String jsonInput = result.getContents();
             String thesisName = "";
@@ -629,5 +634,34 @@ public class AvailableThesesListFragment extends Fragment {
             });
         }
     });
+
+    private boolean checkPermission() {
+        boolean result = false;
+        Log.e("DEBUG RICHIESTA CAMERA", "INIZIO METODO CHECKPERMISSION");
+
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            Log.e("DEBUG RICHIESTA CAMERA", "I PERMESSI NON ERANO CONCESSI");
+            if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.CAMERA)) {
+                requestPermissionLauncher.launch(CAMERA);
+                Log.e("DEBUG RICHIESTA CAMERA", "MOSTRO IL MESSAGGIO DI SPIEGAZIONE");
+            } else {
+                requestPermissionLauncher.launch(CAMERA);
+                Log.e("DEBUG RICHIESTA CAMERA", "AVVIO LA RICHIESTA DI AUTORIZZAZIONE");
+            }
+        } else {
+            Log.e("DEBUG RICHIESTA CAMERA", "I PERMESSI ERANO CONCESSI");
+            result = true;
+        }
+        return result;
+    }
+
+    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    scanQrCode();
+                } else {
+                    Snackbar.make(requireView(), "L'app necessita dell'accesso alla fotocamera per poter scansionare un qr code...", Snackbar.LENGTH_LONG).show();
+
+                }
+            });
 }
 
