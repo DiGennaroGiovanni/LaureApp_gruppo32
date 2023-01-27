@@ -3,11 +3,16 @@ package it.uniba.dib.sms222332.commonActivities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.Task;
@@ -18,6 +23,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 
@@ -47,6 +53,21 @@ public class LoginActivity extends AppCompatActivity {
         Button loginBtn = findViewById(R.id.btnAccedi);
         edtEmailLogin = findViewById(R.id.edtEmailLogin);
         edtPasswordLogin = findViewById(R.id.edtPasswordLogin);
+
+
+        ImageButton en = findViewById(R.id.btn_eng);
+        ImageButton it = findViewById(R.id.btn_it);
+        LanguageManager lang = new LanguageManager(this);
+        lang.updateResource(lang.getLang());
+
+        en.setOnClickListener(v -> {
+            lang.updateResource("en");
+            this.recreate();
+        });
+        it.setOnClickListener(v -> {
+            lang.updateResource("it");
+            this.recreate();
+        });
 
 
 

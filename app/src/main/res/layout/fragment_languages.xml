@@ -24,13 +24,13 @@
             android:id="@+id/btn_eng"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/eng" />
+            android:src="@drawable/eng_1" />
 
         <ImageButton
             android:id="@+id/btn_it"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/it" />
+            android:src="@drawable/it_1" />
 
     </LinearLayout>
 

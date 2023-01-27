@@ -77,7 +77,6 @@ public class AvailableThesesListFragment extends Fragment {
     LinearLayout layout_lista_tesi;
     Bundle bundle;
     LinearLayout allTasks;
-    Button btnFilter;
     Button btnFilter, btnCamera;
     int seekBarValue = 30;
     boolean isRequestedExamChecked = false;
