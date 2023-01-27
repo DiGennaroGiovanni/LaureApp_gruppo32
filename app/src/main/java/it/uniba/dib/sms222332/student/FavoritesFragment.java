@@ -48,6 +48,8 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.jmedeisis.draglinearlayout.DragLinearLayout;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,9 +67,10 @@ public class FavoritesFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-    LinearLayout layout_lista_tesi;
+    DragLinearLayout layout_lista_tesi;
     Bundle bundle;
     List<String> tesiPreferite = new ArrayList<>();
+
 
     @Nullable
     @Override
@@ -233,6 +236,14 @@ public class FavoritesFragment extends Fragment {
         });
 
         layout_lista_tesi.addView(view);
+
+        //TODO FA ORDINARE MASSIMO FINO A QUANDO CI SONO DUE ELEMENTI
+        for(int i = 0 ; i < layout_lista_tesi.getChildCount(); i ++)
+        {
+            View child = layout_lista_tesi.getChildAt(i);
+            layout_lista_tesi.setViewDraggable(child,child);
+        }
+
 
         view.setOnClickListener(view1 -> {
 
