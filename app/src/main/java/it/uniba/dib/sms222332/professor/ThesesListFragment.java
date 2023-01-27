@@ -44,6 +44,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -53,8 +54,7 @@ public class ThesesListFragment extends Fragment {
     private static final String TAG = ThesesListFragment.class.getSimpleName();
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
+
     LinearLayout layout_lista_tesi;
     Bundle bundle;
 
@@ -63,12 +63,10 @@ public class ThesesListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisListToolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisListToolbar));
 
         View view = inflater.inflate(R.layout.fragment_thesis_list, container, false);
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
         layout_lista_tesi = view.findViewById(R.id.layoutThesisList);
 
         db.collection("Tesi")
@@ -78,7 +76,8 @@ public class ThesesListFragment extends Fragment {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             String professorEmail = document.getString("Professor");
                             String correlatorEmail = document.getString("Correlator");
-                            if (professorEmail.equals(MainActivity.account.getEmail()) || correlatorEmail.equals(MainActivity.account.getEmail())) {
+                            String myName = MainActivity.account.getName()+" " + MainActivity.account.getSurname();
+                            if (Objects.equals(professorEmail, MainActivity.account.getEmail()) || Objects.equals(correlatorEmail, myName)) {
                                 addCardThesis(document);
                             }
                         }
@@ -104,20 +103,17 @@ public class ThesesListFragment extends Fragment {
         txtDepartment.setText(document.getString("Faculty"));
         txtCorrelator.setText(document.getString("Correlator"));
 
-        if (document.getString("Student").equals("")) {
-            txtStudentThesis.setText("None");
-        } else {
+        if (Objects.equals(document.getString("Student"), ""))
+            txtStudentThesis.setText(R.string.none);
+         else
             txtStudentThesis.setText(document.getString("Student"));
-        }
 
-        if (document.getString("Correlator").equals("")) {
-            txtCorrelator.setText("None");
-        }
 
-        btnShare.setOnClickListener(viewCardThesis -> {
+        if (Objects.equals(document.getString("Correlator"), ""))
+            txtCorrelator.setText(R.string.none);
 
-            btnShareOnClick(thesisName);
-        });
+
+        btnShare.setOnClickListener(viewCardThesis -> btnShareOnClick(thesisName));
 
         layout_lista_tesi.addView(view);
 
@@ -137,6 +133,7 @@ public class ThesesListFragment extends Fragment {
             bundle.putString("average_marks", (String) datiTesi.get("Average"));
             bundle.putString("required_exam", (String) datiTesi.get("Required Exam"));
             bundle.putString("student", (String) datiTesi.get("Student"));
+            bundle.putString("professor", (String) datiTesi.get("Professor"));
 
             thesisDescription.setArguments(bundle);
 
