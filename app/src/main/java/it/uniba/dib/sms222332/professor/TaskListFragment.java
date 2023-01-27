@@ -41,6 +41,8 @@ public class TaskListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
 
+
+
         addTaskButton = view.findViewById(R.id.addTaskButton);
         txtStudent = view.findViewById(R.id.txtNomeStudente);
         txtThesisName = view.findViewById(R.id.txtNomeTesi);

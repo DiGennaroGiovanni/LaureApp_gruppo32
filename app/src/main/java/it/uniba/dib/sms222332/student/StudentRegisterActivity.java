@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,13 +78,14 @@ public class StudentRegisterActivity extends AppCompatActivity {
         String facolta = spinnerFacolta.getSelectedItem().toString();
         String email = edtEmailRegistrati.getText().toString().toLowerCase();
 
-        Map<String, String> infoStudente = new HashMap<>();
+        Map<String, Object> infoStudente = new HashMap<>();
         infoStudente.put("Name", nome);
         infoStudente.put("Surname", cognome);
         infoStudente.put("Badge Number", matricola);
         infoStudente.put("Faculty", facolta);
         infoStudente.put("Account Type", "Student");
         infoStudente.put("Request", "no");
+        infoStudente.put("Favorites", new ArrayList<String>());
 
         if (nome.isEmpty())
             edtNomeStudente.setError(getString(R.string.enter_name));

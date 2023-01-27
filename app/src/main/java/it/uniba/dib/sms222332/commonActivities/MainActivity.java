@@ -25,7 +25,8 @@ import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.professor.ProfessorAccount;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 import it.uniba.dib.sms222332.professor.ThesesListFragment;
-import it.uniba.dib.sms222332.student.FavoritesFragment;
+//import it.uniba.dib.sms222332.student.FavoritesFragment;
+import it.uniba.dib.sms222332.student.NewFavoritesFragment;
 import it.uniba.dib.sms222332.student.StudentAccount;
 import it.uniba.dib.sms222332.student.StudentHomeFragment;
 import it.uniba.dib.sms222332.commonActivities.Messages.ThesesMessagesListFragment;
@@ -37,37 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNav;
     private NavigationView navigationView;
-    private final NavigationBarView.OnItemSelectedListener navListener = item -> {
-        Fragment selectedFragment;
 
-        switch (item.getItemId()) {
-
-            case R.id.star_button:
-                selectedFragment = new FavoritesFragment();
-                break;
-
-            case R.id.chat_button:
-                selectedFragment = new ThesesMessagesListFragment();
-                break;
-
-            case R.id.thesis_list_button:
-                selectedFragment = new ThesesListFragment();
-                break;
-
-            case R.id.home_button:
-            default:
-                selectedFragment = getProperHome();
-        }
-
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-
-        selectBottomNavigationBarItem();
-        return true;
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,6 +130,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
     }
+
+    private final NavigationBarView.OnItemSelectedListener navListener = item -> {
+        Fragment selectedFragment;
+
+        switch (item.getItemId()) {
+
+            case R.id.star_button:
+                selectedFragment = new NewFavoritesFragment();
+                break;
+
+            case R.id.chat_button:
+                selectedFragment = new ThesesMessagesListFragment();
+                break;
+
+            case R.id.thesis_list_button:
+                selectedFragment = new ThesesListFragment();
+                break;
+
+            case R.id.home_button:
+            default:
+                selectedFragment = getProperHome();
+        }
+
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+        selectBottomNavigationBarItem();
+        return true;
+    };
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

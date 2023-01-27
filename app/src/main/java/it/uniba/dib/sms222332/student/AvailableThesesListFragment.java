@@ -339,7 +339,7 @@ public class AvailableThesesListFragment extends Fragment {
         final SharedPreferences.Editor editor = preferences.edit();
         boolean isButtonSelected = preferences.getBoolean("button_selected_" + nomeTesi,false);
 
-        loadPrefered(new Callback<List<String>>() {
+        loadFavorite(new Callback<List<String>>() {
             @Override
             public void onResult(List<String> result) {
                 if (result.contains(thesisName)) {
@@ -364,7 +364,7 @@ public class AvailableThesesListFragment extends Fragment {
                     btnStar.setSelected(false);
                     editor.putBoolean("button_selected_" + thesisName, false);
                     tesiPreferite.remove(thesisName);
-                    setPreferences();
+                    setFavorites();
                     //UpdateDB
 
                 } else {
@@ -372,7 +372,7 @@ public class AvailableThesesListFragment extends Fragment {
                     btnStar.setSelected(true);
                     editor.putBoolean("button_selected_" + thesisName, true);
                     tesiPreferite.add(thesisName);
-                    setPreferences();
+                    setFavorites();
                     //updateDB
                 }
                 editor.apply();
@@ -481,7 +481,7 @@ public class AvailableThesesListFragment extends Fragment {
 
     }
 
-    private void loadPrefered(Callback<List<String>> callback) {
+    private void loadFavorite(Callback<List<String>> callback) {
         DocumentReference docStud = db.collection("studenti").document(MainActivity.account.getEmail());
         docStud.get().
                 addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -503,9 +503,9 @@ public class AvailableThesesListFragment extends Fragment {
         void onResult(T result);
     }
 
-    private void setPreferences(){
+    private void setFavorites(){
         DocumentReference docStud = db.collection("studenti").document(MainActivity.account.getEmail());
-        docStud.update("Prefered", tesiPreferite);
+        docStud.update("Favorites", tesiPreferite);
     }
 
     private Bitmap createQr(String name) {
