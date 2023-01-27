@@ -8,10 +8,16 @@
             <item name="colorAccent">#346D93</item>
             <item name="android:textAppearanceButton">@style/CustomButtonTextAppearance</item>
             <item name="android:windowFullscreen">true</item>
+            <item name="backgroundColor">#0808275A</item>
         </style>
 
-        <style name="CustomButtonTextAppearance" parent="TextAppearance.AppCompat.Button">
+    <style name="StarButtonStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#FFC107</item>
+        <item name="colorPrimaryDark">#FFC107</item>
+        <item name="colorAccent">#FFC107</item>
+    </style>
 
+    <style name="CustomButtonTextAppearance" parent="TextAppearance.AppCompat.Button">
 
             <item name="android:backgroundTint">#0E3C5F</item>
         </style>

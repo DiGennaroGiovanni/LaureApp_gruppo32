@@ -11,12 +11,12 @@ public class LanguageManager {
     private final Context ct;
     private final SharedPreferences sharedPreferences;
 
-    public LanguageManager(Context ctx){
-        ct=ctx;
+    public LanguageManager(Context ctx) {
+        ct = ctx;
         sharedPreferences = ct.getSharedPreferences("LANG", Context.MODE_PRIVATE);
     }
 
-    public void updateResource(String code){
+    public void updateResource(String code) {
         Locale locale = new Locale(code);
         Locale.setDefault(locale);
         Resources resources = ct.getResources();
@@ -26,11 +26,11 @@ public class LanguageManager {
         setLang(code);
     }
 
-    public String getLang(){
+    public String getLang() {
         return sharedPreferences.getString("lang", "en");
     }
 
-    public void setLang(String code){
+    public void setLang(String code) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("lang", code);
         editor.apply();

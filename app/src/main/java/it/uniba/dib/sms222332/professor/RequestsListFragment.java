@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,9 +35,9 @@ public class RequestsListFragment extends Fragment {
         db.collection("richieste")
                 .get()
                 .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        for (QueryDocumentSnapshot document : task.getResult()){
-                            if(Objects.equals(document.getString("Professor"), MainActivity.account.getEmail()))
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            if (Objects.equals(document.getString("Professor"), MainActivity.account.getEmail()))
                                 addRequestCard(document);
                         }
                     }
@@ -59,28 +58,32 @@ public class RequestsListFragment extends Fragment {
 
         v.setOnClickListener(view -> {
 
-            Bundle bundle = new Bundle();
-            bundle.putString("thesis_name", document.getString("Thesis"));
-            bundle.putString("student", document.getString("Student"));
-            bundle.putString("avg", document.getString("Average"));
-            bundle.putString("avg_constraint_met", document.getString("Average Constraint Met"));
-            bundle.putString("exams", document.getString("Exams"));
-            bundle.putString("exams_constraint_met", document.getString("Exams Constraint Met"));
-            bundle.putString("message", document.getString("Message"));
-
-
-            Fragment requestDescriptionFragment = new RequestDescriptionFragment();
-            requestDescriptionFragment.setArguments(bundle);
-
-//            CODICE DA UTILIZZARE IN OGNI PASSAGGIO FRAGMENT
-            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, requestDescriptionFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            addThesisRequestCard(document);
         });
 
         layoutRequestsList.addView(v);
 
+    }
+
+    private void addThesisRequestCard(QueryDocumentSnapshot document) {
+        Bundle bundle = new Bundle();
+        bundle.putString("thesis_name", document.getString("Thesis"));
+        bundle.putString("student", document.getString("Student"));
+        bundle.putString("avg", document.getString("Average"));
+        bundle.putString("avg_constraint_met", document.getString("Average Constraint Met"));
+        bundle.putString("exams", document.getString("Exams"));
+        bundle.putString("exams_constraint_met", document.getString("Exams Constraint Met"));
+        bundle.putString("message", document.getString("Message"));
+
+
+        Fragment requestDescriptionFragment = new RequestDescriptionFragment();
+        requestDescriptionFragment.setArguments(bundle);
+
+//            CODICE DA UTILIZZARE IN OGNI PASSAGGIO FRAGMENT
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, requestDescriptionFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
 

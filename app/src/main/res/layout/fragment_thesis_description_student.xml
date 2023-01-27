@@ -19,7 +19,7 @@
             android:text="@string/thesis_name"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/black"
+            android:textColor="#00213A"
             android:textSize="28sp"
             android:textStyle="bold" />
 

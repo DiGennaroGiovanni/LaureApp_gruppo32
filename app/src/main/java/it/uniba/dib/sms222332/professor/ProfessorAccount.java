@@ -34,6 +34,11 @@ public class ProfessorAccount implements Account {
     }
 
     @Override
+    public void setRequest(String request) {
+
+    }
+
+    @Override
     public String getBadgeNumber() {
         return null;
     }
@@ -52,21 +57,6 @@ public class ProfessorAccount implements Account {
     public String getEmail() {
         return email;
     }
-
-    @Override
-    public void setRequest(String request){
-
-    }
-
-
-
-
-
-
-
-
-
-
 
 
 }

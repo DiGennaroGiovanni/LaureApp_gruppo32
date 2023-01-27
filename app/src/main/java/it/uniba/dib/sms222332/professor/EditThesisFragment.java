@@ -20,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -49,7 +48,7 @@ import it.uniba.dib.sms222332.tools.ThesisPDF;
 
 public class EditThesisFragment extends Fragment {
 
-    EditText edtTime,edtDescription,edtRelatedProjects,edtAverage,edtRequiredExams;
+    EditText edtTime, edtDescription, edtRelatedProjects, edtAverage, edtRequiredExams;
     TextView txtDepartment, txtThesisName, txtTypology;
     Button btnSave, btnAddMaterial;
     Spinner spinnerCorrelators;
@@ -100,23 +99,7 @@ public class EditThesisFragment extends Fragment {
         if (getArguments() != null) {
 
             correlator = getArguments().getString("correlator");
-            String description = getArguments().getString("description");
-            String estimated_time = getArguments().getString("time");
-            String faculty = getArguments().getString("department");
-            String name = getArguments().getString("name");
-            String type = getArguments().getString("type");
-            String related_projects = getArguments().getString("related_projects");
-            String average = getArguments().getString(("average_marks"));
-            String required_exam = getArguments().getString("required_exam");
-
-            txtThesisName.setText(name);
-            txtTypology.setText(type);
-            txtDepartment.setText(faculty);
-            edtTime.setText(estimated_time);
-            edtDescription.setText(description);
-            edtRelatedProjects.setText(related_projects);
-            edtAverage.setText(average);
-            edtRequiredExams.setText(required_exam);
+            getThesisData();
         }
 
         setCorrelatorSpinner(correlator);
@@ -127,7 +110,7 @@ public class EditThesisFragment extends Fragment {
         checkExams.setOnCheckedChangeListener((buttonView, isChecked) ->
                 edtRequiredExams.setEnabled(isChecked));
 
-        if(!edtAverage.getText().toString().equals("")) {
+        if (!edtAverage.getText().toString().equals("")) {
             checkAvg.setChecked(true);
             edtAverage.setEnabled(true);
         } else {
@@ -135,7 +118,7 @@ public class EditThesisFragment extends Fragment {
             edtAverage.setEnabled(false);
         }
 
-        if(!edtRequiredExams.getText().toString().equals("")) {
+        if (!edtRequiredExams.getText().toString().equals("")) {
             checkExams.setChecked(true);
             edtRequiredExams.setEnabled(true);
         } else {
@@ -150,115 +133,21 @@ public class EditThesisFragment extends Fragment {
             for (StorageReference item : listResult.getItems()) {
                 item.getDownloadUrl().addOnSuccessListener(uri -> {
                     String fileName = item.getName();
-                    addExistentMaterial(fileName,uri);
+                    addExistentMaterial(fileName, uri);
                 });
             }
 
-        }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
+        }).addOnFailureListener(exception -> Log.w("info", getString(R.string.error_file), exception));
 
         btnAddMaterial.setOnClickListener(view13 -> {
 
-
-            int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
-                    Manifest.permission.READ_EXTERNAL_STORAGE);
-
-            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-            } else {
-                // permesso già concesso, procedi con la lettura dei file
-                uploadFile();
-            }
+            btnAddMaterialOnClick();
 
         });
 
-  btnSave.setOnClickListener(view1 -> {
+        btnSave.setOnClickListener(view1 -> {
 
-            String avgMarks = edtAverage.getText().toString();
-            String requiredExams = edtRequiredExams.getText().toString();
-
-             if(checkAvg.isChecked() && (avgMarks.isEmpty()))
-                 edtAverage.setError("Inserisci una media valida");
-
-             else if (!(avgMarks.isEmpty()) && (Integer.parseInt(avgMarks) > 30 || Integer.parseInt(avgMarks) < 18))
-                 edtAverage.setError("Inserisci una media tra il 18 ed il 30");
-
-             else if(checkExams.isChecked() && requiredExams.isEmpty())
-                    edtRequiredExams.setError("Inserisci le materie richieste");
-
-             else if(edtTime.getText().toString().isEmpty())
-                edtTime.setError("Inserisci un tempo stimato per la tesi");
-
-             else if(edtDescription.getText().toString().isEmpty())
-                edtDescription.setError("Inserisci una descrizione valida");
-
-             else if(Integer.parseInt(edtTime.getText().toString()) >180)
-                edtTime.setError("Inserisci un valore minore di 180 giorni");
-
-             else{
-                 infoTesi.put("Name", txtThesisName.getText().toString());
-                 infoTesi.put("Type", txtTypology.getText().toString());
-                 infoTesi.put("Faculty", txtDepartment.getText().toString());
-                 infoTesi.put("Professor", mUser.getEmail());
-                 infoTesi.put("Correlator", spinnerCorrelators.getSelectedItem().toString());
-                 infoTesi.put("Description", edtDescription.getText().toString());
-                 infoTesi.put("Estimated Time", edtTime.getText().toString());
-                 infoTesi.put("Related Projects",edtRelatedProjects.getText().toString());
-
-                 DocumentReference docRef = db.collection("Tesi").document(txtThesisName.getText().toString());
-                 Map<String, Object> updates = new HashMap<>();
-                 updates.put("Estimated Time", edtTime.getText().toString());
-                 updates.put("Description", edtDescription.getText().toString());
-                 updates.put("Related Projects",edtRelatedProjects.getText().toString());
-                 updates.put("Correlator", spinnerCorrelators.getSelectedItem().toString());
-
-                 if(checkAvg.isChecked()) {
-                     updates.put("Average", edtAverage.getText().toString());
-                     infoTesi.put("Average", edtAverage.getText().toString());
-                 }
-                 else {
-                     updates.put("Average", "");
-                     infoTesi.put("Average", "");
-                 }
-                 if(checkExams.isChecked()) {
-                     updates.put("Required Exam", edtRequiredExams.getText().toString());
-                     infoTesi.put("Required Exam", edtRequiredExams.getText().toString());
-                 }
-                 else {
-                     updates.put("Required Exam", "");
-                     infoTesi.put("Required Exam", "");
-                 }
-
-                 docRef.update(updates);
-
-                 for (String fileName : deletedOldMaterials){
-                     storageReference.child(txtThesisName.getText().toString()).child(fileName).delete();
-                 }
-
-                 for(Uri uri: newMaterials){
-                     uploadToDatabase(uri);
-                 }
-
-
-                 try {
-                     ThesisPDF thesisPDF = new ThesisPDF();
-                     thesisPDF.makePdf(requireContext(), infoTesi);
-                     File outputFile = new File(requireContext().getExternalFilesDir(null), infoTesi.get("Name") + ".pdf");
-                     Uri uri = FileProvider.getUriForFile(requireContext(), "it.uniba.dib.sms222332", outputFile);
-                     uploadPDF(uri);
-                 } catch(Exception e) {
-                     Log.e("PDF ERROR", "Errore nella creazione del pdf");
-                 }
-
-//                 // chiusura della tastiera quando viene effettuato un cambio di fragment
-//                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                 imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
-
-                 Snackbar.make(view1, "Thesis updated", Snackbar.LENGTH_LONG).show();
-
-                 getParentFragmentManager().popBackStack();
-             }
+            btnSaveOnClick(view1);
 
         });
 
@@ -266,30 +155,149 @@ public class EditThesisFragment extends Fragment {
         return view;
     }
 
+    private void getThesisData() {
+        String description = getArguments().getString("description");
+        String estimated_time = getArguments().getString("time");
+        String faculty = getArguments().getString("department");
+        String name = getArguments().getString("name");
+        String type = getArguments().getString("type");
+        String related_projects = getArguments().getString("related_projects");
+        String average = getArguments().getString(("average_marks"));
+        String required_exam = getArguments().getString("required_exam");
+
+        txtThesisName.setText(name);
+        txtTypology.setText(type);
+        txtDepartment.setText(faculty);
+        edtTime.setText(estimated_time);
+        edtDescription.setText(description);
+        edtRelatedProjects.setText(related_projects);
+        edtAverage.setText(average);
+        edtRequiredExams.setText(required_exam);
+    }
+
+    private void btnAddMaterialOnClick() {
+        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        } else {
+            // permesso già concesso, procedi con la lettura dei file
+            uploadFile();
+        }
+    }
+
+    private void btnSaveOnClick(View view1) {
+        String avgMarks = edtAverage.getText().toString();
+        String requiredExams = edtRequiredExams.getText().toString();
+
+        if (checkAvg.isChecked() && (avgMarks.isEmpty()))
+            edtAverage.setError(getString(R.string.error_average));
+
+        else if (!(avgMarks.isEmpty()) && (Integer.parseInt(avgMarks) > 30 || Integer.parseInt(avgMarks) < 18))
+            edtAverage.setError(getString(R.string.average_range));
+
+        else if (checkExams.isChecked() && requiredExams.isEmpty())
+            edtRequiredExams.setError(getString(R.string.required_subjects));
+
+        else if (edtTime.getText().toString().isEmpty())
+            edtTime.setError(getString(R.string.thesis_estimated_time));
+
+        else if (edtDescription.getText().toString().isEmpty())
+            edtDescription.setError(getString(R.string.valid_description));
+
+        else if (Integer.parseInt(edtTime.getText().toString()) > 300)
+            edtTime.setError(getString(R.string.estimated_time_range));
+
+        else {
+            infoTesi.put("Name", txtThesisName.getText().toString());
+            infoTesi.put("Type", txtTypology.getText().toString());
+            infoTesi.put("Faculty", txtDepartment.getText().toString());
+            infoTesi.put("Professor", mUser.getEmail());
+            infoTesi.put("Correlator", spinnerCorrelators.getSelectedItem().toString());
+            infoTesi.put("Description", edtDescription.getText().toString());
+            infoTesi.put("Estimated Time", edtTime.getText().toString());
+            infoTesi.put("Related Projects", edtRelatedProjects.getText().toString());
+
+            DocumentReference docRef = db.collection("Tesi").document(txtThesisName.getText().toString());
+            Map<String, Object> updates = new HashMap<>();
+            updates.put("Estimated Time", edtTime.getText().toString());
+            updates.put("Description", edtDescription.getText().toString());
+            updates.put("Related Projects", edtRelatedProjects.getText().toString());
+            updates.put("Correlator", spinnerCorrelators.getSelectedItem().toString());
+
+            if (checkAvg.isChecked()) {
+                updates.put("Average", edtAverage.getText().toString());
+                infoTesi.put("Average", edtAverage.getText().toString());
+            } else {
+                updates.put("Average", "");
+                infoTesi.put("Average", "");
+            }
+            if (checkExams.isChecked()) {
+                updates.put("Required Exam", edtRequiredExams.getText().toString());
+                infoTesi.put("Required Exam", edtRequiredExams.getText().toString());
+            } else {
+                updates.put("Required Exam", "");
+                infoTesi.put("Required Exam", "");
+            }
+
+            docRef.update(updates);
+
+            for (String fileName : deletedOldMaterials) {
+                storageReference.child(txtThesisName.getText().toString()).child(fileName).delete();
+            }
+
+            for (Uri uri : newMaterials) {
+                uploadToDatabase(uri);
+            }
+
+
+            try {
+                ThesisPDF thesisPDF = new ThesisPDF();
+                thesisPDF.makePdf(requireContext(), infoTesi);
+                File outputFile = new File(requireContext().getExternalFilesDir(null), infoTesi.get("Name") + ".pdf");
+                Uri uri = FileProvider.getUriForFile(requireContext(), "it.uniba.dib.sms222332", outputFile);
+                uploadPDF(uri);
+            } catch (Exception e) {
+                Log.e("PDF ERROR", getString(R.string.error_pdf));
+            }
+
+//                 // chiusura della tastiera quando viene effettuato un cambio di fragment
+//                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+//                 imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
+
+            Snackbar.make(view1, "Thesis updated", Snackbar.LENGTH_LONG).show();
+
+            getParentFragmentManager().popBackStack();
+        }
+    }
+
     private void setCorrelatorSpinner(String currentCorrelator) {
         CollectionReference collectionRef = db.collection("professori");
         collectionRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if(!document.getId().equals(MainActivity.account.getEmail())) {
-                        String correlatorName = document.getString("Name")+" "+ document.getString("Surname");
+                    if (!document.getId().equals(MainActivity.account.getEmail())) {
+                        String correlatorName = document.getString("Name") + " " + document.getString("Surname");
                         correlators.add(correlatorName);
                     }
                 }
 
                 correlators.add("Nessuno");
 
-                ArrayAdapter<String> adapterProf = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, correlators);
+                ArrayAdapter<String> adapterProf = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, correlators);
                 adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerCorrelators.setAdapter(adapterProf);
 
-                if(!currentCorrelator.equals(""))
+                if (!currentCorrelator.equals(""))
                     spinnerCorrelators.setSelection(adapterProf.getPosition(currentCorrelator));
                 else
                     spinnerCorrelators.setSelection(adapterProf.getPosition("Nessuno"));
 
             } else {
-                Log.d(TAG, "Error getting documents: ", task.getException());
+                Log.d(TAG, getString(R.string.error_documents), task.getException());
             }
         });
     }
@@ -354,7 +362,7 @@ public class EditThesisFragment extends Fragment {
         File filePDF = new File(uriPDF.getPath());
         String pdfName = filePDF.getName();
         storageReference.child("PDF_tesi").child(pdfName + ".pdf").delete();
-        storageReference = FirebaseStorage.getInstance().getReference("PDF_tesi" +"/" + pdfName);
+        storageReference = FirebaseStorage.getInstance().getReference("PDF_tesi" + "/" + pdfName);
         storageReference.putFile(uriPDF);
     }
 
@@ -373,7 +381,6 @@ public class EditThesisFragment extends Fragment {
             }
         }
     }
-
 
 
 }

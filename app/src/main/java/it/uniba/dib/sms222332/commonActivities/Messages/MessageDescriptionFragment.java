@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.time.LocalDateTime;
@@ -29,11 +28,12 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class MessageDescriptionFragment extends Fragment {
 
-    String object,professore_message,student_message,thesis_name,idMessage;
+    String idMessage;
     TextView txtNameTitle,txtObject,txtMessage;
     EditText edtAnswer;
     Button btnAnswer;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    Map<String, Object> updateAnswer;
 
     @Nullable
     @Override
@@ -48,59 +48,65 @@ public class MessageDescriptionFragment extends Fragment {
         txtMessage = view.findViewById(R.id.txtMessage);
         edtAnswer = view.findViewById(R.id.edtAnswer);
 
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         if (getArguments() != null){
-            object = getArguments().getString("object");
-            professore_message = getArguments().getString("professor_message");
-            student_message = getArguments().getString("student_message");
-            thesis_name = getArguments().getString("thesis_name");
-            idMessage = getArguments().getString("idMessage");
+            String object = getArguments().getString("object");
+            String professorMessage = getArguments().getString("professor_message");
+            String studentMessage = getArguments().getString("student_message");
+            String thesisName = getArguments().getString("thesis_name");
+            idMessage = getArguments().getString("id_message");
 
-            txtNameTitle.setText(thesis_name);
+            txtNameTitle.setText(thesisName);
             txtObject.setText(object);
-            txtMessage.setText(student_message);
+            txtMessage.setText(studentMessage);
 
-            if(professore_message.equals(""))
+            if(professorMessage.equals(""))
                 edtAnswer.setHint("Not answered yet");
             else
-                edtAnswer.setText(professore_message);
+                edtAnswer.setText(professorMessage);
         }
 
         if(MainActivity.account.getAccountType().equals("Professor")){
-            if(professore_message.equals("")){
+            if(edtAnswer.getText().toString().equals("")){
+
                 btnAnswer.setOnClickListener(view1 -> {
 
-                    if(edtAnswer.getText().toString().isEmpty()){
-                        edtAnswer.setError("Inserisci una risposta!");
-                    }else{
+                    if(edtAnswer.getText().toString().isEmpty())
+                        edtAnswer.setError(getString(R.string.add_an_answer));
 
-                        LocalDateTime date = LocalDateTime.now();
+                    else{
+                        LocalDateTime date;
                         date = LocalDateTime.now();
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-                        DocumentReference docRef = db.collection("messaggi").document(idMessage);
-                        Map<String, Object> updates = new HashMap<>();
-                        updates.put("Professor Message", edtAnswer.getText().toString());
-                        updates.put("State","Answered " +  date.format(formatter));
+                        updateAnswer = new HashMap<>();
+                        updateAnswer.put("Professor Message", edtAnswer.getText().toString());
+                        updateAnswer.put("State","Answered " +  date.format(formatter));
 
-                        docRef.update(updates);
+                        db.collection("messaggi").document(idMessage).update(updateAnswer);
 
-                        // chiusura della tastiera quando viene effettuato un cambio di fragment
-                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
+            // chiusura della tastiera quando viene effettuato un cambio di fragment
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
 
-                        Snackbar.make(view1, "Message updated", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(view1, R.string.message_updated, Snackbar.LENGTH_LONG).show();
 
                         getParentFragmentManager().popBackStack();
                     }
                 });
-            }else{
+            } else {
+                btnAnswer.setVisibility(View.GONE);
+                edtAnswer.setEnabled(false);
             }
         }else {
             btnAnswer.setVisibility(View.GONE);
             edtAnswer.setEnabled(false);
         }
-        return view;
     }
-
-
 }

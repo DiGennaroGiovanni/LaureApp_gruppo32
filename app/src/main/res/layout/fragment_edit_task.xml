@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0808275A"
     tools:context=".professor.ThesesListFragment">
 
     <LinearLayout
@@ -21,8 +22,15 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
+
+        <!--        lineetta divisiva      -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10sp"
+            android:background="#4D000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,8 +47,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/thesis_name_edit"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtThesis"
@@ -49,7 +57,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -68,8 +76,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/student_edit_task"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtStudent"
@@ -78,7 +86,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -97,8 +105,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/description_edit_task"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtDescription"
@@ -108,7 +116,7 @@
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -128,8 +136,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/task_state_edit"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:layout_width="0sp"
@@ -146,8 +154,8 @@
                     android:fontFamily="@font/cardo"
                     android:text="@string/to_complete_task"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="italic">
+                    android:textSize="18sp"
+                    >
 
                 </RadioButton>
 
@@ -158,8 +166,8 @@
                     android:fontFamily="@font/cardo"
                     android:text="@string/completed_task"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="italic">
+                    android:textSize="18sp"
+                    >
 
                 </RadioButton>
 
@@ -170,8 +178,10 @@
                     android:fontFamily="@font/cardo"
                     android:text="@string/not_started_task"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="italic"></RadioButton>
+                    android:textSize="18sp"
+                    >
+
+                </RadioButton>
 
 
             </RadioGroup>

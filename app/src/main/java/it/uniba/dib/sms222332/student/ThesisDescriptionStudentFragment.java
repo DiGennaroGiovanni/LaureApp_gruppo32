@@ -23,10 +23,10 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class ThesisDescriptionStudentFragment extends Fragment {
 
-    TextView txtNameTitle,txtType,txtDepartment, txtTime,txtCorrelator,
-            txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams, txtProfessor;
-    String related_projects = "" ;
-    String average_marks = "" ;
+    TextView txtNameTitle, txtType, txtDepartment, txtTime, txtCorrelator,
+            txtDescription, txtRelatedProjects, txtAverageMarks, txtRequiredExams, txtProfessor;
+    String related_projects = "";
+    String average_marks = "";
     String required_exam = "";
     String professore_email = "";
     Button btnThesisRequest, btnContactProf;
@@ -53,57 +53,19 @@ public class ThesisDescriptionStudentFragment extends Fragment {
         btnContactProf = view.findViewById(R.id.btnContactProf);
 
         if (getArguments() != null) {
-            String correlator = getArguments().getString("correlator");
-            String description = getArguments().getString("description");
-            String estimated_time = getArguments().getString("estimated_time") + " days";
-            String faculty = getArguments().getString("faculty");
-            String name = getArguments().getString("name");
-            String type = getArguments().getString("type");
-            String professor = getArguments().getString("professor");
-            related_projects = getArguments().getString("related_projects");
-            average_marks = getArguments().getString("average_marks");
-            required_exam = getArguments().getString("required_exams");
-            professore_email = getArguments().getString("professor_email");
-
-            txtNameTitle.setText(name);
-            txtType.setText(type);
-            txtDepartment.setText(faculty);
-            txtTime.setText(estimated_time);
-            txtDescription.setText(description);
-            txtProfessor.setText(professor);
-
-
-           if(correlator.isEmpty())
-                txtCorrelator.setText("None");
-            else
-                txtCorrelator.setText(correlator);
-
-            if(average_marks.isEmpty()){
-                txtAverageMarks.setText("None");
-            }else
-                txtAverageMarks.setText(average_marks);
-
-            if(required_exam.isEmpty()){
-                txtRequiredExams.setText("None");
-            }else
-                txtRequiredExams.setText(required_exam);
-
-            if(related_projects.isEmpty()){
-                txtRelatedProjects.setText("None");
-            }else
-                txtRelatedProjects.setText(related_projects);
+            getDataFromPreviousFragment();
 
         }
 
-        if(MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no")
-        || MainActivity.account.getRequest().equals(txtNameTitle.getText().toString()))
+        if (MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no")
+                || MainActivity.account.getRequest().equals(txtNameTitle.getText().toString()))
             btnContactProf.setOnClickListener(view1 -> {
 
                 Fragment thesisMessage = new NewMessageFragment();
                 Bundle bundle = new Bundle();
 
                 bundle.putString("thesis_name", txtNameTitle.getText().toString());
-                bundle.putString("professor",professore_email);
+                bundle.putString("professor", professore_email);
 
                 thesisMessage.setArguments(bundle);
 
@@ -116,21 +78,21 @@ public class ThesisDescriptionStudentFragment extends Fragment {
             });
 
         else
-            btnContactProf.setOnClickListener(view12 -> Snackbar.make(view12,"You can send messages only for '" + MainActivity.account.getRequest()+ "' thesis!",Snackbar.LENGTH_LONG).show());
+            btnContactProf.setOnClickListener(view12 -> Snackbar.make(view12, R.string.you_can_send_messages, Snackbar.LENGTH_LONG).show());
 
 
         db.collection("richieste").document(MainActivity.account.getEmail()).get().addOnCompleteListener(task -> {
-            if(task.isSuccessful()) {
+            if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
-                if(document.exists()) {
+                if (document.exists()) {
                     String thesisName = document.getString("Thesis");
-                    if(MainActivity.account.getRequest().equals("yes") && txtNameTitle.getText().toString().equals(thesisName)) {
+                    if (MainActivity.account.getRequest().equals("yes") && txtNameTitle.getText().toString().equals(thesisName)) {
 
                         btnThesisRequest.setText(R.string.cancel_request);
                         btnThesisRequest.setOnClickListener(view14 -> {
 
                             db.collection("richieste").document(MainActivity.account.getEmail()).delete().addOnSuccessListener(unused ->
-                                    Snackbar.make(requireView(), "Request cenceled.", Snackbar.LENGTH_LONG).show());
+                                    Snackbar.make(requireView(), R.string.request_canceled, Snackbar.LENGTH_LONG).show());
 
                             db.collection("studenti").document(MainActivity.account.getEmail()).update("Request", "no");
 
@@ -140,19 +102,61 @@ public class ThesisDescriptionStudentFragment extends Fragment {
                         });
 
 
-                    } else if(!MainActivity.account.getRequest().equals("no")) {
+                    } else if (!MainActivity.account.getRequest().equals("no")) {
                         btnThesisRequest.setOnClickListener(view13 -> {
-                            Snackbar.make(view13, "Already requested a thesis!", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(view13, R.string.already_request, Snackbar.LENGTH_LONG).show();
                         });
-                    }else
+                    } else
                         setRequestButton();
                 }
             } else {
-               //error with task
+                //error with task
             }
         });
 
         return view;
+    }
+
+    private void getDataFromPreviousFragment() {
+        String correlator = getArguments().getString("correlator");
+        String description = getArguments().getString("description");
+        String estimated_time = getArguments().getString("estimated_time") + " " + R.string.days;
+        String faculty = getArguments().getString("faculty");
+        String name = getArguments().getString("name");
+        String type = getArguments().getString("type");
+        String professor = getArguments().getString("professor");
+        related_projects = getArguments().getString("related_projects");
+        average_marks = getArguments().getString("average_marks");
+        required_exam = getArguments().getString("required_exams");
+        professore_email = getArguments().getString("professor_email");
+
+        txtNameTitle.setText(name);
+        txtType.setText(type);
+        txtDepartment.setText(faculty);
+        txtTime.setText(estimated_time);
+        txtDescription.setText(description);
+        txtProfessor.setText(professor);
+
+
+        if (correlator.isEmpty())
+            txtCorrelator.setText("None");
+        else
+            txtCorrelator.setText(correlator);
+
+        if (average_marks.isEmpty()) {
+            txtAverageMarks.setText("None");
+        } else
+            txtAverageMarks.setText(average_marks);
+
+        if (required_exam.isEmpty()) {
+            txtRequiredExams.setText("None");
+        } else
+            txtRequiredExams.setText(required_exam);
+
+        if (related_projects.isEmpty()) {
+            txtRelatedProjects.setText("None");
+        } else
+            txtRelatedProjects.setText(related_projects);
     }
 
     private void setRequestButton() {
@@ -161,10 +165,10 @@ public class ThesisDescriptionStudentFragment extends Fragment {
             Fragment thesisRequest = new NewRequestFragment();
             Bundle bundle = new Bundle();
 
-            bundle.putString("average_marks",txtAverageMarks.getText().toString());
+            bundle.putString("average_marks", txtAverageMarks.getText().toString());
             bundle.putString("required_exams", txtRequiredExams.getText().toString());
             bundle.putString("thesis_name", txtNameTitle.getText().toString());
-            bundle.putString("professor",professore_email);
+            bundle.putString("professor", professore_email);
 
             thesisRequest.setArguments(bundle);
 

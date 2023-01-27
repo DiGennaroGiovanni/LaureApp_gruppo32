@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0808275A">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +19,7 @@
             android:fontFamily="@font/cardo"
             android:text="@string/do_you_satisfy_the_average_constraint"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:visibility="visible" />
 
@@ -35,8 +36,8 @@
                 android:fontFamily="@font/cardo"
                 android:text="@string/average_marks_"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textSize="18sp"
+                />
 
             <TextView
                 android:id="@+id/txtAverageMarks"
@@ -44,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -66,7 +67,7 @@
                 android:text="@string/yes"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic">
+                android:textStyle="bold">
 
             </RadioButton>
 
@@ -78,7 +79,7 @@
                 android:text="@string/no"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic">
+                android:textStyle="bold">
 
             </RadioButton>
 
@@ -92,7 +93,7 @@
             android:fontFamily="@font/cardo"
             android:text="@string/do_you_satisfy_the_exams_constraint"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:visibility="visible" />
 
@@ -109,8 +110,7 @@
                 android:fontFamily="@font/cardo"
                 android:text="@string/required_exams"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txtRequiredExams"
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -140,7 +140,7 @@
                 android:text="@string/yes"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic">
+                android:textStyle="bold">
 
             </RadioButton>
 
@@ -152,7 +152,7 @@
                 android:text="@string/no"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="italic">
+                android:textStyle="bold">
 
             </RadioButton>
 
@@ -169,6 +169,7 @@
 
         <EditText
             android:id="@+id/edtNote"
+            android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine" />
@@ -182,7 +183,7 @@
             android:fontFamily="@font/cardo"
             android:text="@string/send_request"
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
     </LinearLayout>

@@ -35,8 +35,15 @@
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="#00213A"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
+
+<!--            &lt;!&ndash;        lineetta divisiva      &ndash;&gt;-->
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginHorizontal="10sp"-->
+<!--                android:background="#4D000000" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,7 +59,7 @@
                     android:paddingEnd="10sp"
                     android:text="@string/task_state"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -62,7 +69,7 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -80,7 +87,7 @@
                     android:paddingEnd="10sp"
                     android:text="@string/task_description_card"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -90,7 +97,7 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -100,19 +107,19 @@
                 android:layout_gravity="end">
 
                 <Button
-                    android:id="@+id/btnModify"
-                    android:layout_width="27sp"
-                    android:layout_height="27sp"
+                    android:id="@+id/btnEditThesis"
+                    android:layout_width="30dp"
+                    android:layout_height="30sp"
+                    android:layout_margin="5dp"
                     android:background="@drawable/icon_edit"
                     android:contentDescription="@string/edit_thesis" />
 
                 <Button
-                    android:id="@+id/btnDelete"
-                    android:layout_width="27sp"
-                    android:layout_height="27sp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="3sp"
-                    android:layout_marginEnd="30sp"
+                    android:id="@+id/btnDeleteThesis"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+
                     android:background="@drawable/delete_icon"
                     android:contentDescription="@string/delete_thesis" />
             </LinearLayout>

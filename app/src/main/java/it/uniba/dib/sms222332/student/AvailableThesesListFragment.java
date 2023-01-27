@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -14,8 +15,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -51,8 +53,6 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.journeyapps.barcodescanner.CaptureManager;
-import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
@@ -60,13 +60,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.tools.CaptureAct;
-import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 
 public class AvailableThesesListFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -78,9 +78,7 @@ public class AvailableThesesListFragment extends Fragment {
     int seekBarValue = 30;
     boolean isRequestedExamChecked = false;
     CheckBox examsCheckbox;
-    private CaptureManager capture;
-    private DecoratedBarcodeView barcodeScannerView;
-    String professor = "";
+    List<String> tesiPreferite = new ArrayList<>();
 
     @Nullable
     @Override
@@ -97,7 +95,6 @@ public class AvailableThesesListFragment extends Fragment {
         btnCamera = view.findViewById(R.id.btnCamera);
 
         btnFilter.setOnClickListener(view1 -> {
-
 
             // chiusura della tastiera
             closeKeyboard(view);
@@ -118,7 +115,6 @@ public class AvailableThesesListFragment extends Fragment {
             // Definisco il layout per l'inserimento del qr code
             LinearLayout researchLayout = new LinearLayout(requireContext());
             researchLayout.setOrientation(LinearLayout.VERTICAL);
-
 
             SeekBar seekBar = new SeekBar(requireContext());
             final TextView average = new TextView(requireContext());
@@ -165,13 +161,9 @@ public class AvailableThesesListFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 layout_lista_tesi.removeAllViews();
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-
                                     String faculty = document.getString("Faculty");
-
                                     if (faculty.equals(MainActivity.account.getFaculty())) {
-
                                         addCheckConstraint(document);
-
                                     }
                                 }
                             }
@@ -182,7 +174,6 @@ public class AvailableThesesListFragment extends Fragment {
             researchLayout.addView(examsCheckbox);
             researchLayout.addView(average);
             researchLayout.addView(seekBar);
-
 
             builder.setNegativeButton(R.string.close, (dialog, which) -> {
                 seekBar.setProgress(initialSeekBarValue - 18);
@@ -214,7 +205,6 @@ public class AvailableThesesListFragment extends Fragment {
             }
         });
 
-
         /*
         Creazione query per la ricerca all'interno del database del nome di una specifica tesi.
         La ricerca non è case sensitive e permette di ottenere risultati anche cercando una specifica
@@ -229,27 +219,19 @@ public class AvailableThesesListFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
                     layout_lista_tesi.removeAllViews();
-
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-
                         String faculty = document.getString("Faculty");
-
                         if (faculty.equals(MainActivity.account.getFaculty())) {
-
                             if (document.get("Name").toString().toLowerCase().contains(newText.trim().toLowerCase())) {
-
                                 addCheckConstraint(document);
                             }
-
                         }
                     }
                 });
 
                 if (newText.equals("")) {
-
                     db.collection("Tesi")
                             .get()
                             .addOnCompleteListener(task -> {
@@ -258,23 +240,17 @@ public class AvailableThesesListFragment extends Fragment {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         String faculty = document.getString("Faculty");
                                         if (faculty.equals(MainActivity.account.getFaculty())) {
-
                                             // chiusura della tastiera
                                             closeKeyboard(view);
-
                                             addCheckConstraint(document);
                                         }
                                     }
                                 }
                             });
-
                 }
-
-
                 return true;
             }
         });
-
 
         db.collection("Tesi")
                 .get()
@@ -287,7 +263,6 @@ public class AvailableThesesListFragment extends Fragment {
                         }
                     }
                 });
-
         return view;
     }
 
@@ -301,21 +276,16 @@ public class AvailableThesesListFragment extends Fragment {
 
         if (document.getString("Average").equals("")) {
             thesisAverage = 18;
-
         } else {
             thesisAverage = Integer.parseInt(document.getString("Average"));
         }
 
         if (thesisAverage <= seekBarValue) {
-
             if (examsCheckbox.isChecked() && document.getString("Required Exam").equals("")) {
-
                 addCardThesis(document);
-
             } else if (!examsCheckbox.isChecked()) {
                 addCardThesis(document);
             }
-
         }
     }
 
@@ -356,6 +326,54 @@ public class AvailableThesesListFragment extends Fragment {
         });
 
         txtName.setText(thesisName);
+
+        final Button btnStar = view.findViewById(R.id.btnStar);
+        final String nomeTesi = txtName.getText().toString();
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        boolean isButtonSelected = preferences.getBoolean("button_selected_" + nomeTesi,false);
+
+        loadPrefered(new Callback<List<String>>() {
+            @Override
+            public void onResult(List<String> result) {
+                if (result.contains(thesisName)) {
+                    btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_clicked_star));
+                    btnStar.setSelected(true);
+                    editor.putBoolean("button_selected_" + thesisName, true);
+                }
+            }
+        });
+
+        if (isButtonSelected) {
+            btnStar.setBackground(ContextCompat.getDrawable(requireContext(),R.drawable.ic_clicked_star));
+            btnStar.setSelected(true);
+        }
+
+        btnStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DocumentReference docRef = db.collection("studenti").document(MainActivity.account.getEmail());
+                if (btnStar.isSelected()) {
+                    btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_star));
+                    btnStar.setSelected(false);
+                    editor.putBoolean("button_selected_" + thesisName, false);
+                    tesiPreferite.remove(thesisName);
+                    setPreferences();
+                    //UpdateDB
+
+                } else {
+                    btnStar.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_clicked_star));
+                    btnStar.setSelected(true);
+                    editor.putBoolean("button_selected_" + thesisName, true);
+                    tesiPreferite.add(thesisName);
+                    setPreferences();
+                    //updateDB
+                }
+                editor.apply();
+            }
+        });
+
+        txtName.setText(document.getString("Name"));
         txtType.setText(document.getString("Type"));
         txtDepartment.setText(document.getString("Faculty"));
         txtCorrelator.setText(document.getString("Correlator"));
@@ -455,6 +473,33 @@ public class AvailableThesesListFragment extends Fragment {
             fragmentTransaction.commit();
         });
 
+    }
+
+    private void loadPrefered(Callback<List<String>> callback) {
+        DocumentReference docStud = db.collection("studenti").document(MainActivity.account.getEmail());
+        docStud.get().
+                addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Map<String, Object> map = document.getData();
+                                tesiPreferite = (List<String>) map.get("Prefered");
+                            }
+                        }
+                        callback.onResult(tesiPreferite);
+                    }
+                });
+    }
+
+    interface Callback<T> {
+        void onResult(T result);
+    }
+
+    private void setPreferences(){
+        DocumentReference docStud = db.collection("studenti").document(MainActivity.account.getEmail());
+        docStud.update("Prefered", tesiPreferite);
     }
 
     private Bitmap createQr(String name) {

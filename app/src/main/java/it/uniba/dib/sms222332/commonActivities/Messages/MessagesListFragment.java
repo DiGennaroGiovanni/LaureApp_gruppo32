@@ -29,7 +29,7 @@ public class MessagesListFragment extends Fragment {
 
     LinearLayout messageListLayout;
     TextView txtNomeProfessore,txtNomeTesi, txtProf;
-    String object, professor,professore_message,student_message,thesis_name,idMessage;
+    String thesis_name;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button addMessageButton;
 
@@ -51,24 +51,28 @@ public class MessagesListFragment extends Fragment {
 
         if(getArguments() != null){
 
-            object = getArguments().getString("object");
-            professor = getArguments().getString("professor");
-            professore_message = getArguments().getString("professore_message");
-            student_message = getArguments().getString("student_message");
+            String professor = getArguments().getString("professor");
+
             thesis_name = getArguments().getString("thesis_name");
-            idMessage = getArguments().getString("idMessage");
 
             txtNomeProfessore.setText(professor);
             txtNomeTesi.setText(thesis_name);
         }
 
 
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         CollectionReference collectionReference = db.collection("messaggi");
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     if((document.getString("Student").equals(MainActivity.account.getEmail()) &&
-                        document.getString("Thesis Name").equals(thesis_name)) ||
+                            document.getString("Thesis Name").equals(thesis_name)) ||
                             document.getString("Professor").equals(MainActivity.account.getEmail()) &&
                                     document.getString("Thesis Name").equals(thesis_name) ){
                         addMessageCard(document);
@@ -85,13 +89,12 @@ public class MessagesListFragment extends Fragment {
         }
 
         if(MainActivity.account.getAccountType().equals("Student") && (MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no")
-        || MainActivity.account.getRequest().equals(thesis_name) )){
+                || MainActivity.account.getRequest().equals(thesis_name) )){
             addMessageButton.setOnClickListener(view1 -> {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("thesis_name",thesis_name);
-                bundle.putString("professor",professor);
-
+                bundle.putString("professor",txtProf.getText().toString());
                 Fragment thesisMessage = new NewMessageFragment();
 
                 thesisMessage.setArguments(bundle);
@@ -103,16 +106,14 @@ public class MessagesListFragment extends Fragment {
                 fragmentTransaction.commit();
             });
         }else if(MainActivity.account.getAccountType().equals("Professor"))
-        addMessageButton.setVisibility(View.GONE);
+            addMessageButton.setVisibility(View.GONE);
         else
         {
             addMessageButton.setOnClickListener(view12 -> {
                 Snackbar.make(view12,"You can send messages only for '" + MainActivity.account.getRequest()+ "' thesis!",Snackbar.LENGTH_LONG).show();
             });
         }
-        return view;
     }
-
 
     private void addMessageCard(QueryDocumentSnapshot document) {
         View view = getLayoutInflater().inflate(R.layout.card_message_info, null);
@@ -121,7 +122,6 @@ public class MessagesListFragment extends Fragment {
         TextView txtDate = view.findViewById(R.id.txtDate);
         TextView txtState = view.findViewById(R.id.txtState);
         TextView txtStudente = view.findViewById(R.id.txtStudente);
-        TextView txtStudentTitle = view.findViewById(R.id.txtStudentTitle);
         LinearLayout layoutTxtStudent = view.findViewById(R.id.layoutTxtStudent);
 
         String object = document.getString("Object");
@@ -139,14 +139,12 @@ public class MessagesListFragment extends Fragment {
         if(state.equals("Not answered"))
             txtState.setTextColor(Color.RED);
         else
-            txtState.setTextColor(Color.GREEN);
+            txtState.setTextColor(Color.parseColor("#178c17"));
 
-        if(MainActivity.account.getAccountType().equals("Professor")){
-            txtStudente.setVisibility(View.VISIBLE);
-            txtStudentTitle.setVisibility(View.VISIBLE);
+        if(MainActivity.account.getAccountType().equals("Professor"))
 
             txtStudente.setText(document.getString("Student"));
-        }else
+        else
             layoutTxtStudent.setVisibility(View.GONE);
 
         messageListLayout.addView(view);
@@ -158,7 +156,8 @@ public class MessagesListFragment extends Fragment {
             bundle.putString("professor_message",professor_message);
             bundle.putString("student_message",student_message);
             bundle.putString("thesis_name",thesis_name);
-            bundle.putString("idMessage",idMessage);
+            bundle.putString("id_message", document.getId());
+
 
             Fragment infoMessage = new MessageDescriptionFragment();
 

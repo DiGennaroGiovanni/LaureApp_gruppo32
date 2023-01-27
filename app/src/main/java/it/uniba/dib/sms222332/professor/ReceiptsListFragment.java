@@ -1,13 +1,6 @@
 package it.uniba.dib.sms222332.professor;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +8,17 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -29,9 +29,9 @@ public class ReceiptsListFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     Button btnNewReceipt;
-    private TextView txtThesisName, txtStudent,txtProfessor;
     LinearLayout listView;
-
+    private TextView txtThesisName;
+    private TextView txtStudent;
 
     @Nullable
     @Override
@@ -40,58 +40,41 @@ public class ReceiptsListFragment extends Fragment {
 
         txtThesisName = view.findViewById(R.id.txtThesisName);
         txtStudent = view.findViewById(R.id.txtStudentEmail);
-        txtProfessor = view.findViewById(R.id.txtProfessor);
+        TextView txtProfessor = view.findViewById(R.id.txtProfessor);
 
         Bundle bundle = getArguments();
-        if(bundle != null){
+        if (bundle != null) {
             String thesisName = bundle.getString("thesis_name");
             String student = bundle.getString("student");
             String professor = bundle.getString("professor");
 
-            if(!professor.equals("")){
-                txtProfessor.setText("Professor: ");
+            if (!professor.equals("")) {
+                String label = getResources().getString(R.string.professor_info_message_student) + " ";
+                txtProfessor.setText(label);
                 txtStudent.setText(professor);
-            }
+            }else
+                txtStudent.setText(student);
 
             txtThesisName.setText(thesisName);
-            txtStudent.setText(student);
+
         }
-
-
 
         btnNewReceipt = view.findViewById(R.id.btnNewReceipt);
 
-        if(MainActivity.account.getAccountType().equals("Student"))
-        {
+        if (MainActivity.account.getAccountType().equals("Student")) {
             btnNewReceipt.setVisibility(View.GONE);
-        }else{
-            btnNewReceipt.setOnClickListener(view1 -> {
-
-                Bundle newReceiptBundle = new Bundle();
-                newReceiptBundle.putString("thesis_name", txtThesisName.getText().toString());
-                newReceiptBundle.putString("student", txtStudent.getText().toString());
-
-                Fragment newReceiptFragment = new NewReceiptFragment();
-                newReceiptFragment.setArguments(newReceiptBundle);
-
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-
-                fragmentTransaction.replace(R.id.fragment_container, newReceiptFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            });
+        } else {
+            btnNewReceipt.setOnClickListener(view1 -> btnNewReceiptOnClick());
         }
 
-         listView = view.findViewById(R.id.layoutReceiptsList);
+        listView = view.findViewById(R.id.layoutReceiptsList);
 
         db.collection("ricevimenti")
                 .get()
                 .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        for (QueryDocumentSnapshot document : task.getResult()){
-                            if(document.getString("Thesis").equals(txtThesisName.getText().toString()))
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            if (Objects.equals(document.getString("Thesis"), txtThesisName.getText().toString()))
                                 addReceiptCard(document);
                         }
                     }
@@ -100,6 +83,23 @@ public class ReceiptsListFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void btnNewReceiptOnClick() {
+        Bundle newReceiptBundle = new Bundle();
+        newReceiptBundle.putString("thesis_name", txtThesisName.getText().toString());
+        newReceiptBundle.putString("student", txtStudent.getText().toString());
+
+        Fragment newReceiptFragment = new NewReceiptFragment();
+        newReceiptFragment.setArguments(newReceiptBundle);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+
+        fragmentTransaction.replace(R.id.fragment_container, newReceiptFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     private void addReceiptCard(QueryDocumentSnapshot document) {
@@ -121,8 +121,8 @@ public class ReceiptsListFragment extends Fragment {
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             if (entry.getKey().equals("Tasks")) {
                 String value = entry.getValue().toString();
-                if(!value.isEmpty())
-                    tasks.setText(value.substring(1, value.length()-1));
+                if (!value.isEmpty())
+                    tasks.setText(value.substring(1, value.length() - 1));
             }
         }
 

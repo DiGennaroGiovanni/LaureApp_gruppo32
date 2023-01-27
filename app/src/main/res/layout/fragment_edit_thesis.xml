@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0808275A"
     tools:context=".professor.ThesesListFragment">
 
     <LinearLayout
@@ -20,9 +21,16 @@
             android:text="@string/thesis_name"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textColor="#00213A"
+            android:textSize="22sp"
             android:textStyle="bold" />
+
+        <!--        lineetta divisiva      -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10sp"
+            android:background="#4D000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,8 +47,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/thesis_type"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtTypology"
@@ -49,7 +57,8 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textStyle="bold"
+                android:textSize="18sp"/>
 
         </LinearLayout>
 
@@ -68,8 +77,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/department"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txtDepartment"
@@ -78,7 +87,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -97,8 +106,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/correlator"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/spinnerCorrelator"
@@ -127,8 +136,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/student_edit_thesis"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txtStudent"
@@ -137,7 +146,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -156,8 +165,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/estimated_time"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/edtTime"
@@ -167,7 +176,7 @@
                 android:inputType="number"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -187,8 +196,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/description"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/edtDescription"
@@ -198,7 +207,7 @@
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -217,8 +226,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/related_projects"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/edtRelatedProjects"
@@ -227,7 +236,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -247,8 +256,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/average_marks"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <CheckBox
                 android:id="@+id/averageCheck"
@@ -262,7 +271,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="58"
                 android:inputType="number"
-                android:textSize="15sp">
+                android:textSize="18sp">
 
             </EditText>
 
@@ -284,8 +293,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/required_exams"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold"
+                android:textSize="17sp" />
 
             <CheckBox
                 android:id="@+id/requiredExamsCheck"
@@ -299,7 +308,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="58"
                 android:inputType="textMultiLine"
-                android:textSize="15sp">
+                android:textSize="18sp">
 
             </EditText>
 
@@ -322,8 +331,8 @@
                 android:paddingEnd="20sp"
                 android:text="@string/materials"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:id="@+id/layout_lista_file"
@@ -356,7 +365,8 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/cardo"
                 android:text="@string/save_thesis"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
         </LinearLayout>
 

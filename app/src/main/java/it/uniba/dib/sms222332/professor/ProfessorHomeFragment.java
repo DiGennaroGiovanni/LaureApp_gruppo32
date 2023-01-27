@@ -24,7 +24,7 @@ public class ProfessorHomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_professor, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.homeToolbar));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.homeToolbar));
 
         btnNewThesis = view.findViewById(R.id.newThesisBtn);
 
@@ -40,6 +40,7 @@ public class ProfessorHomeFragment extends Fragment {
 
         btnRequests = view.findViewById(R.id.receiptsBtn);
 
+        btnRequests.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.icon_check, 0);
         btnRequests.setOnClickListener(view2 -> {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -27,17 +27,23 @@ public class ThesesMessagesListFragment extends Fragment {
 
     LinearLayout messageListLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList<String> listaTesi = new ArrayList<String>();
+    ArrayList<String> listaTesi = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.messageContactTooolbar));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.messages));
 
         View view = inflater.inflate(R.layout.fragment_theses_messages_list, container, false);
 
         messageListLayout = view.findViewById(R.id.layoutMessagesList);
 
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         CollectionReference collectionReference = db.collection("messaggi");
         collectionReference.get().addOnCompleteListener(task -> {
@@ -53,23 +59,24 @@ public class ThesesMessagesListFragment extends Fragment {
                 }
             }
         });
-        return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        listaTesi.clear();
     }
 
     private void addMessageCard(QueryDocumentSnapshot document) {
-        View view = getLayoutInflater().inflate(R.layout.card_student_message, null);
+        View view = getLayoutInflater().inflate(R.layout.card_thesis_messages, null);
 
         TextView txtProfessorTitle = view.findViewById(R.id.txtProfessorTitle);
         TextView txtName = view.findViewById(R.id.txtName);
         TextView txtProfessor = view.findViewById(R.id.txtProfessor);
 
-        String object = document.getString("Object");
+
         String professor = document.getString("Professor");
-        String professor_message = document.getString("Professor Message");
-        String student_message = document.getString("Student Message");
         String thesis_name = document.getString("Thesis Name");
-        String date = document.getString("Date");
-        String idMessage = document.getId();
 
         if(MainActivity.account.getAccountType().equals("Professor")){
             txtProfessorTitle.setVisibility(View.GONE);
@@ -79,16 +86,11 @@ public class ThesesMessagesListFragment extends Fragment {
         txtProfessor.setText(professor);
         txtName.setText(thesis_name);
 
-        Bundle bundle = new Bundle();
-        bundle.putString("object",object);
-        bundle.putString("professor",professor);
-        bundle.putString("professore_message",professor_message);
-        bundle.putString("student_message",student_message);
-        bundle.putString("thesis_name",thesis_name);
-        bundle.putString("date",date);
-        bundle.putString("idMessage",idMessage);
-
         view.setOnClickListener(view1 -> {
+
+            Bundle bundle = new Bundle();
+            bundle.putString("thesis_name",thesis_name);
+            bundle.putString("professor",txtProfessor.getText().toString());
 
             Fragment info = new MessagesListFragment();
 
@@ -101,6 +103,7 @@ public class ThesesMessagesListFragment extends Fragment {
             fragmentTransaction.commit();
 
         });
+
         messageListLayout.addView(view);
     }
 }

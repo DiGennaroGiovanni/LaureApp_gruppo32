@@ -51,14 +51,12 @@ import it.uniba.dib.sms222332.tools.ThesisPDF;
 public class NewThesisFragment extends Fragment {
 
 
-
-    EditText edtThesisName, edtEstimatedTime,edtDescription, edtMaterieRichieste,edtRelatedProjects, edtAverage;
-    RadioButton radioButtonSperimentale,radioButtonCompilativa;
-    Spinner edtMainSubject,edtCorrelator;
-    Button addFile,buttonCreateThesis;
-    TextView txtFaculty;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
-
+    EditText edtThesisName, edtEstimatedTime, edtDescription, edtMaterieRichieste, edtRelatedProjects, edtAverage;
+    RadioButton radioButtonSperimentale, radioButtonCompilativa;
+    Spinner edtMainSubject, edtCorrelator;
+    Button addFile, buttonCreateThesis;
+    TextView txtFaculty;
     //Istanze del database e del sistema di autenticazione di firebase
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     StorageReference storageReference;
@@ -120,43 +118,14 @@ public class NewThesisFragment extends Fragment {
 
 
         addFile.setOnClickListener(view12 -> {
-            int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
-                    Manifest.permission.READ_EXTERNAL_STORAGE);
-
-            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-            } else {
-                // permesso già concesso, procedi con la lettura dei file
-                caricaFile();
-            }
+            addFileOnClick();
         });
 
         CollectionReference collectionRef = db.collection("professori");
 
         collectionRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-
-                correlatori.add("Nessuno");
-
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    if(!document.getId().equals(mUser.getEmail()))
-                    {
-                        String nome = document.getString("Name")+" "+ document.getString("Surname");
-                        correlatori.add(nome);
-                    }
-                }
-
-                ArrayAdapter<String> adapterProf = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, correlatori );
-                adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                edtCorrelator.setAdapter(adapterProf);
-
-            } else {
-                Log.d(TAG, "Error getting documents: ", task.getException());
-            }
+            getCorrelator(task);
         });
-
 
 
         averageCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -166,7 +135,7 @@ public class NewThesisFragment extends Fragment {
             }
         });
 
-      subjectCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        subjectCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 edtMaterieRichieste.setEnabled(subjectCheck.isChecked());
@@ -176,6 +145,40 @@ public class NewThesisFragment extends Fragment {
         return view;
     }
 
+    private void getCorrelator(Task<QuerySnapshot> task) {
+        if (task.isSuccessful()) {
+
+            correlatori.add("Nessuno");
+
+            for (QueryDocumentSnapshot document : task.getResult()) {
+                if (!document.getId().equals(mUser.getEmail())) {
+                    String nome = document.getString("Name") + " " + document.getString("Surname");
+                    correlatori.add(nome);
+                }
+            }
+
+            ArrayAdapter<String> adapterProf = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, correlatori);
+            adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            edtCorrelator.setAdapter(adapterProf);
+
+        } else {
+            Log.d(TAG, String.valueOf(R.string.error_documents), task.getException());
+        }
+    }
+
+    private void addFileOnClick() {
+        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        } else {
+            // permesso già concesso, procedi con la lettura dei file
+            caricaFile();
+        }
+    }
 
 
     private void inserisciTesi() {
@@ -190,79 +193,82 @@ public class NewThesisFragment extends Fragment {
         String relatedProjects = edtRelatedProjects.getText().toString();
         String tipoTesi = "";
         String professore = mUser.getEmail();
-        int  numeroIntero;
+        int numeroIntero;
 
 
-        if(radioButtonSperimentale.isChecked()){
+        if (radioButtonSperimentale.isChecked()) {
             tipoTesi = radioButtonSperimentale.getText().toString();
-        }else if(radioButtonCompilativa.isChecked()){
+        } else if (radioButtonCompilativa.isChecked()) {
             tipoTesi = radioButtonCompilativa.getText().toString();
         }
 
-        if(subjectCheck.isChecked())
-        {
+        if (subjectCheck.isChecked()) {
             materieRichieste = edtMaterieRichieste.getText().toString();
 
-            if(materieRichieste.isEmpty())
-                edtMaterieRichieste.setError("Inserisci le materie richieste");
+            if (materieRichieste.isEmpty())
+                edtMaterieRichieste.setError(getString(R.string.required_subjects));
         }
 
-        if(averageCheck.isChecked()) {
+        if (averageCheck.isChecked()) {
             mediaVoti = edtAverage.getText().toString();
 
-            if(mediaVoti.isEmpty())
-                edtAverage.setError("Inserisci una vincolo valido");
-            else{
+            if (mediaVoti.isEmpty())
+                edtAverage.setError(getString(R.string.valid_constraint));
+            else {
                 numeroIntero = Integer.parseInt(mediaVoti);
-                if(numeroIntero > 30 || numeroIntero < 18)
-                    edtAverage.setError("Inserisci una media tra il 18 ed il 30");
+                if (numeroIntero > 30 || numeroIntero < 18)
+                    edtAverage.setError(getString(R.string.average_range));
             }
         }
 
-        if(correlator.equals("Nessuno")){
-            correlator="";
+        if (correlator.equals("Nessuno")) {
+            correlator = "";
         }
 
-        Map<String,String> infoTesi = new HashMap<>();
-        infoTesi.put("Professor",professore);
-        infoTesi.put("Name",thesisName);
-        infoTesi.put("Faculty",mainSubject);
-        infoTesi.put("Estimated Time",estimatedTime);
-        infoTesi.put("Correlator",correlator);
-        infoTesi.put("Description",description);
-        infoTesi.put("Related Projects",relatedProjects);
-        infoTesi.put("Required Exam",materieRichieste);
-        infoTesi.put("Average",mediaVoti);
-        infoTesi.put("Type",tipoTesi);
-        infoTesi.put("Student","");
+        Map<String, String> infoTesi = new HashMap<>();
+        infoTesi.put("Professor", professore);
+        infoTesi.put("Name", thesisName);
+        infoTesi.put("Faculty", mainSubject);
+        infoTesi.put("Estimated Time", estimatedTime);
+        infoTesi.put("Correlator", correlator);
+        infoTesi.put("Description", description);
+        infoTesi.put("Related Projects", relatedProjects);
+        infoTesi.put("Required Exam", materieRichieste);
+        infoTesi.put("Average", mediaVoti);
+        infoTesi.put("Type", tipoTesi);
+        infoTesi.put("Student", "");
 
-        if(thesisName.isEmpty()){
-            edtThesisName.setError("Inserisci il nome della tesi!");
-        }else if(estimatedTime.isEmpty()){
-            edtEstimatedTime.setError("Inserisci il tempo stimato per eseguire la tesi!");
-        }else if(description.isEmpty()){
-            edtDescription.setError("Inserisci una descrizione per la tua tesi!");
-        }else{
+        if (thesisName.isEmpty()) {
+            edtThesisName.setError(getString(R.string.enter_thesis_name));
+        } else if (estimatedTime.isEmpty()) {
+            edtEstimatedTime.setError(getString(R.string.enter_estimated_time));
+        } else if (description.isEmpty()) {
+            edtDescription.setError(getString(R.string.enter_thesis_description));
+        } else {
             db.collection("Tesi").document(thesisName).set(infoTesi);
-            for(Uri file: files){
+            for (Uri file : files) {
                 uploadFile(file);
             }
 
-            try {
-                ThesisPDF thesisPDF = new ThesisPDF();
-                thesisPDF.makePdf(requireContext(), infoTesi);
-                File outputFile = new File(requireContext().getExternalFilesDir(null), thesisName + ".pdf");
-                Uri uri = FileProvider.getUriForFile(requireContext(), "it.uniba.dib.sms222332", outputFile);
-                uploadPDF(uri);
-            } catch(Exception e) {
-                Log.e("PDF ERROR", "Errore nella creazione del pdf");
-            }
+            createPdf(thesisName, infoTesi);
 
             Snackbar.make(requireView(), R.string.toast_thesis_created, Snackbar.LENGTH_SHORT).show();
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, new ProfessorHomeFragment());
             fragmentTransaction.commit();
+        }
+    }
+
+    private void createPdf(String thesisName, Map<String, String> infoTesi) {
+        try {
+            ThesisPDF thesisPDF = new ThesisPDF();
+            thesisPDF.makePdf(requireContext(), infoTesi);
+            File outputFile = new File(requireContext().getExternalFilesDir(null), thesisName + ".pdf");
+            Uri uri = FileProvider.getUriForFile(requireContext(), "it.uniba.dib.sms222332", outputFile);
+            uploadPDF(uri);
+        } catch (Exception e) {
+            Log.e("PDF ERROR", getString(R.string.error_pdf));
         }
     }
 
@@ -294,7 +300,7 @@ public class NewThesisFragment extends Fragment {
             pdfUri = data.getData();
             File file = new File(pdfUri.getPath());
             String fileName = file.getName();
-            addMaterialItem(fileName,pdfUri);
+            addMaterialItem(fileName, pdfUri);
 
         }
     }
@@ -303,7 +309,7 @@ public class NewThesisFragment extends Fragment {
         // Creazione del riferimento al file sul server di Firebase
         File file = new File(uri.getPath());
         String pdfName = file.getName();
-        storageReference = FirebaseStorage.getInstance().getReference(edtThesisName.getText().toString()+"/"+pdfName);
+        storageReference = FirebaseStorage.getInstance().getReference(edtThesisName.getText().toString() + "/" + pdfName);
         // Caricamento del file sul server
         storageReference.putFile(uri)
                 .addOnSuccessListener(taskSnapshot -> {
@@ -315,7 +321,7 @@ public class NewThesisFragment extends Fragment {
     private void uploadPDF(Uri uriPDF) {
         File filePDF = new File(uriPDF.getPath());
         String pdfName = filePDF.getName();
-        storageReference = FirebaseStorage.getInstance().getReference("PDF_tesi" +"/" + pdfName);
+        storageReference = FirebaseStorage.getInstance().getReference("PDF_tesi" + "/" + pdfName);
         // Caricamento del file sul server
         storageReference.putFile(uriPDF);
     }
