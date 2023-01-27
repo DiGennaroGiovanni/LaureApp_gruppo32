@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <!-- Base application theme. -->
-        <style name="CustomTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-            <!-- Customize your theme here. -->
-            <item name="colorPrimary">#023FA6</item>
-            <item name="colorPrimaryDark">#00213A</item>
-            <item name="colorAccent">#346D93</item>
-            <item name="android:textAppearanceButton">@style/CustomButtonTextAppearance</item>
-            <item name="android:windowFullscreen">true</item>
-        </style>
+    <!-- Base application theme. -->
+    <style name="CustomTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#023FA6</item>
+        <item name="colorPrimaryDark">#00213A</item>
+        <item name="colorAccent">#346D93</item>
+        <item name="android:textAppearanceButton">@style/CustomButtonTextAppearance</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
-        <style name="CustomButtonTextAppearance" parent="TextAppearance.AppCompat.Button">
+    <style name="StarButtonStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#FFC107</item>
+        <item name="colorPrimaryDark">#FFC107</item>
+        <item name="colorAccent">#FFC107</item>
+    </style>
+
+    <style name="CustomButtonTextAppearance" parent="TextAppearance.AppCompat.Button">
 
 
-            <item name="android:backgroundTint">#0E3C5F</item>
-        </style>
+        <item name="android:backgroundTint">#0E3C5F</item>
+    </style>
 </resources>

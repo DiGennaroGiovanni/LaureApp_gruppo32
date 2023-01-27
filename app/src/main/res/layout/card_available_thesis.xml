@@ -169,7 +169,8 @@
                     android:layout_height="33sp"
                     android:layout_alignTop="@+id/shareBtn"
                     android:layout_toStartOf="@+id/shareBtn"
-                    android:background="@drawable/ic_star" />
+                    android:background="@drawable/ic_star"
+                    android:theme="@style/StarButtonStyle" />
 
             </RelativeLayout>
 
