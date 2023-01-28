@@ -16,12 +16,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -33,7 +31,7 @@ import it.uniba.dib.sms222332.professor.ProfessorAccount;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 import it.uniba.dib.sms222332.professor.ThesesListFragment;
 //import it.uniba.dib.sms222332.student.FavoritesFragment;
-import it.uniba.dib.sms222332.student.favorites.NewFavoritesFragment;
+import it.uniba.dib.sms222332.student.favorites.FavoritesFragment;
 import it.uniba.dib.sms222332.student.StudentAccount;
 import it.uniba.dib.sms222332.student.StudentHomeFragment;
 import it.uniba.dib.sms222332.commonActivities.Messages.ThesesMessagesListFragment;
@@ -165,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
 
             case R.id.star_button:
-                selectedFragment = new NewFavoritesFragment();
+                selectedFragment = new FavoritesFragment();
                 break;
 
             case R.id.chat_button:
