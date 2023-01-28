@@ -24,7 +24,7 @@
     <!--    TITOLI FRAGMENT-->
     <string name="homeToolbar">Home</string>
     <string name="createThesisToolbar">Create Thesis</string>
-    <string name="favoritesToolbar">Favorites</string>
+    <string name="favoritesToolbar">Favorite Theses</string>
     <string name="profileToolbar">Profile</string>
     <string name="thesisListToolbar">Handle Thesis</string>
     <string name="messagesToolbar">Messages</string>
@@ -168,9 +168,9 @@
     <string name="receipt_starting_time_txt">startTime</string>
     <string name="receipt_ending_time">End Time:</string>
     <string name="receipt_ending_time_txt">endTime</string>
-    <string name="receipt_tasks_handled">Tasks handled</string>
+    <string name="receipt_tasks_handled">Tasks handled:</string>
     <string name="receipt_tasks_lis">taskList</string>
-    <string name="receipt_description">Description</string>
+    <string name="receipt_description">Description:</string>
     <string name="receipt_description_txt">description</string>
     <string name="thesis">Thesis:</string>
     <string name="thesisname">thesisName</string>
@@ -192,7 +192,7 @@
     <string name="object_info_message">Object:</string>
     <string name="student_info_message">Student message:</string>
     <string name="professor_info_message">Professor answer:</string>
-    <string name="professor_info_message_student">Professor:</string>
+    <string name="professor_info_message_student">Professor: </string>
     <string name="nomeprof">profName</string>
     <string name="thesis_info_message_student">Thesis:</string>
     <string name="thesisName_info_message_student">thesisName</string>
@@ -200,7 +200,7 @@
     <string name="state">State:</string>
     <string name="message">Message</string>
     <string name="delete_request">Delete Request</string>
-    <string name="no_thesis_yet">NO THESIS YET</string>
+    <string name="no_thesis_yet">Not requested any theses</string>
     <string name="insert_description">insert description</string>
     <string name="addressed_tasks">Addressed tasks:</string>
     <string name="add_receipt">Add receipt</string>
@@ -231,7 +231,7 @@
     <string name="logout_confirm">Confirm Logout</string>
     <string name="logout_question">Are you sure you want to log out?</string>
     <string name="exit_app_confirm">Confirm exit from the app</string>
-    <string name="exit_app_question">Are you sure you want to quit?</string>
+    <string name="exit_app_question">Are you sure you want to quit LaureApp?</string>
     <string name="confirm_deletion">Confirm deletion</string>
     <string name="confirm_deletion_question">Are you sure you want to delete the profile?</string>
     <string name="task_description_error">Enter a task description</string>

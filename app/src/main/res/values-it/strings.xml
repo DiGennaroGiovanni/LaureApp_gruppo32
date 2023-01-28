@@ -28,7 +28,7 @@
     <!--    TITOLI FRAGMENT-->
     <string name="homeToolbar">Home</string>
     <string name="createThesisToolbar">Crea Tesi</string>
-    <string name="favoritesToolbar">Preferiti</string>
+    <string name="favoritesToolbar">Tesi Preferite</string>
     <string name="profileToolbar">Profilo</string>
     <string name="thesisListToolbar">Gestisci Tesi</string>
     <string name="messagesToolbar">Messaggi</string>
@@ -112,7 +112,7 @@
     <string name="email_already_existent">Email già utilizzata, riprova!</string>
     <string name="info_button">Bottone info</string>
     <string name="change_lang">Cambia lingua:</string>
-    <string name="thesis_type">Tipo di tesi:</string>
+    <string name="thesis_type">Tipologia:</string>
     <string name="department">Dipartimento:</string>
     <string name="correlator">Correlatore:</string>
     <string name="description">Descrizione:</string>
@@ -168,9 +168,9 @@
     <string name="receipt_starting_time_txt">orarioInizio</string>
     <string name="receipt_ending_time">Orario di fine:</string>
     <string name="receipt_ending_time_txt">orarioFine</string>
-    <string name="receipt_tasks_handled">Tasks trattati</string>
+    <string name="receipt_tasks_handled">Tasks trattati:</string>
     <string name="receipt_tasks_lis">listaTasks</string>
-    <string name="receipt_description">Descrizione</string>
+    <string name="receipt_description">Descrizione:</string>
     <string name="receipt_description_txt">descrizione</string>
     <string name="thesis">Tesi:</string>
     <string name="thesisname">nomeTesi</string>
@@ -200,7 +200,7 @@
     <string name="state">State:</string>
     <string name="message">Messaggio</string>
     <string name="delete_request">Elimina Richiesta</string>
-    <string name="no_thesis_yet">ANCORA NESSUNA TESI</string>
+    <string name="no_thesis_yet">Non hai richiesto alcuna tesi</string>
     <string name="insert_description">iserisci descrizione</string>
     <string name="addressed_tasks">Tasks affrontati:</string>
     <string name="add_receipt">Aggiungi ricevimento</string>
@@ -231,7 +231,7 @@
     <string name="user_not_found">Utente non trovato, effettua la registrazione o inserisci correttamente i dati</string>
     <string name="logout_confirm">Conferma Logout</string>
     <string name="logout_question">Sei sicuro di voler effettuare il logout?</string>
-    <string name="exit_app_confirm">Confirm uscita dall\' app</string>
+    <string name="exit_app_confirm">Conferma uscita dall\' app</string>
     <string name="exit_app_question">Sei sicuro di voler uscire?</string>
     <string name="confirm_deletion">Conferma eliminazione</string>
     <string name="confirm_deletion_question">Sei sicuro di voler eliminare il profilo?</string>

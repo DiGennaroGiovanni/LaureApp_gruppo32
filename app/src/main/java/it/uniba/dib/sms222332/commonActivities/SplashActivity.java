@@ -3,6 +3,7 @@ package it.uniba.dib.sms222332.commonActivities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
@@ -31,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
 
             String email = currentUser.getEmail();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
+            assert email != null;
             DocumentReference docRefStud = db.collection("studenti").document(email);
 
             docRefStud.get().addOnCompleteListener(task -> {
@@ -45,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
                         professorDirectLogin(email, db);
                     }
                 } else {
-//                        Log.d("TAG", "get failed with ", task.getException());
+                        Log.d("TAG", "get failed with ", task.getException());
                 }
             });
 
@@ -76,6 +79,7 @@ public class SplashActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
 
+                        assert datiProfessore != null;
                         intent.putExtra("account_type", (String) datiProfessore.get("Account Type"));
                         intent.putExtra("name", (String) datiProfessore.get("Name"));
                         intent.putExtra("surname", (String) datiProfessore.get("Surname"));
@@ -96,6 +100,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
 
+            assert datiStudente != null;
             intent.putExtra("account_type", (String) datiStudente.get("Account Type"));
             intent.putExtra("name", (String) datiStudente.get("Name"));
             intent.putExtra("surname", (String) datiStudente.get("Surname"));
@@ -103,6 +108,7 @@ public class SplashActivity extends AppCompatActivity {
             intent.putExtra("faculty", (String) datiStudente.get("Faculty"));
             intent.putExtra("email", email);
             intent.putExtra("request", (String) datiStudente.get("Request"));
+            intent.putExtra("favorite_theses", (ArrayList<?>) datiStudente.get("Favorites"));
             startActivity(intent);
             finish();
 

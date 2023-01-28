@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/info_tesi_layout"
@@ -29,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textAlignment="center"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/cardo"
                 android:text="@string/thesis_name_card"
@@ -56,7 +58,7 @@
                     android:fontFamily="@font/cardo"
                     android:gravity="end"
                     android:paddingEnd="10sp"
-                    android:text="Thesis typology:"
+                    android:text="@string/thesis_type"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -66,6 +68,7 @@
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="65"
+                    android:layout_gravity="bottom"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -85,7 +88,7 @@
                     android:fontFamily="@font/cardo"
                     android:gravity="end"
                     android:paddingEnd="10sp"
-                    android:text="Department:"
+                    android:text="@string/faculty"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -97,6 +100,7 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
+                    android:layout_gravity="bottom"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -114,7 +118,7 @@
                     android:fontFamily="@font/cardo"
                     android:gravity="end"
                     android:paddingEnd="10sp"
-                    android:text="Professor:"
+                    android:text="@string/professor_info_message_student"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -143,7 +147,7 @@
                     android:fontFamily="@font/cardo"
                     android:gravity="end"
                     android:paddingEnd="10sp"
-                    android:text="Correlator:"
+                    android:text="@string/correlator"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
