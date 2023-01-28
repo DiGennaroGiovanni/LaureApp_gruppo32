@@ -1,14 +1,12 @@
-package it.uniba.dib.sms222332.student;
+package it.uniba.dib.sms222332.student.favorites;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Collections;
-
 public class ThesisTouchHelperCallback extends ItemTouchHelper.Callback {
 
-    private FavoritesAdapter adapter;
+    private final FavoritesAdapter adapter;
 
     public ThesisTouchHelperCallback(FavoritesAdapter adapter){
         this.adapter = adapter;

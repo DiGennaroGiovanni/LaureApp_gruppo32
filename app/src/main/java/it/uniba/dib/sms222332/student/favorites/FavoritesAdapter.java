@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.student;
+package it.uniba.dib.sms222332.student.favorites;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +16,13 @@ import it.uniba.dib.sms222332.commonActivities.Thesis;
 
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ThesisViewHolder> {
 
-    private List<Thesis> theses;
+    private final List<Thesis> theses;
 
     public FavoritesAdapter(List<Thesis> theses) {
         this.theses = theses;
     }
 
-    public class ThesisViewHolder extends RecyclerView.ViewHolder {
+    public static class ThesisViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtName, txtProfessor;
 
@@ -37,7 +37,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Thes
     @NonNull
     @Override
     public ThesisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_available_thesis, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_favorite, parent, false);
         return new ThesisViewHolder(view);
     }
 
@@ -67,8 +67,12 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Thes
         notifyItemMoved(fromPosition, toPosition);
     }
 
-    public void onItemDismiss(int position) {
-        theses.remove(position);
-        notifyItemRemoved(position);
+//    public void onItemDismiss(int position) {
+//        theses.remove(position);
+//        notifyItemRemoved(position);
+//    }
+
+    public List<Thesis> getTheses() {
+        return theses;
     }
 }

@@ -16,17 +16,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.professor.ProfessorAccount;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 import it.uniba.dib.sms222332.professor.ThesesListFragment;
 //import it.uniba.dib.sms222332.student.FavoritesFragment;
-import it.uniba.dib.sms222332.student.NewFavoritesFragment;
+import it.uniba.dib.sms222332.student.favorites.NewFavoritesFragment;
 import it.uniba.dib.sms222332.student.StudentAccount;
 import it.uniba.dib.sms222332.student.StudentHomeFragment;
 import it.uniba.dib.sms222332.commonActivities.Messages.ThesesMessagesListFragment;
@@ -38,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNav;
     private NavigationView navigationView;
+    public static ArrayList<Thesis> theses;
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -94,7 +103,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case "Student":
                 generateStudent();
+                setFavorites();
                 break;
+        }
+    }
+
+    private void setFavorites() {
+        theses = new ArrayList<>();
+        List<String> thesisNames = getIntent().getStringArrayListExtra("favorite_theses");
+        for (String thesisName : thesisNames){
+            Thesis thesis = new Thesis(thesisName, "");
+            theses.add(thesis);
+        }
+
+        for (Thesis thesis : theses){
+            db.collection("Tesi").document(thesis.getName()).get().addOnSuccessListener(documentSnapshot -> {
+                if(!Objects.requireNonNull(documentSnapshot.getString("Student")).isEmpty() && !Objects.equals(documentSnapshot.getString("Student"), MainActivity.account.getEmail()))
+                    theses.remove(thesis);
+                else
+                    thesis.setProfessor(documentSnapshot.getString("Professor"));
+            });
         }
     }
 
@@ -201,6 +229,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        assert selectedFragment != null;
         fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -247,9 +276,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             });
 
-            builder.setPositiveButton(R.string.yes, (dialog, which) -> {
-                super.onBackPressed();
-            });
+            builder.setPositiveButton(R.string.yes, (dialog, which) -> super.onBackPressed());
 
             AlertDialog dialog = builder.create();
             dialog.show();
@@ -290,4 +317,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if(account.getAccountType().equals("Student")){
+
+            ArrayList<String> thesisNames = new ArrayList<>();
+            for(Thesis thesis : theses)
+                thesisNames.add(thesis.getName());
+
+            db.collection("studenti").document(account.getEmail()).update("Favorites", thesisNames);
+        }
+
+    }
 }

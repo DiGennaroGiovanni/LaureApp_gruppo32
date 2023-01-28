@@ -2,6 +2,7 @@ package it.uniba.dib.sms222332.commonActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
@@ -100,14 +102,14 @@ public class LoginActivity extends AppCompatActivity {
                                             professorLogin(email, document1);
                                         }
                                     } else {
-                                        // Errore durante la lettura del documento
+                                        Log.e("E", "Error");
                                     }
                                 });
 
 
                             }
                         } else {
-                            // Errore durante la lettura del documento
+                             Log.e("E", "Error");
                         }
                     });
 
@@ -147,6 +149,7 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("faculty", (String) datiStudente.get("Faculty"));
         intent.putExtra("email", email);
         intent.putExtra("request", (String) datiStudente.get("Request"));
+        intent.putExtra("favorite_theses", (ArrayList<?>) datiStudente.get("Favorites"));
 
         startActivity(intent);
         finish();

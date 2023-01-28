@@ -31,8 +31,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,6 +39,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -55,9 +54,9 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
             txtDescription, txtRelatedProjects, txtAverageMarks, txtRequiredExams, txtProfessor, txtNoRequest;
     String thesisName;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    LinearLayout layoutThesisAccepted, layoutMaterials, layoutRequiredExams, layoutState, layoutAverageMarks, layoutNoThesis;
+    LinearLayout layoutThesisAccepted, layoutMaterials, layoutRequiredExams, layoutState, layoutAverageMarks;
     LinearLayout layout_lista_file;
-    RelativeLayout layoutButton, layoutButtonCancelRequest;
+    RelativeLayout layoutButton, layoutButtonCancelRequest, layoutNoThesis;
     StorageReference storageReference, ref;
     FirebaseStorage storage;
     Button buttonAdd, btnSave, btnTask, btnReceipt, btnSendMessage, btnCancelRequest;
@@ -68,7 +67,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisInfoTooolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisInfoTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_my_thesis, container, false);
 
@@ -153,7 +152,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                                 txtDepartment.setText(document.getString("Faculty"));
                                 txtProfessor.setText(document.getString("Professor"));
 
-                                if (document.getString("Correlator").equals(""))
+                                if (Objects.equals(document.getString("Correlator"), ""))
                                     txtCorrelator.setText(R.string.none);
                                 else
                                     txtCorrelator.setText(document.getString("Correlator"));
@@ -163,17 +162,17 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
                                 txtDescription.setText(document.getString("Description"));
 
-                                if (document.getString("Related Projects").equals(""))
+                                if (Objects.equals(document.getString("Related Projects"), ""))
                                     txtRelatedProjects.setText(R.string.none);
                                 else
                                     txtRelatedProjects.setText(document.getString("Related Projects"));
 
-                                if (document.getString("Average").equals(""))
+                                if (Objects.equals(document.getString("Average"), ""))
                                     txtAverageMarks.setText(R.string.none);
                                 else
                                     txtAverageMarks.setText(document.getString("Average"));
 
-                                if (document.getString("Required Exam").equals(""))
+                                if (Objects.equals(document.getString("Required Exam"), ""))
                                     txtRequiredExams.setText(R.string.none);
                                 else
                                     txtRequiredExams.setText(document.getString("Required Exam"));
@@ -209,35 +208,32 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         db.collection("Tesi")
                 .document(thesis_name)
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                txtNameTitle.setText(thesis_name);
-                                txtType.setText(document.getString("Type"));
-                                txtDepartment.setText(document.getString("Faculty"));
-                                txtProfessor.setText(document.getString("Professor"));
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            txtNameTitle.setText(thesis_name);
+                            txtType.setText(document.getString("Type"));
+                            txtDepartment.setText(document.getString("Faculty"));
+                            txtProfessor.setText(document.getString("Professor"));
 
-                                if (document.getString("Correlator").equals(""))
-                                    txtCorrelator.setText("None");
-                                else
-                                    txtCorrelator.setText(document.getString("Correlator"));
+                            if (Objects.equals(document.getString("Correlator"), ""))
+                                txtCorrelator.setText(R.string.none);
+                            else
+                                txtCorrelator.setText(document.getString("Correlator"));
 
-                                String estimatedTime = document.getString("Estimated Time") + " days";
-                                txtTime.setText(estimatedTime);
+                            String estimatedTime = document.getString("Estimated Time") + " days";
+                            txtTime.setText(estimatedTime);
 
-                                txtDescription.setText(document.getString("Description"));
+                            txtDescription.setText(document.getString("Description"));
 
-                                if (document.getString("Related Projects").equals(""))
-                                    txtRelatedProjects.setText("None");
-                                else
-                                    txtRelatedProjects.setText(document.getString("Related Projects"));
-                            }
-                        } else {
-                            Log.d(TAG, "get failed with ", task.getException());
+                            if (Objects.equals(document.getString("Related Projects"), ""))
+                                txtRelatedProjects.setText(R.string.none);
+                            else
+                                txtRelatedProjects.setText(document.getString("Related Projects"));
                         }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
                     }
                 });
 
@@ -255,37 +251,15 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
         }).addOnFailureListener(exception -> Log.w("info", getString(R.string.error_file), exception));
 
-        buttonAdd.setOnClickListener(view -> {
+        buttonAdd.setOnClickListener(view -> buttonAddOnClick());
 
-            buttonAddOnClick();
+        btnSave.setOnClickListener(view -> btnSaveOnClick(thesis_name, view));
 
+        btnTask.setOnClickListener(view -> btnTaskOnClick(thesis_name));
 
-        });
+        btnReceipt.setOnClickListener(view -> btnReceiptOnClick(thesis_name));
 
-        btnSave.setOnClickListener(view -> {
-
-            btnSaveOnClick(thesis_name, view);
-
-        });
-
-        btnTask.setOnClickListener(view -> {
-
-            btnTaskOnClick(thesis_name);
-
-        });
-
-        btnReceipt.setOnClickListener(view -> {
-
-            btnReceiptOnClick(thesis_name);
-
-        });
-
-
-        btnSendMessage.setOnClickListener(view -> {
-
-            btnSendMessageOnClick(thesis_name);
-
-        });
+        btnSendMessage.setOnClickListener(view -> btnSendMessageOnClick(thesis_name));
 
     }
 
@@ -350,11 +324,11 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     }
 
     private void buttonAddOnClick() {
-        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+        int permissionCheck = ContextCompat.checkSelfPermission(requireActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE);
 
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(),
+            ActivityCompat.requestPermissions(requireActivity(),
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
         } else {
@@ -415,11 +389,11 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
         downloadMaterial.setOnClickListener(view1 -> {
 
-            int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+            int permissionCheck = ContextCompat.checkSelfPermission(requireActivity(),
                     Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
             if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(getActivity(),
+                ActivityCompat.requestPermissions(requireActivity(),
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
             } else {
@@ -435,24 +409,24 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
     private void download(String nomeFile) {
 
-        storageReference = storage.getInstance().getReference();
+        storageReference = FirebaseStorage.getInstance().getReference();
         ref = storageReference.child(MainActivity.account.getRequest()).child(nomeFile);
 
         ref.getDownloadUrl().addOnSuccessListener(uri -> {
             String url = uri.toString();
-            downloadFile(getActivity(), nomeFile, "", DIRECTORY_DOWNLOADS, url);
+            downloadFile(requireActivity(), nomeFile, DIRECTORY_DOWNLOADS, url);
 
         }).addOnFailureListener(e -> {
         });
     }
 
-    private void downloadFile(Context context, String nomeFile, String fileExtension, String destinationDirectory, String url) {
+    private void downloadFile(Context context, String nomeFile, String destinationDirectory, String url) {
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
         Uri uri = Uri.parse(url);
         DownloadManager.Request request = new DownloadManager.Request(uri);
 
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setDestinationInExternalFilesDir(context, destinationDirectory, nomeFile + fileExtension);
+        request.setDestinationInExternalFilesDir(context, destinationDirectory, nomeFile + "");
         downloadManager.enqueue(request);
     }
 
@@ -460,13 +434,8 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permesso concesso, procedi con la lettura dei file
-                } else {
-                    // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
-                }
+                // permesso concesso, procedi con la lettura dei file
+                // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
                 return;
             }
             case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
@@ -474,12 +443,10 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     uploadFile();
                 } else {
-                    buttonAdd.setOnClickListener(view -> {
-                        Snackbar.make(getView(), R.string.not_read_permissions, Snackbar.LENGTH_LONG).show();
-                    });
+                    buttonAdd.setOnClickListener(view -> Snackbar.make(requireView(), R.string.not_read_permissions, Snackbar.LENGTH_LONG).show());
                     // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
                 }
-                return;
+
             }
         }
     }

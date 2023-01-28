@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/info_tesi_layout"
@@ -13,7 +14,6 @@
         android:layout_marginBottom="10dp">
 
         <LinearLayout
-            android:id="@+id/cardMaterial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="3sp"
@@ -29,19 +29,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
+                android:textAlignment="center"
                 android:fontFamily="@font/cardo"
                 android:text="@string/thesis_name_card"
                 android:textAllCaps="true"
                 android:textColor="#00213A"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <!--        lineetta divisiva      -->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="10sp"
+                android:layout_height=".5dp"
+                android:layout_marginHorizontal="20sp"
                 android:background="#4D000000" />
 
 
@@ -58,10 +58,10 @@
                     android:fontFamily="@font/cardo"
                     android:gravity="end"
                     android:paddingEnd="10sp"
-                    android:text="Professor:"
+                    android:text="@string/professor_message"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"
+                    />
 
                 <TextView
                     android:id="@+id/txtProfessor"
@@ -70,7 +70,7 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

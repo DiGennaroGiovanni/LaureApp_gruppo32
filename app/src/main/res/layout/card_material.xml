@@ -3,14 +3,14 @@
     android:id="@+id/cardMaterial"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@android:color/transparent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/thesisCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3sp"
-        android:layout_toStartOf="@+id/deleteMaterial"
         android:padding="4sp">
 
 
@@ -41,7 +41,7 @@
         android:id="@+id/deleteMaterial"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/thesisCard"
         android:layout_centerVertical="true"
         android:background="@drawable/delete_icon"
         android:contentDescription="@string/delete_material" />

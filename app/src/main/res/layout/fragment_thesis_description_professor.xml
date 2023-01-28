@@ -318,14 +318,20 @@
                 android:textStyle="bold" />
 
 
-            <LinearLayout
-                android:id="@+id/layout_lista_file"
+            <RelativeLayout
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
-                android:orientation="vertical">
+                android:layout_weight="65">
 
-            </LinearLayout>
+                <LinearLayout
+                    android:background="@drawable/bordered_rect"
+                    android:id="@+id/layout_lista_file"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
