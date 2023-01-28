@@ -298,5 +298,9 @@
     <string name="faculty_">Faculty</string>
     <string name="no_message_yet">No message yet</string>
     <string name="add_answer">Add Answer</string>
+    <string name="snackbar_deny_camera_message">The app requires access to the camera in order to scan a QR code…</string>
+    <string name="snackbar_title_camera_permission">Importance of permissions</string>
+    <string name="snackbar_camera_permission_message">Permissions are necessary to allow the app to scan a QR code.</string>
+    <string name="snackbar_camera_permission_message2">Authorize request permissions?</string>
 
 </resources>

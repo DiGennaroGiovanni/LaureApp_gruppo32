@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -508,6 +509,11 @@ public class AvailableThesesListFragment extends Fragment {
         docStud.update("Prefered", tesiPreferite);
     }
 
+    /**
+     * Il metodo createQr riceve in input il nome della tesi che verrà inserito nel QR-code da generare.
+     * @param name nome della tesi di cui generare il QR-code
+     * @return bitmap oggetto che conterrà la renderizzazione del QR-code
+     */
     private Bitmap createQr(String name) {
 
         int width = 700;
@@ -635,33 +641,69 @@ public class AvailableThesesListFragment extends Fragment {
         }
     });
 
+    /**
+     * checkPermission è il metodo che gestisce i permessi per utilizzare la fotocamera.
+     *
+     * Nel caso in cui l'utente non fornisce l'autorizzazioen per utilizzare la fotocamera, il sistemare
+     * provvederà a fornire un feedback all'utente per spiegare l'utilità dei permessi.
+     *
+     * Nel
+     * @return result true se i permessi sono stati concessi
+     */
     private boolean checkPermission() {
         boolean result = false;
-        Log.e("DEBUG RICHIESTA CAMERA", "INIZIO METODO CHECKPERMISSION");
 
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            Log.e("DEBUG RICHIESTA CAMERA", "I PERMESSI NON ERANO CONCESSI");
-            if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.CAMERA)) {
-                requestPermissionLauncher.launch(CAMERA);
-                Log.e("DEBUG RICHIESTA CAMERA", "MOSTRO IL MESSAGGIO DI SPIEGAZIONE");
-            } else {
-                requestPermissionLauncher.launch(CAMERA);
-                Log.e("DEBUG RICHIESTA CAMERA", "AVVIO LA RICHIESTA DI AUTORIZZAZIONE");
-            }
-        } else {
-            Log.e("DEBUG RICHIESTA CAMERA", "I PERMESSI ERANO CONCESSI");
+        // controllo se i permessi sono già stati concessi.
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            // Il permesso di utilizzare la fotocamera risulta concesso.
             result = true;
+
+            // Mostro un messaggio all'utente in cui spiego il motivo per il quale sono necessari i permessi.
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.CAMERA)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                builder.setTitle(R.string.snackbar_title_camera_permission);
+                builder.setMessage(getString(R.string.snackbar_camera_permission_message) + "\n\n" + getString(R.string.snackbar_camera_permission_message2));
+
+                // L'utente accetta di concedere i permessi e avvio richiesta accettazione permessi.
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        requestPermissionLauncher.launch(CAMERA);
+                    }
+                });
+
+                // L'utente decide di non accettare l'avvio di richiesta accettazione permessi.
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Snackbar.make(requireView(), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();  // Avvio la visualizzazione dell'AlertDialog.
         }
+         else {
+            // Avvio la procedura di autorizzazione dei permessi.
+            requestPermissionLauncher.launch(CAMERA);
+        }
+
         return result;
     }
 
+    /**
+     * Callback che gestisce la risposta dell'utente alla richiesta di autorizzazione permessi per utilizzare la fotocamera.
+     */
     private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    scanQrCode();
-                } else {
-                    Snackbar.make(requireView(), "L'app necessita dell'accesso alla fotocamera per poter scansionare un qr code...", Snackbar.LENGTH_LONG).show();
 
-                }
-            });
+        // Se l'utente ha accettato, avvio la scansione.
+        if (isGranted) {
+            scanQrCode();
+
+        } else {
+            // Nel caso di rifiuto della concessione dei permessi, mostro un messaggio all'utente per spiegare la necessità dei permessi.
+            Snackbar.make(requireView(), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
+        }
+    });
 }
 

@@ -301,4 +301,8 @@
     <string name="messages">Messaggi</string>
     <string name="no_message_yet">Ancora nessun messaggio</string>
     <string name="add_answer">Aggiungi Risposta</string>
+    <string name="snackbar_deny_camera_message">L\'app necessita dell\'accesso alla fotocamera per poter scansionare un qr code…</string>
+    <string name="snackbar_title_camera_permission">L\'importanza dei permessi</string>
+    <string name="snackbar_camera_permission_message">I permessi sono necessari per permettere all\'app di scannerizzare un qr code, autorizzi a chiedere i permessi?</string>
+    <string name="snackbar_camera_permission_message2">Autorizzi la richiesta dei permessi?</string>
 </resources>
