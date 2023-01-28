@@ -30,7 +30,6 @@ import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.professor.ProfessorAccount;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 import it.uniba.dib.sms222332.professor.ThesesListFragment;
-//import it.uniba.dib.sms222332.student.FavoritesFragment;
 import it.uniba.dib.sms222332.student.favorites.FavoritesFragment;
 import it.uniba.dib.sms222332.student.StudentAccount;
 import it.uniba.dib.sms222332.student.StudentHomeFragment;
