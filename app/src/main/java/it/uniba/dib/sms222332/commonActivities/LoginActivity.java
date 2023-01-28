@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -44,6 +45,19 @@ public class LoginActivity extends AppCompatActivity {
         edtEmailLogin = findViewById(R.id.edtEmailLogin);
         edtPasswordLogin = findViewById(R.id.edtPasswordLogin);
 
+        ImageButton en = findViewById(R.id.btn_eng);
+        ImageButton it = findViewById(R.id.btn_it);
+        LanguageManager lang = new LanguageManager(this);
+        lang.updateResource(lang.getLang());
+
+        en.setOnClickListener(v -> {
+            lang.updateResource("en");
+            this.recreate();
+        });
+        it.setOnClickListener(v -> {
+            lang.updateResource("it");
+            this.recreate();
+        });
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -103,8 +117,6 @@ public class LoginActivity extends AppCompatActivity {
                                         // Errore durante la lettura del documento
                                     }
                                 });
-
-
                             }
                         } else {
                             // Errore durante la lettura del documento
