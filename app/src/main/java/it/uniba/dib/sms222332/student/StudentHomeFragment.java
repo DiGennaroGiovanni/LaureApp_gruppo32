@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.Objects;
+
 import it.uniba.dib.sms222332.R;
 
 public class StudentHomeFragment extends Fragment {
@@ -23,30 +25,22 @@ public class StudentHomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_student, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.homeToolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.homeToolbar));
 
         btnAvailableTheses = view.findViewById(R.id.allThesisBtn);
         btnMyThesis = view.findViewById(R.id.myThesisBtn);
 
 
         btnAvailableTheses.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.icon_available_theses,0);
-        btnAvailableTheses.setOnClickListener(view1 -> {
-
-            buttonAllThesisOnClick();
-
-        });
+        btnAvailableTheses.setOnClickListener(view1 -> seeAvailableTheses());
 
         btnMyThesis.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_your_thesis,0);
-        btnMyThesis.setOnClickListener(view12 -> {
-
-            myThesisBtnOnClick();
-
-        });
+        btnMyThesis.setOnClickListener(view12 -> getToMyThesis());
 
         return view;
     }
 
-    private void myThesisBtnOnClick() {
+    private void getToMyThesis() {
         Fragment myThesis = new MyThesisFragment();
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -55,7 +49,7 @@ public class StudentHomeFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
-    private void buttonAllThesisOnClick() {
+    private void seeAvailableTheses() {
         Fragment availableThesisFragment = new AvailableThesesListFragment();
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

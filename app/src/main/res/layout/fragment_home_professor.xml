@@ -6,35 +6,45 @@
     android:orientation="vertical"
     android:background="#0808275A">
 
-    <Button
-        android:id="@+id/newThesisBtn"
-        android:layout_width="300sp"
-        android:layout_height="100sp"
-        android:layout_marginTop="120sp"
-        android:layout_marginBottom="90sp"
-        android:layout_weight="1"
-        android:text="@string/add_thesis_button"
-        android:textSize="34sp"
-        android:textStyle="bold" />
 
-    <!--    <Button-->
-    <!--        android:layout_width="300sp"-->
-    <!--        android:layout_height="100sp"-->
-    <!--        android:text="@string/handle_thesis_button"-->
-    <!--        android:textSize="34sp"-->
-    <!--        android:layout_marginVertical="50sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:layout_weight="1"/>-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1">
 
-    <Button
-        android:id="@+id/receiptsBtn"
-        android:layout_width="300sp"
-        android:layout_height="100sp"
-        android:layout_marginBottom="120sp"
-        android:layout_weight="1"
-        android:text="@string/requests_button"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/newThesisBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="35sp"
+            android:padding="30sp"
+            android:text="@string/add_thesis_button"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/receiptsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="35sp"
+            android:padding="30sp"
+            android:text="@string/requests_button"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
 
 </LinearLayout>
 

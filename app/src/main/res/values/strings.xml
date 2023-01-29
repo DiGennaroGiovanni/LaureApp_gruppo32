@@ -4,7 +4,7 @@
     <string name="star_button_text">Favorites</string>
     <string name="chat_button_text">Messages</string>
     <string name="list_button_text">Your Thesis</string>
-    <string name="all_thesis_button">AVAILABLE THESES</string>
+    <string name="all_thesis_button">FIND A THESIS</string>
     <string name="your_thesis_button">YOUR THESIS</string>
     <string name="add_thesis_button">ADD A NEW THESIS</string>
     <string name="handle_thesis_button">HANDLE THESIS</string>

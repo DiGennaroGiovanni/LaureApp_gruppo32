@@ -22,6 +22,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -45,8 +46,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.tools.ThesisPDF;
 
 
@@ -63,8 +66,6 @@ public class NewThesisFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     StorageReference storageReference;
     FirebaseStorage storage;
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
     Uri pdfUri;
     ArrayList<Uri> files = new ArrayList<>();
     LinearLayout layout;
@@ -77,7 +78,7 @@ public class NewThesisFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.createThesisToolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.createThesisToolbar));
 
         View view = inflater.inflate(R.layout.fragment_new_thesis, container, false);
 
@@ -102,8 +103,6 @@ public class NewThesisFragment extends Fragment {
         edtMaterieRichieste.setEnabled(false);
         edtAverage.setEnabled(false);
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
@@ -119,30 +118,16 @@ public class NewThesisFragment extends Fragment {
         buttonCreateThesis.setOnClickListener(view1 -> inserisciTesi());
 
 
-        addFile.setOnClickListener(view12 -> {
-            addFileOnClick();
-        });
+        addFile.setOnClickListener(view12 -> addFileOnClick());
 
         CollectionReference collectionRef = db.collection("professori");
 
-        collectionRef.get().addOnCompleteListener(task -> {
-            getCorrelator(task);
-        });
+        collectionRef.get().addOnCompleteListener(this::getCorrelator);
 
 
-        averageCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                edtAverage.setEnabled(averageCheck.isChecked());
-            }
-        });
+        averageCheck.setOnCheckedChangeListener((compoundButton, b) -> edtAverage.setEnabled(averageCheck.isChecked()));
 
-        subjectCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                edtMaterieRichieste.setEnabled(subjectCheck.isChecked());
-            }
-        });
+        subjectCheck.setOnCheckedChangeListener((buttonView, isChecked) -> edtMaterieRichieste.setEnabled(subjectCheck.isChecked()));
 
         return view;
     }
@@ -153,7 +138,7 @@ public class NewThesisFragment extends Fragment {
             correlatori.add("Nessuno");
 
             for (QueryDocumentSnapshot document : task.getResult()) {
-                if (!document.getId().equals(mUser.getEmail())) {
+                if (!document.getId().equals(MainActivity.account.getEmail())) {
                     String nome = document.getString("Name") + " " + document.getString("Surname");
                     correlatori.add(nome);
                 }
@@ -169,11 +154,11 @@ public class NewThesisFragment extends Fragment {
     }
 
     private void addFileOnClick() {
-        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+        int permissionCheck = ContextCompat.checkSelfPermission(requireActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE);
 
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(),
+            ActivityCompat.requestPermissions(requireActivity(),
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
         } else {
@@ -194,7 +179,7 @@ public class NewThesisFragment extends Fragment {
         String mediaVoti = "";
         String relatedProjects = edtRelatedProjects.getText().toString();
         String tipoTesi = "";
-        String professore = mUser.getEmail();
+        String professore = MainActivity.account.getEmail();
         int numeroIntero;
 
 
@@ -326,6 +311,14 @@ public class NewThesisFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference("PDF_tesi" + "/" + pdfName);
         // Caricamento del file sul server
         storageReference.putFile(uriPDF);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+
+
     }
 }
 
