@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cardMaterial"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -8,8 +8,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/thesisCard"
-        android:layout_width="wrap_content"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_margin="3sp"
         android:padding="4sp">
 
@@ -41,9 +42,8 @@
         android:id="@+id/deleteMaterial"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_toEndOf="@id/thesisCard"
-        android:layout_centerVertical="true"
+        android:layout_gravity="center"
         android:background="@drawable/delete_icon"
         android:contentDescription="@string/delete_material" />
 
-</RelativeLayout>
+</LinearLayout>
