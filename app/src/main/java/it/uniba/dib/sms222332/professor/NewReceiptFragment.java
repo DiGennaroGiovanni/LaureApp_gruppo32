@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 
@@ -38,19 +39,20 @@ public class NewReceiptFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout allTasks;
     ArrayList<String> addressedTasks = new ArrayList<>();
-    private TextView txtReceiptDate, txtStartTime, txtEndTime;
+    private TextView txtReceiptDate, txtStartTime, txtEndTime, txtStudent, txtThesisName;
     private EditText edtDescription;
+    private Button addReceipt;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new_receipt, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.newReceiptToolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.newReceiptToolbar));
 
 
-        TextView txtStudent = view.findViewById(R.id.txtStudentEmail);
-        TextView txtThesisName = view.findViewById(R.id.txtThesisName);
+        txtStudent = view.findViewById(R.id.txtStudentEmail);
+        txtThesisName = view.findViewById(R.id.txtThesisName);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -71,7 +73,15 @@ public class NewReceiptFragment extends Fragment {
 
         edtDescription = view.findViewById(R.id.edtDescription);
         allTasks = view.findViewById(R.id.layoutAddressedTasks);
-        Button addReceipt = view.findViewById(R.id.btnAddReceipt);
+        addReceipt = view.findViewById(R.id.btnAddReceipt);
+
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
 
         final Calendar calendar = Calendar.getInstance();
@@ -81,11 +91,11 @@ public class NewReceiptFragment extends Fragment {
         final int hour = calendar.get(Calendar.HOUR_OF_DAY);
         final int minute = calendar.get(Calendar.MINUTE);
 
-        txtReceiptDate.setOnClickListener(view1 -> {
+        txtReceiptDate.setOnClickListener(view1 -> setDate(calendar, year, month, day, hour, minute));
 
-            txtReceiptDateOnClick(calendar, year, month, day, hour, minute);
+        txtStartTime.setOnClickListener(view2 -> setStartTime(hour, minute));
 
-        });
+        txtEndTime.setOnClickListener(view3 -> setEndTime(hour, minute));
 
 
         db.collection("tasks")
@@ -100,17 +110,11 @@ public class NewReceiptFragment extends Fragment {
                     }
                 });
 
-        addReceipt.setOnClickListener(view12 -> {
+        addReceipt.setOnClickListener(view12 -> addReceipt(txtStudent, txtThesisName));
 
-            addReceiptOnClick(txtStudent, txtThesisName, view12);
-
-        });
-
-
-        return view;
     }
 
-    private void txtReceiptDateOnClick(Calendar calendar, int year, int month, int day, int hour, int minute) {
+    private void setDate(Calendar calendar, int year, int month, int day, int hour, int minute) {
         DatePickerDialog dialog = new DatePickerDialog(getActivity(), (datePicker, i, i1, i2) -> {
 
             String correctDay, correctMonth;
@@ -128,60 +132,52 @@ public class NewReceiptFragment extends Fragment {
             txtReceiptDate.setText(date);
             txtReceiptDate.setTextColor(Color.BLACK);
 
-            if (!txtStartTime.hasOnClickListeners() && !txtEndTime.hasOnClickListeners()) {
-                txtStartTime.setOnClickListener(view2 -> {
-
-
-                    TimePickerDialog startTimeDialog = new TimePickerDialog(getActivity(), (timePicker, i3, i11) -> {
-
-
-                        String correctHour, correctMinute;
-
-                        if (i3 < 10) correctHour = "0" + i3;
-                        else correctHour = String.valueOf(i3);
-
-                        if (i11 < 10) correctMinute = "0" + i11;
-                        else correctMinute = String.valueOf(i11);
-
-                        String startTime = correctHour + ":" + correctMinute;
-
-                        txtStartTime.setTextColor(Color.BLACK);
-                        txtStartTime.setText(startTime);
-                    }, hour, minute, true);
-
-                    startTimeDialog.show();
-                });
-
-                txtEndTime.setOnClickListener(view3 -> {
-
-
-                    TimePickerDialog endTimeDialog = new TimePickerDialog(getActivity(), (timePicker, i3, i11) -> {
-
-                        String correctHour, correctMinute;
-
-                        if (i3 < 10) correctHour = "0" + i3;
-                        else correctHour = String.valueOf(i3);
-
-                        if (i11 < 10) correctMinute = "0" + i11;
-                        else correctMinute = String.valueOf(i11);
-
-                        String endTime = correctHour + ":" + correctMinute;
-                        txtEndTime.setTextColor(Color.BLACK);
-                        txtEndTime.setText(endTime);
-                    }, hour, minute, true);
-
-                    endTimeDialog.show();
-                });
-
-            }
-
-
         }, year, month, day);
         dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
         dialog.show();
     }
 
-    private void addReceiptOnClick(TextView txtStudent, TextView txtThesisName, View view12) {
+    private void setStartTime(int hour, int minute) {
+        TimePickerDialog startTimeDialog = new TimePickerDialog(getActivity(), (timePicker, i3, i11) -> {
+
+
+            String correctHour, correctMinute;
+
+            if (i3 < 10) correctHour = "0" + i3;
+            else correctHour = String.valueOf(i3);
+
+            if (i11 < 10) correctMinute = "0" + i11;
+            else correctMinute = String.valueOf(i11);
+
+            String startTime = correctHour + ":" + correctMinute;
+
+            txtStartTime.setTextColor(Color.BLACK);
+            txtStartTime.setText(startTime);
+        }, hour, minute, true);
+
+        startTimeDialog.show();
+    }
+
+    private void setEndTime(int hour, int minute) {
+        TimePickerDialog endTimeDialog = new TimePickerDialog(getActivity(), (timePicker, i3, i11) -> {
+
+            String correctHour, correctMinute;
+
+            if (i3 < 10) correctHour = "0" + i3;
+            else correctHour = String.valueOf(i3);
+
+            if (i11 < 10) correctMinute = "0" + i11;
+            else correctMinute = String.valueOf(i11);
+
+            String endTime = correctHour + ":" + correctMinute;
+            txtEndTime.setTextColor(Color.BLACK);
+            txtEndTime.setText(endTime);
+        }, hour, minute, true);
+
+        endTimeDialog.show();
+    }
+
+    private void addReceipt(TextView txtStudent, TextView txtThesisName) {
         String data = txtReceiptDate.getText().toString();
         String startTime = txtStartTime.getText().toString();
         String endTime = txtEndTime.getText().toString();
@@ -215,10 +211,10 @@ public class NewReceiptFragment extends Fragment {
             db.collection("ricevimenti").document(title).set(infoReceipt);
 
             // chiusura della tastiera quando viene effettuato un cambio di fragment
-            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view12.getWindowToken(), 0);
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
 
-            Snackbar.make(view12, R.string.receipt_added, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(requireView(), R.string.receipt_added, Snackbar.LENGTH_LONG).show();
             getParentFragmentManager().popBackStack();
 
         }
@@ -235,13 +231,13 @@ public class NewReceiptFragment extends Fragment {
             if (addressedTasks.contains(taskName)) {
                 addressedTasks.remove(taskName);
                 name.setTextColor(Color.parseColor("#B308275A"));
-                Drawable newShape = ContextCompat.getDrawable(getActivity(), R.drawable.item_task_background);
+                Drawable newShape = ContextCompat.getDrawable(requireActivity(), R.drawable.item_task_background);
                 name.setBackground(newShape);
 
             } else {
                 addressedTasks.add(taskName);
                 name.setTextColor(Color.WHITE);
-                Drawable newShape = ContextCompat.getDrawable(getActivity(), R.drawable.item_task_background_selected);
+                Drawable newShape = ContextCompat.getDrawable(requireActivity(), R.drawable.item_task_background_selected);
                 name.setBackground(newShape);
             }
 

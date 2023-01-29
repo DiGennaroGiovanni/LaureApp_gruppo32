@@ -35,7 +35,8 @@
                 android:fontFamily="@font/cardo"
                 android:text="@string/student_name_"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_marginHorizontal="4sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -59,7 +60,8 @@
                 android:fontFamily="@font/cardo"
                 android:text="@string/thesis_name_"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_marginHorizontal="4sp"/>
 
         </LinearLayout>
 
@@ -79,6 +81,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:context=".professor.ReceiptsListFragment">
+
+            <TextView
+                android:id="@+id/noReceipts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_receipt_yet"
+                android:textSize="25sp"
+                android:layout_gravity="center"/>
 
         </LinearLayout>
 

@@ -22,13 +22,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class EditTaskFragment extends Fragment {
 
-    TextView txtTaskTitle, txtThesis, txtStudent;
+    TextView txtTaskTitle, txtThesis, txtStudent, txtEstimatedTime;
     EditText edtDescription;
     RadioButton rdbDaCompletare, rdbCompletato, rdbNonIniziato;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -38,13 +39,14 @@ public class EditTaskFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.editTaskToolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.editTaskToolbar));
 
         View view = inflater.inflate(R.layout.fragment_edit_task, container, false);
 
         txtTaskTitle = view.findViewById(R.id.txtTaskTitle);
         txtThesis = view.findViewById(R.id.txtThesis);
         txtStudent = view.findViewById(R.id.txtStudent);
+        txtEstimatedTime = view.findViewById(R.id.txtEstimatedTime);
         edtDescription = view.findViewById(R.id.edtDescription);
         rdbDaCompletare = view.findViewById(R.id.rdbDaCompletare);
         rdbCompletato = view.findViewById(R.id.rdbCompletato);
@@ -58,61 +60,58 @@ public class EditTaskFragment extends Fragment {
             txtStudent.setText(getArguments().getString("student"));
             edtDescription.setText(getArguments().getString("description"));
             state = getArguments().getString("state");
+            txtEstimatedTime.setText(getArguments().getString("estimated_time"));
         }
 
         if (!MainActivity.account.getAccountType().equals("Professor"))
             edtDescription.setEnabled(false);
 
-        switch (state) {
-            case "Completato":
+        switch (Integer.parseInt(state)) {
+            case 2:
                 rdbCompletato.setChecked(true);
                 break;
-            case "Da Completare":
+            case 1:
                 rdbDaCompletare.setChecked(true);
                 break;
-            case "Non Iniziato":
+            case 0:
                 rdbNonIniziato.setChecked(true);
                 break;
         }
 
-        btnSave.setOnClickListener(this::onClick);
+        btnSave.setOnClickListener(view1 -> saveTask());
 
         return view;
     }
 
-    private void onClick(View view1) {
-
+    private void saveTask() {
 
         if (edtDescription.getText().toString().isEmpty())
             edtDescription.setError(getString(R.string.task_description_error));
 
         else {
 
-            editTask(view1);
+            DocumentReference docRef = db.collection("tasks").document(txtTaskTitle.getText().toString());
+            Map<String, Object> updates = new HashMap<>();
+            updates.put("Description", edtDescription.getText().toString());
+
+            if (rdbNonIniziato.isChecked())
+                updates.put("State", "0");
+            else if (rdbDaCompletare.isChecked())
+                updates.put("State", "1");
+            else if (rdbCompletato.isChecked())
+                updates.put("State", "2");
+
+            docRef.update(updates);
+
+            // chiusura della tastiera quando viene effettuato un cambio di fragment
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
+
+            Snackbar.make(requireView(), R.string.task_updated, Snackbar.LENGTH_LONG).show();
+
+            getParentFragmentManager().popBackStack();
         }
     }
 
-    private void editTask(View view1) {
-        DocumentReference docRef = db.collection("tasks").document(txtTaskTitle.getText().toString());
-        Map<String, Object> updates = new HashMap<>();
-        updates.put("Description", edtDescription.getText().toString());
 
-        if (rdbNonIniziato.isChecked())
-            updates.put("State", rdbNonIniziato.getText().toString());
-        else if (rdbDaCompletare.isChecked())
-            updates.put("State", rdbDaCompletare.getText().toString());
-        else if (rdbCompletato.isChecked())
-            updates.put("State", rdbCompletato.getText().toString());
-
-
-        docRef.update(updates);
-
-        // chiusura della tastiera quando viene effettuato un cambio di fragment
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
-
-        Snackbar.make(view1, R.string.task_updated, Snackbar.LENGTH_LONG).show();
-
-        getParentFragmentManager().popBackStack();
-    }
 }

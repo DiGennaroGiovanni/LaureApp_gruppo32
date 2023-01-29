@@ -28,8 +28,8 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class TaskListFragment extends Fragment {
 
-    Button addTaskButton;
-    TextView txtStudent, txtThesisName, txtProfessor;
+    Button btnNewTask;
+    TextView txtStudent, txtThesisName, txtProfessor, txtEstimatedTime;
     String studentName, thesisName;
     LinearLayout taskListLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -41,9 +41,7 @@ public class TaskListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
 
-
-
-        addTaskButton = view.findViewById(R.id.addTaskButton);
+        btnNewTask = view.findViewById(R.id.addTaskButton);
         txtStudent = view.findViewById(R.id.txtNomeStudente);
         txtThesisName = view.findViewById(R.id.txtNomeTesi);
         txtProfessor = view.findViewById(R.id.txtProfessor);
@@ -80,17 +78,15 @@ public class TaskListFragment extends Fragment {
             }
         });
 
-        if (MainActivity.account.getAccountType().equals("Student")) {
-            addTaskButton.setVisibility(View.GONE);
-        } else {
-            addTaskButton.setOnClickListener(view1 -> addTaskOnClick());
-        }
-
+        if (MainActivity.account.getAccountType().equals("Student"))
+            btnNewTask.setVisibility(View.GONE);
+         else
+            btnNewTask.setOnClickListener(view1 -> newTask());
 
         return view;
     }
 
-    private void addTaskOnClick() {
+    private void newTask() {
         Fragment addTaskFragment = new NewTaskFragment();
         Bundle bundle = new Bundle();
 
@@ -112,16 +108,16 @@ public class TaskListFragment extends Fragment {
         TextView txtTaskName = view.findViewById(R.id.txtTaskName);
         TextView txtState = view.findViewById(R.id.txtState);
         TextView txtDescription = view.findViewById(R.id.txtDescription);
-        String description = document.getString("Description");
+        TextView txtEstimatedTime = view.findViewById(R.id.txtEstimatedTime);
+
         Button btnEdit = view.findViewById(R.id.btnEditThesis);
         Button btnDelete = view.findViewById(R.id.btnDeleteThesis);
 
         txtTaskName.setText(document.getString("Name"));
-        txtState.setText(document.getString("State"));
-        txtDescription.setText(description);
-
-
-        taskListLayout.addView(view);
+        txtState.setText(document.getString("State")); //TODO IMPOSTARE IL VALORE IN BASE AL NUMERO
+        txtDescription.setText(document.getString("Description"));
+        String estTime = document.getString("Estimated Time") + " " + getResources().getString(R.string.days);
+        txtEstimatedTime.setText(estTime);
 
 
         if (MainActivity.account.getAccountType().equals("Student")) {
@@ -130,10 +126,13 @@ public class TaskListFragment extends Fragment {
             btnDelete.setOnClickListener(view12 -> btnDeleteOnClick(view, txtTaskName));
         }
 
-        btnEdit.setOnClickListener(view1 -> btnEditOnClick(txtTaskName, txtState, description));
+        btnEdit.setOnClickListener(view1 -> editTask(txtTaskName, txtState, txtDescription.getText().toString()));
+
+        taskListLayout.addView(view);
+
     }
 
-    private void btnEditOnClick(TextView txtTaskName, TextView txtState, String description) {
+    private void editTask(TextView txtTaskName, TextView txtState, String description) {
         Bundle bundle = new Bundle();
         Fragment editTask = new EditTaskFragment();
 
@@ -142,6 +141,7 @@ public class TaskListFragment extends Fragment {
         bundle.putString("thesis name", thesisName);
         bundle.putString("description", description);
         bundle.putString("state", txtState.getText().toString());
+        bundle.putString("estimated_time", txtEstimatedTime.getText().toString());
 
 
         editTask.setArguments(bundle);
@@ -157,15 +157,15 @@ public class TaskListFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder.setTitle(R.string.confirm_deletion);
         builder.setMessage(R.string.task_delete_question);
-        builder.setPositiveButton(R.string.no, (dialog, which) -> {
 
-        });
-        builder.setNegativeButton(R.string.yes, (dialog, which) -> {
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
             taskListLayout.removeView(view);
             db.collection("tasks").document(txtTaskName.getText().toString()).delete();
-
         });
+
+        builder.setNegativeButton(R.string.no, (dialog, which) -> {});
         AlertDialog dialog = builder.create();
+
         dialog.show();
     }
 

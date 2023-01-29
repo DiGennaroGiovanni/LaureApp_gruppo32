@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -42,7 +43,7 @@
             android:paddingEnd="20sp"
             android:text="@string/student"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -52,7 +53,7 @@
             android:layout_weight="65"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -71,7 +72,7 @@
             android:paddingEnd="20sp"
             android:text="@string/task_name_"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
@@ -82,7 +83,8 @@
             android:inputType="textMultiLine"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp"
+            />
 
     </LinearLayout>
 
@@ -96,12 +98,12 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_weight="35"
-            android:fontFamily="@font/cardo"
             android:gravity="end"
             android:paddingEnd="20sp"
             android:text="@string/description"
+            android:fontFamily="@font/cardo"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
@@ -112,7 +114,52 @@
             android:inputType="textMultiLine"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="35"
+            android:text="@string/estimated_time"
+            android:textAlignment="textEnd"
+            android:paddingEnd="20sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/cardo"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"
+            tools:ignore="RtlCompat" />
+
+        <LinearLayout
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="65"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom">
+
+            <EditText
+                android:id="@+id/edtEstimatedTime"
+                android:layout_width="40sp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/days"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

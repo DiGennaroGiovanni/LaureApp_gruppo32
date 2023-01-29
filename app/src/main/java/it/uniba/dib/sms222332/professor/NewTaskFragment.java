@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 
@@ -28,7 +29,7 @@ public class NewTaskFragment extends Fragment {
 
     TextView txtStudent, txtThesisName;
     Button create_task_button;
-    EditText edtNameTask, edtDescription;
+    EditText edtTaskName, edtDescription, edtEstimatedTime;
     String studentName, thesisName;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -42,8 +43,10 @@ public class NewTaskFragment extends Fragment {
 
         txtStudent = view.findViewById(R.id.txtStudent);
         txtThesisName = view.findViewById(R.id.txtThesisName);
-        edtNameTask = view.findViewById(R.id.edtNameTask);
+        edtTaskName = view.findViewById(R.id.edtNameTask);
         edtDescription = view.findViewById(R.id.edtDescription);
+        edtEstimatedTime = view.findViewById(R.id.edtEstimatedTime);
+
         create_task_button = view.findViewById(R.id.create_task_button);
 
         if (getArguments() != null) {
@@ -55,38 +58,40 @@ public class NewTaskFragment extends Fragment {
             txtThesisName.setText(thesisName);
         }
 
-        create_task_button.setOnClickListener(view1 -> {
-
-            createTaskButtonOnClick(view1);
-
-        });
+        create_task_button.setOnClickListener(view1 -> createTaskButtonOnClick());
 
         return view;
     }
 
-    private void createTaskButtonOnClick(View view1) {
-        String nameTask = edtNameTask.getText().toString();
+    private void createTaskButtonOnClick() {
+        String taskName = edtTaskName.getText().toString();
         String description = edtDescription.getText().toString();
+        String estTime = edtEstimatedTime.getText().toString();
 
-        if (nameTask.isEmpty())
-            edtNameTask.setError(getString(R.string.enter_name_task));
+        if (taskName.isEmpty())
+            edtTaskName.setError(getResources().getString(R.string.enter_name_task));
         else if (description.isEmpty())
-            edtDescription.setError(getString(R.string.enter_task_description));
+            edtDescription.setError(getResources().getString(R.string.enter_task_description));
+        else if(estTime.isEmpty())
+            edtEstimatedTime.setError("Enter an estimated time");
+        else if(Integer.parseInt(estTime) < 1 || Integer.parseInt(estTime) > 30)
+            edtEstimatedTime.setError("Enter a value between 1 and 30");
         else {
             Map<String, String> infoTask = new HashMap<>();
-            infoTask.put("Name", nameTask);
+            infoTask.put("Name", taskName);
             infoTask.put("Description", description);
             infoTask.put("Student", studentName);
             infoTask.put("Thesis", thesisName);
-            infoTask.put("State", "Non Iniziato");
+            infoTask.put("Estimated Time", estTime);
+            infoTask.put("State", "0");
 
-            db.collection("tasks").document(nameTask).set(infoTask);
+            db.collection("tasks").document(taskName).set(infoTask);
 
             // chiusura della tastiera quando viene effettuato un cambio di fragment
-            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
 
-            Snackbar.make(view1, R.string.task_added, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(requireView(), R.string.task_added, Snackbar.LENGTH_LONG).show();
             getParentFragmentManager().popBackStack();
 
         }

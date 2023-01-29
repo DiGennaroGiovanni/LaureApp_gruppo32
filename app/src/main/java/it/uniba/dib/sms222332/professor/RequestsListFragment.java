@@ -24,6 +24,7 @@ public class RequestsListFragment extends Fragment {
 
     LinearLayout layoutRequestsList;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    TextView noRequest;
 
     @Nullable
     @Override
@@ -31,20 +32,28 @@ public class RequestsListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_requests_list, container, false);
 
         layoutRequestsList = view.findViewById(R.id.layoutRequestsList);
+        noRequest = view.findViewById(R.id.noRequests);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         db.collection("richieste")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            if (Objects.equals(document.getString("Professor"), MainActivity.account.getEmail()))
+                            if (Objects.equals(document.getString("Professor"), MainActivity.account.getEmail())){
                                 addRequestCard(document);
+                                noRequest.setVisibility(View.GONE);
+                            }
+
+
                         }
                     }
                 });
-
-
-        return view;
     }
 
     private void addRequestCard(QueryDocumentSnapshot document) {
@@ -85,6 +94,4 @@ public class RequestsListFragment extends Fragment {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-
-
 }

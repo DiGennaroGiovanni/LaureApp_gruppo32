@@ -14,9 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
@@ -30,14 +31,15 @@ public class ReceiptsListFragment extends Fragment {
 
     Button btnNewReceipt;
     LinearLayout listView;
-    private TextView txtThesisName;
-    private TextView txtStudent;
+    private TextView txtThesisName, txtStudent, txtNoReceipt;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_receipts_list, container, false);
 
+        txtNoReceipt = view.findViewById(R.id.noReceipts);
         txtThesisName = view.findViewById(R.id.txtThesisName);
         txtStudent = view.findViewById(R.id.txtStudentEmail);
         TextView txtProfessor = view.findViewById(R.id.txtProfessor);
@@ -60,32 +62,36 @@ public class ReceiptsListFragment extends Fragment {
         }
 
         btnNewReceipt = view.findViewById(R.id.btnNewReceipt);
+        listView = view.findViewById(R.id.layoutReceiptsList);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         if (MainActivity.account.getAccountType().equals("Student")) {
             btnNewReceipt.setVisibility(View.GONE);
         } else {
-            btnNewReceipt.setOnClickListener(view1 -> btnNewReceiptOnClick());
+            btnNewReceipt.setOnClickListener(view1 -> newReceipt());
         }
-
-        listView = view.findViewById(R.id.layoutReceiptsList);
 
         db.collection("ricevimenti")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            if (Objects.equals(document.getString("Thesis"), txtThesisName.getText().toString()))
+                        for (DocumentSnapshot document : task.getResult()) {
+                            if (Objects.equals(document.getString("Thesis"), txtThesisName.getText().toString())){
                                 addReceiptCard(document);
+                                txtNoReceipt.setVisibility(View.GONE);
+                            }
                         }
                     }
-
                 });
-
-
-        return view;
     }
 
-    private void btnNewReceiptOnClick() {
+    private void newReceipt() {
         Bundle newReceiptBundle = new Bundle();
         newReceiptBundle.putString("thesis_name", txtThesisName.getText().toString());
         newReceiptBundle.putString("student", txtStudent.getText().toString());
@@ -102,7 +108,7 @@ public class ReceiptsListFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
-    private void addReceiptCard(QueryDocumentSnapshot document) {
+    private void addReceiptCard(DocumentSnapshot document) {
         View v = getLayoutInflater().inflate(R.layout.card_receipt, null);
 
         TextView date = v.findViewById(R.id.txtReceiptDateCard);
@@ -116,17 +122,29 @@ public class ReceiptsListFragment extends Fragment {
         endTime.setText(document.getString("End Time"));
         description.setText(document.getString("Description"));
 
-
         Map<String, Object> map = document.getData();
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            if (entry.getKey().equals("Tasks")) {
-                String value = entry.getValue().toString();
-                if (!value.isEmpty())
-                    tasks.setText(value.substring(1, value.length() - 1));
-            }
+        ArrayList<String> taskList = new ArrayList<>();
+        assert map != null;
+        if(Objects.equals(map.get("Tasks"), ""))
+            tasks.setText("/");
+        else if (map.get("Task") instanceof String){
+            tasks.setText(Objects.requireNonNull(map.get("Tasks")).toString());
         }
 
-        listView.addView(v);
+        else {
+            for( Object obj : (ArrayList<?>) Objects.requireNonNull(map.get("Tasks")))
+                taskList.add(obj.toString());
 
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < taskList.size(); i++) {
+                sb.append(taskList.get(i));
+                if (i < taskList.size() - 1) {
+                    sb.append(", ");
+                }
+            }
+            String result = sb.toString();
+            tasks.setText(result);
+        }
+        listView.addView(v);
     }
 }

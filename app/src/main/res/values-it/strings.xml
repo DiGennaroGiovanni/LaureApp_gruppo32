@@ -185,7 +185,7 @@
     <string name="student_edit_task">Studente:</string>
     <string name="description_edit_task">Descrizione:</string>
     <string name="task_state_edit">Stato Task:</string>
-    <string name="to_complete_task">Da Completare</string>
+    <string name="to_complete_task">Iniziato</string>
     <string name="completed_task">Completato</string>
     <string name="not_started_task">Non Iniziato</string>
     <string name="student_edit_thesis">Studente:</string>
@@ -305,4 +305,7 @@
     <string name="snackbar_title_camera_permission">L\'importanza dei permessi</string>
     <string name="snackbar_camera_permission_message">I permessi sono necessari per permettere all\'app di scannerizzare un qr code, autorizzi a chiedere i permessi?</string>
     <string name="snackbar_camera_permission_message2">Autorizzi la richiesta dei permessi?</string>
+    <string name="no_requests_at_the_moment">Nessuna richiesta al momento</string>
+    <string name="no_receipt_yet">Ancora nessun ricevimento</string>
+    <string name="no_tasks_yet">Ancora nessun task</string>
 </resources>
