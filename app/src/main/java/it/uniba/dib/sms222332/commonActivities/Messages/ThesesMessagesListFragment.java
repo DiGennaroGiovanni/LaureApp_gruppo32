@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -28,15 +29,18 @@ public class ThesesMessagesListFragment extends Fragment {
     LinearLayout messageListLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<String> listaTesi = new ArrayList<>();
+    TextView txtNoMessage;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.messages));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.messages));
 
         View view = inflater.inflate(R.layout.fragment_theses_messages_list, container, false);
 
         messageListLayout = view.findViewById(R.id.layoutMessagesList);
+
+        txtNoMessage = view.findViewById(R.id.noMessage);
 
         return view;
     }
@@ -54,6 +58,7 @@ public class ThesesMessagesListFragment extends Fragment {
                         if(!listaTesi.contains(document.getString("Thesis Name"))){
                             addMessageCard(document);
                             listaTesi.add(document.getString("Thesis Name"));
+                            txtNoMessage.setVisibility(View.GONE);
                         }
                     }
                 }

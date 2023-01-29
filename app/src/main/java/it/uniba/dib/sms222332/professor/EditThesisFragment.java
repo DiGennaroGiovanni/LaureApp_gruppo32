@@ -145,11 +145,7 @@ public class EditThesisFragment extends Fragment {
 
         });
 
-        btnSave.setOnClickListener(view1 -> {
-
-            btnSaveOnClick(view1);
-
-        });
+        btnSave.setOnClickListener(view1 -> saveMaterials());
 
 
         return view;
@@ -160,7 +156,7 @@ public class EditThesisFragment extends Fragment {
         String estimated_time = getArguments().getString("time");
         String faculty = getArguments().getString("department");
         String name = getArguments().getString("name");
-        String type = getArguments().getString("type");
+        String type = getArguments().getString("typology");
         String related_projects = getArguments().getString("related_projects");
         String average = getArguments().getString(("average_marks"));
         String required_exam = getArguments().getString("required_exam");
@@ -189,7 +185,7 @@ public class EditThesisFragment extends Fragment {
         }
     }
 
-    private void btnSaveOnClick(View view1) {
+    private void saveMaterials() {
         String avgMarks = edtAverage.getText().toString();
         String requiredExams = edtRequiredExams.getText().toString();
 
@@ -268,7 +264,7 @@ public class EditThesisFragment extends Fragment {
 //                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 //                 imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
 
-            Snackbar.make(view1, "Thesis updated", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(requireView(), "Thesis updated", Snackbar.LENGTH_LONG).show();
 
             getParentFragmentManager().popBackStack();
         }

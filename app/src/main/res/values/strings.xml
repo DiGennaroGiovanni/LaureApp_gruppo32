@@ -86,7 +86,7 @@
     <string name="thesis_name">Thesis name</string>
     <string name="type_name_of_thesis">type the name of the thesis</string>
     <string name="experimental">Experimental</string>
-    <string name="compilation">Compilation</string>
+    <string name="drafted">Drafted</string>
     <string name="main_subject">Main subject</string>
     <string name="estimated_time">Estimated time:</string>
     <string name="create_thesis">create thesis</string>

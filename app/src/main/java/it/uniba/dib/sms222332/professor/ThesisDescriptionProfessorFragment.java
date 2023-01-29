@@ -37,7 +37,7 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class ThesisDescriptionProfessorFragment extends Fragment {
 
-    TextView txtThesisName,txtType,txtDepartment, txtTime,txtCorrelator,
+    TextView txtThesisName, txtTypology,txtDepartment, txtTime,txtCorrelator,
             txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtStudent;
     Button btnEdit,btnDelete,btnReceipt,btnTask;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -55,7 +55,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
         layout_lista_file = view.findViewById(R.id.layout_lista_file);
         txtThesisName = view.findViewById(R.id.txtNameTitle);
         txtDepartment = view.findViewById(R.id.txtDepartment);
-        txtType = view.findViewById(R.id.txtTypology);
+        txtTypology = view.findViewById(R.id.txtTypology);
         txtTime = view.findViewById(R.id.txtTime);
         txtCorrelator = view.findViewById(R.id.txtCorrelator);
         txtDescription = view.findViewById(R.id.txtDescription);
@@ -74,7 +74,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
             String estimated_time = getArguments().getString("estimated_time");
             String faculty = getArguments().getString("faculty");
             String thesisName = getArguments().getString("name");
-            String type = getArguments().getString("type");
+            String typology = getArguments().getString("type");
             String relatedProjects = getArguments().getString("related_projects");
             String averageMarks = getArguments().getString("average_marks");
             String requiredExam = getArguments().getString("required_exam");
@@ -82,14 +82,17 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
             relator = getArguments().getString("professor");
 
             txtThesisName.setText(thesisName);
-            txtType.setText(type);
             txtDepartment.setText(faculty);
             txtTime.setText(estimated_time);
             txtDescription.setText(description);
 
+            if(typology.equals("Drafted"))
+                txtTypology.setText(R.string.drafted);
+            else
+                txtTypology.setText(R.string.experimental);
 
             if(correlator.isEmpty())
-               txtCorrelator.setText(R.string.none );
+               txtCorrelator.setText(R.string.none);
             else
                 txtCorrelator.setText(correlator);
 
@@ -124,15 +127,35 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
             Bundle bundle = new Bundle();
 
             bundle.putString("name", txtThesisName.getText().toString());
-            bundle.putString("type",txtType.getText().toString());
-            bundle.putString("related_projects",txtRelatedProjects.getText().toString());
+            bundle.putString("typology", txtTypology.getText().toString());
             bundle.putString("department",txtDepartment.getText().toString());
             bundle.putString("time",txtTime.getText().toString());
-            bundle.putString("correlator",txtCorrelator.getText().toString());
             bundle.putString("description",txtDescription.getText().toString());
-            bundle.putString("student",txtStudent.getText().toString());
-            bundle.putString("required_exam",txtRequiredExams.getText().toString());
-            bundle.putString("average_marks", txtAverageMarks.getText().toString());
+
+            if(!txtRelatedProjects.getText().toString().equals(getResources().getString(R.string.none)))
+                bundle.putString("related_projects",txtRelatedProjects.getText().toString());
+            else
+                bundle.putString("related_projects","");
+
+            if(!txtCorrelator.getText().toString().equals(getResources().getString(R.string.none)))
+                bundle.putString("correlator",txtCorrelator.getText().toString());
+            else
+                bundle.putString("correlator","");
+
+            if(!txtStudent.getText().toString().equals(getResources().getString(R.string.none)))
+                bundle.putString("student",txtStudent.getText().toString());
+            else
+                bundle.putString("student","");
+
+            if(!txtRequiredExams.getText().toString().equals(getResources().getString(R.string.none)))
+                bundle.putString("required_exam",txtRequiredExams.getText().toString());
+            else
+                bundle.putString("required_exam","");
+
+            if(!txtAverageMarks.getText().toString().equals(getResources().getString(R.string.none)))
+                bundle.putString("average_marks", txtAverageMarks.getText().toString());
+            else
+                bundle.putString("average_marks", "");
 
             editThesisFragment.setArguments(bundle);
 
@@ -155,7 +178,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
                 StorageReference folderRef = storageRef.child(txtThesisName.getText().toString());
 
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                 builder.setTitle(R.string.confirm_deletion);
                 builder.setMessage(R.string.thesis_materials_delete_question);
                 builder.setPositiveButton(R.string.yes, (dialog, which) -> {

@@ -1,5 +1,6 @@
 package it.uniba.dib.sms222332.commonActivities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 import it.uniba.dib.sms222332.R;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
     private final int SPLASH_DISPLAY_LENGTH = 2000; // 2 seconds
 

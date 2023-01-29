@@ -25,7 +25,7 @@ public class FavoritesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.favoritesToolbar));
-        View view = inflater.inflate(R.layout.fragment_new_favorite, container, false);
+        View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
 

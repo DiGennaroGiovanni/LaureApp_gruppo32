@@ -87,7 +87,7 @@
     <string name="thesis_name">Nome tesi</string>
     <string name="type_name_of_thesis">Digita il nome della tesi</string>
     <string name="experimental">Sperimentale</string>
-    <string name="compilation">Compilativa</string>
+    <string name="drafted">Compilativa</string>
     <string name="main_subject">Materia principale</string>
     <string name="estimated_time">Tempo stimato:</string>
     <string name="create_thesis">Crea tesi</string>
