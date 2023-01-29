@@ -17,6 +17,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 
@@ -30,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         if (getIntent().getBooleanExtra("logout", false)) {
             View view = findViewById(android.R.id.content);

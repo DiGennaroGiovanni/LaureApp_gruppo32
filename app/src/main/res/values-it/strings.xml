@@ -305,4 +305,8 @@
     <string name="snackbar_title_camera_permission">L\'importanza dei permessi</string>
     <string name="snackbar_camera_permission_message">I permessi sono necessari per permettere all\'app di scannerizzare un qr code, autorizzi a chiedere i permessi?</string>
     <string name="snackbar_camera_permission_message2">Autorizzi la richiesta dei permessi?</string>
+    <string name="english_flag_desc_cont">lingua inglese</string>
+    <string name="italian_flag_cont_desc">lingua italiana</string>
+    <string name="sign_in_as_guest">Entra come ospite</string>
+    <string name="choice_language">Seleziona lingua</string>
 </resources>

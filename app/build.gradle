@@ -57,6 +57,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace 'it.uniba.dib.sms222332'
+
     buildFeatures {
         viewBinding true
     }

@@ -13,10 +13,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:maxWidth="500dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
 
         <ImageView
             android:id="@+id/imageView"
@@ -25,99 +27,74 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:contentDescription="@string/testimage"
-            android:maxWidth="200dp"
+            android:maxWidth="300dp"
             app:srcCompat="@drawable/logo_app" />
 
         <EditText
             android:id="@+id/edtEmailLogin"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:autofillHints=""
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:minWidth="250dp"
-            android:minHeight="50dp"
-            android:textColorHint="#546E7A" />
+            android:minWidth="300dp"
+            android:minHeight="50dp" />
 
         <EditText
             android:id="@+id/edtPasswordLogin"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:autofillHints=""
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:minWidth="250dp"
-            android:minHeight="50dp"
-            android:textColorHint="#546E7A" />
+            android:minWidth="300dp"
+            android:minHeight="50dp" />
 
-        <Button
-            android:id="@+id/btnAccedi"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_margin="15dp"
-            android:layout_weight="50"
-            android:background="@drawable/buttonshape"
-            android:minWidth="100dp"
-            android:shadowColor="#A8A8A8"
-            android:shadowRadius="5"
-            android:text="@string/sign_in"
-            android:textColor="#FFFFFF" />
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/btnAccedi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="33"
+                android:minWidth="120dp"
+                android:text="@string/sign_in" />
 
+            <Space
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_weight="33" />
+
+            <Button
+                android:id="@+id/btnRegistrati"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="33"
+                android:minWidth="120dp"
+                android:text="@string/sign_up" />
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btnGuest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
+        android:text="@string/sign_in_as_guest"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutLanguage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.30">
-
-        <Button
-            android:id="@+id/btnRegistrati"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="50"
-            android:background="@android:color/transparent"
-            android:minWidth="100dp"
-            android:shadowColor="#A8A8A8"
-            android:shadowRadius="5"
-            android:text="@string/sign_up"
-            android:textColor="#1059EC"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:text="or"
-            android:textAlignment="center" />
-
-        <Button
-            android:id="@+id/btnGuest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="50"
-            android:background="@color/zxing_transparent"
-            android:minWidth="70dp"
-            android:padding="10dp"
-            android:shadowColor="#A8A8A8"
-            android:shadowRadius="5"
-            android:text="@string/sign_in_as_guest"
-            android:textColor="#1059EC"
-            android:textSize="16sp" />
-    </LinearLayout>
+        app:layout_constraintVertical_bias="0.20" />
 
     <LinearLayout
         android:id="@+id/linearLayoutLanguage"
@@ -151,7 +128,7 @@
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/english_flag_desc_cont"
-                android:maxWidth="80dp"
+                android:maxWidth="100dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/english_flag_icon" />
 
@@ -164,9 +141,10 @@
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/italian_flag_cont_desc"
-                android:maxWidth="80dp"
+                android:maxWidth="100dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/italy_flag_icon" />
         </LinearLayout>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
