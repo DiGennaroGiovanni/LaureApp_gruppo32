@@ -4,7 +4,9 @@ import static android.content.ContentValues.TAG;
 import static android.content.Context.DOWNLOAD_SERVICE;
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
+import android.Manifest;
 import android.app.DownloadManager;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +21,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -36,6 +40,7 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class ThesisDescriptionProfessorFragment extends Fragment {
 
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
     TextView txtThesisName, txtTypology,txtDepartment, txtTime,txtCorrelator,
             txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtStudent;
     Button btnEdit,btnDelete,btnReceipt,btnTask;
@@ -82,7 +87,8 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
             txtThesisName.setText(thesisName);
             txtDepartment.setText(faculty);
-            txtTime.setText(estimated_time);
+            String estTime = estimated_time + " " + getResources().getString(R.string.days);
+            txtTime.setText(estTime);
             txtDescription.setText(description);
 
             if(typology.equals("Drafted"))
@@ -282,16 +288,26 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
 
 
-    private void addMaterialItem(String nomeFile) {
+    private void addMaterialItem(String fileName) {
         View view = getLayoutInflater().inflate(R.layout.card_material_downloadable, null);
         TextView nameView = view.findViewById(R.id.materialName);
-        nameView.setText(nomeFile);
+        nameView.setText(fileName);
 
         Button downloadMaterial = view.findViewById(R.id.downloadMaterial);
 
         downloadMaterial.setOnClickListener(view1 -> {
-            download(nomeFile);
-            Snackbar.make(view1, R.string.downloading + nomeFile, Snackbar.LENGTH_LONG).show();
+
+            int permissionCheck = ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(requireActivity(),
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+            } else {
+                download(fileName);
+                Snackbar.make(requireView(), R.string.downloading +" " + fileName, Snackbar.LENGTH_LONG).show();
+            }
+
         });
 
         layout_lista_file.addView(view);

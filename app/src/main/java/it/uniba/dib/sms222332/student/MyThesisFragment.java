@@ -205,16 +205,16 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         layoutMaterials.setVisibility(View.VISIBLE);
         layoutButton.setVisibility(View.VISIBLE);
 
-        String thesis_name = MainActivity.account.getRequest();
+        String thesisName = MainActivity.account.getRequest();
 
         db.collection("Tesi")
-                .document(thesis_name)
+                .document(thesisName)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            txtNameTitle.setText(thesis_name);
+                            txtNameTitle.setText(thesisName);
                             txtType.setText(document.getString("Type"));
                             txtDepartment.setText(document.getString("Faculty"));
                             txtProfessor.setText(document.getString("Professor"));
@@ -241,31 +241,28 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
         //AGGIUNGO MATERIALI DEL DATABASE
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference().child(thesis_name);
-
-        storageRef.listAll().addOnSuccessListener(listResult -> {
+        storage.getReference().child(thesisName).listAll().addOnSuccessListener(listResult -> {
 
             for (StorageReference item : listResult.getItems()) {
 
-                String nomeFile = item.getName();
-                addDownloadableMaterial(nomeFile);
+                addDownloadableMaterial(item.getName());
             }
 
         }).addOnFailureListener(exception -> Log.w("info", getString(R.string.error_file), exception));
 
         buttonAdd.setOnClickListener(view -> addNewMaterial());
 
-        btnSave.setOnClickListener(view -> btnSaveOnClick(thesis_name, view));
+        btnSave.setOnClickListener(view -> saveNewMaterials(thesisName, view));
 
-        btnTask.setOnClickListener(view -> btnTaskOnClick(thesis_name));
+        btnTask.setOnClickListener(view -> viewTasks(thesisName));
 
-        btnReceipt.setOnClickListener(view -> btnReceiptOnClick(thesis_name));
+        btnReceipt.setOnClickListener(view -> viewReceipts(thesisName));
 
-        btnSendMessage.setOnClickListener(view -> btnSendMessageOnClick(thesis_name));
+        btnSendMessage.setOnClickListener(view -> sendMessage(thesisName));
 
     }
 
-    private void btnSendMessageOnClick(String thesis_name) {
+    private void sendMessage(String thesis_name) {
         Fragment thesisMessage = new NewMessageFragment();
         Bundle bundle = new Bundle();
 
@@ -281,7 +278,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         fragmentTransaction.commit();
     }
 
-    private void btnReceiptOnClick(String thesis_name) {
+    private void viewReceipts(String thesis_name) {
         Bundle bundle = new Bundle();
         bundle.putString("thesis_name", thesis_name);
         bundle.putString("professor", txtProfessor.getText().toString());
@@ -295,7 +292,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         fragmentTransaction.commit();
     }
 
-    private void btnTaskOnClick(String thesis_name) {
+    private void viewTasks(String thesis_name) {
         Fragment taskListFragment = new TaskListFragment();
         Bundle bundle = new Bundle();
 
@@ -311,7 +308,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         fragmentTransaction.commit();
     }
 
-    private void btnSaveOnClick(String thesis_name, View view) {
+    private void saveNewMaterials(String thesis_name, View view) {
         for (String fileName : deletedOldMaterials) {
             storageReference.child(thesis_name).child(fileName).delete();
         }
@@ -381,13 +378,12 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         layout_lista_file.addView(view);
     }
 
-    private void addDownloadableMaterial(String nomeFile) {
+    private void addDownloadableMaterial(String fileName) {
         View view = getLayoutInflater().inflate(R.layout.card_material_downloadable, null);
         TextView nameView = view.findViewById(R.id.materialName);
-        nameView.setText(nomeFile);
+        nameView.setText(fileName);
 
-        Button downloadMaterial;
-        downloadMaterial = view.findViewById(R.id.downloadMaterial);
+        Button downloadMaterial = view.findViewById(R.id.downloadMaterial);
 
         downloadMaterial.setOnClickListener(view1 -> {
 
@@ -400,8 +396,8 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                         MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
             } else {
                 // permesso già concesso, procedi con la lettura dei file
-                download(nomeFile);
-                Snackbar.make(view1, R.string.downloading + nomeFile, Snackbar.LENGTH_LONG).show();
+                download(fileName);
+                Snackbar.make(view1, R.string.downloading + fileName, Snackbar.LENGTH_LONG).show();
             }
 
         });

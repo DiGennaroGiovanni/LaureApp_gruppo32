@@ -270,7 +270,7 @@
     <string name="firebase_error">Firebas storage ERRORE</string>
     <string name="error_downloading_pdf">Error nel downloadi del PDF dal database: </string>
     <string name="none">Nessuno</string>
-    <string name="downloading">"Downloading "</string>
+    <string name="downloading">Scarico</string>
     <string name="thesis_eliminated">Tesi Eliminata</string>
     <string name="error_deleting_folder">Errore durante l\'eliminazione della cartella: </string>
     <string name="thesis_materials_delete_question">Sei sicuro di voler eliminare questa tesi ed i suoi materiali?</string>

@@ -149,10 +149,9 @@ public class EditThesisFragment extends Fragment {
 
         storage.getReference().child(txtThesisName.getText().toString()).listAll().addOnSuccessListener(listResult -> {
 
-            for (StorageReference item : listResult.getItems()) {
+            for (StorageReference item : listResult.getItems())
+                addExistentMaterial(item.getName());
 
-                item.getDownloadUrl().addOnSuccessListener(this::addExistentMaterial);
-            }
 
         }).addOnFailureListener(exception -> Log.w("info", getString(R.string.error_file), exception));
 
@@ -312,8 +311,7 @@ public class EditThesisFragment extends Fragment {
         });
     }
 
-    private void addExistentMaterial(Uri uri) {
-        String fileName = getNameFromUri(uri);
+    private void addExistentMaterial(String fileName) {
 
         View view = getLayoutInflater().inflate(R.layout.card_material, null);
         TextView nameView = view.findViewById(R.id.materialName);

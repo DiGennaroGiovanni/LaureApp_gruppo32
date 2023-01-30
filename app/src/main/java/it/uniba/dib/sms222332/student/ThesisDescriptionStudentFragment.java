@@ -148,7 +148,10 @@ public class ThesisDescriptionStudentFragment extends Fragment {
         txtNameTitle.setText(name);
         txtType.setText(type);
         txtDepartment.setText(faculty);
-        txtTime.setText(estimated_time);
+
+        String estTime = estimated_time + " " + getResources().getString(R.string.days);
+        txtTime.setText(estTime);
+
         txtDescription.setText(description);
         txtProfessor.setText(professor);
 
