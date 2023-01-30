@@ -66,14 +66,19 @@ public class EditTaskFragment extends Fragment {
         if (!MainActivity.account.getAccountType().equals("Professor"))
             edtDescription.setEnabled(false);
 
-        switch (Integer.parseInt(state)) {
-            case 2:
+        switch (state) {
+            case "Completato":
+            case "Completed":
                 rdbCompletato.setChecked(true);
                 break;
-            case 1:
+
+            case "Iniziato":
+            case "Started":
                 rdbDaCompletare.setChecked(true);
                 break;
-            case 0:
+
+            case "Non Iniziato":
+            case "Not Started":
                 rdbNonIniziato.setChecked(true);
                 break;
         }

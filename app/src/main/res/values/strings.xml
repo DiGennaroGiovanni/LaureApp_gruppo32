@@ -185,7 +185,7 @@
     <string name="student_edit_task">Student:</string>
     <string name="description_edit_task">Description:</string>
     <string name="task_state_edit">Task state:</string>
-    <string name="to_complete_task">Started</string>
+    <string name="started_task">Started</string>
     <string name="completed_task">Completed</string>
     <string name="not_started_task">Not Started</string>
     <string name="student_edit_thesis">Student:</string>

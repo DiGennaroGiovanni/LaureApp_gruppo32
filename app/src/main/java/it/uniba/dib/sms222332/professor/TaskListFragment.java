@@ -29,8 +29,8 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 public class TaskListFragment extends Fragment {
 
     Button btnNewTask;
-    TextView txtStudent, txtThesisName, txtProfessor, txtEstimatedTime;
-    String studentName, thesisName;
+    TextView txtStudent, txtThesisName, txtProfessor, txtNoTask;
+    String student, thesisName;
     LinearLayout taskListLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -45,12 +45,13 @@ public class TaskListFragment extends Fragment {
         txtStudent = view.findViewById(R.id.txtNomeStudente);
         txtThesisName = view.findViewById(R.id.txtNomeTesi);
         txtProfessor = view.findViewById(R.id.txtProfessor);
+        txtNoTask = view.findViewById(R.id.noTasks);
 
         if (getArguments() != null) {
 
-            studentName = getArguments().getString("student");
+            student = getArguments().getString("student");
             thesisName = getArguments().getString("thesisName");
-            txtStudent.setText(studentName);
+            txtStudent.setText(student);
             txtThesisName.setText(thesisName);
 
             String professor = getArguments().getString("professor");
@@ -70,8 +71,11 @@ public class TaskListFragment extends Fragment {
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if (Objects.equals(document.getString("Thesis"), txtThesisName.getText().toString()))
+                    if (Objects.equals(document.getString("Thesis"), txtThesisName.getText().toString())){
                         addTaskCard(document);
+                        txtNoTask.setVisibility(View.GONE);
+                    }
+
                 }
             } else {
                 Log.e("db", "Error");
@@ -91,7 +95,7 @@ public class TaskListFragment extends Fragment {
         Bundle bundle = new Bundle();
 
         bundle.putString("thesisName", thesisName);
-        bundle.putString("student", studentName);
+        bundle.putString("student", student);
 
         addTaskFragment.setArguments(bundle);
 
@@ -114,11 +118,23 @@ public class TaskListFragment extends Fragment {
         Button btnDelete = view.findViewById(R.id.btnDeleteThesis);
 
         txtTaskName.setText(document.getString("Name"));
-        txtState.setText(document.getString("State")); //TODO IMPOSTARE IL VALORE IN BASE AL NUMERO
         txtDescription.setText(document.getString("Description"));
         String estTime = document.getString("Estimated Time") + " " + getResources().getString(R.string.days);
         txtEstimatedTime.setText(estTime);
 
+        switch(Integer.parseInt(Objects.requireNonNull(document.getString("State")))){
+            case 0:
+                txtState.setText(R.string.not_started_task);
+                break;
+
+            case 1:
+                txtState.setText(R.string.started_task);
+                break;
+
+            case 2:
+                txtState.setText(R.string.completed_task);
+
+        }
 
         if (MainActivity.account.getAccountType().equals("Student")) {
             btnDelete.setVisibility(View.GONE);
@@ -126,22 +142,24 @@ public class TaskListFragment extends Fragment {
             btnDelete.setOnClickListener(view12 -> btnDeleteOnClick(view, txtTaskName));
         }
 
-        btnEdit.setOnClickListener(view1 -> editTask(txtTaskName, txtState, txtDescription.getText().toString()));
+        btnEdit.setOnClickListener(view1 -> editTask(txtTaskName.getText().toString(), txtState.getText().toString(),
+                txtDescription.getText().toString(), txtEstimatedTime.getText().toString()));
 
         taskListLayout.addView(view);
 
     }
 
-    private void editTask(TextView txtTaskName, TextView txtState, String description) {
+    private void editTask(String taskName, String state, String description, String estimatedTime) {
+
         Bundle bundle = new Bundle();
         Fragment editTask = new EditTaskFragment();
 
-        bundle.putString("student", studentName);
-        bundle.putString("name", txtTaskName.getText().toString());
+        bundle.putString("student", student);
+        bundle.putString("name", taskName);
         bundle.putString("thesis name", thesisName);
         bundle.putString("description", description);
-        bundle.putString("state", txtState.getText().toString());
-        bundle.putString("estimated_time", txtEstimatedTime.getText().toString());
+        bundle.putString("estimated_time", estimatedTime);
+        bundle.putString("state", state);
 
 
         editTask.setArguments(bundle);
