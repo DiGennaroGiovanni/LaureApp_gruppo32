@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -37,7 +38,7 @@ public class NewMessageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.availableThesisTooolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.availableThesisTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_new_message, container, false);
 
@@ -57,16 +58,12 @@ public class NewMessageFragment extends Fragment {
         }
 
 
-        btnSendMessage.setOnClickListener(view1 -> {
-
-            btnSendMessageOnClick(view1);
-
-        });
+        btnSendMessage.setOnClickListener(view1 -> sendMessage());
 
         return view;
     }
 
-    private void btnSendMessageOnClick(View view1) {
+    private void sendMessage() {
         object = edtObject.getText().toString();
         description = edtDescription.getText().toString();
 
@@ -78,7 +75,6 @@ public class NewMessageFragment extends Fragment {
         else {
 
             LocalDateTime date = LocalDateTime.now();
-            date = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
             Map<String, String> message = new HashMap<>();
@@ -94,11 +90,11 @@ public class NewMessageFragment extends Fragment {
             db.collection("messaggi").document().set(message);
 
                     // chiusura della tastiera quando viene effettuato un cambio di fragment
-                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
-                    Snackbar.make(view1, "Message sent!", Snackbar.LENGTH_LONG).show();
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
+                    Snackbar.make(requireView(), "Message sent!", Snackbar.LENGTH_LONG).show();
 
-            getActivity().onBackPressed();
+            getParentFragmentManager().popBackStack();
 
         }
     }

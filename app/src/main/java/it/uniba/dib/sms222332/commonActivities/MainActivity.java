@@ -181,23 +181,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 selectedFragment = getProperHome();
         }
 
-        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-
-        if(selectedFragment instanceof ProfessorHomeFragment || selectedFragment instanceof StudentHomeFragment){
-            if(currentFragment instanceof ProfessorHomeFragment || currentFragment instanceof StudentHomeFragment){
-                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
-                fragmentTransaction.commit();
-            }
-        }
-        else{
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        }
-
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
         selectBottomNavigationBarItem();
         return true;
     };
@@ -276,8 +261,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
-        } else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ProfessorHomeFragment) && !(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof StudentHomeFragment))
+        } else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ProfessorHomeFragment) && !(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof StudentHomeFragment)){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, getProperHome()).commit();
+            bottomNav.setSelectedItemId(R.id.home_button);
+        }
+
 
         else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
