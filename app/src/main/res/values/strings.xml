@@ -276,7 +276,6 @@
     <string name="qr_code_reading">QR code reading</string>
     <string name="research_title">Research a thesis by setting filters on the constraints</string>
     <string name="average_lower_than">"Average lower than: "</string>
-    <string name="hide_thesis_exams_constraint">Hide thesis with required exams</string>
     <string name="research">Research</string>
     <string name="error_btnResearch">Error onClick of btnResearch: </string>
     <string name="error_shareButton">Errore onClick of shareButton: </string>
@@ -305,5 +304,9 @@
     <string name="no_requests_at_the_moment">No requests at the moment</string>
     <string name="no_receipt_yet">No receipt yet</string>
     <string name="no_tasks_yet">No tasks yet</string>
+    <string name="no_favorite_thesese_at_the_moment">No favorite thesese at the moment</string>
+    <string name="filter_dialog_title">Look for theses by setting constraint filters</string>
+    <string name="max_avg_constr">Maximum average value:</string>
+    <string name="hide_theses_check">Hide theses which require completed exams</string>
 
 </resources>

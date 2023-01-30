@@ -277,7 +277,6 @@
     <string name="qr_code_reading">Lettura QR code</string>
     <string name="research_title">Ricerca una tesi impostando filtri sui vincoli</string>
     <string name="average_lower_than">"Media inferiore a: "</string>
-    <string name="hide_thesis_exams_constraint">Nascondi le tesi con esami richiesti</string>
     <string name="research">Ricerca</string>
     <string name="error_btnResearch">Errore nell\'onClick del btnResearch: </string>
     <string name="error_shareButton">Errore nell\'onClick del shareButton: </string>
@@ -308,4 +307,8 @@
     <string name="no_requests_at_the_moment">Nessuna richiesta al momento</string>
     <string name="no_receipt_yet">Ancora nessun ricevimento</string>
     <string name="no_tasks_yet">Ancora nessun task</string>
+    <string name="no_favorite_thesese_at_the_moment">Non hai tesi preferite al momento</string>
+    <string name="filter_dialog_title">Cerca le tesi inserendo i filtri sui vincoli</string>
+    <string name="max_avg_constr">"Media voti massima: "</string>
+    <string name="hide_theses_check">Nascondi tesi che richiedono esami completati</string>
 </resources>

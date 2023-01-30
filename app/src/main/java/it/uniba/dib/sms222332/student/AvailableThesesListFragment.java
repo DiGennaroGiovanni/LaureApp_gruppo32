@@ -3,6 +3,7 @@ package it.uniba.dib.sms222332.student;
 import static android.content.ContentValues.TAG;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -111,7 +112,7 @@ public class AvailableThesesListFragment extends Fragment {
 
             // Imposto il titolo customizzato
             TextView titleView = new TextView(requireContext());
-            titleView.setText("Research a thesis by setting filters on the constraints");
+            titleView.setText(R.string.filter_dialog_title);
             titleView.setGravity(Gravity.CENTER);
             titleView.setTextSize(18);
             titleView.setTypeface(null, Typeface.BOLD);
@@ -127,7 +128,9 @@ public class AvailableThesesListFragment extends Fragment {
             final TextView average = new TextView(requireContext());
 
             seekBar.setProgress(seekBarValue - 18);
-            average.setText("Average lower than: " + seekBarValue);
+
+            String avgString = getResources().getString(R.string.max_avg_constr) + seekBarValue;
+            average.setText(avgString);
             average.setTextColor(Color.BLACK);
             seekBar.setMax(12);
 
@@ -138,7 +141,8 @@ public class AvailableThesesListFragment extends Fragment {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                     int selectedValue = progress + 18;
-                    average.setText("Average lower than: " + selectedValue);
+                    String avgString = getResources().getString(R.string.max_avg_constr) + selectedValue;
+                    average.setText(avgString);
                     seekBarValue = selectedValue;
                 }
 
@@ -155,7 +159,7 @@ public class AvailableThesesListFragment extends Fragment {
 
             examsCheckbox = new CheckBox(requireContext());
             examsCheckbox.setChecked(isRequestedExamChecked);
-            examsCheckbox.setText("Hide thesis with required exams");
+            examsCheckbox.setText(R.string.hide_theses_check);
             examsCheckbox.setOnCheckedChangeListener((compoundButton, b) -> isRequestedExamChecked = b);
 
             // Definisco il bottone di ricerca
@@ -169,6 +173,7 @@ public class AvailableThesesListFragment extends Fragment {
                                 layout_lista_tesi.removeAllViews();
                                 for(QueryDocumentSnapshot document : task.getResult()) {
                                     String faculty = document.getString("Faculty");
+                                    assert faculty != null;
                                     if(faculty.equals(MainActivity.account.getFaculty())) {
                                         addCheckConstraint(document);
                                     }
@@ -205,11 +210,8 @@ public class AvailableThesesListFragment extends Fragment {
 
         });
 
-        btnCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(checkPermission()) scanQrCode();
-            }
+        btnCamera.setOnClickListener(view12 -> {
+            if(checkPermission()) scanQrCode();
         });
 
         /*
@@ -226,58 +228,56 @@ public class AvailableThesesListFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
-                    layout_lista_tesi.removeAllViews();
-                    for(QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        String faculty = document.getString("Faculty");
-                        assert faculty != null;
-
-                            if(faculty.equals(MainActivity.account.getFaculty()) &&
-                                    Objects.requireNonNull(document.get("Name")).toString().toLowerCase().contains(newText.trim().toLowerCase()) &&
-                                    ( document.getString("Student").equals("") || document.getString("Student").equals(MainActivity.account.getEmail()) ) ) {
-                                addCheckConstraint(document);
-                            }
-
-                    }
-                });
 
                 if(newText.equals("")) {
-                    db.collection("Tesi")
-                            .get()
-                            .addOnCompleteListener(task -> {
-                                if(task.isSuccessful()) {
-                                    layout_lista_tesi.removeAllViews();
-                                    for(QueryDocumentSnapshot document : task.getResult()) {
-                                        String faculty = document.getString("Faculty");
-                                        if(faculty.equals(MainActivity.account.getFaculty())) {
-                                            // chiusura della tastiera
-                                            closeKeyboard(view);
-                                            addCheckConstraint(document);
-                                        }
-                                    }
-                                }
-                            });
+                    db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
+                        layout_lista_tesi.removeAllViews();
+                        for(QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            String studentMail = document.getString("Student");
+                            assert studentMail != null;
+                            if( studentMail.equals(MainActivity.account.getEmail()) ||(  Objects.equals(studentMail, "") && Objects.equals(document.getString("Faculty"), MainActivity.account.getFaculty()) ) ) {
+                                addCheckConstraint(document);
+                            }
+                        }
+                        closeKeyboard(view);
+                    });
+                }
+
+                else {
+                    db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
+                        layout_lista_tesi.removeAllViews();
+                        for(QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            String faculty = document.getString("Faculty");
+                            assert faculty != null;
+                            if(faculty.equals(MainActivity.account.getFaculty()) &&
+                                    Objects.requireNonNull(document.get("Name")).toString().toLowerCase().contains(newText.trim().toLowerCase()) &&
+                                    ( Objects.equals(document.getString("Student"), "") || Objects.equals(document.getString("Student"), MainActivity.account.getEmail()) ) ) {
+                                addCheckConstraint(document);
+                            }
+                        }
+                    });
                 }
                 return true;
             }
         });
 
-        db.collection("Tesi")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()) {
-                        for(QueryDocumentSnapshot document : task.getResult()) {
-                            if(document.getString("Student").equals("") && document.getString("Faculty").equals(MainActivity.account.getFaculty())) {
-                                addCardThesis(document);
-                            }
-                        }
-                    }
-                });
+//        db.collection("Tesi")
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if(task.isSuccessful()) {
+//                        for(QueryDocumentSnapshot document : task.getResult()) {
+//                            String studentMail = document.getString("Student");
+//                            if(studentMail.equals(MainActivity.account.getEmail()) || ( studentMail.equals("") && document.getString("Faculty").equals(MainActivity.account.getFaculty()) ) ) {
+//                                addCardThesis(document);
+//                            }
+//                        }
+//                    }
+//                });
         return view;
     }
 
     private void closeKeyboard(View view) {
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
@@ -305,7 +305,9 @@ public class AvailableThesesListFragment extends Fragment {
         db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
             layout_lista_tesi.removeAllViews();
             for(QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                if(Objects.equals(document.getString("Student"), "") && document.getString("Faculty").equals(MainActivity.account.getFaculty())) {
+                String studentMail = document.getString("Student");
+                assert studentMail != null;
+                if( studentMail.equals(MainActivity.account.getEmail()) ||(  Objects.equals(studentMail, "") && Objects.equals(document.getString("Faculty"), MainActivity.account.getFaculty()) ) ) {
                     addCheckConstraint(document);
                 }
             }
@@ -315,7 +317,7 @@ public class AvailableThesesListFragment extends Fragment {
     }
 
     private void addCardThesis(QueryDocumentSnapshot document) {
-        View view = getLayoutInflater().inflate(R.layout.card_available_thesis, null);
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.card_available_thesis, null);
 
         TextView txtName = view.findViewById(R.id.txtName);
         TextView txtType = view.findViewById(R.id.txtTypology);
@@ -327,7 +329,7 @@ public class AvailableThesesListFragment extends Fragment {
 
         String professorEmail = document.getString("Professor");
         String thesisName = document.getString("Name");
-        String professorFullName = document.getString("Name") + " " + document.getString("Surname");
+
 
         Thesis thesis = new Thesis(thesisName, professorEmail);
 
@@ -419,7 +421,7 @@ public class AvailableThesesListFragment extends Fragment {
             }
         });
 
-        layout_lista_tesi.addView(view);
+
 
         view.setOnClickListener(view1 -> {
 
@@ -448,6 +450,7 @@ public class AvailableThesesListFragment extends Fragment {
             fragmentTransaction.commit();
         });
 
+        layout_lista_tesi.addView(view);
     }
 
 //    private void loadFavorite(Callback<List<String>> callback) {
@@ -629,20 +632,10 @@ public class AvailableThesesListFragment extends Fragment {
                 builder.setMessage(getString(R.string.snackbar_camera_permission_message) + "\n\n" + getString(R.string.snackbar_camera_permission_message2));
 
                 // L'utente accetta di concedere i permessi e avvio richiesta accettazione permessi.
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        requestPermissionLauncher.launch(CAMERA);
-                    }
-                });
+                builder.setPositiveButton("Yes", (dialogInterface, i) -> requestPermissionLauncher.launch(CAMERA));
 
                 // L'utente decide di non accettare l'avvio di richiesta accettazione permessi.
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Snackbar.make(requireView(), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
-                    }
-                });
+                builder.setNegativeButton("No", (dialogInterface, i) -> Snackbar.make(requireView(), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show());
 
                 AlertDialog dialog = builder.create();
                 dialog.show();  // Avvio la visualizzazione dell'AlertDialog.
