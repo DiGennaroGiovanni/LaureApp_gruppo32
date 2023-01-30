@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.LoginActivity;
@@ -37,6 +38,9 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_prof);
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.registration);
+
 
         buttonConcludiProf = findViewById(R.id.buttonConcludiProf);
         edtCognomeProf = findViewById(R.id.edtCognomeProf);

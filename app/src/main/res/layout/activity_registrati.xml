@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +9,7 @@
     tools:context=".commonActivities.RegisterActivity">
 
     <Button
-        android:id="@+id/buttonContinuaProfessore"
+        android:id="@+id/btnProf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/professor"
@@ -26,8 +27,8 @@
     android:id="@+id/imageView"
     android:layout_width="100dp"
     android:layout_height="100dp"
-    android:contentDescription="todo"
-    android:src="@drawable/img"
+    android:contentDescription="@string/logo"
+    android:src="@drawable/logoprova"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.498"
@@ -53,7 +54,7 @@
     app:layout_constraintVertical_bias="0.34" />
 
 <Button
-    android:id="@+id/buttonContinuaStudente"
+    android:id="@+id/btnStud"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/studentProfession"
@@ -63,7 +64,7 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.58"
-    app:layout_constraintStart_toEndOf="@+id/buttonContinuaProfessore"
+    app:layout_constraintStart_toEndOf="@+id/btnProf"
     app:layout_constraintTop_toBottomOf="@+id/account_type"
     app:layout_constraintVertical_bias="0.203" />
 

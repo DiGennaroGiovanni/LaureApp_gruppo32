@@ -281,7 +281,7 @@
     <string name="error_btnResearch">Errore nell\'onClick del btnResearch: </string>
     <string name="error_shareButton">Errore nell\'onClick del shareButton: </string>
     <string name="flash_on">Clicca "volume su" per accendere il flash</string>
-    <string name="request_canceled">Richiesta cancellata.</string>
+    <string name="request_canceled">Richiesta cancellata</string>
     <string name="not_accepted_yet">Non ancora accettata</string>
     <string name="thesis_updated">Tesi aggiornata</string>
     <string name="not_read_permissions">Non hai i permessi di lettura</string>
@@ -311,4 +311,6 @@
     <string name="filter_dialog_title">Cerca le tesi inserendo i filtri sui vincoli</string>
     <string name="max_avg_constr">"Media voti massima: "</string>
     <string name="hide_theses_check">Nascondi tesi che richiedono esami completati</string>
+    <string name="logo">logo</string>
+    <string name="registration">Registrazione</string>
 </resources>

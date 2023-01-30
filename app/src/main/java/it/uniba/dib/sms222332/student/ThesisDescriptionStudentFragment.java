@@ -1,6 +1,7 @@
 package it.uniba.dib.sms222332.student;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -35,7 +41,7 @@ public class ThesisDescriptionStudentFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.availableThesisTooolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.availableThesisTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_thesis_description_student, container, false);
 
@@ -53,7 +59,7 @@ public class ThesisDescriptionStudentFragment extends Fragment {
         btnContactProf = view.findViewById(R.id.btnContactProf);
 
         if (getArguments() != null) {
-            getDataFromPreviousFragment();
+            setThesisData();
 
         }
 
@@ -78,7 +84,9 @@ public class ThesisDescriptionStudentFragment extends Fragment {
             });
 
         else
-            btnContactProf.setOnClickListener(view12 -> Snackbar.make(view12, R.string.you_can_send_messages, Snackbar.LENGTH_LONG).show());
+            btnContactProf.setOnClickListener(view12 -> Snackbar.make(requireView(), R.string.you_can_send_messages, Snackbar.LENGTH_LONG).show());
+
+
 
 
         db.collection("richieste").document(MainActivity.account.getEmail()).get().addOnCompleteListener(task -> {
@@ -86,8 +94,9 @@ public class ThesisDescriptionStudentFragment extends Fragment {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     String thesisName = document.getString("Thesis");
-                    if (MainActivity.account.getRequest().equals("yes") && txtNameTitle.getText().toString().equals(thesisName)) {
 
+                    //HO FATTO RICHIESTA PER QUESTA TESI MA NON MI È STATA ANCORA ACCETTATA
+                    if (MainActivity.account.getRequest().equals("yes") && txtNameTitle.getText().toString().equals(thesisName)) {
                         btnThesisRequest.setText(R.string.cancel_request);
                         btnThesisRequest.setOnClickListener(view14 -> {
 
@@ -101,23 +110,29 @@ public class ThesisDescriptionStudentFragment extends Fragment {
                             setRequestButton();
                         });
 
+                    } //HO FATTO UNA RICHIESTA MA NON PER QUESTA TESI
+                    else if (!MainActivity.account.getRequest().equals("no")) {
+                        btnThesisRequest.setOnClickListener(view13 -> Snackbar.make(requireView(), R.string.already_request, Snackbar.LENGTH_LONG).show());
+                    }
 
-                    } else if (!MainActivity.account.getRequest().equals("no")) {
-                        btnThesisRequest.setOnClickListener(view13 -> {
-                            Snackbar.make(view13, R.string.already_request, Snackbar.LENGTH_LONG).show();
-                        });
-                    } else
-                        setRequestButton();
+                }//NON HO FATTO ALCUNA RICHIESTA
+                else if(MainActivity.account.getRequest().equals("no"))
+                    setRequestButton();
+
+                //HO GIÀ UNA TESI
+                else {
+                    btnThesisRequest.setOnClickListener(view13 -> Snackbar.make(requireView(), R.string.already_request, Snackbar.LENGTH_LONG).show());
                 }
-            } else {
-                //error with task
-            }
+            } else
+                Log.e("err", "Error");
+
         });
 
         return view;
     }
 
-    private void getDataFromPreviousFragment() {
+    private void setThesisData() {
+        assert getArguments() != null;
         String correlator = getArguments().getString("correlator");
         String description = getArguments().getString("description");
         String estimated_time = getArguments().getString("estimated_time") + " " + R.string.days;
@@ -139,22 +154,22 @@ public class ThesisDescriptionStudentFragment extends Fragment {
 
 
         if (correlator.isEmpty())
-            txtCorrelator.setText("None");
+            txtCorrelator.setText(R.string.none);
         else
             txtCorrelator.setText(correlator);
 
         if (average_marks.isEmpty()) {
-            txtAverageMarks.setText("None");
+            txtAverageMarks.setText(R.string.none);
         } else
             txtAverageMarks.setText(average_marks);
 
         if (required_exam.isEmpty()) {
-            txtRequiredExams.setText("None");
+            txtRequiredExams.setText(R.string.none);
         } else
             txtRequiredExams.setText(required_exam);
 
         if (related_projects.isEmpty()) {
-            txtRelatedProjects.setText("None");
+            txtRelatedProjects.setText(R.string.none);
         } else
             txtRelatedProjects.setText(related_projects);
     }

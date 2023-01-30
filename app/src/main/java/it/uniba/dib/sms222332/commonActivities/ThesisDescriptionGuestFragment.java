@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.student;
+package it.uniba.dib.sms222332.commonActivities;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 
@@ -23,7 +25,7 @@ public class ThesisDescriptionGuestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.thesis_info);
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(R.string.thesis_info);
 
         View view = inflater.inflate(R.layout.fragment_thesis_description_guest, container, false);
 
@@ -47,6 +49,7 @@ public class ThesisDescriptionGuestFragment extends Fragment {
     }
 
     private void getDataFromPreviousFragment() {
+        assert getArguments() != null;
         String correlator = getArguments().getString("correlator");
         String description = getArguments().getString("description");
         String estimated_time = getArguments().getString("estimated_time") + " " + R.string.days;
@@ -68,22 +71,22 @@ public class ThesisDescriptionGuestFragment extends Fragment {
 
 
         if (correlator.isEmpty())
-            txtCorrelator.setText("None");
+            txtCorrelator.setText(R.string.none);
         else
             txtCorrelator.setText(correlator);
 
         if (average_marks.isEmpty()) {
-            txtAverageMarks.setText("None");
+            txtAverageMarks.setText(R.string.none);
         } else
             txtAverageMarks.setText(average_marks);
 
         if (required_exam.isEmpty()) {
-            txtRequiredExams.setText("None");
+            txtRequiredExams.setText(R.string.none);
         } else
             txtRequiredExams.setText(required_exam);
 
         if (related_projects.isEmpty()) {
-            txtRelatedProjects.setText("None");
+            txtRelatedProjects.setText(R.string.none);
         } else
             txtRelatedProjects.setText(related_projects);
     }

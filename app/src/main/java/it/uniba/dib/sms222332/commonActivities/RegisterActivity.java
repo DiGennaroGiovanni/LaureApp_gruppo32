@@ -6,9 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.professor.ProfessorRegisterActivity;
@@ -16,11 +14,7 @@ import it.uniba.dib.sms222332.student.StudentRegisterActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Button buttonContinuaProfessore, buttonContinuaStudente;
-
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    Button btnProf, btnStud;
 
 
     @Override
@@ -28,32 +22,22 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrati);
 
-        // Dichiaro i pulsanti presenti nella schermata
-        buttonContinuaProfessore = findViewById(R.id.buttonContinuaProfessore);
-        buttonContinuaStudente = findViewById(R.id.buttonContinuaStudente);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.registration);
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
+        btnProf = findViewById(R.id.btnProf);
+        btnStud = findViewById(R.id.btnStud);
 
+        btnProf.setOnClickListener(view -> profRegistration());
 
-        // Passo alla schermata di continua registrazione per il professore
-        buttonContinuaProfessore.setOnClickListener(view -> continuaComeProfessore());
-
-        // Passo alla schermata di continua registrazione per lo studente
-        buttonContinuaStudente.setOnClickListener(view -> continuaComeStudente());
-
-
+        btnStud.setOnClickListener(view -> studRegistration());
     }
 
-    private void continuaComeProfessore() {
-
-
+    private void profRegistration() {
         Intent intent = new Intent(RegisterActivity.this, ProfessorRegisterActivity.class);
         startActivity(intent);
     }
 
-    private void continuaComeStudente() {
-
+    private void studRegistration() {
         Intent intent = new Intent(RegisterActivity.this, StudentRegisterActivity.class);
         startActivity(intent);
     }

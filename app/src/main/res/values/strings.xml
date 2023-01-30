@@ -280,7 +280,7 @@
     <string name="error_btnResearch">Error onClick of btnResearch: </string>
     <string name="error_shareButton">Errore onClick of shareButton: </string>
     <string name="flash_on">"Volume up to flash on "</string>
-    <string name="request_canceled">Request canceled.</string>
+    <string name="request_canceled">Request canceled</string>
     <string name="not_accepted_yet">Not accepted yet</string>
     <string name="thesis_updated">Thesis updated</string>
     <string name="not_read_permissions">You do not have read permissions</string>
@@ -308,5 +308,7 @@
     <string name="filter_dialog_title">Look for theses by setting constraint filters</string>
     <string name="max_avg_constr">Maximum average value:</string>
     <string name="hide_theses_check">Hide theses which require completed exams</string>
+    <string name="logo">logo</string>
+    <string name="registration">Registration</string>
 
 </resources>
