@@ -13,7 +13,8 @@
             android:id="@+id/layoutThesisAccepted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_margin="3dp">
 
 
             <TextView
@@ -94,7 +95,8 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:layout_gravity="bottom"/>
 
             </LinearLayout>
 
@@ -212,7 +214,8 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:layout_gravity="bottom"/>
 
             </LinearLayout>
 
@@ -272,7 +275,8 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:layout_gravity="bottom"/>
 
             </LinearLayout>
 
@@ -303,7 +307,8 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:layout_gravity="bottom"/>
 
             </LinearLayout>
 
@@ -333,7 +338,8 @@
                     android:layout_weight="65"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:layout_gravity="bottom"/>
 
             </LinearLayout>
 
@@ -359,7 +365,7 @@
                     android:textStyle="bold" />
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="65">
 
