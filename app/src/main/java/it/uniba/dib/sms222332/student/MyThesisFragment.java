@@ -10,9 +10,11 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -246,12 +248,12 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
             for (StorageReference item : listResult.getItems()) {
 
                 String nomeFile = item.getName();
-                addMaterialItem(nomeFile);
+                addDownloadableMaterial(nomeFile);
             }
 
         }).addOnFailureListener(exception -> Log.w("info", getString(R.string.error_file), exception));
 
-        buttonAdd.setOnClickListener(view -> buttonAddOnClick());
+        buttonAdd.setOnClickListener(view -> addNewMaterial());
 
         btnSave.setOnClickListener(view -> btnSaveOnClick(thesis_name, view));
 
@@ -323,7 +325,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         getParentFragmentManager().popBackStack();
     }
 
-    private void buttonAddOnClick() {
+    private void addNewMaterial() {
         int permissionCheck = ContextCompat.checkSelfPermission(requireActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE);
 
@@ -358,28 +360,28 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 86 && resultCode == RESULT_OK && data != null) { //CONDIZIONE PER IL CARICAMENTO DEL PDF
             fileUri = data.getData();
-            File file = new File(fileUri.getPath());
-            String fileName = file.getName();
-            addNewMaterial(fileName, fileUri);
+            newMaterial(fileUri);
+            newMaterials.add(fileUri);
         }
     }
 
-    private void addNewMaterial(String fileName, Uri fileUri) {
+    private void newMaterial(Uri uri) {
         View view = getLayoutInflater().inflate(R.layout.card_material, null);
+
+        String fileName = getNameFromUri(uri);
         TextView nameView = view.findViewById(R.id.materialName);
         Button delete = view.findViewById(R.id.deleteMaterial);
-        newMaterials.add(fileUri);
+
         nameView.setText(fileName);
 
         delete.setOnClickListener(v -> {
             layout_lista_file.removeView(view);
-            newMaterials.remove(fileUri);
-            deletedOldMaterials.add(fileName);
+            newMaterials.remove(uri);
         });
         layout_lista_file.addView(view);
     }
 
-    private void addMaterialItem(String nomeFile) {
+    private void addDownloadableMaterial(String nomeFile) {
         View view = getLayoutInflater().inflate(R.layout.card_material_downloadable, null);
         TextView nameView = view.findViewById(R.id.materialName);
         nameView.setText(nomeFile);
@@ -447,5 +449,16 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                 break;
 
         }
+    }
+
+    private String getNameFromUri(Uri pdfUri) {
+        String fileName = null;
+        Cursor cursor = requireActivity().getContentResolver().query(pdfUri, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+            fileName = cursor.getString(nameIndex);
+            cursor.close();
+        }
+        return fileName;
     }
 }
