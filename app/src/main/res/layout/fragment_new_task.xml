@@ -73,7 +73,8 @@
             android:text="@string/task_name_"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/edtNameTask"
@@ -104,7 +105,8 @@
             android:fontFamily="@font/cardo"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/edtDescription"

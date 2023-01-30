@@ -54,11 +54,11 @@ import it.uniba.dib.sms222332.tools.ThesisPDF;
 public class EditThesisFragment extends Fragment {
 
     EditText edtTime, edtDescription, edtRelatedProjects, edtAverage, edtRequiredExams;
-    TextView txtDepartment, txtThesisName, txtTypology;
+    TextView txtDepartment, txtThesisName, txtTypology, txtStudent;
     Button btnSave, btnAddMaterial;
     Spinner spinnerCorrelators;
     CheckBox checkAvg, checkExams;
-    LinearLayout layoutMaterialsList;
+    LinearLayout layoutMaterialsList, layoutAvgConstraint, layoutExamsConstraint;
     Uri fileUri;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
 
@@ -82,6 +82,7 @@ public class EditThesisFragment extends Fragment {
         layoutMaterialsList = view.findViewById(R.id.layout_lista_file);
         txtTypology = view.findViewById(R.id.txtTypology);
         txtDepartment = view.findViewById(R.id.txtDepartment);
+        txtStudent = view.findViewById(R.id.txtStudent);
         edtTime = view.findViewById(R.id.edtTime);
         spinnerCorrelators = view.findViewById(R.id.spinnerCorrelator);
         edtDescription = view.findViewById(R.id.edtDescription);
@@ -93,6 +94,8 @@ public class EditThesisFragment extends Fragment {
         edtAverage = view.findViewById(R.id.edtAverage);
         edtRequiredExams = view.findViewById(R.id.edtRequiredExams);
         btnAddMaterial = view.findViewById(R.id.buttonAdd);
+        layoutAvgConstraint = view.findViewById(R.id.avgConstraint);
+        layoutExamsConstraint = view.findViewById(R.id.examsConstraint);
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -109,6 +112,9 @@ public class EditThesisFragment extends Fragment {
 
         setCorrelatorSpinner(correlator);
 
+        if(txtStudent.toString().isEmpty())
+            txtStudent.setText(R.string.none);
+
         checkAvg.setOnCheckedChangeListener((compoundButton, isChecked) ->
                 edtAverage.setEnabled(isChecked));
 
@@ -119,16 +125,24 @@ public class EditThesisFragment extends Fragment {
             checkAvg.setChecked(true);
             edtAverage.setEnabled(true);
         } else {
-            checkAvg.setChecked(false);
-            edtAverage.setEnabled(false);
+            if(txtStudent.getText().toString().isEmpty()){
+                checkAvg.setChecked(false);
+                edtAverage.setEnabled(false);
+            }
+            else
+                layoutAvgConstraint.setVisibility(View.GONE);
         }
 
         if (!edtRequiredExams.getText().toString().equals("")) {
             checkExams.setChecked(true);
             edtRequiredExams.setEnabled(true);
         } else {
-            checkExams.setChecked(false);
-            edtRequiredExams.setEnabled(false);
+            if(txtStudent.getText().toString().isEmpty()){
+                checkExams.setChecked(false);
+                edtRequiredExams.setEnabled(false);
+            }
+            else
+                layoutExamsConstraint.setVisibility(View.GONE);
         }
 
         //AGGIUNGO CARTE IN BASE AI DOCUMENTI CHE CI SONO
@@ -160,10 +174,12 @@ public class EditThesisFragment extends Fragment {
         String related_projects = getArguments().getString("related_projects");
         String average = getArguments().getString(("average_marks"));
         String required_exam = getArguments().getString("required_exam");
+        String student = getArguments().getString("student");
 
         txtThesisName.setText(name);
         txtTypology.setText(type);
         txtDepartment.setText(faculty);
+        txtStudent.setText(student);
         edtTime.setText(estimated_time);
         edtDescription.setText(description);
         edtRelatedProjects.setText(related_projects);

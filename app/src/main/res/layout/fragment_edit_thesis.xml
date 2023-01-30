@@ -22,7 +22,7 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#00213A"
-            android:textSize="22sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <!--        lineetta divisiva      -->
@@ -47,7 +47,7 @@
                 android:paddingEnd="20sp"
                 android:text="@string/thesis_type"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -58,7 +58,7 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -78,7 +78,7 @@
                 android:text="@string/department"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtDepartment"
@@ -87,7 +87,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -107,16 +107,23 @@
                 android:text="@string/correlator"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
-            <Spinner
-                android:id="@+id/spinnerCorrelator"
+            <RelativeLayout
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
-                android:backgroundTint="#BFBABA"
-                android:textAlignment="center"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:layout_weight="65">
+
+                <Spinner
+                    android:id="@+id/spinnerCorrelator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </RelativeLayout>
+
+
 
 
         </LinearLayout>
@@ -137,7 +144,7 @@
                 android:text="@string/student_edit_thesis"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtStudent"
@@ -146,7 +153,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -166,17 +173,32 @@
                 android:text="@string/estimated_time"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
 
-            <EditText
-                android:id="@+id/edtTime"
+            <LinearLayout
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
-                android:inputType="number"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:orientation="horizontal"
+                android:layout_gravity="bottom">
+
+                <EditText
+                    android:id="@+id/edtTime"
+                    android:layout_width="40sp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textAlignment="center"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/days"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -197,7 +219,7 @@
                 android:text="@string/description"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/edtDescription"
@@ -207,7 +229,7 @@
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -227,7 +249,7 @@
                 android:text="@string/related_projects"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/edtRelatedProjects"
@@ -236,7 +258,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:inputType="text"
                 android:layout_gravity="bottom"/>
 
@@ -244,6 +266,7 @@
 
 
         <LinearLayout
+            android:id="@+id/avgConstraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -259,13 +282,13 @@
                 android:text="@string/average_marks"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
 
             <CheckBox
                 android:id="@+id/averageCheck"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/edtAverage"
@@ -273,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="58"
                 android:inputType="number"
-                android:textSize="18sp">
+                android:textSize="20sp">
 
             </EditText>
 
@@ -281,6 +304,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/examsConstraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -296,13 +320,13 @@
                 android:text="@string/required_exams"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="17sp" />
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
 
             <CheckBox
                 android:id="@+id/requiredExamsCheck"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/edtRequiredExams"
@@ -310,7 +334,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="58"
                 android:inputType="textMultiLine"
-                android:textSize="18sp">
+                android:textSize="20sp">
 
             </EditText>
 
@@ -334,7 +358,7 @@
                 android:text="@string/materials"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <RelativeLayout
                 android:layout_width="0sp"
@@ -346,7 +370,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bordered_rect"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    tools:ignore="UselessParent">
 
                     <LinearLayout
                         android:id="@+id/layout_lista_file"
