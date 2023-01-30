@@ -183,10 +183,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
-        if(currentFragment instanceof ProfessorHomeFragment || currentFragment instanceof StudentHomeFragment){
-            if(selectedFragment instanceof ProfessorHomeFragment || selectedFragment instanceof StudentHomeFragment){
-
-
+        if(selectedFragment instanceof ProfessorHomeFragment || selectedFragment instanceof StudentHomeFragment){
+            if(currentFragment instanceof ProfessorHomeFragment || currentFragment instanceof StudentHomeFragment){
                 getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
