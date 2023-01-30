@@ -380,7 +380,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     }
 
     private void addMaterialItem(String nomeFile) {
-        View view = getLayoutInflater().inflate(R.layout.card_material_without_delete, null);
+        View view = getLayoutInflater().inflate(R.layout.card_material_downloadable, null);
         TextView nameView = view.findViewById(R.id.materialName);
         nameView.setText(nomeFile);
 
@@ -416,7 +416,6 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
             String url = uri.toString();
             downloadFile(requireActivity(), nomeFile, DIRECTORY_DOWNLOADS, url);
 
-        }).addOnFailureListener(e -> {
         });
     }
 
@@ -432,23 +431,21 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
-                // permesso concesso, procedi con la lettura dei file
-                // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
-                return;
-            }
-            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    uploadFile();
-                } else {
-                    buttonAdd.setOnClickListener(view -> Snackbar.make(requireView(), R.string.not_read_permissions, Snackbar.LENGTH_LONG).show());
-                    // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
-                }
+        switch(requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE:
 
-            }
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    Snackbar.make(requireView(), "Permission granted", Snackbar.LENGTH_SHORT).show();
+                break;
+
+            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    uploadFile();
+                 else
+                    buttonAdd.setOnClickListener(view -> Snackbar.make(requireView(), R.string.not_read_permissions, Snackbar.LENGTH_LONG).show());
+                break;
+
         }
     }
-
 }

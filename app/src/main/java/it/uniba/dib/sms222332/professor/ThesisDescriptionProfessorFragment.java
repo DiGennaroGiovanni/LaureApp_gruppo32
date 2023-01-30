@@ -5,7 +5,6 @@ import static android.content.Context.DOWNLOAD_SERVICE;
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
 import android.app.DownloadManager;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -284,12 +283,11 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
 
     private void addMaterialItem(String nomeFile) {
-        View view = getLayoutInflater().inflate(R.layout.card_material_without_delete, null);
+        View view = getLayoutInflater().inflate(R.layout.card_material_downloadable, null);
         TextView nameView = view.findViewById(R.id.materialName);
         nameView.setText(nomeFile);
 
-        Button downloadMaterial;
-        downloadMaterial = view.findViewById(R.id.downloadMaterial);
+        Button downloadMaterial = view.findViewById(R.id.downloadMaterial);
 
         downloadMaterial.setOnClickListener(view1 -> {
             download(nomeFile);
@@ -305,18 +303,18 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
         ref.getDownloadUrl().addOnSuccessListener(uri -> {
             String url  = uri.toString();
-            downloadFile(requireActivity(), nomeFile, DIRECTORY_DOWNLOADS,url );
+            downloadFile( nomeFile, DIRECTORY_DOWNLOADS,url );
 
         });
     }
 
-    private void downloadFile(Context context, String nomeFile, String destinationDirectory, String url) {
-         DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+    private void downloadFile( String nomeFile, String destinationDirectory, String url) {
+         DownloadManager downloadManager = (DownloadManager) requireContext().getSystemService(DOWNLOAD_SERVICE);
          Uri uri = Uri.parse(url);
          DownloadManager.Request request = new DownloadManager.Request(uri);
 
          request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-         request.setDestinationInExternalFilesDir(context, destinationDirectory, nomeFile + "");
+         request.setDestinationInExternalFilesDir(requireContext(), destinationDirectory, nomeFile);
          downloadManager.enqueue(request);
     }
 }
