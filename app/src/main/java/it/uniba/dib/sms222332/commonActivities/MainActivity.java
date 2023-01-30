@@ -182,7 +182,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
+        getSupportFragmentManager().beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .replace(R.id.fragment_container, selectedFragment)
+                .commit();
+
         selectBottomNavigationBarItem();
         return true;
     };

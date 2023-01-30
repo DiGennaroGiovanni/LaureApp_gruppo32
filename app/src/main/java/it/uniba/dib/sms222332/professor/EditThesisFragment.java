@@ -179,7 +179,9 @@ public class EditThesisFragment extends Fragment {
         txtTypology.setText(type);
         txtDepartment.setText(faculty);
         txtStudent.setText(student);
-        edtTime.setText(estimated_time);
+
+        String time = estimated_time.split(" ")[0];
+        edtTime.setText(time);
         edtDescription.setText(description);
         edtRelatedProjects.setText(related_projects);
         edtAverage.setText(average);

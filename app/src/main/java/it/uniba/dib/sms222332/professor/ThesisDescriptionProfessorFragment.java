@@ -219,10 +219,6 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
             });
         }
 
-
-
-
-
         //AGGIUNGO MATERIALI DEL DATABASE
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference().child(txtThesisName.getText().toString());
@@ -285,7 +281,6 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
         return view;
     }
-
 
 
     private void addMaterialItem(String fileName) {

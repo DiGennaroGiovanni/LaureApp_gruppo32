@@ -257,7 +257,6 @@ public class NewThesisFragment extends Fragment {
         }
 
 
-
         if (thesisName.isEmpty()) {
             edtThesisName.setError(getString(R.string.enter_thesis_name));
         } else if (estimatedTime.isEmpty()) {
