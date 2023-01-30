@@ -6,8 +6,10 @@ import static android.content.ContentValues.TAG;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +22,14 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,6 +45,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -70,7 +75,7 @@ public class EditThesisFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.editThesisToolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.editThesisToolbar));
 
         View view = inflater.inflate(R.layout.fragment_edit_thesis, container, false);
 
@@ -131,19 +136,13 @@ public class EditThesisFragment extends Fragment {
         storage.getReference().child(txtThesisName.getText().toString()).listAll().addOnSuccessListener(listResult -> {
 
             for (StorageReference item : listResult.getItems()) {
-                item.getDownloadUrl().addOnSuccessListener(uri -> {
-                    String fileName = item.getName();
-                    addExistentMaterial(fileName, uri);
-                });
+
+                item.getDownloadUrl().addOnSuccessListener(this::addExistentMaterial);
             }
 
         }).addOnFailureListener(exception -> Log.w("info", getString(R.string.error_file), exception));
 
-        btnAddMaterial.setOnClickListener(view13 -> {
-
-            btnAddMaterialOnClick();
-
-        });
+        btnAddMaterial.setOnClickListener(view13 -> addNewMaterial());
 
         btnSave.setOnClickListener(view1 -> saveMaterials());
 
@@ -152,6 +151,7 @@ public class EditThesisFragment extends Fragment {
     }
 
     private void getThesisData() {
+        assert getArguments() != null;
         String description = getArguments().getString("description");
         String estimated_time = getArguments().getString("time");
         String faculty = getArguments().getString("department");
@@ -171,17 +171,18 @@ public class EditThesisFragment extends Fragment {
         edtRequiredExams.setText(required_exam);
     }
 
-    private void btnAddMaterialOnClick() {
-        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+    private void addNewMaterial() {
+        int permissionCheck = ContextCompat.checkSelfPermission(requireActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE);
 
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(),
+            ActivityCompat.requestPermissions(requireActivity(),
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
         } else {
             // permesso già concesso, procedi con la lettura dei file
             uploadFile();
+
         }
     }
 
@@ -298,7 +299,9 @@ public class EditThesisFragment extends Fragment {
         });
     }
 
-    private void addExistentMaterial(String fileName, Uri uri) {
+    private void addExistentMaterial(Uri uri) {
+        String fileName = getNameFromUri(uri);
+
         View view = getLayoutInflater().inflate(R.layout.card_material, null);
         TextView nameView = view.findViewById(R.id.materialName);
         Button delete = view.findViewById(R.id.deleteMaterial);
@@ -308,7 +311,6 @@ public class EditThesisFragment extends Fragment {
             layoutMaterialsList.removeView(view);
             deletedOldMaterials.add(fileName);
         });
-
         layoutMaterialsList.addView(view);
     }
 
@@ -323,19 +325,20 @@ public class EditThesisFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 86 && resultCode == RESULT_OK && data != null) { //CONDIZIONE PER IL CARICAMENTO DEL PDF
+        if (requestCode == 86 && resultCode == RESULT_OK && data != null) { //CONDIZIONE PER IL CARICAMENTO DEL FILE
             fileUri = data.getData();
-            File file = new File(fileUri.getPath());
-            String fileName = file.getName();
-            addNewMaterial(fileName, fileUri);
+            addNewMaterial(fileUri);
+            newMaterials.add(fileUri);
         }
     }
 
-    private void addNewMaterial(String fileName, Uri fileUri) {
+    private void addNewMaterial(Uri fileUri) {
+        String fileName = getNameFromUri(fileUri);
+
         View view = getLayoutInflater().inflate(R.layout.card_material, null);
         TextView nameView = view.findViewById(R.id.materialName);
         Button delete = view.findViewById(R.id.deleteMaterial);
-        newMaterials.add(fileUri);
+
         nameView.setText(fileName);
 
         delete.setOnClickListener(v -> {
@@ -346,12 +349,9 @@ public class EditThesisFragment extends Fragment {
     }
 
     private void uploadToDatabase(Uri uri) {
-        // Creazione del riferimento al file sul server di Firebase
-        File file = new File(uri.getPath());
-        String pdfName = file.getName();
-        storageReference = FirebaseStorage.getInstance().getReference(txtThesisName.getText().toString()).child(pdfName);
-        // Caricamento del file sul server
-        storageReference.putFile(uri);
+        // Creazione del riferimento al file sul server di Firebase e caricamento del file sul server
+        String pdfName = getNameFromUri(uri);
+        FirebaseStorage.getInstance().getReference(txtThesisName.getText().toString()).child(pdfName).putFile(uri);
     }
 
     private void uploadPDF(Uri uriPDF) {
@@ -363,19 +363,25 @@ public class EditThesisFragment extends Fragment {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permesso concesso, procedi con la lettura dei file
-                } else {
-                    // permesso negato, mostra un messaggio all'utente o disabilita la funzionalità
-                }
-                return;
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Snackbar.make(requireView(), "Permission granted", Snackbar.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(requireView(), "Permission denied", Snackbar.LENGTH_SHORT ).show();
             }
         }
+    }
+
+    private String getNameFromUri(Uri pdfUri) {
+        String fileName = null;
+        Cursor cursor = requireActivity().getContentResolver().query(pdfUri, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+            fileName = cursor.getString(nameIndex);
+            cursor.close();
+        }
+        return fileName;
     }
 
 

@@ -4,6 +4,7 @@ import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -178,6 +179,7 @@ public class NewThesisFragment extends Fragment {
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     private void inserisciTesi() {
 
         String thesisName = edtThesisName.getText().toString();
@@ -336,8 +338,7 @@ public class NewThesisFragment extends Fragment {
 
     private void uploadFile(Uri uri) {
         // Creazione del riferimento al file sul server di Firebase
-        File file = new File(uri.getPath());
-        String pdfName = file.getName();
+        String pdfName = getNameFromUri(uri);
         StorageReference storageReference = FirebaseStorage.getInstance().getReference(edtThesisName.getText().toString() + "/" + pdfName);
         // Caricamento del file sul server
         storageReference.putFile(uri)
