@@ -120,12 +120,6 @@ public class AvailableThesesListFragment extends Fragment {
             // Definisco il layout per l'inserimento dei filtri di ricerca
             LinearLayout researchLayout = new LinearLayout(requireContext());
             researchLayout.setOrientation(LinearLayout.VERTICAL);
-            //researchLayout.setPadding(10, 10, 10, 10);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-            );
-            params.setMargins(50, 10, 50, 10); // imposta un margine tra i componenti
 
             SeekBar seekBar = new SeekBar(requireContext());
             final TextView average = new TextView(requireContext());
@@ -168,7 +162,7 @@ public class AvailableThesesListFragment extends Fragment {
             examsCheckbox.setOnCheckedChangeListener((compoundButton, b) -> isRequestedExamChecked = b);
 
             // Definisco il bottone di ricerca
-            builder.setPositiveButton("Research", (dialogInterface, i) ->
+            builder.setPositiveButton(getResources().getString(R.string.research), (dialogInterface, i) ->
             {
                 searchView.setQuery("", true);
                 db.collection("Tesi")
@@ -191,6 +185,7 @@ public class AvailableThesesListFragment extends Fragment {
             researchLayout.addView(examsCheckbox);
             researchLayout.addView(average);
             researchLayout.addView(seekBar);
+
 
             builder.setNegativeButton(R.string.close, (dialog, which) -> {
                 seekBar.setProgress(initialSeekBarValue - 18);

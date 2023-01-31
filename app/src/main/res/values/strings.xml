@@ -274,7 +274,7 @@
     <string name="qr_code_reading">QR code reading</string>
     <string name="research_title">Research a thesis by setting filters on the constraints</string>
     <string name="average_lower_than">"Average lower than: "</string>
-    <string name="research">Research</string>
+    <string name="research">Search</string>
     <string name="error_btnResearch">Error onClick of btnResearch: </string>
     <string name="error_shareButton">Errore onClick of shareButton: </string>
     <string name="flash_on">"Volume up to flash on "</string>

@@ -36,21 +36,16 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Map;
-
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.professor.ProfessorAccount;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
@@ -391,44 +386,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
             DocumentReference docRef = db.collection("Tesi").document(thesisName);
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    DocumentSnapshot document = task.getResult();
-                    String student = document.getString("Student");
+            docRef.get().addOnCompleteListener(task -> {
+                DocumentSnapshot document = task.getResult();
+                String student = document.getString("Student");
 
-                    if (student.equals(onlineUser)) {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyThesisFragment()).commit();
-                    } else {
+                assert student != null;
+                if (student.equals(onlineUser)) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyThesisFragment()).commit();
+                } else {
 
-                        Bundle bundle = new Bundle();
-                        Fragment guestThesis = new ThesisDescriptionGuestFragment();
+                    Bundle bundle = new Bundle();
+                    Fragment guestThesis = new ThesisDescriptionGuestFragment();
 
-                        Map<String, Object> datiTesi = document.getData();
-                        db.collection("professori").document(datiTesi.get("Professor").toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if(task.isSuccessful()) {
-                                    bundle.putString("professor", task.getResult().get("Name").toString() + " " + task.getResult().get("Surname").toString());
-                                    bundle.putString("correlator", (String) datiTesi.get("Correlator"));
-                                    bundle.putString("description", (String) datiTesi.get("Description"));
-                                    bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
-                                    bundle.putString("faculty", (String) datiTesi.get("Faculty"));
-                                    bundle.putString("name", (String) datiTesi.get("Name"));
-                                    bundle.putString("type", (String) datiTesi.get("Type"));
-                                    bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
-                                    bundle.putString("average_marks", (String) datiTesi.get("Average"));
-                                    bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
-                                    bundle.putString("professor_email", (String) datiTesi.get("Professor"));
+                    Map<String, Object> datiTesi = document.getData();
+                    assert datiTesi != null;
+                    db.collection("professori").document(Objects.requireNonNull(datiTesi.get("Professor")).toString()).get().addOnCompleteListener(task1 -> {
+                        if(task1.isSuccessful()) {
+                            bundle.putString("professor", Objects.requireNonNull(task1.getResult().get("Name")) + " " + Objects.requireNonNull(task1.getResult().get("Surname")));
+                            bundle.putString("correlator", (String) datiTesi.get("Correlator"));
+                            bundle.putString("description", (String) datiTesi.get("Description"));
+                            bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
+                            bundle.putString("faculty", (String) datiTesi.get("Faculty"));
+                            bundle.putString("name", (String) datiTesi.get("Name"));
+                            bundle.putString("type", (String) datiTesi.get("Type"));
+                            bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
+                            bundle.putString("average_marks", (String) datiTesi.get("Average"));
+                            bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
+                            bundle.putString("professor_email", (String) datiTesi.get("Professor"));
 
-                                    guestThesis.setArguments(bundle);
-                                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
-                                    fragmentTransaction.addToBackStack(null);
-                                    fragmentTransaction.commit();
-                                }
-                            }
-                        });
-                    }
+                            guestThesis.setArguments(bundle);
+                            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+                        }
+                    });
                 }
             });
         }
@@ -458,20 +449,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             builder.setMessage(getString(R.string.snackbar_camera_permission_message) + "\n\n" + getString(R.string.snackbar_camera_permission_message2));
 
             // L'utente accetta di concedere i permessi e avvio richiesta accettazione permessi.
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    requestPermissionLauncher.launch(CAMERA);
-                }
-            });
+            builder.setPositiveButton("Yes", (dialogInterface, i) -> requestPermissionLauncher.launch(CAMERA));
 
             // L'utente decide di non accettare l'avvio di richiesta accettazione permessi.
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
-                }
-            });
+            builder.setNegativeButton("No", (dialogInterface, i) -> Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show());
 
             AlertDialog dialog = builder.create();
             dialog.show();  // Avvio la visualizzazione dell'AlertDialog.
