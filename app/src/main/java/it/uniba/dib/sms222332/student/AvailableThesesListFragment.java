@@ -258,18 +258,6 @@ public class AvailableThesesListFragment extends Fragment {
             }
         });
 
-//        db.collection("Tesi")
-//                .get()
-//                .addOnCompleteListener(task -> {
-//                    if(task.isSuccessful()) {
-//                        for(QueryDocumentSnapshot document : task.getResult()) {
-//                            String studentMail = document.getString("Student");
-//                            if(studentMail.equals(MainActivity.account.getEmail()) || ( studentMail.equals("") && document.getString("Faculty").equals(MainActivity.account.getFaculty()) ) ) {
-//                                addCardThesis(document);
-//                            }
-//                        }
-//                    }
-//                });
         return view;
     }
 
@@ -319,7 +307,7 @@ public class AvailableThesesListFragment extends Fragment {
         TextView txtName = view.findViewById(R.id.txtName);
         TextView txtType = view.findViewById(R.id.txtTypology);
         TextView txtDepartment = view.findViewById(R.id.txtDepartment);
-        TextView txtProfessor = view.findViewById(R.id.txtProfessor);
+        TextView txtProfessorEmail = view.findViewById(R.id.txtProfessor);
         TextView txtCorrelator = view.findViewById(R.id.txtCorrelator);
         Button shareBtn = view.findViewById(R.id.shareBtn);
         Button btnStar = view.findViewById(R.id.btnStar);
@@ -334,7 +322,7 @@ public class AvailableThesesListFragment extends Fragment {
         txtType.setText(document.getString("Type"));
         txtDepartment.setText(document.getString("Faculty"));
         txtCorrelator.setText(document.getString("Correlator"));
-        txtProfessor.setText(professorEmail);
+        txtProfessorEmail.setText(professorEmail);
 
         if(MainActivity.theses.contains(thesis)) {
             btnStar.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.ic_clicked_star));
@@ -435,7 +423,6 @@ public class AvailableThesesListFragment extends Fragment {
             bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
             bundle.putString("average_marks", (String) datiTesi.get("Average"));
             bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
-            bundle.putString("professor", txtProfessor.getText().toString());
             bundle.putString("professor_email", professorEmail);
 
             studentThesis.setArguments(bundle);

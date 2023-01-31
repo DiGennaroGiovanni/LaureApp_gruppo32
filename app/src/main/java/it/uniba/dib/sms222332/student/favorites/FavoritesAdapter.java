@@ -17,6 +17,7 @@ import it.uniba.dib.sms222332.commonActivities.Thesis;
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ThesisViewHolder> {
 
     private final List<Thesis> theses;
+    private View.OnClickListener listener;
 
     public FavoritesAdapter(List<Thesis> theses) {
         this.theses = theses;
@@ -34,6 +35,10 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Thes
         }
     }
 
+    public void setOnClickListener( View.OnClickListener listener){
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
     public ThesisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,6 +51,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Thes
         Thesis current = theses.get(position);
         holder.txtName.setText(current.getName());
         holder.txtProfessor.setText(current.getProfessor());
+        holder.itemView.setTag(current);
+        holder.itemView.setOnClickListener(listener);
     }
 
     @Override
@@ -67,10 +74,6 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Thes
         notifyItemMoved(fromPosition, toPosition);
     }
 
-//    public void onItemDismiss(int position) {
-//        theses.remove(position);
-//        notifyItemRemoved(position);
-//    }
 
     public List<Thesis> getTheses() {
         return theses;

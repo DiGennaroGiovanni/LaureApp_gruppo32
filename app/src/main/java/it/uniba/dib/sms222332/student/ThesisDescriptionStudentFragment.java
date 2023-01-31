@@ -15,12 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Objects;
 
@@ -31,10 +28,10 @@ public class ThesisDescriptionStudentFragment extends Fragment {
 
     TextView txtNameTitle, txtType, txtDepartment, txtTime, txtCorrelator,
             txtDescription, txtRelatedProjects, txtAverageMarks, txtRequiredExams, txtProfessor;
-    String related_projects = "";
-    String average_marks = "";
-    String required_exam = "";
-    String professore_email = "";
+    String relatedProjects = "";
+    String avgMarks = "";
+    String requiredExam = "";
+    String professorEmail = "";
     Button btnThesisRequest, btnContactProf;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -71,7 +68,7 @@ public class ThesisDescriptionStudentFragment extends Fragment {
                 Bundle bundle = new Bundle();
 
                 bundle.putString("thesis_name", txtNameTitle.getText().toString());
-                bundle.putString("professor", professore_email);
+                bundle.putString("professor", professorEmail);
 
                 thesisMessage.setArguments(bundle);
 
@@ -135,15 +132,14 @@ public class ThesisDescriptionStudentFragment extends Fragment {
         assert getArguments() != null;
         String correlator = getArguments().getString("correlator");
         String description = getArguments().getString("description");
-        String estimated_time = getArguments().getString("estimated_time") + " " + R.string.days;
+        String estimated_time = getArguments().getString("estimated_time");
         String faculty = getArguments().getString("faculty");
         String name = getArguments().getString("name");
         String type = getArguments().getString("type");
-        String professor = getArguments().getString("professor");
-        related_projects = getArguments().getString("related_projects");
-        average_marks = getArguments().getString("average_marks");
-        required_exam = getArguments().getString("required_exams");
-        professore_email = getArguments().getString("professor_email");
+        relatedProjects = getArguments().getString("related_projects");
+        avgMarks = getArguments().getString("average_marks");
+        requiredExam = getArguments().getString("required_exams");
+        professorEmail = getArguments().getString("professor_email");
 
         txtNameTitle.setText(name);
         txtType.setText(type);
@@ -153,7 +149,7 @@ public class ThesisDescriptionStudentFragment extends Fragment {
         txtTime.setText(estTime);
 
         txtDescription.setText(description);
-        txtProfessor.setText(professor);
+        txtProfessor.setText(professorEmail);
 
 
         if (correlator.isEmpty())
@@ -161,20 +157,20 @@ public class ThesisDescriptionStudentFragment extends Fragment {
         else
             txtCorrelator.setText(correlator);
 
-        if (average_marks.isEmpty()) {
+        if (avgMarks.isEmpty()) {
             txtAverageMarks.setText(R.string.none);
         } else
-            txtAverageMarks.setText(average_marks);
+            txtAverageMarks.setText(avgMarks);
 
-        if (required_exam.isEmpty()) {
+        if (requiredExam.isEmpty()) {
             txtRequiredExams.setText(R.string.none);
         } else
-            txtRequiredExams.setText(required_exam);
+            txtRequiredExams.setText(requiredExam);
 
-        if (related_projects.isEmpty()) {
+        if (relatedProjects.isEmpty()) {
             txtRelatedProjects.setText(R.string.none);
         } else
-            txtRelatedProjects.setText(related_projects);
+            txtRelatedProjects.setText(relatedProjects);
     }
 
     private void setRequestButton() {
@@ -186,7 +182,7 @@ public class ThesisDescriptionStudentFragment extends Fragment {
             bundle.putString("average_marks", txtAverageMarks.getText().toString());
             bundle.putString("required_exams", txtRequiredExams.getText().toString());
             bundle.putString("thesis_name", txtNameTitle.getText().toString());
-            bundle.putString("professor", professore_email);
+            bundle.putString("professor", professorEmail);
 
             thesisRequest.setArguments(bundle);
 

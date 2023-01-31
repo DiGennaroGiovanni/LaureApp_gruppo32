@@ -101,8 +101,6 @@ public class ReceiptsListFragment extends Fragment {
 
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-
         fragmentTransaction.replace(R.id.fragment_container, newReceiptFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
