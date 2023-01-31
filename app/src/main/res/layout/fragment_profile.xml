@@ -8,19 +8,25 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
                 android:contentDescription="@string/menu_profile"
+                android:maxWidth="150dp"
+                android:maxHeight="150dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/profile_image_black" />
 
         </LinearLayout>
@@ -37,11 +43,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="45"
                 android:fontFamily="@font/cardo"
-                android:gravity="left"
-                android:paddingEnd="20sp"
+                android:gravity="end"
+                android:paddingStart="1dp"
+                android:paddingEnd="10sp"
                 android:text="@string/name_surname"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -51,13 +58,14 @@
                 android:layout_weight="55"
                 android:text="@string/name_surname"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/txtFacultyTitle"
@@ -65,11 +73,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="45"
                 android:fontFamily="@font/cardo"
-                android:gravity="left"
-                android:paddingEnd="20sp"
+                android:gravity="end"
+                android:paddingStart="1dp"
+                android:paddingEnd="10sp"
                 android:text="@string/faculty_"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -79,13 +88,14 @@
                 android:layout_weight="55"
                 android:text="@string/faculty_"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/txtEmailTitle"
@@ -93,11 +103,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="45"
                 android:fontFamily="@font/cardo"
-                android:gravity="left"
-                android:paddingEnd="20sp"
+                android:gravity="end"
+                android:paddingStart="1dp"
+                android:paddingEnd="10sp"
                 android:text="@string/email"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -107,13 +118,15 @@
                 android:layout_weight="55"
                 android:text="@string/email"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/txtBadgeTitle"
@@ -121,11 +134,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="45"
                 android:fontFamily="@font/cardo"
-                android:gravity="left"
-                android:paddingEnd="20sp"
+                android:gravity="end"
+                android:paddingStart="1dp"
+                android:paddingEnd="10sp"
                 android:text="@string/matriculation_number"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -135,14 +149,15 @@
                 android:layout_weight="55"
                 android:text="@string/matriculation_number"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <Button
                 android:id="@+id/btnDeleteProfile"
@@ -150,8 +165,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="@string/delete_profile"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:theme="@style/DeleteButton" />
 
         </RelativeLayout>
 

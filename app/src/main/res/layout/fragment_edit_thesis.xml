@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="vertical">
 
         <TextView
@@ -41,10 +42,11 @@
                 android:id="@+id/txtTypologyTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:padding="10sp"
                 android:text="@string/thesis_type"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -54,10 +56,12 @@
                 android:id="@+id/txtTypology"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
+                android:layout_gravity="center"
+                android:layout_weight="60"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -70,10 +74,11 @@
                 android:id="@+id/txtDepartmentTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:padding="10sp"
                 android:text="@string/department"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -83,7 +88,8 @@
                 android:id="@+id/txtDepartment"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
+                android:layout_gravity="bottom"
+                android:layout_weight="60"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -99,10 +105,11 @@
                 android:id="@+id/txtCorrelatorTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:padding="10sp"
                 android:text="@string/correlator"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -134,10 +141,11 @@
                 android:id="@+id/txtStudentTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:padding="10sp"
                 android:text="@string/student_edit_thesis"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -147,7 +155,8 @@
                 android:id="@+id/txtStudent"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
+                android:layout_gravity="bottom"
+                android:layout_weight="60"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -164,10 +173,9 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="35"
-                android:fontFamily="@font/cardo"
+                android:layout_weight="40"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:padding="10sp"
                 android:text="@string/estimated_time"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -209,10 +217,11 @@
                 android:id="@+id/txtDescriptionTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:padding="10sp"
                 android:text="@string/description"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -222,11 +231,16 @@
                 android:id="@+id/edtDescription"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
+                android:layout_gravity="bottom"
+                android:layout_weight="60"
+                android:autofillHints=""
+                android:hint="@string/type_description"
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textColorHint="#78909C"
+                android:textSize="20sp"
+                tools:ignore="DuplicateSpeakableTextCheck" />
 
         </LinearLayout>
 
@@ -239,10 +253,11 @@
                 android:id="@+id/txtRelatedProjectsTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:padding="10sp"
                 android:text="@string/related_projects"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -253,11 +268,13 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="65"
+                android:layout_weight="60"
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:hint="@string/type_description"
+                android:textColorHint="#78909C"/>
 
         </LinearLayout>
 
@@ -272,11 +289,11 @@
                 android:id="@+id/averageMarksTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="40"
                 android:layout_gravity="center"
-                android:layout_weight="35"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:padding="10sp"
                 android:text="@string/average_marks"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -292,7 +309,9 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="58"
+                android:hint="@string/average_marks_hint"
                 android:inputType="number"
+                android:textColorHint="#78909C"
                 android:textSize="20sp">
 
             </EditText>
@@ -310,11 +329,11 @@
                 android:id="@+id/requiredExamsTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="40"
                 android:layout_gravity="center"
-                android:layout_weight="35"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:padding="10sp"
                 android:text="@string/required_exams"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -329,9 +348,13 @@
                 android:id="@+id/edtRequiredExams"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
                 android:layout_weight="58"
+                android:autofillHints=""
+                android:hint="@string/type_required_exams"
                 android:inputType="textMultiLine"
-                android:textSize="20sp">
+                android:textSize="20sp"
+                android:textColorHint="#78909C"">
 
             </EditText>
 
@@ -348,10 +371,10 @@
                 android:id="@+id/txtMaterialsTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="34"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:padding="10sp"
                 android:text="@string/materials"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -396,7 +419,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/cardo"
                 android:text="@string/save_thesis"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

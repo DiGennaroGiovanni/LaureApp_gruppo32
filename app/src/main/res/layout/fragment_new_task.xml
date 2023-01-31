@@ -18,7 +18,7 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#00213A"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <!--        lineetta divisiva      -->
@@ -84,8 +84,7 @@
             android:inputType="textMultiLine"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -102,7 +101,6 @@
             android:gravity="end"
             android:paddingEnd="20sp"
             android:text="@string/description"
-            android:fontFamily="@font/cardo"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -170,9 +168,8 @@
         android:id="@+id/create_task_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/cardo"
         android:text="@string/add_task"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
 </LinearLayout>

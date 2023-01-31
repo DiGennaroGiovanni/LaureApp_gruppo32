@@ -12,17 +12,17 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-
     </style>
 
     <style name="Theme.LaureApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">#023FA6</item>
+        <item name="colorPrimary">@color/custom_blue</item>
         <item name="colorPrimaryDark">#00213A</item>
         <item name="colorAccent">#346D93</item>
         <item name="android:textAppearanceButton">@style/CustomButtonTextAppearance</item>
         <item name="android:windowFullscreen">true</item>
+
     </style>
 
     <style name="Theme.LaureApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:background="#1A023FA6"
         android:elevation="4dp"
         android:baselineAligned="false">
@@ -58,14 +58,16 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#0808275A">
+        android:background="#0808275A"
+        android:contentDescription="@string/list_available_thesis">
 
-            <LinearLayout
-                android:id="@+id/layout_tesi_disponibili"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout_tesi_disponibili"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
 
     </ScrollView>
 

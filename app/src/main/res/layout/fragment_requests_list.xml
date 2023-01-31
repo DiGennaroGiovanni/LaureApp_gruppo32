@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="#0808275A">
 
-
     <LinearLayout
         android:id="@+id/layoutRequestsList"
         android:layout_width="match_parent"

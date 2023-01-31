@@ -114,12 +114,18 @@ public class AvailableThesesListFragment extends Fragment {
             titleView.setTextSize(18);
             titleView.setTypeface(null, Typeface.BOLD);
             titleView.setTextColor(Color.BLACK);
-            titleView.setPadding(0, 50, 0, 0);
+            titleView.setPadding(30, 30, 30, 10);
             builder.setCustomTitle(titleView);
 
-            // Definisco il layout per l'inserimento del qr code
+            // Definisco il layout per l'inserimento dei filtri di ricerca
             LinearLayout researchLayout = new LinearLayout(requireContext());
             researchLayout.setOrientation(LinearLayout.VERTICAL);
+            //researchLayout.setPadding(10, 10, 10, 10);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+            );
+            params.setMargins(50, 10, 50, 10); // imposta un margine tra i componenti
 
             SeekBar seekBar = new SeekBar(requireContext());
             final TextView average = new TextView(requireContext());
@@ -129,6 +135,7 @@ public class AvailableThesesListFragment extends Fragment {
             String avgString = getResources().getString(R.string.max_avg_constr) + seekBarValue;
             average.setText(avgString);
             average.setTextColor(Color.BLACK);
+            average.setPadding(40, 0 , 0, 0);
             seekBar.setMax(12);
 
             int initialSeekBarValue = seekBarValue;
@@ -157,6 +164,7 @@ public class AvailableThesesListFragment extends Fragment {
             examsCheckbox = new CheckBox(requireContext());
             examsCheckbox.setChecked(isRequestedExamChecked);
             examsCheckbox.setText(R.string.hide_theses_check);
+            examsCheckbox.setPadding(10, 10, 0, 0);
             examsCheckbox.setOnCheckedChangeListener((compoundButton, b) -> isRequestedExamChecked = b);
 
             // Definisco il bottone di ricerca
@@ -380,7 +388,11 @@ public class AvailableThesesListFragment extends Fragment {
             // Definisco il bottone sotto l'ImageView
             Button buttonShare = new Button(requireContext());
             buttonShare.setText(R.string.share_thesis_info);
-            buttonShare.setGravity(Gravity.CENTER);
+            buttonShare.setBackgroundResource(R.color.custom_blue);
+                buttonShare.setTextColor(Color.WHITE);
+                buttonShare.setGravity(Gravity.CENTER);
+                /*Typeface face = Typeface.createFromAsset(requireContext().getAssets(), "font/cardo.xml");
+                buttonShare.setTypeface(face);*/
             buttonShare.setOnClickListener(view12 -> sharePDF(thesisName));
 
             // Imposto i parametri di layout per il bottone

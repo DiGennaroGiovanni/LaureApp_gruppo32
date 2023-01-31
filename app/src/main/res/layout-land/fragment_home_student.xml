@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_margin="8dp"
+    android:orientation="horizontal"
+    android:background="#0808275A">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="45"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/allThesisBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="10dp"
+            android:paddingTop="25dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="25dp"
+            android:text="@string/all_thesis_button"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:icon="@drawable/icon_available_theses" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="55"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/myThesisBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="20dp"
+            android:paddingTop="30dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="30dp"
+            android:text="@string/your_thesis_button"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_your_thesis" />
+
+    </LinearLayout>
+</LinearLayout>
+

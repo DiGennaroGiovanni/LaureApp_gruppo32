@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="vertical">
 
         <TextView
@@ -21,7 +22,7 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
 
@@ -37,10 +38,11 @@
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:paddingStart="1dp"
+                android:paddingEnd="20dp"
                 android:text="@string/professor_message"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -50,7 +52,7 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -66,10 +68,11 @@
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:paddingStart="1dp"
+                android:paddingEnd="20dp"
                 android:text="@string/object_info_message"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -77,10 +80,13 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
+                android:autofillHints=""
+                android:hint="@string/type_object"
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textColorHint="#78909C"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -96,10 +102,11 @@
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
+                android:paddingStart="1dp"
                 android:paddingEnd="20sp"
                 android:text="@string/message_"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -107,30 +114,30 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
+                android:autofillHints=""
+                android:hint="@string/message_hint"
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textColorHint="#78909C"
+                android:textSize="20sp" />
         </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_gravity="center"
+            android:layout_margin="15dp">
 
             <Button
                 android:id="@+id/btnSendMessage"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="5"
-                android:backgroundTint="@android:color/transparent"
-                android:fontFamily="@font/cardo"
+                android:padding="15dp"
                 android:text="@string/send_message"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:theme="@style/MyButton" />
 
 
         </LinearLayout>

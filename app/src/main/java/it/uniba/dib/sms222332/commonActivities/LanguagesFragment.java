@@ -31,20 +31,13 @@ public class LanguagesFragment extends Fragment {
         LanguageManager lang = new LanguageManager(getActivity());
         lang.updateResource(lang.getLang());
 
-        en.setScaleType(ImageView.ScaleType.FIT_XY);
-        it.setScaleType(ImageView.ScaleType.FIT_XY);
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(150, 150);
-        en.setLayoutParams(params);
-        it.setLayoutParams(params);
-
         en.setOnClickListener(v -> {
             lang.updateResource("en");
-            getActivity().recreate();
+            requireActivity().recreate();
         });
         it.setOnClickListener(v -> {
             lang.updateResource("it");
-            getActivity().recreate();
+            requireActivity().recreate();
         });
 
         return view;

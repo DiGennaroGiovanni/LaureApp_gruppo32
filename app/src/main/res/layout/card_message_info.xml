@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent">
+    android:background="@android:color/transparent"
+    android:layout_margin="8dp">
 
     <androidx.cardview.widget.CardView
 
@@ -28,25 +29,22 @@
                     android:id="@+id/txtObjectTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_gravity="center"
+                    android:layout_weight="30"
                     android:gravity="end"
-                    android:paddingEnd="10sp"
+                    android:paddingStart="1dp"
+                    android:paddingEnd="10dp"
                     android:text="@string/object_message"
-                    android:textColor="@color/black"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    tools:ignore="RtlSymmetry" />
+                    android:theme="@style/SimpleBoldText" />
 
                 <TextView
                     android:id="@+id/txtObject"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
-                    android:fontFamily="@font/cardo"
+                    android:layout_gravity="center"
+                    android:layout_weight="70"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:theme="@style/SimpleText" />
 
             </LinearLayout>
 
@@ -60,25 +58,22 @@
                     android:id="@+id/txtStudentTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_gravity="center"
+                    android:layout_weight="30"
                     android:gravity="end"
-                    android:paddingEnd="10sp"
+                    android:paddingStart="1dp"
+                    android:paddingEnd="10dp"
                     android:text="@string/student_message"
-                    android:textColor="@color/black"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    tools:ignore="RtlSymmetry" />
+                    android:theme="@style/SimpleBoldText" />
 
                 <TextView
                     android:id="@+id/txtStudente"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
-                    android:fontFamily="@font/cardo"
+                    android:layout_gravity="center"
+                    android:layout_weight="70"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:theme="@style/SimpleText" />
 
             </LinearLayout>
 
@@ -91,25 +86,22 @@
                     android:id="@+id/txtRequestDate"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_gravity="center"
+                    android:layout_weight="30"
                     android:gravity="end"
-                    android:paddingEnd="10sp"
+                    android:paddingStart="1dp"
+                    android:paddingEnd="10dp"
                     android:text="@string/date_message"
-                    android:textColor="@color/black"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    tools:ignore="RtlSymmetry" />
+                    android:theme="@style/SimpleBoldText" />
 
                 <TextView
                     android:id="@+id/txtDate"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
-                    android:fontFamily="@font/cardo"
+                    android:layout_gravity="center"
+                    android:layout_weight="70"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:theme="@style/SimpleText" />
 
             </LinearLayout>
 
@@ -122,25 +114,22 @@
                     android:id="@+id/txtStateTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_gravity="center"
+                    android:layout_weight="30"
                     android:gravity="end"
-                    android:paddingEnd="10sp"
+                    android:paddingStart="1dp"
+                    android:paddingEnd="10dp"
                     android:text="@string/state_message"
-                    android:textColor="@color/black"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    tools:ignore="RtlSymmetry" />
+                    android:theme="@style/SimpleBoldText" />
 
                 <TextView
                     android:id="@+id/txtState"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
-                    android:fontFamily="@font/cardo"
+                    android:layout_gravity="center"
+                    android:layout_weight="70"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:theme="@style/SimpleText" />
 
             </LinearLayout>
 

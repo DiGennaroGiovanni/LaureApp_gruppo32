@@ -6,7 +6,7 @@
     <string name="list_button_text">Your Theses</string>
     <string name="all_thesis_button">FIND A THESIS</string>
     <string name="your_thesis_button">YOUR THESIS</string>
-    <string name="add_thesis_button">ADD A NEW THESIS</string>
+    <string name="add_thesis_button">ADD NEW THESIS</string>
     <string name="handle_thesis_button">HANDLE THESIS</string>
     <string name="receipts_button">RECEIPTS</string>
     <string name="requests_button">Requests</string>
@@ -60,12 +60,11 @@
     <string name="proceed_with_sign_up_as_a_professor">Proceed with sign up as a professor</string>
     <string name="proceed_with_sign_up_as_a_student">Proceed with sign up as a student</string>
     <string name="complete_registration">Complete registration</string>
-    <string name="type_yout_student_data">Type your student data</string>
     <string name="matriculation_number">Badge number</string>
     <string name="testimage">testImage</string>
-    <string name="select_faculty">select faculty</string>
+    <string name="select_faculty">Select faculty</string>
     <string name="select_role">select role</string>
-    <string name="or">Or</string>
+    <string name="or">or</string>
     <string-array name="faculty_array">
         <item>Biology</item>
         <item>Chemistry</item>
@@ -119,10 +118,9 @@
     <string name="average_marks">Average Marks:</string>
     <string name="required_exams">Required Exams:</string>
     <string name="materials">Materials:</string>
-    <string name="button_add_material">+</string>
+    <string name="button_add_material">upload file</string>
     <string name="nome_file">File name</string>
     <string name="department_of_affiliation">Department of affiliation</string>
-    <string name="insert_your_professor_data">Insert your professor data</string>
     <string name="account_deleted">Account deleted</string>
     <string name="continua_la_registrazione">Continue the registration </string>
     <string name="data">Date</string>
@@ -192,7 +190,7 @@
     <string name="object_info_message">Object:</string>
     <string name="student_info_message">Student message:</string>
     <string name="professor_info_message">Professor answer:</string>
-    <string name="professor_info_message_student">Professor: </string>
+    <string name="professor_info_message_student">Professor:</string>
     <string name="nomeprof">profName</string>
     <string name="thesis_info_message_student">Thesis:</string>
     <string name="thesisName_info_message_student">thesisName</string>
@@ -311,4 +309,35 @@
     <string name="logo">logo</string>
     <string name="registration">Registration</string>
 
+    <string name="english_flag_desc_cont">english language</string>
+    <string name="italian_flag_cont_desc">italian language</string>
+    <string name="sign_in_as_guest"><u>Sign in as a guest</u></string>
+    <string name="choice_language">Choice Language</string>
+    <string name="icon_laureapp_cd">icon laureApp</string>
+    <string name="do_you_not_have_an_account">Do you not have an account?</string>
+    <string name="spinnerdepartment">spinner department</string>
+    <string name="title_new_professor">New professor account</string>
+    <string name="spinner_faculty">spinner faculty</string>
+    <string name="new_student_account">New student account</string>
+    <string name="type_your_data">Type your data</string>
+    <string name="scan_qr_code">Scan QR code</string>
+    <string name="task_description_content">task description</string>
+    <string name="type_description">type description</string>
+    <string name="list_available_thesis">list available thesis</string>
+    <string name="camera_description">camera qr scan</string>
+    <string name="filter_thesis">filter thesis</string>
+    <string name="average_marks_hint">type average marks</string>
+    <string name="type_required_exams">type required exams</string>
+    <string name="type_estimated_time">type estimated time</string>
+    <string name="prefered_star">preferred star</string>
+    <string name="share_button_description">share pdf</string>
+    <string name="thesis_typology">Thesis typology:</string>
+    <string name="professor_intestation">Professor:</string>
+    <string name="type_object">type object</string>
+    <string name="message_hint">type message</string>
+    <string name="estimated_time_hint">1</string>
+    <string name="message_list">message list</string>
+    <string name="edit_button">EDIT</string>
+    <string name="delete_button">DELETE</string>
+    <string name="thesis_info_required">thesis info required</string>
 </resources>

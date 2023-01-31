@@ -40,7 +40,7 @@
         android:layout_height="28dp"
         android:layout_gravity="center"
         android:background="@drawable/download_icon"
-        android:contentDescription="@string/delete_material" />
-
+        android:contentDescription="@string/delete_material"
+        android:theme="@style/MyButtonNoText" />
 
 </LinearLayout>
