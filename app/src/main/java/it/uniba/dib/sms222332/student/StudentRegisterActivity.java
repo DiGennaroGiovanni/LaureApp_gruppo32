@@ -39,6 +39,8 @@ public class StudentRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_stud);
 
+        setTitle(getString(R.string.new_student_account));
+
         edtEmailRegistrati = findViewById(R.id.edtEmailRegistrati);
         edtPasswordRegistrati = findViewById(R.id.edtPasswordRegistrati);
         edtCognomeStudente = findViewById(R.id.edtCognomeStudente);

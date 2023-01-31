@@ -4,125 +4,121 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_margin="5dp"
+            android:background="@drawable/custom_shape"
+            android:clickable="true"
+            android:orientation="vertical">
 
-            <TableLayout
+            <TextView
+                android:id="@+id/txtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_shape"
-                android:clickable="true"
-                android:orientation="vertical">
+                android:text="@string/thesis_name"
+                android:textAlignment="center"
+                android:theme="@style/TitleText" />
+
+            <!--        lineetta divisiva      -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="10sp"
+                android:background="#4D000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="8dp">
 
                 <TextView
-                    android:id="@+id/txtName"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtStudentTitle"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/cardo"
-                    android:text="@string/thesis_name"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:textColor="#00213A"
-                    android:textFontWeight="1000"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingStart="1dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/student"
+                    android:theme="@style/SimpleBoldText" />
 
-                <!--        lineetta divisiva      -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginHorizontal="10sp"
-                    android:background="#4D000000" />
+                <TextView
+                    android:id="@+id/txtStudent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="60"
+                    android:text="@string/student"
+                    android:theme="@style/SimpleText" />
 
-                <TableRow>
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txtStudentTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/cardo"
-                        android:text="@string/student"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp">
 
-                    <TextView
-                        android:id="@+id/txtStudent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/student"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        />
+                <TextView
+                    android:id="@+id/txtTypologyTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingStart="1dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/thesis_type"
+                    android:theme="@style/SimpleBoldText" />
 
-                </TableRow>
+                <TextView
+                    android:id="@+id/txtTypology"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="60"
+                    android:text="@string/thesis_type"
+                    android:theme="@style/SimpleText" />
 
-                <TableRow>
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txtTypologyTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/cardo"
-                        android:text="@string/thesis_type"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp">
 
-                    <TextView
-                        android:id="@+id/txtTypology"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/thesis_type"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/txtDepartmentTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingStart="1dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/department"
+                    android:theme="@style/SimpleBoldText" />
 
-                </TableRow>
+                <TextView
+                    android:id="@+id/txtDepartment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="60"
+                    android:text="@string/department"
+                    android:theme="@style/SimpleText" />
 
-                <TableRow>
-
-                    <TextView
-                        android:id="@+id/txtDepartmentTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7sp"
-                        android:fontFamily="@font/cardo"
-                        android:text="@string/department"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtDepartment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/department"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                </TableRow>
-
-
-            </TableLayout>
-
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
-
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

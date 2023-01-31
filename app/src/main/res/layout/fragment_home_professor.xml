@@ -1,40 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:layout_gravity="center"
+    android:layout_margin="8dp"
     android:orientation="vertical"
     android:background="#0808275A">
 
-    <Button
-        android:id="@+id/newThesisBtn"
-        android:layout_width="300sp"
-        android:layout_height="100sp"
-        android:layout_marginTop="120sp"
-        android:layout_marginBottom="90sp"
-        android:layout_weight="1"
-        android:text="@string/add_thesis_button"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="50"
+        android:gravity="center">
 
-    <!--    <Button-->
-    <!--        android:layout_width="300sp"-->
-    <!--        android:layout_height="100sp"-->
-    <!--        android:text="@string/handle_thesis_button"-->
-    <!--        android:textSize="34sp"-->
-    <!--        android:layout_marginVertical="50sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:layout_weight="1"/>-->
+        <Button
+            android:id="@+id/newThesisBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:text="@string/add_thesis_button"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:icon="@drawable/add_thesis_icon" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/receiptsBtn"
-        android:layout_width="300sp"
-        android:layout_height="100sp"
-        android:layout_marginBottom="120sp"
-        android:layout_weight="1"
-        android:text="@string/requests_button"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="50"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/receiptsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:padding="40dp"
+            android:text="@string/requests_button"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:icon="@drawable/icon_check" />
+
+    </LinearLayout>
 
 </LinearLayout>
 

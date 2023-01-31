@@ -10,6 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:paddingBottom="20dp"
         android:orientation="vertical">
 
         <TextView
@@ -25,7 +27,7 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!--        lineetta divisiva      -->
+        <!--        lineetta di separazione      -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -35,6 +37,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:orientation="horizontal">
 
             <TextView
@@ -43,8 +46,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
+                android:layout_gravity="center"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:paddingStart="1sp"
+                android:paddingEnd="10sp"
                 android:text="@string/thesis_name_edit"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -55,6 +60,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
+                android:layout_gravity="center"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -64,6 +70,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:orientation="horizontal">
 
             <TextView
@@ -72,8 +79,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
-                android:gravity="right"
-                android:paddingEnd="20sp"
+                android:gravity="end"
+                android:padding="10sp"
+                android:layout_gravity="center"
                 android:text="@string/student_edit_task"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -84,6 +92,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
+                android:layout_gravity="center"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -93,6 +102,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:orientation="horizontal">
 
             <TextView
@@ -102,7 +112,7 @@
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:padding="10sp"
                 android:text="@string/description_edit_task"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -111,15 +121,17 @@
             <EditText
                 android:id="@+id/edtDescription"
                 android:layout_width="0sp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="65"
+                android:autofillHints=""
+                android:hint="@string/type_description"
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
+                android:textColorHint="#78909C"
                 android:textSize="20sp" />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -133,7 +145,9 @@
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:layout_gravity="center"
+                android:paddingStart="10sp"
+                android:paddingEnd="10sp"
                 android:text="@string/task_state_edit"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -143,19 +157,17 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
-
-
-                android:paddingEnd="20sp">
+                android:padding="10dp">
 
                 <RadioButton
                     android:id="@+id/rdbDaCompletare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cardo"
+                    android:minHeight="48dp"
                     android:text="@string/to_complete_task"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    >
+                    android:textSize="18sp">
 
                 </RadioButton>
 
@@ -164,10 +176,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cardo"
+                    android:minHeight="48dp"
                     android:text="@string/completed_task"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    >
+                    android:textSize="18sp">
 
                 </RadioButton>
 
@@ -176,37 +188,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cardo"
+                    android:minHeight="48dp"
                     android:text="@string/not_started_task"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    >
+                    android:textSize="18sp">
 
                 </RadioButton>
-
-
             </RadioGroup>
-
-
         </LinearLayout>
 
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="end">
 
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/cardo"
                 android:text="@string/save_thesis"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
-
-
     </LinearLayout>
-
 </ScrollView>

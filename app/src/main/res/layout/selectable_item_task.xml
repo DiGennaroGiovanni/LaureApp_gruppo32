@@ -7,12 +7,18 @@
         android:id="@+id/txtTaskName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="3sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/item_task_background"
         android:fontFamily="@font/cardo"
-        android:padding="8sp"
+        android:paddingStart="15dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="5dp"
         android:text="@string/task_name"
-        android:textColor="#B308275A"
+        android:textColor="@color/custom_blue"
         android:textSize="20sp" />
 
 </RelativeLayout>

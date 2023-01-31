@@ -7,7 +7,7 @@
     <string name="list_button_text">Gestisci Tesi</string>
     <string name="all_thesis_button">TESI DISPONIBILI</string>
     <string name="your_thesis_button">LA TUA TESI</string>
-    <string name="add_thesis_button">AGGIUNGI UNA TESI</string>
+    <string name="add_thesis_button">AGGIUNGI NUOVA TESI</string>
     <string name="handle_thesis_button">GESTISCI TESI</string>
     <string name="receipts_button">RICEVIMENTI</string>
     <string name="requests_button">Richieste</string>
@@ -49,7 +49,7 @@
     <!-- FILIPPO -->
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="sign_up">Registrati</string>
+    <string name="sign_up"><u>Registrati</u></string>
     <string name="sign_in">Accedi</string>
     <string name="first_name">Nome</string>
     <string name="last_name">Cognome</string>
@@ -61,12 +61,11 @@
     <string name="proceed_with_sign_up_as_a_professor">Continua registrazione come professore</string>
     <string name="proceed_with_sign_up_as_a_student">Continua registrazione come alunno</string>
     <string name="complete_registration">Concludi registrazione</string>
-    <string name="type_yout_student_data">Digita i tuoi dati studente</string>
     <string name="matriculation_number">Matricola</string>
     <string name="testimage">testImage</string>
     <string name="select_faculty">seleziona facoltà</string>
     <string name="select_role">seleziona ruolo</string>
-    <string name="or">Oppure</string>
+    <string name="or">oppure</string>
     <string-array name="faculty_array">
         <item>Biologia</item>
         <item>Chimica</item>
@@ -118,11 +117,10 @@
     <string name="description">Descrizione:</string>
     <string name="average_marks">Media voti:</string>
     <string name="required_exams">Esami richiesti:</string>
-    <string name="materials">Materiale:</string>
-    <string name="button_add_material">+</string>
+    <string name="materials">Materiale</string>
+    <string name="button_add_material">carica file</string>
     <string name="nome_file">Nome file</string>
     <string name="department_of_affiliation">Dipartimento di affiliazione</string>
-    <string name="insert_your_professor_data">Inserisci i dati da professore</string>
     <string name="account_deleted">Account eliminato</string>
     <string name="continua_la_registrazione">Continua la registrazione</string>
     <string name="data">Data</string>
@@ -201,7 +199,7 @@
     <string name="message">Messaggio</string>
     <string name="delete_request">Elimina Richiesta</string>
     <string name="no_thesis_yet">ANCORA NESSUNA TESI</string>
-    <string name="insert_description">iserisci descrizione</string>
+    <string name="insert_description">inserisci descrizione</string>
     <string name="addressed_tasks">Tasks affrontati:</string>
     <string name="add_receipt">Aggiungi ricevimento</string>
     <string name="task_name_">Nome Task:</string>
@@ -307,6 +305,33 @@
     <string name="snackbar_camera_permission_message2">Autorizzi la richiesta dei permessi?</string>
     <string name="english_flag_desc_cont">lingua inglese</string>
     <string name="italian_flag_cont_desc">lingua italiana</string>
-    <string name="sign_in_as_guest">Entra come ospite</string>
+    <string name="sign_in_as_guest"><u>Entra come ospite</u></string>
     <string name="choice_language">Seleziona lingua</string>
+    <string name="icon_laureapp_cd">icona laureApp</string>
+    <string name="do_you_not_have_an_account">Non hai un account?</string>
+    <string name="spinnerdepartment">spinner dipartimento</string>
+    <string name="title_new_professor">Nuovo account professore</string>
+    <string name="spinner_faculty">spinner facolta</string>
+    <string name="new_student_account">Nuovo account studente</string>
+    <string name="type_your_data">Digita i tuoi dati</string>
+    <string name="scan_qr_code">Scansione QR code</string>
+    <string name="task_description_content">descrizione task</string>
+    <string name="type_description">digita la descrizione</string>
+    <string name="list_available_thesis">lista delle tesi disponibili</string>
+    <string name="camera_description">fotocamera scansione qr code</string>
+    <string name="filter_thesis">filtro tesi</string>
+    <string name="average_marks_hint">digita la media dei voti</string>
+    <string name="type_required_exams">digita gli esami richiesti</string>
+    <string name="type_estimated_time">digita il tempo stimato</string>
+    <string name="prefered_star">stella preferiti</string>
+    <string name="share_button_description">condividi pdf</string>
+    <string name="thesis_typology">Tipologia tesi:</string>
+    <string name="professor_intestation">Professore:</string>
+    <string name="type_object">digita oggetto</string>
+    <string name="message_hint">digita messaggio</string>
+    <string name="estimated_time_hint">1</string>
+    <string name="message_list">lista messaggi</string>
+    <string name="edit_button">MODIFICA</string>
+    <string name="delete_button">CANCELLA</string>
+    <string name="thesis_info_required">thesis info required</string>
 </resources>

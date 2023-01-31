@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#0808275A"
     tools:context=".professor.NewThesisFragment">
 
@@ -21,7 +22,8 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/thesis_name" />
+            android:text="@string/thesis_name"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/edtThesisName"
@@ -33,7 +35,8 @@
             android:hint="@string/type_name_of_thesis"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
-            android:textColorHint="#546E7A" />
+            android:textColorHint="#546E7A"
+            android:textSize="20sp" />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -47,7 +50,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/experimental"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/radioButtonCompilativa"
@@ -55,7 +58,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/compilation"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
         </RadioGroup>
 
@@ -64,15 +67,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/faculty"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="16sp" />
 
         <Spinner
             android:id="@+id/edtMainSubject"
-            android:layout_width="187dp"
+            android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:backgroundTint="#BFBABA"
+            android:gravity="center|center_vertical"
             android:textAlignment="center"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <LinearLayout
@@ -89,7 +95,8 @@
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:text="@string/estimated_time"
-                android:textAlignment="viewEnd" />
+                android:textAlignment="viewEnd"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/edtEstimatedTime"
@@ -97,11 +104,10 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:autofillHints=""
-                android:ems="10"
-                android:hint="1"
+                android:hint="@string/estimated_time_hint"
                 android:inputType="number"
                 android:textAlignment="center"
-                tools:ignore="HardcodedText" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -110,14 +116,16 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="2"
                 android:width="10dp"
-                android:text="@string/days" />
+                android:text="@string/days"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/thesis_description" />
+            android:text="@string/thesis_description"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/edtDescription"
@@ -130,22 +138,27 @@
             android:hint="@string/type_description_thesis"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
-            android:textColorHint="#546E7A" />
+            android:textColorHint="#546E7A"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/correlator"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="16sp" />
 
         <Spinner
             android:id="@+id/edtCorrelator"
-            android:layout_width="187dp"
+            android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:backgroundTint="#BFBABA"
+            android:gravity="center|center_vertical"
             android:textAlignment="center"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
             tools:ignore="SpeakableTextPresentCheck" />
 
 
@@ -154,24 +167,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/teaching_materials"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="16sp" />
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/third_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/addFile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/button_add_material" />
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/layout_lista"
@@ -181,13 +185,27 @@
 
             </LinearLayout>
 
-        </RelativeLayout>
+            <Button
+                android:id="@+id/addFile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/button_add_material"
+                android:textSize="20sp"
+                android:theme="@style/AddButton"
+                app:icon="@drawable/ic_upload" />
+
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/thesis_constraints" />
+            android:text="@string/thesis_constraints"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -198,8 +216,10 @@
                 android:id="@+id/averageCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_gravity="center|left"
+                android:minHeight="48dp"
                 android:text="@string/average_marks"
+                android:textSize="16sp"
                 tools:ignore="RtlHardcoded" />
 
             <EditText
@@ -208,7 +228,8 @@
                 android:layout_height="match_parent"
                 android:hint="@string/hint_average_marks"
                 android:inputType="number"
-                android:textSize="15sp">
+                android:textSize="20sp"
+                android:autofillHints="">
 
             </EditText>
 
@@ -224,8 +245,10 @@
                 android:id="@+id/requiredExamsCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_gravity="center|left"
+                android:minHeight="48dp"
                 android:text="@string/required_exams"
+                android:textSize="16sp"
                 tools:ignore="RtlHardcoded" />
 
             <EditText
@@ -234,11 +257,10 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_required_exams"
                 android:inputType="textMultiLine"
-                android:textSize="15sp" />
-
+                android:textSize="20sp"
+                android:autofillHints="" />
 
         </LinearLayout>
-
 
         <TextView
             android:id="@+id/textView10"
@@ -257,13 +279,18 @@
             android:hint="@string/type_related_projects"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
-            android:textColorHint="#546E7A" />
+            android:textColorHint="#546E7A"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/buttonCreateThesis"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_thesis" />
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="@string/create_thesis"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

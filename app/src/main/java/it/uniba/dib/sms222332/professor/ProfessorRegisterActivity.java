@@ -37,6 +37,7 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_prof);
+        setTitle(getString(R.string.title_new_professor));
 
         buttonConcludiProf = findViewById(R.id.buttonConcludiProf);
         edtCognomeProf = findViewById(R.id.edtCognomeProf);

@@ -29,14 +29,14 @@ public class StudentHomeFragment extends Fragment {
         btnMyThesis = view.findViewById(R.id.myThesisBtn);
 
 
-        btnAvailableTheses.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.icon_available_theses,0);
+        //btnAvailableTheses.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.icon_available_theses,0);
         btnAvailableTheses.setOnClickListener(view1 -> {
 
             buttonAllThesisOnClick();
 
         });
 
-        btnMyThesis.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_your_thesis,0);
+        //btnMyThesis.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_your_thesis,0);
         btnMyThesis.setOnClickListener(view12 -> {
 
             myThesisBtnOnClick();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -17,49 +18,51 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="30"
+                    android:gravity="end"
+                    android:paddingStart="1dp"
+                    android:paddingEnd="10dp"
                     android:text="@string/thesis"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:theme="@style/SimpleBoldText"/>
 
                 <TextView
                     android:id="@+id/txtThesisName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="60"
                     android:text="@string/thesisname"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:theme="@style/SimpleText"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="30"
+                    android:gravity="end"
+                    android:paddingStart="1dp"
+                    android:paddingEnd="10dp"
                     android:text="@string/student_request"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:theme="@style/SimpleBoldText"/>
 
                 <TextView
                     android:id="@+id/txtStudentEmail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="60"
                     android:text="@string/studentemail"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:theme="@style/SimpleText"/>
 
             </LinearLayout>
 
@@ -68,10 +71,14 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/icon_info" />
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/icon_info"
+                    tools:ignore="ImageContrastCheck"
+                    android:contentDescription="@string/thesis_info_required" />
 
             </RelativeLayout>
 

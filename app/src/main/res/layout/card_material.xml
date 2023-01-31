@@ -1,49 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cardMaterial"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/thesisCard"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3sp"
-        android:layout_toStartOf="@+id/deleteMaterial"
-        android:padding="4sp">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp">
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <TextView
-                android:id="@+id/materialName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:padding="4sp"
-                android:text="@string/nome_file"
-                android:textAlignment="textEnd"
-                android:textSize="18sp" />
-
-
-        </RelativeLayout>
-
+        <TextView
+            android:id="@+id/materialName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginEnd="55dp"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:text="@string/nome_file"
+            android:textSize="20sp" />
 
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/deleteMaterial"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/delete_icon"
-        android:contentDescription="@string/delete_material" />
+        android:contentDescription="@string/delete_material"
+        android:theme="@style/DeleteButton" />
 
 </RelativeLayout>

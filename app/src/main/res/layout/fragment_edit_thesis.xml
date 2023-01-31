@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="vertical">
 
         <TextView
@@ -18,11 +19,12 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:fontFamily="@font/cardo"
+            android:minHeight="35dp"
             android:text="@string/thesis_name"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#00213A"
-            android:textSize="22sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <!--        lineetta divisiva      -->
@@ -35,56 +37,64 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtTypologyTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
                 android:text="@string/thesis_type"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtTypology"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
+                android:layout_gravity="center"
+                android:layout_weight="60"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
                 android:text=""
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtDepartmentTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
-                android:gravity="right"
-                android:paddingEnd="20sp"
+                android:gravity="end"
                 android:text="@string/department"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtDepartment"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
+                android:layout_gravity="center"
+                android:layout_weight="60"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="18sp" />
@@ -94,28 +104,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtCorrelatorTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
                 android:text="@string/correlator"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinnerCorrelator"
-                android:layout_width="0sp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
+                android:layout_gravity="start"
+                android:layout_weight="60"
                 android:backgroundTint="#BFBABA"
-                android:textAlignment="center"
+                android:minHeight="48dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
 
@@ -124,26 +136,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtStudentTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
-                android:gravity="right"
-                android:paddingEnd="20sp"
+                android:gravity="end"
                 android:text="@string/student_edit_thesis"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtStudent"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
+                android:layout_gravity="center"
+                android:layout_weight="60"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="18sp" />
@@ -153,29 +169,37 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtTimeTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
-                android:gravity="right"
-                android:paddingEnd="20sp"
+                android:gravity="end"
                 android:text="@string/estimated_time"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtTime"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
+                android:layout_gravity="center"
+                android:layout_weight="60"
+                android:autofillHints=""
+                android:hint="@string/type_estimated_time"
                 android:inputType="number"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
                 android:text=""
                 android:textColor="@color/black"
+                android:textColorHint="#78909C"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -184,58 +208,77 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtDescriptionTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
                 android:text="@string/description"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtDescription"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
+                android:layout_gravity="center"
+                android:layout_weight="60"
+                android:autofillHints=""
+                android:hint="@string/type_description"
                 android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textColorHint="#78909C"
+                android:textSize="18sp"
+                tools:ignore="DuplicateSpeakableTextCheck" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:minHeight="50dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtRelatedProjectsTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_gravity="center"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
                 android:text="@string/related_projects"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtRelatedProjects"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
+                android:layout_gravity="center"
+                android:layout_weight="60"
+                android:hint="@string/type_description"
+                android:importantForAutofill="no"
+                android:inputType="textAutoCorrect"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
                 android:text=""
                 android:textColor="@color/black"
+                android:textColorHint="#78909C"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -250,27 +293,35 @@
                 android:id="@+id/averageMarksTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5sp"
                 android:text="@string/average_marks"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <CheckBox
                 android:id="@+id/averageCheck"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="7" />
+                android:layout_gravity="center"
+                android:layout_weight="7"
+                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
             <EditText
                 android:id="@+id/edtAverage"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="58"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="53"
+                android:autofillHints=""
+                android:hint="@string/average_marks_hint"
                 android:inputType="number"
+                android:minHeight="48dp"
+                android:textColorHint="#78909C"
                 android:textSize="18sp">
 
             </EditText>
@@ -287,27 +338,35 @@
                 android:id="@+id/requiredExamsTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
+                android:layout_weight="40"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingEnd="20sp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5sp"
                 android:text="@string/required_exams"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="17sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <CheckBox
                 android:id="@+id/requiredExamsCheck"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="7" />
+                android:layout_gravity="center"
+                android:layout_weight="7"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
                 android:id="@+id/edtRequiredExams"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="58"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="53"
+                android:autofillHints=""
+                android:hint="@string/type_required_exams"
                 android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:textColorHint="#78909C"
                 android:textSize="18sp">
 
             </EditText>
@@ -317,56 +376,68 @@
 
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtMaterialsTitle"
-                android:layout_width="0sp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="34"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
                 android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:paddingEnd="20sp"
                 android:text="@string/materials"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            <LinearLayout
-                android:id="@+id/layout_lista_file"
-                android:layout_width="0sp"
+            <Button
+                android:id="@+id/buttonAdd"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:shadowColor="#A8A8A8"
+                android:text="@string/button_add_material"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:ignore="TextContrastCheck" />
 
-                <Button
-                    android:id="@+id/buttonAdd"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:text="@string/button_add_material"
-                    android:textAlignment="center" />
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout_lista_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:layout_weight="50"
+                android:background="@drawable/buttonshape"
                 android:fontFamily="@font/cardo"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:text="@string/save_thesis"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

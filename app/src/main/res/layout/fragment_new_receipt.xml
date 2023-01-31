@@ -114,6 +114,7 @@
             <RelativeLayout
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="65">
 
                 <TextView
@@ -149,6 +150,7 @@
             <RelativeLayout
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="65">
 
                 <TextView
@@ -202,6 +204,7 @@
 
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="35"
                 android:fontFamily="@font/cardo"
                 android:gravity="end"
@@ -226,12 +229,14 @@
 
         <Button
             android:id="@+id/btnAddReceipt"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"
-            android:padding="4sp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:padding="10dp"
             android:text="@string/add_receipt"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:theme="@style/MyButton" />
 
     </LinearLayout>
 

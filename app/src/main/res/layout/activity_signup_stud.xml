@@ -1,148 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:orientation="vertical"
     android:background="#0808275A"
     tools:context=".student.StudentRegisterActivity">
 
-    <TextView
-        android:id="@+id/textViewContinuaRegistrazioneStudente"
-        android:layout_width="262dp"
-        android:layout_height="57dp"
-        android:layout_gravity="center"
-        android:text="@string/type_yout_student_data"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058" />
-
-    <EditText
-        android:id="@+id/edtNomeStudente"
-        android:layout_width="187dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:autofillHints=""
-        android:hint="@string/first_name"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewContinuaRegistrazioneStudente"
-        app:layout_constraintVertical_bias="0.056" />
-
-    <EditText
-        android:id="@+id/edtCognomeStudente"
-        android:layout_width="187dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:autofillHints=""
-        android:hint="@string/last_name"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColorHint="#757575" />
-
-    <EditText
-        android:id="@+id/edtEmailRegistrati"
-        android:layout_width="192dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.431" />
-
-    <EditText
-        android:id="@+id/edtPasswordRegistrati"
-        android:layout_width="185dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="28dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmailRegistrati"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/edtMatricolaStudente"
-        android:layout_width="187dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:autofillHints=""
-        android:hint="@string/matriculation_number"
-        android:inputType="number"
-        android:maxLength="6"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.808" />
-
-    <TextView
-        android:id="@+id/txtFacoltaStudente"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/select_faculty"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerFacolta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtCognomeStudente"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_gravity="start"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewContinuaRegistrazioneStudente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/type_your_data"
+            android:textAlignment="center"
+            android:textSize="28sp" />
+
+        <EditText
+            android:id="@+id/edtNomeStudente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:autofillHints=""
+            android:hint="@string/first_name"
+            android:inputType="text|textAutoComplete"
+            android:minWidth="200dp"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edtCognomeStudente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:autofillHints=""
+            android:hint="@string/last_name"
+            android:inputType="text|textAutoComplete"
+            android:minWidth="200dp"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edtEmailRegistrati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:autofillHints=""
+            android:hint="@string/email"
+            android:inputType="textEmailAddress|textAutoComplete"
+            android:minWidth="200dp"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edtPasswordRegistrati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:autofillHints=""
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:minWidth="200dp"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edtMatricolaStudente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:autofillHints=""
+            android:hint="@string/matriculation_number"
+            android:inputType="number"
+            android:maxLength="6"
+            android:minWidth="200dp"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtFacoltaStudente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="@string/select_faculty"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
     <Spinner
         android:id="@+id/spinnerFacolta"
-        android:layout_width="187dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:backgroundTint="#BFBABA"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.693"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/buttonConcludi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="36dp"
-        android:text="@string/complete_registration"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#BFBABA"
+        android:contentDescription="@string/spinner_faculty"
+        android:gravity="center"
+        android:minWidth="200dp"
+        android:minHeight="50dp"/>
 
+        <Button
+            android:id="@+id/buttonConcludi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/buttonshape"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/complete_registration"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

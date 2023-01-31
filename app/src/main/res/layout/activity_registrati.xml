@@ -7,79 +7,67 @@
     android:background="#0808275A"
     tools:context=".commonActivities.RegisterActivity">
 
-    <Button
-        android:id="@+id/buttonContinuaProfessore"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/professor"
-        android:fontFamily="@font/cardo"
-        android:textStyle="bold"
-        android:textColor="@color/black"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_type"
-        app:layout_constraintVertical_bias="0.205" />
+        app:layout_constraintTop_toTopOf="parent">
 
-<ImageView
-    android:id="@+id/imageView"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    android:contentDescription="todo"
-    android:src="@drawable/img"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.498"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.116"
-    tools:srcCompat="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/testimage"
+            android:maxWidth="200dp"
+            app:srcCompat="@drawable/logo_app" />
 
-<TextView
-    android:id="@+id/account_type"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/question_register_activity"
-    android:textSize="20sp"
-    android:fontFamily="@font/cardo"
-    android:textStyle="bold"
-    android:textColor="@color/black"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.495"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.34" />
+        <TextView
+            android:id="@+id/account_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/question_register_activity"
+            android:theme="@style/SimpleText" />
 
-<Button
-    android:id="@+id/buttonContinuaStudente"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/studentProfession"
-    android:fontFamily="@font/cardo"
-    android:textStyle="bold"
-    android:textColor="@color/black"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.58"
-    app:layout_constraintStart_toEndOf="@+id/buttonContinuaProfessore"
-    app:layout_constraintTop_toBottomOf="@+id/account_type"
-    app:layout_constraintVertical_bias="0.203" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/continua_la_registrazione"
+            android:theme="@style/SimpleText" />
 
-<TextView
-    android:id="@+id/textView4"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:text="@string/continua_la_registrazione"
-    android:fontFamily="@font/cardo"
-    android:textStyle="bold"
-    android:textColor="@color/black"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/account_type"
-    app:layout_constraintVertical_bias="0.016" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonContinuaStudente"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="50"
+                android:text="@string/studentProfession"
+                tools:ignore="ButtonStyle" />
+
+            <Button
+                android:id="@+id/buttonContinuaProfessore"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="50"
+                android:text="@string/professor"
+                tools:ignore="ButtonStyle" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

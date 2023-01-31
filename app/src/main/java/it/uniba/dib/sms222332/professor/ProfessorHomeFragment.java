@@ -28,7 +28,7 @@ public class ProfessorHomeFragment extends Fragment {
 
         btnNewThesis = view.findViewById(R.id.newThesisBtn);
 
-        btnNewThesis.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.add_thesis_icon, 0);
+        //btnNewThesis.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.add_thesis_icon, 0);
         btnNewThesis.setOnClickListener(view1 -> {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -40,7 +40,7 @@ public class ProfessorHomeFragment extends Fragment {
 
         btnRequests = view.findViewById(R.id.receiptsBtn);
 
-        btnRequests.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.icon_check, 0);
+        //btnRequests.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.icon_check, 0);
         btnRequests.setOnClickListener(view2 -> {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

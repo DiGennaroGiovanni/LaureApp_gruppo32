@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0808275A"
+    tools:context=".professor.ProfessorRegisterActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewContinuaRegistrazioneProfessore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/type_your_data"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/edtNomeProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:autofillHints=""
+            android:hint="@string/first_name"
+            android:inputType="text|textAutoComplete"
+            android:minWidth="230dp"
+            android:minHeight="50dp"
+            android:textColorHint="#757575" />
+
+        <EditText
+            android:id="@+id/edtCognomeProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:autofillHints=""
+            android:hint="@string/last_name"
+            android:inputType="text|textAutoComplete"
+            android:minWidth="230dp"
+            android:minHeight="50dp"
+            android:textColorHint="#757575" />
+
+        <EditText
+            android:id="@+id/edtEmailRegistrati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:autofillHints=""
+            android:hint="@string/email"
+            android:inputType="textEmailAddress|textAutoComplete"
+            android:minWidth="400dp"
+            android:minHeight="50dp"
+            android:textColorHint="#757575" />
+
+        <EditText
+            android:id="@+id/edtPasswordRegistrati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:autofillHints=""
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:minWidth="300dp"
+            android:minHeight="50dp"
+            android:textColorHint="#757575" />
+
+        <TextView
+            android:id="@+id/txtDepartment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="@string/department_of_affiliation"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinnerDepartment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#BFBABA"
+            android:contentDescription="@string/spinnerdepartment"
+            android:gravity="center"
+            android:minWidth="300dp"
+            android:minHeight="50dp" />
+
+        <Button
+            android:id="@+id/buttonConcludiProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/buttonshape"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/complete_registration"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+</ScrollView>

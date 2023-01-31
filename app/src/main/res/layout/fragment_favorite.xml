@@ -8,9 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
 
         <com.jmedeisis.draglinearlayout.DragLinearLayout
             android:id="@+id/layout_tesi_preferite"
