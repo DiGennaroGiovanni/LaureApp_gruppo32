@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
@@ -87,7 +86,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         layoutRequiredExams = view.findViewById(R.id.layoutRequiredExams);
         layoutAverageMarks = view.findViewById(R.id.layoutAverageMarks);
         layoutNoThesis = view.findViewById(R.id.layoutNoThesis);
-        layoutState = view.findViewById(R.id.layoutState);
+        layoutState = view.findViewById(R.id.notAcceptedState);
         txtNoRequest = view.findViewById(R.id.txtNoRequest);
         txtNameTitle = view.findViewById(R.id.txtNameTitle);
         txtState = view.findViewById(R.id.txtState);
@@ -110,15 +109,17 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     @Override
     public void onResume() {
         super.onResume();
-        if (!MainActivity.account.getRequest().equals("no") && !MainActivity.account.getRequest().equals("yes"))//LO STUDENTE  HA UNA TESI
-            studenteHaveThesis();
-        else if (MainActivity.account.getRequest().equals("no")) //LO STUDENTE NON HA ANCORA FATTO RICHIESTA
-            studentNotRequest();
-        else// LO STUDENTE HA FATTO RICHIESTA MA NON E' STATA ANCORA ACCETTATA
-            studentYesRequest();
+
+        if(MainActivity.account.getRequest().equals("no"))
+            noRequest();
+        else if(MainActivity.account.getRequest().equals("yes"))
+            hasRequested();
+        else
+            haveThesis();
+
     }
 
-    private void studentYesRequest() {
+    private void hasRequested() {
         layoutState.setVisibility(View.VISIBLE);
         layoutButton.setVisibility(View.GONE);
         layoutButtonCancelRequest.setVisibility((View.VISIBLE));
@@ -159,7 +160,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                                 else
                                     txtCorrelator.setText(document.getString("Correlator"));
 
-                                String estimatedTime = document.getString("Estimated Time") + " days";
+                                String estimatedTime = document.getString("Estimated Time") +" " + getResources().getString(R.string.days);
                                 txtTime.setText(estimatedTime);
 
                                 txtDescription.setText(document.getString("Description"));
@@ -179,10 +180,6 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                                 else
                                     txtRequiredExams.setText(document.getString("Required Exam"));
 
-                                String state = getString(R.string.not_accepted_yet);
-                                txtState.setTextColor(Color.RED);
-                                txtState.setText(state);
-
                             }
                         } else {
                             Log.d(TAG, "get failed with ", task2.getException());
@@ -193,13 +190,13 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
     }
 
-    private void studentNotRequest() {
+    private void noRequest() {
         layoutThesisAccepted.setVisibility(View.GONE);
         layoutNoThesis.setVisibility(View.VISIBLE);
         layoutButton.setVisibility(View.GONE);
     }
 
-    private void studenteHaveThesis() {
+    private void haveThesis() {
         layoutAverageMarks.setVisibility(View.GONE);
         layoutRequiredExams.setVisibility(View.GONE);
         layoutMaterials.setVisibility(View.VISIBLE);

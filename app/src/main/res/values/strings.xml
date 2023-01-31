@@ -200,7 +200,7 @@
     <string name="state">State:</string>
     <string name="message">Message</string>
     <string name="delete_request">Delete Request</string>
-    <string name="no_thesis_yet">Not requested any theses</string>
+    <string name="no_thesis_yet">You have not requested any thesis</string>
     <string name="insert_description">insert description</string>
     <string name="addressed_tasks">Addressed tasks:</string>
     <string name="add_receipt">Add receipt</string>

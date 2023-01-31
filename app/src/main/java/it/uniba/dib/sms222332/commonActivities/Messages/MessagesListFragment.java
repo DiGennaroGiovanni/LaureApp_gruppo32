@@ -33,7 +33,7 @@ public class MessagesListFragment extends Fragment {
     TextView txtNomeProfessore,txtNomeTesi, txtProf;
     String thesis_name;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Button addMessageButton;
+    Button btnNewMessage;
 
 
     @Nullable
@@ -46,7 +46,7 @@ public class MessagesListFragment extends Fragment {
 
         txtNomeProfessore = view.findViewById(R.id.txtNomeProfessore);
         txtNomeTesi = view.findViewById(R.id.txtNomeTesi);
-        addMessageButton = view.findViewById(R.id.addMessageButton);
+        btnNewMessage = view.findViewById(R.id.addMessageButton);
         txtProf =  view.findViewById(R.id.txtProf);
 
 
@@ -73,10 +73,10 @@ public class MessagesListFragment extends Fragment {
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if((document.getString("Student").equals(MainActivity.account.getEmail()) &&
-                            document.getString("Thesis Name").equals(thesis_name)) ||
-                            document.getString("Professor").equals(MainActivity.account.getEmail()) &&
-                                    document.getString("Thesis Name").equals(thesis_name) ){
+                    if(( Objects.equals(document.getString("Student"), MainActivity.account.getEmail()) &&
+                            Objects.equals(document.getString("Thesis Name"), thesis_name) ) ||
+                            (Objects.equals(document.getString("Professor"), MainActivity.account.getEmail()) &&
+                                    Objects.equals(document.getString("Thesis Name"), thesis_name))){
                         addMessageCard(document);
 
                     }
@@ -86,13 +86,14 @@ public class MessagesListFragment extends Fragment {
 
         if(MainActivity.account.getAccountType().equals("Professor")){
             txtNomeProfessore.setVisibility(View.GONE);
-
             txtProf.setVisibility(View.GONE);
         }
 
-        if(MainActivity.account.getAccountType().equals("Student") && (MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no")
-                || MainActivity.account.getRequest().equals(thesis_name) )){
-            addMessageButton.setOnClickListener(view1 -> {
+        if(MainActivity.account.getAccountType().equals("Professor"))
+            btnNewMessage.setVisibility(View.GONE);
+
+        else if((MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no") || MainActivity.account.getRequest().equals(thesis_name) )){
+            btnNewMessage.setOnClickListener(view1 -> {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("thesis_name",thesis_name);
@@ -107,13 +108,8 @@ public class MessagesListFragment extends Fragment {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             });
-        }else if(MainActivity.account.getAccountType().equals("Professor"))
-            addMessageButton.setVisibility(View.GONE);
-        else
-        {
-            addMessageButton.setOnClickListener(view12 -> {
-                Snackbar.make(view12,"You can send messages only for '" + MainActivity.account.getRequest()+ "' thesis!",Snackbar.LENGTH_LONG).show();
-            });
+        } else {
+            btnNewMessage.setOnClickListener(view12 -> Snackbar.make(requireView(),getResources().getString(R.string.you_can_send_messages),Snackbar.LENGTH_LONG).show());
         }
     }
 
@@ -138,6 +134,7 @@ public class MessagesListFragment extends Fragment {
         txtDate.setText(date);
         txtState.setText(state);
 
+        assert state != null;
         if(state.equals("Not answered"))
             txtState.setTextColor(Color.RED);
         else
