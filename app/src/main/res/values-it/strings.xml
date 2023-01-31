@@ -141,6 +141,9 @@
     <string name="task">Task</string>
     <string name="we_are_sorry_to_see_you_leave">Ci dispiace vederti andar via</string>
     <string name="you_are_always_welocome_to_join_laureapp_again">Sarai sempre il benvenuto su LaureApp!</string>
+    <string name="no_internet_connection">CONNESSIONE INTERNET ASSENTE</string>
+    <string name="no_internet_connection_first_message">Sembra che tu non disponga di una connessione internet.</string>
+    <string name="no_internet_connection_second_message">Collegati ad internet e riprova.</string>
     <string name="back_to_login">Torna al login</string>
     <string name="requirement_met">Requisito Rispettato:</string>
     <string name="qr_code_thesis">qr_code_thesis</string>
@@ -345,4 +348,5 @@
     <string name="edit_button">MODIFICA</string>
     <string name="delete_button">CANCELLA</string>
     <string name="thesis_info_required">thesis info required</string>
+    <string name="try_again">RIPROVA</string>
 </resources>

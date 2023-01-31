@@ -34,58 +34,51 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        checkConnection();
-
-
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser != null) {
-            // user is logged in
-
-            String email = currentUser.getEmail();
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            assert email != null;
-            DocumentReference docRefStud = db.collection("studenti").document(email);
-
-            docRefStud.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        // user is a student
-                        studentDirectLogin(email, document);
-
-                    } else {
-                        // check if user is a professor
-                        professorDirectLogin(email, db);
-                    }
-                } else {
-                        Log.d("TAG", "get failed with ", task.getException());
-                }
-            });
-
-
-        } else {
-            // user is not logged in
-
-            // Mostra l'immagine splash per 2 secondi
-            new Handler().postDelayed(() -> {
-                final Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }, SPLASH_DISPLAY_LENGTH);
-        }
-    }
-
-    private void checkConnection() {
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
         if (!isConnected) {
-            View rootView = findViewById(android.R.id.content);
-            Snackbar.make(rootView, "No internet connection" , Snackbar.LENGTH_LONG).show();
+            Intent intent = new Intent(SplashActivity.this, NoConnectionActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }else if (currentUser != null) {
+                // user is logged in
+
+                String email = currentUser.getEmail();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                assert email != null;
+                DocumentReference docRefStud = db.collection("studenti").document(email);
+
+                docRefStud.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            // user is a student
+                            studentDirectLogin(email, document);
+
+                        } else {
+                            // check if user is a professor
+                            professorDirectLogin(email, db);
+                        }
+                    } else {
+                        Log.d("TAG", "get failed with ", task.getException());
+                    }
+                });
+            } else {
+                // user is not logged in
+
+                // Mostra l'immagine splash per 2 secondi
+                new Handler().postDelayed(() -> {
+                    final Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }, SPLASH_DISPLAY_LENGTH);
+            }
         }
-    }
+
 
     private void professorDirectLogin(String email, FirebaseFirestore db) {
         DocumentReference docRefProf = db.collection("professori").document(email);

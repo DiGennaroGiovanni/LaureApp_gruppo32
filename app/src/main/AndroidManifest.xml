@@ -74,6 +74,10 @@
             android:name=".commonActivities.ProfileDeletedActivity"
             android:exported="false" />
 
+        <!-- NO CONNECTION ACTIVITY-->
+        <activity
+            android:name=".commonActivities.NoConnectionActivity"
+            android:exported="false" />
         <!-- MAIN ACTIVITY -->
         <activity
             android:name=".commonActivities.MainActivity"

@@ -141,6 +141,9 @@
     <string name="task">Task</string>
     <string name="we_are_sorry_to_see_you_leave">We are sorry to see you leave</string>
     <string name="you_are_always_welocome_to_join_laureapp_again">You are always welocome to join LaureApp again!</string>
+    <string name="no_internet_connection">NO INTERNET CONNECTION</string>
+    <string name="no_internet_connection_first_message">Looks like you don\'t have an internet connection.</string>
+    <string name="no_internet_connection_second_message">Connect to the internet and try again.</string>
     <string name="back_to_login">Back to login</string>
     <string name="requirement_met">Requirement met:</string>
     <string name="qr_code_thesis">qr_code_thesis</string>
@@ -343,4 +346,5 @@
     <string name="edit_button">EDIT</string>
     <string name="delete_button">DELETE</string>
     <string name="thesis_info_required">thesis info required</string>
+    <string name="try_again">TRY AGAIN</string>
 </resources>
