@@ -49,7 +49,7 @@
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_centerInParent="true"
-                android:background="@drawable/ic_camera_icon" />
+                android:background="@drawable/ic_camera_button" />
         </RelativeLayout>
 
 

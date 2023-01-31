@@ -95,12 +95,10 @@
                     android:id="@+id/txtDepartment"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="60"
                     android:text=""
                     android:theme="@style/SimpleText"
                     android:layout_gravity="bottom"/>
-
             </LinearLayout>
 
             <LinearLayout

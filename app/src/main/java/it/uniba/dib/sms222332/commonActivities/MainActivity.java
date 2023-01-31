@@ -56,12 +56,10 @@ import it.uniba.dib.sms222332.professor.ProfessorAccount;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 import it.uniba.dib.sms222332.professor.ThesesListFragment;
 import it.uniba.dib.sms222332.student.favorites.FavoritesFragment;
-import it.uniba.dib.sms222332.student.FavoritesFragment;
 import it.uniba.dib.sms222332.student.MyThesisFragment;
 import it.uniba.dib.sms222332.student.StudentAccount;
 import it.uniba.dib.sms222332.student.StudentHomeFragment;
 import it.uniba.dib.sms222332.commonActivities.Messages.ThesesMessagesListFragment;
-import it.uniba.dib.sms222332.student.ThesisDescriptionGuestFragment;
 import it.uniba.dib.sms222332.tools.CaptureAct;
 
 

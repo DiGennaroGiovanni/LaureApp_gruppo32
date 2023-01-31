@@ -354,7 +354,7 @@
                 android:hint="@string/type_required_exams"
                 android:inputType="textMultiLine"
                 android:textSize="20sp"
-                android:textColorHint="#78909C"">
+                android:textColorHint="#78909C">
 
             </EditText>
 
@@ -397,8 +397,8 @@
 
                     <Button
                         android:id="@+id/buttonAdd"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:layout_margin="3dp"
                         android:text="@string/button_add_material" />
