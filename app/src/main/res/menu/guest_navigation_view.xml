@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="guest_navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_scan_qr"
+            android:icon="@drawable/ic_camera_button"
+            android:title="@string/scan_qr_code"/>
+        <item
+            android:id="@+id/nav_language"
+            android:icon="@drawable/icon_languages"
+            android:title="@string/menu_language" />
+
+    </group>
+
+   <item
+       android:title="">
+
+       <menu>
+           <item
+               android:id="@+id/nav_logout"
+               android:icon="@drawable/icon_exit"
+               android:title="@string/guest_login" />
+       </menu>
+   </item>
+</menu>

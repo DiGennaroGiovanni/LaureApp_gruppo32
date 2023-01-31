@@ -81,6 +81,15 @@
             android:theme="@style/Theme.LaureApp.NoActionBar"
             android:windowSoftInputMode="adjustPan"> <!-- Per non far muovere la bottom navigation view quando si apre la tastiera -->
         </activity>
+
+        <!-- GUEST MAIN ACTIVITY -->
+        <activity
+            android:name=".guest.MainActivityGuest"
+            android:exported="true"
+            android:theme="@style/Theme.LaureApp.NoActionBar"
+            android:windowSoftInputMode="adjustPan"> <!-- Per non far muovere la bottom navigation view quando si apre la tastiera -->
+        </activity>
+
         <!-- DEFINISCO PARAMETRI PER LA SCHERMATA DI SCANSIONE DEL QR CODE -->
         <activity
             android:name=".tools.CaptureAct"

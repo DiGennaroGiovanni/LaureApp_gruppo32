@@ -1,13 +1,18 @@
 package it.uniba.dib.sms222332.commonActivities;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -30,6 +35,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         Objects.requireNonNull(getSupportActionBar()).hide();
+
+        checkConnection();
 
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -67,6 +74,16 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }, SPLASH_DISPLAY_LENGTH);
+        }
+    }
+
+    private void checkConnection() {
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        if (!isConnected) {
+            View rootView = findViewById(android.R.id.content);
+            Snackbar.make(rootView, "No internet connection" , Snackbar.LENGTH_LONG).show();
         }
     }
 

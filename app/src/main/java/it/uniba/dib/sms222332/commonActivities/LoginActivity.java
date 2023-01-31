@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.guest.MainActivityGuest;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Dichiaro i pulsanti presenti nella schermata
         Button registerBtn = findViewById(R.id.btnRegistrati);
+        Button btnGuest = findViewById(R.id.btnGuest);
         Button loginBtn = findViewById(R.id.btnAccedi);
         edtEmailLogin = findViewById(R.id.edtEmailLogin);
         edtPasswordLogin = findViewById(R.id.edtPasswordLogin);
@@ -74,6 +76,11 @@ public class LoginActivity extends AppCompatActivity {
 
         // Passo alla schermata home
         loginBtn.setOnClickListener(view -> performLogin());
+
+        btnGuest.setOnClickListener(view -> {
+            Intent guestIntent = new Intent(LoginActivity.this, MainActivityGuest.class);
+            startActivity(guestIntent);
+        });
     }
 
     private void performLogin() {
