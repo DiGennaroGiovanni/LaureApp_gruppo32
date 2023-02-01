@@ -1,427 +1,432 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0808275A"
-    tools:context=".professor.ThesesListFragment">
+    android:orientation="vertical"
+    android:background="#0808275A">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        tools:context=".professor.ThesesListFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordered_white_layout"
+            android:layout_margin="7dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtNameTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/thesis_name"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="#00213A"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!--        lineetta divisiva      -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#40000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#4DD3D3D3">
+
+                <TextView
+                    android:id="@+id/txtTypologyTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/thesis_type"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtTypology"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtDepartmentTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/department"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtDepartment"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#4DD3D3D3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtCorrelatorTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/correlator"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtCorrelator"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtStudentTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/student"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtStudent"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#4DD3D3D3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTimeTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/estimated_time"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtDescriptionTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/description"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtDescription"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#4DD3D3D3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtRelatedProjectsTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/related_projects"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtRelatedProjects"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTitleAverageMarks"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/average_marks"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtAverageMarks"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#4DD3D3D3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTitleRequiredExams"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/required_exams"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtRequiredExams"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtMaterialsTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/materials"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+
+                <RelativeLayout
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="60">
+
+                    <LinearLayout
+                        android:id="@+id/layout_lista_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bordered_rect"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="10sp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnReceipt"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#B31C4F7E"
+                    android:text="@string/receipt"
+                    android:textSize="16sp"
+                    android:visibility="visible" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTask"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#B31C4F7E"
+                    android:text="@string/task"
+                    android:textSize="16sp"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/txtNameTitle"
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEditThesis"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/cardo"
-            android:text="@string/thesis_name"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="#00213A"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <!--        lineetta divisiva      -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
             android:layout_marginHorizontal="10sp"
-            android:background="#4D000000" />
+            android:layout_weight="1"
+            android:contentDescription="@string/edit_thesis"
+            android:text="@string/edit_button"
+            android:textSize="16sp"
+            app:icon="@drawable/icon_edit"
+            app:iconGravity="textStart"
+            app:iconSize="20dp"
+            app:strokeColor="@color/custom_blue" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/txtTypologyTitle"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:padding="10sp"
-                android:text="@string/thesis_type"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTypology"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_weight="60"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDeleteThesis"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtDepartmentTitle"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:padding="10sp"
-                android:text="@string/department"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtDepartment"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="60"
-                android:layout_gravity="bottom"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtCorrelatorTitle"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:padding="10sp"
-                android:text="@string/correlator"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtCorrelator"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="60"
-                android:layout_gravity="bottom"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtStudentTitle"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:padding="10sp"
-                android:text="@string/student"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtStudent"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="60"
-                android:layout_gravity="bottom"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtTimeTitle"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:padding="10sp"
-                android:text="@string/estimated_time"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTime"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_weight="60"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtDescriptionTitle"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:padding="10sp"
-                android:text="@string/description"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtDescription"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="60"
-                android:layout_gravity="bottom"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtRelatedProjectsTitle"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:padding="10sp"
-                android:text="@string/related_projects"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_gravity="bottom"
-                android:id="@+id/txtRelatedProjects"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="60"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtTitleAverageMarks"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:padding="10sp"
-                android:text="@string/average_marks"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_gravity="bottom"
-                android:id="@+id/txtAverageMarks"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="60"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtTitleRequiredExams"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:padding="10sp"
-                android:text="@string/required_exams"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtRequiredExams"
-                android:layout_gravity="center"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="60"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtMaterialsTitle"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:padding="10sp"
-                android:text="@string/materials"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-
-            <RelativeLayout
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="65">
-
-                <LinearLayout
-                    android:background="@drawable/bordered_rect"
-                    android:id="@+id/layout_lista_file"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnEditThesis"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="@string/edit_button"
-                android:contentDescription="@string/edit_thesis"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:theme="@style/MyButton"
-                app:icon="@drawable/icon_edit"
-                tools:ignore="ButtonStyle" />
-
-            <Button
-                android:id="@+id/btnDeleteThesis"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/delete_button"
-                android:contentDescription="@string/delete_thesis"
-                android:gravity="center"
-                android:theme="@style/DeleteButton"
-                app:icon="@drawable/delete_icon"
-                tools:ignore="ButtonStyle" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnReceipt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="50"
-                android:padding="15dp"
-                android:text="@string/receipt"
-                android:textSize="20sp"
-                android:theme="@style/MyButton"
-                android:visibility="invisible"
-                tools:ignore="ButtonStyle" />
-
-            <Button
-                android:id="@+id/btnTask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="50"
-                android:paddingStart="20dp"
-                android:paddingTop="15dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="15dp"
-                android:text="@string/task"
-                android:textSize="20sp"
-                android:theme="@style/MyButton"
-                android:visibility="invisible"
-                tools:ignore="ButtonStyle" />
-        </LinearLayout>
+            android:layout_marginHorizontal="10sp"
+            android:layout_weight="1"
+            android:contentDescription="@string/delete_thesis"
+            android:text="@string/delete_button"
+            android:textSize="16sp"
+            app:icon="@drawable/delete_icon"
+            app:iconGravity="textStart"
+            app:iconSize="20dp" />
 
     </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

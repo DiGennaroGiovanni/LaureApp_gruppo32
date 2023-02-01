@@ -106,7 +106,7 @@
     <string name="type_correlator">type correlator</string>
     <string name="save_thesis">Save</string>
     <string name="splash_image">Splash Image</string>
-    <string name="receipt">Receipt</string>
+    <string name="receipt">Receipts</string>
     <string name="info_button">Info Button</string>
     <string name="email_already_existent">Email already existent, retry!</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -138,7 +138,7 @@
     <string name="completato">Completed</string>
     <string name="in_corso">Current</string>
     <string name="add_task">ADD TASK</string>
-    <string name="task">Task</string>
+    <string name="task">Tasks</string>
     <string name="we_are_sorry_to_see_you_leave">We are sorry to see you leave</string>
     <string name="you_are_always_welocome_to_join_laureapp_again">You are always welocome to join LaureApp again!</string>
     <string name="no_internet_connection">NO INTERNET CONNECTION</string>

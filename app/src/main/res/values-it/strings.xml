@@ -107,7 +107,7 @@
     <string name="type_correlator">Digitare il co-relatore</string>
     <string name="save_thesis">Salva</string>
     <string name="splash_image">Immagine di Splash</string>
-    <string name="receipt">Ricevimento</string>
+    <string name="receipt">Ricevimenti</string>
     <string name="select_date">seleziona data</string>
     <string name="select_start_time">seleziona orario d\'inizio</string>
     <string name="select_end_time">seleziona orario di fine</string>
@@ -348,7 +348,7 @@
     <string name="estimated_time_hint">1</string>
     <string name="message_list">lista messaggi</string>
     <string name="edit_button">MODIFICA</string>
-    <string name="delete_button">CANCELLA</string>
+    <string name="delete_button">ELIMINA</string>
     <string name="thesis_info_required">thesis info required</string>
     <string name="try_again">RIPROVA</string>
     <string name="missing_fields_msg">Campi richiesti mancanti</string>

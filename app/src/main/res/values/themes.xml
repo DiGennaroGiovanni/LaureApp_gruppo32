@@ -23,6 +23,7 @@
         <item name="android:textAppearanceButton">@style/CustomButtonTextAppearance</item>
         <item name="android:windowFullscreen">true</item>
 
+
     </style>
 
     <style name="Theme.LaureApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

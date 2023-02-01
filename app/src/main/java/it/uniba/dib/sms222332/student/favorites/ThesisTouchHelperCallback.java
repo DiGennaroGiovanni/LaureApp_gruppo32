@@ -23,10 +23,14 @@ public class ThesisTouchHelperCallback extends ItemTouchHelper.Callback {
     }
 
     @Override
+    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+    }
+
+    @Override
     public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
 
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-
         return makeMovementFlags(dragFlags, 0);
     }
 
@@ -38,8 +42,6 @@ public class ThesisTouchHelperCallback extends ItemTouchHelper.Callback {
        return true;
     }
 
-    @Override
-    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
-    }
+
 }
