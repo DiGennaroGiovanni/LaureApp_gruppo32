@@ -50,12 +50,10 @@
     <style name="MyButton" >
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/buttonshape</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:shadowColor">#A8A8A8</item>
-        <item name="android:paddingTop">10dp</item>
-        <item name="android:paddingBottom">10dp</item>
-        <item name="android:paddingStart">15dp</item>
-        <item name="android:paddingEnd">15dp</item>
+        <item name="android:paddingVertical">5dp</item>
+        <item name="android:paddingHorizontal">10dp</item>
         <item name="android:shadowRadius">5</item>
         <item name="android:textAlignment">center</item>
         <item name="textAllCaps">true</item>
@@ -87,6 +85,11 @@
         <item name="android:text">@color/white</item>
         <item name="colorPrimary">@color/decline</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="SecondaryButton" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:text">#B52222</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 </resources>

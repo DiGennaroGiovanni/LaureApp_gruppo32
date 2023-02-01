@@ -53,7 +53,7 @@ public class ThesisDescriptionStudentFragment extends Fragment {
         txtRequiredExams = view.findViewById(R.id.txtRequiredExams);
         txtProfessor = view.findViewById(R.id.txtProfessor);
         btnThesisRequest = view.findViewById(R.id.btnThesisRequest);
-        btnContactProf = view.findViewById(R.id.btnContactProf);
+        btnContactProf = view.findViewById(R.id.btnMessage);
 
         if (getArguments() != null) {
             setThesisData();

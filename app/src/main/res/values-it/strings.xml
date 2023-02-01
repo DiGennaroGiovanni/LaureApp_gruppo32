@@ -149,7 +149,7 @@
     <string name="toast_thesis_created">Tesi creata</string>
     <string name="alertdialog_title">Condividi informazioni tesi</string>
     <string name="dialogalert_qr_subtitle">Scansionami con LaureApp!</string>
-    <string name="request_thesis">Richiedi Tesi</string>
+    <string name="request_thesis">Richiedi</string>
     <string name="cancel_request">Annulla Richiesta</string>
     <!-- FINE FILIPPO -->
     <string name="question_register_activity">Sei uno studente o un professore?</string>
@@ -179,7 +179,7 @@
     <string name="task_state">Stato Task:</string>
     <string name="task_description_card">Descrizione:</string>
     <string name="task_name_edit">Nome Task</string>
-    <string name="thesis_name_edit">Nome Tesi:</string>
+    <string name="thesis_name_edit">Tesi:</string>
     <string name="student_edit_task">Studente:</string>
     <string name="description_edit_task">Descrizione:</string>
     <string name="task_state_edit">Stato Task:</string>

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 
 public class EditTaskFragment extends Fragment {
 
+    LinearLayout layoutStud;
     TextView txtTaskTitle, txtThesis, txtStudent, txtEstimatedTime;
     EditText edtDescription;
     RadioButton rdbDaCompletare, rdbCompletato, rdbNonIniziato;
@@ -43,6 +45,7 @@ public class EditTaskFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_edit_task, container, false);
 
+        layoutStud = view.findViewById(R.id.layoutStudent);
         txtTaskTitle = view.findViewById(R.id.txtTaskTitle);
         txtThesis = view.findViewById(R.id.txtThesis);
         txtStudent = view.findViewById(R.id.txtStudent);
@@ -63,8 +66,11 @@ public class EditTaskFragment extends Fragment {
             txtEstimatedTime.setText(getArguments().getString("estimated_time"));
         }
 
-        if (!MainActivity.account.getAccountType().equals("Professor"))
+        if (!MainActivity.account.getAccountType().equals("Professor")){
             edtDescription.setEnabled(false);
+            layoutStud.setVisibility(View.GONE);
+
+        }
 
         switch (state) {
             case "Completato":

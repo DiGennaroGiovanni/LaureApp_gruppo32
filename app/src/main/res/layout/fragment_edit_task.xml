@@ -2,17 +2,18 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0808275A"
-    tools:context=".professor.ThesesListFragment">
+    tools:context=".professor.ThesesListFragment"
+    android:padding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:paddingBottom="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/bordered_layout">
 
         <TextView
             android:id="@+id/txtTaskTitle"
@@ -44,14 +45,12 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
-                android:fontFamily="@font/cardo"
-                android:layout_gravity="center"
+                android:layout_gravity="top"
                 android:gravity="end"
-                android:padding="10sp"
+                android:paddingHorizontal="10sp"
                 android:text="@string/thesis_name_edit"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtThesis"
@@ -66,6 +65,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layoutStudent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -75,14 +75,12 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
-                android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:padding="10sp"
-                android:layout_gravity="center"
+                android:paddingHorizontal="10sp"
+                android:layout_gravity="top"
                 android:text="@string/student_edit_task"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtStudent"
@@ -104,15 +102,13 @@
             <TextView
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:layout_weight="35"
-                android:fontFamily="@font/cardo"
-                android:padding="10sp"
+                android:layout_gravity="top"
+                android:paddingHorizontal="10sp"
                 android:text="@string/estimated_time"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"
                 tools:ignore="RtlCompat" />
 
             <TextView
@@ -123,7 +119,8 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:fontFamily="sans-serif-light"/>
 
         </LinearLayout>
 
@@ -137,13 +134,12 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
-                android:fontFamily="@font/cardo"
+                android:layout_gravity="top"
                 android:gravity="end"
-                android:padding="10sp"
+                android:paddingHorizontal="10sp"
                 android:text="@string/description_edit_task"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/edtDescription"
@@ -156,7 +152,8 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="#78909C"
-                android:textSize="20sp" />
+                android:textSize="18sp"
+                />
 
         </LinearLayout>
 
@@ -170,14 +167,12 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
-                android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:layout_gravity="center"
-                android:padding="10sp"
+                android:layout_gravity="top"
+                android:paddingHorizontal="10sp"
                 android:text="@string/task_state_edit"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <RadioGroup
                 android:layout_width="0sp"
@@ -189,7 +184,6 @@
                     android:id="@+id/rdbNonIniziato"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/cardo"
                     android:text="@string/not_started_task"
                     android:textColor="@color/black"
                     android:textSize="18sp">
@@ -200,7 +194,6 @@
                     android:id="@+id/rdbDaCompletare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/cardo"
                     android:text="@string/started_task"
                     android:textColor="@color/black"
                     android:textSize="18sp">
@@ -211,7 +204,6 @@
                     android:id="@+id/rdbCompletato"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/cardo"
                     android:text="@string/completed_task"
                     android:textColor="@color/black"
                     android:textSize="18sp">
@@ -220,23 +212,27 @@
             </RadioGroup>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_centerHorizontal="true"
                 android:text="@string/save_thesis"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="16sp"
+                app:icon="@drawable/icon_check_done"
+                app:iconGravity="textStart"
+                android:layout_marginHorizontal="10sp"
+                android:backgroundTintMode="src_over"
+                android:fontFamily="@font/roboto_medium"
+                android:maxWidth="200sp"
+                />
 
-        </LinearLayout>
+
+
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>
