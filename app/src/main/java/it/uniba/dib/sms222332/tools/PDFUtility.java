@@ -27,7 +27,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
@@ -58,7 +57,7 @@ final public class PDFUtility {
 
         setMetaData(document);
 
-        addHeader(mContext, document);
+        addHeader(mContext, document, items);
         addEmptyLine(document, 3);
 
         document.add(createDataTable(items));
@@ -90,7 +89,7 @@ final public class PDFUtility {
         document.addHeader("DEVELOPER", "Gruppo Asse FGC");
     }
 
-    private static void addHeader(Context mContext, Document document) throws Exception {
+    private static void addHeader(Context mContext, Document document, LinkedHashMap<String, String> items) throws Exception {
         PdfPTable table = new PdfPTable(3);
         table.setWidthPercentage(100);
         table.setWidths(new float[]{2, 7, 2});
@@ -139,10 +138,9 @@ final public class PDFUtility {
         }
         /* RIGHT TOP LOGO*/
         {
-            Drawable d = ContextCompat.getDrawable(mContext, R.drawable.icon_laurea_app);
-            Bitmap bmp = ((BitmapDrawable) Objects.requireNonNull(d)).getBitmap();
+            Bitmap bitmap = QrGenerator.createQr(items.get("Name"));
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
             Image logo = Image.getInstance(stream.toByteArray());
             logo.setWidthPercentage(80);

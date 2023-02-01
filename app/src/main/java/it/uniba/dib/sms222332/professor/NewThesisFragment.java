@@ -77,7 +77,7 @@ public class NewThesisFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.createThesisToolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.createThesisToolbar));
 
         View view = inflater.inflate(R.layout.fragment_new_thesis, container, false);
 
@@ -115,13 +115,13 @@ public class NewThesisFragment extends Fragment {
         spinnerFaculty.setAdapter(adapter);
 
 
-        if(savedInstanceState != null)
+        if (savedInstanceState != null)
             restoreInstance(savedInstanceState);
 
-        if(!examCheck.isChecked())
+        if (!examCheck.isChecked())
             edtAverage.setEnabled(false);
 
-        if(!averageCheck.isChecked())
+        if (!averageCheck.isChecked())
             edtRequestedExams.setEnabled(false);
 
 
@@ -136,7 +136,6 @@ public class NewThesisFragment extends Fragment {
         averageCheck.setOnCheckedChangeListener((compoundButton, b) -> edtAverage.setEnabled(averageCheck.isChecked()));
 
         examCheck.setOnCheckedChangeListener((buttonView, isChecked) -> edtRequestedExams.setEnabled(examCheck.isChecked()));
-
 
 
         return view;
@@ -241,7 +240,7 @@ public class NewThesisFragment extends Fragment {
         infoTesi.put("Average", mediaVoti);
         infoTesi.put("Student", "");
 
-        switch(tipoTesi){
+        switch (tipoTesi) {
             case "Sperimentale":
             case "Experimental":
                 infoTesi.put("Type", "Experimental");
@@ -370,19 +369,19 @@ public class NewThesisFragment extends Fragment {
         int correlatorPosition = spinnerCorrelator.getSelectedItemPosition();
         outState.putInt("correlator", correlatorPosition);
 
-        if(!edtEstimatedTime.getText().toString().equals(""))
+        if (!edtEstimatedTime.getText().toString().equals(""))
             outState.putString("estimated_time", edtEstimatedTime.getText().toString());
 
         outState.putBoolean("avg_check", averageCheck.isChecked());
-        if(averageCheck.isChecked()) {
+        if (averageCheck.isChecked()) {
             outState.putString("avg_value", edtAverage.getText().toString());
         }
         outState.putBoolean("exams_check", examCheck.isChecked());
-        if(examCheck.isChecked()) {
+        if (examCheck.isChecked()) {
             outState.putString("exams_value", edtRequestedExams.getText().toString());
         }
 
-        outState.putParcelableArrayList("uris",uris);
+        outState.putParcelableArrayList("uris", uris);
 
     }
 
@@ -403,12 +402,12 @@ public class NewThesisFragment extends Fragment {
             edtAverage.setText(bundle.getString("avg_value", ""));
 
         examCheck.setChecked(bundle.getBoolean("exams_check"));
-        if(examCheck.isChecked())
+        if (examCheck.isChecked())
             edtRequestedExams.setText(bundle.getString("exams_value"));
 
         uris = bundle.getParcelableArrayList("uris");
-        if (uris != null){
-            for(Uri uri : uris)
+        if (uris != null) {
+            for (Uri uri : uris)
                 addMaterialItem(uri);
         }
 

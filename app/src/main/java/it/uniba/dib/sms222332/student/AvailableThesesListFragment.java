@@ -71,6 +71,8 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.commonActivities.Thesis;
 import it.uniba.dib.sms222332.commonActivities.ThesisDescriptionGuestFragment;
 import it.uniba.dib.sms222332.tools.CaptureAct;
+import it.uniba.dib.sms222332.tools.QrGenerator;
+
 import static android.Manifest.permission.CAMERA;
 
 public class AvailableThesesListFragment extends Fragment {
@@ -372,7 +374,7 @@ public class AvailableThesesListFragment extends Fragment {
 
             // Definisco l'ImageView che contiene il qr code generato
             ImageView qr_code_IW = new ImageView(requireContext());
-            qr_code_IW.setImageBitmap(createQr(thesisName));
+            qr_code_IW.setImageBitmap(QrGenerator.createQr(thesisName));
 
             // Definisco il TextView per la descrizione del qr code
             TextView qr_description = new TextView(requireContext());
@@ -470,37 +472,6 @@ public class AvailableThesesListFragment extends Fragment {
 //        DocumentReference docStud = db.collection("studenti").document(MainActivity.account.getEmail());
 //        docStud.update("Favorites", tesiPreferite);
 //    }
-
-    /**
-     * Il metodo createQr riceve in input il nome della tesi che verrà inserito nel QR-code da generare.
-     * @param name nome della tesi di cui generare il QR-code
-     * @return bitmap oggetto che conterrà la renderizzazione del QR-code
-     */
-    private Bitmap createQr(String name) {
-
-        int width = 700;
-        int height = 700;
-        // NEW
-        JSONObject jsonDatiTesi = new JSONObject();
-        Bitmap bitmap = null;
-
-        try {
-            jsonDatiTesi.put("name", name);
-
-            QRCodeWriter qrCodeWriter = new QRCodeWriter();
-            BitMatrix bitMatrix = qrCodeWriter.encode(jsonDatiTesi.toString(), BarcodeFormat.QR_CODE, width, height);
-            bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-
-            for(int x = 0; x < width; x++) {
-                for(int y = 0; y < height; y++) {
-                    bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
-                }
-            }
-        } catch(WriterException | JSONException e) {
-            e.printStackTrace();
-        }
-        return bitmap;
-    }
 
     private void sharePDF(String thesisName) {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();

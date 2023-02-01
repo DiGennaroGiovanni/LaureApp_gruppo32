@@ -1,7 +1,6 @@
 package it.uniba.dib.sms222332.professor;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -27,20 +26,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseNetworkException;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Map;
@@ -48,6 +38,7 @@ import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
+import it.uniba.dib.sms222332.tools.QrGenerator;
 
 public class ThesesListFragment extends Fragment {
 
@@ -165,7 +156,7 @@ public class ThesesListFragment extends Fragment {
 
         // Definisco l'ImageView che contiene il qr code generato
         ImageView qr_code_IW = new ImageView(requireContext());
-        qr_code_IW.setImageBitmap(createQr(thesisName));
+        qr_code_IW.setImageBitmap(QrGenerator.createQr(thesisName));
 
         // Definisco il TextView per la descrizione del qr code
         TextView qr_description = new TextView(requireContext());
@@ -206,32 +197,6 @@ public class ThesesListFragment extends Fragment {
         } catch (Exception e) {
             Log.e(TAG, getString(R.string.error_share_button) + e);
         }
-    }
-
-    private Bitmap createQr(String name) {
-
-        int width = 700;
-        int height = 700;
-        // NEW
-        JSONObject jsonDatiTesi = new JSONObject();
-        Bitmap bitmap = null;
-
-        try {
-            jsonDatiTesi.put("name", name);
-
-            QRCodeWriter qrCodeWriter = new QRCodeWriter();
-            BitMatrix bitMatrix = qrCodeWriter.encode(jsonDatiTesi.toString(), BarcodeFormat.QR_CODE, width, height);
-            bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-
-            for (int x = 0; x < width; x++) {
-                for (int y = 0; y < height; y++) {
-                    bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
-                }
-            }
-        } catch (WriterException | JSONException e) {
-            e.printStackTrace();
-        }
-        return bitmap;
     }
 
     private void sharePDF(String thesisName) {

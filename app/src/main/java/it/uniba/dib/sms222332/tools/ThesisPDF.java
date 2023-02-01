@@ -42,7 +42,7 @@ public class ThesisPDF implements PDFUtility.OnDocumentClose{
 
     @Override
     public void onPDFDocumentClose(File file) {
-        if (file.exists()) Log.e(TAG, "File pdf creato.");
+        if (file.exists()) Log.d(TAG, "File pdf creato.");
     }
 
 }
