@@ -149,14 +149,13 @@
 
         <Spinner
             android:id="@+id/edtCorrelator"
-            android:layout_width="300dp"
-            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:backgroundTint="#BFBABA"
-            android:gravity="center|center_vertical"
+            android:gravity="center"
             android:textAlignment="center"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
             tools:ignore="SpeakableTextPresentCheck" />
 
 
