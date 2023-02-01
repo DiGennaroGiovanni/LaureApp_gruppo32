@@ -46,7 +46,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
     Button btnEdit,btnDelete,btnReceipt,btnTask;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-    LinearLayout layout_lista_file;
+    LinearLayout layoutFileList, layoutAcceptedThesis;
     String relator;
 
     @Nullable
@@ -56,7 +56,8 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_thesis_description_professor, container, false);
 
-        layout_lista_file = view.findViewById(R.id.layout_lista_file);
+        layoutAcceptedThesis = view.findViewById(R.id.layoutAcceptedThesis);
+        layoutFileList = view.findViewById(R.id.layout_lista_file);
         txtThesisName = view.findViewById(R.id.txtNameTitle);
         txtDepartment = view.findViewById(R.id.txtDepartment);
         txtTypology = view.findViewById(R.id.txtTypology);
@@ -123,8 +124,53 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
         }
 
         if(!txtStudent.getText().toString().equals(getResources().getString(R.string.none))){
-            btnTask.setVisibility(View.VISIBLE);
-            btnReceipt.setVisibility(View.VISIBLE);
+            layoutAcceptedThesis.setVisibility(View.VISIBLE);
+
+            btnReceipt.setOnClickListener(v -> {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("thesis_name", txtThesisName.getText().toString());
+                bundle.putString("student",txtStudent.getText().toString());
+
+                if(relator.equals(MainActivity.account.getEmail()))
+                    bundle.putString("professor", "");
+                else
+                    bundle.putString("professor", relator);
+
+                Fragment receiptsListFragment = new ReceiptsListFragment();
+                receiptsListFragment.setArguments(bundle);
+
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, receiptsListFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            });
+
+
+            btnTask.setOnClickListener(v -> {
+
+                Fragment taskListFragment = new TaskListFragment();
+                Bundle bundle = new Bundle();
+
+                bundle.putString("thesisName", txtThesisName.getText().toString());
+                bundle.putString("student",txtStudent.getText().toString());
+
+                if(relator.equals(MainActivity.account.getEmail()))
+                    bundle.putString("professor", "");
+                else
+                    bundle.putString("professor", relator);
+
+                taskListFragment.setArguments(bundle);
+
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, taskListFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            });
         }
 
         btnEdit.setOnClickListener(view1 -> {
@@ -172,7 +218,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
         });
 
         if(txtCorrelator.getText().toString().equals(MainActivity.account.getName() + " " + MainActivity.account.getSurname()))
-            btnDelete.setVisibility(View.INVISIBLE);
+            btnDelete.setVisibility(View.GONE);
 
         else{
             btnDelete.setOnClickListener(view12 -> {
@@ -233,51 +279,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
         }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
 
-        btnReceipt.setOnClickListener(v -> {
 
-            Bundle bundle = new Bundle();
-            bundle.putString("thesis_name", txtThesisName.getText().toString());
-            bundle.putString("student",txtStudent.getText().toString());
-
-            if(relator.equals(MainActivity.account.getEmail()))
-                bundle.putString("professor", "");
-            else
-                bundle.putString("professor", relator);
-
-            Fragment receiptsListFragment = new ReceiptsListFragment();
-            receiptsListFragment.setArguments(bundle);
-
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, receiptsListFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-        });
-
-
-        btnTask.setOnClickListener(v -> {
-
-            Fragment taskListFragment = new TaskListFragment();
-            Bundle bundle = new Bundle();
-
-            bundle.putString("thesisName", txtThesisName.getText().toString());
-            bundle.putString("student",txtStudent.getText().toString());
-
-            if(relator.equals(MainActivity.account.getEmail()))
-                bundle.putString("professor", "");
-            else
-                bundle.putString("professor", relator);
-
-            taskListFragment.setArguments(bundle);
-
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, taskListFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-        });
 
         return view;
     }
@@ -305,7 +307,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
         });
 
-        layout_lista_file.addView(view);
+        layoutFileList.addView(view);
     }
 
     private void download(String nomeFile) {
