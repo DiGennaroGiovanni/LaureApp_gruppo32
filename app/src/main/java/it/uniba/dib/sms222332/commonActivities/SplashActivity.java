@@ -1,13 +1,18 @@
 package it.uniba.dib.sms222332.commonActivities;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -29,46 +34,51 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        if (!isConnected) {
+            Intent intent = new Intent(SplashActivity.this, NoConnectionActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }else if (currentUser != null) {
+                // user is logged in
 
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser != null) {
-            // user is logged in
+                String email = currentUser.getEmail();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                assert email != null;
+                DocumentReference docRefStud = db.collection("studenti").document(email);
 
-            String email = currentUser.getEmail();
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            assert email != null;
-            DocumentReference docRefStud = db.collection("studenti").document(email);
+                docRefStud.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            // user is a student
+                            studentDirectLogin(email, document);
 
-            docRefStud.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        // user is a student
-                        studentDirectLogin(email, document);
-
+                        } else {
+                            // check if user is a professor
+                            professorDirectLogin(email, db);
+                        }
                     } else {
-                        // check if user is a professor
-                        professorDirectLogin(email, db);
-                    }
-                } else {
                         Log.d("TAG", "get failed with ", task.getException());
-                }
-            });
+                    }
+                });
+            } else {
+                // user is not logged in
 
-
-        } else {
-            // user is not logged in
-
-            // Mostra l'immagine splash per 2 secondi
-            new Handler().postDelayed(() -> {
-                final Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }, SPLASH_DISPLAY_LENGTH);
+                // Mostra l'immagine splash per 2 secondi
+                new Handler().postDelayed(() -> {
+                    final Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }, SPLASH_DISPLAY_LENGTH);
+            }
         }
-    }
+
 
     private void professorDirectLogin(String email, FirebaseFirestore db) {
         DocumentReference docRefProf = db.collection("professori").document(email);
