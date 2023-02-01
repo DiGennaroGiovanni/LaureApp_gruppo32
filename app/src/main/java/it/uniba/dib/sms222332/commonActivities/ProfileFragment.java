@@ -34,11 +34,9 @@ import it.uniba.dib.sms222332.R;
 public class ProfileFragment extends Fragment {
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseUser mUser = mAuth.getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     TextView txtName, txtBadgeNumber, txtFaculty, txtEmail, txtBadgeTitle;
     Button btnDeleteProfile;
-    String studentEmail = "";
     String nameSurname = "";
 
 
@@ -70,7 +68,12 @@ public class ProfileFragment extends Fragment {
             builder.setTitle(R.string.confirm_deletion);
             builder.setMessage(R.string.confirm_deletion_question);
 
-            builder.setPositiveButton(R.string.yes, (dialog, which) -> deleteProfile());
+            builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+                deleteProfile();
+                Intent intent = new Intent(requireActivity(), ProfileDeletedActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
+            });
 
             builder.setNegativeButton(R.string.no, (dialog, which) -> {
             });
@@ -88,8 +91,6 @@ public class ProfileFragment extends Fragment {
         } else {
             deleteStudentProfile();
         }
-
-
     }
 
     private void deleteStudentProfile() {
@@ -190,10 +191,8 @@ public class ProfileFragment extends Fragment {
                     }
                 });
 
-
-        Intent intent = new Intent(requireActivity(), ProfileDeletedActivity.class);
-        startActivity(intent);
-        requireActivity().finish();
+        db.collection("studenti").document(MainActivity.account.getEmail()).delete();
+        Objects.requireNonNull(mAuth.getCurrentUser()).delete();
     }
 
     private void deleteProfessorProfile() {
@@ -203,16 +202,16 @@ public class ProfileFragment extends Fragment {
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String professorEmail = document.getString("Professor");
-
+                        for (QueryDocumentSnapshot thesis : task.getResult()) {
+                            String professorEmail = thesis.getString("Professor");
+                            String thesisName = thesis.getString("Name");
                             assert professorEmail != null;
                             if (professorEmail.equals(MainActivity.account.getEmail())) {
 
                                 FirebaseStorage storage = FirebaseStorage.getInstance();
-                                StorageReference storageRef = storage.getReference().child(Objects.requireNonNull(document.getString("Name")));
+                                StorageReference storageRef = storage.getReference().child(Objects.requireNonNull(thesis.getString("Name")));
 
+                                //eliminazione materiali dal database storage
                                 storageRef.listAll()
                                         .addOnSuccessListener(listResult -> {
                                             for (StorageReference item : listResult.getItems()) {
@@ -228,12 +227,11 @@ public class ProfileFragment extends Fragment {
                                         .addOnCompleteListener(task2 -> {
                                             if (task2.isSuccessful()) {
 
-                                                for (QueryDocumentSnapshot document2 : task2.getResult()) {
-
-                                                    if (document.getString("Name").equals(document2.getString("Thesis"))) {
-                                                        document2.getReference().delete();
+                                                for (QueryDocumentSnapshot receipt : task2.getResult()) {
+                                                    assert thesisName != null;
+                                                    if (thesisName.equals(receipt.getString("Thesis"))) {
+                                                        receipt.getReference().delete();
                                                     }
-
                                                 }
                                             }
                                         });
@@ -243,11 +241,10 @@ public class ProfileFragment extends Fragment {
                                         .get()
                                         .addOnCompleteListener(task3 -> {
                                             if (task3.isSuccessful()) {
-
-                                                for (QueryDocumentSnapshot document2 : task3.getResult()) {
-
-                                                    if (document.getString("Name").equals(document2.getString("Thesis"))) {
-                                                        document2.getReference().delete();
+                                                for (QueryDocumentSnapshot thesisTask : task3.getResult()) {
+                                                    assert thesisName != null;
+                                                    if (thesisName.equals(thesisTask.getString("Thesis"))) {
+                                                        thesisTask.getReference().delete();
                                                     }
 
                                                 }
@@ -255,19 +252,16 @@ public class ProfileFragment extends Fragment {
                                         });
 
                                 // impostazione del campo Request dello studente tesista come stringa vuota
-                                if (!document.getString("Student").isEmpty()) {
+                                if (!Objects.requireNonNull(thesis.getString("Student")).isEmpty())
+                                    db.collection("studenti").document(Objects.requireNonNull(thesis.getString("Student"))).update("Request", "no");
 
-                                    db.collection("studenti")
-                                            .document(document.getString("Student")).update("Request", "no");
-                                }
-
-                                document.getReference().delete();
+                                thesis.getReference().delete();
 
 
                                 // impostazione del campo Correlator a stringa vuota per le tesi per le quali
                                 // il professore che sta cancellando il profilo è correlatore
-                            } else if(document.getString("Correlator").equals(nameSurname)) {
-                                document.getReference().update("Correlator", "");
+                            } else if(Objects.equals(thesis.getString("Correlator"), nameSurname)) {
+                                thesis.getReference().update("Correlator", "");
                             }
                         }
                     }
@@ -300,7 +294,7 @@ public class ProfileFragment extends Fragment {
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             String professorEmail = document.getString("Professor");
-                            studentEmail = document.getString("Student");
+                            String studentEmail = document.getString("Student");
 
                             assert professorEmail != null;
                             if (professorEmail.equals(MainActivity.account.getEmail())) {
@@ -308,21 +302,16 @@ public class ProfileFragment extends Fragment {
                                 document.getReference().delete();
 
                                 // impostazione del campo Request dello studente su "no"
-                                db.collection("studenti").document(studentEmail)
-                                        .get()
-                                        .addOnCompleteListener(task2 -> {
-                                            if (task2.isSuccessful()) {
-
-                                                DocumentSnapshot documentStudent = task2.getResult();
-                                                documentStudent.getReference().update("Request", "no");
-                                            }
-                                        });
-
+                                assert studentEmail != null;
+                                db.collection("studenti").document(studentEmail).update("Request", "no");
                             }
                         }
 
                     }
                 });
+
+        db.collection("professori").document(MainActivity.account.getEmail()).delete();
+        Objects.requireNonNull(mAuth.getCurrentUser()).delete();
 
     }
 }
