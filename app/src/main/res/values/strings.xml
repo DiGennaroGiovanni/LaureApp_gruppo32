@@ -18,7 +18,7 @@
     <string name="menu_language">Language</string>
     <string name="menu_logout">Logout</string>
     <string name="guest_login">Go to login</string>
-    <string name="name_surname">Name Surname</string>
+    <string name="name_profile">Name:</string>
     <string name="guest_account">Guest Account</string>
     <string name="profile_img">Profile Image</string>
     <string name="user_profession">Profession</string>
@@ -48,7 +48,7 @@
     <string name="messageContactTooolbar">Messages List</string>
     <string name="thesisInfoTooolbar">Thesis Info</string>
 
-    <string name="email">Email</string>
+    <string name="email">Email:</string>
     <string name="password">Password</string>
     <string name="sign_up">Sign up</string>
     <string name="sign_in">Sign in</string>
@@ -63,7 +63,7 @@
     <string name="proceed_with_sign_up_as_a_student">Proceed with sign up as a student</string>
     <string name="error_guest">This feature is only available to registered students</string>
     <string name="complete_registration">Complete registration</string>
-    <string name="matriculation_number">Badge number</string>
+    <string name="matriculation_number">Badge number:</string>
     <string name="testimage">testImage</string>
     <string name="select_faculty">Select faculty</string>
     <string name="select_role">select role</string>
@@ -300,7 +300,7 @@
     <string name="signed_up">Signed up</string>
     <string name="thesis_info">Thesis information</string>
     <string name="already_request">Already requested a thesis!</string>
-    <string name="faculty_">Faculty</string>
+    <string name="faculty_profile">Faculty:</string>
     <string name="no_message_yet">No message yet</string>
     <string name="add_answer">Add Answer</string>
     <string name="snackbar_deny_camera_message">The app requires access to the camera in order to scan a QR code…</string>

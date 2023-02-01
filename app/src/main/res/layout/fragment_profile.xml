@@ -41,133 +41,139 @@
                 android:id="@+id/txtNameTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="45"
-                android:fontFamily="@font/cardo"
+                android:layout_weight="40"
+                android:fontFamily="@font/roboto"
                 android:gravity="end"
                 android:paddingStart="1dp"
                 android:paddingEnd="10sp"
-                android:text="@string/name_surname"
+                android:text="@string/name_profile"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtNameSurname"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="55"
-                android:text="@string/name_surname"
+                android:layout_weight="60"
+                android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_light"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+           >
 
             <TextView
                 android:id="@+id/txtFacultyTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="45"
-                android:fontFamily="@font/cardo"
+                android:layout_weight="40"
+                android:fontFamily="@font/roboto"
                 android:gravity="end"
                 android:paddingStart="1dp"
                 android:paddingEnd="10sp"
-                android:text="@string/faculty_"
+                android:text="@string/faculty_profile"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtFaculty"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="55"
-                android:text="@string/faculty_"
+                android:layout_weight="60"
+                android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_light"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/txtEmailTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="45"
-                android:fontFamily="@font/cardo"
+                android:layout_weight="40"
+                android:fontFamily="@font/roboto"
                 android:gravity="end"
                 android:paddingStart="1dp"
                 android:paddingEnd="10sp"
                 android:text="@string/email"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/txtEmail"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="55"
-                android:text="@string/email"
+                android:layout_weight="60"
+                android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_light"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/txtBadgeTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="45"
-                android:fontFamily="@font/cardo"
+                android:layout_weight="40"
+                android:fontFamily="@font/roboto"
                 android:gravity="end"
                 android:paddingStart="1dp"
                 android:paddingEnd="10sp"
                 android:text="@string/matriculation_number"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                />
 
             <TextView
                 android:id="@+id/txtBadgeNumber"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="55"
-                android:text="@string/matriculation_number"
+                android:layout_weight="60"
+                android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_light"/>
 
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="20dp">
 
-            <Button
+<!--            <Button-->
+<!--                android:id="@+id/btnDeleteProfile"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:text="@string/delete_profile"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDeleteProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="@string/delete_profile"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:theme="@style/DeleteButton" />
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_medium"
+                android:backgroundTintMode="src_over"/>
 
         </RelativeLayout>
 

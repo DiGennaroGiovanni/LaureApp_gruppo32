@@ -11,7 +11,7 @@
     <string name="handle_thesis_button">GESTISCI TESI</string>
     <string name="receipts_button">RICEVIMENTI</string>
     <string name="requests_button">Richieste</string>
-    <string name="name_surname">Nome Cognome</string>
+    <string name="name_profile">Nome:</string>
     <string name="guest_account">Account Guest</string>
     <string name="profile_img">Profile Image</string>
     <string name="user_profession">Professione</string>
@@ -49,7 +49,7 @@
     <string name="thesisInfoTooolbar">Info Tesi</string>
 
     <!-- FILIPPO -->
-    <string name="email">Email</string>
+    <string name="email">Email:</string>
     <string name="password">Password</string>
     <string name="sign_up">Registrati</string>
     <string name="sign_in">Accedi</string>
@@ -64,7 +64,7 @@
     <string name="proceed_with_sign_up_as_a_student">Continua registrazione come alunno</string>
     <string name="error_guest">Questa funzionalità è disponibile solo per gli studenti registrati</string>
     <string name="complete_registration">Concludi registrazione</string>
-    <string name="matriculation_number">Matricola</string>
+    <string name="matriculation_number">Matricola:</string>
     <string name="testimage">testImage</string>
     <string name="select_faculty">seleziona facoltà</string>
     <string name="select_role">seleziona ruolo</string>
@@ -301,7 +301,7 @@
     <string name="signed_up">Accesso effettuato</string>
     <string name="thesis_info">Informazioni Tesi</string>
     <string name="already_request">Hai già richiesto una tesi!</string>
-    <string name="faculty_">Facoltà</string>
+    <string name="faculty_profile">Facoltà:</string>
 
     <string name="messages">Messaggi</string>
     <string name="no_message_yet">Ancora nessun messaggio</string>

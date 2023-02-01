@@ -31,6 +31,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Objects;
+
 import it.uniba.dib.sms222332.R;
 
 
@@ -47,8 +49,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.profileToolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.profileToolbar));
 
+        //TODO RIMUOVERE IL BUNDLE E PIAZZARE GLI ELEMENTI DALLA MAINACTIVIY.ACCOUNT DIRETTAMENTE NEI SETTEXT
         Bundle bundle = getArguments();
         if (bundle != null) {
             name = bundle.getString("name");
@@ -72,12 +75,11 @@ public class ProfileFragment extends Fragment {
         txtEmail.setText(email);
 
         if (badgeNumber.equals(""))
-            txtBadgeTitle.setVisibility(View.INVISIBLE);
+            txtBadgeTitle.setVisibility(View.GONE);
 
-        //TODO Confermare scelta e rimandare ad activity conclusiva
         btnDeleteProfile.setOnClickListener(view1 -> {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
             builder.setTitle(R.string.confirm_deletion);
             builder.setMessage(R.string.confirm_deletion_question);
 
@@ -85,10 +87,7 @@ public class ProfileFragment extends Fragment {
 
             });
 
-            builder.setNegativeButton(R.string.yes, (dialog, which) -> {
-                deleteProfile();
-
-            });
+            builder.setNegativeButton(R.string.yes, (dialog, which) -> deleteProfile());
 
             AlertDialog dialog = builder.create();
             dialog.show();
@@ -100,62 +99,63 @@ public class ProfileFragment extends Fragment {
         DocumentReference documentReference;
 
         // controlla se il profilo si riferisce ad un professore, lo è se il badge number è vuoto
-        if (badgeNumber.equals("")) {
-            documentReference = deleteProfessorProfile();
-        } else
-            documentReference = db.collection("studenti").document(email);
+        if (MainActivity.account.getAccountType().equals("Professor")) {
+            deleteProfessorProfile();
+        } else {
+            deleteStudentProfile();
+        }
 
+
+    }
+
+    //TODO RIMUOVERE OGNI RIFERIMENTO DELLO STUDENTE. TESI ACCETTATE/RICHIESTE, MESSAGGI, RICEVIMENTI, TASK
+    private void deleteStudentProfile() {
+        DocumentReference documentReference;
+        documentReference = db.collection("studenti").document(email);
         mUser.delete();
         documentReference.delete();
 
-        Intent intent = new Intent(getActivity(), ProfileDeletedActivity.class);
-        getActivity().finish();
+        Intent intent = new Intent(requireActivity(), ProfileDeletedActivity.class);
         startActivity(intent);
+        requireActivity().finish();
     }
 
-    @NonNull
-    private DocumentReference deleteProfessorProfile() {
+
+    //TODO A COSA SERVONO LE PRIME DUE RIGHE INUTILIZZATE? FARE UN PO' DI PULIZIA E VERIFICARE COME PER LO STUDENTE CHE VENGA CANCELLATO OGNI RIFERIMENTO SUL DB.
+    // TODO PARE CHE QUI SIANO CANCELLATE SOLO LE TESI MA NON TUTTO IL RESTO, ANCHE UNO STUDENTE CONTINUEREBBE AD AVERE LA TESI NEL PROPRIO CAMPO "REQUEST"
+
+
+    private void deleteProfessorProfile() {
         DocumentReference documentReference;
         documentReference = db.collection("professori").document(email);
         // eliminazione tesi del professore
         db.collection("Tesi")
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
 
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String professorEmail = document.getString("Professor");
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String professorEmail = document.getString("Professor");
 
-                                if (professorEmail.equals(mUser.getEmail())) {
+                            assert professorEmail != null;
+                            if (professorEmail.equals(mUser.getEmail())) {
 
-                                    FirebaseStorage storage = FirebaseStorage.getInstance();
-                                    StorageReference storageRef = storage.getReference().child(document.getString("Name"));
+                                FirebaseStorage storage = FirebaseStorage.getInstance();
+                                StorageReference storageRef = storage.getReference().child(Objects.requireNonNull(document.getString("Name")));
 
-                                    storageRef.listAll()
-                                            .addOnSuccessListener(new OnSuccessListener<ListResult>() {
-                                                @Override
-                                                public void onSuccess(ListResult listResult) {
-                                                    for (StorageReference item : listResult.getItems()) {
-                                                        item.delete();
-                                                    }
-                                                    storageRef.delete();
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Log.e(TAG, "Error deleting folder: " + e.getMessage());
-                                                }
-                                            });
+                                storageRef.listAll()
+                                        .addOnSuccessListener(listResult -> {
+                                            for (StorageReference item : listResult.getItems()) {
+                                                item.delete();
+                                            }
+                                            storageRef.delete();
+                                        })
+                                        .addOnFailureListener(e -> Log.e(TAG, "Error deleting folder: " + e.getMessage()));
 
-                                    document.getReference().delete();
-                                }
+                                document.getReference().delete();
                             }
                         }
                     }
                 });
-        return documentReference;
     }
 }

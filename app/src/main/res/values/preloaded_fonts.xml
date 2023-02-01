@@ -8,5 +8,6 @@
         <item>@font/open_sans</item>
         <item>@font/poppins</item>
         <item>@font/roboto</item>
+        <item>@font/roboto_light</item>
     </array>
 </resources>

@@ -368,7 +368,6 @@
                     android:layout_marginHorizontal="10sp"
                     android:backgroundTintMode="src_over"
                     android:fontFamily="@font/roboto_medium"
-                    android:maxWidth="200sp"
                     android:text="@string/request_thesis"
                     android:textSize="16sp"
                     app:icon="@drawable/ic_require_thesis"
