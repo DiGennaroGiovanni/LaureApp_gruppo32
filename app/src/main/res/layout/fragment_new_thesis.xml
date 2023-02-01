@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-      android:padding="15dp">
+        android:padding="15dp">
 
 
         <TextView
@@ -31,7 +31,6 @@
             android:ems="10"
             android:hint="@string/type_name_of_thesis"
             android:inputType="textMultiLine"
-            android:minHeight="48dp"
             android:textColorHint="#546E7A"
             android:textSize="20sp" />
 
@@ -171,25 +170,22 @@
             android:id="@+id/third_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/bordered_rect">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/layout_lista"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/bordered_rect"/>
 
-            </LinearLayout>
-
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/addFile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 android:text="@string/button_add_material"
-                android:theme="@style/AddButton"
-                app:icon="@drawable/ic_upload"/>
+                app:icon="@drawable/ic_upload"
+                android:layout_margin="5sp"/>
 
         </LinearLayout>
 
@@ -220,6 +216,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/hint_average_marks"
+                android:textColorHint="#546E7A"
                 android:inputType="number"
                 android:textSize="20sp"
                 android:autofillHints="">
@@ -249,6 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_required_exams"
+                android:textColorHint="#546E7A"
                 android:inputType="textMultiLine"
                 android:textSize="20sp"
                 android:autofillHints="" />
@@ -275,12 +273,14 @@
             android:textColorHint="#546E7A"
             android:textSize="20sp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonCreateThesis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/create_thesis"
-            android:textSize="20sp"/>
+            android:textSize="16sp"
+            app:icon="@drawable/icon_plus"
+            app:iconGravity="textStart"/>
 
     </LinearLayout>
 

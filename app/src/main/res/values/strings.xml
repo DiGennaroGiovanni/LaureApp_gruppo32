@@ -86,7 +86,7 @@
         <item>Political Science</item>
     </string-array>
     <string name="thesis_name">Thesis name</string>
-    <string name="type_name_of_thesis">type the name of the thesis</string>
+    <string name="type_name_of_thesis">Type thesis name</string>
     <string name="experimental">Experimental</string>
     <string name="drafted">Drafted</string>
     <string name="main_subject">Main subject</string>
@@ -100,9 +100,9 @@
     <string name="co_rapporteur">Co-rapporteur</string>
     <string name="days">days</string>
     <string name="type_thesis_constraints">type thesis constraints (if there are)</string>
-    <string name="type_description_thesis">type the description of the thesis</string>
+    <string name="type_description_thesis">Type thesis description</string>
     <string name="type_main_subject">type main subject</string>
-    <string name="type_related_projects">type related projects (if there are)</string>
+    <string name="type_related_projects">Type related projects (if any)</string>
     <string name="type_correlator">type correlator</string>
     <string name="save_thesis">Save</string>
     <string name="splash_image">Splash Image</string>
@@ -121,7 +121,7 @@
     <string name="average_marks">Average Marks:</string>
     <string name="required_exams">Required Exams:</string>
     <string name="materials">Materials:</string>
-    <string name="button_add_material">upload file</string>
+    <string name="button_add_material">upload</string>
     <string name="nome_file">File name</string>
     <string name="department_of_affiliation">Department of affiliation</string>
     <string name="account_deleted">Account deleted</string>
@@ -152,8 +152,8 @@
     <string name="close_app">CLOSE APP</string>
     <string name="reload_app">RELOAD</string>
     <string name="pdf_title">UNIBA - Summary thesis document</string>
-    <string name="hint_average_marks">type average marks</string>
-    <string name="hint_required_exams">type required exams</string>
+    <string name="hint_average_marks">Type average marks</string>
+    <string name="hint_required_exams">Type required exams</string>
     <string name="toast_thesis_created">Thesis created</string>
     <string name="alertdialog_title">Share thesis information</string>
     <string name="dialogalert_qr_subtitle">Scan me with LaureApp!</string>
