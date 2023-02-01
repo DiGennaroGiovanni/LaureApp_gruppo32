@@ -83,11 +83,9 @@ public class ProfileFragment extends Fragment {
             builder.setTitle(R.string.confirm_deletion);
             builder.setMessage(R.string.confirm_deletion_question);
 
-            builder.setPositiveButton(R.string.no, (dialog, which) -> {
+            builder.setPositiveButton(R.string.yes, (dialog, which) -> deleteProfile());
 
-            });
-
-            builder.setNegativeButton(R.string.yes, (dialog, which) -> deleteProfile());
+            builder.setNegativeButton(R.string.no, (dialog, which) -> {});
 
             AlertDialog dialog = builder.create();
             dialog.show();
