@@ -149,6 +149,8 @@
     <string name="qr_code_thesis">qr_code_thesis</string>
     <string name="share_thesis_info">CONDIVIDI INFO</string>
     <string name="close">CHIUDI</string>
+    <string name="close_app">CHIUDI APP</string>
+    <string name="reload_app">RICARICA</string>
     <string name="pdf_title">UNIBA - Documento di riepilogo tesi</string>
     <string name="hint_average_marks">digita la media del voti</string>
     <string name="hint_required_exams">digitare gli esami richiesti</string>

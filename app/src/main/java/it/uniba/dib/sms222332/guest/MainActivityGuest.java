@@ -6,7 +6,9 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,6 +50,7 @@ import java.util.Map;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.LanguagesFragment;
 import it.uniba.dib.sms222332.commonActivities.LoginActivity;
+import it.uniba.dib.sms222332.commonActivities.NetworkChangeReceiver;
 import it.uniba.dib.sms222332.commonActivities.ThesisDescriptionGuestFragment;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 
@@ -70,8 +73,9 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guest_activity_main);
 
-
-
+        //CONTROLLO COSTANTEMENTE LA CONNESSIONE AD INTERNET
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(new NetworkChangeReceiver(this), filter);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -109,7 +109,7 @@ public class ProfileFragment extends Fragment {
         documentReference.delete();
 
         Intent intent = new Intent(getActivity(), ProfileDeletedActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        getActivity().finish();
         startActivity(intent);
     }
 

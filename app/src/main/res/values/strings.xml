@@ -149,6 +149,8 @@
     <string name="qr_code_thesis">qr_code_thesis</string>
     <string name="share_thesis_info">SHARE INFO</string>
     <string name="close">CLOSE</string>
+    <string name="close_app">CLOSE APP</string>
+    <string name="reload_app">RELOAD</string>
     <string name="pdf_title">UNIBA - Summary thesis document</string>
     <string name="hint_average_marks">type average marks</string>
     <string name="hint_required_exams">type required exams</string>
@@ -347,4 +349,5 @@
     <string name="delete_button">DELETE</string>
     <string name="thesis_info_required">thesis info required</string>
     <string name="try_again">TRY AGAIN</string>
+
 </resources>
