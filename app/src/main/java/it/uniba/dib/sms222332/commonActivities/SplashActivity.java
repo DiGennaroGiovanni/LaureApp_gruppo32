@@ -42,8 +42,8 @@ public class SplashActivity extends AppCompatActivity {
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
         if (!isConnected) {
             Intent intent = new Intent(SplashActivity.this, NoConnectionActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
         }else if (currentUser != null) {
                 // user is logged in
 

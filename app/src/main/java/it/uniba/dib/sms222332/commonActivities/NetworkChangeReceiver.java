@@ -18,7 +18,7 @@ import it.uniba.dib.sms222332.R;
 
 public class NetworkChangeReceiver extends BroadcastReceiver {
 
-    private Activity activity;
+    private final Activity activity;
 
     public NetworkChangeReceiver(Activity activity) {
         this.activity = activity;
@@ -29,9 +29,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
-        if (isConnected) {
-            // We have internet
-        } else {
+        if (!isConnected) {
 
             try {
                 // codice per mostrare l'alert dialog
@@ -55,7 +53,6 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
             } catch (Exception e) {
                 Log.e("NetworkChangeReceiver", "TRIMONE Errore durante la gestione della perdita di connessione internet: " + e.getMessage());
             }
-
         }
     }
 }
