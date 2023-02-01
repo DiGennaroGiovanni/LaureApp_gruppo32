@@ -58,10 +58,16 @@ public class LoginActivity extends AppCompatActivity {
         lang.updateResource(lang.getLang());
 
         en.setOnClickListener(v -> {
+            Intent intent = getIntent();
+            if (intent.hasExtra("logout"))
+                intent.removeExtra("logout");
             lang.updateResource("en");
             this.recreate();
         });
         it.setOnClickListener(v -> {
+            Intent intent = getIntent();
+            if (intent.hasExtra("logout"))
+                intent.removeExtra("logout");
             lang.updateResource("it");
             this.recreate();
         });
@@ -148,6 +154,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
+        assert datiProfessore != null;
         intent.putExtra("account_type", (String) datiProfessore.get("Account Type"));
         intent.putExtra("name", (String) datiProfessore.get("Name"));
         intent.putExtra("surname", (String) datiProfessore.get("Surname"));
@@ -164,6 +171,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
+        assert datiStudente != null;
         intent.putExtra("account_type", (String) datiStudente.get("Account Type"));
         intent.putExtra("name", (String) datiStudente.get("Name"));
         intent.putExtra("surname", (String) datiStudente.get("Surname"));
