@@ -69,21 +69,21 @@
     <string name="select_role">select role</string>
     <string name="or">or</string>
     <string-array name="faculty_array">
-        <item>Biology</item>
-        <item>Chemistry</item>
-        <item>Economy</item>
-        <item>Pharmacy</item>
-        <item>Philosophy</item>
-        <item>Law</item>
-        <item>Computer Science</item>
+        <item>Biologia</item>
+        <item>Chimica</item>
+        <item>Economia</item>
+        <item>Farmacia</item>
+        <item>Filosofia</item>
+        <item>Giurisprudenza</item>
+        <item>Informatica</item>
         <item>I.T.P.S.</item>
-        <item>Humanities</item>
-        <item>Mathematics</item>
-        <item>Medicine</item>
-        <item>Education Science</item>
-        <item>Agro-Environmental and Territorial Sciences</item>
-        <item>Biochemical Sciences</item>
-        <item>Political Science</item>
+        <item>Lettere</item>
+        <item>Matematica</item>
+        <item>Medicina</item>
+        <item>Scienze della Formazione</item>
+        <item>Scienze Agro-Ambientali e Territoriali</item>
+        <item>Scienze Biomediche</item>
+        <item>Scienze Politiche</item>
     </string-array>
     <string name="thesis_name">Thesis name</string>
     <string name="type_name_of_thesis">Type thesis name</string>
@@ -349,5 +349,7 @@
     <string name="delete_button">DELETE</string>
     <string name="thesis_info_required">thesis info required</string>
     <string name="try_again">TRY AGAIN</string>
+    <string name="missing_fields_msg">Required fields missing</string>
+    <string name="select_typology">Select a typology!</string>
 
 </resources>

@@ -351,4 +351,6 @@
     <string name="delete_button">CANCELLA</string>
     <string name="thesis_info_required">thesis info required</string>
     <string name="try_again">RIPROVA</string>
+    <string name="missing_fields_msg">Campi richiesti mancanti</string>
+    <string name="select_typology">Seleziona una tipologia!</string>
 </resources>

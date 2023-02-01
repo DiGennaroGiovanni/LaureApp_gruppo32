@@ -10,7 +10,6 @@ public class StudentAccount implements Account {
     private final String badgeNumber;
     private final String faculty;
     private final String email;
-    private final String accountType = "Student";
     private String request;
 
 
@@ -55,7 +54,7 @@ public class StudentAccount implements Account {
 
     @Override
     public String getAccountType() {
-        return accountType;
+        return "Student";
     }
 
     @Override

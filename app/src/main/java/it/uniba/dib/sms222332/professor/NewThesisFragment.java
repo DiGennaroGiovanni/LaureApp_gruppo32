@@ -138,18 +138,17 @@ public class NewThesisFragment extends Fragment {
         examCheck.setOnCheckedChangeListener((buttonView, isChecked) -> edtRequestedExams.setEnabled(examCheck.isChecked()));
 
 
-
         return view;
     }
 
 
     private void getCorrelator(Task<QuerySnapshot> task) {
-        if (task.isSuccessful()) {
+        if(task.isSuccessful()) {
 
-            correlatori.add("Nessuno");
+            correlatori.add(getResources().getString(R.string.none));
 
-            for (QueryDocumentSnapshot document : task.getResult()) {
-                if (!document.getId().equals(MainActivity.account.getEmail())) {
+            for(QueryDocumentSnapshot document : task.getResult()) {
+                if(!document.getId().equals(MainActivity.account.getEmail())) {
                     String nome = document.getString("Name") + " " + document.getString("Surname");
                     correlatori.add(nome);
                 }
@@ -168,7 +167,7 @@ public class NewThesisFragment extends Fragment {
         int permissionCheck = ContextCompat.checkSelfPermission(requireActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE);
 
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+        if(permissionCheck != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(),
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
@@ -183,7 +182,7 @@ public class NewThesisFragment extends Fragment {
     private void inserisciTesi() {
 
         String thesisName = edtThesisName.getText().toString();
-        String mainSubject = spinnerFaculty.getSelectedItem().toString();
+        String faculty = spinnerFaculty.getSelectedItem().toString();
         String estimatedTime = edtEstimatedTime.getText().toString();
         String correlator = spinnerCorrelator.getSelectedItem().toString();
         String description = edtDescription.getText().toString();
@@ -194,78 +193,92 @@ public class NewThesisFragment extends Fragment {
         String professore = MainActivity.account.getEmail();
         int numeroIntero;
 
-        switch (radioGroup.getCheckedRadioButtonId()) {
-            case R.id.radioButtonSperimentale:
-                tipoTesi = radioButtonSperimentale.getText().toString();
-                break;
-            case R.id.radioButtonCompilativa:
-                tipoTesi = radioButtonCompilativa.getText().toString();
-                break;
-            default:
-                // Non è selezionato alcun RadioButton
-                break;
-        }
 
-        if (examCheck.isChecked()) {
-            materieRichieste = edtRequestedExams.getText().toString();
+        if(thesisName.isEmpty()) {
+            edtThesisName.setError(getString(R.string.enter_thesis_name));
+            missingFieldMsg();
 
-            if (materieRichieste.isEmpty())
-                edtRequestedExams.setError(getString(R.string.required_subjects));
-        }
+        } else if(radioGroup.getCheckedRadioButtonId() == -1) {
+            radioButtonCompilativa.setError(getResources().getString(R.string.select_typology));
+            missingFieldMsg();
 
-        if (averageCheck.isChecked()) {
+        } else if(estimatedTime.isEmpty()) {
+            edtEstimatedTime.setError(getString(R.string.enter_estimated_time));
+            missingFieldMsg();
+
+        } else if(description.isEmpty()) {
+            edtDescription.setError(getString(R.string.enter_thesis_description));
+            missingFieldMsg();
+
+        } else if(averageCheck.isChecked()) {
             mediaVoti = edtAverage.getText().toString();
 
-            if (mediaVoti.isEmpty())
+            if(mediaVoti.isEmpty()) {
                 edtAverage.setError(getString(R.string.valid_constraint));
-            else {
+                missingFieldMsg();
+            } else {
                 numeroIntero = Integer.parseInt(mediaVoti);
-                if (numeroIntero > 30 || numeroIntero < 18)
+                if(numeroIntero > 30 || numeroIntero < 18) {
                     edtAverage.setError(getString(R.string.average_range));
+                    missingFieldMsg();
+                }
             }
-        }
+        } else if(examCheck.isChecked()) {
+            materieRichieste = edtRequestedExams.getText().toString();
 
-        if (correlator.equals("Nessuno")) {
-            correlator = "";
-        }
+            if(materieRichieste.isEmpty()) {
+                edtRequestedExams.setError(getString(R.string.required_subjects));
+                missingFieldMsg();
+            }
 
-        Map<String, String> infoTesi = new HashMap<>();
-        infoTesi.put("Professor", professore);
-        infoTesi.put("Name", thesisName);
-        infoTesi.put("Faculty", mainSubject);
-        infoTesi.put("Estimated Time", estimatedTime);
-        infoTesi.put("Correlator", correlator);
-        infoTesi.put("Description", description);
-        infoTesi.put("Related Projects", relatedProjects);
-        infoTesi.put("Required Exam", materieRichieste);
-        infoTesi.put("Average", mediaVoti);
-        infoTesi.put("Student", "");
-
-        switch(tipoTesi){
-            case "Sperimentale":
-            case "Experimental":
-                infoTesi.put("Type", "Experimental");
-                break;
-
-            case "Compilativa":
-            case "Drafted":
-                infoTesi.put("Type", "Drafted");
-                break;
-
-            default:
-                break;
-        }
-
-
-        if (thesisName.isEmpty()) {
-            edtThesisName.setError(getString(R.string.enter_thesis_name));
-        } else if (estimatedTime.isEmpty()) {
-            edtEstimatedTime.setError(getString(R.string.enter_estimated_time));
-        } else if (description.isEmpty()) {
-            edtDescription.setError(getString(R.string.enter_thesis_description));
         } else {
+
+            switch(radioGroup.getCheckedRadioButtonId()) {
+                case R.id.radioButtonSperimentale:
+                    tipoTesi = radioButtonSperimentale.getText().toString();
+                    break;
+                case R.id.radioButtonCompilativa:
+                    tipoTesi = radioButtonCompilativa.getText().toString();
+                    break;
+                default:
+                    //nessuna tesi selezionata
+                    break;
+            }
+
+            if(correlator.equals(getResources().getString(R.string.none))) {
+                correlator = "";
+            }
+
+            Map<String, String> infoTesi = new HashMap<>();
+            infoTesi.put("Professor", professore);
+            infoTesi.put("Name", thesisName);
+            infoTesi.put("Faculty", faculty);
+            infoTesi.put("Estimated Time", estimatedTime);
+            infoTesi.put("Correlator", correlator);
+            infoTesi.put("Description", description);
+            infoTesi.put("Related Projects", relatedProjects);
+            infoTesi.put("Required Exam", materieRichieste);
+            infoTesi.put("Average", mediaVoti);
+            infoTesi.put("Student", "");
+
+
+            switch(tipoTesi) {
+                case "Sperimentale":
+                case "Experimental":
+                    infoTesi.put("Type", "Experimental");
+                    break;
+
+                case "Compilativa":
+                case "Drafted":
+                    infoTesi.put("Type", "Drafted");
+                    break;
+
+                default:
+                    break;
+            }
+
             db.collection("Tesi").document(thesisName).set(infoTesi);
-            for (Uri file : uris) {
+            for(Uri file : uris) {
                 uploadFile(file);
             }
 
@@ -279,6 +292,10 @@ public class NewThesisFragment extends Fragment {
         }
     }
 
+    private void missingFieldMsg() {
+        Snackbar.make(requireView(), getResources().getString(R.string.missing_fields_msg), Snackbar.LENGTH_LONG).show();
+    }
+
     private void createPdf(String thesisName, Map<String, String> infoTesi) {
         try {
             ThesisPDF thesisPDF = new ThesisPDF();
@@ -286,7 +303,7 @@ public class NewThesisFragment extends Fragment {
             File outputFile = new File(requireContext().getExternalFilesDir(null), thesisName + ".pdf");
             Uri uri = FileProvider.getUriForFile(requireContext(), "it.uniba.dib.sms222332", outputFile);
             uploadPDF(uri);
-        } catch (Exception e) {
+        } catch(Exception e) {
             Log.e("PDF ERROR", getString(R.string.error_pdf));
         }
     }
@@ -310,7 +327,7 @@ public class NewThesisFragment extends Fragment {
     private String getNameFromUri(Uri pdfUri) {
         String fileName = null;
         Cursor cursor = requireActivity().getContentResolver().query(pdfUri, null, null, null, null);
-        if (cursor != null && cursor.moveToFirst()) {
+        if(cursor != null && cursor.moveToFirst()) {
             int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
             fileName = cursor.getString(nameIndex);
             cursor.close();
@@ -328,7 +345,7 @@ public class NewThesisFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 86 && resultCode == RESULT_OK && data != null) { //CONDIZIONE PER IL CARICAMENTO DEL PDF
+        if(requestCode == 86 && resultCode == RESULT_OK && data != null) { //CONDIZIONE PER IL CARICAMENTO DEL PDF
             fileUri = data.getData();
             addMaterialItem(fileUri);
             uris.add(fileUri);
@@ -382,7 +399,7 @@ public class NewThesisFragment extends Fragment {
             outState.putString("exams_value", edtRequestedExams.getText().toString());
         }
 
-        outState.putParcelableArrayList("uris",uris);
+        outState.putParcelableArrayList("uris", uris);
 
     }
 
@@ -399,7 +416,7 @@ public class NewThesisFragment extends Fragment {
         edtEstimatedTime.setText(bundle.getString("estimated time", ""));
 
         averageCheck.setChecked(bundle.getBoolean("avg_check"));
-        if (averageCheck.isChecked())
+        if(averageCheck.isChecked())
             edtAverage.setText(bundle.getString("avg_value", ""));
 
         examCheck.setChecked(bundle.getBoolean("exams_check"));
@@ -407,7 +424,7 @@ public class NewThesisFragment extends Fragment {
             edtRequestedExams.setText(bundle.getString("exams_value"));
 
         uris = bundle.getParcelableArrayList("uris");
-        if (uris != null){
+        if(uris != null) {
             for(Uri uri : uris)
                 addMaterialItem(uri);
         }
