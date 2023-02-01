@@ -3,7 +3,6 @@ package it.uniba.dib.sms222332.commonActivities;
 import static android.Manifest.permission.CAMERA;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -30,33 +29,34 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.Messages.ThesesMessagesListFragment;
 import it.uniba.dib.sms222332.professor.ProfessorAccount;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 import it.uniba.dib.sms222332.professor.ThesesListFragment;
-import it.uniba.dib.sms222332.student.favorites.FavoritesFragment;
 import it.uniba.dib.sms222332.student.MyThesisFragment;
 import it.uniba.dib.sms222332.student.StudentAccount;
 import it.uniba.dib.sms222332.student.StudentHomeFragment;
-import it.uniba.dib.sms222332.commonActivities.Messages.ThesesMessagesListFragment;
+import it.uniba.dib.sms222332.student.favorites.FavoritesFragment;
 import it.uniba.dib.sms222332.tools.CaptureAct;
 
 
@@ -139,14 +139,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void setFavorites() {
         theses = new ArrayList<>();
         List<String> thesisNames = getIntent().getStringArrayListExtra("favorite_theses");
-        for (String thesisName : thesisNames){
+        for (String thesisName : thesisNames) {
             Thesis thesis = new Thesis(thesisName, "");
             theses.add(thesis);
         }
 
-        for (Thesis thesis : theses){
+        for (Thesis thesis : theses) {
             db.collection("Tesi").document(thesis.getName()).get().addOnSuccessListener(documentSnapshot -> {
-                if(!Objects.requireNonNull(documentSnapshot.getString("Student")).isEmpty() && !Objects.equals(documentSnapshot.getString("Student"), MainActivity.account.getEmail()))
+                if (!Objects.requireNonNull(documentSnapshot.getString("Student")).isEmpty() && !Objects.equals(documentSnapshot.getString("Student"), MainActivity.account.getEmail()))
                     theses.remove(thesis);
                 else
                     thesis.setProfessor(documentSnapshot.getString("Professor"));
@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()) {
             case R.id.nav_profile:
-                selectedFragment = profileBundle(account);
+                selectedFragment = new ProfileFragment();
                 break;
 
             case R.id.nav_language:
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_scan_qr:
-                if(checkPermission()) scanQrCode();
+                if (checkPermission()) scanQrCode();
                 break;
 
             case R.id.nav_logout:
@@ -275,25 +275,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private Fragment profileBundle(Account account) {
-        Bundle bundle = new Bundle();
-        bundle.putString("name", account.getName());
-        bundle.putString("surname", account.getSurname());
-        bundle.putString("email", account.getEmail());
-        bundle.putString("faculty", account.getFaculty());
-
-        if (account.getAccountType().equals("Student"))
-            bundle.putString("badge_number", account.getBadgeNumber());
-        else
-            bundle.putString("badge_number", "");
-
-        ProfileFragment profileFragment = new ProfileFragment();
-        profileFragment.setArguments(bundle);
-
-        return profileFragment;
-    }
-
-
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START))
@@ -301,13 +282,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
-        } else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ProfessorHomeFragment) && !(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof StudentHomeFragment)){
+        } else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ProfessorHomeFragment) && !(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof StudentHomeFragment)) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, getProperHome()).commit();
             bottomNav.setSelectedItemId(R.id.home_button);
-        }
-
-
-        else {
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.exit_app_confirm);
             builder.setMessage(R.string.exit_app_question);
@@ -361,16 +339,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onStop() {
         super.onStop();
 
-        if(account.getAccountType().equals("Student")){
+        if (account.getAccountType().equals("Student")) {
 
             ArrayList<String> thesisNames = new ArrayList<>();
-            for(Thesis thesis : theses)
+            for (Thesis thesis : theses)
                 thesisNames.add(thesis.getName());
 
             db.collection("studenti").document(account.getEmail()).update("Favorites", thesisNames);
         }
 
     }
+
     private void scanQrCode() {
         ScanOptions options = new ScanOptions();
         options.setPrompt("Volume up to flash on ");
@@ -380,8 +359,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         barLauncher.launch(options);
     }
 
-    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result ->  {
-        if(result.getContents() != null) {
+    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
+        if (result.getContents() != null) {
             String onlineUser = MainActivity.account.getEmail();
             String jsonInput = result.getContents();
             String thesisName = "";
@@ -408,7 +387,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Map<String, Object> datiTesi = document.getData();
                     assert datiTesi != null;
                     db.collection("professori").document(Objects.requireNonNull(datiTesi.get("Professor")).toString()).get().addOnCompleteListener(task1 -> {
-                        if(task1.isSuccessful()) {
+                        if (task1.isSuccessful()) {
                             bundle.putString("professor", Objects.requireNonNull(task1.getResult().get("Name")) + " " + Objects.requireNonNull(task1.getResult().get("Surname")));
                             bundle.putString("correlator", (String) datiTesi.get("Correlator"));
                             bundle.putString("description", (String) datiTesi.get("Description"));
@@ -434,11 +413,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /**
      * checkPermission è il metodo che gestisce i permessi per utilizzare la fotocamera.
-     *
+     * <p>
      * Nel caso in cui l'utente non fornisce l'autorizzazioen per utilizzare la fotocamera, il sistemare
      * provvederà a fornire un feedback all'utente per spiegare l'utilità dei permessi.
-     *
+     * <p>
      * Nel
+     *
      * @return result true se i permessi sono stati concessi
      */
     private boolean checkPermission() {
@@ -463,8 +443,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             AlertDialog dialog = builder.create();
             dialog.show();  // Avvio la visualizzazione dell'AlertDialog.
-        }
-        else {
+        } else {
             // Avvio la procedura di autorizzazione dei permessi.
             requestPermissionLauncher.launch(CAMERA);
         }
