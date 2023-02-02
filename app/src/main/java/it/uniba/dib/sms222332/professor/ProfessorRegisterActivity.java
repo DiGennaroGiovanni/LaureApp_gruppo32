@@ -107,7 +107,7 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
         String email = edtEmailRegistrati.getText().toString();
         String password = edtPasswordRegistrati.getText().toString();
 
-        String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
+        String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-zA-Z._-]+\\.[a-z]+";
         if (!email.matches(emailPattern)) {
             edtEmailRegistrati.setError(getString(R.string.enter_valid_email));
         } else if (password.isEmpty() || password.length() < 6) {
