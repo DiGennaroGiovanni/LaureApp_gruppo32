@@ -56,7 +56,7 @@
                     android:layout_weight="40"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
-                    android:text="@string/thesis_typology"
+                    android:text="@string/thesis_type"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/roboto"
