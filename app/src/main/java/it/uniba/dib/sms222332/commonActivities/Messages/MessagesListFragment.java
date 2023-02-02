@@ -97,7 +97,7 @@ public class MessagesListFragment extends Fragment {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("thesis_name",thesis_name);
-                bundle.putString("professor",txtProf.getText().toString());
+                bundle.putString("professor",txtNomeProfessore.getText().toString());
                 Fragment thesisMessage = new NewMessageFragment();
 
                 thesisMessage.setArguments(bundle);
