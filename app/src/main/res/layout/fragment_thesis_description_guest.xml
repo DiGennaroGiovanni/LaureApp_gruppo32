@@ -1,53 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#0808275A">
-
-    <LinearLayout
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="vertical">
+        android:layout_margin="7dp"
+        android:orientation="vertical"
+        android:background="@drawable/bordered_white_layout">
 
         <TextView
             android:id="@+id/txtNameTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/cardo"
             android:text="@string/thesis_name"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#00213A"
             android:textSize="28sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_medium" />
 
         <!--        lineetta divisiva      -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginHorizontal="10sp"
             android:background="#4D000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+
+            android:background="#4DD3D3D3">
 
             <TextView
                 android:id="@+id/txtTypologyTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
                 android:layout_weight="40"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto"
                 android:gravity="end"
-                android:paddingStart="1dp"
-                android:paddingEnd="10dp"
-                android:text="Thesis type:"
+                android:paddingHorizontal="10sp"
+                android:text="@string/thesis_type"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtTypology"
@@ -66,31 +61,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtDepartmentTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
                 android:layout_weight="40"
-                android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingStart="1dp"
-                android:paddingEnd="10dp"
-                android:text="Department:"
+                android:paddingHorizontal="10sp"
+                android:text="@string/department"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/roboto" />
 
             <TextView
                 android:id="@+id/txtDepartment"
                 android:layout_width="0sp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_weight="60"
-                android:fontFamily="@font/cardo"
-                android:gravity="center|start"
+                android:fontFamily="@font/roboto_light"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -100,238 +93,65 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:background="#4DD3D3D3"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtProfessorTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
                 android:layout_weight="40"
-                android:fontFamily="@font/cardo"
                 android:gravity="end"
-                android:paddingStart="1dp"
-                android:paddingEnd="10dp"
-                android:text="Professor:"
+                android:paddingHorizontal="10sp"
+                android:text="@string/professor_message"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="normal"
+                android:fontFamily="@font/roboto" />
+
+
 
             <TextView
                 android:id="@+id/txtProfessor"
                 android:layout_width="0sp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_weight="60"
-                android:fontFamily="@font/cardo"
-                android:gravity="center|start"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="normal"
+                android:fontFamily="@font/roboto_light" />
+
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtCorrelatorTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
                 android:layout_weight="40"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto"
                 android:gravity="end"
-                android:paddingStart="1dp"
-                android:paddingEnd="10dp"
-                android:text="Correlator:"
+                android:paddingHorizontal="10sp"
+                android:text="@string/correlator"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtCorrelator"
                 android:layout_width="0sp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="60"
-                android:fontFamily="@font/cardo"
-                android:gravity="center|start"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtTimeTitle"
-                android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:paddingStart="1dp"
-                android:paddingEnd="10dp"
-                android:text="Estimated Time:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTime"
-                android:layout_width="0sp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:layout_gravity="bottom"
                 android:layout_weight="60"
-                android:fontFamily="@font/cardo"
-                android:gravity="center|start"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtDescriptionTitle"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:paddingStart="1dp"
-                android:paddingEnd="10dp"
-                android:text="Description:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtDescription"
-                android:layout_width="0sp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="60"
-                android:fontFamily="@font/cardo"
-                android:gravity="center|start"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtRelatedProjectsTitle"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:paddingStart="1dp"
-                android:paddingEnd="10dp"
-                android:text="Related Projects:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtRelatedProjects"
-                android:layout_width="0sp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="60"
-                android:fontFamily="@font/cardo"
-                android:gravity="center|start"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtTitleAverageMarks"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:paddingStart="1dp"
-                android:paddingEnd="10dp"
-                android:text="Average Marks:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtAverageMarks"
-                android:layout_width="0sp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="60"
-                android:fontFamily="@font/cardo"
-                android:gravity="center|start"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtTitleRequiredExams"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="40"
-                android:fontFamily="@font/cardo"
-                android:gravity="end"
-                android:paddingStart="1dp"
-                android:paddingEnd="10dp"
-                android:text="Required Exams:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtRequiredExams"
-                android:layout_width="0sp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="60"
-                android:fontFamily="@font/cardo"
-                android:gravity="center|start"
+                android:fontFamily="@font/roboto_light"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -339,5 +159,3 @@
         </LinearLayout>
 
     </LinearLayout>
-
-</ScrollView>

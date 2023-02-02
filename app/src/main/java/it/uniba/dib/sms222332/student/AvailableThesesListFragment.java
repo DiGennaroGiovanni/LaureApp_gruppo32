@@ -10,13 +10,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,10 +51,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
@@ -72,7 +64,7 @@ import java.util.Objects;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.commonActivities.Thesis;
-import it.uniba.dib.sms222332.commonActivities.ThesisDescriptionGuestFragment;
+import it.uniba.dib.sms222332.commonActivities.ThesisDescriptionUserFragment;
 import it.uniba.dib.sms222332.tools.CaptureAct;
 import it.uniba.dib.sms222332.tools.QrGenerator;
 
@@ -488,7 +480,7 @@ public class AvailableThesesListFragment extends Fragment {
                     } else {
 
                         bundle = new Bundle();
-                        Fragment guestThesis = new ThesisDescriptionGuestFragment();
+                        Fragment guestThesis = new ThesisDescriptionUserFragment();
 
                         Map<String, Object> datiTesi = document.getData();
                         assert datiTesi != null;
