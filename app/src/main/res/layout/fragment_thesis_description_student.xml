@@ -287,7 +287,8 @@
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:layout_gravity="bottom" />
+                    android:layout_gravity="bottom"
+                    android:fontFamily="@font/roboto_light"/>
 
             </LinearLayout>
 

@@ -15,7 +15,7 @@
         android:layout_weight="45"
         android:gravity="center">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/allThesisBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,10 +24,10 @@
             android:paddingStart="10dp"
             android:paddingTop="25dp"
             android:paddingEnd="10dp"
+            app:iconGravity="textStart"
             android:paddingBottom="25dp"
             android:text="@string/all_thesis_button"
             android:textSize="34sp"
-            android:textStyle="bold"
             app:icon="@drawable/icon_available_theses" />
 
     </LinearLayout>
@@ -39,7 +39,7 @@
         android:layout_weight="55"
         android:gravity="center">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/myThesisBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
             android:paddingBottom="30dp"
             android:text="@string/your_thesis_button"
             android:textSize="34sp"
-            android:textStyle="bold"
+            app:iconGravity="textStart"
             app:icon="@drawable/ic_your_thesis" />
 
     </LinearLayout>

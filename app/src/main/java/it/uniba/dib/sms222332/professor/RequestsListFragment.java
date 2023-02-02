@@ -49,8 +49,6 @@ public class RequestsListFragment extends Fragment {
                                 addRequestCard(document);
                                 noRequest.setVisibility(View.GONE);
                             }
-
-
                         }
                     }
                 });
@@ -65,10 +63,7 @@ public class RequestsListFragment extends Fragment {
         thesisName.setText(document.getString("Thesis"));
         studentEmail.setText(document.getString("Student"));
 
-        v.setOnClickListener(view -> {
-
-            addThesisRequestCard(document);
-        });
+        v.setOnClickListener(view -> addThesisRequestCard(document));
 
         layoutRequestsList.addView(v);
 

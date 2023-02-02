@@ -15,16 +15,17 @@
         android:layout_weight="50"
         android:gravity="center">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/newThesisBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:padding="25dp"
+            app:iconGravity="textStart"
             android:text="@string/add_thesis_button"
+            android:fontFamily="@font/roboto_medium"
             android:textSize="34sp"
-            android:textStyle="bold"
             app:icon="@drawable/add_thesis_icon" />
     </LinearLayout>
 
@@ -35,7 +36,7 @@
         android:layout_gravity="center"
         android:gravity="center">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/receiptsBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,9 +46,10 @@
             android:paddingTop="40dp"
             android:paddingEnd="20dp"
             android:paddingBottom="40dp"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/requests_button"
+            app:iconGravity="textStart"
             android:textSize="34sp"
-            android:textStyle="bold"
             app:icon="@drawable/icon_check" />
 
     </LinearLayout>

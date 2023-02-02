@@ -7,10 +7,10 @@
     <string name="list_button_text">Gestisci Tesi</string>
     <string name="all_thesis_button">CERCA UNA TESI</string>
     <string name="your_thesis_button">LA TUA TESI</string>
-    <string name="add_thesis_button">AGGIUNGI NUOVA TESI</string>
+    <string name="add_thesis_button">NUOVA TESI</string>
     <string name="handle_thesis_button">GESTISCI TESI</string>
     <string name="receipts_button">RICEVIMENTI</string>
-    <string name="requests_button">Richieste</string>
+    <string name="requests_button">LE TUE RICHIESTE</string>
     <string name="name_profile">Nome:</string>
     <string name="guest_account">Account Guest</string>
     <string name="profile_img">Profile Image</string>

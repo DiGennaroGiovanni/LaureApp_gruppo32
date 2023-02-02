@@ -3,6 +3,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#0808275A"
     android:layout_margin="2dp">
 
@@ -17,19 +18,17 @@
             android:orientation="vertical"
             android:layout_margin="3dp">
 
-
             <TextView
                 android:id="@+id/txtNameTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/thesis_name"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="@android:color/black"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                android:textColor="#00213A"
+                android:textSize="28sp" />
 
 
             <RelativeLayout
@@ -40,7 +39,6 @@
 
 
             <LinearLayout
-
                 android:id="@+id/notAcceptedState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,24 +49,23 @@
                     android:id="@+id/txtStateTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:paddingHorizontal="10sp"
                     android:gravity="end"
-                    android:paddingEnd="20sp"
                     android:text="@string/state"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtState"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
                     android:text="@string/not_accepted_yet"
                     android:textColor="@android:color/holo_red_light"
                     android:textSize="20sp"
-                    android:fontFamily="@font/cardo" />
+                    android:fontFamily="@font/roboto_light" />
 
             </LinearLayout>
 
@@ -81,21 +78,21 @@
                     android:id="@+id/txtTypologyTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:paddingHorizontal="10sp"
                     android:gravity="end"
-                    android:paddingEnd="20sp"
                     android:text="@string/thesis_type"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtTypology"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
                     android:text=""
+                    android:fontFamily="@font/roboto_light"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_gravity="bottom"/>
@@ -112,20 +109,21 @@
                     android:id="@+id/txtDepartmentTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:paddingHorizontal="10sp"
                     android:gravity="end"
-                    android:paddingEnd="20sp"
                     android:text="@string/department"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    />
 
                 <TextView
                     android:id="@+id/txtDepartment"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -141,21 +139,21 @@
                     android:id="@+id/txtProfessorTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
-                    android:paddingEnd="20sp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/professor_info_message_student"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtProfessor"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
                     android:text=""
+                    android:fontFamily="@font/roboto_light"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -170,20 +168,20 @@
                     android:id="@+id/txtCorrelatorTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:paddingHorizontal="10sp"
                     android:gravity="end"
-                    android:paddingEnd="20sp"
                     android:text="@string/correlator"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtCorrelator"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -200,21 +198,21 @@
                     android:id="@+id/txtTimeTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:paddingHorizontal="10sp"
                     android:gravity="end"
-                    android:paddingEnd="20sp"
                     android:text="@string/estimated_time"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtTime"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
                     android:text=""
+                    android:fontFamily="@font/roboto_light"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_gravity="bottom"/>
@@ -231,20 +229,21 @@
                     android:id="@+id/txtDescriptionTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:paddingHorizontal="10sp"
                     android:gravity="end"
-                    android:paddingEnd="20sp"
                     android:text="@string/description"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    />
 
                 <TextView
                     android:id="@+id/txtDescription"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -261,20 +260,19 @@
                     android:id="@+id/txtRelatedProjectsTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:paddingHorizontal="10sp"
                     android:gravity="end"
-                    android:paddingEnd="20sp"
                     android:text="@string/related_projects"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtRelatedProjects"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -293,21 +291,21 @@
                     android:id="@+id/txtTitleAverageMarks"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:paddingHorizontal="10sp"
                     android:gravity="end"
-                    android:paddingEnd="20sp"
                     android:text="@string/average_marks"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtAverageMarks"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
                     android:text=""
+                    android:fontFamily="@font/roboto_light"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_gravity="bottom"/>
@@ -324,21 +322,21 @@
                     android:id="@+id/txtTitleRequiredExams"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:paddingHorizontal="10sp"
                     android:gravity="end"
-                    android:paddingEnd="20sp"
                     android:text="@string/required_exams"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtRequiredExams"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
                     android:text=""
+                    android:fontFamily="@font/roboto_light"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_gravity="bottom"/>
@@ -357,19 +355,18 @@
                     android:id="@+id/txtMaterialsTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:paddingHorizontal="10sp"
                     android:gravity="end"
-                    android:paddingEnd="20sp"
                     android:text="@string/materials"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -379,13 +376,13 @@
                         android:orientation="vertical"
                         android:background="@drawable/bordered_rect" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/buttonAdd"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="start"
-                        android:layout_margin="3dp"
-                        android:text="@string/button_add_material" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/button_add_material"
+                        app:icon="@drawable/ic_upload"
+                        android:layout_margin="5sp"/>
 
                 </LinearLayout>
 
@@ -397,39 +394,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSendMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/btnTask"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="@string/message"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="20sp"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="@string/save_thesis"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnReceipt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="20sp"
                     android:text="@string/receipt"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="16sp" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnTask"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/btnReceipt"
                     android:text="@string/task"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 
@@ -440,8 +441,10 @@
                 android:gravity="center"
                 android:visibility="gone">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDeleteRequest"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cancel_request" />

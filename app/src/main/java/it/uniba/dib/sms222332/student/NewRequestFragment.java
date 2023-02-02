@@ -73,7 +73,7 @@ public class NewRequestFragment extends Fragment {
             professore_email = getArguments().getString("professor");
         }
 
-        if (average_marks.equals("None") || average_marks.equals("Nessuno")) {
+        if (average_marks.equals(getResources().getString(R.string.none))) {
             averageMarksLayout.setVisibility(GONE);
             txtAverageConstraint.setVisibility(GONE);
             averageRadioGroup.setVisibility(GONE);
@@ -81,7 +81,7 @@ public class NewRequestFragment extends Fragment {
             txtAverageMarks.setText(average_marks);
         }
 
-        if (required_exams.equals("None") || average_marks.equals("Nessuno")) {
+        if (required_exams.equals(getResources().getString(R.string.none))) {
             requiredExamsLayout.setVisibility(GONE);
             txtExamsConstraint.setVisibility(GONE);
             examsRadioGroup.setVisibility(GONE);
@@ -96,29 +96,27 @@ public class NewRequestFragment extends Fragment {
     }
 
     private void requestThesis() {
-        String average = "";
-        String exams = "";
 
-
-        if (rdbAverageYes.isChecked())
-            average = rdbAverageYes.getText().toString();
-        else if (rdbAverageNo.isChecked())
-            average = rdbAverageNo.getText().toString();
-
-        if (rdbExamsYes.isChecked())
-            exams = rdbExamsYes.getText().toString();
-        else if (rdbExamsNo.isChecked())
-            exams = rdbExamsNo.getText().toString();
-
-
-        if (!required_exams.equals("None") && !required_exams.equals("Nessuno")  && !rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()) {
+        if (!required_exams.equals(getResources().getString(R.string.none))  && !rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()) {
             txtExamsConstraint.setError(getString(R.string.have_to_choice));
             Snackbar.make(requireView(), R.string.have_to_choice, Snackbar.LENGTH_LONG).show();
 
-        } else if (!average_marks.equals("None") && !required_exams.equals("Nessuno") && !rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()) {
+        } else if (!average_marks.equals(getResources().getString(R.string.none)) && !rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()) {
             txtAverageConstraint.setError(getString(R.string.have_to_choice));
             Snackbar.make(requireView(), R.string.have_to_choice, Snackbar.LENGTH_LONG).show();
         } else {
+            String average = "";
+            String exams = "";
+
+            if (rdbAverageYes.isChecked())
+                average = "1";
+            else if (rdbAverageNo.isChecked())
+                average = "0";
+
+            if (rdbExamsYes.isChecked())
+                exams = "1";
+            else if (rdbExamsNo.isChecked())
+                exams = "0";
 
             Map<String, String> request = new HashMap<>();
             request.put("Average", txtAverageMarks.getText().toString());

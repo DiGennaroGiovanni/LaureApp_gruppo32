@@ -68,6 +68,7 @@
             android:theme="@style/MyButton"
             android:fontFamily="@font/roboto_medium"
             app:icon="@drawable/ic_refresh"
+            app:iconGravity="textStart"
             app:iconSize="20sp"  />
 
     </LinearLayout>
