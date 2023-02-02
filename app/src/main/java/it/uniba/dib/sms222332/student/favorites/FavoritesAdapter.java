@@ -3,10 +3,13 @@ package it.uniba.dib.sms222332.student.favorites;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Collections;
 import java.util.List;
@@ -43,6 +46,10 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Thes
     @Override
     public ThesisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_favorite, parent, false);
+
+        // Button shareBtn = view.findViewById(R.id.shareBtn);
+        //shareBtn.setOnClickListener(view1 -> Snackbar.make(view1,"PROVA CLICK",Snackbar.LENGTH_SHORT).show());
+
         return new ThesisViewHolder(view);
     }
 
