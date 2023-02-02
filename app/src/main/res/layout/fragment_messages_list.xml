@@ -101,6 +101,7 @@
         android:fontFamily="@font/roboto_medium"
         app:icon="@drawable/icon_plus"
         app:iconSize="20sp"
+        app:iconGravity="textStart"
         android:text="@string/new_message_info_message_student" />
 
 </RelativeLayout>

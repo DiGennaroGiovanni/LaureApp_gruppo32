@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:id="@+id/studInfo"
@@ -21,12 +22,11 @@
                 android:id="@+id/txtProfessor"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto"
                 android:gravity="end"
                 android:text="@string/student"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtStudentEmail"
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto_light"
                 android:text="@string/student_name_"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -48,12 +48,11 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto"
                 android:gravity="end"
                 android:text="@string/thesis"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
 
             <TextView
@@ -61,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto_light"
                 android:text="@string/thesis_name_"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -91,6 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/no_receipt_yet"
+                android:fontFamily="@font/roboto"
                 android:textSize="25sp"
                 android:layout_gravity="center"/>
 
@@ -98,7 +98,7 @@
 
     </ScrollView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnNewReceipt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,9 +106,12 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:fontFamily="@font/cardo"
+        android:fontFamily="@font/roboto_medium"
         android:text="@string/newReceiptToolbar"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        app:icon="@drawable/icon_plus"
+        app:iconSize="20sp"
+        app:iconGravity="textStart"
         android:padding="10dp"/>
 
 </RelativeLayout>
