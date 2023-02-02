@@ -1,6 +1,8 @@
 package it.uniba.dib.sms222332.commonActivities;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +24,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.connection.NetworkChangeReceiver;
 import it.uniba.dib.sms222332.guest.MainActivityGuest;
 
 public class LoginActivity extends AppCompatActivity {
@@ -34,6 +37,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //CONTROLLO  CONNESSIONE AD INTERNET
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(new NetworkChangeReceiver(this), filter);
 
         Objects.requireNonNull(getSupportActionBar()).hide();
 

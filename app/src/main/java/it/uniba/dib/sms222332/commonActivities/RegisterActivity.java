@@ -1,6 +1,8 @@
 package it.uniba.dib.sms222332.commonActivities;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.connection.NetworkChangeReceiver;
 import it.uniba.dib.sms222332.professor.ProfessorRegisterActivity;
 import it.uniba.dib.sms222332.student.StudentRegisterActivity;
 
@@ -21,6 +24,10 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrati);
+
+        //CONTROLLO  CONNESSIONE AD INTERNET
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(new NetworkChangeReceiver(this), filter);
 
         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.registration);
 
