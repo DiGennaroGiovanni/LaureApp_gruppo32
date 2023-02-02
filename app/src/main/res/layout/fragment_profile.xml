@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#0808275A"
     tools:context=".commonActivities.ProfileFragment">
 
@@ -156,14 +157,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
-<!--            <Button-->
-<!--                android:id="@+id/btnDeleteProfile"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:text="@string/delete_profile"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textStyle="bold" />-->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDeleteProfile"
@@ -171,6 +164,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="@string/delete_profile"
+                app:icon="@drawable/ic_account_deleted"
+                app:iconSize="20sp"
+                app:iconGravity="textStart"
                 android:textSize="16sp"
                 android:fontFamily="@font/roboto_medium"
                 android:backgroundTintMode="src_over"/>

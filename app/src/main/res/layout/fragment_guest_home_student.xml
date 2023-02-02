@@ -18,10 +18,12 @@
             android:layout_width="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:fontFamily="@font/roboto_medium"
             android:text="@string/all_thesis_button"
+            android:fontFamily="@font/roboto_medium"
+            app:icon="@drawable/icon_available_theses"
+            app:iconSize="40sp"
+            app:iconGravity="textStart"
             android:textSize="34sp"
-            android:textStyle="bold"
             android:layout_marginBottom="35sp"
             android:padding="30sp"/>
 
@@ -42,8 +44,10 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/your_thesis_button"
             android:textSize="34sp"
-            android:textStyle="bold"
             android:layout_marginTop="35sp"
+            app:iconGravity="textStart"
+            app:icon="@drawable/ic_your_thesis"
+            app:iconSize="40sp"
             android:padding="30sp"/>
 
     </RelativeLayout>

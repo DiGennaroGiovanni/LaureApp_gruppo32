@@ -24,6 +24,7 @@
             android:text="@string/add_thesis_button"
             app:iconSize="40sp"
             app:icon="@drawable/add_thesis_icon"
+            app:iconGravity="textStart"
             android:fontFamily="@font/roboto_medium"
             android:textSize="34sp" />
 
@@ -45,6 +46,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/requests_button"
             android:textSize="34sp"
+            app:iconGravity="textStart"
             app:iconSize="40sp"
             app:icon="@drawable/icon_check" />
 
