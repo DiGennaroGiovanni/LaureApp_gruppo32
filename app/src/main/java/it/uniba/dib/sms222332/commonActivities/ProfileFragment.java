@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -220,6 +219,10 @@ public class ProfileFragment extends Fragment {
                                             storageRef.delete();
                                         })
                                         .addOnFailureListener(e -> Log.e(TAG, "Error deleting folder: " + e.getMessage()));
+
+                                // eliminazione del pdf della tesi
+                                String pdfThesis = thesisName + ".pdf";
+                                storage.getReference().child("PDF_tesi").child(pdfThesis).delete();
 
                                 // eliminazione dei ricevimenti per la tesi specifica
                                 db.collection("ricevimenti")
