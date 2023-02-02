@@ -38,7 +38,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginHorizontal="10sp"
                     android:background="#4D000000" />
 
 
@@ -47,7 +46,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    android:background="#33FF0000">
 
                     <TextView
                         android:id="@+id/txtStateTitle"
@@ -68,7 +68,7 @@
                         android:layout_weight="60"
                         android:fontFamily="@font/roboto_light"
                         android:text="@string/not_accepted_yet"
-                        android:textColor="@android:color/holo_red_light"
+                        android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -76,7 +76,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="#4DD3D3D3">
 
                     <TextView
                         android:id="@+id/txtTypologyTitle"
@@ -136,7 +137,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#4DD3D3D3">
 
                     <TextView
                         android:id="@+id/txtProfessorTitle"
@@ -195,7 +197,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#4DD3D3D3">
 
                     <TextView
                         android:id="@+id/txtTimeTitle"
@@ -256,7 +259,8 @@
                     android:id="@+id/layoutRelatedProject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#4DD3D3D3">
 
                     <TextView
                         android:id="@+id/txtRelatedProjectsTitle"
@@ -320,7 +324,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10sp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#4DD3D3D3">
 
                     <TextView
                         android:id="@+id/txtTitleRequiredExams"
@@ -353,7 +358,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/txtMaterialsTitle"

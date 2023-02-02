@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private LanguageManager lang;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
