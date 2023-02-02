@@ -124,7 +124,7 @@ public class ReceiptsListFragment extends Fragment {
         ArrayList<String> taskList = new ArrayList<>();
         assert map != null;
         if(Objects.equals(map.get("Tasks"), ""))
-            tasks.setText("/");
+            tasks.setText(R.string.none);
         else if (map.get("Task") instanceof String){
             tasks.setText(Objects.requireNonNull(map.get("Tasks")).toString());
         }

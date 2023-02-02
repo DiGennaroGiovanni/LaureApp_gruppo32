@@ -74,7 +74,6 @@
             android:layout_weight="50"
             android:text="@string/sign_in"/>
 
-
     </LinearLayout>
 
     <LinearLayout
