@@ -16,6 +16,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.Objects;
+
 import it.uniba.dib.sms222332.R;
 
 public class RequestDescriptionFragment extends Fragment {
@@ -57,14 +59,20 @@ public class RequestDescriptionFragment extends Fragment {
                 layoutForAvgConstraint.setVisibility(View.GONE);
             else {
                 txtAvgMarks.setText(avgMarks);
-                txtAvgConstraint.setText(avgConstraint);
+                if(avgConstraint.equals("1"))
+                    txtAvgConstraint.setText(R.string.yes);
+                else
+                    txtAvgConstraint.setText(R.string.no);
             }
 
             if (examsRequired.equals(""))
                 layoutForExamsConstraint.setVisibility(View.GONE);
             else {
                 txtExamsRequired.setText(examsRequired);
-                txtExamsConstraint.setText(examsConstraint);
+                if(examsConstraint.equals("1"))
+                    txtExamsConstraint.setText(R.string.yes);
+                else
+                    txtExamsConstraint.setText(R.string.no);
             }
 
         }
@@ -80,19 +88,8 @@ public class RequestDescriptionFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        btnAccept.setOnClickListener(view1 -> {
-
-            btnAcceptOnClick();
-
-        });
-
-
-        btnDecline.setOnClickListener(view12 -> {
-
-            btnDeclineOnClick();
-
-        });
-
+        btnAccept.setOnClickListener(view1 -> btnAcceptOnClick());
+        btnDecline.setOnClickListener(view12 -> btnDeclineOnClick());
     }
 
     private void btnDeclineOnClick() {
@@ -112,7 +109,7 @@ public class RequestDescriptionFragment extends Fragment {
         db.collection("richieste").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot request : task.getResult()) {
-                    if (request.getString("Thesis").equals(txtThesisName.getText().toString())) {
+                    if (Objects.equals(request.getString("Thesis"), txtThesisName.getText().toString())) {
                         request.getReference().delete();
                         if (!request.getId().equals(txtStudent.getText().toString()))
                             db.collection("studenti").document(request.getId()).update("Request", "no");
