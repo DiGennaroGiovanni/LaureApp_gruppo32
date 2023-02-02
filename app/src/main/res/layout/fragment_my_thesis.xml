@@ -274,6 +274,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="60"
                     android:text=""
+                    android:fontFamily="@font/roboto_light"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_gravity="bottom"/>
