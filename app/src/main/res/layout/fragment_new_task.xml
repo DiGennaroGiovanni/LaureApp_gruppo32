@@ -17,7 +17,6 @@
         android:textAllCaps="true"
         android:textColor="#00213A"
         android:textSize="28sp"
-        android:textStyle="bold"
         android:fontFamily="@font/roboto_medium" />
 
     <!--        lineetta divisiva      -->

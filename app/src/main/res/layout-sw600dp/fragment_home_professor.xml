@@ -25,7 +25,6 @@
             android:padding="40dp"
             android:text="@string/add_thesis_button"
             android:textSize="50sp"
-            android:textStyle="bold"
             android:fontFamily="@font/roboto_medium"
             app:icon="@drawable/add_thesis_icon"/>
     </LinearLayout>
@@ -48,7 +47,6 @@
             android:padding="40dp"
             android:text="@string/requests_button"
             android:textSize="50sp"
-            android:textStyle="bold"
             app:icon="@drawable/icon_check"/>
 
     </LinearLayout>

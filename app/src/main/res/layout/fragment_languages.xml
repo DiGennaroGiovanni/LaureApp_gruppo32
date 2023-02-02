@@ -19,6 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/change_lang"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="28sp" />
 
