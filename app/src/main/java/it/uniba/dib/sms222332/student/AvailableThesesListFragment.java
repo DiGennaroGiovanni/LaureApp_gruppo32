@@ -80,6 +80,8 @@ public class AvailableThesesListFragment extends Fragment {
     int seekBarValue = 30;
     boolean isRequestedExamChecked = false;
     CheckBox examsCheckbox;
+    SeekBar seekBar;
+    SearchView searchView;
 
 
     @Nullable
@@ -92,7 +94,7 @@ public class AvailableThesesListFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         layout_lista_tesi = view.findViewById(R.id.layout_tesi_disponibili);
-        SearchView searchView = view.findViewById(R.id.search_view);
+        searchView = view.findViewById(R.id.search_view);
         btnFilter = view.findViewById(R.id.btnFilter);
         btnCamera = view.findViewById(R.id.btnCamera);
 
@@ -108,8 +110,13 @@ public class AvailableThesesListFragment extends Fragment {
                 dialogFilter.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
 
-            SeekBar seekBar = dialogFilter.findViewById(R.id.seekbar_average);
+            seekBar = dialogFilter.findViewById(R.id.seekbar_average);
             final TextView average = dialogFilter.findViewById(R.id.average_textview);
+
+            if(savedInstanceState != null){
+               seekBarValue = savedInstanceState.getInt("seekbar");
+               isRequestedExamChecked = savedInstanceState.getBoolean("checkbox");
+            }
 
             seekBar.setProgress(seekBarValue - 18);
             String avgString = getResources().getString(R.string.max_avg_constr) + seekBarValue;
@@ -143,7 +150,10 @@ public class AvailableThesesListFragment extends Fragment {
 
             Button searchButton = dialogFilter.findViewById(R.id.search_button);
             searchButton.setOnClickListener(view22 -> {
+
+
                 searchView.setQuery("", true);
+
                 db.collection("Tesi")
                         .get()
                         .addOnCompleteListener(task -> {
@@ -231,6 +241,9 @@ public class AvailableThesesListFragment extends Fragment {
                 return true;
             }
         });
+
+        if(savedInstanceState != null)
+            searchView.setQuery(savedInstanceState.getString("search"), true);
 
         return view;
     }
@@ -332,9 +345,7 @@ public class AvailableThesesListFragment extends Fragment {
             qrImageView.setImageBitmap(QrGenerator.createQr(thesisName));
 
             Button buttonShare = dialogQr.findViewById(R.id.share_button);
-            buttonShare.setOnClickListener(view12 -> {
-                btnShareOnClick(thesisName);
-            });
+            buttonShare.setOnClickListener(view12 -> btnShareOnClick(thesisName));
 
             Button dismissButton = dialogQr.findViewById(R.id.dismiss_button);
             dismissButton.setOnClickListener(view14 -> dialogQr.dismiss());
@@ -384,9 +395,7 @@ public class AvailableThesesListFragment extends Fragment {
         qrImageView.setImageBitmap(QrGenerator.createQr(thesisName));
 
         Button buttonShare = dialogQr.findViewById(R.id.share_button);
-        buttonShare.setOnClickListener(view12 -> {
-            sharePDF(thesisName);
-        });
+        buttonShare.setOnClickListener(view12 -> sharePDF(thesisName));
 
         Button dismissButton = dialogQr.findViewById(R.id.dismiss_button);
         dismissButton.setOnClickListener(view14 -> dialogQr.dismiss());
@@ -548,5 +557,13 @@ public class AvailableThesesListFragment extends Fragment {
             Snackbar.make(requireView(), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
         }
     });
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("search", searchView.getQuery().toString());
+        outState.putBoolean("checkbox", examsCheckbox.isChecked());
+        outState.putInt("seekbar", seekBar.getProgress() + 18);
+    }
 }
 
