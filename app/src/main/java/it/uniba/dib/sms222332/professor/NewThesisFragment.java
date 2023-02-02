@@ -186,12 +186,11 @@ public class NewThesisFragment extends Fragment {
         String estimatedTime = edtEstimatedTime.getText().toString();
         String correlator = spinnerCorrelator.getSelectedItem().toString();
         String description = edtDescription.getText().toString();
-        String materieRichieste = "";
-        String mediaVoti = "";
+        String materieRichieste = edtRequestedExams.getText().toString();
+        String mediaVoti = edtAverage.getText().toString();
         String relatedProjects = edtRelatedProjects.getText().toString();
         String tipoTesi = "";
         String professore = MainActivity.account.getEmail();
-        int numeroIntero;
 
 
         if(thesisName.isEmpty()) {
@@ -210,26 +209,17 @@ public class NewThesisFragment extends Fragment {
             edtDescription.setError(getString(R.string.enter_thesis_description));
             missingFieldMsg();
 
-        } else if(averageCheck.isChecked()) {
-            mediaVoti = edtAverage.getText().toString();
+        } else if(averageCheck.isChecked() && mediaVoti.isEmpty()) {
+            edtAverage.setError(getString(R.string.valid_constraint));
+            missingFieldMsg();
 
-            if(mediaVoti.isEmpty()) {
-                edtAverage.setError(getString(R.string.valid_constraint));
-                missingFieldMsg();
-            } else {
-                numeroIntero = Integer.parseInt(mediaVoti);
-                if(numeroIntero > 30 || numeroIntero < 18) {
-                    edtAverage.setError(getString(R.string.average_range));
-                    missingFieldMsg();
-                }
-            }
-        } else if(examCheck.isChecked()) {
-            materieRichieste = edtRequestedExams.getText().toString();
+        } else if(averageCheck.isChecked() && Integer.parseInt(mediaVoti) > 30 && Integer.parseInt(mediaVoti) < 18){
+            edtAverage.setError(getString(R.string.average_range));
+            missingFieldMsg();
 
-            if(materieRichieste.isEmpty()) {
-                edtRequestedExams.setError(getString(R.string.required_subjects));
-                missingFieldMsg();
-            }
+        } else if(examCheck.isChecked() && materieRichieste.isEmpty()) {
+            edtRequestedExams.setError(getString(R.string.required_subjects));
+            missingFieldMsg();
 
         } else {
 
