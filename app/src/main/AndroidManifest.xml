@@ -58,26 +58,36 @@
         <activity
             android:name=".student.StudentRegisterActivity"
             android:exported="false"
-            android:label="Registrazione" />
+            android:label="Registrazione"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
         <!-- PROFESSOR REGISTER ACTIVITY-->
         <activity
             android:name=".professor.ProfessorRegisterActivity"
             android:exported="false"
-            android:label="Registrazione" />
+            android:label="Registrazione"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
         <!--REGISTER ACTIVITY-->
         <activity
             android:name=".commonActivities.RegisterActivity"
             android:exported="false"
-            android:label="Registrazione" />
+            android:label="Registrazione"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
         <!-- PROFILE DELETED ACTIVITY-->
         <activity
             android:name=".commonActivities.ProfileDeletedActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
 
         <!-- NO CONNECTION ACTIVITY-->
         <activity
             android:name=".commonActivities.connection.NoConnectionActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
         <!-- MAIN ACTIVITY -->
         <activity
             android:name=".commonActivities.MainActivity"

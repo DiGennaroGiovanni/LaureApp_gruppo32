@@ -4,6 +4,7 @@ import static android.Manifest.permission.CAMERA;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -70,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     public static ArrayList<Thesis> theses;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private LanguageManager lang;
+
 
 
     @Override
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        lang = new LanguageManager(this);
 
         //CONTROLLO  CONNESSIONE AD INTERNET
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -114,9 +118,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setProfession(profession, account.getAccountType());
 
         bottomNav.setOnItemSelectedListener(navListener);
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, getProperHome()).commit();
         }
+
+
+        if(savedInstanceState != null) {
+            lang.updateResource(savedInstanceState.getString("lang"));
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String language = lang.getLang();
+        outState.putString("lang", language);
     }
 
     /**
