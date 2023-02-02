@@ -22,11 +22,10 @@
             android:layout_marginBottom="35sp"
             android:padding="30sp"
             android:text="@string/add_thesis_button"
-            app:iconSize="30sp"
+            app:iconSize="40sp"
             app:icon="@drawable/add_thesis_icon"
             android:fontFamily="@font/roboto_medium"
-            android:textSize="34sp"
-            android:textStyle="bold" />
+            android:textSize="34sp" />
 
     </RelativeLayout>
 
@@ -46,9 +45,8 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/requests_button"
             android:textSize="34sp"
-            app:iconSize="30sp"
-            app:icon="@drawable/icon_check"
-            android:textStyle="bold" />
+            app:iconSize="40sp"
+            app:icon="@drawable/icon_check" />
 
     </RelativeLayout>
 

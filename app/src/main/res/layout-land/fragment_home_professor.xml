@@ -25,7 +25,6 @@
             android:text="@string/add_thesis_button"
             android:fontFamily="@font/roboto_medium"
             android:textSize="34sp"
-            android:textStyle="bold"
             app:icon="@drawable/add_thesis_icon" />
     </LinearLayout>
 
@@ -49,7 +48,6 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/requests_button"
             android:textSize="34sp"
-            android:textStyle="bold"
             app:icon="@drawable/icon_check" />
 
     </LinearLayout>

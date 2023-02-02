@@ -30,11 +30,7 @@ public class StudentHomeFragment extends Fragment {
         btnAvailableTheses = view.findViewById(R.id.allThesisBtn);
         btnMyThesis = view.findViewById(R.id.myThesisBtn);
 
-
-        btnAvailableTheses.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.icon_available_theses,0);
         btnAvailableTheses.setOnClickListener(view1 -> seeAvailableTheses());
-
-        btnMyThesis.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_your_thesis,0);
         btnMyThesis.setOnClickListener(view12 -> getToMyThesis());
 
         return view;

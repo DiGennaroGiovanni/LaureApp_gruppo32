@@ -6,10 +6,10 @@
     <string name="list_button_text">Your Theses</string>
     <string name="all_thesis_button">FIND A THESIS</string>
     <string name="your_thesis_button">YOUR THESIS</string>
-    <string name="add_thesis_button">ADD NEW THESIS</string>
+    <string name="add_thesis_button">NEW THESIS</string>
     <string name="handle_thesis_button">HANDLE THESIS</string>
     <string name="receipts_button">RECEIPTS</string>
-    <string name="requests_button">Requests</string>
+    <string name="requests_button">YOUR REQUESTS</string>
 
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
