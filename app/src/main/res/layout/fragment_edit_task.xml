@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:fontFamily="@font/cardo"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/task_name_edit"
             android:textAlignment="center"
             android:textAllCaps="true"
@@ -50,6 +50,7 @@
                 android:paddingHorizontal="10sp"
                 android:text="@string/thesis_name_edit"
                 android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
                 android:textSize="20sp" />
 
             <TextView
@@ -59,6 +60,7 @@
                 android:layout_weight="65"
                 android:layout_gravity="bottom"
                 android:text=""
+                android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -79,6 +81,7 @@
                 android:paddingHorizontal="10sp"
                 android:layout_gravity="top"
                 android:text="@string/student_edit_task"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -89,6 +92,7 @@
                 android:layout_weight="65"
                 android:layout_gravity="bottom"
                 android:text=""
+                android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -106,6 +110,7 @@
                 android:layout_gravity="top"
                 android:paddingHorizontal="10sp"
                 android:text="@string/estimated_time"
+                android:fontFamily="@font/roboto"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -118,9 +123,9 @@
                 android:layout_weight="65"
                 android:text=""
                 android:textColor="@color/black"
+                android:fontFamily="@font/roboto_light"
                 android:textSize="20sp"
-                android:layout_gravity="bottom"
-                android:fontFamily="sans-serif-light"/>
+                android:layout_gravity="bottom" />
 
         </LinearLayout>
 
@@ -137,6 +142,7 @@
                 android:layout_gravity="top"
                 android:gravity="end"
                 android:paddingHorizontal="10sp"
+                android:fontFamily="@font/roboto"
                 android:text="@string/description_edit_task"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -152,7 +158,8 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="#78909C"
-                android:textSize="18sp"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_light"
                 />
 
         </LinearLayout>
@@ -170,6 +177,7 @@
                 android:gravity="end"
                 android:layout_gravity="top"
                 android:paddingHorizontal="10sp"
+                android:fontFamily="@font/roboto"
                 android:text="@string/task_state_edit"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -185,6 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/not_started_task"
+                    android:fontFamily="@font/roboto"
                     android:textColor="@color/black"
                     android:textSize="18sp">
 
@@ -195,6 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/started_task"
+                    android:fontFamily="@font/roboto"
                     android:textColor="@color/black"
                     android:textSize="18sp">
 
@@ -205,6 +215,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/completed_task"
+                    android:fontFamily="@font/roboto"
                     android:textColor="@color/black"
                     android:textSize="18sp">
 

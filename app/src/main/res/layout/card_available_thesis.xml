@@ -25,19 +25,19 @@
             android:orientation="vertical"
             android:padding="4sp">
 
+            <!--        lineetta divisiva      -->
             <TextView
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:text="@string/thesis_name_card"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="28sp"/>
+                android:gravity="center"
+                android:text="@string/thesis_name_card"
+                android:textAllCaps="true"
+                android:textColor="#00213A"
+                android:textSize="28sp" />
 
-            <!--        lineetta divisiva      -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
