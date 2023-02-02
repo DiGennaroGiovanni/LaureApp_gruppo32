@@ -14,12 +14,13 @@
         android:orientation="vertical"
         android:padding="15dp">
 
-
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/thesis_name"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <EditText
@@ -29,6 +30,8 @@
             android:layout_marginBottom="10dp"
             android:autofillHints=""
             android:ems="10"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/black"
             android:hint="@string/type_name_of_thesis"
             android:inputType="textMultiLine"
             android:textColorHint="#546E7A"
@@ -46,6 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
                 android:text="@string/experimental"
                 android:textSize="16sp" />
 
@@ -54,6 +59,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
                 android:text="@string/drafted"
                 android:textSize="16sp" />
 
@@ -63,6 +70,8 @@
             android:id="@+id/txtFaculty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
             android:text="@string/faculty"
             android:textAlignment="center"
             android:textSize="16sp" />
@@ -86,6 +95,8 @@
             android:orientation="horizontal">
 
             <TextView
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/black"
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,6 +113,8 @@
                 android:layout_weight="1"
                 android:autofillHints=""
                 android:hint="@string/estimated_time_hint"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textSize="20sp" />
@@ -113,6 +126,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="2"
                 android:width="10dp"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
                 android:text="@string/days"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -120,6 +135,8 @@
         <TextView
             android:id="@+id/textView11"
             android:layout_width="match_parent"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="@string/thesis_description"
             android:textSize="16sp" />
@@ -133,6 +150,8 @@
             android:ems="10"
             android:gravity="start|top"
             android:hint="@string/type_description_thesis"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/black"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
             android:textColorHint="#546E7A"
@@ -143,6 +162,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/correlator"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="16sp" />
 
@@ -163,6 +184,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/teaching_materials"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
             android:textAlignment="textStart"
             android:textSize="16sp" />
 
@@ -183,6 +206,8 @@
                 android:id="@+id/addFile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="16sp"
                 android:text="@string/button_add_material"
                 app:icon="@drawable/ic_upload"
                 android:layout_margin="5sp"/>
@@ -191,6 +216,8 @@
 
         <TextView
             android:id="@+id/textView9"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/thesis_constraints"
@@ -207,6 +234,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:minHeight="48dp"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
                 android:text="@string/average_marks"
                 android:textSize="16sp"
                 tools:ignore="RtlHardcoded" />
@@ -216,6 +245,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/hint_average_marks"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
                 android:textColorHint="#546E7A"
                 android:inputType="number"
                 android:textSize="20sp"
@@ -238,6 +269,8 @@
                 android:layout_gravity="center|left"
                 android:minHeight="48dp"
                 android:text="@string/required_exams"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="RtlHardcoded" />
 
@@ -248,6 +281,8 @@
                 android:hint="@string/hint_required_exams"
                 android:textColorHint="#546E7A"
                 android:inputType="textMultiLine"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:autofillHints="" />
 
@@ -255,6 +290,8 @@
 
         <TextView
             android:id="@+id/textView10"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/related_projects" />
@@ -268,6 +305,8 @@
             android:ems="10"
             android:gravity="start|top"
             android:hint="@string/type_related_projects"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/black"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
             android:textColorHint="#546E7A"
@@ -278,6 +317,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/create_thesis"
+            android:fontFamily="@font/roboto_medium"
             android:textSize="16sp"
             app:icon="@drawable/icon_plus"
             app:iconGravity="textStart"/>
