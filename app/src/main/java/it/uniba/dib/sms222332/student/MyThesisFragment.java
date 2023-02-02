@@ -108,8 +108,8 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         if(MainActivity.account.getRequest().equals("no"))
             noRequest();
@@ -117,7 +117,6 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
             hasRequested();
         else
             haveThesis();
-
     }
 
     private void hasRequested() {
