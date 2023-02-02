@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -46,7 +47,7 @@ public class NewRequestFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.thesisRequestTooolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisRequestTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_new_request, container, false);
 
@@ -72,7 +73,7 @@ public class NewRequestFragment extends Fragment {
             professore_email = getArguments().getString("professor");
         }
 
-        if (average_marks.equals("None")) {
+        if (average_marks.equals("None") || average_marks.equals("Nessuno")) {
             averageMarksLayout.setVisibility(GONE);
             txtAverageConstraint.setVisibility(GONE);
             averageRadioGroup.setVisibility(GONE);
@@ -80,7 +81,7 @@ public class NewRequestFragment extends Fragment {
             txtAverageMarks.setText(average_marks);
         }
 
-        if (required_exams.equals("None")) {
+        if (required_exams.equals("None") || average_marks.equals("Nessuno")) {
             requiredExamsLayout.setVisibility(GONE);
             txtExamsConstraint.setVisibility(GONE);
             examsRadioGroup.setVisibility(GONE);
@@ -89,19 +90,15 @@ public class NewRequestFragment extends Fragment {
         }
 
 
-        btnThesisRequest.setOnClickListener(view1 -> {
-
-            btnThesisRequestOnClick(view1);
-
-        });
+        btnThesisRequest.setOnClickListener(view1 -> requestThesis());
 
         return view;
     }
 
-    private void btnThesisRequestOnClick(View view1) {
+    private void requestThesis() {
         String average = "";
         String exams = "";
-        String requestName = "";
+
 
         if (rdbAverageYes.isChecked())
             average = rdbAverageYes.getText().toString();
@@ -114,13 +111,13 @@ public class NewRequestFragment extends Fragment {
             exams = rdbExamsNo.getText().toString();
 
 
-        if (!required_exams.equals("None") && !rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()) {
+        if (!required_exams.equals("None") && !required_exams.equals("Nessuno")  && !rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()) {
             txtExamsConstraint.setError(getString(R.string.have_to_choice));
-            Snackbar.make(view1, R.string.have_to_choice, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(requireView(), R.string.have_to_choice, Snackbar.LENGTH_LONG).show();
 
-        } else if (!average_marks.equals("None") && !rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()) {
+        } else if (!average_marks.equals("None") && !required_exams.equals("Nessuno") && !rdbAverageYes.isChecked() && !rdbAverageNo.isChecked()) {
             txtAverageConstraint.setError(getString(R.string.have_to_choice));
-            Snackbar.make(view1, R.string.have_to_choice, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(requireView(), R.string.have_to_choice, Snackbar.LENGTH_LONG).show();
         } else {
 
             Map<String, String> request = new HashMap<>();
@@ -133,22 +130,22 @@ public class NewRequestFragment extends Fragment {
             request.put("Student", MainActivity.account.getEmail());
             request.put("Thesis", thesis_name);
 
-            requestName = MainActivity.account.getEmail();
+            String accountEmail = MainActivity.account.getEmail();
 
-            db.collection("richieste").document(requestName).set(request);
+            db.collection("richieste").document(accountEmail).set(request);
 
             Map<String, Object> update = new HashMap<>();
             update.put("Request", "yes");
 
-            db.collection("studenti").document(MainActivity.account.getEmail()).update(update);
+            db.collection("studenti").document(accountEmail).update(update);
 
             MainActivity.account.setRequest("yes");
 
             // chiusura della tastiera quando viene effettuato un cambio di fragment
-            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
 
-            Snackbar.make(view1, R.string.request_made, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(requireView(), R.string.request_made, Snackbar.LENGTH_LONG).show();
 
             getParentFragmentManager().popBackStack();
         }

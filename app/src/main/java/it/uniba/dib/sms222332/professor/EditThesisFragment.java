@@ -29,7 +29,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -73,6 +72,8 @@ public class EditThesisFragment extends Fragment {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
+    String correlator = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.editThesisToolbar));
@@ -102,13 +103,11 @@ public class EditThesisFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
-        String correlator = "";
 
-        if (getArguments() != null) {
 
-            correlator = getArguments().getString("correlator");
+        if (getArguments() != null)
             getThesisData();
-        }
+
 
         setCorrelatorSpinner(correlator);
 
@@ -157,7 +156,7 @@ public class EditThesisFragment extends Fragment {
 
         btnAddMaterial.setOnClickListener(view13 -> addNewMaterial());
 
-        btnSave.setOnClickListener(view1 -> saveMaterials());
+        btnSave.setOnClickListener(view1 -> saveChanges());
 
 
         return view;
@@ -174,7 +173,7 @@ public class EditThesisFragment extends Fragment {
         String average = getArguments().getString(("average_marks"));
         String required_exam = getArguments().getString("required_exam");
         String student = getArguments().getString("student");
-
+        correlator = getArguments().getString("correlator");
         txtThesisName.setText(name);
         txtTypology.setText(type);
         txtDepartment.setText(faculty);
@@ -203,7 +202,7 @@ public class EditThesisFragment extends Fragment {
         }
     }
 
-    private void saveMaterials() {
+    private void saveChanges() {
         String avgMarks = edtAverage.getText().toString();
         String requiredExams = edtRequiredExams.getText().toString();
 
@@ -230,10 +229,15 @@ public class EditThesisFragment extends Fragment {
             infoTesi.put("Type", txtTypology.getText().toString());
             infoTesi.put("Faculty", txtDepartment.getText().toString());
             infoTesi.put("Professor", mUser.getEmail());
-            infoTesi.put("Correlator", spinnerCorrelators.getSelectedItem().toString());
             infoTesi.put("Description", edtDescription.getText().toString());
             infoTesi.put("Estimated Time", edtTime.getText().toString());
             infoTesi.put("Related Projects", edtRelatedProjects.getText().toString());
+
+            String correlator = spinnerCorrelators.getSelectedItem().toString();
+            if(correlator.equals(getResources().getString(R.string.none)))
+                infoTesi.put("Correlator", "");
+            else
+                infoTesi.put("Correlator", correlator);
 
             DocumentReference docRef = db.collection("Tesi").document(txtThesisName.getText().toString());
             Map<String, Object> updates = new HashMap<>();
@@ -296,7 +300,7 @@ public class EditThesisFragment extends Fragment {
                     }
                 }
 
-                correlators.add("Nessuno");
+                correlators.add(getResources().getString(R.string.none));
 
                 ArrayAdapter<String> adapterProf = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, correlators);
                 adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -305,7 +309,7 @@ public class EditThesisFragment extends Fragment {
                 if (!currentCorrelator.equals(""))
                     spinnerCorrelators.setSelection(adapterProf.getPosition(currentCorrelator));
                 else
-                    spinnerCorrelators.setSelection(adapterProf.getPosition("Nessuno"));
+                    spinnerCorrelators.setSelection(adapterProf.getPosition(getResources().getString(R.string.none)));
 
             } else {
                 Log.d(TAG, getString(R.string.error_documents), task.getException());

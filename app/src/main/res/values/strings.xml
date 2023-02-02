@@ -70,24 +70,24 @@
     <string name="select_role">select role</string>
     <string name="or">or</string>
     <string-array name="faculty_array">
-        <item>Biology</item>
-        <item>Chemistry</item>
-        <item>Economy</item>
-        <item>Pharmacy</item>
-        <item>Philosophy</item>
-        <item>Law</item>
-        <item>Computer Science</item>
+        <item>Biologia</item>
+        <item>Chimica</item>
+        <item>Economia</item>
+        <item>Farmacia</item>
+        <item>Filosofia</item>
+        <item>Giurisprudenza</item>
+        <item>Informatica</item>
         <item>I.T.P.S.</item>
-        <item>Humanities</item>
-        <item>Mathematics</item>
-        <item>Medicine</item>
-        <item>Education Science</item>
-        <item>Agro-Environmental and Territorial Sciences</item>
-        <item>Biochemical Sciences</item>
-        <item>Political Science</item>
+        <item>Lettere</item>
+        <item>Matematica</item>
+        <item>Medicina</item>
+        <item>Scienze della Formazione</item>
+        <item>Scienze Agro-Ambientali e Territoriali</item>
+        <item>Scienze Biomediche</item>
+        <item>Scienze Politiche</item>
     </string-array>
     <string name="thesis_name">Thesis name</string>
-    <string name="type_name_of_thesis">type the name of the thesis</string>
+    <string name="type_name_of_thesis">Type thesis name</string>
     <string name="experimental">Experimental</string>
     <string name="drafted">Drafted</string>
     <string name="main_subject">Main subject</string>
@@ -101,13 +101,13 @@
     <string name="co_rapporteur">Co-rapporteur</string>
     <string name="days">days</string>
     <string name="type_thesis_constraints">type thesis constraints (if there are)</string>
-    <string name="type_description_thesis">type the description of the thesis</string>
+    <string name="type_description_thesis">Type thesis description</string>
     <string name="type_main_subject">type main subject</string>
-    <string name="type_related_projects">type related projects (if there are)</string>
+    <string name="type_related_projects">Type related projects (if any)</string>
     <string name="type_correlator">type correlator</string>
     <string name="save_thesis">Save</string>
     <string name="splash_image">Splash Image</string>
-    <string name="receipt">Receipt</string>
+    <string name="receipt">Receipts</string>
     <string name="info_button">Info Button</string>
     <string name="email_already_existent">Email already existent, retry!</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -122,7 +122,7 @@
     <string name="average_marks">Average Marks:</string>
     <string name="required_exams">Required Exams:</string>
     <string name="materials">Materials:</string>
-    <string name="button_add_material">upload file</string>
+    <string name="button_add_material">upload</string>
     <string name="nome_file">File name</string>
     <string name="department_of_affiliation">Department of affiliation</string>
     <string name="account_deleted">Account deleted</string>
@@ -139,7 +139,7 @@
     <string name="completato">Completed</string>
     <string name="in_corso">Current</string>
     <string name="add_task">ADD TASK</string>
-    <string name="task">Task</string>
+    <string name="task">Tasks</string>
     <string name="we_are_sorry_to_see_you_leave">We are sorry to see you leave</string>
     <string name="you_are_always_welocome_to_join_laureapp_again">You are always welocome to join LaureApp again!</string>
     <string name="no_internet_connection">NO INTERNET CONNECTION</string>
@@ -153,8 +153,8 @@
     <string name="close_app">CLOSE APP</string>
     <string name="reload_app">RELOAD</string>
     <string name="pdf_title">UNIBA - Summary thesis document</string>
-    <string name="hint_average_marks">type average marks</string>
-    <string name="hint_required_exams">type required exams</string>
+    <string name="hint_average_marks">Type average marks</string>
+    <string name="hint_required_exams">Type required exams</string>
     <string name="toast_thesis_created">Thesis created</string>
     <string name="alertdialog_title">Share thesis information</string>
     <string name="dialogalert_qr_subtitle">Scan me with LaureApp!</string>
@@ -313,7 +313,6 @@
     <string name="no_tasks_yet">No tasks yet</string>
     <string name="no_favorite_thesese_at_the_moment">No favorite thesese at the moment</string>
     <string name="filter_dialog_title">Filter constraints</string>
-    <!--<string name="filter_dialog_title">Look for theses by setting constraint filters</string>-->
     <string name="max_avg_constr">grade average: </string>
     <string name="hide_theses_check">Hide theses which require completed exams</string>
     <string name="logo">logo</string>
@@ -353,5 +352,7 @@
     <string name="try_again">TRY AGAIN</string>
     <string name="close_button"><u>CLOSE</u></string>
     <string name="separator_line">separator line</string>
+    <string name="missing_fields_msg">Required fields missing</string>
+    <string name="select_typology">Select a typology!</string>
 
 </resources>

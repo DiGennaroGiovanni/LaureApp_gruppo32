@@ -8,7 +8,6 @@ public class ProfessorAccount implements Account {
     private final String surname;
     private final String faculty;
     private final String email;
-    private final String accountType = "Professor";
 
     public ProfessorAccount(String name, String surname, String faculty, String email) {
         this.name = name;
@@ -45,7 +44,7 @@ public class ProfessorAccount implements Account {
 
     @Override
     public String getAccountType() {
-        return accountType;
+        return "Professor";
     }
 
     @Override

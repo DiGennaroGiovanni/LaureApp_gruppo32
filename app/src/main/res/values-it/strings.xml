@@ -102,13 +102,13 @@
     <string name="co_rapporteur">Co-relatore</string>
     <string name="days">giorni</string>
     <string name="type_thesis_constraints">Digitare i vincoli di tesi (se ci sono)</string>
-    <string name="type_description_thesis">Digitare la descrizione della tesi</string>
+    <string name="type_description_thesis">Digita la descrizione della tesi</string>
     <string name="type_main_subject">Digitare la materia principale</string>
-    <string name="type_related_projects">Digitare i progetti correlati(se ci sono)</string>
+    <string name="type_related_projects">Digita i progetti correlati(se ci sono)</string>
     <string name="type_correlator">Digitare il co-relatore</string>
     <string name="save_thesis">Salva</string>
     <string name="splash_image">Immagine di Splash</string>
-    <string name="receipt">Ricevimento</string>
+    <string name="receipt">Ricevimenti</string>
     <string name="select_date">seleziona data</string>
     <string name="select_start_time">seleziona orario d\'inizio</string>
     <string name="select_end_time">seleziona orario di fine</string>
@@ -122,7 +122,7 @@
     <string name="average_marks">Media voti:</string>
     <string name="required_exams">Esami richiesti:</string>
     <string name="materials">Materiale:</string>
-    <string name="button_add_material">carica file</string>
+    <string name="button_add_material">carica</string>
     <string name="nome_file">Nome file</string>
     <string name="department_of_affiliation">Dipartimento di affiliazione</string>
     <string name="account_deleted">Account eliminato</string>
@@ -153,8 +153,8 @@
     <string name="close_app">CHIUDI APP</string>
     <string name="reload_app">RICARICA</string>
     <string name="pdf_title">UNIBA - Documento di riepilogo tesi</string>
-    <string name="hint_average_marks">digita la media del voti</string>
-    <string name="hint_required_exams">digitare gli esami richiesti</string>
+    <string name="hint_average_marks">Digita la media voti richiesta</string>
+    <string name="hint_required_exams">Digita gli esami richiesti</string>
     <string name="toast_thesis_created">Tesi creata</string>
     <string name="alertdialog_title">Condividi informazioni tesi</string>
     <string name="dialogalert_qr_subtitle">Scansionami con LaureApp!</string>
@@ -349,9 +349,11 @@
     <string name="estimated_time_hint">1</string>
     <string name="message_list">lista messaggi</string>
     <string name="edit_button">MODIFICA</string>
-    <string name="delete_button">CANCELLA</string>
+    <string name="delete_button">ELIMINA</string>
     <string name="thesis_info_required">thesis info required</string>
     <string name="try_again">RIPROVA</string>
     <string name="close_button"><u>CHIUDI</u></string>
     <string name="separator_line">separator line</string>
+    <string name="missing_fields_msg">Campi richiesti mancanti</string>
+    <string name="select_typology">Seleziona una tipologia!</string>
 </resources>

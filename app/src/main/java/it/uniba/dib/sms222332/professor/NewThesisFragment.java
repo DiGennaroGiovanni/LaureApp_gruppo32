@@ -145,7 +145,7 @@ public class NewThesisFragment extends Fragment {
     private void getCorrelator(Task<QuerySnapshot> task) {
         if (task.isSuccessful()) {
 
-            correlatori.add("Nessuno");
+            correlatori.add(getResources().getString(R.string.none));
 
             for (QueryDocumentSnapshot document : task.getResult()) {
                 if (!document.getId().equals(MainActivity.account.getEmail())) {
@@ -182,7 +182,7 @@ public class NewThesisFragment extends Fragment {
     private void inserisciTesi() {
 
         String thesisName = edtThesisName.getText().toString();
-        String mainSubject = spinnerFaculty.getSelectedItem().toString();
+        String faculty = spinnerFaculty.getSelectedItem().toString();
         String estimatedTime = edtEstimatedTime.getText().toString();
         String correlator = spinnerCorrelator.getSelectedItem().toString();
         String description = edtDescription.getText().toString();
@@ -193,78 +193,92 @@ public class NewThesisFragment extends Fragment {
         String professore = MainActivity.account.getEmail();
         int numeroIntero;
 
-        switch (radioGroup.getCheckedRadioButtonId()) {
-            case R.id.radioButtonSperimentale:
-                tipoTesi = radioButtonSperimentale.getText().toString();
-                break;
-            case R.id.radioButtonCompilativa:
-                tipoTesi = radioButtonCompilativa.getText().toString();
-                break;
-            default:
-                // Non è selezionato alcun RadioButton
-                break;
-        }
 
-        if (examCheck.isChecked()) {
-            materieRichieste = edtRequestedExams.getText().toString();
+        if(thesisName.isEmpty()) {
+            edtThesisName.setError(getString(R.string.enter_thesis_name));
+            missingFieldMsg();
 
-            if (materieRichieste.isEmpty())
-                edtRequestedExams.setError(getString(R.string.required_subjects));
-        }
+        } else if(radioGroup.getCheckedRadioButtonId() == -1) {
+            radioButtonCompilativa.setError(getResources().getString(R.string.select_typology));
+            missingFieldMsg();
 
-        if (averageCheck.isChecked()) {
+        } else if(estimatedTime.isEmpty()) {
+            edtEstimatedTime.setError(getString(R.string.enter_estimated_time));
+            missingFieldMsg();
+
+        } else if(description.isEmpty()) {
+            edtDescription.setError(getString(R.string.enter_thesis_description));
+            missingFieldMsg();
+
+        } else if(averageCheck.isChecked()) {
             mediaVoti = edtAverage.getText().toString();
 
-            if (mediaVoti.isEmpty())
+            if(mediaVoti.isEmpty()) {
                 edtAverage.setError(getString(R.string.valid_constraint));
-            else {
+                missingFieldMsg();
+            } else {
                 numeroIntero = Integer.parseInt(mediaVoti);
-                if (numeroIntero > 30 || numeroIntero < 18)
+                if(numeroIntero > 30 || numeroIntero < 18) {
                     edtAverage.setError(getString(R.string.average_range));
+                    missingFieldMsg();
+                }
             }
-        }
+        } else if(examCheck.isChecked()) {
+            materieRichieste = edtRequestedExams.getText().toString();
 
-        if (correlator.equals("Nessuno")) {
-            correlator = "";
-        }
+            if(materieRichieste.isEmpty()) {
+                edtRequestedExams.setError(getString(R.string.required_subjects));
+                missingFieldMsg();
+            }
 
-        Map<String, String> infoTesi = new HashMap<>();
-        infoTesi.put("Professor", professore);
-        infoTesi.put("Name", thesisName);
-        infoTesi.put("Faculty", mainSubject);
-        infoTesi.put("Estimated Time", estimatedTime);
-        infoTesi.put("Correlator", correlator);
-        infoTesi.put("Description", description);
-        infoTesi.put("Related Projects", relatedProjects);
-        infoTesi.put("Required Exam", materieRichieste);
-        infoTesi.put("Average", mediaVoti);
-        infoTesi.put("Student", "");
-
-        switch (tipoTesi) {
-            case "Sperimentale":
-            case "Experimental":
-                infoTesi.put("Type", "Experimental");
-                break;
-
-            case "Compilativa":
-            case "Drafted":
-                infoTesi.put("Type", "Drafted");
-                break;
-
-            default:
-                break;
-        }
-
-
-        if (thesisName.isEmpty()) {
-            edtThesisName.setError(getString(R.string.enter_thesis_name));
-        } else if (estimatedTime.isEmpty()) {
-            edtEstimatedTime.setError(getString(R.string.enter_estimated_time));
-        } else if (description.isEmpty()) {
-            edtDescription.setError(getString(R.string.enter_thesis_description));
         } else {
+
+            switch(radioGroup.getCheckedRadioButtonId()) {
+                case R.id.radioButtonSperimentale:
+                    tipoTesi = radioButtonSperimentale.getText().toString();
+                    break;
+                case R.id.radioButtonCompilativa:
+                    tipoTesi = radioButtonCompilativa.getText().toString();
+                    break;
+                default:
+                    //nessuna tesi selezionata
+                    break;
+            }
+
+            if(correlator.equals(getResources().getString(R.string.none))) {
+                correlator = "";
+            }
+
+            Map<String, String> infoTesi = new HashMap<>();
+            infoTesi.put("Professor", professore);
+            infoTesi.put("Name", thesisName);
+            infoTesi.put("Faculty", faculty);
+            infoTesi.put("Estimated Time", estimatedTime);
+            infoTesi.put("Correlator", correlator);
+            infoTesi.put("Description", description);
+            infoTesi.put("Related Projects", relatedProjects);
+            infoTesi.put("Required Exam", materieRichieste);
+            infoTesi.put("Average", mediaVoti);
+            infoTesi.put("Student", "");
+
+
+            switch(tipoTesi) {
+                case "Sperimentale":
+                case "Experimental":
+                    infoTesi.put("Type", "Experimental");
+                    break;
+
+                case "Compilativa":
+                case "Drafted":
+                    infoTesi.put("Type", "Drafted");
+                    break;
+
+                default:
+                    break;
+            }
+
             db.collection("Tesi").document(thesisName).set(infoTesi);
-            for (Uri file : uris) {
+            for(Uri file : uris) {
                 uploadFile(file);
             }
             // Creazione e caricamento del PDF riepilogativo sul database
@@ -276,6 +290,10 @@ public class NewThesisFragment extends Fragment {
             fragmentTransaction.replace(R.id.fragment_container, new ProfessorHomeFragment());
             fragmentTransaction.commit();
         }
+    }
+
+    private void missingFieldMsg() {
+        Snackbar.make(requireView(), getResources().getString(R.string.missing_fields_msg), Snackbar.LENGTH_LONG).show();
     }
 
     /**
@@ -414,8 +432,8 @@ public class NewThesisFragment extends Fragment {
             edtRequestedExams.setText(bundle.getString("exams_value"));
 
         uris = bundle.getParcelableArrayList("uris");
-        if (uris != null) {
-            for (Uri uri : uris)
+        if(uris != null) {
+            for(Uri uri : uris)
                 addMaterialItem(uri);
         }
 
