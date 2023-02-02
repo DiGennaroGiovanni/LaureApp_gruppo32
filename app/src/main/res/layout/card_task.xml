@@ -33,7 +33,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="28sp"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="#00213A"
                  />
 
             <RelativeLayout

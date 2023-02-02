@@ -30,7 +30,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="#00213A"
                 android:text="@string/thesis_name_card"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="24sp" />
