@@ -11,6 +11,7 @@
        android:background="#1A023FA6"
        android:elevation="4dp"
        android:orientation="vertical"
+       android:gravity="center"
        android:padding="8dp">
 
       <TextView

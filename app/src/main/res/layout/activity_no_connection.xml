@@ -14,16 +14,14 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_weight="20"
             android:adjustViewBounds="false"
             android:contentDescription="@string/menu_profile"
-            android:minWidth="200dp"
-            android:minHeight="200dp"
             android:src="@drawable/no_internet" />
 
         <TextView
@@ -35,7 +33,8 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/no_internet_connection"
             android:textSize="28sp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+             />
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,8 +45,7 @@
             android:gravity="center"
             android:text="@string/no_internet_connection_first_message"
             android:fontFamily="@font/roboto"
-            android:textSize="20sp"
-            android:textColor="@color/black" />
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,7 +57,7 @@
             android:text="@string/no_internet_connection_second_message"
             android:fontFamily="@font/roboto"
             android:textSize="20sp"
-            android:textColor="@color/black" />
+             />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContinue"
@@ -68,7 +66,6 @@
             android:layout_gravity="center"
             android:text="@string/try_again"
             android:textSize="16sp"
-            android:theme="@style/MyButton"
             android:fontFamily="@font/roboto_medium"
             app:icon="@drawable/ic_refresh"
             app:iconGravity="textStart"
