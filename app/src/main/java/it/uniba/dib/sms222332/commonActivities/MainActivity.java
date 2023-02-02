@@ -30,6 +30,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -167,6 +168,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     theses.remove(thesis);
                 else
                     thesis.setProfessor(documentSnapshot.getString("Professor"));
+            }).addOnFailureListener(e -> {
+                theses.remove(thesis);
             });
         }
     }

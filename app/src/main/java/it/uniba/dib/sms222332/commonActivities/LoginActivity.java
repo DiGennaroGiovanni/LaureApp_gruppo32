@@ -86,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
         btnGuest.setOnClickListener(view -> {
             Intent guestIntent = new Intent(LoginActivity.this, MainActivityGuest.class);
             startActivity(guestIntent);
+            finish();
         });
     }
 

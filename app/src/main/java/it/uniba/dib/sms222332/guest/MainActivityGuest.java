@@ -119,7 +119,6 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
 
                 selectBottomNavigationBarItem();
         }
-
         return true;
     };
 
@@ -168,7 +167,7 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
 
         else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
-        } else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ProfessorHomeFragment) && !(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof StudentHomeFragment)){
+        } else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof GuestHomeFragment)){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new GuestHomeFragment()).commit();
             bottomNav.setSelectedItemId(R.id.home_button);
         }
