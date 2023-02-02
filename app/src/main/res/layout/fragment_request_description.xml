@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#0808275A"
     tools:context=".professor.ThesesListFragment">
 
@@ -19,13 +19,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:fontFamily="@font/cardo"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/thesis_name"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#00213A"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            android:textSize="28sp" />
 
         <!--        lineetta divisiva      -->
         <RelativeLayout
@@ -46,12 +45,11 @@
                 android:layout_marginStart="1dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="45"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto"
                 android:gravity="end"
                 android:text="@string/student"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtStudent"
@@ -59,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="55"
+                android:fontFamily="@font/roboto_light"
                 android:gravity="center|start"
                 android:text=""
                 android:textColor="@color/black"
@@ -85,12 +84,11 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="45"
-                    android:fontFamily="@font/cardo"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:text="@string/average_marks"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtAverageMarks"
@@ -98,6 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="55"
+                    android:fontFamily="@font/roboto_light"
                     android:gravity="center|start"
                     android:text=""
                     android:textColor="@color/black"
@@ -117,12 +116,11 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="45"
-                    android:fontFamily="@font/cardo"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/requirement_met"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtMarksRequiredOrNot"
@@ -130,6 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="55"
+                    android:fontFamily="@font/roboto_light"
                     android:gravity="center|start"
                     android:text=""
                     android:textColor="@color/black"
@@ -156,12 +155,11 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="45"
-                    android:fontFamily="@font/cardo"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:text="@string/required_exams"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtRequiredExams"
@@ -169,6 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="55"
+                    android:fontFamily="@font/roboto_light"
                     android:gravity="center|start"
                     android:text=""
                     android:textColor="@color/black"
@@ -188,12 +187,11 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="45"
-                    android:fontFamily="@font/cardo"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:text="@string/requirement_met"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtExamsRequiredOrNot"
@@ -201,6 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="55"
+                    android:fontFamily="@font/roboto_light"
                     android:gravity="center|start"
                     android:text=""
                     android:textColor="@color/black"
@@ -221,7 +220,7 @@
                 android:id="@+id/txtMessageFromStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto_light"
                 android:paddingHorizontal="10sp"
                 android:paddingVertical="5sp"
                 android:paddingStart="20sp"
@@ -238,31 +237,28 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDecline"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                app:iconGravity="textStart"
-                app:icon="@drawable/icon_cross"
-                android:text="@string/decline"
                 android:layout_marginHorizontal="10sp"
-                android:fontFamily="@font/roboto_medium"/>
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/decline"
+                app:icon="@drawable/icon_cross"
+                app:iconGravity="textStart" />
 
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAccept"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                app:icon="@drawable/icon_check_done"
-                app:iconGravity="textStart"
-                android:layout_weight="1"
-                android:text="@string/accept"
                 android:layout_marginHorizontal="10sp"
+                android:layout_weight="1"
                 android:backgroundTintMode="src_over"
-                android:fontFamily="@font/roboto_medium"/>
-
-
-
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/accept"
+                app:icon="@drawable/icon_check_done"
+                app:iconGravity="textStart" />
 
         </LinearLayout>
 
