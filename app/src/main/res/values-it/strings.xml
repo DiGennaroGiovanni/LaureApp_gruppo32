@@ -23,9 +23,9 @@
     <string name="menu_language">Lingua</string>
     <string name="menu_logout">Logout</string>
     <string name="guest_login">Vai al login</string>
-    <string name="delete_thesis">Elimina Tesi</string>
+    <string name="delete">Elimina</string>
     <string name="delete_material">Elimina Materiale</string>
-    <string name="edit_thesis">Modifica Tesi</string>
+    <string name="edit">Modifica</string>
 
     <!--    TITOLI FRAGMENT-->
     <string name="homeToolbar">Home</string>

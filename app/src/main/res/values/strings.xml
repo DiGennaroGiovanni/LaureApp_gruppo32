@@ -34,9 +34,9 @@
     <string name="chatToolbar">Chat</string>
     <string name="settingsToolbar">Settings</string>
     <string name="editThesisToolbar">Edit Thesis</string>
-    <string name="delete_thesis">Delete Thesis</string>
+    <string name="delete">Delete</string>
     <string name="delete_material">Delete Material</string>
-    <string name="edit_thesis">Modify Thesis</string>
+    <string name="edit">Edit</string>
     <string name="newTaskToolbar">New Task</string>
     <string name="taskListToolbar">Task List</string>
     <string name="editTaskToolbar">Edit Task</string>
