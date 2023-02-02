@@ -27,12 +27,15 @@
 
             <TextView
                 android:id="@+id/txtName"
-                style="@style/TitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="@string/thesis_name_card" />
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:text="@string/thesis_name_card"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="28sp"/>
 
             <!--        lineetta divisiva      -->
             <RelativeLayout
@@ -52,19 +55,23 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
-                    android:text="@string/thesis_typology"
-                    android:theme="@style/SimpleBoldText" />
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/thesis_type"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top" />
 
                 <TextView
                     android:id="@+id/txtTypology"
                     android:layout_width="0sp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="bottom"
+                    android:layout_height="wrap_content"
                     android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText"/>
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom"/>
 
             </LinearLayout>
 
@@ -79,10 +86,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/department"
-                    android:theme="@style/SimpleBoldText" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top" />
 
                 <TextView
                     android:id="@+id/txtDepartment"
@@ -90,7 +99,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
                     android:layout_gravity="bottom"/>
 
             </LinearLayout>
@@ -106,10 +117,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/professor_intestation"
-                    android:theme="@style/SimpleBoldText" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top" />
 
                 <TextView
                     android:id="@+id/txtProfessor"
@@ -117,7 +130,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
                     android:layout_gravity="bottom"/>
 
             </LinearLayout>
@@ -133,10 +148,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/correlator"
-                    android:theme="@style/SimpleBoldText" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top" />
 
                 <TextView
                     android:id="@+id/txtCorrelator"
@@ -144,7 +161,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
                     android:layout_gravity="bottom"/>
 
             </LinearLayout>
@@ -155,16 +174,16 @@
 
                 <Button
                     android:id="@+id/shareBtn"
-                    android:layout_width="48sp"
-                    android:layout_height="48sp"
+                    android:layout_width="35sp"
+                    android:layout_height="35sp"
                     android:layout_alignParentEnd="true"
                     android:background="@drawable/share_button"
                     android:contentDescription="@string/share_button_description" />
 
                 <Button
                     android:id="@+id/btnStar"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="35sp"
+                    android:layout_height="35sp"
                     android:layout_alignTop="@+id/shareBtn"
                     android:layout_toStartOf="@+id/shareBtn"
                     android:background="@drawable/ic_star"

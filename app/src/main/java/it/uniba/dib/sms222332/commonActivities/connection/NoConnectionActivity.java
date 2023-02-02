@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.commonActivities;
+package it.uniba.dib.sms222332.commonActivities.connection;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.SplashActivity;
 
 public class NoConnectionActivity extends AppCompatActivity {
 

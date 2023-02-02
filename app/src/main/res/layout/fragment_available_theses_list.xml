@@ -20,7 +20,7 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:iconifiedByDefault="false"
-            android:queryHint="Search Thesis...">
+            android:queryHint="@string/search_thesis">
         </SearchView>
 
         <RelativeLayout
