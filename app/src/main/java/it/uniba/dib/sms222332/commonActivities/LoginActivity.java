@@ -101,9 +101,10 @@ public class LoginActivity extends AppCompatActivity {
         String email = edtEmailLogin.getText().toString();
         String password = edtPasswordLogin.getText().toString();
 
-        String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-zA-Z._-]+\\.[a-z]+";
+        String emailPatternFaculty = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-zA-Z._-]+\\.[a-z]+";
+        String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
 
-        if (!email.matches(emailPattern)) {
+        if (!email.matches(emailPatternFaculty) && !email.matches(emailPattern)) {
             edtEmailLogin.setError(getString(R.string.enter_valid_email));
         } else if (password.isEmpty() || password.length() < 6) {
             edtPasswordLogin.setError(getString(R.string.enter_valid_password));
