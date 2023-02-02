@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#0808275A"
+    tools:context=".professor.ThesesListFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtNameTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/thesis_name"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#00213A"
+            android:textSize="56sp"
+            android:textStyle="bold" />
+
+        <!--        lineetta divisiva      -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10sp"
+            android:background="#4D000000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtTypologyTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="40"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:padding="10sp"
+                android:text="@string/thesis_type"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/txtTypology"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="60"
+                android:text=""
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtDepartmentTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="40"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:padding="10sp"
+                android:text="@string/department"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/txtDepartment"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="60"
+                android:text=""
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
+                android:textSize="40sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtCorrelatorTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="40"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:padding="10sp"
+                android:text="@string/correlator"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                />
+
+            <RelativeLayout
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="65">
+
+                <Spinner
+                    android:id="@+id/spinnerCorrelator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:textAlignment="center"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtStudentTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="40"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:padding="10sp"
+                android:text="@string/student_edit_thesis"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/txtStudent"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="60"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                android:fontFamily="@font/roboto_light"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtTimeTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="40"
+                android:gravity="end"
+                android:padding="10sp"
+                android:text="@string/estimated_time"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                android:fontFamily="@font/roboto"/>
+
+            <LinearLayout
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="65"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edtTime"
+                    android:layout_width="40sp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textAlignment="center"
+                    android:textSize="40sp"
+                    android:fontFamily="@font/roboto_light"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/days"
+                    android:textSize="40sp"
+                    android:fontFamily="@font/roboto_light"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtDescriptionTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="40"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:padding="10sp"
+                android:text="@string/description"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+            <EditText
+                android:id="@+id/edtDescription"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="60"
+                android:autofillHints=""
+                android:hint="@string/type_description"
+                android:inputType="textMultiLine"
+                android:text=""
+                android:textColor="@color/black"
+                android:textColorHint="#78909C"
+                android:textSize="40sp"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtRelatedProjectsTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="40"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:padding="10sp"
+                android:text="@string/related_projects"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+            <EditText
+                android:id="@+id/edtRelatedProjects"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="60"
+                android:inputType="text"
+                android:text=""
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                android:hint="@string/type_description"
+                android:textColorHint="#78909C"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/avgConstraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/averageMarksTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="40"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:padding="10sp"
+                android:text="@string/average_marks"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+            <CheckBox
+                android:id="@+id/averageCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/edtAverage"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="58"
+                android:hint="@string/average_marks_hint"
+                android:inputType="number"
+                android:fontFamily="@font/roboto_light"
+                android:textColorHint="#78909C"
+                android:textSize="40sp">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/examsConstraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/requiredExamsTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="40"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:padding="10sp"
+                android:text="@string/required_exams"
+                android:textColor="@color/black"
+                android:textSize="40sp"/>
+
+            <CheckBox
+                android:id="@+id/requiredExamsCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/edtRequiredExams"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="58"
+                android:autofillHints=""
+                android:hint="@string/type_required_exams"
+                android:fontFamily="@font/roboto_light"
+                android:inputType="textMultiLine"
+                android:textSize="40sp"
+                android:textColorHint="#78909C">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtMaterialsTitle"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="36"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:padding="10sp"
+                android:text="@string/materials"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+
+
+                <LinearLayout
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/layout_lista_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/bordered_rect"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonAdd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_margin="3dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="32sp"
+                        app:icon="@drawable/ic_upload"
+                        app:iconGravity="textStart"
+                        app:iconSize="40sp"
+                        android:text="@string/button_add_material" />
+
+                </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/save_thesis"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="32sp"
+                app:icon="@drawable/ic_save"
+                app:iconSize="40sp"
+                app:iconGravity="textStart"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

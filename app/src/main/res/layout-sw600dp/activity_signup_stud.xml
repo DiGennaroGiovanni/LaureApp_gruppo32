@@ -145,7 +145,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/complete_registration"
             android:textColor="@color/white"
-            android:textSize="28sp" />
+            android:textSize="32sp" />
 
     </LinearLayout>
 </ScrollView>

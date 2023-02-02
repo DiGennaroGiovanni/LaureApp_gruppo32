@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginBottom="10sp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3sp"
+            android:orientation="vertical"
+            android:padding="4sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/receipt_date"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="40sp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/txtReceiptDateCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="60"
+                    android:text="@string/receipt_date_txt"
+                    android:fontFamily="@font/roboto_light"
+                    android:textSize="40sp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/receipt_starting_time"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="40sp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txtReceiptStartTimeCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="60"
+                    android:text="@string/receipt_starting_time_txt"
+                    android:fontFamily="@font/roboto_light"
+                    android:textSize="40sp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/receipt_ending_time"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="40sp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txtReceiptEndTimeCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="60"
+                    android:text="@string/receipt_ending_time_txt"
+                    android:fontFamily="@font/roboto_light"
+                    android:textSize="40sp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/receipt_tasks_handled"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="40sp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/addressedTasksCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="60"
+                    android:text="@string/receipt_tasks_lis"
+                    android:fontFamily="@font/roboto_light"
+                    android:textSize="40sp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/receipt_description"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="40sp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txtReceiptDescriptionCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="60"
+                    android:text="@string/receipt_description_txt"
+                    android:fontFamily="@font/roboto_light"
+                    android:textSize="40sp"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

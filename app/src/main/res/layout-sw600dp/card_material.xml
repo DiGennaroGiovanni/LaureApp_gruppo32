@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardMaterial"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@android:color/transparent"
+    android:layout_gravity="end">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/thesisCard"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="3sp"
+        android:padding="4sp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/materialName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="4sp"
+                android:fontFamily="@font/roboto_light"
+                android:text="@string/nome_file"
+                android:textAlignment="textEnd"
+                android:textSize="36sp" />
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/deleteMaterial"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        app:iconSize="40sp"
+        android:background="@drawable/delete_icon"
+        android:contentDescription="@string/delete_material"
+        android:theme="@style/DeleteButton" />
+
+</LinearLayout>

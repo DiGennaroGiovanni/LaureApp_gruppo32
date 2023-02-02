@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3sp"
+            android:orientation="vertical"
+            android:padding="4sp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+
+                <ImageView
+                    android:src="@drawable/icon_info"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/thesis"
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top"
+                    />
+
+                <TextView
+                    android:id="@+id/txtThesisName"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="60"
+                    android:text="@string/thesisname"
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/student_request"
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top"/>
+
+                <TextView
+                    android:id="@+id/txtStudentEmail"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="60"
+                    android:text="@string/studentemail"
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

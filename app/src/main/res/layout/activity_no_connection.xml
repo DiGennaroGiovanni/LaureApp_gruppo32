@@ -34,7 +34,8 @@
             android:layout_weight="20"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/no_internet_connection"
-            android:theme="@style/TitleText" />
+            android:textSize="28sp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,7 +46,8 @@
             android:gravity="center"
             android:text="@string/no_internet_connection_first_message"
             android:fontFamily="@font/roboto"
-            android:theme="@style/SimpleText" />
+            android:textSize="20sp"
+            android:textColor="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,7 +58,8 @@
             android:gravity="center"
             android:text="@string/no_internet_connection_second_message"
             android:fontFamily="@font/roboto"
-            android:theme="@style/SimpleText" />
+            android:textSize="20sp"
+            android:textColor="@color/black" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContinue"

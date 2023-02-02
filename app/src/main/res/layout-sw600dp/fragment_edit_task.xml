@@ -25,7 +25,7 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#00213A"
-            android:textSize="28sp" />
+            android:textSize="56sp" />
 
         <!--        lineetta di separazione      -->
         <RelativeLayout
@@ -50,7 +50,7 @@
                 android:text="@string/thesis_name_edit"
                 android:textColor="@color/black"
                 android:fontFamily="@font/roboto"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/txtThesis"
@@ -61,7 +61,7 @@
                 android:text=""
                 android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
         </LinearLayout>
 
@@ -82,7 +82,7 @@
                 android:text="@string/student_edit_task"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/txtStudent"
@@ -93,7 +93,7 @@
                 android:text=""
                 android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
         </LinearLayout>
 
@@ -112,7 +112,7 @@
                 android:fontFamily="@font/roboto"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 tools:ignore="RtlCompat" />
 
             <TextView
@@ -123,7 +123,7 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:fontFamily="@font/roboto_light"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:layout_gravity="bottom" />
 
         </LinearLayout>
@@ -144,7 +144,7 @@
                 android:fontFamily="@font/roboto"
                 android:text="@string/description_edit_task"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <EditText
                 android:id="@+id/edtDescription"
@@ -157,7 +157,7 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="#78909C"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:fontFamily="@font/roboto_light"
                 />
 
@@ -179,7 +179,7 @@
                 android:fontFamily="@font/roboto"
                 android:text="@string/task_state_edit"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <RadioGroup
                 android:layout_width="0sp"
@@ -194,7 +194,7 @@
                     android:text="@string/not_started_task"
                     android:fontFamily="@font/roboto"
                     android:textColor="@color/black"
-                    android:textSize="18sp">
+                    android:textSize="36sp">
 
                 </RadioButton>
 
@@ -205,7 +205,7 @@
                     android:text="@string/started_task"
                     android:fontFamily="@font/roboto"
                     android:textColor="@color/black"
-                    android:textSize="18sp">
+                    android:textSize="36sp">
 
                 </RadioButton>
 
@@ -216,7 +216,7 @@
                     android:text="@string/completed_task"
                     android:fontFamily="@font/roboto"
                     android:textColor="@color/black"
-                    android:textSize="18sp">
+                    android:textSize="36sp">
 
                 </RadioButton>
             </RadioGroup>
@@ -232,8 +232,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="@string/save_thesis"
-                android:textSize="16sp"
+                android:textSize="32sp"
                 app:icon="@drawable/icon_check_done"
+                app:iconSize="40dp"
                 app:iconGravity="textStart"
                 android:layout_marginHorizontal="10sp"
                 android:backgroundTintMode="src_over"
