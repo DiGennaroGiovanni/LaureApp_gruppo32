@@ -63,6 +63,7 @@
     <string name="proceed_with_sign_up_as_a_professor">Proceed with sign up as a professor</string>
     <string name="proceed_with_sign_up_as_a_student">Proceed with sign up as a student</string>
     <string name="error_guest">This feature is only available to registered students</string>
+    <string name="drag_info">Press and hold on a thesis to be able to swap it.</string>
     <string name="complete_registration">Complete registration</string>
     <string name="matriculation_number">Badge number:</string>
     <string name="testimage">testImage</string>
@@ -313,7 +314,7 @@
     <string name="no_tasks_yet">No tasks yet</string>
     <string name="no_favorite_thesese_at_the_moment">No favorite thesese at the moment</string>
     <string name="filter_dialog_title">Filter constraints</string>
-    <string name="max_avg_constr">grade average: </string>
+    <string name="max_avg_constr">Maximum marks average: </string>
     <string name="hide_theses_check">Hide theses which require completed exams</string>
     <string name="logo">logo</string>
     <string name="registration">Registration</string>
