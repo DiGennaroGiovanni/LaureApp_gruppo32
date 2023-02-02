@@ -3,7 +3,6 @@ package it.uniba.dib.sms222332.guest;
 import static android.Manifest.permission.CAMERA;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -29,13 +28,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -51,8 +47,8 @@ import java.util.Objects;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.LanguagesFragment;
 import it.uniba.dib.sms222332.commonActivities.LoginActivity;
-import it.uniba.dib.sms222332.commonActivities.NetworkChangeReceiver;
-import it.uniba.dib.sms222332.commonActivities.ThesisDescriptionGuestFragment;
+import it.uniba.dib.sms222332.commonActivities.connection.NetworkChangeReceiver;
+import it.uniba.dib.sms222332.commonActivities.ThesisDescriptionUserFragment;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 
 
@@ -73,7 +69,7 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guest_activity_main);
 
-        //CONTROLLO COSTANTEMENTE LA CONNESSIONE AD INTERNET
+        //CONTROLLO  CONNESSIONE AD INTERNET
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(new NetworkChangeReceiver(this), filter);
 

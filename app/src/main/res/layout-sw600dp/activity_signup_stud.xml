@@ -24,8 +24,9 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="20dp"
             android:text="@string/type_your_data"
+            android:textColor="@color/black"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="42sp" />
 
         <EditText
             android:id="@+id/edtNomeStudente"
@@ -35,8 +36,9 @@
             android:layout_margin="5dp"
             android:autofillHints=""
             android:hint="@string/first_name"
+            android:textSize="40sp"
             android:inputType="text|textAutoComplete"
-            android:minWidth="230dp"
+            android:minWidth="400dp"
             android:minHeight="50dp"
             android:textColorHint="#757575" />
 
@@ -51,8 +53,9 @@
             android:layout_marginBottom="20dp"
             android:autofillHints=""
             android:hint="@string/last_name"
+            android:textSize="40sp"
             android:inputType="text|textAutoComplete"
-            android:minWidth="230dp"
+            android:minWidth="400dp"
             android:minHeight="50dp"
             android:textColorHint="#757575" />
 
@@ -64,9 +67,10 @@
             android:layout_margin="5dp"
             android:autofillHints=""
             android:hint="@string/email"
+            android:textSize="40sp"
             android:inputType="textEmailAddress|textAutoComplete"
             android:minWidth="400dp"
-            android:minHeight="48dp"
+            android:minHeight="50dp"
             android:textColorHint="#757575" />
 
         <EditText
@@ -77,9 +81,10 @@
             android:layout_margin="5dp"
             android:autofillHints=""
             android:hint="@string/password"
+            android:textSize="40sp"
             android:inputType="textPassword"
-            android:minWidth="300dp"
-            android:minHeight="48dp"
+            android:minWidth="400dp"
+            android:minHeight="50dp"
             android:textColorHint="#757575" />
 
         <EditText
@@ -93,10 +98,11 @@
             android:layout_marginBottom="20dp"
             android:autofillHints=""
             android:hint="@string/matriculation_number"
+            android:textSize="40sp"
             android:inputType="number"
             android:maxLength="6"
-            android:minWidth="200dp"
-            android:minHeight="48dp"
+            android:minWidth="250dp"
+            android:minHeight="50dp"
             android:textColorHint="#757575" />
 
         <TextView
@@ -107,7 +113,7 @@
             android:layout_margin="5dp"
             android:text="@string/select_faculty"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
         <Spinner
             android:id="@+id/spinnerFacolta"
@@ -121,10 +127,10 @@
             android:backgroundTint="#BFBABA"
             android:contentDescription="@string/spinner_faculty"
             android:gravity="center"
-            android:minWidth="300dp"
-            android:minHeight="50dp" />
+            android:minWidth="400dp"
+            android:minHeight="70dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonConcludi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,9 +142,10 @@
             android:background="@drawable/buttonshape"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/complete_registration"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="28sp" />
 
     </LinearLayout>
 </ScrollView>

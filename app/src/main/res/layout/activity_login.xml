@@ -64,16 +64,17 @@
             android:drawablePadding="10dp"
             android:textColorHint="#546E7A" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAccedi"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
-            android:layout_weight="50"
-            android:text="@string/sign_in"/>
-
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/sign_in"
+            android:textSize="16sp"
+            android:backgroundTint="@color/custom_blue"/>
 
     </LinearLayout>
 

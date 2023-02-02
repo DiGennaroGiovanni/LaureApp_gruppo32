@@ -13,7 +13,7 @@ import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 
-public class ThesisDescriptionGuestFragment extends Fragment {
+public class ThesisDescriptionUserFragment extends Fragment {
 
     TextView txtNameTitle, txtType, txtDepartment, txtTime, txtCorrelator,
             txtDescription, txtRelatedProjects, txtAverageMarks, txtRequiredExams, txtProfessor;
@@ -27,7 +27,7 @@ public class ThesisDescriptionGuestFragment extends Fragment {
                              Bundle savedInstanceState) {
         Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(R.string.thesis_info);
 
-        View view = inflater.inflate(R.layout.fragment_thesis_description_guest, container, false);
+        View view = inflater.inflate(R.layout.fragment_thesis_description_user, container, false);
 
         txtNameTitle = view.findViewById(R.id.txtNameTitle);
         txtDepartment = view.findViewById(R.id.txtDepartment);
@@ -42,7 +42,6 @@ public class ThesisDescriptionGuestFragment extends Fragment {
 
         if (getArguments() != null) {
             getDataFromPreviousFragment();
-
         }
 
         return view;

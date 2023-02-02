@@ -143,7 +143,7 @@ public class TaskListFragment extends Fragment {
         }
 
         btnEdit.setOnClickListener(view1 -> editTask(txtTaskName.getText().toString(), txtState.getText().toString(),
-                txtDescription.getText().toString(), txtEstimatedTime.getText().toString()));
+                txtDescription.getText().toString(), document.getString("Estimated Time")));
 
         taskListLayout.addView(view);
 

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme. -->
-    <style name="CustomTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="CustomTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#023FA6</item>
         <item name="colorPrimaryDark">#00213A</item>
         <item name="colorAccent">#346D93</item>
-        <item name="android:textAppearanceButton">@style/CustomButtonTextAppearance</item>
         <item name="android:windowFullscreen">true</item>
         <item name="backgroundColor">#0808275A</item>
-        <item name="buttonStyle">@style/MyButton</item>
+
     </style>
 
     <style name="CustomButtonTextAppearance" parent="TextAppearance.AppCompat.Button">

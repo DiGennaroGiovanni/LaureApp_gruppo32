@@ -34,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/question_register_activity"
+            android:fontFamily="@font/roboto"
             android:theme="@style/SimpleText" />
 
         <TextView
@@ -43,6 +44,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/continua_la_registrazione"
+            android:fontFamily="@font/roboto"
             android:theme="@style/SimpleText" />
 
         <LinearLayout
@@ -50,22 +52,26 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnStud"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="50"
                 android:text="@string/studentProfession"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_medium"
                 tools:ignore="ButtonStyle" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnProf"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="50"
                 android:text="@string/professor"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_medium"
                 tools:ignore="ButtonStyle" />
         </LinearLayout>
 

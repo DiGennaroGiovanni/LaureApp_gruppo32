@@ -25,17 +25,15 @@
             android:padding="4sp">
 
             <TextView
-                android:id="@+id/txtThesisName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textAlignment="center"
-                android:fontFamily="@font/cardo"
-                android:text="@string/thesis_name_card"
+                android:gravity="center"
                 android:textAllCaps="true"
                 android:textColor="#00213A"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:text="@string/thesis_name_card"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="24sp" />
 
             <!--        lineetta divisiva      -->
             <RelativeLayout
@@ -54,23 +52,26 @@
                     android:id="@+id/txtProfessorTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="35"
-                    android:fontFamily="@font/cardo"
+                    android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingEnd="10sp"
-                    android:text="@string/professor_message"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/professor_intestation"
+                    android:textSize="20sp"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top"
                     />
 
                 <TextView
                     android:id="@+id/txtProfessor"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="65"
+                    android:layout_weight="60"
                     android:text=""
+                    android:textSize="20sp"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom" />
 
             </LinearLayout>
 

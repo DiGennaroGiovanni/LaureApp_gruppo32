@@ -50,6 +50,7 @@ import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.Messages.ThesesMessagesListFragment;
+import it.uniba.dib.sms222332.commonActivities.connection.NetworkChangeReceiver;
 import it.uniba.dib.sms222332.professor.ProfessorAccount;
 import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 import it.uniba.dib.sms222332.professor.ThesesListFragment;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //CONTROLLO COSTANTEMENTE LA CONNESSIONE AD INTERNET
+        //CONTROLLO  CONNESSIONE AD INTERNET
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(new NetworkChangeReceiver(this), filter);
 
@@ -382,7 +383,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else {
 
                     Bundle bundle = new Bundle();
-                    Fragment guestThesis = new ThesisDescriptionGuestFragment();
+                    Fragment guestThesis = new ThesisDescriptionUserFragment();
 
                     Map<String, Object> datiTesi = document.getData();
                     assert datiTesi != null;

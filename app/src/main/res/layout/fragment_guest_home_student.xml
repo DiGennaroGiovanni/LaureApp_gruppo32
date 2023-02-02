@@ -12,12 +12,13 @@
         android:layout_height="0sp"
         android:layout_weight="1">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/allThesisBtn"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/all_thesis_button"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -32,12 +33,13 @@
         android:layout_height="0sp"
         android:layout_weight="1">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/myThesisBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/your_thesis_button"
             android:textSize="34sp"
             android:textStyle="bold"

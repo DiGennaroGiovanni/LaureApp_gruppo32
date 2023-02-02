@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.commonActivities;
+package it.uniba.dib.sms222332.commonActivities.connection;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import com.google.android.material.snackbar.Snackbar;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.SplashActivity;
 
 public class NetworkChangeReceiver extends BroadcastReceiver {
 
@@ -51,7 +52,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
                 AlertDialog dialog = builder.create();
                 dialog.show();
             } catch (Exception e) {
-                Log.e("NetworkChangeReceiver", "TRIMONE Errore durante la gestione della perdita di connessione internet: " + e.getMessage());
+                Log.e("NetworkChangeReceiver", "Errore durante la gestione della perdita di connessione internet: " + e.getMessage());
             }
         }
     }

@@ -76,7 +76,7 @@
 
         <!-- NO CONNECTION ACTIVITY-->
         <activity
-            android:name=".commonActivities.NoConnectionActivity"
+            android:name=".commonActivities.connection.NoConnectionActivity"
             android:exported="false" />
         <!-- MAIN ACTIVITY -->
         <activity
