@@ -12,23 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_weight="45"
+        android:layout_weight="50"
         android:gravity="center">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/allThesisBtn"
+            android:text="@string/all_thesis_button"
+            app:icon="@drawable/icon_available_theses"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:paddingStart="10dp"
-            android:paddingTop="25dp"
-            android:paddingEnd="10dp"
+            android:layout_marginEnd="10dp"
+            android:padding="20dp"
             app:iconGravity="textStart"
-            android:paddingBottom="25dp"
-            android:text="@string/all_thesis_button"
+            android:fontFamily="@font/roboto_medium"
             android:textSize="34sp"
-            app:icon="@drawable/icon_available_theses" />
+             />
 
     </LinearLayout>
 
@@ -36,23 +36,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_weight="55"
+        android:layout_weight="50"
         android:gravity="center">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/myThesisBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:paddingStart="20dp"
-            android:paddingTop="30dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="30dp"
             android:text="@string/your_thesis_button"
-            android:textSize="34sp"
+            app:icon="@drawable/ic_your_thesis"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:padding="20dp"
             app:iconGravity="textStart"
-            app:icon="@drawable/ic_your_thesis" />
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="34sp"
+             />
 
     </LinearLayout>
 </LinearLayout>
