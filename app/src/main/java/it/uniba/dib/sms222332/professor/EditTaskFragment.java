@@ -63,7 +63,9 @@ public class EditTaskFragment extends Fragment {
             txtStudent.setText(getArguments().getString("student"));
             edtDescription.setText(getArguments().getString("description"));
             state = getArguments().getString("state");
-            txtEstimatedTime.setText(getArguments().getString("estimated_time"));
+
+            String estTime = getArguments().getString("estimated_time") + " " + getResources().getString(R.string.days);
+            txtEstimatedTime.setText(estTime);
         }
 
         if (!MainActivity.account.getAccountType().equals("Professor")){
