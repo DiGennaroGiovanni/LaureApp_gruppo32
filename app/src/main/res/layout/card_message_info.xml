@@ -27,24 +27,27 @@
 
                 <TextView
                     android:id="@+id/txtObjectTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="30"
+                    android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/object_message"
-                    android:theme="@style/SimpleBoldText" />
+                    android:fontFamily="@font/roboto"
+                    android:textSize="20sp"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/txtObject"
-                    android:layout_width="0sp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="70"
+                    android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText" />
+                    android:fontFamily="@font/roboto_light"
+                    android:textSize="20sp"
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -56,24 +59,27 @@
 
                 <TextView
                     android:id="@+id/txtStudentTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="30"
+                    android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/student_message"
-                    android:theme="@style/SimpleBoldText" />
+                    android:fontFamily="@font/roboto"
+                    android:textSize="20sp"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/txtStudente"
-                    android:layout_width="0sp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="70"
+                    android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText" />
+                    android:fontFamily="@font/roboto_light"
+                    android:textSize="20sp"
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -84,24 +90,27 @@
 
                 <TextView
                     android:id="@+id/txtRequestDate"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="30"
+                    android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/date_message"
-                    android:theme="@style/SimpleBoldText" />
+                    android:fontFamily="@font/roboto"
+                    android:textSize="20sp"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/txtDate"
-                    android:layout_width="0sp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="70"
+                    android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText" />
+                    android:fontFamily="@font/roboto_light"
+                    android:textSize="20sp"
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -112,24 +121,27 @@
 
                 <TextView
                     android:id="@+id/txtStateTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="30"
+                    android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/state_message"
-                    android:theme="@style/SimpleBoldText" />
+                    android:fontFamily="@font/roboto"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/txtState"
-                    android:layout_width="0sp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="70"
+                    android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText" />
+                    android:fontFamily="@font/roboto_light"
+                    android:textSize="20sp"
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
