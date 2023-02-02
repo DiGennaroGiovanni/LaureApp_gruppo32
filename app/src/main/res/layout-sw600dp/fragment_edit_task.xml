@@ -24,9 +24,8 @@
             android:text="@string/task_name_edit"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/black"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            android:textColor="#00213A"
+            android:textSize="28sp" />
 
         <!--        lineetta di separazione      -->
         <RelativeLayout

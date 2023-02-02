@@ -15,16 +15,14 @@
 
         <TextView
             android:id="@+id/txtNameTitle"
+            android:text="@string/thesis_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:fontFamily="@font/cardo"
-            android:text="@string/thesis_name"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#00213A"
             android:textSize="28sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/roboto_medium" />
 
         <!--        lineetta divisiva      -->
         <RelativeLayout
@@ -38,12 +36,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:fontFamily="@font/cardo"
+            android:fontFamily="@font/roboto"
             android:gravity="start"
             android:text="@string/object_info_message"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,7 +53,7 @@
                 android:id="@+id/txtObject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto_light"
                 android:gravity="start"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -68,12 +65,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:fontFamily="@font/cardo"
+            android:fontFamily="@font/roboto"
             android:gravity="start"
             android:text="@string/student_info_message"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,9 +82,8 @@
                 android:id="@+id/txtMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto_light"
                 android:gravity="start"
-
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -99,12 +94,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:fontFamily="@font/cardo"
+            android:fontFamily="@font/roboto"
             android:gravity="start"
             android:text="@string/professor_info_message"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -119,6 +113,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:text=""
+                android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -133,13 +128,17 @@
             android:orientation="horizontal"
             android:visibility="visible">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAnswer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="16sp"
                 android:text="@string/add_answer" />
 
         </LinearLayout>
+
     </LinearLayout>
+
 </ScrollView>
