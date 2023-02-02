@@ -10,9 +10,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/alertdialog_title"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:gravity="center"
-            style="@style/SimpleBoldText"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/black"
             android:layout_marginTop="10dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"/>
@@ -22,24 +23,27 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:contentDescription="@string/qr_code_thesis"/>
+            android:contentDescription="@string/qr_code_thesis" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dialogalert_qr_subtitle"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:layout_gravity="center"
-            style="@style/SimpleText"/>
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/share_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/share_thesis_info"/>
+            android:text="@string/share_thesis_info"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="16sp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/dismiss_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,6 +53,7 @@
             android:background="@android:color/transparent"
             android:text="@string/close_button"
             android:textColor="@color/black"
-            android:textSize="14sp"/>
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="16sp"/>
 
 </LinearLayout>
