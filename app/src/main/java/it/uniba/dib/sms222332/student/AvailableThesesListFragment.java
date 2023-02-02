@@ -162,23 +162,17 @@ public class AvailableThesesListFragment extends Fragment {
             });
 
             Button dismissButtonFilter = dialogFilter.findViewById(R.id.dismiss_button);
-            dismissButtonFilter.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    seekBar.setProgress(initialSeekBarValue - 18);
-                    isRequestedExamChecked = initialChecked;
-                    examsCheckbox.setChecked(isRequestedExamChecked);
-                    dialogFilter.dismiss();
-                }
+            dismissButtonFilter.setOnClickListener(view2 -> {
+                seekBar.setProgress(initialSeekBarValue - 18);
+                isRequestedExamChecked = initialChecked;
+                examsCheckbox.setChecked(isRequestedExamChecked);
+                dialogFilter.dismiss();
             });
 
-            dialogFilter.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialogInterface) {
-                    seekBar.setProgress(initialSeekBarValue - 18);
-                    isRequestedExamChecked = initialChecked;
-                    examsCheckbox.setChecked(isRequestedExamChecked);
-                }
+            dialogFilter.setOnCancelListener(dialogInterface -> {
+                seekBar.setProgress(initialSeekBarValue - 18);
+                isRequestedExamChecked = initialChecked;
+                examsCheckbox.setChecked(isRequestedExamChecked);
             });
 
             try {
@@ -338,15 +332,10 @@ public class AvailableThesesListFragment extends Fragment {
             qrImageView.setImageBitmap(QrGenerator.createQr(thesisName));
 
             Button buttonShare = dialogQr.findViewById(R.id.share_button);
-            buttonShare.setOnClickListener(view12 -> sharePDF(thesisName));
+            buttonShare.setOnClickListener(view12 -> sharePDF(view12,thesisName));
 
             Button dismissButton = dialogQr.findViewById(R.id.dismiss_button);
-            dismissButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialogQr.dismiss();
-                }
-            });
+            dismissButton.setOnClickListener(view14 -> dialogQr.dismiss());
 
             try {
                 dialogQr.show();
@@ -386,34 +375,8 @@ public class AvailableThesesListFragment extends Fragment {
         layout_lista_tesi.addView(view);
     }
 
-//    private void loadFavorite(Callback<List<String>> callback) {
-//        DocumentReference docStud = db.collection("studenti").document(MainActivity.account.getEmail());
-//        docStud.get().
-//                addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            DocumentSnapshot document = task.getResult();
-//                            if (document.exists()) {
-//                                Map<String, Object> map = document.getData();
-//                                tesiPreferite = (List<String>) map.get("Favorites");
-//                            }
-//                        }
-//                        callback.onResult(tesiPreferite);
-//                    }
-//                });
-//    }
-//
-//    interface Callback<T> {
-//        void onResult(T result);
-//    }
-//
-//    private void setFavorites(){
-//        DocumentReference docStud = db.collection("studenti").document(MainActivity.account.getEmail());
-//        docStud.update("Favorites", tesiPreferite);
-//    }
 
-    private void sharePDF(String thesisName) {
+    private void sharePDF(View view,String thesisName) {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference fileRef = storageRef.child("PDF_tesi/" + thesisName + ".pdf");
 
@@ -430,11 +393,11 @@ public class AvailableThesesListFragment extends Fragment {
             }).addOnFailureListener(e -> {
                 // Controllo se l'error code è riferito al fatto che il dispositivo non è connesso ad internet
                 if (e instanceof FirebaseNetworkException) {
-                    Snackbar.make(requireView(), "No internet connection", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(view, "No internet connection", Snackbar.LENGTH_LONG).show();
                 } else if (e instanceof StorageException) {
                     // Controllo se l'error code è riferito al fatto che non esiste il file sul database
                     if (((StorageException) e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
-                        Snackbar.make(requireView(), "File does not exist", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(view, "File does not exist", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
                     // Stampo nella console il messaggio di errore nel caso in cui è di un altro tipo

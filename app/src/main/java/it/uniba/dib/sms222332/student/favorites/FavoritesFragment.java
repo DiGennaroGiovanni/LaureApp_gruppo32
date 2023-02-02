@@ -40,7 +40,7 @@ public class FavoritesFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         txtNoFavorites = view.findViewById(R.id.noFavorites);
 
-        adapter = new FavoritesAdapter(MainActivity.theses);
+        adapter = new FavoritesAdapter(MainActivity.theses,requireActivity());
         adapter.setOnClickListener(view1 -> {
 
             Thesis thesis = (Thesis) view1.getTag();
