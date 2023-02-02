@@ -68,6 +68,7 @@
             android:theme="@style/MyButton"
             app:icon="@drawable/ic_back"
             android:fontFamily="@font/roboto_medium"
+            app:iconGravity="textStart"
             app:iconSize="20sp"
             />
 
