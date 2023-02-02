@@ -60,6 +60,7 @@
                 android:layout_weight="50"
                 android:text="@string/studentProfession"
                 android:textSize="16sp"
+                android:fontFamily="@font/roboto_medium"
                 tools:ignore="ButtonStyle" />
 
             <com.google.android.material.button.MaterialButton
@@ -70,6 +71,7 @@
                 android:layout_weight="50"
                 android:text="@string/professor"
                 android:textSize="16sp"
+                android:fontFamily="@font/roboto_medium"
                 tools:ignore="ButtonStyle" />
         </LinearLayout>
 

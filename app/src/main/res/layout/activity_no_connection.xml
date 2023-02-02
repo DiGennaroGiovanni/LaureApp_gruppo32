@@ -66,6 +66,7 @@
             android:text="@string/try_again"
             android:textSize="16sp"
             android:theme="@style/MyButton"
+            android:fontFamily="@font/roboto_medium"
             app:icon="@drawable/ic_refresh"
             app:iconSize="20dp"  />
 
