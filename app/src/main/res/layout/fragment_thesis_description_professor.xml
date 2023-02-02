@@ -377,8 +377,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#B31C4F7E"
                     android:text="@string/receipt"
-                    android:textSize="16sp"
-                    android:visibility="visible" />
+                    android:textSize="16sp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnTask"
@@ -388,8 +387,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#B31C4F7E"
                     android:text="@string/task"
-                    android:textSize="16sp"
-                    android:visibility="visible" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
 

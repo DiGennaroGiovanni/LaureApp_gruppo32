@@ -55,9 +55,9 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
             txtDescription, txtRelatedProjects, txtAverageMarks, txtRequiredExams, txtProfessor, txtNoRequest;
     String thesisName;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    LinearLayout layoutThesisAccepted, layoutMaterials, layoutRequiredExams, layoutState, layoutAverageMarks;
+    LinearLayout layoutThesisAccepted, layoutButtons, layoutMaterials, layoutRequiredExams, layoutButtonCancelRequest, layoutState, layoutAverageMarks;
     LinearLayout layout_lista_file;
-    RelativeLayout layoutButton, layoutButtonCancelRequest, layoutNoThesis;
+    RelativeLayout   layoutNoThesis;
     StorageReference storageReference, ref;
     FirebaseStorage storage;
     Button buttonAdd, btnSave, btnTask, btnReceipt, btnSendMessage, btnCancelRequest;
@@ -72,13 +72,14 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
         View view = inflater.inflate(R.layout.fragment_my_thesis, container, false);
 
-        layoutButtonCancelRequest = view.findViewById(R.id.layoutButtonRequest);
+        layoutButtonCancelRequest = view.findViewById(R.id.layoutRequested);
         btnCancelRequest = view.findViewById(R.id.btnDeleteRequest);
         btnSendMessage = view.findViewById(R.id.btnSendMessage);
         btnSave = view.findViewById(R.id.btnSave);
         btnTask = view.findViewById(R.id.btnTask);
         btnReceipt = view.findViewById(R.id.btnReceipt);
-        layoutButton = view.findViewById(R.id.layoutButton);
+        layoutButtons = view.findViewById(R.id.layoutButtons);
+
         buttonAdd = view.findViewById(R.id.buttonAdd);
         layout_lista_file = view.findViewById(R.id.layout_lista_file);
         layoutThesisAccepted = view.findViewById(R.id.layoutThesisAccepted);
@@ -121,7 +122,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
     private void hasRequested() {
         layoutState.setVisibility(View.VISIBLE);
-        layoutButton.setVisibility(View.GONE);
+        layoutButtons.setVisibility(View.GONE);
         layoutButtonCancelRequest.setVisibility((View.VISIBLE));
 
 
@@ -193,14 +194,15 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     private void noRequest() {
         layoutThesisAccepted.setVisibility(View.GONE);
         layoutNoThesis.setVisibility(View.VISIBLE);
-        layoutButton.setVisibility(View.GONE);
+        layoutButtons.setVisibility(View.GONE);
     }
 
     private void haveThesis() {
         layoutAverageMarks.setVisibility(View.GONE);
         layoutRequiredExams.setVisibility(View.GONE);
         layoutMaterials.setVisibility(View.VISIBLE);
-        layoutButton.setVisibility(View.VISIBLE);
+        layoutButtons.setVisibility(View.VISIBLE);
+
 
         String thesisName = MainActivity.account.getRequest();
 
@@ -342,8 +344,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
     private void uploadToDatabase(Uri uri) {
         // Creazione del riferimento al file sul server di Firebase
-        File file = new File(uri.getPath());
-        String pdfName = file.getName();
+        String pdfName = getNameFromUri(uri);
         storageReference = FirebaseStorage.getInstance().getReference(thesisName).child(pdfName);
         // Caricamento del file sul server
         storageReference.putFile(uri);
@@ -394,7 +395,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
             } else {
                 // permesso già concesso, procedi con la lettura dei file
                 download(fileName);
-                Snackbar.make(view1, R.string.downloading + fileName, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view1, getResources().getString(R.string.downloading) + fileName, Snackbar.LENGTH_LONG).show();
             }
 
         });

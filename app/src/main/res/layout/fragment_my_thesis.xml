@@ -1,389 +1,443 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#0808275A"
-    android:layout_margin="2dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#0808275A"
+        android:layout_above="@+id/layoutButtons">
 
-        <LinearLayout
-            android:id="@+id/layoutThesisAccepted"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="3dp">
-
-            <TextView
-                android:id="@+id/txtNameTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/thesis_name"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="#00213A"
-                android:textSize="28sp" />
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="10sp"
-                android:background="#4D000000" />
-
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/notAcceptedState"
+                android:id="@+id/layoutThesisAccepted"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                android:layout_margin="5dp"
+                android:background="@drawable/bordered_white_layout"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtStateTitle"
-                    android:layout_width="0sp"
+                    android:id="@+id/txtNameTitle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:paddingHorizontal="10sp"
-                    android:gravity="end"
-                    android:text="@string/state"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/txtState"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:text="@string/not_accepted_yet"
-                    android:textColor="@android:color/holo_red_light"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/roboto_light" />
-
-            </LinearLayout>
+                    android:background="@null"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/thesis_name"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="#00213A"
+                    android:textSize="28sp" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="10sp"
+                    android:background="#4D000000" />
 
-                <TextView
-                    android:id="@+id/txtTypologyTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:paddingHorizontal="10sp"
-                    android:gravity="end"
-                    android:text="@string/thesis_type"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/txtTypology"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:text=""
-                    android:fontFamily="@font/roboto_light"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:layout_gravity="bottom"/>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtDepartmentTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:paddingHorizontal="10sp"
-                    android:gravity="end"
-                    android:text="@string/department"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    />
-
-                <TextView
-                    android:id="@+id/txtDepartment"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:fontFamily="@font/roboto_light"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtProfessorTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:gravity="end"
-                    android:paddingHorizontal="10sp"
-                    android:text="@string/professor_info_message_student"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/txtProfessor"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:text=""
-                    android:fontFamily="@font/roboto_light"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtCorrelatorTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:paddingHorizontal="10sp"
-                    android:gravity="end"
-                    android:text="@string/correlator"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/txtCorrelator"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:fontFamily="@font/roboto_light"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtTimeTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:paddingHorizontal="10sp"
-                    android:gravity="end"
-                    android:text="@string/estimated_time"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/txtTime"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:text=""
-                    android:fontFamily="@font/roboto_light"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:layout_gravity="bottom"/>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtDescriptionTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:paddingHorizontal="10sp"
-                    android:gravity="end"
-                    android:text="@string/description"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    />
-
-                <TextView
-                    android:id="@+id/txtDescription"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:fontFamily="@font/roboto_light"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutRelatedProject"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtRelatedProjectsTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:paddingHorizontal="10sp"
-                    android:gravity="end"
-                    android:text="@string/related_projects"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/txtRelatedProjects"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:text=""
-                    android:fontFamily="@font/roboto_light"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:layout_gravity="bottom"/>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/layoutAverageMarks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtTitleAverageMarks"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:paddingHorizontal="10sp"
-                    android:gravity="end"
-                    android:text="@string/average_marks"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/txtAverageMarks"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:text=""
-                    android:fontFamily="@font/roboto_light"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:layout_gravity="bottom"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutRequiredExams"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtTitleRequiredExams"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:paddingHorizontal="10sp"
-                    android:gravity="end"
-                    android:text="@string/required_exams"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/txtRequiredExams"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:text=""
-                    android:fontFamily="@font/roboto_light"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:layout_gravity="bottom"/>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/layoutMaterials"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/txtMaterialsTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:paddingHorizontal="10sp"
-                    android:gravity="end"
-                    android:text="@string/materials"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
 
                 <LinearLayout
-                    android:layout_width="0sp"
+                    android:id="@+id/notAcceptedState"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/txtStateTitle"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="end"
+                        android:paddingHorizontal="10sp"
+                        android:text="@string/state"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtState"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:fontFamily="@font/roboto_light"
+                        android:text="@string/not_accepted_yet"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtTypologyTitle"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="end"
+                        android:paddingHorizontal="10sp"
+                        android:text="@string/thesis_type"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtTypology"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="60"
+                        android:fontFamily="@font/roboto_light"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtDepartmentTitle"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="end"
+                        android:paddingHorizontal="10sp"
+                        android:text="@string/department"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtDepartment"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:fontFamily="@font/roboto_light"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtProfessorTitle"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="end"
+                        android:paddingHorizontal="10sp"
+                        android:text="@string/professor_info_message_student"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtProfessor"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:fontFamily="@font/roboto_light"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtCorrelatorTitle"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="end"
+                        android:paddingHorizontal="10sp"
+                        android:text="@string/correlator"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtCorrelator"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:fontFamily="@font/roboto_light"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtTimeTitle"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="end"
+                        android:paddingHorizontal="10sp"
+                        android:text="@string/estimated_time"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtTime"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="60"
+                        android:fontFamily="@font/roboto_light"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtDescriptionTitle"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="end"
+                        android:paddingHorizontal="10sp"
+                        android:text="@string/description"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtDescription"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:fontFamily="@font/roboto_light"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutRelatedProject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtRelatedProjectsTitle"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="end"
+                        android:paddingHorizontal="10sp"
+                        android:text="@string/related_projects"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtRelatedProjects"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="60"
+                        android:fontFamily="@font/roboto_light"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/layoutAverageMarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtTitleAverageMarks"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="end"
+                        android:paddingHorizontal="10sp"
+                        android:text="@string/average_marks"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtAverageMarks"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="60"
+                        android:fontFamily="@font/roboto_light"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutRequiredExams"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtTitleRequiredExams"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="end"
+                        android:paddingHorizontal="10sp"
+                        android:text="@string/required_exams"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtRequiredExams"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="60"
+                        android:fontFamily="@font/roboto_light"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/layoutMaterials"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/txtMaterialsTitle"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="end"
+                        android:paddingHorizontal="10sp"
+                        android:text="@string/materials"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
                     <LinearLayout
-                        android:id="@+id/layout_lista_file"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0sp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="@drawable/bordered_rect" />
+                        android:layout_weight="60"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/layout_lista_file"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bordered_rect"
+                            android:orientation="vertical" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/buttonAdd"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5sp"
+                                android:backgroundTint="#B31C4F7E"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="@string/button_add_material"
+                                android:textSize="16sp"/>
+
+<!--                            <com.google.android.material.button.MaterialButton-->
+<!--                                android:id="@+id/buttonAdd"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_margin="5sp"-->
+<!--                                android:backgroundTint="#B31C4F7E"-->
+<!--                                android:fontFamily="@font/roboto_medium"-->
+<!--                                android:text="@string/button_add_material" />-->
+
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnSave"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5sp"
+                                android:backgroundTint="#B31C4F7E"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="@string/save_thesis"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/layoutRequested"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/buttonAdd"
+                        android:id="@+id/btnDeleteRequest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/button_add_material"
-                        app:icon="@drawable/ic_upload"
-                        android:layout_margin="5sp"/>
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/cancel_request"
+                        android:textSize="16sp"
+                        app:icon="@drawable/icon_cross" />
 
                 </LinearLayout>
 
@@ -391,89 +445,89 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutButton"
+                android:id="@+id/layoutNoThesis"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSendMessage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/btnTask"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/message"
-                    android:textSize="16sp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSave"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="20sp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/save_thesis"
-                    android:textSize="16sp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnReceipt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="20sp"
-                    android:text="@string/receipt"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textSize="16sp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnTask"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/btnReceipt"
-                    android:text="@string/task"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textSize="16sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layoutButtonRequest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_height="match_parent"
                 android:visibility="gone">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnDeleteRequest"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/txtNoRequest"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/cancel_request" />
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/cardo"
+                    android:text="@string/no_thesis_yet"
+                    android:textAlignment="center"
+                    android:textColor="#BF000000"
+                    android:textSize="22sp" />
 
             </RelativeLayout>
-
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/layoutNoThesis"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/txtNoRequest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
-                android:text="@string/no_thesis_yet"
-                android:textAlignment="center"
-                android:layout_centerInParent="true"
-                android:textColor="#BF000000"
-                android:textSize="22sp" />
 
         </RelativeLayout>
 
-    </RelativeLayout>
+    </ScrollView>
 
-</ScrollView>
+    <LinearLayout
+        android:id="@+id/layoutButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:elevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReceipt"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5sp"
+                android:layout_weight="1"
+                android:backgroundTint="#B31C4F7E"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/receipt"
+                android:textSize="16sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTask"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5sp"
+                android:layout_weight="1"
+                android:backgroundTint="#B31C4F7E"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/task"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutMessages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSendMessage"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5sp"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/message"
+                android:textSize="16sp"
+                app:icon="@drawable/ic_send_message"
+                app:iconGravity="textStart"
+                app:iconSize="20sp"
+                app:strokeColor="@color/custom_blue" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
