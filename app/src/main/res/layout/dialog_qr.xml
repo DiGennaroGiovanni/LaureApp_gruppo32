@@ -31,6 +31,15 @@
         android:text="@string/dialogalert_qr_subtitle"
         android:textSize="16sp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/or"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        style="@style/SimpleText"/>
+
     <Button
         android:id="@+id/share_button"
         android:layout_width="wrap_content"
