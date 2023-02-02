@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#0808275A"
-    android:layout_margin="8dp"
     tools:context=".commonActivities.LanguagesFragment">
 
     <LinearLayout

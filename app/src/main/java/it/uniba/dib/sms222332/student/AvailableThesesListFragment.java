@@ -332,7 +332,9 @@ public class AvailableThesesListFragment extends Fragment {
             qrImageView.setImageBitmap(QrGenerator.createQr(thesisName));
 
             Button buttonShare = dialogQr.findViewById(R.id.share_button);
-            buttonShare.setOnClickListener(view12 -> sharePDF(view12,thesisName));
+            buttonShare.setOnClickListener(view12 -> {
+                btnShareOnClick(thesisName);
+            });
 
             Button dismissButton = dialogQr.findViewById(R.id.dismiss_button);
             dismissButton.setOnClickListener(view14 -> dialogQr.dismiss());
@@ -373,8 +375,30 @@ public class AvailableThesesListFragment extends Fragment {
         layout_lista_tesi.addView(view);
     }
 
+    private void btnShareOnClick(String thesisName) {
 
-    private void sharePDF(View view,String thesisName) {
+        final Dialog dialogQr = new Dialog(requireContext());
+        dialogQr.setContentView(R.layout.dialog_qr);
+
+        ImageView qrImageView = dialogQr.findViewById(R.id.qr_image);
+        qrImageView.setImageBitmap(QrGenerator.createQr(thesisName));
+
+        Button buttonShare = dialogQr.findViewById(R.id.share_button);
+        buttonShare.setOnClickListener(view12 -> {
+            sharePDF(thesisName);
+        });
+
+        Button dismissButton = dialogQr.findViewById(R.id.dismiss_button);
+        dismissButton.setOnClickListener(view14 -> dialogQr.dismiss());
+
+        try {
+            dialogQr.show();
+        } catch (Exception e) {
+            Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
+        }
+    }
+
+    private void sharePDF(String thesisName) {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference fileRef = storageRef.child("PDF_tesi/" + thesisName + ".pdf");
 
@@ -391,11 +415,11 @@ public class AvailableThesesListFragment extends Fragment {
             }).addOnFailureListener(e -> {
                 // Controllo se l'error code è riferito al fatto che il dispositivo non è connesso ad internet
                 if (e instanceof FirebaseNetworkException) {
-                    Snackbar.make(view, "No internet connection", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(requireView(), "No internet connection", Snackbar.LENGTH_LONG).show();
                 } else if (e instanceof StorageException) {
                     // Controllo se l'error code è riferito al fatto che non esiste il file sul database
                     if (((StorageException) e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
-                        Snackbar.make(view, "File does not exist", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(requireView(), "File does not exist", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
                     // Stampo nella console il messaggio di errore nel caso in cui è di un altro tipo

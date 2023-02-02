@@ -66,26 +66,48 @@
 
         </RadioGroup>
 
-        <TextView
-            android:id="@+id/txtFaculty"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:textColor="@color/black"
-            android:text="@string/faculty"
-            android:textAlignment="center"
-            android:textSize="16sp" />
+            android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/edtFaculty"
-            android:layout_width="300dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:backgroundTint="#BFBABA"
-            android:gravity="center|center_vertical"
-            android:textAlignment="center"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            tools:ignore="SpeakableTextPresentCheck" />
+            <RelativeLayout
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                >
+
+                <TextView
+                    android:id="@+id/txtFaculty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/faculty"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                >
+            <Spinner
+                android:id="@+id/edtFaculty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#BFBABA"
+                android:textAlignment="center"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/second_layout"
@@ -157,30 +179,52 @@
             android:textColorHint="#546E7A"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/textView8"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/correlator"
-            android:fontFamily="@font/roboto"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:textSize="16sp" />
+            android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/edtCorrelator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:backgroundTint="#BFBABA"
-            android:gravity="center"
-            android:textAlignment="center"
-            tools:ignore="SpeakableTextPresentCheck" />
+
+            <RelativeLayout
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="50">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/correlator"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="50">
+
+                <Spinner
+                    android:id="@+id/edtCorrelator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#BFBABA"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
 
         <TextView
             android:id="@+id/textView13"
+            android:layout_marginTop="10sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/teaching_materials"

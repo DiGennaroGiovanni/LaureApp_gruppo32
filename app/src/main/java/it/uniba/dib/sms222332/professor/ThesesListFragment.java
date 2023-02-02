@@ -1,5 +1,8 @@
 package it.uniba.dib.sms222332.professor;
 
+import static android.content.ContentValues.TAG;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -137,7 +140,29 @@ public class ThesesListFragment extends Fragment {
     }
 
     private void btnShareOnClick(String thesisName) {
-        // Istanzio l'AlertDialog
+
+        final Dialog dialogQr = new Dialog(requireContext());
+        dialogQr.setContentView(R.layout.dialog_qr);
+
+        ImageView qrImageView = dialogQr.findViewById(R.id.qr_image);
+        qrImageView.setImageBitmap(QrGenerator.createQr(thesisName));
+
+        Button buttonShare = dialogQr.findViewById(R.id.share_button);
+        buttonShare.setOnClickListener(view12 -> {
+            sharePDF(thesisName);
+        });
+
+        Button dismissButton = dialogQr.findViewById(R.id.dismiss_button);
+        dismissButton.setOnClickListener(view14 -> dialogQr.dismiss());
+
+        try {
+            dialogQr.show();
+        } catch (Exception e) {
+            Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
+        }
+
+
+        /*// Istanzio l'AlertDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
         // Imposto il titolo customizzato
@@ -196,7 +221,7 @@ public class ThesesListFragment extends Fragment {
             builder.create().show();
         } catch (Exception e) {
             Log.e(TAG, getString(R.string.error_share_button) + e);
-        }
+        }*/
     }
 
     private void sharePDF(String thesisName) {

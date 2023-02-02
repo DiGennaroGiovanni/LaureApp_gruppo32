@@ -64,6 +64,7 @@
     <string name="proceed_with_sign_up_as_a_professor">Continua registrazione come professore</string>
     <string name="proceed_with_sign_up_as_a_student">Continua registrazione come alunno</string>
     <string name="error_guest">Questa funzionalità è disponibile solo per gli studenti registrati</string>
+    <string name="drag_info">Tieni premuto su una tesi per poterla cambiare di posto.</string>
     <string name="complete_registration">Concludi registrazione</string>
     <string name="matriculation_number">Matricola:</string>
     <string name="testimage">testImage</string>
@@ -316,7 +317,7 @@
     <string name="no_tasks_yet">Ancora nessun task</string>
     <string name="no_favorite_thesese_at_the_moment">Non hai tesi preferite al momento</string>
     <string name="filter_dialog_title">Filtra i vincoli</string>
-    <string name="max_avg_constr">"media voti: "</string>
+    <string name="max_avg_constr">Media voti massima: </string>
     <string name="hide_theses_check">Nascondi tesi che richiedono esami completati</string>
     <string name="logo">logo</string>
     <string name="registration">Registrazione</string>
