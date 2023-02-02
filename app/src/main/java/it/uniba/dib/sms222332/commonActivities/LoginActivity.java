@@ -1,9 +1,13 @@
 package it.uniba.dib.sms222332.commonActivities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,6 +26,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.connection.NetworkChangeReceiver;
 import it.uniba.dib.sms222332.guest.MainActivityGuest;
 
 public class LoginActivity extends AppCompatActivity {
@@ -34,6 +39,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //CONTROLLO  CONNESSIONE AD INTERNET
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(new NetworkChangeReceiver(this), filter);
 
         Objects.requireNonNull(getSupportActionBar()).hide();
 
@@ -86,16 +95,23 @@ public class LoginActivity extends AppCompatActivity {
         btnGuest.setOnClickListener(view -> {
             Intent guestIntent = new Intent(LoginActivity.this, MainActivityGuest.class);
             startActivity(guestIntent);
+            finish();
         });
     }
 
     private void performLogin() {
+
+        View view = findViewById(android.R.id.content);
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
         String email = edtEmailLogin.getText().toString();
         String password = edtPasswordLogin.getText().toString();
 
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        String emailPatternFaculty = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-zA-Z._-]+\\.[a-z]+";
+        String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
 
-        if (!email.matches(emailPattern)) {
+        if (!email.matches(emailPatternFaculty) && !email.matches(emailPattern)) {
             edtEmailLogin.setError(getString(R.string.enter_valid_email));
         } else if (password.isEmpty() || password.length() < 6) {
             edtPasswordLogin.setError(getString(R.string.enter_valid_password));
@@ -142,7 +158,6 @@ public class LoginActivity extends AppCompatActivity {
                     });
 
                 } else {
-                    View view = findViewById(android.R.id.content);
                     Snackbar.make(view, R.string.user_not_found, Snackbar.LENGTH_SHORT).show();
                 }
             });

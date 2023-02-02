@@ -1,6 +1,8 @@
 package it.uniba.dib.sms222332.professor;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,6 +23,7 @@ import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.LoginActivity;
+import it.uniba.dib.sms222332.commonActivities.connection.NetworkChangeReceiver;
 
 public class ProfessorRegisterActivity extends AppCompatActivity {
 
@@ -39,6 +42,10 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_prof);
         setTitle(getString(R.string.title_new_professor));
+
+        //CONTROLLO  CONNESSIONE AD INTERNET
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(new NetworkChangeReceiver(this), filter);
 
         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.registration);
 
@@ -100,8 +107,10 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
         String email = edtEmailRegistrati.getText().toString();
         String password = edtPasswordRegistrati.getText().toString();
 
+        String emailPatternFaculty = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-zA-Z._-]+\\.[a-z]+";
         String emailPattern = "[a-zA-Z0-9._-]+@+[a-zA-Z._-]+\\.+[a-z]+";
-        if (!email.matches(emailPattern)) {
+
+        if (!email.matches(emailPatternFaculty) && !email.matches(emailPattern)) {
             edtEmailRegistrati.setError(getString(R.string.enter_valid_email));
         } else if (password.isEmpty() || password.length() < 6) {
             edtPasswordRegistrati.setError(getString(R.string.enter_valid_password));

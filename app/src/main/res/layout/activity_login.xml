@@ -41,6 +41,7 @@
             android:paddingEnd="1dp"
             android:inputType="textEmailAddress"
             android:minWidth="300dp"
+            android:fontFamily="@font/roboto"
             android:minHeight="50dp"
             android:background="@drawable/custom_input"
             android:drawableStart="@drawable/custom_email_icon"
@@ -56,6 +57,7 @@
             android:hint="@string/password"
             android:paddingStart="10dp"
             android:paddingEnd="1dp"
+            android:fontFamily="@font/roboto"
             android:inputType="textPassword"
             android:background="@drawable/custom_input"
             android:minWidth="300dp"
@@ -94,7 +96,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/do_you_not_have_an_account"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:fontFamily="@font/roboto"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -114,7 +117,8 @@
                 android:shadowColor="#A8A8A8"
                 android:shadowRadius="10"
                 android:text="@string/sign_up"
-                android:textColor="#1059EC"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/custom_blue"
                 android:textSize="16sp" />
 
             <TextView
@@ -135,7 +139,8 @@
                 android:shadowColor="#A8A8A8"
                 android:shadowRadius="10"
                 android:text="@string/sign_in_as_guest"
-                android:textColor="#1059EC"
+                android:textColor="@color/custom_blue"
+                android:fontFamily="@font/roboto"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
@@ -156,6 +161,7 @@
             android:layout_height="wrap_content"
             android:text="@string/choice_language"
             android:textAlignment="center"
+            android:fontFamily="@font/roboto"
             android:textSize="16sp" />
 
         <LinearLayout
