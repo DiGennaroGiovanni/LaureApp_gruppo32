@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private LanguageManager lang;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -164,12 +162,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         for (Thesis thesis : theses) {
             db.collection("Tesi").document(thesis.getName()).get().addOnSuccessListener(documentSnapshot -> {
+
                 if (!Objects.requireNonNull(documentSnapshot.getString("Student")).isEmpty() && !Objects.equals(documentSnapshot.getString("Student"), MainActivity.account.getEmail()))
                     theses.remove(thesis);
                 else
                     thesis.setProfessor(documentSnapshot.getString("Professor"));
-            }).addOnFailureListener(e -> {
-                theses.remove(thesis);
             });
         }
     }
