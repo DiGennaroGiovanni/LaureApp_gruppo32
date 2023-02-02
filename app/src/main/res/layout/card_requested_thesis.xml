@@ -23,24 +23,28 @@
                 android:layout_gravity="center">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="30"
+                    android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/thesis"
-                    android:theme="@style/SimpleBoldText"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top"
                     />
 
                 <TextView
                     android:id="@+id/txtThesisName"
-                    android:layout_width="0dp"
+                    android:layout_width="0sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="60"
                     android:text="@string/thesisname"
-                    android:theme="@style/SimpleText"
-                    android:layout_marginHorizontal="4sp"/>
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom"/>
 
             </LinearLayout>
 
@@ -50,23 +54,27 @@
                 android:layout_gravity="center">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="30"
+                    android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/student_request"
-                    android:theme="@style/SimpleBoldText"/>
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top"/>
 
                 <TextView
                     android:id="@+id/txtStudentEmail"
-                    android:layout_width="0dp"
+                    android:layout_width="0sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="60"
                     android:text="@string/studentemail"
-                    android:theme="@style/SimpleText"
-                    android:layout_marginHorizontal="4sp"/>
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom"/>
 
             </LinearLayout>
 
@@ -75,8 +83,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_alignParentEnd="true"
                     android:layout_marginBottom="5dp"
                     android:layout_marginEnd="5dp"
