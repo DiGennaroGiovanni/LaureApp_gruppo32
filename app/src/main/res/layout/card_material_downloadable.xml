@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardMaterialWithoutDelete"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -27,6 +28,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="4sp"
+                android:fontFamily="@font/roboto_light"
                 android:text="@string/nome_file_card"
                 android:textSize="18sp" />
 
@@ -34,11 +36,12 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/downloadMaterial"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_gravity="center"
+        app:iconSize="20sp"
         android:background="@drawable/download_icon"
         android:contentDescription="@string/delete_material"
         android:theme="@style/MyButtonNoText" />

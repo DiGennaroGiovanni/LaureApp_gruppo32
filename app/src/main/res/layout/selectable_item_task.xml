@@ -14,6 +14,7 @@
         android:paddingHorizontal="10sp"
         android:text="@string/task_name"
         android:textColor="#B308275A"
+        android:fontFamily="@font/roboto_light"
         android:textSize="20sp"
         android:elevation="2dp"/>
 
