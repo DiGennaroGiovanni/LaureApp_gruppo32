@@ -24,14 +24,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/cardo"
-                android:text="@string/thesis_name"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textAllCaps="true"
-                android:textColor="#00213A"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                android:textColor="@color/black"
+                android:text="@string/thesis_name_card"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="28sp" />
 
             <!--        lineetta divisiva      -->
             <RelativeLayout
@@ -52,22 +50,25 @@
                     android:id="@+id/txtTypologyTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/thesis_type"
-                    android:theme="@style/SimpleBoldText" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top" />
 
                 <TextView
                     android:id="@+id/txtTypology"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom" />
 
             </LinearLayout>
 
@@ -83,13 +84,14 @@
                     android:id="@+id/txtDepartmentTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/department"
-                    android:theme="@style/SimpleBoldText" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top" />
 
                 <TextView
                     android:id="@+id/txtDepartment"
@@ -97,8 +99,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
                     android:layout_gravity="bottom"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -113,22 +118,25 @@
                     android:id="@+id/txtCorrelatorTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/correlator"
-                    android:theme="@style/SimpleBoldText" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top" />
 
                 <TextView
                     android:id="@+id/txtCorrelator"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom" />
 
             </LinearLayout>
 
@@ -144,35 +152,35 @@
                     android:id="@+id/txtStudent"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="40"
                     android:gravity="end"
-                    android:paddingStart="1dp"
-                    android:paddingEnd="10dp"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/student"
-                    android:theme="@style/SimpleBoldText" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top" />
 
                 <TextView
                     android:id="@+id/txtStudentThesis"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="60"
                     android:text=""
-                    android:theme="@style/SimpleText" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom" />
 
             </LinearLayout>
 
             <Button
                 android:id="@+id/shareBtn"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="35sp"
+                android:layout_height="35sp"
                 android:layout_gravity="end"
-                android:layout_marginEnd="10sp"
-                android:layout_marginBottom="10sp"
                 android:background="@drawable/share_button"
-                android:contentDescription="@string/sharebutton_card"
-                android:theme="@style/MyButtonNoText" />
+                android:contentDescription="@string/sharebutton_card" />
 
         </LinearLayout>
 
