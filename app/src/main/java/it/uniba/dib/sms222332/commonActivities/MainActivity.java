@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(new NetworkChangeReceiver(this), filter);
 
+        if(savedInstanceState != null) {
+            lang.updateResource(savedInstanceState.getString("lang"));
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -123,10 +126,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, getProperHome()).commit();
         }
 
-
-        if(savedInstanceState != null) {
-            lang.updateResource(savedInstanceState.getString("lang"));
-        }
     }
 
     @Override

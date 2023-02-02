@@ -342,9 +342,7 @@ public class AvailableThesesListFragment extends Fragment {
             } catch (Exception e) {
                 Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
             }
-
         });
-
 
         view.setOnClickListener(view1 -> {
 

@@ -65,7 +65,6 @@
             android:layout_gravity="center"
             android:text="@string/back_to_login"
             android:textSize="16sp"
-            android:theme="@style/MyButton"
             app:icon="@drawable/ic_back"
             android:fontFamily="@font/roboto_medium"
             app:iconGravity="textStart"
