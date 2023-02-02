@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#0808275A">
 
     <LinearLayout
@@ -16,11 +17,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/cardo"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/do_you_satisfy_the_average_constraint"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
             android:visibility="visible" />
 
         <LinearLayout
@@ -33,7 +33,7 @@
                 android:id="@+id/txtTitleAverageMarks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto"
                 android:text="@string/average_marks_"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
@@ -42,10 +42,10 @@
                 android:id="@+id/txtAverageMarks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -62,11 +62,10 @@
                 android:id="@+id/rdbAverageYes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/yes"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold">
+                android:textSize="16sp">
 
             </RadioButton>
 
@@ -74,11 +73,10 @@
                 android:id="@+id/rdbAverageNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/no"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold">
+                android:textSize="16sp">
 
             </RadioButton>
 
@@ -89,11 +87,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/cardo"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/do_you_satisfy_the_exams_constraint"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
             android:visibility="visible" />
 
         <LinearLayout
@@ -106,7 +103,7 @@
                 android:id="@+id/txtTitleRequiredExams"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto"
                 android:text="@string/required_exams"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
@@ -116,9 +113,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -135,11 +132,10 @@
                 android:id="@+id/rdbExamsYes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/yes"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold">
+                android:textSize="16sp">
 
             </RadioButton>
 
@@ -147,11 +143,10 @@
                 android:id="@+id/rdbExamsNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cardo"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/no"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold">
+                android:textSize="16sp">
 
             </RadioButton>
 
@@ -168,22 +163,24 @@
 
         <EditText
             android:id="@+id/edtNote"
-            android:textSize="18sp"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnThesisRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/cardo"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/send_request"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="16sp"
+            app:iconSize="20sp"
+            app:icon="@drawable/ic_send_message"/>
 
     </LinearLayout>
 
