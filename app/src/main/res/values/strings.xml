@@ -48,7 +48,8 @@
     <string name="messageContactTooolbar">Messages List</string>
     <string name="thesisInfoTooolbar">Thesis Info</string>
 
-    <string name="email">Email:</string>
+    <string name="email">Email</string>
+    <string name="email_profile">Email:</string>
     <string name="password">Password</string>
     <string name="sign_up">Sign up</string>
     <string name="sign_in">Sign in</string>
@@ -311,8 +312,9 @@
     <string name="no_receipt_yet">No receipt yet</string>
     <string name="no_tasks_yet">No tasks yet</string>
     <string name="no_favorite_thesese_at_the_moment">No favorite thesese at the moment</string>
-    <string name="filter_dialog_title">Look for theses by setting constraint filters</string>
-    <string name="max_avg_constr">Maximum average value:</string>
+    <string name="filter_dialog_title">Filter constraints</string>
+    <!--<string name="filter_dialog_title">Look for theses by setting constraint filters</string>-->
+    <string name="max_avg_constr">grade average: </string>
     <string name="hide_theses_check">Hide theses which require completed exams</string>
     <string name="logo">logo</string>
     <string name="registration">Registration</string>
@@ -349,5 +351,7 @@
     <string name="delete_button">DELETE</string>
     <string name="thesis_info_required">thesis info required</string>
     <string name="try_again">TRY AGAIN</string>
+    <string name="close_button"><u>CLOSE</u></string>
+    <string name="separator_line">separator line</string>
 
 </resources>

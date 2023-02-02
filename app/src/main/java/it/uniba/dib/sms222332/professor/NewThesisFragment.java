@@ -267,7 +267,7 @@ public class NewThesisFragment extends Fragment {
             for (Uri file : uris) {
                 uploadFile(file);
             }
-
+            // Creazione e caricamento del PDF riepilogativo sul database
             createPdf(thesisName, infoTesi);
 
             Snackbar.make(requireView(), R.string.toast_thesis_created, Snackbar.LENGTH_SHORT).show();
@@ -278,6 +278,14 @@ public class NewThesisFragment extends Fragment {
         }
     }
 
+    /**
+     * Il metodo createPdf permette di generare un file pdf contenente tutte le informazioni
+     * inserite dall'utente riguardanti la tesi appena generata. Il file sarò successivamente caricato
+     * sul database per poi poter essere condiviso tramite app di terze parti.
+     *
+     * @param thesisName String contenente il nome della tesi
+     * @param infoTesi Map contenente tutti i dati inseriti della tesi
+     */
     private void createPdf(String thesisName, Map<String, String> infoTesi) {
         try {
             ThesisPDF thesisPDF = new ThesisPDF();

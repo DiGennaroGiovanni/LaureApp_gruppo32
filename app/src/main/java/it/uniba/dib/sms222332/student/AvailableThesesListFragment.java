@@ -4,9 +4,12 @@ import static android.content.ContentValues.TAG;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -90,7 +93,7 @@ public class AvailableThesesListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.availableThesisTooolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.availableThesisTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_available_theses_list, container, false);
 
@@ -106,32 +109,19 @@ public class AvailableThesesListFragment extends Fragment {
             // chiusura della tastiera
             closeKeyboard(view);
 
-            // Istanzio l'AlertDialog
-            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+            final Dialog dialogFilter = new Dialog(requireContext());
+            dialogFilter.setContentView(R.layout.dialog_filter);
 
-            // Imposto il titolo customizzato
-            TextView titleView = new TextView(requireContext());
-            titleView.setText(R.string.filter_dialog_title);
-            titleView.setGravity(Gravity.CENTER);
-            titleView.setTextSize(18);
-            titleView.setTypeface(null, Typeface.BOLD);
-            titleView.setTextColor(Color.BLACK);
-            titleView.setPadding(30, 30, 30, 10);
-            builder.setCustomTitle(titleView);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                dialogFilter.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            }
 
-            // Definisco il layout per l'inserimento dei filtri di ricerca
-            LinearLayout researchLayout = new LinearLayout(requireContext());
-            researchLayout.setOrientation(LinearLayout.VERTICAL);
-
-            SeekBar seekBar = new SeekBar(requireContext());
-            final TextView average = new TextView(requireContext());
+            SeekBar seekBar = dialogFilter.findViewById(R.id.seekbar_average);
+            final TextView average = dialogFilter.findViewById(R.id.average_textview);
 
             seekBar.setProgress(seekBarValue - 18);
-
             String avgString = getResources().getString(R.string.max_avg_constr) + seekBarValue;
             average.setText(avgString);
-            average.setTextColor(Color.BLACK);
-            average.setPadding(40, 0 , 0, 0);
             seekBar.setMax(12);
 
             int initialSeekBarValue = seekBarValue;
@@ -148,72 +138,67 @@ public class AvailableThesesListFragment extends Fragment {
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
-
                 }
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
-
                 }
             });
 
-            examsCheckbox = new CheckBox(requireContext());
+            examsCheckbox = dialogFilter.findViewById(R.id.checkbox_hide_thesis);
             examsCheckbox.setChecked(isRequestedExamChecked);
-            examsCheckbox.setText(R.string.hide_theses_check);
-            examsCheckbox.setPadding(10, 10, 0, 0);
             examsCheckbox.setOnCheckedChangeListener((compoundButton, b) -> isRequestedExamChecked = b);
 
-            // Definisco il bottone di ricerca
-            builder.setPositiveButton(getResources().getString(R.string.research), (dialogInterface, i) ->
-            {
+            Button searchButton = dialogFilter.findViewById(R.id.search_button);
+            searchButton.setOnClickListener(view22 -> {
                 searchView.setQuery("", true);
                 db.collection("Tesi")
                         .get()
                         .addOnCompleteListener(task -> {
-                            if(task.isSuccessful()) {
+                            if (task.isSuccessful()) {
                                 layout_lista_tesi.removeAllViews();
-                                for(QueryDocumentSnapshot document : task.getResult()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
                                     String faculty = document.getString("Faculty");
                                     assert faculty != null;
-                                    if(faculty.equals(MainActivity.account.getFaculty())) {
+                                    if (faculty.equals(MainActivity.account.getFaculty())) {
                                         addCheckConstraint(document);
+                                        dialogFilter.dismiss();
                                     }
                                 }
                             }
                         });
             });
 
-            // Aggiungo gli elementi creati al layout
-            researchLayout.addView(examsCheckbox);
-            researchLayout.addView(average);
-            researchLayout.addView(seekBar);
-
-
-            builder.setNegativeButton(R.string.close, (dialog, which) -> {
-                seekBar.setProgress(initialSeekBarValue - 18);
-                isRequestedExamChecked = initialChecked;
-                examsCheckbox.setChecked(isRequestedExamChecked);
+            Button dismissButtonFilter = dialogFilter.findViewById(R.id.dismiss_button);
+            dismissButtonFilter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    seekBar.setProgress(initialSeekBarValue - 18);
+                    isRequestedExamChecked = initialChecked;
+                    examsCheckbox.setChecked(isRequestedExamChecked);
+                    dialogFilter.dismiss();
+                }
             });
 
-            builder.setOnCancelListener(dialogInterface -> {
-                seekBar.setProgress(initialSeekBarValue - 18);
-                isRequestedExamChecked = initialChecked;
-                examsCheckbox.setChecked(isRequestedExamChecked);
+            dialogFilter.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialogInterface) {
+                    seekBar.setProgress(initialSeekBarValue - 18);
+                    isRequestedExamChecked = initialChecked;
+                    examsCheckbox.setChecked(isRequestedExamChecked);
+                }
             });
-
-            // Aggiungo il layout all'AlertDialog
-            builder.setView(researchLayout);
 
             try {
-                builder.create().show();
-            } catch(Exception e) {
-                Log.e(TAG, "Errore nell'onClick del btnResearch : " + e);
+                dialogFilter.show();
+            } catch (Exception e) {
+                Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
             }
 
         });
 
         btnCamera.setOnClickListener(view12 -> {
-            if(checkPermission()) scanQrCode();
+            if (checkPermission()) scanQrCode();
         });
 
         /*
@@ -231,29 +216,27 @@ public class AvailableThesesListFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                if(newText.equals("")) {
+                if (newText.equals("")) {
                     db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
                         layout_lista_tesi.removeAllViews();
-                        for(QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             String studentMail = document.getString("Student");
                             assert studentMail != null;
-                            if( studentMail.equals(MainActivity.account.getEmail()) ||(  Objects.equals(studentMail, "") && Objects.equals(document.getString("Faculty"), MainActivity.account.getFaculty()) ) ) {
+                            if (studentMail.equals(MainActivity.account.getEmail()) || (Objects.equals(studentMail, "") && Objects.equals(document.getString("Faculty"), MainActivity.account.getFaculty()))) {
                                 addCheckConstraint(document);
                             }
                         }
                         closeKeyboard(view);
                     });
-                }
-
-                else {
+                } else {
                     db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
                         layout_lista_tesi.removeAllViews();
-                        for(QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             String faculty = document.getString("Faculty");
                             assert faculty != null;
-                            if(faculty.equals(MainActivity.account.getFaculty()) &&
+                            if (faculty.equals(MainActivity.account.getFaculty()) &&
                                     Objects.requireNonNull(document.get("Name")).toString().toLowerCase().contains(newText.trim().toLowerCase()) &&
-                                    ( Objects.equals(document.getString("Student"), "") || Objects.equals(document.getString("Student"), MainActivity.account.getEmail()) ) ) {
+                                    (Objects.equals(document.getString("Student"), "") || Objects.equals(document.getString("Student"), MainActivity.account.getEmail()))) {
                                 addCheckConstraint(document);
                             }
                         }
@@ -274,16 +257,16 @@ public class AvailableThesesListFragment extends Fragment {
     private void addCheckConstraint(QueryDocumentSnapshot document) {
         int thesisAverage;
 
-        if(Objects.equals(document.getString("Average"), "")) {
+        if (Objects.equals(document.getString("Average"), "")) {
             thesisAverage = 18;
         } else {
             thesisAverage = Integer.parseInt(Objects.requireNonNull(document.getString("Average")));
         }
 
-        if(thesisAverage <= seekBarValue) {
-            if(examsCheckbox.isChecked() && Objects.equals(document.getString("Required Exam"), "")) {
+        if (thesisAverage <= seekBarValue) {
+            if (examsCheckbox.isChecked() && Objects.equals(document.getString("Required Exam"), "")) {
                 addCardThesis(document);
-            } else if(!examsCheckbox.isChecked()) {
+            } else if (!examsCheckbox.isChecked()) {
                 addCardThesis(document);
             }
         }
@@ -294,10 +277,10 @@ public class AvailableThesesListFragment extends Fragment {
         examsCheckbox = new CheckBox(requireContext());
         db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
             layout_lista_tesi.removeAllViews();
-            for(QueryDocumentSnapshot document : queryDocumentSnapshots) {
+            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                 String studentMail = document.getString("Student");
                 assert studentMail != null;
-                if( studentMail.equals(MainActivity.account.getEmail()) ||(  Objects.equals(studentMail, "") && Objects.equals(document.getString("Faculty"), MainActivity.account.getFaculty()) ) ) {
+                if (studentMail.equals(MainActivity.account.getEmail()) || (Objects.equals(studentMail, "") && Objects.equals(document.getString("Faculty"), MainActivity.account.getFaculty()))) {
                     addCheckConstraint(document);
                 }
             }
@@ -329,7 +312,7 @@ public class AvailableThesesListFragment extends Fragment {
         txtCorrelator.setText(document.getString("Correlator"));
         txtProfessorEmail.setText(professorEmail);
 
-        if(MainActivity.theses.contains(thesis)) {
+        if (MainActivity.theses.contains(thesis)) {
             btnStar.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.ic_clicked_star));
             btnStar.setSelected(true);
         } else {
@@ -338,7 +321,7 @@ public class AvailableThesesListFragment extends Fragment {
         }
 
         btnStar.setOnClickListener(viewStar -> {
-            if(viewStar.isSelected()) {
+            if (viewStar.isSelected()) {
                 btnStar.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.ic_star));
                 btnStar.setSelected(false);
                 MainActivity.theses.remove(thesis);
@@ -350,71 +333,36 @@ public class AvailableThesesListFragment extends Fragment {
         });
 
 
-        if(Objects.equals(document.getString("Correlator"), "")) {
+        if (Objects.equals(document.getString("Correlator"), "")) {
             txtCorrelator.setText(R.string.none);
         }
 
         shareBtn.setOnClickListener(view13 -> {
-            // Istanzio l'AlertDialog
-            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
-            // Imposto il titolo customizzato
-            TextView titleView = new TextView(requireContext());
-            titleView.setText(R.string.alertdialog_title);
-            titleView.setGravity(Gravity.CENTER);
-            titleView.setTextSize(25);
-            titleView.setTypeface(null, Typeface.BOLD);
-            titleView.setTextColor(Color.BLACK);
-            titleView.setPadding(0, 50, 0, 0);
-            builder.setCustomTitle(titleView);
+            final Dialog dialogQr = new Dialog(requireContext());
+            dialogQr.setContentView(R.layout.dialog_qr);
 
-            // Definisco il layout per l'inserimento del qr code
-            LinearLayout qrLayout = new LinearLayout(requireContext());
-            qrLayout.setOrientation(LinearLayout.VERTICAL);
+            ImageView qrImageView = dialogQr.findViewById(R.id.qr_image);
+            qrImageView.setImageBitmap(QrGenerator.createQr(thesisName));
 
-            // Definisco l'ImageView che contiene il qr code generato
-            ImageView qr_code_IW = new ImageView(requireContext());
-            qr_code_IW.setImageBitmap(QrGenerator.createQr(thesisName));
-
-            // Definisco il TextView per la descrizione del qr code
-            TextView qr_description = new TextView(requireContext());
-            qr_description.setText(R.string.dialogalert_qr_subtitle);
-            qr_description.setGravity(Gravity.CENTER);
-            qr_description.setPadding(0, 0, 0, 30);
-
-            // Definisco il bottone sotto l'ImageView
-            Button buttonShare = new Button(requireContext());
-            buttonShare.setText(R.string.share_thesis_info);
-            buttonShare.setBackgroundResource(R.color.custom_blue);
-                buttonShare.setTextColor(Color.WHITE);
-                buttonShare.setGravity(Gravity.CENTER);
-                /*Typeface face = Typeface.createFromAsset(requireContext().getAssets(), "font/cardo.xml");
-                buttonShare.setTypeface(face);*/
+            Button buttonShare = dialogQr.findViewById(R.id.share_button);
             buttonShare.setOnClickListener(view12 -> sharePDF(thesisName));
 
-            // Imposto i parametri di layout per il bottone
-            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(700, 170);
-            buttonParams.gravity = Gravity.CENTER;
-            buttonShare.setLayoutParams(buttonParams);
-
-            // Aggiungo gli elementi creati al layout
-            qrLayout.addView(qr_code_IW);
-            qrLayout.addView(qr_description);
-            qrLayout.addView(buttonShare);
-
-            builder.setNegativeButton(R.string.close, (dialog, which) -> {
+            Button dismissButton = dialogQr.findViewById(R.id.dismiss_button);
+            dismissButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialogQr.dismiss();
+                }
             });
 
-            // Aggiungo il layout all'AlertDialog
-            builder.setView(qrLayout);
-
             try {
-                builder.create().show();
-            } catch(Exception e) {
+                dialogQr.show();
+            } catch (Exception e) {
                 Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
             }
-        });
 
+        });
 
 
         view.setOnClickListener(view1 -> {
@@ -489,11 +437,11 @@ public class AvailableThesesListFragment extends Fragment {
                 startActivity(Intent.createChooser(shareIntent, "Condividi PDF informazioni tesi"));
             }).addOnFailureListener(e -> {
                 // Controllo se l'error code è riferito al fatto che il dispositivo non è connesso ad internet
-                if(e instanceof FirebaseNetworkException) {
+                if (e instanceof FirebaseNetworkException) {
                     Snackbar.make(requireView(), "No internet connection", Snackbar.LENGTH_LONG).show();
-                } else if(e instanceof StorageException) {
+                } else if (e instanceof StorageException) {
                     // Controllo se l'error code è riferito al fatto che non esiste il file sul database
-                    if(( (StorageException) e ).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
+                    if (((StorageException) e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
                         Snackbar.make(requireView(), "File does not exist", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
@@ -501,7 +449,7 @@ public class AvailableThesesListFragment extends Fragment {
                     Log.w("Firebas storage ERROR", e.getMessage());
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             Log.e("ERROR", "Errore nel download del PDF dal database: " + e.getMessage());
         }
     }
@@ -516,14 +464,14 @@ public class AvailableThesesListFragment extends Fragment {
     }
 
     ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
-        if(result.getContents() != null) {
+        if (result.getContents() != null) {
             String onlineUser = MainActivity.account.getEmail();
             String jsonInput = result.getContents();
             String thesisName = "";
             try {
                 JSONObject json = new JSONObject(jsonInput);
                 thesisName = json.getString("name");
-            } catch(JSONException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -535,7 +483,7 @@ public class AvailableThesesListFragment extends Fragment {
                     String student = document.getString("Student");
 
                     assert student != null;
-                    if(student.equals(onlineUser)) {
+                    if (student.equals(onlineUser)) {
                         getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyThesisFragment()).commit();
                     } else {
 
@@ -545,7 +493,7 @@ public class AvailableThesesListFragment extends Fragment {
                         Map<String, Object> datiTesi = document.getData();
                         assert datiTesi != null;
                         db.collection("professori").document(Objects.requireNonNull(datiTesi.get("Professor")).toString()).get().addOnCompleteListener(task1 -> {
-                            if(task1.isSuccessful()) {
+                            if (task1.isSuccessful()) {
                                 bundle.putString("professor", Objects.requireNonNull(task1.getResult().get("Name")) + " " + Objects.requireNonNull(task1.getResult().get("Surname")));
                                 bundle.putString("correlator", (String) datiTesi.get("Correlator"));
                                 bundle.putString("description", (String) datiTesi.get("Description"));
@@ -572,11 +520,12 @@ public class AvailableThesesListFragment extends Fragment {
 
     /**
      * checkPermission è il metodo che gestisce i permessi per utilizzare la fotocamera.
-     *
+     * <p>
      * Nel caso in cui l'utente non fornisce l'autorizzazioen per utilizzare la fotocamera, il sistemare
      * provvederà a fornire un feedback all'utente per spiegare l'utilità dei permessi.
-     *
+     * <p>
      * Nel
+     *
      * @return result true se i permessi sono stati concessi
      */
     private boolean checkPermission() {
@@ -589,20 +538,19 @@ public class AvailableThesesListFragment extends Fragment {
 
             // Mostro un messaggio all'utente in cui spiego il motivo per il quale sono necessari i permessi.
         } else if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.CAMERA)) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-                builder.setTitle(R.string.snackbar_title_camera_permission);
-                builder.setMessage(getString(R.string.snackbar_camera_permission_message) + "\n\n" + getString(R.string.snackbar_camera_permission_message2));
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+            builder.setTitle(R.string.snackbar_title_camera_permission);
+            builder.setMessage(getString(R.string.snackbar_camera_permission_message) + "\n\n" + getString(R.string.snackbar_camera_permission_message2));
 
-                // L'utente accetta di concedere i permessi e avvio richiesta accettazione permessi.
-                builder.setPositiveButton("Yes", (dialogInterface, i) -> requestPermissionLauncher.launch(CAMERA));
+            // L'utente accetta di concedere i permessi e avvio richiesta accettazione permessi.
+            builder.setPositiveButton("Yes", (dialogInterface, i) -> requestPermissionLauncher.launch(CAMERA));
 
-                // L'utente decide di non accettare l'avvio di richiesta accettazione permessi.
-                builder.setNegativeButton("No", (dialogInterface, i) -> Snackbar.make(requireView(), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show());
+            // L'utente decide di non accettare l'avvio di richiesta accettazione permessi.
+            builder.setNegativeButton("No", (dialogInterface, i) -> Snackbar.make(requireView(), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show());
 
-                AlertDialog dialog = builder.create();
-                dialog.show();  // Avvio la visualizzazione dell'AlertDialog.
-        }
-         else {
+            AlertDialog dialog = builder.create();
+            dialog.show();  // Avvio la visualizzazione dell'AlertDialog.
+        } else {
             // Avvio la procedura di autorizzazione dei permessi.
             requestPermissionLauncher.launch(CAMERA);
         }

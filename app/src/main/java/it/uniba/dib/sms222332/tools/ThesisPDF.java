@@ -15,7 +15,6 @@ public class ThesisPDF implements PDFUtility.OnDocumentClose{
 
         try {
             File outputFile = new File(context.getExternalFilesDir(null), datiTesi.get("Name") + ".pdf");
-            /*Uri uri = FileProvider.getUriForFile(context, "it.uniba.dib.sms222332", outputFile);*/
             LinkedHashMap<String,String> lhDatiTesi = convertMaptoLinkedHashMap(datiTesi);
             PDFUtility.createPdf(context, ThesisPDF.this, lhDatiTesi, true, outputFile);
         } catch (Exception e) {

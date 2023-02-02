@@ -49,7 +49,8 @@
     <string name="thesisInfoTooolbar">Info Tesi</string>
 
     <!-- FILIPPO -->
-    <string name="email">Email:</string>
+    <string name="email">Email</string>
+    <string name="email_profile">Email:</string>
     <string name="password">Password</string>
     <string name="sign_up">Registrati</string>
     <string name="sign_in">Accedi</string>
@@ -314,8 +315,8 @@
     <string name="no_receipt_yet">Ancora nessun ricevimento</string>
     <string name="no_tasks_yet">Ancora nessun task</string>
     <string name="no_favorite_thesese_at_the_moment">Non hai tesi preferite al momento</string>
-    <string name="filter_dialog_title">Cerca le tesi inserendo i filtri sui vincoli</string>
-    <string name="max_avg_constr">"Media voti massima: "</string>
+    <string name="filter_dialog_title">Filtra i vincoli</string>
+    <string name="max_avg_constr">"media voti: "</string>
     <string name="hide_theses_check">Nascondi tesi che richiedono esami completati</string>
     <string name="logo">logo</string>
     <string name="registration">Registrazione</string>
@@ -351,4 +352,6 @@
     <string name="delete_button">CANCELLA</string>
     <string name="thesis_info_required">thesis info required</string>
     <string name="try_again">RIPROVA</string>
+    <string name="close_button"><u>CHIUDI</u></string>
+    <string name="separator_line">separator line</string>
 </resources>
