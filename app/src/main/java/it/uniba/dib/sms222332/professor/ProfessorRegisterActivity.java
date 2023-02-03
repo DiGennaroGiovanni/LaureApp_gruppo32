@@ -117,16 +117,15 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
         } else {
 
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                View view = findViewById(android.R.id.content);
                 if (task.isSuccessful()) {
                     insertDataProf(); //MEMORIZZO I DATI DEL PROFESSORE
-
+                    Snackbar.make(view, R.string.account_created_message, Snackbar.LENGTH_SHORT).show();
                     Intent intent = new Intent(ProfessorRegisterActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("signed up", true);
                     startActivity(intent);
-
                 } else {
-                    View view = findViewById(android.R.id.content);
                     Snackbar.make(view, R.string.email_already_existent, Snackbar.LENGTH_SHORT).show();
                 }
             });

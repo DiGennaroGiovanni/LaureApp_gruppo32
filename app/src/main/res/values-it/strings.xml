@@ -357,5 +357,6 @@
     <string name="separator_line">separator line</string>
     <string name="missing_fields_msg">Campi richiesti mancanti</string>
     <string name="select_typology">Seleziona una tipologia!</string>
-    <string name="search_thesis">Cerca una tesi...</string>
+    <string name="search_thesis">Cerca una tesi…</string>
+    <string name="account_created_message">Account creato correttamente.</string>
 </resources>
