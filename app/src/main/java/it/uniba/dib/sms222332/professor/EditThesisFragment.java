@@ -138,10 +138,6 @@ public class EditThesisFragment extends Fragment {
 
         setCorrelatorSpinner(correlator);
 
-        if(txtStudent.toString().isEmpty())
-            txtStudent.setText(R.string.none);
-
-
 
         if (!edtAverage.getText().toString().equals("")) {
             averageCheck.setChecked(true);
@@ -207,14 +203,23 @@ public class EditThesisFragment extends Fragment {
         txtThesisName.setText(name);
         txtTypology.setText(type);
         txtDepartment.setText(faculty);
-        txtStudent.setText(student);
 
         String time = estimated_time.split(" ")[0];
         edtTime.setText(time);
         edtDescription.setText(description);
         edtRelatedProjects.setText(related_projects);
         edtAverage.setText(average);
-        edtRequiredExams.setText(required_exam);
+
+        if(!required_exam.isEmpty())
+            edtRequiredExams.setText(required_exam);
+        else
+            edtRequiredExams.setText(R.string.none);
+
+        if(!student.isEmpty())
+            txtStudent.setText(student);
+        else
+            txtStudent.setText(R.string.none);
+
     }
 
     private void addNewMaterial() {
