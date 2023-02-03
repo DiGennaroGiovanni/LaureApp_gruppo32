@@ -97,6 +97,11 @@ public class AvailableThesesListFragment extends Fragment {
         btnFilter = view.findViewById(R.id.btnFilter);
         btnCamera = view.findViewById(R.id.btnCamera);
 
+        if(savedInstanceState != null){
+            seekBarValue = savedInstanceState.getInt("seekbar");
+            isRequestedExamChecked = savedInstanceState.getBoolean("checkbox");
+        }
+
         btnFilter.setOnClickListener(view1 -> {
 
             // chiusura della tastiera
@@ -112,10 +117,7 @@ public class AvailableThesesListFragment extends Fragment {
             seekBar = dialogFilter.findViewById(R.id.seekbar_average);
             final TextView average = dialogFilter.findViewById(R.id.average_textview);
 
-            if(savedInstanceState != null){
-               seekBarValue = savedInstanceState.getInt("seekbar");
-               isRequestedExamChecked = savedInstanceState.getBoolean("checkbox");
-            }
+
 
             seekBar.setProgress(seekBarValue - 18);
             String avgString = getResources().getString(R.string.max_avg_constr) + seekBarValue;
@@ -560,7 +562,8 @@ public class AvailableThesesListFragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putString("search", searchView.getQuery().toString());
         outState.putBoolean("checkbox", examsCheckbox.isChecked());
-        outState.putInt("seekbar", seekBar.getProgress() + 18);
+        if (seekBar != null)
+            outState.putInt("seekbar", seekBar.getProgress() + 18);
     }
 }
 
