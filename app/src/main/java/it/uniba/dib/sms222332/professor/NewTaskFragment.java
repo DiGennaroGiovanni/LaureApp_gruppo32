@@ -36,7 +36,7 @@ public class NewTaskFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.newTaskToolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.newTaskToolbar));
 
         View view = inflater.inflate(R.layout.fragment_new_task, container, false);
 
@@ -56,6 +56,12 @@ public class NewTaskFragment extends Fragment {
 
             thesisName = getArguments().getString("thesisName");
             txtThesisName.setText(thesisName);
+        }
+
+        if(savedInstanceState!= null){
+            edtTaskName.setText(savedInstanceState.getString("name"));
+            edtDescription.setText(savedInstanceState.getString("description"));
+            edtEstimatedTime.setText(savedInstanceState.getString("days"));
         }
 
         create_task_button.setOnClickListener(view1 -> createTaskButtonOnClick());
@@ -97,6 +103,13 @@ public class NewTaskFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        outState.putString("name", edtTaskName.getText().toString());
+        outState.putString("description", edtDescription.getText().toString());
+        outState.putString("days", edtEstimatedTime.getText().toString());
+    }
 }
 
