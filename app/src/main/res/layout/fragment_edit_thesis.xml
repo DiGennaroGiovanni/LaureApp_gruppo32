@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#0808275A"
+    android:padding="5dp"
     tools:context=".professor.ThesesListFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:orientation="vertical"
         android:background="@drawable/bordered_white_layout">
 
@@ -38,7 +38,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#4DD3D3D3">
 
             <TextView
                 android:id="@+id/txtTypologyTitle"
@@ -100,7 +101,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#4DD3D3D3">
 
             <TextView
                 android:id="@+id/txtCorrelatorTitle"
@@ -167,7 +169,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#4DD3D3D3">
 
             <TextView
                 android:id="@+id/txtTimeTitle"
@@ -250,7 +253,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#4DD3D3D3">
 
             <TextView
                 android:id="@+id/txtRelatedProjectsTitle"
@@ -333,7 +337,8 @@
             android:id="@+id/examsConstraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#4DD3D3D3">
 
             <TextView
                 android:id="@+id/requiredExamsTitle"
@@ -428,7 +433,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#4DD3D3D3">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSave"
@@ -438,6 +444,7 @@
                 android:text="@string/save_thesis"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="16sp"
+                android:layout_marginBottom="10sp"
                 app:icon="@drawable/ic_save"
                 app:iconSize="20sp"
                 app:iconGravity="textStart"
