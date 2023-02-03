@@ -19,6 +19,7 @@
 
             <TextView
                 android:id="@+id/txtProfessor"
+
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="end"
@@ -29,6 +30,7 @@
 
             <TextView
                 android:id="@+id/txtNomeStudente"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_light"
@@ -52,6 +54,7 @@
 
             <TextView
                 android:id="@+id/txtNomeTesi"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_light"
