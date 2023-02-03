@@ -73,7 +73,6 @@ public class EditTaskFragment extends Fragment {
 
         if (!MainActivity.account.getAccountType().equals("Professor")){
             edtDescription.setEnabled(false);
-            layoutStud.setVisibility(View.GONE);
 
         }
 
