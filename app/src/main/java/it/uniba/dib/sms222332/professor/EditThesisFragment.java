@@ -147,8 +147,7 @@ public class EditThesisFragment extends Fragment {
                 averageCheck.setChecked(false);
                 edtAverage.setEnabled(false);
             }
-            else
-                layoutAvgConstraint.setVisibility(View.GONE);
+
         }
 
         if (!edtRequiredExams.getText().toString().equals("")) {
@@ -159,8 +158,6 @@ public class EditThesisFragment extends Fragment {
                 examCheck.setChecked(false);
                 edtRequiredExams.setEnabled(false);
             }
-            else
-                layoutExamsConstraint.setVisibility(View.GONE);
         }
 
         //AGGIUNGO CARTE IN BASE AI DOCUMENTI CHE CI SONO

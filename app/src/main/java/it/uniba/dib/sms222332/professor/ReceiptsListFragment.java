@@ -51,7 +51,7 @@ public class ReceiptsListFragment extends Fragment {
             String professor = bundle.getString("professor");
 
             if (!professor.equals("")) {
-                String label = getResources().getString(R.string.professor_info_message_student) + " ";
+                String label = getResources().getString(R.string.professor_info_message_student);
                 txtProfessor.setText(label);
                 txtStudent.setText(professor);
             }else

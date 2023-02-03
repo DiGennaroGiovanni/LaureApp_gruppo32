@@ -57,7 +57,7 @@ public class TaskListFragment extends Fragment {
             String professor = getArguments().getString("professor");
 
             if (!professor.equals("")) {
-                String label = getResources().getString(R.string.professor_info_message_student) + " ";
+                String label = getResources().getString(R.string.professor_info_message_student) ;
                 txtProfessor.setText(label);
                 txtStudent.setText(professor);
             }
