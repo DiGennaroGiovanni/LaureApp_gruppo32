@@ -311,9 +311,14 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
             storageReference.child(thesis_name).child(fileName).delete();
         }
 
-        for (Uri uri : newMaterials) {
-            uploadToDatabase(uri);
+        try{
+            for (Uri uri : newMaterials) {
+                uploadToDatabase(thesis_name,uri);
+            }
+        }catch(Exception e) {
+            Log.e("MyThesisFragment", "Errore durante il caricamento file: " + e.getMessage());
         }
+
 
         Snackbar.make(view, R.string.thesis_updated, Snackbar.LENGTH_LONG).show();
 
@@ -341,7 +346,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         startActivityForResult(intent, 86);
     }
 
-    private void uploadToDatabase(Uri uri) {
+    private void uploadToDatabase(String thesisName, Uri uri) {
         // Creazione del riferimento al file sul server di Firebase
         String pdfName = getNameFromUri(uri);
         storageReference = FirebaseStorage.getInstance().getReference(thesisName).child(pdfName);
