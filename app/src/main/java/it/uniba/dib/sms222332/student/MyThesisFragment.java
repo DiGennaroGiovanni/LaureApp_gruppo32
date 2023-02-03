@@ -62,8 +62,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     FirebaseStorage storage;
     Button buttonAdd, btnSave, btnTask, btnReceipt, btnSendMessage, btnCancelRequest;
     Uri fileUri;
-    ArrayList<Uri> newMaterials = new ArrayList<>();
-    ArrayList<String> deletedOldMaterials = new ArrayList<>();
+    ArrayList<Uri> newMaterials;
 
     @Nullable
     @Override
@@ -116,8 +115,9 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         else if(MainActivity.account.getRequest().equals("yes"))
             hasRequested();
         else
-            haveThesis();
+            haveThesis(savedInstanceState);
     }
+
 
     private void hasRequested() {
         layoutState.setVisibility(View.VISIBLE);
@@ -196,11 +196,13 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         layoutButtons.setVisibility(View.GONE);
     }
 
-    private void haveThesis() {
+    private void haveThesis(Bundle bundle) {
         layoutAverageMarks.setVisibility(View.GONE);
         layoutRequiredExams.setVisibility(View.GONE);
         layoutMaterials.setVisibility(View.VISIBLE);
         layoutButtons.setVisibility(View.VISIBLE);
+
+        newMaterials = new ArrayList<>();
 
 
         String thesisName = MainActivity.account.getRequest();
@@ -246,11 +248,17 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                 addDownloadableMaterial(item.getName());
             }
 
+            if(bundle != null){
+                newMaterials = bundle.getParcelableArrayList("new_materials");
+                for(Uri uri : newMaterials)
+                    newMaterial(uri);
+            }
+
         }).addOnFailureListener(exception -> Log.w("info", getString(R.string.error_file), exception));
 
         buttonAdd.setOnClickListener(view -> addNewMaterial());
 
-        btnSave.setOnClickListener(view -> saveNewMaterials(thesisName, view));
+        btnSave.setOnClickListener(view -> saveNewMaterials());
 
         btnTask.setOnClickListener(view -> viewTasks(thesisName));
 
@@ -307,18 +315,16 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
         fragmentTransaction.commit();
     }
 
-    private void saveNewMaterials(String thesis_name, View view) {
-        for (String fileName : deletedOldMaterials) {
-            storageReference.child(thesis_name).child(fileName).delete();
-        }
+    private void saveNewMaterials() {
 
         for (Uri uri : newMaterials) {
             uploadToDatabase(uri);
         }
-
-        Snackbar.make(view, R.string.thesis_updated, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(requireView(), R.string.thesis_updated, Snackbar.LENGTH_LONG).show();
 
         getParentFragmentManager().popBackStack();
+
+
     }
 
     private void addNewMaterial() {
@@ -454,5 +460,12 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
             cursor.close();
         }
         return fileName;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (newMaterials != null)
+            outState.putParcelableArrayList("new_materials",newMaterials);
     }
 }
