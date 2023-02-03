@@ -359,4 +359,5 @@
     <string name="select_typology">Seleziona una tipologia!</string>
     <string name="search_thesis">Cerca una tesi…</string>
     <string name="account_created_message">Account creato correttamente.</string>
+    <string name="no_answer_yet">Non ancora risposto</string>
 </resources>

@@ -68,7 +68,7 @@ public class MessageDescriptionFragment extends Fragment {
             txtMessage.setText(studentMessage);
 
             if (professorMessage.equals(""))
-                edtAnswer.setHint("Not answered yet");
+                edtAnswer.setHint(getResources().getString(R.string.not_answered_yet));
             else
                 edtAnswer.setText(professorMessage);
         }
