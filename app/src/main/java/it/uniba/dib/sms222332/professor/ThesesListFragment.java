@@ -154,68 +154,6 @@ public class ThesesListFragment extends Fragment {
         } catch (Exception e) {
             Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
         }
-
-
-        /*// Istanzio l'AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-
-        // Imposto il titolo customizzato
-        TextView titleView = new TextView(requireContext());
-        titleView.setText(R.string.alertdialog_title);
-        titleView.setGravity(Gravity.CENTER);
-        titleView.setTextSize(25);
-        titleView.setTypeface(null, Typeface.BOLD);
-        titleView.setTextColor(Color.BLACK);
-        titleView.setPadding(0, 50, 0, 0);
-        builder.setCustomTitle(titleView);
-
-        // Definisco il layout per l'inserimento del qr code
-        LinearLayout qrLayout = new LinearLayout(requireContext());
-        qrLayout.setOrientation(LinearLayout.VERTICAL);
-
-        // Definisco l'ImageView che contiene il qr code generato
-        ImageView qr_code_IW = new ImageView(requireContext());
-        qr_code_IW.setImageBitmap(QrGenerator.createQr(thesisName));
-
-        // Definisco il TextView per la descrizione del qr code
-        TextView qr_description = new TextView(requireContext());
-        qr_description.setText(R.string.dialogalert_qr_subtitle);
-        qr_description.setGravity(Gravity.CENTER);
-        qr_description.setPadding(0, 0, 0, 30);
-
-        // Definisco il bottone sotto l'ImageView
-        Button buttonShare = new Button(requireContext());
-        buttonShare.setText(R.string.share_thesis_info);
-        buttonShare.setGravity(Gravity.CENTER);
-        buttonShare.setOnClickListener(view12 -> {
-            try {
-                sharePDF(thesisName);
-            } catch (Exception e) {
-                Log.e("ERRORE", getString(R.string.error) + e.getMessage());
-            }
-        });
-
-        // Imposto i parametri di layout per il bottone
-        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(700, 170);
-        buttonParams.gravity = Gravity.CENTER;
-        buttonShare.setLayoutParams(buttonParams);
-
-        // Aggiungo gli elementi creati al layout
-        qrLayout.addView(qr_code_IW);
-        qrLayout.addView(qr_description);
-        qrLayout.addView(buttonShare);
-
-        builder.setNegativeButton(R.string.close, (dialog, which) -> {
-        });
-
-        // Aggiungo il layout all'AlertDialog
-        builder.setView(qrLayout);
-
-        try {
-            builder.create().show();
-        } catch (Exception e) {
-            Log.e(TAG, getString(R.string.error_share_button) + e);
-        }*/
     }
 
     private void sharePDF(String thesisName) {
