@@ -163,6 +163,7 @@
                 android:text="@string/delete_profile"
                 app:icon="@drawable/ic_account_deleted"
                 app:iconSize="40sp"
+                android:layout_marginBottom="10sp"
                 app:iconGravity="textStart"
                 android:textSize="32sp"
                 android:fontFamily="@font/roboto_medium"
