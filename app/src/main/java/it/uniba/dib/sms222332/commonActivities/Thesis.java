@@ -4,13 +4,13 @@ import java.util.Objects;
 
 public class Thesis {
 
+    private final String name;
+    private String professor;
+
     public Thesis(String name, String professor) {
         this.name = name;
         this.professor = professor;
     }
-
-    private final String name;
-    private String professor;
 
     public String getName() {
         return name;
@@ -20,14 +20,14 @@ public class Thesis {
         return professor;
     }
 
-    public void setProfessor(String professor){
+    public void setProfessor(String professor) {
         this.professor = professor;
     }
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Thesis thesis = (Thesis) o;
         return name.equals(thesis.name) && professor.equals(thesis.professor);
     }

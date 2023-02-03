@@ -47,7 +47,7 @@ public class NewRequestFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisRequestTooolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisRequestTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_new_request, container, false);
 
@@ -89,11 +89,11 @@ public class NewRequestFragment extends Fragment {
             txtRequiredExams.setText(required_exams);
         }
 
-        if(savedInstanceState != null){
-            if(averageRadioGroup.isShown())
+        if (savedInstanceState != null) {
+            if (averageRadioGroup.isShown())
                 averageRadioGroup.check(savedInstanceState.getInt("selected_id_avg"));
 
-            if(examsRadioGroup.isShown())
+            if (examsRadioGroup.isShown())
                 examsRadioGroup.check(savedInstanceState.getInt("selected_id_exm"));
 
             edtNote.setText(savedInstanceState.getString("note"));
@@ -106,7 +106,7 @@ public class NewRequestFragment extends Fragment {
 
     private void requestThesis() {
 
-        if (!required_exams.equals(getResources().getString(R.string.none))  && !rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()) {
+        if (!required_exams.equals(getResources().getString(R.string.none)) && !rdbExamsYes.isChecked() && !rdbExamsNo.isChecked()) {
             txtExamsConstraint.setError(getString(R.string.have_to_choice));
             Snackbar.make(requireView(), R.string.have_to_choice, Snackbar.LENGTH_LONG).show();
 
@@ -162,12 +162,12 @@ public class NewRequestFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putString("note",edtNote.getText().toString());
+        outState.putString("note", edtNote.getText().toString());
 
-        if(averageRadioGroup.isShown())
+        if (averageRadioGroup.isShown())
             outState.putInt("selected_id_avg", averageRadioGroup.getCheckedRadioButtonId());
 
-        if(examsRadioGroup.isShown())
+        if (examsRadioGroup.isShown())
             outState.putInt("selected_id_exm", examsRadioGroup.getCheckedRadioButtonId());
 
     }

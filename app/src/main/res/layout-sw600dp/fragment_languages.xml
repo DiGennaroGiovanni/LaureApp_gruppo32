@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/pattern3"
     android:layout_margin="8dp"
+    android:background="@drawable/pattern3"
+    android:orientation="vertical"
     tools:context=".commonActivities.LanguagesFragment">
 
     <LinearLayout
@@ -18,10 +18,10 @@
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/change_lang"
             android:fontFamily="@font/roboto"
-            android:textColor="@color/black"
+            android:text="@string/change_lang"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="56sp" />
 
         <LinearLayout

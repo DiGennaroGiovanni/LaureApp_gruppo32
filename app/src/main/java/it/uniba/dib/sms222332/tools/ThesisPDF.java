@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class ThesisPDF implements PDFUtility.OnDocumentClose{
+public class ThesisPDF implements PDFUtility.OnDocumentClose {
 
     private static final String TAG = ThesisPDF.class.getSimpleName();
 
@@ -15,7 +15,7 @@ public class ThesisPDF implements PDFUtility.OnDocumentClose{
 
         try {
             File outputFile = new File(context.getExternalFilesDir(null), datiTesi.get("Name") + ".pdf");
-            LinkedHashMap<String,String> lhDatiTesi = convertMaptoLinkedHashMap(datiTesi);
+            LinkedHashMap<String, String> lhDatiTesi = convertMaptoLinkedHashMap(datiTesi);
             PDFUtility.createPdf(context, ThesisPDF.this, lhDatiTesi, true, outputFile);
         } catch (Exception e) {
             Log.e(TAG, "Errore nella creazione del pdf");

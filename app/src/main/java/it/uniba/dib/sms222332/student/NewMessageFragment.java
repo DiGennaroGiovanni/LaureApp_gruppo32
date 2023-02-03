@@ -38,7 +38,7 @@ public class NewMessageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.availableThesisTooolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.availableThesisTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_new_message, container, false);
 
@@ -57,7 +57,7 @@ public class NewMessageFragment extends Fragment {
             txtProfessor.setText(professor);
         }
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             edtObject.setText(savedInstanceState.getString("object"));
             edtMessage.setText(savedInstanceState.getString("msg"));
         }
@@ -94,10 +94,10 @@ public class NewMessageFragment extends Fragment {
 
             db.collection("messaggi").document().set(message);
 
-                    // chiusura della tastiera quando viene effettuato un cambio di fragment
-                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
-                    Snackbar.make(requireView(), "Message sent!", Snackbar.LENGTH_LONG).show();
+            // chiusura della tastiera quando viene effettuato un cambio di fragment
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
+            Snackbar.make(requireView(), "Message sent!", Snackbar.LENGTH_LONG).show();
 
             getParentFragmentManager().popBackStack();
 

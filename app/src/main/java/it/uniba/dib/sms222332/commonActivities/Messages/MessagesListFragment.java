@@ -30,7 +30,7 @@ import it.uniba.dib.sms222332.student.NewMessageFragment;
 public class MessagesListFragment extends Fragment {
 
     LinearLayout messageListLayout;
-    TextView txtNomeProfessore,txtNomeTesi, txtProf;
+    TextView txtNomeProfessore, txtNomeTesi, txtProf;
     String thesis_name;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button btnNewMessage;
@@ -39,7 +39,7 @@ public class MessagesListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.messageContactTooolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.messageContactTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_messages_list, container, false);
         messageListLayout = view.findViewById(R.id.messageListLayout);
@@ -47,11 +47,10 @@ public class MessagesListFragment extends Fragment {
         txtNomeProfessore = view.findViewById(R.id.txtNomeProfessore);
         txtNomeTesi = view.findViewById(R.id.txtNomeTesi);
         btnNewMessage = view.findViewById(R.id.addMessageButton);
-        txtProf =  view.findViewById(R.id.txtProf);
+        txtProf = view.findViewById(R.id.txtProf);
 
 
-
-        if(getArguments() != null){
+        if (getArguments() != null) {
 
             String professor = getArguments().getString("professor");
 
@@ -60,7 +59,6 @@ public class MessagesListFragment extends Fragment {
             txtNomeProfessore.setText(professor);
             txtNomeTesi.setText(thesis_name);
         }
-
 
 
         return view;
@@ -73,10 +71,10 @@ public class MessagesListFragment extends Fragment {
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if(( Objects.equals(document.getString("Student"), MainActivity.account.getEmail()) &&
-                            Objects.equals(document.getString("Thesis Name"), thesis_name) ) ||
+                    if ((Objects.equals(document.getString("Student"), MainActivity.account.getEmail()) &&
+                            Objects.equals(document.getString("Thesis Name"), thesis_name)) ||
                             (Objects.equals(document.getString("Professor"), MainActivity.account.getEmail()) &&
-                                    Objects.equals(document.getString("Thesis Name"), thesis_name))){
+                                    Objects.equals(document.getString("Thesis Name"), thesis_name))) {
                         addMessageCard(document);
 
                     }
@@ -84,20 +82,20 @@ public class MessagesListFragment extends Fragment {
             }
         });
 
-        if(MainActivity.account.getAccountType().equals("Professor")){
+        if (MainActivity.account.getAccountType().equals("Professor")) {
             txtNomeProfessore.setVisibility(View.GONE);
             txtProf.setVisibility(View.GONE);
         }
 
-        if(MainActivity.account.getAccountType().equals("Professor"))
+        if (MainActivity.account.getAccountType().equals("Professor"))
             btnNewMessage.setVisibility(View.GONE);
 
-        else if((MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no") || MainActivity.account.getRequest().equals(thesis_name) )){
+        else if ((MainActivity.account.getRequest().equals("yes") || MainActivity.account.getRequest().equals("no") || MainActivity.account.getRequest().equals(thesis_name))) {
             btnNewMessage.setOnClickListener(view1 -> {
 
                 Bundle bundle = new Bundle();
-                bundle.putString("thesis_name",thesis_name);
-                bundle.putString("professor",txtNomeProfessore.getText().toString());
+                bundle.putString("thesis_name", thesis_name);
+                bundle.putString("professor", txtNomeProfessore.getText().toString());
                 Fragment thesisMessage = new NewMessageFragment();
 
                 thesisMessage.setArguments(bundle);
@@ -109,7 +107,7 @@ public class MessagesListFragment extends Fragment {
                 fragmentTransaction.commit();
             });
         } else {
-            btnNewMessage.setOnClickListener(view12 -> Snackbar.make(requireView(),getResources().getString(R.string.you_can_send_messages),Snackbar.LENGTH_LONG).show());
+            btnNewMessage.setOnClickListener(view12 -> Snackbar.make(requireView(), getResources().getString(R.string.you_can_send_messages), Snackbar.LENGTH_LONG).show());
         }
     }
 
@@ -129,18 +127,17 @@ public class MessagesListFragment extends Fragment {
         String state = document.getString("State");
 
 
-
         txtObject.setText(object);
         txtDate.setText(date);
         txtState.setText(state);
 
         assert state != null;
-        if(state.equals("Not answered"))
+        if (state.equals("Not answered"))
             txtState.setTextColor(Color.RED);
         else
             txtState.setTextColor(Color.parseColor("#178c17"));
 
-        if(MainActivity.account.getAccountType().equals("Professor"))
+        if (MainActivity.account.getAccountType().equals("Professor"))
 
             txtStudente.setText(document.getString("Student"));
         else
@@ -151,10 +148,10 @@ public class MessagesListFragment extends Fragment {
         view.setOnClickListener(view1 -> {
 
             Bundle bundle = new Bundle();
-            bundle.putString("object",object);
-            bundle.putString("professor_message",professor_message);
-            bundle.putString("student_message",student_message);
-            bundle.putString("thesis_name",thesis_name);
+            bundle.putString("object", object);
+            bundle.putString("professor_message", professor_message);
+            bundle.putString("student_message", student_message);
+            bundle.putString("thesis_name", thesis_name);
             bundle.putString("id_message", document.getId());
 
 

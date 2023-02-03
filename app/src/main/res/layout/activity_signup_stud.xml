@@ -24,8 +24,8 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="20dp"
             android:text="@string/type_your_data"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="28sp" />
 
         <EditText
@@ -115,20 +115,20 @@
             android:textAlignment="center"
             android:textSize="20sp" />
 
-    <Spinner
-        android:id="@+id/spinnerFacolta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="#BFBABA"
-        android:contentDescription="@string/spinner_faculty"
-        android:gravity="center"
-        android:minWidth="200dp"
-        android:minHeight="50dp"/>
+        <Spinner
+            android:id="@+id/spinnerFacolta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#BFBABA"
+            android:contentDescription="@string/spinner_faculty"
+            android:gravity="center"
+            android:minWidth="200dp"
+            android:minHeight="50dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonConcludi"
@@ -140,10 +140,10 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/buttonshape"
+            android:fontFamily="@font/roboto_medium"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:text="@string/complete_registration"
-            android:fontFamily="@font/roboto_medium"
             android:textColor="@color/white"
             android:textSize="16sp" />
 

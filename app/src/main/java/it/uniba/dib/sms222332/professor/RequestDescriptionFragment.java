@@ -59,7 +59,7 @@ public class RequestDescriptionFragment extends Fragment {
                 layoutForAvgConstraint.setVisibility(View.GONE);
             else {
                 txtAvgMarks.setText(avgMarks);
-                if(avgConstraint.equals("1"))
+                if (avgConstraint.equals("1"))
                     txtAvgConstraint.setText(R.string.yes);
                 else
                     txtAvgConstraint.setText(R.string.no);
@@ -69,7 +69,7 @@ public class RequestDescriptionFragment extends Fragment {
                 layoutForExamsConstraint.setVisibility(View.GONE);
             else {
                 txtExamsRequired.setText(examsRequired);
-                if(examsConstraint.equals("1"))
+                if (examsConstraint.equals("1"))
                     txtExamsConstraint.setText(R.string.yes);
                 else
                     txtExamsConstraint.setText(R.string.no);

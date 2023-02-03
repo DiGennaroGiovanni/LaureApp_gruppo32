@@ -1,15 +1,15 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/pattern3">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/bordered_white_layout">
+        android:background="@drawable/bordered_white_layout"
+        android:orientation="vertical">
 
 
         <TextView
@@ -44,8 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:paddingHorizontal="10sp"
                 android:gravity="end"
+                android:paddingHorizontal="10sp"
                 android:text="@string/student"
                 android:textColor="@color/black"
                 android:textSize="40sp" />
@@ -55,8 +55,8 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
-                android:text=""
                 android:fontFamily="@font/roboto_light"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="40sp" />
 
@@ -71,8 +71,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:paddingHorizontal="10sp"
                 android:gravity="end"
+                android:paddingHorizontal="10sp"
                 android:text="@string/date_message"
                 android:textColor="@color/black"
                 android:textSize="40sp" />
@@ -105,8 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:paddingHorizontal="10sp"
                 android:gravity="end"
+                android:paddingHorizontal="10sp"
                 android:text="@string/receipt_starting_time"
                 android:textColor="@color/black"
                 android:textSize="40sp" />
@@ -139,8 +139,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:paddingHorizontal="10sp"
                 android:gravity="end"
+                android:paddingHorizontal="10sp"
                 android:text="@string/receipt_ending_time"
                 android:textColor="@color/black"
                 android:textSize="40sp" />
@@ -174,8 +174,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:paddingHorizontal="10sp"
                 android:gravity="end"
+                android:paddingHorizontal="10sp"
                 android:text="@string/description"
                 android:textColor="@color/black"
                 android:textSize="40sp" />
@@ -205,8 +205,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:paddingHorizontal="10sp"
                 android:gravity="end"
+                android:paddingHorizontal="10sp"
                 android:text="@string/addressed_tasks"
                 android:textColor="@color/black"
                 android:textSize="40sp" />
@@ -222,25 +222,25 @@
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#4DD3D3D3"
-        android:gravity="center">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAddReceipt"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:padding="10dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/add_receipt"
-            android:textSize="32sp"
-            app:icon="@drawable/icon_plus"
-            app:iconSize="40sp"/>
-    </LinearLayout>
+            android:background="#4DD3D3D3"
+            android:gravity="center">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddReceipt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:padding="10dp"
+                android:text="@string/add_receipt"
+                android:textSize="32sp"
+                app:icon="@drawable/icon_plus"
+                app:iconSize="40sp" />
+        </LinearLayout>
 
 
     </LinearLayout>

@@ -37,7 +37,7 @@ public class TaskListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.taskListToolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.taskListToolbar));
 
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
 
@@ -57,7 +57,7 @@ public class TaskListFragment extends Fragment {
             String professor = getArguments().getString("professor");
 
             if (!professor.equals("")) {
-                String label = getResources().getString(R.string.professor_info_message_student) ;
+                String label = getResources().getString(R.string.professor_info_message_student);
                 txtProfessor.setText(label);
                 txtStudent.setText(professor);
             }
@@ -71,7 +71,7 @@ public class TaskListFragment extends Fragment {
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if (Objects.equals(document.getString("Thesis"), txtThesisName.getText().toString())){
+                    if (Objects.equals(document.getString("Thesis"), txtThesisName.getText().toString())) {
                         addTaskCard(document);
                         txtNoTask.setVisibility(View.GONE);
                     }
@@ -84,7 +84,7 @@ public class TaskListFragment extends Fragment {
 
         if (MainActivity.account.getAccountType().equals("Student"))
             btnNewTask.setVisibility(View.GONE);
-         else
+        else
             btnNewTask.setOnClickListener(view1 -> newTask());
 
         return view;
@@ -122,7 +122,7 @@ public class TaskListFragment extends Fragment {
         String estTime = document.getString("Estimated Time") + " " + getResources().getString(R.string.days);
         txtEstimatedTime.setText(estTime);
 
-        switch(Integer.parseInt(Objects.requireNonNull(document.getString("State")))){
+        switch (Integer.parseInt(Objects.requireNonNull(document.getString("State")))) {
             case 0:
                 txtState.setText(R.string.not_started_task);
                 break;
@@ -181,7 +181,8 @@ public class TaskListFragment extends Fragment {
             db.collection("tasks").document(txtTaskName.getText().toString()).delete();
         });
 
-        builder.setNegativeButton(R.string.no, (dialog, which) -> {});
+        builder.setNegativeButton(R.string.no, (dialog, which) -> {
+        });
         AlertDialog dialog = builder.create();
 
         dialog.show();

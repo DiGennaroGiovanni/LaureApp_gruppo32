@@ -28,13 +28,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:text="@string/task_name_card"
-                android:fontFamily="@font/roboto_medium"
-                android:textSize="28sp"
                 android:textAllCaps="true"
                 android:textColor="#00213A"
-                 />
+                android:textSize="28sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -53,25 +52,25 @@
                 <TextView
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="top"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/task_state"
-                    android:textSize="20sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/roboto"
-                    android:layout_gravity="top"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtState"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:layout_weight="60"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
                     android:fontFamily="@font/roboto_light"
-                    android:layout_gravity="bottom"/>
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -83,25 +82,25 @@
                 <TextView
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="top"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/task_description_card"
-                    android:textSize="20sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/roboto"
-                    android:layout_gravity="top"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtDescription"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:layout_weight="60"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
                     android:fontFamily="@font/roboto_light"
-                    android:layout_gravity="bottom" />
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -112,25 +111,25 @@
                 <TextView
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="top"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/estimated_time"
-                    android:textSize="20sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/roboto"
-                    android:layout_gravity="top"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtEstimatedTime"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:layout_weight="60"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
                     android:fontFamily="@font/roboto_light"
-                    android:layout_gravity="bottom"/>
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -141,25 +140,24 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnEditThesis"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:icon="@drawable/icon_edit"
-                    app:iconSize="18sp"
-                    app:iconGravity="textStart"
-                    android:text="@string/edit"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_marginHorizontal="3sp"
-                    />
+                    android:text="@string/edit"
+                    app:icon="@drawable/icon_edit"
+                    app:iconGravity="textStart"
+                    app:iconSize="18sp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDeleteThesis"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:icon="@drawable/delete_icon"
-                    app:iconSize="18sp"
-                    app:iconGravity="textStart"
+                    android:layout_marginHorizontal="3sp"
                     android:text="@string/delete"
-                    android:layout_marginHorizontal="3sp"/>
+                    app:icon="@drawable/delete_icon"
+                    app:iconGravity="textStart"
+                    app:iconSize="18sp" />
 
             </LinearLayout>
 

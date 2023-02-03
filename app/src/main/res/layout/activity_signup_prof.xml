@@ -24,8 +24,8 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="20dp"
             android:text="@string/type_your_data"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="28sp" />
 
         <EditText
@@ -125,11 +125,11 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/buttonshape"
+            android:fontFamily="@font/roboto_medium"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:text="@string/complete_registration"
             android:textColor="@color/white"
-            android:fontFamily="@font/roboto_medium"
             android:textSize="16sp" />
     </LinearLayout>
 </ScrollView>

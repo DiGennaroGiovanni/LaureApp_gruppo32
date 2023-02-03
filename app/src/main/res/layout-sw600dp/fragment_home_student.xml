@@ -5,30 +5,30 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:layout_margin="8dp"
-    android:orientation="vertical"
-    android:background="@drawable/pattern3">
+    android:background="@drawable/pattern3"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="600dp"
         android:layout_height="match_parent"
-        android:layout_weight="50"
         android:layout_gravity="center"
+        android:layout_weight="50"
         android:gravity="center">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/allThesisBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_medium"
             android:padding="40dp"
             android:text="@string/all_thesis_button"
-            app:iconGravity="textStart"
             android:textSize="68sp"
-            app:iconSize="80dp"
-            android:fontFamily="@font/roboto_medium"
-            app:icon="@drawable/icon_available_theses"/>
+            app:icon="@drawable/icon_available_theses"
+            app:iconGravity="textStart"
+            app:iconSize="80dp" />
 
     </LinearLayout>
 
@@ -36,24 +36,24 @@
     <LinearLayout
         android:layout_width="600dp"
         android:layout_height="match_parent"
-        android:layout_weight="50"
         android:layout_gravity="center"
+        android:layout_weight="50"
         android:gravity="center">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/myThesisBtn"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:fontFamily="@font/roboto_medium"
-            android:layout_marginEnd="20dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/roboto_medium"
             android:padding="40dp"
             android:text="@string/your_thesis_button"
             android:textSize="68sp"
-            app:iconSize="80dp"
+            app:icon="@drawable/ic_your_thesis"
             app:iconGravity="textStart"
-            app:icon="@drawable/ic_your_thesis"/>
+            app:iconSize="80dp" />
 
     </LinearLayout>
 

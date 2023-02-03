@@ -8,7 +8,7 @@ public class ThesisTouchHelperCallback extends ItemTouchHelper.Callback {
 
     private final FavoritesAdapter adapter;
 
-    public ThesisTouchHelperCallback(FavoritesAdapter adapter){
+    public ThesisTouchHelperCallback(FavoritesAdapter adapter) {
         this.adapter = adapter;
     }
 
@@ -37,11 +37,10 @@ public class ThesisTouchHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
 
-       adapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+        adapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
 
-       return true;
+        return true;
     }
-
 
 
 }

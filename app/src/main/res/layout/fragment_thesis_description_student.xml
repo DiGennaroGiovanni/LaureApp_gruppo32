@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/pattern3">
+    android:background="@drawable/pattern3"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,24 +12,24 @@
         android:layout_weight="1">
 
         <LinearLayout
-            android:layout_margin="7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/bordered_white_layout">
+            android:layout_margin="7dp"
+            android:background="@drawable/bordered_white_layout"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txtNameTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="5sp"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/thesis_name"
                 android:textAlignment="center"
-                android:layout_marginVertical="5sp"
                 android:textAllCaps="true"
                 android:textColor="#00213A"
                 android:textSize="28sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/roboto_medium" />
+                android:textStyle="bold" />
 
             <!--        lineetta divisiva      -->
             <RelativeLayout
@@ -79,12 +79,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/department"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/roboto" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtDepartment"
@@ -102,8 +102,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#4DD3D3D3">
+                android:background="#4DD3D3D3"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtProfessorTitle"
@@ -111,13 +111,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/professor_message"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="normal"
-                    android:fontFamily="@font/roboto" />
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/txtProfessor"
@@ -125,11 +125,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="normal"
-                    android:fontFamily="@font/roboto_light" />
+                    android:textStyle="normal" />
 
             </LinearLayout>
 
@@ -168,8 +168,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#4DD3D3D3">
+                android:background="#4DD3D3D3"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtTimeTitle"
@@ -177,12 +177,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
+                    android:paddingHorizontal="10sp"
                     android:text="@string/estimated_time"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:paddingHorizontal="10sp"
-                    android:fontFamily="@font/roboto" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtTime"
@@ -190,10 +190,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/roboto_light" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -209,12 +209,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/description"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/roboto" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtDescription"
@@ -222,8 +222,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_weight="60"
-                    android:text=""
                     android:fontFamily="@font/roboto_light"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -232,8 +232,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#4DD3D3D3">
+                android:background="#4DD3D3D3"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtRelatedProjectsTitle"
@@ -241,12 +241,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
-                    android:text="@string/related_projects"
                     android:paddingHorizontal="10sp"
+                    android:text="@string/related_projects"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/roboto" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtRelatedProjects"
@@ -254,10 +254,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/roboto_light" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -273,32 +273,32 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/average_marks"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/roboto" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtAverageMarks"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:layout_gravity="bottom"
-                    android:fontFamily="@font/roboto_light"/>
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginBottom="10sp"
                 android:background="#4DD3D3D3"
-                android:layout_marginBottom="10sp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtTitleRequiredExams"
@@ -306,23 +306,23 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/required_exams"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/roboto" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtRequiredExams"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:layout_gravity="bottom"
-                    android:fontFamily="@font/roboto_light" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 

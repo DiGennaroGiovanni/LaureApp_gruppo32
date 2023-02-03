@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:background="@android:color/transparent">
 
     <androidx.cardview.widget.CardView
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
-
 
 
         <LinearLayout
@@ -28,9 +26,9 @@
                 android:layout_gravity="end">
 
                 <ImageView
-                    android:src="@drawable/icon_info"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_info" />
 
             </LinearLayout>
 
@@ -46,12 +44,12 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/object_message"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="20sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtObject"
@@ -59,10 +57,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="60"
-                    android:text=""
                     android:fontFamily="@font/roboto_light"
-                    android:textSize="20sp"
-                    android:textColor="@color/black" />
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -78,12 +76,12 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/student_message"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="20sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtStudente"
@@ -91,10 +89,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="60"
-                    android:text=""
                     android:fontFamily="@font/roboto_light"
-                    android:textSize="20sp"
-                    android:textColor="@color/black" />
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -109,12 +107,12 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/date_message"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="20sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtDate"
@@ -122,18 +120,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="60"
-                    android:text=""
                     android:fontFamily="@font/roboto_light"
-                    android:textSize="20sp"
-                    android:textColor="@color/black" />
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10sp">
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtStateTitle"
@@ -141,12 +139,12 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/state_message"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtState"
@@ -154,10 +152,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="60"
-                    android:text=""
                     android:fontFamily="@font/roboto_light"
-                    android:textSize="20sp"
-                    android:textColor="@color/black" />
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 

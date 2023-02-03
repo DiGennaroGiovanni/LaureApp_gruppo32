@@ -83,7 +83,68 @@ public class GuestAvailableThesesListFragment extends Fragment {
     CheckBox examsCheckbox;
     SeekBar seekBar;
     SearchView searchView;
+    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
+        if (result.getContents() != null) {
+            String onlineUser = MainActivity.account.getEmail();
+            String jsonInput = result.getContents();
+            String thesisName = "";
+            try {
+                JSONObject json = new JSONObject(jsonInput);
+                thesisName = json.getString("name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
+            DocumentReference docRef = db.collection("Tesi").document(thesisName);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot document = task.getResult();
+                    String student = document.getString("Student");
+
+                    assert student != null;
+                    if (student.equals(onlineUser)) {
+                        getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyThesisFragment()).commit();
+                    } else {
+
+                        bundle = new Bundle();
+                        Fragment guestThesis = new ThesisDescriptionGuestFragment();
+
+                        Map<String, Object> datiTesi = document.getData();
+                        assert datiTesi != null;
+                        db.collection("professori").document(Objects.requireNonNull(datiTesi.get("Professor")).toString()).get().addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                bundle.putString("professor", Objects.requireNonNull(task1.getResult().get("Name")) + " " + Objects.requireNonNull(task1.getResult().get("Surname")));
+                                bundle.putString("correlator", (String) datiTesi.get("Correlator"));
+                                bundle.putString("faculty", (String) datiTesi.get("Faculty"));
+                                bundle.putString("name", (String) datiTesi.get("Name"));
+                                bundle.putString("type", (String) datiTesi.get("Type"));
+
+                                guestThesis.setArguments(bundle);
+                                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
+                                fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+    /**
+     * Callback che gestisce la risposta dell'utente alla richiesta di autorizzazione permessi per utilizzare la fotocamera.
+     */
+    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+
+        // Se l'utente ha accettato, avvio la scansione.
+        if (isGranted) {
+            scanQrCode();
+
+        } else {
+            // Nel caso di rifiuto della concessione dei permessi, mostro un messaggio all'utente per spiegare la necessità dei permessi.
+            Snackbar.make(requireView(), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
+        }
+    });
 
     @Nullable
     @Override
@@ -99,7 +160,7 @@ public class GuestAvailableThesesListFragment extends Fragment {
         btnFilter = view.findViewById(R.id.btnFilter);
         btnCamera = view.findViewById(R.id.btnCamera);
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             seekBarValue = savedInstanceState.getInt("seekbar");
             isRequestedExamChecked = savedInstanceState.getBoolean("checkbox");
             examsCheckbox.setChecked(isRequestedExamChecked);
@@ -119,7 +180,6 @@ public class GuestAvailableThesesListFragment extends Fragment {
 
             seekBar = dialogFilter.findViewById(R.id.seekbar_average);
             final TextView average = dialogFilter.findViewById(R.id.average_textview);
-
 
 
             seekBar.setProgress(seekBarValue - 18);
@@ -164,7 +224,7 @@ public class GuestAvailableThesesListFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 layout_lista_tesi.removeAllViews();
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                        addCheckConstraint(document);
+                                    addCheckConstraint(document);
                                 }
                                 dialogFilter.dismiss();
                             }
@@ -235,7 +295,7 @@ public class GuestAvailableThesesListFragment extends Fragment {
             }
         });
 
-        if(savedInstanceState != null)
+        if (savedInstanceState != null)
             searchView.setQuery(savedInstanceState.getString("search"), true);
 
 
@@ -274,7 +334,6 @@ public class GuestAvailableThesesListFragment extends Fragment {
         }
     }
 
-
     private void addCardThesis(QueryDocumentSnapshot document) {
         @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.card_available_thesis, null);
 
@@ -297,19 +356,18 @@ public class GuestAvailableThesesListFragment extends Fragment {
         txtProfessorEmail.setText(professorEmail);
 
 
-        if(Objects.equals(document.getString("Correlator"), "")) {
+        if (Objects.equals(document.getString("Correlator"), "")) {
             txtCorrelator.setText(R.string.none);
         }
 
-        btnStar.setOnClickListener(viewStar -> Snackbar.make(viewStar, R.string.error_guest , Snackbar.LENGTH_LONG).show());
+        btnStar.setOnClickListener(viewStar -> Snackbar.make(viewStar, R.string.error_guest, Snackbar.LENGTH_LONG).show());
 
-        shareBtn.setOnClickListener(view13 -> Snackbar.make(view13, R.string.error_guest , Snackbar.LENGTH_LONG).show());
+        shareBtn.setOnClickListener(view13 -> Snackbar.make(view13, R.string.error_guest, Snackbar.LENGTH_LONG).show());
 
-        view.setOnClickListener(view1 -> Snackbar.make(view1, R.string.error_guest , Snackbar.LENGTH_LONG).show());
+        view.setOnClickListener(view1 -> Snackbar.make(view1, R.string.error_guest, Snackbar.LENGTH_LONG).show());
 
         layout_lista_tesi.addView(view);
     }
-
 
     private void scanQrCode() {
         ScanOptions options = new ScanOptions();
@@ -319,55 +377,6 @@ public class GuestAvailableThesesListFragment extends Fragment {
         options.setCaptureActivity(CaptureAct.class);
         barLauncher.launch(options);
     }
-
-    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
-        if (result.getContents() != null) {
-            String onlineUser = MainActivity.account.getEmail();
-            String jsonInput = result.getContents();
-            String thesisName = "";
-            try {
-                JSONObject json = new JSONObject(jsonInput);
-                thesisName = json.getString("name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            DocumentReference docRef = db.collection("Tesi").document(thesisName);
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    DocumentSnapshot document = task.getResult();
-                    String student = document.getString("Student");
-
-                    assert student != null;
-                    if (student.equals(onlineUser)) {
-                        getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyThesisFragment()).commit();
-                    } else {
-
-                        bundle = new Bundle();
-                        Fragment guestThesis = new ThesisDescriptionGuestFragment();
-
-                        Map<String, Object> datiTesi = document.getData();
-                        assert datiTesi != null;
-                        db.collection("professori").document(Objects.requireNonNull(datiTesi.get("Professor")).toString()).get().addOnCompleteListener(task1 -> {
-                            if (task1.isSuccessful()) {
-                                bundle.putString("professor", Objects.requireNonNull(task1.getResult().get("Name")) + " " + Objects.requireNonNull(task1.getResult().get("Surname")));
-                                bundle.putString("correlator", (String) datiTesi.get("Correlator"));
-                                bundle.putString("faculty", (String) datiTesi.get("Faculty"));
-                                bundle.putString("name", (String) datiTesi.get("Name"));
-                                bundle.putString("type", (String) datiTesi.get("Type"));
-
-                                guestThesis.setArguments(bundle);
-                                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
-                                fragmentTransaction.addToBackStack(null);
-                                fragmentTransaction.commit();
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    });
 
     /**
      * checkPermission è il metodo che gestisce i permessi per utilizzare la fotocamera.
@@ -407,21 +416,6 @@ public class GuestAvailableThesesListFragment extends Fragment {
         }
         return result;
     }
-
-    /**
-     * Callback che gestisce la risposta dell'utente alla richiesta di autorizzazione permessi per utilizzare la fotocamera.
-     */
-    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-
-        // Se l'utente ha accettato, avvio la scansione.
-        if (isGranted) {
-            scanQrCode();
-
-        } else {
-            // Nel caso di rifiuto della concessione dei permessi, mostro un messaggio all'utente per spiegare la necessità dei permessi.
-            Snackbar.make(requireView(), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
-        }
-    });
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {

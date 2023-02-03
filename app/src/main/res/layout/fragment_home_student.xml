@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="@drawable/pattern3"
+    android:gravity="center"
     android:orientation="vertical">
-
 
 
     <RelativeLayout
@@ -16,18 +15,18 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/allThesisBtn"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="@string/all_thesis_button"
-            android:fontFamily="@font/roboto_medium"
-            app:icon="@drawable/icon_available_theses"
-            app:iconSize="40sp"
-            app:iconGravity="textStart"
-            android:textSize="34sp"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="35sp"
-            android:padding="30sp"/>
+            android:fontFamily="@font/roboto_medium"
+            android:padding="30sp"
+            android:text="@string/all_thesis_button"
+            android:textSize="34sp"
+            app:icon="@drawable/icon_available_theses"
+            app:iconGravity="textStart"
+            app:iconSize="40sp" />
 
     </RelativeLayout>
 
@@ -41,16 +40,16 @@
             android:id="@+id/myThesisBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35sp"
             android:fontFamily="@font/roboto_medium"
+            android:padding="30sp"
             android:text="@string/your_thesis_button"
             android:textSize="34sp"
-            android:layout_marginTop="35sp"
-            app:iconGravity="textStart"
             app:icon="@drawable/ic_your_thesis"
-            app:iconSize="40sp"
-            android:padding="30sp"/>
+            app:iconGravity="textStart"
+            app:iconSize="40sp" />
 
     </RelativeLayout>
 

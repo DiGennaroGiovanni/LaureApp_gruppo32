@@ -28,12 +28,12 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/receipt_date"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="40sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
 
                 <TextView
                     android:id="@+id/txtReceiptDateCard"
@@ -41,10 +41,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="60"
-                    android:text="@string/receipt_date_txt"
                     android:fontFamily="@font/roboto_light"
-                    android:textSize="40sp"
-                    android:textColor="@color/black" />
+                    android:text="@string/receipt_date_txt"
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
 
             </LinearLayout>
 
@@ -57,12 +57,12 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/receipt_starting_time"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="40sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
 
                 <TextView
                     android:id="@+id/txtReceiptStartTimeCard"
@@ -70,10 +70,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="60"
-                    android:text="@string/receipt_starting_time_txt"
                     android:fontFamily="@font/roboto_light"
-                    android:textSize="40sp"
-                    android:textColor="@color/black" />
+                    android:text="@string/receipt_starting_time_txt"
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
 
             </LinearLayout>
 
@@ -86,12 +86,12 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/receipt_ending_time"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="40sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
 
                 <TextView
                     android:id="@+id/txtReceiptEndTimeCard"
@@ -99,10 +99,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="60"
-                    android:text="@string/receipt_ending_time_txt"
                     android:fontFamily="@font/roboto_light"
-                    android:textSize="40sp"
-                    android:textColor="@color/black" />
+                    android:text="@string/receipt_ending_time_txt"
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
 
             </LinearLayout>
 
@@ -115,12 +115,12 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/receipt_tasks_handled"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="40sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
 
                 <TextView
                     android:id="@+id/addressedTasksCard"
@@ -128,10 +128,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="60"
-                    android:text="@string/receipt_tasks_lis"
                     android:fontFamily="@font/roboto_light"
-                    android:textSize="40sp"
-                    android:textColor="@color/black" />
+                    android:text="@string/receipt_tasks_lis"
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
 
             </LinearLayout>
 
@@ -144,12 +144,12 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
                     android:gravity="end"
                     android:paddingHorizontal="10sp"
                     android:text="@string/receipt_description"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="40sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
 
                 <TextView
                     android:id="@+id/txtReceiptDescriptionCard"
@@ -157,10 +157,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="60"
-                    android:text="@string/receipt_description_txt"
                     android:fontFamily="@font/roboto_light"
-                    android:textSize="40sp"
-                    android:textColor="@color/black" />
+                    android:text="@string/receipt_description_txt"
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
             </LinearLayout>
 
         </LinearLayout>

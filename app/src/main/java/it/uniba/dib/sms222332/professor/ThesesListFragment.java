@@ -1,15 +1,10 @@
 package it.uniba.dib.sms222332.professor;
 
-import static android.content.ContentValues.TAG;
-
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +15,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -57,7 +51,7 @@ public class ThesesListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisListToolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisListToolbar));
 
         View view = inflater.inflate(R.layout.fragment_thesis_list, container, false);
 
@@ -70,7 +64,7 @@ public class ThesesListFragment extends Fragment {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             String professorEmail = document.getString("Professor");
                             String correlatorEmail = document.getString("Correlator");
-                            String myName = MainActivity.account.getName()+" " + MainActivity.account.getSurname();
+                            String myName = MainActivity.account.getName() + " " + MainActivity.account.getSurname();
                             if (Objects.equals(professorEmail, MainActivity.account.getEmail()) || Objects.equals(correlatorEmail, myName)) {
                                 addCardThesis(document);
                             }
@@ -99,7 +93,7 @@ public class ThesesListFragment extends Fragment {
 
         if (Objects.equals(document.getString("Student"), ""))
             txtStudentThesis.setText(R.string.none);
-         else
+        else
             txtStudentThesis.setText(document.getString("Student"));
 
 

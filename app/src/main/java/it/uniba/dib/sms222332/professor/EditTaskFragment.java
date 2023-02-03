@@ -43,7 +43,7 @@ public class EditTaskFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.editTaskToolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.editTaskToolbar));
 
         View view = inflater.inflate(R.layout.fragment_edit_task, container, false);
 
@@ -71,7 +71,7 @@ public class EditTaskFragment extends Fragment {
             txtEstimatedTime.setText(estTime);
         }
 
-        if (!MainActivity.account.getAccountType().equals("Professor")){
+        if (!MainActivity.account.getAccountType().equals("Professor")) {
             edtDescription.setEnabled(false);
 
         }
@@ -95,7 +95,7 @@ public class EditTaskFragment extends Fragment {
 
         btnSave.setOnClickListener(view1 -> saveTask());
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             edtDescription.setText(savedInstanceState.getString("description"));
             radioGroup.check(savedInstanceState.getInt("selected_id"));
         }
@@ -136,7 +136,7 @@ public class EditTaskFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        if(MainActivity.account.getAccountType().equals("Professor"))
+        if (MainActivity.account.getAccountType().equals("Professor"))
             outState.putString("description", edtDescription.getText().toString());
         int selectedRadioBtnId = radioGroup.getCheckedRadioButtonId();
         outState.putInt("selected_id", selectedRadioBtnId);

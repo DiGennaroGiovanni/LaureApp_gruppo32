@@ -15,13 +15,13 @@ import it.uniba.dib.sms222332.R;
 
 public class ThesisDescriptionGuestFragment extends Fragment {
 
-    TextView txtNameTitle, txtType, txtDepartment,  txtCorrelator, txtProfessor;
+    TextView txtNameTitle, txtType, txtDepartment, txtCorrelator, txtProfessor;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(R.string.thesis_info);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.thesis_info);
 
         View view = inflater.inflate(R.layout.fragment_thesis_description_guest, container, false);
 

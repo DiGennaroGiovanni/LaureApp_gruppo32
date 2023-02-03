@@ -58,12 +58,93 @@ import it.uniba.dib.sms222332.tools.CaptureAct;
 
 public class MainActivityGuest extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
+        if (result.getContents() != null) {
+
+            String jsonInput = result.getContents();
+            String thesisName = "";
+            try {
+                JSONObject json = new JSONObject(jsonInput);
+                thesisName = json.getString("name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            DocumentReference docRef = db.collection("Tesi").document(thesisName);
+            docRef.get().addOnCompleteListener(task -> {
+                DocumentSnapshot document = task.getResult();
+
+                Bundle bundle = new Bundle();
+                Fragment guestThesis = new ThesisDescriptionGuestFragment();
+
+                Map<String, Object> datiTesi = document.getData();
+                assert datiTesi != null;
+                db.collection("professori").document(Objects.requireNonNull(datiTesi.get("Professor")).toString()).get().addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        bundle.putString("professor", Objects.requireNonNull(task1.getResult().get("Name")) + " " + Objects.requireNonNull(task1.getResult().get("Surname")));
+                        bundle.putString("correlator", (String) datiTesi.get("Correlator"));
+                        bundle.putString("description", (String) datiTesi.get("Description"));
+                        bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
+                        bundle.putString("faculty", (String) datiTesi.get("Faculty"));
+                        bundle.putString("name", (String) datiTesi.get("Name"));
+                        bundle.putString("type", (String) datiTesi.get("Type"));
+                        bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
+                        bundle.putString("average_marks", (String) datiTesi.get("Average"));
+                        bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
+                        bundle.putString("professor_email", (String) datiTesi.get("Professor"));
+
+                        guestThesis.setArguments(bundle);
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+                });
+            });
+        }
+    });
+    /**
+     * Callback che gestisce la risposta dell'utente alla richiesta di autorizzazione permessi per utilizzare la fotocamera.
+     */
+    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+
+        // Se l'utente ha accettato, avvio la scansione.
+        if (isGranted) {
+            scanQrCode();
+
+        } else {
+            // Nel caso di rifiuto della concessione dei permessi, mostro un messaggio all'utente per spiegare la necessità dei permessi.
+            Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
+        }
+    });
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNav;
     private NavigationView navigationView;
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private LanguageManager lang;
+    @SuppressLint("NonConstantResourceId")
+    private final NavigationBarView.OnItemSelectedListener navListener = item -> {
 
+        switch (item.getItemId()) {
+
+            case R.id.star_button:
+                messageError();
+            case R.id.chat_button:
+                messageError();
+                break;
+
+            case R.id.home_button:
+            default:
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+                getSupportFragmentManager().beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                        .replace(R.id.fragment_container, new GuestHomeFragment())
+                        .commit();
+
+                selectBottomNavigationBarItem();
+        }
+        return true;
+    };
+    private LanguageManager lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +153,7 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
         setContentView(R.layout.guest_activity_main);
 
         lang = new LanguageManager(this);
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             lang.updateResource(savedInstanceState.getString("lang"));
         }
 
@@ -102,38 +183,10 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
         }
     }
 
-
-
-    @SuppressLint("NonConstantResourceId")
-    private final NavigationBarView.OnItemSelectedListener navListener = item -> {
-
-        switch (item.getItemId()) {
-
-            case R.id.star_button:
-                messageError();
-            case R.id.chat_button:
-                messageError();
-                break;
-
-            case R.id.home_button:
-            default:
-                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
-                getSupportFragmentManager().beginTransaction()
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                        .replace(R.id.fragment_container, new GuestHomeFragment())
-                        .commit();
-
-                selectBottomNavigationBarItem();
-        }
-        return true;
-    };
-
     private void messageError() {
         View rootView = findViewById(android.R.id.content);
-        Snackbar.make(rootView, R.string.error_guest , Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(rootView, R.string.error_guest, Snackbar.LENGTH_SHORT).show();
     }
-
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -147,13 +200,13 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
                 break;
 
             case R.id.nav_scan_qr:
-                if(checkPermission()) scanQrCode();
+                if (checkPermission()) scanQrCode();
                 break;
 
             case R.id.nav_logout:
-                    Intent intent = new Intent(MainActivityGuest.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
+                Intent intent = new Intent(MainActivityGuest.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
                 break;
         }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -166,7 +219,6 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
         return true;
     }
 
-
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START))
@@ -174,12 +226,10 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
 
         else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
-        } else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof GuestHomeFragment)){
+        } else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof GuestHomeFragment)) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new GuestHomeFragment()).commit();
             bottomNav.setSelectedItemId(R.id.home_button);
-        }
-
-        else {
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.exit_app_confirm);
             builder.setMessage(R.string.exit_app_question);
@@ -201,8 +251,6 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
         }
     }
 
-
-
     private void scanQrCode() {
         ScanOptions options = new ScanOptions();
         options.setPrompt("Volume up to flash on ");
@@ -212,59 +260,14 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
         barLauncher.launch(options);
     }
 
-
-    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result ->  {
-        if(result.getContents() != null) {
-
-            String jsonInput = result.getContents();
-            String thesisName = "";
-            try {
-                JSONObject json = new JSONObject(jsonInput);
-                thesisName = json.getString("name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            DocumentReference docRef = db.collection("Tesi").document(thesisName);
-            docRef.get().addOnCompleteListener(task -> {
-                DocumentSnapshot document = task.getResult();
-
-                    Bundle bundle = new Bundle();
-                    Fragment guestThesis = new ThesisDescriptionGuestFragment();
-
-                    Map<String, Object> datiTesi = document.getData();
-                assert datiTesi != null;
-                db.collection("professori").document(Objects.requireNonNull(datiTesi.get("Professor")).toString()).get().addOnCompleteListener(task1 -> {
-                    if(task1.isSuccessful()) {
-                        bundle.putString("professor", Objects.requireNonNull(task1.getResult().get("Name")) + " " + Objects.requireNonNull(task1.getResult().get("Surname")));
-                        bundle.putString("correlator", (String) datiTesi.get("Correlator"));
-                        bundle.putString("description", (String) datiTesi.get("Description"));
-                        bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
-                        bundle.putString("faculty", (String) datiTesi.get("Faculty"));
-                        bundle.putString("name", (String) datiTesi.get("Name"));
-                        bundle.putString("type", (String) datiTesi.get("Type"));
-                        bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
-                        bundle.putString("average_marks", (String) datiTesi.get("Average"));
-                        bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
-                        bundle.putString("professor_email", (String) datiTesi.get("Professor"));
-
-                        guestThesis.setArguments(bundle);
-                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-                    }
-                });
-            });
-        }
-    });
-
     /**
      * checkPermission è il metodo che gestisce i permessi per utilizzare la fotocamera.
-     *
+     * <p>
      * Nel caso in cui l'utente non fornisce l'autorizzazioen per utilizzare la fotocamera, il sistemare
      * provvederà a fornire un feedback all'utente per spiegare l'utilità dei permessi.
-     *
+     * <p>
      * Nel
+     *
      * @return result true se i permessi sono stati concessi
      */
     private boolean checkPermission() {
@@ -289,29 +292,13 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
 
             AlertDialog dialog = builder.create();
             dialog.show();  // Avvio la visualizzazione dell'AlertDialog.
-        }
-        else {
+        } else {
             // Avvio la procedura di autorizzazione dei permessi.
             requestPermissionLauncher.launch(CAMERA);
         }
 
         return result;
     }
-
-    /**
-     * Callback che gestisce la risposta dell'utente alla richiesta di autorizzazione permessi per utilizzare la fotocamera.
-     */
-    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-
-        // Se l'utente ha accettato, avvio la scansione.
-        if (isGranted) {
-            scanQrCode();
-
-        } else {
-            // Nel caso di rifiuto della concessione dei permessi, mostro un messaggio all'utente per spiegare la necessità dei permessi.
-            Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
-        }
-    });
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {

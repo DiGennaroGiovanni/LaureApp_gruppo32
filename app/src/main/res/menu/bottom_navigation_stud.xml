@@ -4,17 +4,17 @@
     <item
         android:id="@+id/home_button"
         android:icon="@drawable/icon_home"
-        android:title="@string/home_button_text"/>
+        android:title="@string/home_button_text" />
 
     <item
         android:id="@+id/star_button"
         android:icon="@drawable/icon_star_full"
-        android:title="@string/star_button_text"/>
+        android:title="@string/star_button_text" />
 
     <item
         android:id="@+id/chat_button"
         android:icon="@drawable/icon_chat"
-        android:title="@string/chat_button_text"/>
+        android:title="@string/chat_button_text" />
 
 
 </menu>

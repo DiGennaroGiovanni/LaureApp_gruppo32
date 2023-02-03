@@ -14,8 +14,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -32,17 +30,18 @@ public class FavoritesFragment extends Fragment {
     TextView txtNoFavorites;
     RecyclerView recyclerView;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.favoritesToolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.favoritesToolbar));
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view);
         txtNoFavorites = view.findViewById(R.id.noFavorites);
 
 
-        if(MainActivity.theses.isEmpty())
+        if (MainActivity.theses.isEmpty())
             txtNoFavorites.setVisibility(View.VISIBLE);
         else
             txtNoFavorites.setVisibility(View.GONE);
@@ -56,7 +55,7 @@ public class FavoritesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        adapter = new FavoritesAdapter(MainActivity.theses,requireActivity());
+        adapter = new FavoritesAdapter(MainActivity.theses, requireActivity());
         adapter.setOnClickListener(view1 -> {
 
             Thesis thesis = (Thesis) view1.getTag();

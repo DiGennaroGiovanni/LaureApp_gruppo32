@@ -38,7 +38,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -57,7 +56,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     LinearLayout layoutThesisAccepted, layoutButtons, layoutMaterials, layoutRequiredExams, layoutButtonCancelRequest, layoutState, layoutAverageMarks;
     LinearLayout layout_lista_file;
-    RelativeLayout   layoutNoThesis;
+    RelativeLayout layoutNoThesis;
     StorageReference storageReference, ref;
     FirebaseStorage storage;
     Button buttonAdd, btnSave, btnTask, btnReceipt, btnSendMessage, btnCancelRequest;
@@ -67,7 +66,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisInfoTooolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisInfoTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_my_thesis, container, false);
 
@@ -110,9 +109,9 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if(MainActivity.account.getRequest().equals("no"))
+        if (MainActivity.account.getRequest().equals("no"))
             noRequest();
-        else if(MainActivity.account.getRequest().equals("yes"))
+        else if (MainActivity.account.getRequest().equals("yes"))
             hasRequested();
         else
             haveThesis(savedInstanceState);
@@ -159,7 +158,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                                 else
                                     txtCorrelator.setText(document.getString("Correlator"));
 
-                                String estimatedTime = document.getString("Estimated Time") +" " + getResources().getString(R.string.days);
+                                String estimatedTime = document.getString("Estimated Time") + " " + getResources().getString(R.string.days);
                                 txtTime.setText(estimatedTime);
 
                                 txtDescription.setText(document.getString("Description"));
@@ -247,9 +246,9 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
                 addDownloadableMaterial(item.getName());
             }
 
-            if(bundle != null){
+            if (bundle != null) {
                 newMaterials = bundle.getParcelableArrayList("new_materials");
-                for(Uri uri : newMaterials)
+                for (Uri uri : newMaterials)
                     newMaterial(uri);
             }
 
@@ -317,7 +316,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     private void saveNewMaterials(String thesisName) {
 
         for (Uri uri : newMaterials) {
-            uploadToDatabase(thesisName,uri);
+            uploadToDatabase(thesisName, uri);
         }
         Snackbar.make(requireView(), R.string.thesis_updated, Snackbar.LENGTH_LONG).show();
 
@@ -430,18 +429,18 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode) {
+        switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE:
 
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                     Snackbar.make(requireView(), "Permission granted", Snackbar.LENGTH_SHORT).show();
                 break;
 
             case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
 
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                     uploadFile();
-                 else
+                else
                     buttonAdd.setOnClickListener(view -> Snackbar.make(requireView(), R.string.not_read_permissions, Snackbar.LENGTH_LONG).show());
                 break;
 
@@ -463,6 +462,6 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         if (newMaterials != null)
-            outState.putParcelableArrayList("new_materials",newMaterials);
+            outState.putParcelableArrayList("new_materials", newMaterials);
     }
 }

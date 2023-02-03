@@ -48,7 +48,7 @@ public class NewReceiptFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new_receipt, container, false);
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.newReceiptToolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.newReceiptToolbar));
 
 
         txtStudent = view.findViewById(R.id.txtStudentEmail);
@@ -83,7 +83,7 @@ public class NewReceiptFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             txtReceiptDate.setText(savedInstanceState.getString("date"));
             txtStartTime.setText(savedInstanceState.getString("start"));
             txtEndTime.setText(savedInstanceState.getString("end"));
@@ -266,7 +266,7 @@ public class NewReceiptFragment extends Fragment {
 
         outState.putString("date", txtReceiptDate.getText().toString());
         outState.putString("start", txtStartTime.getText().toString());
-        outState.putString("end",  txtEndTime.getText().toString());
+        outState.putString("end", txtEndTime.getText().toString());
         outState.putString("description", edtDescription.getText().toString());
         outState.putStringArrayList("tasks", addressedTasks);
     }

@@ -12,21 +12,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/bordered_white_layout">
+        android:background="@drawable/bordered_white_layout"
+        android:orientation="vertical">
 
 
         <TextView
             android:id="@+id/txtThesisName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="5sp"
             android:background="@null"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/thesis_name"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#00213A"
-            android:layout_marginVertical="5sp"
             android:textSize="28sp" />
 
         <!--        lineetta divisiva      -->
@@ -109,8 +109,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#4DD3D3D3">
+                android:background="#4DD3D3D3"
+                android:orientation="horizontal">
 
                 <TextView
 
@@ -181,8 +181,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#4DD3D3D3">
+                android:background="#4DD3D3D3"
+                android:orientation="horizontal">
 
                 <TextView
 
