@@ -296,6 +296,7 @@ public class MyThesisFragment extends Fragment implements ActivityCompat.OnReque
 
         bundle.putString("thesisName", thesis_name);
         bundle.putString("professor", txtProfessor.getText().toString());
+        bundle.putString("student", MainActivity.account.getEmail());
 
         taskListFragment.setArguments(bundle);
 
