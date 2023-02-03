@@ -89,6 +89,15 @@ public class NewRequestFragment extends Fragment {
             txtRequiredExams.setText(required_exams);
         }
 
+        if(savedInstanceState != null){
+            if(averageRadioGroup.isShown())
+                averageRadioGroup.check(savedInstanceState.getInt("selected_id_avg"));
+
+            if(examsRadioGroup.isShown())
+                examsRadioGroup.check(savedInstanceState.getInt("selected_id_exm"));
+
+            edtNote.setText(savedInstanceState.getString("note"));
+        }
 
         btnThesisRequest.setOnClickListener(view1 -> requestThesis());
 
@@ -147,5 +156,19 @@ public class NewRequestFragment extends Fragment {
 
             getParentFragmentManager().popBackStack();
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("note",edtNote.getText().toString());
+
+        if(averageRadioGroup.isShown())
+            outState.putInt("selected_id_avg", averageRadioGroup.getCheckedRadioButtonId());
+
+        if(examsRadioGroup.isShown())
+            outState.putInt("selected_id_exm", examsRadioGroup.getCheckedRadioButtonId());
+
     }
 }
