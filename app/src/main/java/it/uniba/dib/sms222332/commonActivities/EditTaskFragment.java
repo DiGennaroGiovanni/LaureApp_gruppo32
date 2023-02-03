@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.professor;
+package it.uniba.dib.sms222332.commonActivities;
 
 import android.content.Context;
 import android.os.Bundle;

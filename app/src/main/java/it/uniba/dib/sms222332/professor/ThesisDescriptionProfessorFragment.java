@@ -37,6 +37,8 @@ import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
+import it.uniba.dib.sms222332.commonActivities.ReceiptsListFragment;
+import it.uniba.dib.sms222332.commonActivities.TaskListFragment;
 
 public class ThesisDescriptionProfessorFragment extends Fragment {
 

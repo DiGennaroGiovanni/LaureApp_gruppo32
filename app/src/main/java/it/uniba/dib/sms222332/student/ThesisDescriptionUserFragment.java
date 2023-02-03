@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.commonActivities;
+package it.uniba.dib.sms222332.student;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
