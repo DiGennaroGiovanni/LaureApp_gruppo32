@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0808275A"
+    tools:context=".professor.ThesesListFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtNameTitle"
+            android:text="@string/thesis_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#00213A"
+            android:textSize="56sp"
+            android:fontFamily="@font/roboto_medium" />
+
+        <!--        lineetta divisiva      -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10sp"
+            android:background="#4D000000" />
+
+        <TextView
+            android:id="@+id/txtObjectTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="start"
+            android:text="@string/object_info_message"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtObject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtMessageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="start"
+            android:text="@string/student_info_message"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtAnswerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="start"
+            android:text="@string/professor_info_message"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtAnswer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:text=""
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="32sp"
+                android:text="@string/add_answer" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

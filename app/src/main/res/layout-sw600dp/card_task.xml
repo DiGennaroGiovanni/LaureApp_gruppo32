@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/thesisCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp">
+
+        <LinearLayout
+            android:id="@+id/cardMaterial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3sp"
+            android:layout_marginTop="3sp"
+            android:layout_marginEnd="3sp"
+            android:layout_marginBottom="3sp"
+            android:background="@drawable/custom_shape"
+            android:orientation="vertical"
+            android:padding="4sp">
+
+            <TextView
+                android:id="@+id/txtTaskName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/task_name_card"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="56sp"
+                android:textAllCaps="true"
+                android:textColor="#00213A"
+                 />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="10sp"
+                android:background="#4D000000">
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/task_state"
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top"/>
+
+                <TextView
+                    android:id="@+id/txtState"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="60"
+                    android:text=""
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/task_description_card"
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top"/>
+
+                <TextView
+                    android:id="@+id/txtDescription"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="60"
+                    android:text=""
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/estimated_time"
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="top"/>
+
+                <TextView
+                    android:id="@+id/txtEstimatedTime"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="60"
+                    android:text=""
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_gravity="bottom"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEditThesis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/icon_edit"
+                    app:iconSize="32sp"
+                    app:iconGravity="textStart"
+                    android:textSize="32sp"
+                    android:text="@string/edit"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_marginHorizontal="3sp"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDeleteThesis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/delete_icon"
+                    app:iconSize="32sp"
+                    android:textSize="32sp"
+                    app:iconGravity="textStart"
+                    android:text="@string/delete"
+                    android:layout_marginHorizontal="3sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
+
