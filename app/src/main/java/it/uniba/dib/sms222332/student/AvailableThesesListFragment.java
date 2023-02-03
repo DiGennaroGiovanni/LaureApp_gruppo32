@@ -333,26 +333,7 @@ public class AvailableThesesListFragment extends Fragment {
             txtCorrelator.setText(R.string.none);
         }
 
-        shareBtn.setOnClickListener(view13 -> {
-
-            final Dialog dialogQr = new Dialog(requireContext());
-            dialogQr.setContentView(R.layout.dialog_qr);
-
-            ImageView qrImageView = dialogQr.findViewById(R.id.qr_image);
-            qrImageView.setImageBitmap(QrGenerator.createQr(thesisName));
-
-            Button buttonShare = dialogQr.findViewById(R.id.share_button);
-            buttonShare.setOnClickListener(view12 -> openShareDialog(thesisName));
-
-            Button dismissButton = dialogQr.findViewById(R.id.dismiss_button);
-            dismissButton.setOnClickListener(view14 -> dialogQr.dismiss());
-
-            try {
-                dialogQr.show();
-            } catch (Exception e) {
-                Log.e(TAG, "Errore nell'onClick del shareButton : " + e);
-            }
-        });
+        shareBtn.setOnClickListener(view13 -> {openShareDialog(thesisName);});
 
         view.setOnClickListener(view1 -> {
 
