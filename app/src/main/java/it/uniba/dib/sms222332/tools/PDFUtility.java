@@ -225,22 +225,4 @@ final public class PDFUtility {
     public interface OnDocumentClose {
         void onPDFDocumentClose(File file);
     }
-
-/*    private static Image getImage(byte[] imageByte, boolean isTintingRequired) throws BadElementException, IOException {
-        Paint paint = new Paint();
-        if (isTintingRequired) {
-            paint.setColorFilter(new PorterDuffColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN));
-        }
-        Bitmap input = BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length);
-        Bitmap output = Bitmap.createBitmap(input.getWidth(), input.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-        canvas.drawBitmap(input, 0, 0, paint);
-
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        output.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        Image image = Image.getInstance(stream.toByteArray());
-        image.setWidthPercentage(80);
-        return image;
-    }*/
-
 }
