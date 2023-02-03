@@ -396,7 +396,6 @@ public class NewThesisFragment extends Fragment {
         if (examCheck.isChecked()) {
             outState.putString("exams_value", edtRequestedExams.getText().toString());
         }
-
         outState.putParcelableArrayList("uris", uris);
 
     }
