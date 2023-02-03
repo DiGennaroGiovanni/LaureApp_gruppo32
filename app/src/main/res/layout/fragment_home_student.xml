@@ -5,7 +5,10 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="#0808275A"
+
     android:orientation="vertical">
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"

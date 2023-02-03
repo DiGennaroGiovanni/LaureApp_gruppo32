@@ -31,6 +31,7 @@
                     android:text="@string/thesis_name"
                     android:textAlignment="center"
                     android:textAllCaps="true"
+                    android:layout_marginVertical="5sp"
                     android:textColor="#00213A"
                     android:textSize="28sp" />
 
