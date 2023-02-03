@@ -27,22 +27,21 @@ public class GuestHomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_guest_home_student, container, false);
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.homeToolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.homeToolbar));
 
         btnAvailableTheses = view.findViewById(R.id.allThesisBtn);
         btnMyThesis = view.findViewById(R.id.myThesisBtn);
 
 
-        btnAvailableTheses.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.icon_available_theses,0);
+        btnAvailableTheses.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.icon_available_theses, 0);
         btnAvailableTheses.setOnClickListener(view1 -> seeAvailableTheses());
 
-        btnMyThesis.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_your_thesis,0);
+        btnMyThesis.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_your_thesis, 0);
         btnMyThesis.setOnClickListener(view12 ->
-        Snackbar.make(view12, R.string.error_guest , Snackbar.LENGTH_SHORT).show());
+                Snackbar.make(view12, R.string.error_guest, Snackbar.LENGTH_SHORT).show());
 
         return view;
     }
-
 
 
     private void seeAvailableTheses() {

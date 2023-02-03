@@ -7,8 +7,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/pattern3"
-        android:layout_above="@+id/layoutButtons">
+        android:layout_above="@+id/layoutButtons"
+        android:background="@drawable/pattern3">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -45,9 +45,9 @@
                     android:id="@+id/notAcceptedState"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#33FF0000"
                     android:orientation="horizontal"
-                    android:visibility="gone"
-                    android:background="#33FF0000">
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/txtStateTitle"
@@ -137,8 +137,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="#4DD3D3D3">
+                    android:background="#4DD3D3D3"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtProfessorTitle"
@@ -197,8 +197,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="#4DD3D3D3">
+                    android:background="#4DD3D3D3"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtTimeTitle"
@@ -259,8 +259,8 @@
                     android:id="@+id/layoutRelatedProject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="#4DD3D3D3">
+                    android:background="#4DD3D3D3"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtRelatedProjectsTitle"
@@ -324,8 +324,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10sp"
-                    android:orientation="horizontal"
-                    android:background="#4DD3D3D3">
+                    android:background="#4DD3D3D3"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtTitleRequiredExams"
@@ -397,16 +397,16 @@
                                 android:backgroundTint="#B31C4F7E"
                                 android:fontFamily="@font/roboto_medium"
                                 android:text="@string/button_add_material"
-                                android:textSize="32sp"/>
+                                android:textSize="32sp" />
 
-<!--                            <com.google.android.material.button.MaterialButton-->
-<!--                                android:id="@+id/buttonAdd"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_margin="5sp"-->
-<!--                                android:backgroundTint="#B31C4F7E"-->
-<!--                                android:fontFamily="@font/roboto_medium"-->
-<!--                                android:text="@string/button_add_material" />-->
+                            <!--                            <com.google.android.material.button.MaterialButton-->
+                            <!--                                android:id="@+id/buttonAdd"-->
+                            <!--                                android:layout_width="wrap_content"-->
+                            <!--                                android:layout_height="wrap_content"-->
+                            <!--                                android:layout_margin="5sp"-->
+                            <!--                                android:backgroundTint="#B31C4F7E"-->
+                            <!--                                android:fontFamily="@font/roboto_medium"-->
+                            <!--                                android:text="@string/button_add_material" />-->
 
 
                             <com.google.android.material.button.MaterialButton
@@ -477,10 +477,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        android:visibility="gone"
         android:background="@color/white"
-        android:elevation="4dp">
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"

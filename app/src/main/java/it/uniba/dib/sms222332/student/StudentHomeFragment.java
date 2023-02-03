@@ -25,7 +25,7 @@ public class StudentHomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_student, container, false);
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.homeToolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.homeToolbar));
 
         btnAvailableTheses = view.findViewById(R.id.allThesisBtn);
         btnMyThesis = view.findViewById(R.id.myThesisBtn);

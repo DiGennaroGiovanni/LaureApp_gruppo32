@@ -24,8 +24,8 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="20dp"
             android:text="@string/type_your_data"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="42sp" />
 
         <EditText
@@ -37,10 +37,10 @@
             android:autofillHints=""
             android:hint="@string/first_name"
             android:inputType="text|textAutoComplete"
-            android:textSize="40sp"
             android:minWidth="400dp"
             android:minHeight="50dp"
-            android:textColorHint="#757575" />
+            android:textColorHint="#757575"
+            android:textSize="40sp" />
 
         <EditText
             android:id="@+id/edtCognomeProf"
@@ -53,11 +53,11 @@
             android:layout_marginBottom="20dp"
             android:autofillHints=""
             android:hint="@string/last_name"
-            android:textSize="40sp"
             android:inputType="text|textAutoComplete"
             android:minWidth="400dp"
             android:minHeight="50dp"
-            android:textColorHint="#757575" />
+            android:textColorHint="#757575"
+            android:textSize="40sp" />
 
         <EditText
             android:id="@+id/edtEmailRegistrati"
@@ -66,12 +66,12 @@
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:autofillHints=""
-            android:textSize="40sp"
             android:hint="@string/email"
             android:inputType="textEmailAddress|textAutoComplete"
             android:minWidth="400dp"
             android:minHeight="50dp"
-            android:textColorHint="#757575" />
+            android:textColorHint="#757575"
+            android:textSize="40sp" />
 
         <EditText
             android:id="@+id/edtPasswordRegistrati"
@@ -84,11 +84,11 @@
             android:layout_marginBottom="20dp"
             android:autofillHints=""
             android:hint="@string/password"
-            android:textSize="40sp"
             android:inputType="textPassword"
             android:minWidth="400dp"
             android:minHeight="50dp"
-            android:textColorHint="#757575" />
+            android:textColorHint="#757575"
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/txtDepartment"
@@ -125,9 +125,9 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/buttonshape"
+            android:fontFamily="@font/roboto_medium"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:fontFamily="@font/roboto_medium"
             android:text="@string/complete_registration"
             android:textColor="@color/white"
             android:textSize="32sp" />

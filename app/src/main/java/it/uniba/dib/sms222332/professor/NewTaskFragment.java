@@ -36,7 +36,7 @@ public class NewTaskFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.newTaskToolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.newTaskToolbar));
 
         View view = inflater.inflate(R.layout.fragment_new_task, container, false);
 
@@ -58,6 +58,12 @@ public class NewTaskFragment extends Fragment {
             txtThesisName.setText(thesisName);
         }
 
+        if (savedInstanceState != null) {
+            edtTaskName.setText(savedInstanceState.getString("name"));
+            edtDescription.setText(savedInstanceState.getString("description"));
+            edtEstimatedTime.setText(savedInstanceState.getString("days"));
+        }
+
         create_task_button.setOnClickListener(view1 -> createTaskButtonOnClick());
 
         return view;
@@ -72,9 +78,9 @@ public class NewTaskFragment extends Fragment {
             edtTaskName.setError(getResources().getString(R.string.enter_name_task));
         else if (description.isEmpty())
             edtDescription.setError(getResources().getString(R.string.enter_task_description));
-        else if(estTime.isEmpty())
+        else if (estTime.isEmpty())
             edtEstimatedTime.setError("Enter an estimated time");
-        else if(Integer.parseInt(estTime) < 1 || Integer.parseInt(estTime) > 30)
+        else if (Integer.parseInt(estTime) < 1 || Integer.parseInt(estTime) > 30)
             edtEstimatedTime.setError("Enter a value between 1 and 30");
         else {
             Map<String, String> infoTask = new HashMap<>();
@@ -97,6 +103,13 @@ public class NewTaskFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        outState.putString("name", edtTaskName.getText().toString());
+        outState.putString("description", edtDescription.getText().toString());
+        outState.putString("days", edtEstimatedTime.getText().toString());
+    }
 }
 

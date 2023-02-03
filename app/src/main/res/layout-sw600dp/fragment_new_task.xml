@@ -4,20 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="7dp"
-    android:orientation="vertical"
-    android:background="@drawable/bordered_white_layout">
+    android:background="@drawable/bordered_white_layout"
+    android:orientation="vertical">
 
 
     <TextView
         android:id="@+id/txtThesisName"
-        android:text="@string/thesis_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/thesis_name"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#00213A"
-        android:textSize="56sp"
-        android:fontFamily="@font/roboto_medium" />
+        android:textSize="56sp" />
 
     <!--        lineetta divisiva      -->
     <RelativeLayout
@@ -29,12 +29,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#4DD3D3D3">
+        android:background="#4DD3D3D3"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtStudentTitle"
-            android:text="@string/student"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -42,8 +41,9 @@
             android:fontFamily="@font/roboto"
             android:gravity="end"
             android:paddingHorizontal="10sp"
+            android:text="@string/student"
             android:textColor="@color/black"
-            android:textSize="40sp"  />
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/txtStudent"
@@ -66,17 +66,17 @@
 
         <TextView
             android:id="@+id/txtNameTask"
-            android:text="@string/task_name_"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="40"
             android:fontFamily="@font/roboto"
             android:gravity="end"
+            android:labelFor="@id/edtNameTask"
             android:paddingHorizontal="10sp"
+            android:text="@string/task_name_"
             android:textColor="@color/black"
-            android:textSize="40sp"
-            android:labelFor="@id/edtNameTask"/>
+            android:textSize="40sp" />
 
         <EditText
             android:id="@+id/edtNameTask"
@@ -84,35 +84,34 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="60"
-            android:fontFamily="@font/roboto_light"
-            android:text=""
             android:autofillHints=""
+            android:fontFamily="@font/roboto_light"
             android:inputType="textMultiLine"
+            android:text=""
             android:textColor="@color/black"
-            android:textSize="40sp"
-             />
+            android:textSize="40sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#4DD3D3D3">
+        android:background="#4DD3D3D3"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtDescriptionTitle"
-            android:text="@string/description"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="40"
             android:fontFamily="@font/roboto"
             android:gravity="end"
+            android:labelFor="@id/edtDescription"
             android:paddingHorizontal="10sp"
+            android:text="@string/description"
             android:textColor="@color/black"
-            android:textSize="40sp"
-            android:labelFor="@id/edtDescription"/>
+            android:textSize="40sp" />
 
         <EditText
             android:id="@+id/edtDescription"
@@ -120,13 +119,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="60"
-            android:fontFamily="@font/roboto_light"
-            android:text=""
             android:autofillHints=""
+            android:fontFamily="@font/roboto_light"
             android:inputType="textMultiLine"
+            android:text=""
             android:textColor="@color/black"
-            android:textSize="40sp"
-            />
+            android:textSize="40sp" />
 
     </LinearLayout>
 
@@ -138,42 +136,41 @@
         <TextView
             android:id="@+id/txtEstimatedTimeTitle"
             android:layout_width="0sp"
-            android:text="@string/estimated_time"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:layout_weight="40"
             android:fontFamily="@font/roboto"
             android:gravity="end"
+            android:labelFor="@id/edtEstimatedTime"
             android:paddingHorizontal="10sp"
+            android:text="@string/estimated_time"
             android:textColor="@color/black"
-            android:textSize="40sp"
-            android:labelFor="@id/edtEstimatedTime"/>
+            android:textSize="40sp" />
 
         <LinearLayout
             android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_weight="60"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom">
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/edtEstimatedTime"
                 android:layout_width="40sp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:autofillHints=""
+                android:inputType="number"
                 android:textAlignment="center"
-                android:textSize="40sp"
-                />
+                android:textSize="40sp" />
 
             <TextView
-                android:text="@string/days"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/black"
                 android:fontFamily="@font/roboto"
-                android:textSize="30sp"/>
+                android:text="@string/days"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
 
         </LinearLayout>
 
@@ -182,29 +179,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="#4DD3D3D3">
+        android:background="#4DD3D3D3"
+        android:gravity="center">
 
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/create_task_button"
-            android:text="@string/add_task"
             android:layout_width="wrap_content"
-            android:layout_margin="10sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10sp"
+            android:layout_margin="10sp"
             android:layout_marginHorizontal="10sp"
+            android:layout_marginTop="10sp"
+            android:text="@string/add_task"
             android:textSize="32sp"
             app:icon="@drawable/icon_plus"
             app:iconGravity="textStart"
-            app:iconSize="40dp"
-            />
+            app:iconSize="40dp" />
 
     </LinearLayout>
-
-
-
 
 
 </LinearLayout>

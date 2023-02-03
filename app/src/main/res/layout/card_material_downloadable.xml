@@ -4,9 +4,9 @@
     android:id="@+id/cardMaterialWithoutDelete"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:layout_gravity="end"
     android:background="@android:color/transparent"
-    android:layout_gravity="end">
+    android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/thesisCard"
@@ -26,9 +26,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:ellipsize="end"
+                android:fontFamily="@font/roboto_light"
                 android:maxLines="1"
                 android:padding="4sp"
-                android:fontFamily="@font/roboto_light"
                 android:text="@string/nome_file_card"
                 android:textSize="18sp" />
 
@@ -41,9 +41,9 @@
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_gravity="center"
-        app:iconSize="20sp"
         android:background="@drawable/download_icon"
         android:contentDescription="@string/delete_material"
-        android:theme="@style/MyButtonNoText" />
+        android:theme="@style/MyButtonNoText"
+        app:iconSize="20sp" />
 
 </LinearLayout>

@@ -52,6 +52,7 @@ import it.uniba.dib.sms222332.tools.ThesisPDF;
 
 public class EditThesisFragment extends Fragment {
 
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     EditText edtTime, edtDescription, edtRelatedProjects, edtAverage, edtRequiredExams;
     TextView txtDepartment, txtThesisName, txtTypology, txtStudent;
     Button btnSave, btnAddMaterial;
@@ -59,9 +60,6 @@ public class EditThesisFragment extends Fragment {
     CheckBox averageCheck, examCheck;
     LinearLayout layoutMaterialsList, layoutAvgConstraint, layoutExamsConstraint;
     Uri fileUri;
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
-
-
     ArrayList<String> correlators = new ArrayList<>();
     ArrayList<Uri> newMaterials = new ArrayList<>();
     ArrayList<String> deletedOldMaterials = new ArrayList<>();
@@ -77,7 +75,7 @@ public class EditThesisFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.editThesisToolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.editThesisToolbar));
 
         View view = inflater.inflate(R.layout.fragment_edit_thesis, container, false);
 
@@ -116,7 +114,7 @@ public class EditThesisFragment extends Fragment {
             getThesisData();
 
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             edtTime.setText(savedInstanceState.getString("est_time"));
             edtDescription.setText(savedInstanceState.getString("description"));
             edtRelatedProjects.setText(savedInstanceState.getString("projects"));
@@ -135,7 +133,6 @@ public class EditThesisFragment extends Fragment {
         }
 
 
-
         setCorrelatorSpinner(correlator);
 
 
@@ -143,7 +140,7 @@ public class EditThesisFragment extends Fragment {
             averageCheck.setChecked(true);
             edtAverage.setEnabled(true);
         } else {
-            if(txtStudent.getText().toString().isEmpty()){
+            if (txtStudent.getText().toString().isEmpty()) {
                 averageCheck.setChecked(false);
                 edtAverage.setEnabled(false);
             }
@@ -154,7 +151,7 @@ public class EditThesisFragment extends Fragment {
             examCheck.setChecked(true);
             edtRequiredExams.setEnabled(true);
         } else {
-            if(txtStudent.getText().toString().isEmpty()){
+            if (txtStudent.getText().toString().isEmpty()) {
                 examCheck.setChecked(false);
                 edtRequiredExams.setEnabled(false);
             }
@@ -164,11 +161,10 @@ public class EditThesisFragment extends Fragment {
 
         storage.getReference().child(txtThesisName.getText().toString()).listAll().addOnSuccessListener(listResult -> {
 
-            for (StorageReference item : listResult.getItems()){
-                if(!deletedOldMaterials.contains(item.getName()))
+            for (StorageReference item : listResult.getItems()) {
+                if (!deletedOldMaterials.contains(item.getName()))
                     addExistentMaterial(item.getName());
             }
-
 
 
         }).addOnFailureListener(exception -> Log.w("info", getString(R.string.error_file), exception));
@@ -177,8 +173,8 @@ public class EditThesisFragment extends Fragment {
 
         btnSave.setOnClickListener(view1 -> saveChanges());
 
-        if(!newMaterials.isEmpty()){
-            for(Uri uri : newMaterials)
+        if (!newMaterials.isEmpty()) {
+            for (Uri uri : newMaterials)
                 addNewMaterial(uri);
         }
 
@@ -207,12 +203,12 @@ public class EditThesisFragment extends Fragment {
         edtRelatedProjects.setText(related_projects);
         edtAverage.setText(average);
 
-        if(!required_exam.isEmpty())
+        if (!required_exam.isEmpty())
             edtRequiredExams.setText(required_exam);
         else
             edtRequiredExams.setText(R.string.none);
 
-        if(!student.isEmpty())
+        if (!student.isEmpty())
             txtStudent.setText(student);
         else
             txtStudent.setText(R.string.none);
@@ -266,7 +262,7 @@ public class EditThesisFragment extends Fragment {
             infoTesi.put("Related Projects", edtRelatedProjects.getText().toString());
 
             String correlator = spinnerCorrelator.getSelectedItem().toString();
-            if(correlator.equals(getResources().getString(R.string.none)))
+            if (correlator.equals(getResources().getString(R.string.none)))
                 infoTesi.put("Correlator", "");
             else
                 infoTesi.put("Correlator", correlator);
@@ -413,11 +409,11 @@ public class EditThesisFragment extends Fragment {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Snackbar.make(requireView(), "Permission granted", Snackbar.LENGTH_SHORT).show();
             } else {
-                Snackbar.make(requireView(), "Permission denied", Snackbar.LENGTH_SHORT ).show();
+                Snackbar.make(requireView(), "Permission denied", Snackbar.LENGTH_SHORT).show();
             }
         }
     }
@@ -437,7 +433,7 @@ public class EditThesisFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putString("est_time" ,edtTime.getText().toString());
+        outState.putString("est_time", edtTime.getText().toString());
         outState.putString("description", edtDescription.getText().toString());
         outState.putString("projects", edtRelatedProjects.getText().toString());
 

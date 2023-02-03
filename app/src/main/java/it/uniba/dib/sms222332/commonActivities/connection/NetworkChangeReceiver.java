@@ -25,6 +25,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         this.activity = activity;
     }
 
+    //LISTENER PER LA CONNESSIONE, E' SEMPRE IN ASCOLTO PER CONTROLLARE IL CAMBIAMENTO DI STATO DI CONNESSIONE
     public void onReceive(Context context, Intent intent) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
@@ -33,7 +34,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         if (!isConnected) {
 
             try {
-                // codice per mostrare l'alert dialog
+                //MOSTRA L'ALERT DIALOG CHE AVVISA L'UTENTE DELLA MANCANZA DI CONNESSIONE
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 builder.setTitle(R.string.no_internet_connection);
                 builder.setMessage(R.string.no_internet_connection_first_message);

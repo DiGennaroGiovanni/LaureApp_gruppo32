@@ -32,9 +32,9 @@ import it.uniba.dib.sms222332.guest.MainActivityGuest;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EditText edtEmailLogin, edtPasswordLogin;
     private FirebaseAuth mAuth;
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
         ImageButton en = findViewById(R.id.btn_eng);
         ImageButton it = findViewById(R.id.btn_it);
         LanguageManager lang = new LanguageManager(this);
-        /*lang.updateResource(lang.getLang());*/
 
         en.setOnClickListener(v -> {
             Intent intent = getIntent();
@@ -154,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                                 });
                             }
                         } else {
-                             Log.e("E", "Error");
+                            Log.e("E", "Error");
                         }
                     });
 

@@ -34,7 +34,7 @@ public class ThesesMessagesListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.messages));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.messages));
 
         View view = inflater.inflate(R.layout.fragment_theses_messages_list, container, false);
 
@@ -53,9 +53,9 @@ public class ThesesMessagesListFragment extends Fragment {
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if(Objects.equals(document.getString("Student"), MainActivity.account.getEmail()) ||
-                            Objects.equals(document.getString("Professor"), MainActivity.account.getEmail())){
-                        if(!listaTesi.contains(document.getString("Thesis Name"))){
+                    if (Objects.equals(document.getString("Student"), MainActivity.account.getEmail()) ||
+                            Objects.equals(document.getString("Professor"), MainActivity.account.getEmail())) {
+                        if (!listaTesi.contains(document.getString("Thesis Name"))) {
                             addMessageCard(document);
                             listaTesi.add(document.getString("Thesis Name"));
                             txtNoMessage.setVisibility(View.GONE);
@@ -65,7 +65,6 @@ public class ThesesMessagesListFragment extends Fragment {
             }
         });
     }
-
 
 
     @Override
@@ -85,7 +84,7 @@ public class ThesesMessagesListFragment extends Fragment {
         String professor = document.getString("Professor");
         String thesis_name = document.getString("Thesis Name");
 
-        if(MainActivity.account.getAccountType().equals("Professor")){
+        if (MainActivity.account.getAccountType().equals("Professor")) {
             txtProfessorTitle.setVisibility(View.GONE);
             txtProfessor.setVisibility(View.GONE);
         }
@@ -96,8 +95,8 @@ public class ThesesMessagesListFragment extends Fragment {
         view.setOnClickListener(view1 -> {
 
             Bundle bundle = new Bundle();
-            bundle.putString("thesis_name",thesis_name);
-            bundle.putString("professor",txtProfessor.getText().toString());
+            bundle.putString("thesis_name", thesis_name);
+            bundle.putString("professor", txtProfessor.getText().toString());
 
             Fragment info = new MessagesListFragment();
 

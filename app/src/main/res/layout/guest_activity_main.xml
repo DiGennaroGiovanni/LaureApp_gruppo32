@@ -33,10 +33,10 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
+            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
             app:menu="@menu/bottom_navigation_stud" />
 
     </RelativeLayout>

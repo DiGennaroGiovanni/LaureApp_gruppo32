@@ -193,37 +193,37 @@ public class NewThesisFragment extends Fragment {
         String professore = MainActivity.account.getEmail();
 
 
-        if(thesisName.isEmpty()) {
+        if (thesisName.isEmpty()) {
             edtThesisName.setError(getString(R.string.enter_thesis_name));
             missingFieldMsg();
 
-        } else if(radioGroup.getCheckedRadioButtonId() == -1) {
+        } else if (radioGroup.getCheckedRadioButtonId() == -1) {
             radioButtonCompilativa.setError(getResources().getString(R.string.select_typology));
             missingFieldMsg();
 
-        } else if(estimatedTime.isEmpty()) {
+        } else if (estimatedTime.isEmpty()) {
             edtEstimatedTime.setError(getString(R.string.enter_estimated_time));
             missingFieldMsg();
 
-        } else if(description.isEmpty()) {
+        } else if (description.isEmpty()) {
             edtDescription.setError(getString(R.string.enter_thesis_description));
             missingFieldMsg();
 
-        } else if(averageCheck.isChecked() && mediaVoti.isEmpty()) {
+        } else if (averageCheck.isChecked() && mediaVoti.isEmpty()) {
             edtAverage.setError(getString(R.string.valid_constraint));
             missingFieldMsg();
 
-        } else if(averageCheck.isChecked() && Integer.parseInt(mediaVoti) > 30 && Integer.parseInt(mediaVoti) < 18){
+        } else if (averageCheck.isChecked() && Integer.parseInt(mediaVoti) > 30 && Integer.parseInt(mediaVoti) < 18) {
             edtAverage.setError(getString(R.string.average_range));
             missingFieldMsg();
 
-        } else if(examCheck.isChecked() && materieRichieste.isEmpty()) {
+        } else if (examCheck.isChecked() && materieRichieste.isEmpty()) {
             edtRequestedExams.setError(getString(R.string.required_subjects));
             missingFieldMsg();
 
         } else {
 
-            switch(radioGroup.getCheckedRadioButtonId()) {
+            switch (radioGroup.getCheckedRadioButtonId()) {
                 case R.id.radioButtonSperimentale:
                     tipoTesi = radioButtonSperimentale.getText().toString();
                     break;
@@ -235,7 +235,7 @@ public class NewThesisFragment extends Fragment {
                     break;
             }
 
-            if(correlator.equals(getResources().getString(R.string.none))) {
+            if (correlator.equals(getResources().getString(R.string.none))) {
                 correlator = "";
             }
 
@@ -252,7 +252,7 @@ public class NewThesisFragment extends Fragment {
             infoTesi.put("Student", "");
 
 
-            switch(tipoTesi) {
+            switch (tipoTesi) {
                 case "Sperimentale":
                 case "Experimental":
                     infoTesi.put("Type", "Experimental");
@@ -268,7 +268,7 @@ public class NewThesisFragment extends Fragment {
             }
 
             db.collection("Tesi").document(thesisName).set(infoTesi);
-            for(Uri file : uris) {
+            for (Uri file : uris) {
                 uploadFile(file);
             }
             // Creazione e caricamento del PDF riepilogativo sul database
@@ -292,7 +292,7 @@ public class NewThesisFragment extends Fragment {
      * sul database per poi poter essere condiviso tramite app di terze parti.
      *
      * @param thesisName String contenente il nome della tesi
-     * @param infoTesi Map contenente tutti i dati inseriti della tesi
+     * @param infoTesi   Map contenente tutti i dati inseriti della tesi
      */
     private void createPdf(String thesisName, Map<String, String> infoTesi) {
         try {
@@ -422,8 +422,8 @@ public class NewThesisFragment extends Fragment {
             edtRequestedExams.setText(bundle.getString("exams_value"));
 
         uris = bundle.getParcelableArrayList("uris");
-        if(uris != null) {
-            for(Uri uri : uris)
+        if (uris != null) {
+            for (Uri uri : uris)
                 addMaterialItem(uri);
         }
 

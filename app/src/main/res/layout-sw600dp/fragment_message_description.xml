@@ -15,14 +15,14 @@
 
         <TextView
             android:id="@+id/txtNameTitle"
-            android:text="@string/thesis_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/thesis_name"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#00213A"
-            android:textSize="56sp"
-            android:fontFamily="@font/roboto_medium" />
+            android:textSize="56sp" />
 
         <!--        lineetta divisiva      -->
         <RelativeLayout
@@ -30,38 +30,35 @@
             android:layout_height="1dp"
             android:background="#4D000000" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#4DD3D3D3"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/txtObjectTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/roboto"
-
-            android:gravity="start"
-            android:text="@string/object_info_message"
-            android:textColor="@color/black"
-            android:textSize="40sp" />
-
-
-
-        <TextView
-            android:id="@+id/txtObject"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_light"
-            android:layout_marginHorizontal="10sp"
-            android:gravity="start"
-            android:textColor="@color/black"
-            android:textSize="40sp" />
-    </LinearLayout>
+            android:background="#4DD3D3D3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtObjectTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto"
+
+                android:gravity="start"
+                android:text="@string/object_info_message"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
 
 
+            <TextView
+                android:id="@+id/txtObject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10sp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+        </LinearLayout>
 
 
         <TextView
@@ -94,40 +91,37 @@
         </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#4DD3D3D3"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/txtAnswerTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10sp"
-            android:fontFamily="@font/roboto"
-            android:gravity="start"
-            android:text="@string/professor_info_message"
-            android:textColor="@color/black"
-            android:textSize="40sp" />
-
-
-
-        <EditText
-            android:id="@+id/edtAnswer"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10sp"
-            android:inputType="textMultiLine"
-            android:text=""
-            android:gravity="start"
-            android:fontFamily="@font/roboto_light"
-            android:textColor="@color/black"
-            android:textSize="40sp" />
+            android:background="#4DD3D3D3"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txtAnswerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10sp"
+                android:fontFamily="@font/roboto"
+                android:gravity="start"
+                android:text="@string/professor_info_message"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
 
 
+            <EditText
+                android:id="@+id/edtAnswer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10sp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="start"
+                android:inputType="textMultiLine"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+        </LinearLayout>
 
 
         <LinearLayout
@@ -146,8 +140,8 @@
                 android:layout_gravity="center"
                 android:layout_marginVertical="20sp"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="32sp"
-                android:text="@string/add_answer" />
+                android:text="@string/add_answer"
+                android:textSize="32sp" />
 
         </LinearLayout>
 

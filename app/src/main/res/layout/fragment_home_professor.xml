@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pattern3"
     android:gravity="center"
-    android:orientation="vertical"
-    android:background="@drawable/pattern3">
+    android:orientation="vertical">
 
 
     <RelativeLayout
@@ -17,16 +17,16 @@
             android:id="@+id/newThesisBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="35sp"
+            android:fontFamily="@font/roboto_medium"
             android:padding="30sp"
             android:text="@string/add_thesis_button"
-            app:iconSize="40sp"
+            android:textSize="34sp"
             app:icon="@drawable/add_thesis_icon"
             app:iconGravity="textStart"
-            android:fontFamily="@font/roboto_medium"
-            android:textSize="34sp" />
+            app:iconSize="40sp" />
 
     </RelativeLayout>
 
@@ -39,16 +39,16 @@
             android:id="@+id/receiptsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="35sp"
-            android:padding="30sp"
             android:fontFamily="@font/roboto_medium"
+            android:padding="30sp"
             android:text="@string/requests_button"
             android:textSize="34sp"
+            app:icon="@drawable/icon_check"
             app:iconGravity="textStart"
-            app:iconSize="40sp"
-            app:icon="@drawable/icon_check" />
+            app:iconSize="40sp" />
 
     </RelativeLayout>
 

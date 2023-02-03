@@ -15,6 +15,7 @@ public class QrGenerator {
 
     /**
      * Il metodo createQr riceve in input il nome della tesi che verrà inserito nel QR-code da generare.
+     *
      * @param name nome della tesi di cui generare il QR-code
      * @return bitmap oggetto che conterrà la renderizzazione del QR-code
      */
@@ -33,12 +34,12 @@ public class QrGenerator {
             BitMatrix bitMatrix = qrCodeWriter.encode(jsonDatiTesi.toString(), BarcodeFormat.QR_CODE, width, height);
             bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
 
-            for(int x = 0; x < width; x++) {
-                for(int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
                     bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
                 }
             }
-        } catch(WriterException | JSONException e) {
+        } catch (WriterException | JSONException e) {
             e.printStackTrace();
         }
         return bitmap;

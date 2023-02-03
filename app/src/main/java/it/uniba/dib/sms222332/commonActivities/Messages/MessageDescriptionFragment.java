@@ -30,7 +30,7 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 public class MessageDescriptionFragment extends Fragment {
 
     String idMessage;
-    TextView txtNameTitle,txtObject,txtMessage;
+    TextView txtNameTitle, txtObject, txtMessage;
     EditText edtAnswer;
     Button btnAnswer;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -39,7 +39,7 @@ public class MessageDescriptionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.messageContactTooolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.messageContactTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_message_description, container, false);
 
@@ -56,7 +56,7 @@ public class MessageDescriptionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (getArguments() != null){
+        if (getArguments() != null) {
             String object = getArguments().getString("object");
             String professorMessage = getArguments().getString("professor_message");
             String studentMessage = getArguments().getString("student_message");
@@ -67,39 +67,39 @@ public class MessageDescriptionFragment extends Fragment {
             txtObject.setText(object);
             txtMessage.setText(studentMessage);
 
-            if(professorMessage.equals(""))
+            if (professorMessage.equals(""))
                 edtAnswer.setHint("Not answered yet");
             else
                 edtAnswer.setText(professorMessage);
         }
 
-        if(MainActivity.account.getAccountType().equals("Professor")){
-            if(edtAnswer.getText().toString().equals("")){
+        if (MainActivity.account.getAccountType().equals("Professor")) {
+            if (edtAnswer.getText().toString().equals("")) {
 
                 if (savedInstanceState != null)
                     edtAnswer.setText(savedInstanceState.getString("answer"));
 
                 btnAnswer.setOnClickListener(view1 -> {
 
-                    if(edtAnswer.getText().toString().isEmpty())
+                    if (edtAnswer.getText().toString().isEmpty())
                         edtAnswer.setError(getString(R.string.add_an_answer));
 
-                    else{
+                    else {
                         LocalDateTime date;
                         date = LocalDateTime.now();
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
                         updateAnswer = new HashMap<>();
                         updateAnswer.put("Professor Message", edtAnswer.getText().toString());
-                        updateAnswer.put("State","Answered " +  date.format(formatter));
+                        updateAnswer.put("State", "Answered " + date.format(formatter));
 
                         db.collection("messaggi").document(idMessage).update(updateAnswer);
 
-            // chiusura della tastiera quando viene effettuato un cambio di fragment
-            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
+                        // chiusura della tastiera quando viene effettuato un cambio di fragment
+                        InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
 
-            Snackbar.make(view1, R.string.message_updated, Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(view1, R.string.message_updated, Snackbar.LENGTH_LONG).show();
 
                         getParentFragmentManager().popBackStack();
                     }
@@ -108,7 +108,7 @@ public class MessageDescriptionFragment extends Fragment {
                 btnAnswer.setVisibility(View.GONE);
                 edtAnswer.setEnabled(false);
             }
-        }else {
+        } else {
             btnAnswer.setVisibility(View.GONE);
             edtAnswer.setEnabled(false);
         }
@@ -117,8 +117,8 @@ public class MessageDescriptionFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        if(MainActivity.account.getAccountType().equals("Professor") &&  edtAnswer.isEnabled())
-            outState.putString("answer",edtAnswer.getText().toString());
+        if (MainActivity.account.getAccountType().equals("Professor") && edtAnswer.isEnabled())
+            outState.putString("answer", edtAnswer.getText().toString());
     }
 
 }

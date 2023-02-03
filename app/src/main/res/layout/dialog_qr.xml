@@ -5,7 +5,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -15,7 +14,8 @@
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:text="@string/alertdialog_title"
-        android:textSize="24sp"/>
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/qr_image"
@@ -26,22 +26,22 @@
         android:contentDescription="@string/qr_code_thesis" />
 
     <TextView
-        android:fontFamily="@font/roboto"
-        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="@font/roboto"
         android:text="@string/dialogalert_qr_subtitle"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <TextView
+        style="@style/SimpleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/or"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        style="@style/SimpleText"/>
+        android:layout_marginTop="10dp"
+        android:text="@string/or"
+        android:textSize="16sp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/share_button"
@@ -61,8 +61,8 @@
         android:layout_gravity="end"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
-        android:fontFamily="@font/roboto_medium"
         android:background="@android:color/transparent"
+        android:fontFamily="@font/roboto_medium"
         android:text="@string/close_button"
         android:textColor="@color/black"
         android:textSize="16sp" />

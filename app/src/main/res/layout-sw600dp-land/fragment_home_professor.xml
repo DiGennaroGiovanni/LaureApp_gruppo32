@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:layout_margin="8dp"
-    android:orientation="vertical"
-    android:background="@drawable/pattern3">
+    android:background="@drawable/pattern3"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,36 +17,34 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/newThesisBtn"
-            android:text="@string/add_thesis_button"
-            app:icon="@drawable/add_thesis_icon"
             android:layout_width="750sp"
             android:layout_height="250sp"
-
-            app:iconGravity="textStart"
-            app:iconSize="80dp"
             android:fontFamily="@font/roboto_medium"
+            android:text="@string/add_thesis_button"
+
             android:textSize="68sp"
-             />
+            app:icon="@drawable/add_thesis_icon"
+            app:iconGravity="textStart"
+            app:iconSize="80dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="50"
         android:layout_gravity="center"
+        android:layout_weight="50"
         android:gravity="center">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/receiptsBtn"
-            android:text="@string/requests_button"
-            app:icon="@drawable/icon_check"
             android:layout_width="750sp"
             android:layout_height="250sp"
-            app:iconGravity="textStart"
-            app:iconSize="80dp"
             android:fontFamily="@font/roboto_medium"
+            android:text="@string/requests_button"
             android:textSize="68sp"
-             />
+            app:icon="@drawable/icon_check"
+            app:iconGravity="textStart"
+            app:iconSize="80dp" />
 
     </LinearLayout>
 

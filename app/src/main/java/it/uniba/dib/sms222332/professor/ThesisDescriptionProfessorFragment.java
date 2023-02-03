@@ -41,9 +41,9 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 public class ThesisDescriptionProfessorFragment extends Fragment {
 
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
-    TextView txtThesisName, txtTypology,txtDepartment, txtTime,txtCorrelator,
-            txtDescription,txtRelatedProjects,txtAverageMarks, txtRequiredExams,txtStudent;
-    Button btnEdit,btnDelete,btnReceipt,btnTask;
+    TextView txtThesisName, txtTypology, txtDepartment, txtTime, txtCorrelator,
+            txtDescription, txtRelatedProjects, txtAverageMarks, txtRequiredExams, txtStudent;
+    Button btnEdit, btnDelete, btnReceipt, btnTask;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     LinearLayout layoutFileList, layoutAcceptedThesis;
@@ -52,7 +52,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisListToolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.thesisListToolbar));
 
         View view = inflater.inflate(R.layout.fragment_thesis_description_professor, container, false);
 
@@ -92,47 +92,47 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
             txtTime.setText(estTime);
             txtDescription.setText(description);
 
-            if(typology.equals("Drafted"))
+            if (typology.equals("Drafted"))
                 txtTypology.setText(R.string.drafted);
             else
                 txtTypology.setText(R.string.experimental);
 
-            if(correlator.isEmpty())
-               txtCorrelator.setText(R.string.none);
+            if (correlator.isEmpty())
+                txtCorrelator.setText(R.string.none);
             else
                 txtCorrelator.setText(correlator);
 
-            if(student.isEmpty())
+            if (student.isEmpty())
                 txtStudent.setText(R.string.none);
             else
                 txtStudent.setText(student);
 
-            if(averageMarks.isEmpty())
+            if (averageMarks.isEmpty())
                 txtAverageMarks.setText(R.string.none);
             else
                 txtAverageMarks.setText(averageMarks);
 
-            if(requiredExam.isEmpty())
+            if (requiredExam.isEmpty())
                 txtRequiredExams.setText(R.string.none);
             else
                 txtRequiredExams.setText(requiredExam);
 
-            if(relatedProjects.isEmpty())
+            if (relatedProjects.isEmpty())
                 txtRelatedProjects.setText(R.string.none);
             else
                 txtRelatedProjects.setText(relatedProjects);
         }
 
-        if(!txtStudent.getText().toString().equals(getResources().getString(R.string.none))){
+        if (!txtStudent.getText().toString().equals(getResources().getString(R.string.none))) {
             layoutAcceptedThesis.setVisibility(View.VISIBLE);
 
             btnReceipt.setOnClickListener(v -> {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("thesis_name", txtThesisName.getText().toString());
-                bundle.putString("student",txtStudent.getText().toString());
+                bundle.putString("student", txtStudent.getText().toString());
 
-                if(relator.equals(MainActivity.account.getEmail()))
+                if (relator.equals(MainActivity.account.getEmail()))
                     bundle.putString("professor", "");
                 else
                     bundle.putString("professor", relator);
@@ -155,9 +155,9 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
                 Bundle bundle = new Bundle();
 
                 bundle.putString("thesisName", txtThesisName.getText().toString());
-                bundle.putString("student",txtStudent.getText().toString());
+                bundle.putString("student", txtStudent.getText().toString());
 
-                if(relator.equals(MainActivity.account.getEmail()))
+                if (relator.equals(MainActivity.account.getEmail()))
                     bundle.putString("professor", "");
                 else
                     bundle.putString("professor", relator);
@@ -179,31 +179,31 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
 
             bundle.putString("name", txtThesisName.getText().toString());
             bundle.putString("typology", txtTypology.getText().toString());
-            bundle.putString("department",txtDepartment.getText().toString());
-            bundle.putString("time",txtTime.getText().toString());
-            bundle.putString("description",txtDescription.getText().toString());
+            bundle.putString("department", txtDepartment.getText().toString());
+            bundle.putString("time", txtTime.getText().toString());
+            bundle.putString("description", txtDescription.getText().toString());
 
-            if(!txtRelatedProjects.getText().toString().equals(getResources().getString(R.string.none)))
-                bundle.putString("related_projects",txtRelatedProjects.getText().toString());
+            if (!txtRelatedProjects.getText().toString().equals(getResources().getString(R.string.none)))
+                bundle.putString("related_projects", txtRelatedProjects.getText().toString());
             else
-                bundle.putString("related_projects","");
+                bundle.putString("related_projects", "");
 
-            if(!txtCorrelator.getText().toString().equals(getResources().getString(R.string.none)))
-                bundle.putString("correlator",txtCorrelator.getText().toString());
+            if (!txtCorrelator.getText().toString().equals(getResources().getString(R.string.none)))
+                bundle.putString("correlator", txtCorrelator.getText().toString());
             else
-                bundle.putString("correlator","");
+                bundle.putString("correlator", "");
 
-            if(!txtStudent.getText().toString().equals(getResources().getString(R.string.none)))
-                bundle.putString("student",txtStudent.getText().toString());
+            if (!txtStudent.getText().toString().equals(getResources().getString(R.string.none)))
+                bundle.putString("student", txtStudent.getText().toString());
             else
-                bundle.putString("student","");
+                bundle.putString("student", "");
 
-            if(!txtRequiredExams.getText().toString().equals(getResources().getString(R.string.none)))
-                bundle.putString("required_exam",txtRequiredExams.getText().toString());
+            if (!txtRequiredExams.getText().toString().equals(getResources().getString(R.string.none)))
+                bundle.putString("required_exam", txtRequiredExams.getText().toString());
             else
-                bundle.putString("required_exam","");
+                bundle.putString("required_exam", "");
 
-            if(!txtAverageMarks.getText().toString().equals(getResources().getString(R.string.none)))
+            if (!txtAverageMarks.getText().toString().equals(getResources().getString(R.string.none)))
                 bundle.putString("average_marks", txtAverageMarks.getText().toString());
             else
                 bundle.putString("average_marks", "");
@@ -217,10 +217,10 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
             fragmentTransaction.commit();
         });
 
-        if(txtCorrelator.getText().toString().equals(MainActivity.account.getName() + " " + MainActivity.account.getSurname()))
+        if (txtCorrelator.getText().toString().equals(MainActivity.account.getName() + " " + MainActivity.account.getSurname()))
             btnDelete.setVisibility(View.GONE);
 
-        else{
+        else {
             btnDelete.setOnClickListener(view12 -> {
 
                 DocumentReference tesi = db.collection("Tesi").document(txtThesisName.getText().toString());
@@ -280,7 +280,6 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
         }).addOnFailureListener(exception -> Log.w("info", "Errore nel recupero dei file.", exception));
 
 
-
         return view;
     }
 
@@ -302,7 +301,7 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
                         MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
             } else {
                 download(fileName);
-                Snackbar.make(requireView(), R.string.downloading +" " + fileName, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(requireView(), R.string.downloading + " " + fileName, Snackbar.LENGTH_LONG).show();
             }
 
         });
@@ -315,19 +314,19 @@ public class ThesisDescriptionProfessorFragment extends Fragment {
         StorageReference ref = storageReference.child(txtThesisName.getText().toString()).child(nomeFile);
 
         ref.getDownloadUrl().addOnSuccessListener(uri -> {
-            String url  = uri.toString();
-            downloadFile( nomeFile, DIRECTORY_DOWNLOADS,url );
+            String url = uri.toString();
+            downloadFile(nomeFile, DIRECTORY_DOWNLOADS, url);
 
         });
     }
 
-    private void downloadFile( String nomeFile, String destinationDirectory, String url) {
-         DownloadManager downloadManager = (DownloadManager) requireContext().getSystemService(DOWNLOAD_SERVICE);
-         Uri uri = Uri.parse(url);
-         DownloadManager.Request request = new DownloadManager.Request(uri);
+    private void downloadFile(String nomeFile, String destinationDirectory, String url) {
+        DownloadManager downloadManager = (DownloadManager) requireContext().getSystemService(DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(url);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
 
-         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-         request.setDestinationInExternalFilesDir(requireContext(), destinationDirectory, nomeFile);
-         downloadManager.enqueue(request);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalFilesDir(requireContext(), destinationDirectory, nomeFile);
+        downloadManager.enqueue(request);
     }
 }

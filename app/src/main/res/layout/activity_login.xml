@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pattern3"
     android:layout_gravity="center"
+    android:background="@drawable/pattern3"
     tools:context=".commonActivities.LoginActivity">
 
 
@@ -36,16 +36,16 @@
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:autofillHints=""
-            android:hint="@string/email"
-            android:paddingStart="10dp"
-            android:paddingEnd="1dp"
-            android:inputType="textEmailAddress"
-            android:minWidth="300dp"
-            android:fontFamily="@font/roboto"
-            android:minHeight="50dp"
             android:background="@drawable/custom_input"
             android:drawableStart="@drawable/custom_email_icon"
             android:drawablePadding="10dp"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:minWidth="300dp"
+            android:minHeight="50dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="1dp"
             android:textColorHint="#546E7A" />
 
         <EditText
@@ -54,16 +54,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:autofillHints=""
-            android:hint="@string/password"
-            android:paddingStart="10dp"
-            android:paddingEnd="1dp"
-            android:fontFamily="@font/roboto"
-            android:inputType="textPassword"
             android:background="@drawable/custom_input"
-            android:minWidth="300dp"
-            android:minHeight="50dp"
             android:drawableStart="@drawable/custom_password_icon"
             android:drawablePadding="10dp"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:minWidth="300dp"
+            android:minHeight="50dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="1dp"
             android:textColorHint="#546E7A" />
 
         <com.google.android.material.button.MaterialButton
@@ -73,10 +73,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/custom_blue"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/sign_in"
-            android:textSize="16sp"
-            android:backgroundTint="@color/custom_blue"/>
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -95,9 +95,9 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
             android:text="@string/do_you_not_have_an_account"
-            android:textAlignment="center"
-            android:fontFamily="@font/roboto"/>
+            android:textAlignment="center" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -112,12 +112,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="45"
                 android:background="@android:color/transparent"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:shadowColor="#A8A8A8"
                 android:shadowRadius="10"
                 android:text="@string/sign_up"
-                android:fontFamily="@font/roboto"
                 android:textColor="@color/custom_blue"
                 android:textSize="16sp" />
 
@@ -134,13 +134,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="45"
                 android:background="@color/zxing_transparent"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:shadowColor="#A8A8A8"
                 android:shadowRadius="10"
                 android:text="@string/sign_in_as_guest"
                 android:textColor="@color/custom_blue"
-                android:fontFamily="@font/roboto"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
@@ -159,9 +159,9 @@
             android:id="@+id/twChoiceLanguage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
             android:text="@string/choice_language"
             android:textAlignment="center"
-            android:fontFamily="@font/roboto"
             android:textSize="16sp" />
 
         <LinearLayout

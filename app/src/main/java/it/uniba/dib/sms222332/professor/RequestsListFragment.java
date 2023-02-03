@@ -45,7 +45,7 @@ public class RequestsListFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            if (Objects.equals(document.getString("Professor"), MainActivity.account.getEmail())){
+                            if (Objects.equals(document.getString("Professor"), MainActivity.account.getEmail())) {
                                 addRequestCard(document);
                                 noRequest.setVisibility(View.GONE);
                             }

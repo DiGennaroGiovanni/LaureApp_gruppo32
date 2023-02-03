@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#1A023FA6"
-        android:elevation="4dp"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:elevation="4dp">
 
         <SearchView
             android:id="@+id/search_view"
@@ -20,8 +20,7 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:iconifiedByDefault="false"
-            android:queryHint="@string/search_thesis">
-        </SearchView>
+            android:queryHint="@string/search_thesis"></SearchView>
 
         <RelativeLayout
             android:layout_width="wrap_content"

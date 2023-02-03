@@ -11,8 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/bordered_white_layout">
+        android:background="@drawable/bordered_white_layout"
+        android:orientation="vertical">
 
 
         <TextView
@@ -38,8 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:background="#4DD3D3D3">
+            android:background="#4DD3D3D3"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0sp"
@@ -109,8 +109,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#4DD3D3D3">
+                android:background="#4DD3D3D3"
+                android:orientation="horizontal">
 
                 <TextView
 
@@ -181,8 +181,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#4DD3D3D3">
+                android:background="#4DD3D3D3"
+                android:orientation="horizontal">
 
                 <TextView
 
@@ -237,8 +237,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           >
+            android:layout_height="wrap_content">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDecline"
@@ -249,10 +248,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/decline"
+                android:textSize="32sp"
                 app:icon="@drawable/icon_cross"
                 app:iconGravity="textStart"
-                android:textSize="32sp"
-                app:iconSize="40dp"/>
+                app:iconSize="40dp" />
 
 
             <com.google.android.material.button.MaterialButton
@@ -264,10 +263,10 @@
                 android:backgroundTintMode="src_over"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/accept"
+                android:textSize="32sp"
                 app:icon="@drawable/icon_check_done"
                 app:iconGravity="textStart"
-                android:textSize="32sp"
-                app:iconSize="40dp"/>
+                app:iconSize="40dp" />
 
         </LinearLayout>
 

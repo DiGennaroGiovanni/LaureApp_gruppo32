@@ -1,5 +1,6 @@
 package it.uniba.dib.sms222332.student;
 
+import static android.Manifest.permission.CAMERA;
 import static android.content.ContentValues.TAG;
 
 import android.Manifest;
@@ -15,8 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -67,8 +68,6 @@ import it.uniba.dib.sms222332.commonActivities.ThesisDescriptionUserFragment;
 import it.uniba.dib.sms222332.tools.CaptureAct;
 import it.uniba.dib.sms222332.tools.QrGenerator;
 
-import static android.Manifest.permission.CAMERA;
-
 public class AvailableThesesListFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth;
@@ -81,7 +80,74 @@ public class AvailableThesesListFragment extends Fragment {
     CheckBox examsCheckbox;
     SeekBar seekBar;
     SearchView searchView;
+    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
+        if (result.getContents() != null) {
+            String onlineUser = MainActivity.account.getEmail();
+            String jsonInput = result.getContents();
+            String thesisName = "";
+            try {
+                JSONObject json = new JSONObject(jsonInput);
+                thesisName = json.getString("name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
+            DocumentReference docRef = db.collection("Tesi").document(thesisName);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot document = task.getResult();
+                    String student = document.getString("Student");
+
+                    assert student != null;
+                    if (student.equals(onlineUser)) {
+                        getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyThesisFragment()).commit();
+                    } else {
+
+                        bundle = new Bundle();
+                        Fragment guestThesis = new ThesisDescriptionUserFragment();
+
+                        Map<String, Object> datiTesi = document.getData();
+                        assert datiTesi != null;
+                        db.collection("professori").document(Objects.requireNonNull(datiTesi.get("Professor")).toString()).get().addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                bundle.putString("professor", Objects.requireNonNull(task1.getResult().get("Name")) + " " + Objects.requireNonNull(task1.getResult().get("Surname")));
+                                bundle.putString("correlator", (String) datiTesi.get("Correlator"));
+                                bundle.putString("description", (String) datiTesi.get("Description"));
+                                bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
+                                bundle.putString("faculty", (String) datiTesi.get("Faculty"));
+                                bundle.putString("name", (String) datiTesi.get("Name"));
+                                bundle.putString("type", (String) datiTesi.get("Type"));
+                                bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
+                                bundle.putString("average_marks", (String) datiTesi.get("Average"));
+                                bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
+                                bundle.putString("professor_email", (String) datiTesi.get("Professor"));
+
+                                guestThesis.setArguments(bundle);
+                                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
+                                fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+    /**
+     * Callback che gestisce la risposta dell'utente alla richiesta di autorizzazione permessi per utilizzare la fotocamera.
+     */
+    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+
+        // Se l'utente ha accettato, avvio la scansione.
+        if (isGranted) {
+            scanQrCode();
+
+        } else {
+            // Nel caso di rifiuto della concessione dei permessi, mostro un messaggio all'utente per spiegare la necessità dei permessi.
+            Snackbar.make(requireView(), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
+        }
+    });
 
     @Nullable
     @Override
@@ -96,6 +162,11 @@ public class AvailableThesesListFragment extends Fragment {
         searchView = view.findViewById(R.id.search_view);
         btnFilter = view.findViewById(R.id.btnFilter);
         btnCamera = view.findViewById(R.id.btnCamera);
+
+        if (savedInstanceState != null) {
+            seekBarValue = savedInstanceState.getInt("seekbar");
+            isRequestedExamChecked = savedInstanceState.getBoolean("checkbox");
+        }
 
         btnFilter.setOnClickListener(view1 -> {
 
@@ -112,10 +183,6 @@ public class AvailableThesesListFragment extends Fragment {
             seekBar = dialogFilter.findViewById(R.id.seekbar_average);
             final TextView average = dialogFilter.findViewById(R.id.average_textview);
 
-            if(savedInstanceState != null){
-               seekBarValue = savedInstanceState.getInt("seekbar");
-               isRequestedExamChecked = savedInstanceState.getBoolean("checkbox");
-            }
 
             seekBar.setProgress(seekBarValue - 18);
             String avgString = getResources().getString(R.string.max_avg_constr) + seekBarValue;
@@ -240,7 +307,7 @@ public class AvailableThesesListFragment extends Fragment {
             }
         });
 
-        if(savedInstanceState != null)
+        if (savedInstanceState != null)
             searchView.setQuery(savedInstanceState.getString("search"), true);
 
         examsCheckbox = new CheckBox(requireContext());
@@ -283,7 +350,6 @@ public class AvailableThesesListFragment extends Fragment {
             }
         }
     }
-
 
     private void addCardThesis(QueryDocumentSnapshot document) {
         @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.card_available_thesis, null);
@@ -427,61 +493,6 @@ public class AvailableThesesListFragment extends Fragment {
         barLauncher.launch(options);
     }
 
-    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
-        if (result.getContents() != null) {
-            String onlineUser = MainActivity.account.getEmail();
-            String jsonInput = result.getContents();
-            String thesisName = "";
-            try {
-                JSONObject json = new JSONObject(jsonInput);
-                thesisName = json.getString("name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            DocumentReference docRef = db.collection("Tesi").document(thesisName);
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    DocumentSnapshot document = task.getResult();
-                    String student = document.getString("Student");
-
-                    assert student != null;
-                    if (student.equals(onlineUser)) {
-                        getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyThesisFragment()).commit();
-                    } else {
-
-                        bundle = new Bundle();
-                        Fragment guestThesis = new ThesisDescriptionUserFragment();
-
-                        Map<String, Object> datiTesi = document.getData();
-                        assert datiTesi != null;
-                        db.collection("professori").document(Objects.requireNonNull(datiTesi.get("Professor")).toString()).get().addOnCompleteListener(task1 -> {
-                            if (task1.isSuccessful()) {
-                                bundle.putString("professor", Objects.requireNonNull(task1.getResult().get("Name")) + " " + Objects.requireNonNull(task1.getResult().get("Surname")));
-                                bundle.putString("correlator", (String) datiTesi.get("Correlator"));
-                                bundle.putString("description", (String) datiTesi.get("Description"));
-                                bundle.putString("estimated_time", (String) datiTesi.get("Estimated Time"));
-                                bundle.putString("faculty", (String) datiTesi.get("Faculty"));
-                                bundle.putString("name", (String) datiTesi.get("Name"));
-                                bundle.putString("type", (String) datiTesi.get("Type"));
-                                bundle.putString("related_projects", (String) datiTesi.get("Related Projects"));
-                                bundle.putString("average_marks", (String) datiTesi.get("Average"));
-                                bundle.putString("required_exams", (String) datiTesi.get("Required Exam"));
-                                bundle.putString("professor_email", (String) datiTesi.get("Professor"));
-
-                                guestThesis.setArguments(bundle);
-                                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, guestThesis);
-                                fragmentTransaction.addToBackStack(null);
-                                fragmentTransaction.commit();
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    });
-
     /**
      * checkPermission è il metodo che gestisce i permessi per utilizzare la fotocamera.
      * <p>
@@ -521,27 +532,13 @@ public class AvailableThesesListFragment extends Fragment {
         return result;
     }
 
-    /**
-     * Callback che gestisce la risposta dell'utente alla richiesta di autorizzazione permessi per utilizzare la fotocamera.
-     */
-    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-
-        // Se l'utente ha accettato, avvio la scansione.
-        if (isGranted) {
-            scanQrCode();
-
-        } else {
-            // Nel caso di rifiuto della concessione dei permessi, mostro un messaggio all'utente per spiegare la necessità dei permessi.
-            Snackbar.make(requireView(), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
-        }
-    });
-
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("search", searchView.getQuery().toString());
         outState.putBoolean("checkbox", examsCheckbox.isChecked());
-        outState.putInt("seekbar", seekBar.getProgress() + 18);
+        if (seekBar != null)
+            outState.putInt("seekbar", seekBar.getProgress() + 18);
     }
 }
 

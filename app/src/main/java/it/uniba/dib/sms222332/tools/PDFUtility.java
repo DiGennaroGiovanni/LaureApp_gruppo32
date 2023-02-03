@@ -38,10 +38,6 @@ final public class PDFUtility {
     private static final Font FONT_CELL = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
     private static final Font FONT_COLUMN = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL);
 
-    public interface OnDocumentClose {
-        void onPDFDocumentClose(File file);
-    }
-
     public static void createPdf(@NonNull Context mContext, OnDocumentClose mCallback, LinkedHashMap<String, String> items, boolean isPortrait, File pdfFile) throws Exception {
 
         Document document = new Document();
@@ -218,12 +214,16 @@ final public class PDFUtility {
                 alternate = !alternate;
             }
 
-            } catch (Exception e) {
-                Log.e("ERRORE", e.getMessage());
+        } catch (Exception e) {
+            Log.e("ERRORE", e.getMessage());
         }
 
 
         return table1;
+    }
+
+    public interface OnDocumentClose {
+        void onPDFDocumentClose(File file);
     }
 
 /*    private static Image getImage(byte[] imageByte, boolean isTintingRequired) throws BadElementException, IOException {

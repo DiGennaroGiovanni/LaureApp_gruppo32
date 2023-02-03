@@ -25,7 +25,7 @@ public class ThesisDescriptionUserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(R.string.thesis_info);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.thesis_info);
 
         View view = inflater.inflate(R.layout.fragment_thesis_description_user, container, false);
 
@@ -38,7 +38,6 @@ public class ThesisDescriptionUserFragment extends Fragment {
         txtRelatedProjects = view.findViewById(R.id.txtRelatedProjects);
         txtAverageMarks = view.findViewById(R.id.txtAverageMarks);
         txtRequiredExams = view.findViewById(R.id.txtRequiredExams);
-        txtProfessor = view.findViewById(R.id.txtProfessor);
 
         if (getArguments() != null) {
             getDataFromPreviousFragment();

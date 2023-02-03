@@ -54,7 +54,7 @@ public class ReceiptsListFragment extends Fragment {
                 String label = getResources().getString(R.string.professor_info_message_student);
                 txtProfessor.setText(label);
                 txtStudent.setText(professor);
-            }else
+            } else
                 txtStudent.setText(student);
 
             txtThesisName.setText(thesisName);
@@ -82,7 +82,7 @@ public class ReceiptsListFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (DocumentSnapshot document : task.getResult()) {
-                            if (Objects.equals(document.getString("Thesis"), txtThesisName.getText().toString())){
+                            if (Objects.equals(document.getString("Thesis"), txtThesisName.getText().toString())) {
                                 addReceiptCard(document);
                                 txtNoReceipt.setVisibility(View.GONE);
                             }
@@ -123,14 +123,12 @@ public class ReceiptsListFragment extends Fragment {
         Map<String, Object> map = document.getData();
         ArrayList<String> taskList = new ArrayList<>();
         assert map != null;
-        if(Objects.equals(map.get("Tasks"), ""))
+        if (Objects.equals(map.get("Tasks"), ""))
             tasks.setText(R.string.none);
-        else if (map.get("Task") instanceof String){
+        else if (map.get("Task") instanceof String) {
             tasks.setText(Objects.requireNonNull(map.get("Tasks")).toString());
-        }
-
-        else {
-            for( Object obj : (ArrayList<?>) Objects.requireNonNull(map.get("Tasks")))
+        } else {
+            for (Object obj : (ArrayList<?>) Objects.requireNonNull(map.get("Tasks")))
                 taskList.add(obj.toString());
 
             StringBuilder sb = new StringBuilder();

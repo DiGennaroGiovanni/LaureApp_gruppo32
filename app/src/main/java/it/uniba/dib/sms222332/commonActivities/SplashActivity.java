@@ -39,47 +39,47 @@ public class SplashActivity extends AppCompatActivity {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
         if (!isConnected) {
             Intent intent = new Intent(SplashActivity.this, NoConnectionActivity.class);
             startActivity(intent);
             finish();
-        }else if (currentUser != null) {
-                // user is logged in
+        } else if (currentUser != null) {
+            //UTENTE LOGGATO
 
-                String email = currentUser.getEmail();
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                assert email != null;
-                DocumentReference docRefStud = db.collection("studenti").document(email);
+            String email = currentUser.getEmail();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            assert email != null;
+            DocumentReference docRefStud = db.collection("studenti").document(email);
 
-                docRefStud.get().addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            // user is a student
-                            studentDirectLogin(email, document);
+            docRefStud.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // L'UTENTE E' UNO STUDENTE
+                        studentDirectLogin(email, document);
 
-                        } else {
-                            // check if user is a professor
-                            professorDirectLogin(email, db);
-                        }
                     } else {
-                        Log.d("TAG", "get failed with ", task.getException());
+                        // L'UTENTE E' UN PROFESSORE
+                        professorDirectLogin(email, db);
                     }
-                });
-            } else {
-                // user is not logged in
+                } else {
+                    Log.d("TAG", "get failed with ", task.getException());
+                }
+            });
+        } else {
+            // UTENTE NON HA FATTO L'ACCESSO
 
-                // Mostra l'immagine splash per 2 secondi
-                new Handler().postDelayed(() -> {
-                    final Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }, SPLASH_DISPLAY_LENGTH);
-            }
+            // Mostra l'immagine splash per 2 secondi
+            new Handler().postDelayed(() -> {
+                final Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }, SPLASH_DISPLAY_LENGTH);
         }
+    }
 
 
     private void professorDirectLogin(String email, FirebaseFirestore db) {
@@ -88,7 +88,7 @@ public class SplashActivity extends AppCompatActivity {
             if (task1.isSuccessful()) {
                 DocumentSnapshot document1 = task1.getResult();
                 if (document1.exists()) {
-                    // user is a student
+                    // L'UTENTE E' UNO STUDENTE
                     Map<String, Object> datiProfessore = document1.getData();
 
                     // Mostra l'immagine splash per 2 secondi

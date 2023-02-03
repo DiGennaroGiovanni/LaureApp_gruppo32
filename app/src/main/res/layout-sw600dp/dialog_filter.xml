@@ -7,58 +7,57 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/filter_dialog_title"
-        android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/black"
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="10dp"
-        android:textSize="56sp"
-        android:textAlignment="center"/>
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/filter_dialog_title"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="56sp" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/custom_blue"
         android:layout_marginBottom="10dp"
+        android:background="@color/custom_blue"
         android:contentDescription="@string/separator_line" />
 
     <CheckBox
         android:id="@+id/checkbox_hide_thesis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hide_theses_check"
         android:layout_gravity="center"
-        android:fontFamily="@font/roboto"
-        android:textSize="32sp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/hide_theses_check"
+        android:textSize="32sp" />
 
     <SeekBar
         android:id="@+id/seekbar_average"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:id="@+id/average_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:layout_gravity="center"
-        android:theme="@style/SimpleText"
         android:layout_marginBottom="10dp"
-        />
+        android:text=""
+        android:theme="@style/SimpleText" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/search_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/research"
+        android:layout_gravity="center"
         android:fontFamily="@font/roboto_medium"
-        android:textSize="32sp"
         android:padding="10dp"
-        android:layout_gravity="center"/>
+        android:text="@string/research"
+        android:textSize="32sp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/dismiss_button"

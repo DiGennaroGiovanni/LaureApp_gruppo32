@@ -24,9 +24,9 @@
         android:id="@+id/nameSurnameTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/name_profile"
-        android:fontFamily="@font/roboto"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="40sp" />
 
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="7dp"
-        android:text="@string/user_profession"
         android:fontFamily="@font/roboto"
+        android:text="@string/user_profession"
         android:textSize="32sp" />
 </LinearLayout>

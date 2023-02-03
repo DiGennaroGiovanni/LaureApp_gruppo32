@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/pattern3">
+    android:background="@drawable/pattern3"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,19 +15,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bordered_white_layout"
             android:layout_margin="7dp"
+            android:background="@drawable/bordered_white_layout"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txtNameTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="5sp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/thesis_name"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:layout_marginVertical="5sp"
                 android:textColor="#00213A"
                 android:textSize="28sp"
                 android:textStyle="bold" />

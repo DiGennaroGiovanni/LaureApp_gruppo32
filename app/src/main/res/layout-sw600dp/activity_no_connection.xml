@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/pattern3">
 
     <LinearLayout
@@ -33,7 +33,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/no_internet_connection"
             android:textColor="@color/black"
-            android:textSize="45sp"/>
+            android:textSize="45sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,9 +41,9 @@
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:layout_weight="20"
+            android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@string/no_internet_connection_first_message"
-            android:fontFamily="@font/roboto"
             android:textColor="@color/black"
             android:textSize="40sp" />
 
@@ -53,24 +53,23 @@
             android:layout_gravity="center"
             android:layout_marginBottom="30dp"
             android:layout_weight="20"
-            android:gravity="center"
-            android:textSize="40sp"
-            android:textColor="@color/black"
-            android:text="@string/no_internet_connection_second_message"
             android:fontFamily="@font/roboto"
-             />
+            android:gravity="center"
+            android:text="@string/no_internet_connection_second_message"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContinue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/try_again"
             android:textSize="32sp"
-            android:fontFamily="@font/roboto_medium"
             app:icon="@drawable/ic_refresh"
             app:iconGravity="textStart"
-            app:iconSize="40sp"  />
+            app:iconSize="40sp" />
 
     </LinearLayout>
 

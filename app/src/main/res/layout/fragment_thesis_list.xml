@@ -6,11 +6,10 @@
     android:background="@drawable/pattern3"
     tools:context=".professor.ThesesListFragment">
 
-        <LinearLayout
-            android:id="@+id/layoutThesisList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layoutThesisList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"></LinearLayout>
 
 </ScrollView>

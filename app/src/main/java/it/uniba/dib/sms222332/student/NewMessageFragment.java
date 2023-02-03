@@ -30,7 +30,7 @@ import it.uniba.dib.sms222332.commonActivities.MainActivity;
 public class NewMessageFragment extends Fragment {
 
     TextView txtNameTitle, txtProfessor;
-    EditText edtObject, edtDescription;
+    EditText edtObject, edtMessage;
     Button btnSendMessage;
     String thesisName, professor, student, object, description;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -38,14 +38,14 @@ public class NewMessageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.availableThesisTooolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.availableThesisTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_new_message, container, false);
 
         txtNameTitle = view.findViewById(R.id.txtNameTitle);
         txtProfessor = view.findViewById(R.id.txtProfessor);
         edtObject = view.findViewById(R.id.edtObject);
-        edtDescription = view.findViewById(R.id.edtDescription);
+        edtMessage = view.findViewById(R.id.edtMessage);
         btnSendMessage = view.findViewById(R.id.btnSendMessage);
 
         student = MainActivity.account.getEmail();
@@ -57,6 +57,11 @@ public class NewMessageFragment extends Fragment {
             txtProfessor.setText(professor);
         }
 
+        if (savedInstanceState != null) {
+            edtObject.setText(savedInstanceState.getString("object"));
+            edtMessage.setText(savedInstanceState.getString("msg"));
+        }
+
 
         btnSendMessage.setOnClickListener(view1 -> sendMessage());
 
@@ -65,13 +70,13 @@ public class NewMessageFragment extends Fragment {
 
     private void sendMessage() {
         object = edtObject.getText().toString();
-        description = edtDescription.getText().toString();
+        description = edtMessage.getText().toString();
 
         if (object.isEmpty())
             edtObject.setError(getString(R.string.message_object));
 
         else if (description.isEmpty())
-            edtDescription.setError(getString(R.string.message_description));
+            edtMessage.setError(getString(R.string.message_description));
         else {
 
             LocalDateTime date = LocalDateTime.now();
@@ -89,13 +94,21 @@ public class NewMessageFragment extends Fragment {
 
             db.collection("messaggi").document().set(message);
 
-                    // chiusura della tastiera quando viene effettuato un cambio di fragment
-                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
-                    Snackbar.make(requireView(), "Message sent!", Snackbar.LENGTH_LONG).show();
+            // chiusura della tastiera quando viene effettuato un cambio di fragment
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
+            Snackbar.make(requireView(), "Message sent!", Snackbar.LENGTH_LONG).show();
 
             getParentFragmentManager().popBackStack();
 
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("object", edtObject.getText().toString());
+        outState.putString("msg", edtMessage.getText().toString());
     }
 }

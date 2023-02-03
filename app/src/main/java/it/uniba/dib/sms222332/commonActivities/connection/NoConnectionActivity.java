@@ -26,13 +26,13 @@ public class NoConnectionActivity extends AppCompatActivity {
         btnContinue = findViewById(R.id.btnContinue);
         btnContinue.setOnClickListener(view -> {
 
-            ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+            //CONTROLLA LO STATO DELLA CONNESSIONE E SALVA IL RISULTATO IN UN BOOLEAN
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
             boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-            if(!isConnected){
+            if (!isConnected) {
                 Snackbar.make(findViewById(android.R.id.content), "Connessione assente", Snackbar.LENGTH_SHORT).show();
-            }
-            else{
+            } else {
                 Intent intent = new Intent(this, SplashActivity.class);
                 startActivity(intent);
                 finish();

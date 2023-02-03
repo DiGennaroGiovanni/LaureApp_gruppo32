@@ -36,29 +36,15 @@ import it.uniba.dib.sms222332.tools.QrGenerator;
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ThesisViewHolder> {
 
     private final List<Thesis> theses;
-    private View.OnClickListener listener;
     private final Activity activity;
+    private View.OnClickListener listener;
 
     public FavoritesAdapter(List<Thesis> theses, Activity activity) {
         this.theses = theses;
         this.activity = activity;
     }
 
-    public static class ThesisViewHolder extends RecyclerView.ViewHolder {
-
-        public TextView txtName, txtProfessor;
-        public Button shareBtn;
-
-        public ThesisViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            txtName = itemView.findViewById(R.id.txtThesisName);
-            txtProfessor = itemView.findViewById(R.id.txtProfessor);
-            shareBtn = itemView.findViewById(R.id.shareBtn);
-        }
-    }
-
-    public void setOnClickListener( View.OnClickListener listener){
+    public void setOnClickListener(View.OnClickListener listener) {
         this.listener = listener;
     }
 
@@ -84,7 +70,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Thes
             qrImageView.setImageBitmap(QrGenerator.createQr(current.getName()));
 
             Button buttonShare = dialogQr.findViewById(R.id.share_button);
-            buttonShare.setOnClickListener(view12 -> sharePDF(view12,view12.getContext(),activity,current.getName()));
+            buttonShare.setOnClickListener(view12 -> sharePDF(view12, view12.getContext(), activity, current.getName()));
 
             Button dismissButton = dialogQr.findViewById(R.id.dismiss_button);
             dismissButton.setOnClickListener(view1 -> dialogQr.dismiss());
@@ -97,7 +83,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Thes
         });
     }
 
-    private void sharePDF(View view, Context context,Activity activity,  String thesisName) {
+    private void sharePDF(View view, Context context, Activity activity, String thesisName) {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference fileRef = storageRef.child("PDF_tesi/" + thesisName + ".pdf");
 
@@ -119,7 +105,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Thes
                 } else if (e instanceof StorageException) {
                     // Controllo se l'error code è riferito al fatto che non esiste il file sul database
                     if (((StorageException) e).getErrorCode() == StorageException.ERROR_OBJECT_NOT_FOUND) {
-                        Snackbar.make(view , "File does not exist", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(view, "File does not exist", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
                     // Stampo nella console il messaggio di errore nel caso in cui è di un altro tipo
@@ -136,7 +122,6 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Thes
         return theses.size();
     }
 
-
     public void onItemMove(int fromPosition, int toPosition) {
         if (fromPosition < toPosition) {
             for (int i = fromPosition; i < toPosition; i++) {
@@ -150,8 +135,21 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Thes
         notifyItemMoved(fromPosition, toPosition);
     }
 
-
     public List<Thesis> getTheses() {
         return theses;
+    }
+
+    public static class ThesisViewHolder extends RecyclerView.ViewHolder {
+
+        public TextView txtName, txtProfessor;
+        public Button shareBtn;
+
+        public ThesisViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            txtName = itemView.findViewById(R.id.txtThesisName);
+            txtProfessor = itemView.findViewById(R.id.txtProfessor);
+            shareBtn = itemView.findViewById(R.id.shareBtn);
+        }
     }
 }

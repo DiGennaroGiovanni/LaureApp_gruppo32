@@ -38,7 +38,7 @@ public class ThesisDescriptionStudentFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.availableThesisTooolbar));
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getResources().getString(R.string.availableThesisTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_thesis_description_student, container, false);
 
@@ -84,8 +84,6 @@ public class ThesisDescriptionStudentFragment extends Fragment {
             btnContactProf.setOnClickListener(view12 -> Snackbar.make(requireView(), R.string.you_can_send_messages, Snackbar.LENGTH_LONG).show());
 
 
-
-
         db.collection("richieste").document(MainActivity.account.getEmail()).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
@@ -113,10 +111,10 @@ public class ThesisDescriptionStudentFragment extends Fragment {
                     }
 
                 }//NON HO FATTO ALCUNA RICHIESTA
-                else if(MainActivity.account.getRequest().equals("no"))
+                else if (MainActivity.account.getRequest().equals("no"))
                     setRequestButton();
 
-                //HO GIÀ UNA TESI
+                    //HO GIÀ UNA TESI
                 else {
                     btnThesisRequest.setOnClickListener(view13 -> Snackbar.make(requireView(), R.string.already_request, Snackbar.LENGTH_LONG).show());
                 }

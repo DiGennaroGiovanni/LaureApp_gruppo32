@@ -263,7 +263,7 @@ public class ProfileFragment extends Fragment {
 
                                 // impostazione del campo Correlator a stringa vuota per le tesi per le quali
                                 // il professore che sta cancellando il profilo è correlatore
-                            } else if(Objects.equals(thesis.getString("Correlator"), nameSurname)) {
+                            } else if (Objects.equals(thesis.getString("Correlator"), nameSurname)) {
                                 thesis.getReference().update("Correlator", "");
                             }
                         }
