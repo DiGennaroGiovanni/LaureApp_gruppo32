@@ -19,14 +19,11 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/menu_profile"
-                android:maxWidth="150dp"
-                android:maxHeight="150dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/profile_image_black" />
 
@@ -49,7 +46,7 @@
                 android:paddingEnd="10sp"
                 android:text="@string/name_profile"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/txtNameSurname"
@@ -58,7 +55,7 @@
                 android:layout_weight="60"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:fontFamily="@font/roboto_light"/>
 
         </LinearLayout>
@@ -79,7 +76,7 @@
                 android:paddingEnd="10sp"
                 android:text="@string/faculty_profile"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/txtFaculty"
@@ -88,7 +85,7 @@
                 android:layout_weight="60"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:fontFamily="@font/roboto_light"/>
 
         </LinearLayout>
@@ -108,7 +105,7 @@
                 android:paddingEnd="10sp"
                 android:text="@string/email_profile"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="40sp"/>
 
             <TextView
                 android:id="@+id/txtEmail"
@@ -117,7 +114,7 @@
                 android:layout_weight="60"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:fontFamily="@font/roboto_light"/>
 
         </LinearLayout>
@@ -137,7 +134,7 @@
                 android:paddingEnd="10sp"
                 android:text="@string/matriculation_number"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 />
 
             <TextView
@@ -147,7 +144,7 @@
                 android:layout_weight="60"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:fontFamily="@font/roboto_light"/>
 
         </LinearLayout>
@@ -165,9 +162,9 @@
                 android:layout_centerHorizontal="true"
                 android:text="@string/delete_profile"
                 app:icon="@drawable/ic_account_deleted"
-                app:iconSize="20sp"
+                app:iconSize="40sp"
                 app:iconGravity="textStart"
-                android:textSize="16sp"
+                android:textSize="32sp"
                 android:fontFamily="@font/roboto_medium"
                 android:backgroundTintMode="src_over"/>
 

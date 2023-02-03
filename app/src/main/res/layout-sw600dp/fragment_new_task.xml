@@ -16,7 +16,7 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#00213A"
-        android:textSize="28sp"
+        android:textSize="56sp"
         android:fontFamily="@font/roboto_medium" />
 
     <!--        lineetta divisiva      -->
@@ -42,7 +42,7 @@
             android:gravity="end"
             android:paddingHorizontal="10sp"
             android:textColor="@color/black"
-            android:textSize="20sp"  />
+            android:textSize="40sp"  />
 
         <TextView
             android:id="@+id/txtStudent"
@@ -54,7 +54,7 @@
             android:gravity="center|start"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
     </LinearLayout>
 
@@ -74,7 +74,7 @@
             android:gravity="end"
             android:paddingHorizontal="10sp"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:labelFor="@id/edtNameTask"/>
 
         <EditText
@@ -88,7 +88,7 @@
             android:autofillHints=""
             android:inputType="textMultiLine"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="40sp"
              />
 
     </LinearLayout>
@@ -109,7 +109,7 @@
             android:gravity="end"
             android:paddingHorizontal="10sp"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:labelFor="@id/edtDescription"/>
 
         <EditText
@@ -123,7 +123,7 @@
             android:autofillHints=""
             android:inputType="textMultiLine"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="40sp"
             />
 
     </LinearLayout>
@@ -144,7 +144,7 @@
             android:gravity="end"
             android:paddingHorizontal="10sp"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:labelFor="@id/edtEstimatedTime"/>
 
         <LinearLayout
@@ -161,7 +161,7 @@
                 android:inputType="number"
                 android:autofillHints=""
                 android:textAlignment="center"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 />
 
             <TextView
@@ -171,7 +171,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:fontFamily="@font/roboto"
-                android:textSize="15sp"/>
+                android:textSize="30sp"/>
 
         </LinearLayout>
 
@@ -187,10 +187,10 @@
         android:layout_gravity="center"
         android:layout_marginTop="10sp"
         android:layout_marginHorizontal="10sp"
-        android:textSize="16sp"
+        android:textSize="32sp"
         app:icon="@drawable/icon_plus"
         app:iconGravity="textStart"
-        app:iconSize="20dp"
+        app:iconSize="40dp"
         />
 
 </LinearLayout>

@@ -21,13 +21,13 @@
             android:text="@string/thesis_name"
             android:fontFamily="@font/roboto"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="32sp" />
 
         <EditText
             android:id="@+id/edtThesisName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:autofillHints=""
             android:ems="10"
             android:fontFamily="@font/roboto_light"
@@ -35,12 +35,12 @@
             android:hint="@string/type_name_of_thesis"
             android:inputType="textMultiLine"
             android:textColorHint="#546E7A"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="100dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
@@ -52,7 +52,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
                 android:text="@string/experimental"
-                android:textSize="16sp" />
+                android:textSize="32sp" />
 
             <RadioButton
                 android:id="@+id/radioButtonCompilativa"
@@ -62,7 +62,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
                 android:text="@string/drafted"
-                android:textSize="16sp" />
+                android:textSize="32sp" />
 
         </RadioGroup>
 
@@ -74,12 +74,12 @@
             android:textColor="@color/black"
             android:text="@string/faculty"
             android:textAlignment="center"
-            android:textSize="16sp" />
+            android:textSize="32sp" />
 
         <Spinner
             android:id="@+id/edtFaculty"
-            android:layout_width="300dp"
-            android:layout_height="48dp"
+            android:layout_width="600dp"
+            android:layout_height="96dp"
             android:layout_gravity="center"
             android:backgroundTint="#BFBABA"
             android:gravity="center|center_vertical"
@@ -104,12 +104,12 @@
                 android:layout_weight="1"
                 android:text="@string/estimated_time"
                 android:textAlignment="viewEnd"
-                android:textSize="16sp" />
+                android:textSize="32sp" />
 
             <EditText
                 android:id="@+id/edtEstimatedTime"
-                android:layout_width="10dp"
-                android:layout_height="50dp"
+                android:layout_width="20dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:autofillHints=""
                 android:hint="@string/estimated_time_hint"
@@ -117,7 +117,7 @@
                 android:textColor="@color/black"
                 android:inputType="number"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -129,7 +129,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
                 android:text="@string/days"
-                android:textSize="16sp" />
+                android:textSize="32sp" />
         </LinearLayout>
 
         <TextView
@@ -139,13 +139,13 @@
             android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="@string/thesis_description"
-            android:textSize="16sp" />
+            android:textSize="32sp" />
 
         <EditText
             android:id="@+id/edtDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:autofillHints=""
             android:ems="10"
             android:gravity="start|top"
@@ -155,7 +155,7 @@
             android:inputType="textMultiLine"
             android:minHeight="48dp"
             android:textColorHint="#546E7A"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/textView8"
@@ -165,7 +165,7 @@
             android:fontFamily="@font/roboto"
             android:textColor="@color/black"
             android:textAlignment="center"
-            android:textSize="16sp" />
+            android:textSize="32sp" />
 
         <Spinner
             android:id="@+id/edtCorrelator"
@@ -187,7 +187,7 @@
             android:fontFamily="@font/roboto"
             android:textColor="@color/black"
             android:textAlignment="textStart"
-            android:textSize="16sp" />
+            android:textSize="32sp" />
 
         <LinearLayout
             android:id="@+id/third_layout"
@@ -207,9 +207,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="16sp"
+                android:textSize="32sp"
                 android:text="@string/button_add_material"
                 app:icon="@drawable/ic_upload"
+                app:iconSize="40dp"
                 android:layout_margin="5sp"/>
 
         </LinearLayout>
@@ -221,7 +222,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/thesis_constraints"
-            android:textSize="16sp" />
+            android:textSize="32sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -233,11 +234,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
-                android:minHeight="48dp"
+                android:minHeight="96dp"
                 android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
                 android:text="@string/average_marks"
-                android:textSize="16sp"
+                android:textSize="32sp"
                 tools:ignore="RtlHardcoded" />
 
             <EditText
@@ -249,7 +250,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="#546E7A"
                 android:inputType="number"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:autofillHints="">
 
             </EditText>
@@ -267,11 +268,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
-                android:minHeight="48dp"
+                android:minHeight="96dp"
                 android:text="@string/required_exams"
                 android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="32sp"
                 tools:ignore="RtlHardcoded" />
 
             <EditText
@@ -283,7 +284,7 @@
                 android:inputType="textMultiLine"
                 android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:autofillHints="" />
 
         </LinearLayout>
@@ -294,6 +295,7 @@
             android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="32sp"
             android:text="@string/related_projects" />
 
         <EditText
@@ -308,9 +310,9 @@
             android:fontFamily="@font/roboto_light"
             android:textColor="@color/black"
             android:inputType="textMultiLine"
-            android:minHeight="48dp"
+            android:minHeight="96dp"
             android:textColorHint="#546E7A"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonCreateThesis"
@@ -318,7 +320,8 @@
             android:layout_height="wrap_content"
             android:text="@string/create_thesis"
             android:fontFamily="@font/roboto_medium"
-            android:textSize="16sp"
+            android:textSize="32sp"
+            app:iconSize="40dp"
             app:icon="@drawable/icon_plus"
             app:iconGravity="textStart"/>
 

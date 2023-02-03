@@ -15,7 +15,7 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#00213A"
-        android:textSize="28sp"
+        android:textSize="56sp"
         android:textStyle="bold" />
 
     <!--        lineetta divisiva      -->
@@ -41,7 +41,7 @@
             android:paddingHorizontal="10sp"
             android:text="@string/thesis_type"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/txtTypology"
@@ -53,7 +53,7 @@
             android:gravity="center|start"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
     </LinearLayout>
 
@@ -73,7 +73,7 @@
             android:paddingHorizontal="10sp"
             android:text="@string/department"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/txtDepartment"
@@ -84,7 +84,7 @@
             android:fontFamily="@font/roboto_light"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
     </LinearLayout>
 
@@ -105,7 +105,7 @@
             android:paddingHorizontal="10sp"
             android:text="@string/professor_message"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:textStyle="normal" />
 
 
@@ -118,7 +118,7 @@
             android:fontFamily="@font/roboto_light"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:textStyle="normal" />
 
 
@@ -140,7 +140,7 @@
             android:paddingHorizontal="10sp"
             android:text="@string/correlator"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/txtCorrelator"
@@ -151,7 +151,7 @@
             android:fontFamily="@font/roboto_light"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
     </LinearLayout>
 

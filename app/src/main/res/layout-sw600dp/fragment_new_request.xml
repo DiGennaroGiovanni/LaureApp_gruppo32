@@ -19,7 +19,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/do_you_satisfy_the_average_constraint"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:visibility="visible" />
 
         <LinearLayout
@@ -35,7 +35,7 @@
                 android:fontFamily="@font/roboto"
                 android:text="@string/average_marks_"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/txtAverageMarks"
@@ -44,7 +44,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
         </LinearLayout>
 
@@ -64,7 +64,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:text="@string/yes"
                 android:textColor="@color/black"
-                android:textSize="16sp">
+                android:textSize="32sp">
 
             </RadioButton>
 
@@ -75,7 +75,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:text="@string/no"
                 android:textColor="@color/black"
-                android:textSize="16sp">
+                android:textSize="32sp">
 
             </RadioButton>
 
@@ -89,7 +89,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/do_you_satisfy_the_exams_constraint"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:visibility="visible" />
 
         <LinearLayout
@@ -105,7 +105,7 @@
                 android:fontFamily="@font/roboto"
                 android:text="@string/required_exams"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/txtRequiredExams"
@@ -114,7 +114,7 @@
                 android:text=""
                 android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="36sp" />
 
         </LinearLayout>
 
@@ -134,7 +134,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:text="@string/yes"
                 android:textColor="@color/black"
-                android:textSize="16sp">
+                android:textSize="32sp">
 
             </RadioButton>
 
@@ -145,7 +145,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:text="@string/no"
                 android:textColor="@color/black"
-                android:textSize="16sp">
+                android:textSize="32sp">
 
             </RadioButton>
 
@@ -157,12 +157,13 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto"
             android:text="@string/notes_"
+            android:textSize="36sp"
             android:textColor="@color/black"
             android:labelFor="@id/edtNote"/>
 
         <EditText
             android:id="@+id/edtNote"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
@@ -177,7 +178,8 @@
             android:layout_marginHorizontal="10sp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/send_request"
-            android:textSize="20sp"
+            android:textSize="32sp"
+            app:iconSize="40sp"
             app:icon="@drawable/ic_send_message"
             app:iconGravity="textStart"/>
 

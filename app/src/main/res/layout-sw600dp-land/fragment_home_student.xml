@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_margin="8dp"
+    android:orientation="horizontal"
+    android:background="#0808275A">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="50"
+        android:gravity="center">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/allThesisBtn"
+            android:text="@string/all_thesis_button"
+            app:icon="@drawable/icon_available_theses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:padding="20dp"
+            app:iconGravity="textStart"
+            android:fontFamily="@font/roboto_medium"
+            app:iconSize="80dp"
+            android:textSize="68sp"
+             />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="50"
+        android:gravity="center">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/myThesisBtn"
+            android:text="@string/your_thesis_button"
+            app:icon="@drawable/ic_your_thesis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:padding="20dp"
+            app:iconGravity="textStart"
+            android:fontFamily="@font/roboto_medium"
+            app:iconSize="80dp"
+            android:textSize="68sp"
+             />
+
+    </LinearLayout>
+</LinearLayout>
+

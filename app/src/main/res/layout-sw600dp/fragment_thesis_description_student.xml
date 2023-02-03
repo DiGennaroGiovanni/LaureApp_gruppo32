@@ -26,7 +26,7 @@
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="#00213A"
-                android:textSize="28sp"
+                android:textSize="56sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/roboto_medium" />
 
@@ -52,7 +52,7 @@
                     android:paddingHorizontal="10sp"
                     android:text="@string/thesis_type"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="40sp" />
 
                 <TextView
                     android:id="@+id/txtTypology"
@@ -63,7 +63,7 @@
                     android:fontFamily="@font/roboto_light"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="40sp" />
 
             </LinearLayout>
 
@@ -82,7 +82,7 @@
                     android:paddingHorizontal="10sp"
                     android:text="@string/department"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:fontFamily="@font/roboto" />
 
                 <TextView
@@ -94,7 +94,7 @@
                     android:fontFamily="@font/roboto_light"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="40sp" />
 
             </LinearLayout>
 
@@ -114,7 +114,7 @@
                     android:paddingHorizontal="10sp"
                     android:text="@string/professor_message"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:textStyle="normal"
                     android:fontFamily="@font/roboto" />
 
@@ -126,7 +126,7 @@
                     android:layout_weight="60"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:textStyle="normal"
                     android:fontFamily="@font/roboto_light" />
 
@@ -148,7 +148,7 @@
                     android:paddingHorizontal="10sp"
                     android:text="@string/correlator"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="40sp" />
 
 
                 <TextView
@@ -160,7 +160,7 @@
                     android:fontFamily="@font/roboto_light"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="40sp" />
 
             </LinearLayout>
 
@@ -179,7 +179,7 @@
                     android:gravity="end"
                     android:text="@string/estimated_time"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:paddingHorizontal="10sp"
                     android:fontFamily="@font/roboto" />
 
@@ -191,7 +191,7 @@
                     android:layout_weight="60"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:fontFamily="@font/roboto_light" />
 
             </LinearLayout>
@@ -212,7 +212,7 @@
                     android:paddingHorizontal="10sp"
                     android:text="@string/description"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:fontFamily="@font/roboto" />
 
                 <TextView
@@ -224,7 +224,7 @@
                     android:text=""
                     android:fontFamily="@font/roboto_light"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="40sp" />
 
             </LinearLayout>
 
@@ -244,7 +244,7 @@
                     android:text="@string/related_projects"
                     android:paddingHorizontal="10sp"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:fontFamily="@font/roboto" />
 
                 <TextView
@@ -255,7 +255,7 @@
                     android:layout_weight="60"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:fontFamily="@font/roboto_light" />
 
             </LinearLayout>
@@ -276,7 +276,7 @@
                     android:paddingHorizontal="10sp"
                     android:text="@string/average_marks"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:fontFamily="@font/roboto" />
 
                 <TextView
@@ -286,7 +286,7 @@
                     android:layout_weight="60"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/roboto_light"/>
 
@@ -309,7 +309,7 @@
                     android:paddingHorizontal="10sp"
                     android:text="@string/required_exams"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:fontFamily="@font/roboto" />
 
                 <TextView
@@ -319,7 +319,7 @@
                     android:layout_weight="60"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/roboto_light" />
 
@@ -350,7 +350,8 @@
                 android:layout_marginHorizontal="10sp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/message"
-                android:textSize="16sp"
+                android:textSize="32sp"
+                app:iconSize="40dp"
                 app:icon="@drawable/ic_send_message"
                 app:iconGravity="textStart"
                 app:strokeColor="@color/custom_blue" />
@@ -371,7 +372,8 @@
                 android:backgroundTintMode="src_over"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/request_thesis"
-                android:textSize="16sp"
+                android:textSize="32sp"
+                app:iconSize="40dp"
                 app:icon="@drawable/ic_require_thesis"
                 app:iconGravity="textStart" />
 
