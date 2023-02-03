@@ -34,7 +34,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#4DD3D3D3">
 
             <TextView
                 android:id="@+id/txtStudentTitle"
@@ -100,7 +101,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#4DD3D3D3">
 
             <TextView
                 android:id="@+id/txtDescriptionTitle"
@@ -179,6 +181,11 @@
 
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#4DD3D3D3">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/create_task_button"
@@ -193,6 +200,9 @@
             app:icon="@drawable/icon_plus"
             app:iconGravity="textStart"
             app:iconSize="20dp" />
+    </LinearLayout>
+
+
 
     </LinearLayout>
 
