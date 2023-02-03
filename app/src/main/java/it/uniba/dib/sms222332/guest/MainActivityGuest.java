@@ -49,11 +49,8 @@ import it.uniba.dib.sms222332.commonActivities.LanguageManager;
 import it.uniba.dib.sms222332.commonActivities.LanguagesFragment;
 import it.uniba.dib.sms222332.commonActivities.LoginActivity;
 import it.uniba.dib.sms222332.commonActivities.connection.NetworkChangeReceiver;
-import it.uniba.dib.sms222332.commonActivities.ThesisDescriptionUserFragment;
-import it.uniba.dib.sms222332.professor.ProfessorHomeFragment;
 
 
-import it.uniba.dib.sms222332.student.StudentHomeFragment;
 import it.uniba.dib.sms222332.tools.CaptureAct;
 
 public class MainActivityGuest extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

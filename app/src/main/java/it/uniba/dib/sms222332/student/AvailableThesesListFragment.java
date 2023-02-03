@@ -64,7 +64,6 @@ import java.util.Objects;
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
 import it.uniba.dib.sms222332.commonActivities.Thesis;
-import it.uniba.dib.sms222332.commonActivities.ThesisDescriptionUserFragment;
 import it.uniba.dib.sms222332.tools.CaptureAct;
 import it.uniba.dib.sms222332.tools.QrGenerator;
 
@@ -332,7 +331,7 @@ public class AvailableThesesListFragment extends Fragment {
             txtCorrelator.setText(R.string.none);
         }
 
-        shareBtn.setOnClickListener(view13 -> {openShareDialog(thesisName);});
+        shareBtn.setOnClickListener(view13 -> openShareDialog(thesisName));
 
         view.setOnClickListener(view1 -> {
 

@@ -1,4 +1,4 @@
-package it.uniba.dib.sms222332.professor;
+package it.uniba.dib.sms222332.commonActivities;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,6 +23,7 @@ import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
+import it.uniba.dib.sms222332.professor.NewReceiptFragment;
 
 
 public class ReceiptsListFragment extends Fragment {
