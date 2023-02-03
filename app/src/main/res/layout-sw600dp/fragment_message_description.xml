@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:background="@drawable/bordered_white_layout"
         android:orientation="vertical">
 
         <TextView
@@ -28,8 +28,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginHorizontal="10sp"
             android:background="#4D000000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4DD3D3D3"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtObjectTitle"
@@ -37,28 +42,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/roboto"
+
             android:gravity="start"
             android:text="@string/object_info_message"
             android:textColor="@color/black"
             android:textSize="40sp" />
 
-        <LinearLayout
+
+
+        <TextView
+            android:id="@+id/txtObject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:orientation="horizontal">
+            android:fontFamily="@font/roboto_light"
+            android:layout_marginHorizontal="10sp"
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtObject"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_light"
-                android:gravity="start"
-                android:textColor="@color/black"
-                android:textSize="40sp" />
 
-        </LinearLayout>
+
 
         <TextView
             android:id="@+id/txtMessageTitle"
@@ -89,35 +93,42 @@
 
         </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4DD3D3D3"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/txtAnswerTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginHorizontal="10sp"
             android:fontFamily="@font/roboto"
             android:gravity="start"
             android:text="@string/professor_info_message"
             android:textColor="@color/black"
             android:textSize="40sp" />
 
-        <LinearLayout
+
+
+        <EditText
+            android:id="@+id/edtAnswer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:orientation="horizontal">
+            android:layout_marginHorizontal="10sp"
+            android:inputType="textMultiLine"
+            android:text=""
+            android:gravity="start"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
 
-            <EditText
-                android:id="@+id/edtAnswer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:text=""
-                android:fontFamily="@font/roboto_light"
-                android:textColor="@color/black"
-                android:textSize="40sp" />
+    </LinearLayout>
 
-        </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -133,6 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginVertical="20sp"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="32sp"
                 android:text="@string/add_answer" />

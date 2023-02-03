@@ -9,12 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:background="@drawable/bordered_white_layout"
         android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4DD3D3D3">
 
         <TextView
             android:id="@+id/txtAverageConstraint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5sp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/do_you_satisfy_the_average_constraint"
@@ -22,10 +30,15 @@
             android:textSize="40sp"
             android:visibility="visible" />
 
+
+    </LinearLayout>
+
+
         <LinearLayout
             android:id="@+id/averageMarksLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#4DD3D3D3"
             android:visibility="visible">
 
             <TextView
@@ -33,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:layout_margin="5sp"
                 android:text="@string/average_marks_"
                 android:textColor="@color/black"
                 android:textSize="40sp" />
@@ -47,6 +61,14 @@
                 android:textSize="40sp" />
 
         </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4DD3D3D3"
+        android:gravity="center">
+
 
         <RadioGroup
             android:id="@+id/averageRadioGroup"
@@ -80,6 +102,12 @@
             </RadioButton>
 
         </RadioGroup>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/txtExamsConstraint"
@@ -87,10 +115,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/roboto_medium"
+            android:layout_margin="5sp"
             android:text="@string/do_you_satisfy_the_exams_constraint"
             android:textColor="@color/black"
             android:textSize="40sp"
             android:visibility="visible" />
+
+
+    </LinearLayout>
+
+
 
         <LinearLayout
             android:id="@+id/requiredExamsLayout"
@@ -103,6 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:layout_margin="5sp"
                 android:text="@string/required_exams"
                 android:textColor="@color/black"
                 android:textSize="36sp" />
@@ -151,11 +186,18 @@
 
         </RadioGroup>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4DD3D3D3">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto"
+            android:layout_margin="5sp"
             android:text="@string/notes_"
             android:textSize="36sp"
             android:textColor="@color/black"
@@ -168,6 +210,9 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:fontFamily="@font/roboto_light"/>
+
+
+    </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnThesisRequest"

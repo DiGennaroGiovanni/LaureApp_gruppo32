@@ -29,7 +29,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#4DD3D3D3">
 
         <TextView
             android:id="@+id/txtStudentTitle"
@@ -96,7 +97,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#4DD3D3D3">
 
         <TextView
             android:id="@+id/txtDescriptionTitle"
@@ -177,21 +179,33 @@
 
     </LinearLayout>
 
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/create_task_button"
-        android:text="@string/add_task"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10sp"
-        android:layout_marginHorizontal="10sp"
-        android:textSize="32sp"
-        app:icon="@drawable/icon_plus"
-        app:iconGravity="textStart"
-        app:iconSize="40dp"
-        />
+        android:gravity="center"
+        android:background="#4DD3D3D3">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/create_task_button"
+            android:text="@string/add_task"
+            android:layout_width="wrap_content"
+            android:layout_margin="10sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:layout_marginHorizontal="10sp"
+            android:textSize="32sp"
+            app:icon="@drawable/icon_plus"
+            app:iconGravity="textStart"
+            app:iconSize="40dp"
+            />
+
+    </LinearLayout>
+
+
+
+
 
 </LinearLayout>
 

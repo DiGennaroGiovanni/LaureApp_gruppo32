@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp"
     android:background="@drawable/pattern3"
     tools:context=".professor.ThesesListFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:background="@drawable/bordered_white_layout"
         android:orientation="vertical">
 
         <TextView
@@ -36,6 +37,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:background="#4DD3D3D3"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -99,6 +101,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:background="#4DD3D3D3"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -166,6 +169,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:background="#4DD3D3D3"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -248,6 +252,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:background="#4DD3D3D3"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -324,6 +329,7 @@
         <LinearLayout
             android:id="@+id/examsConstraint"
             android:layout_width="match_parent"
+            android:background="#4DD3D3D3"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -415,6 +421,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:background="#4DD3D3D3"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -424,8 +431,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/save_thesis"
+                android:layout_marginTop="20sp"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="32sp"
+                android:layout_marginBottom="20sp"
                 app:icon="@drawable/ic_save"
                 app:iconSize="40sp"
                 app:iconGravity="textStart"/>
