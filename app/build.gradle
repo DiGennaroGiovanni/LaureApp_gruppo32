@@ -23,9 +23,6 @@ dependencies {
     // Dipendenza libreria generazione qr code
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
-
-    // Add the dependencies for any other desired Firebase products
-    // https://firebase.google.com/docs/android/setup#available-libraries
 }
 
 android {
@@ -61,8 +58,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-
-
 }
 
 dependencies {
@@ -71,8 +66,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:21.1.0'
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
     implementation 'com.google.firebase:firebase-storage:20.1.0'
-    implementation 'com.google.firebase:firebase-messaging:23.1.1'
-    implementation 'com.jmedeisis:draglinearlayout:1.1.0'
     def nav_version = "2.5.3"
 
     // Java language implementation
