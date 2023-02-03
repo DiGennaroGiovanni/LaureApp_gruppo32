@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    >
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        android:background="@drawable/pattern3">
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/icon_profile"
+
             android:title="@string/menu_profile"/>
         <item
             android:id="@+id/nav_scan_qr"

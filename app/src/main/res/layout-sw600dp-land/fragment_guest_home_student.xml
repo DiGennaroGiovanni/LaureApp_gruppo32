@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:layout_margin="8dp"
     android:orientation="horizontal"
-    android:background="#0808275A">
+    android:background="@drawable/pattern3">
 
     <LinearLayout
         android:layout_width="match_parent"
