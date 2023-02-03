@@ -45,6 +45,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
+import it.uniba.dib.sms222332.commonActivities.LanguageManager;
 import it.uniba.dib.sms222332.commonActivities.LanguagesFragment;
 import it.uniba.dib.sms222332.commonActivities.LoginActivity;
 import it.uniba.dib.sms222332.commonActivities.connection.NetworkChangeReceiver;
@@ -61,6 +62,7 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
     private BottomNavigationView bottomNav;
     private NavigationView navigationView;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private LanguageManager lang;
 
 
     @Override
@@ -68,6 +70,11 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guest_activity_main);
+
+        lang = new LanguageManager(this);
+        if(savedInstanceState != null) {
+            lang.updateResource(savedInstanceState.getString("lang"));
+        }
 
         //CONTROLLO  CONNESSIONE AD INTERNET
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -305,5 +312,12 @@ public class MainActivityGuest extends AppCompatActivity implements NavigationVi
             Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_deny_camera_message, Snackbar.LENGTH_LONG).show();
         }
     });
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String language = lang.getLang();
+        outState.putString("lang", language);
+    }
 
 }
