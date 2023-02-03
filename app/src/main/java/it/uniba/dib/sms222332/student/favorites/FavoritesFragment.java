@@ -37,6 +37,20 @@ public class FavoritesFragment extends Fragment {
         Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.favoritesToolbar));
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
+
+        if(MainActivity.theses.isEmpty())
+            txtNoFavorites.setVisibility(View.VISIBLE);
+        else
+            txtNoFavorites.setVisibility(View.GONE);
+
+        return view;
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         txtNoFavorites = view.findViewById(R.id.noFavorites);
 
@@ -73,30 +87,19 @@ public class FavoritesFragment extends Fragment {
 
         });
 
-
         recyclerView.setAdapter(adapter);
 
         ItemTouchHelper.Callback callback = new ThesisTouchHelperCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(recyclerView);
 
-        return view;
     }
+
 
     @Override
     public void onPause() {
         super.onPause();
         MainActivity.theses = (ArrayList<Thesis>) adapter.getTheses();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if(MainActivity.theses.isEmpty())
-            txtNoFavorites.setVisibility(View.VISIBLE);
-        else
-            txtNoFavorites.setVisibility(View.GONE);
     }
 }
 

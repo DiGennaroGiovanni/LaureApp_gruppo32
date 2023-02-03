@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import it.uniba.dib.sms222332.R;
 import it.uniba.dib.sms222332.commonActivities.MainActivity;
@@ -38,7 +39,7 @@ public class MessageDescriptionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.messageContactTooolbar));
+        Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.messageContactTooolbar));
 
         View view = inflater.inflate(R.layout.fragment_message_description, container, false);
 
@@ -75,6 +76,9 @@ public class MessageDescriptionFragment extends Fragment {
         if(MainActivity.account.getAccountType().equals("Professor")){
             if(edtAnswer.getText().toString().equals("")){
 
+                if (savedInstanceState != null)
+                    edtAnswer.setText(savedInstanceState.getString("answer"));
+
                 btnAnswer.setOnClickListener(view1 -> {
 
                     if(edtAnswer.getText().toString().isEmpty())
@@ -92,7 +96,7 @@ public class MessageDescriptionFragment extends Fragment {
                         db.collection("messaggi").document(idMessage).update(updateAnswer);
 
             // chiusura della tastiera quando viene effettuato un cambio di fragment
-            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
 
             Snackbar.make(view1, R.string.message_updated, Snackbar.LENGTH_LONG).show();
@@ -109,4 +113,12 @@ public class MessageDescriptionFragment extends Fragment {
             edtAnswer.setEnabled(false);
         }
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(MainActivity.account.getAccountType().equals("Professor") &&  edtAnswer.isEnabled())
+            outState.putString("answer",edtAnswer.getText().toString());
+    }
+
 }

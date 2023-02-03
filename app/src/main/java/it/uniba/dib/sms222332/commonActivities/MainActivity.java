@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -121,9 +122,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         bottomNav.setOnItemSelectedListener(navListener);
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, getProperHome()).commit();
-        }
 
     }
 
