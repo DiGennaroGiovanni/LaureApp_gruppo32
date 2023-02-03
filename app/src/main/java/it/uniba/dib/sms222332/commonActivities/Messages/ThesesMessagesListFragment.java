@@ -46,15 +46,15 @@ public class ThesesMessagesListFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         CollectionReference collectionReference = db.collection("messaggi");
         collectionReference.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if(document.getString("Student").equals(MainActivity.account.getEmail()) ||
-                            document.getString("Professor").equals(MainActivity.account.getEmail())){
+                    if(Objects.equals(document.getString("Student"), MainActivity.account.getEmail()) ||
+                            Objects.equals(document.getString("Professor"), MainActivity.account.getEmail())){
                         if(!listaTesi.contains(document.getString("Thesis Name"))){
                             addMessageCard(document);
                             listaTesi.add(document.getString("Thesis Name"));
@@ -65,6 +65,8 @@ public class ThesesMessagesListFragment extends Fragment {
             }
         });
     }
+
+
 
     @Override
     public void onPause() {
