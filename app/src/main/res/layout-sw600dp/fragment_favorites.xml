@@ -6,15 +6,39 @@
     android:padding="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+   <LinearLayout
+       android:id="@+id/drag_info"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="#1A023FA6"
+       android:elevation="4dp"
+       android:orientation="vertical"
+       android:gravity="center"
+       android:padding="8dp">
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:fontFamily="@font/roboto_light"
+          android:textAlignment="center"
+          android:text="@string/drag_info"
+          android:textColor="@color/black"
+          android:textSize="40sp"
+          android:layout_marginHorizontal="6sp"/>
+
+   </LinearLayout>
+
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/recycler_view"
        android:layout_width="match_parent"
+       android:layout_below="@id/drag_info"
        android:layout_height="match_parent"
        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
    <TextView
        android:id="@+id/noFavorites"
        android:layout_width="wrap_content"
+       android:layout_below="@id/drag_info"
        android:layout_height="wrap_content"
        android:layout_centerHorizontal="true"
        android:fontFamily="@font/roboto"

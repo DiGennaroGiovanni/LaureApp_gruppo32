@@ -25,7 +25,7 @@
             android:padding="40dp"
             android:text="@string/add_thesis_button"
             app:iconGravity="textStart"
-            android:textSize="68sp"
+            android:textSize="64sp"
             app:iconSize="80dp"
             android:fontFamily="@font/roboto_medium"
             app:icon="@drawable/add_thesis_icon"/>
@@ -48,7 +48,7 @@
             android:layout_gravity="center"
             android:padding="40dp"
             android:text="@string/requests_button"
-            android:textSize="68sp"
+            android:textSize="64sp"
             app:iconSize="80dp"
             app:iconGravity="textStart"
             app:icon="@drawable/icon_check"/>
