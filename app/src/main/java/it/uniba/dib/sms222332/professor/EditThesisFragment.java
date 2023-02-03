@@ -55,11 +55,12 @@ public class EditThesisFragment extends Fragment {
     EditText edtTime, edtDescription, edtRelatedProjects, edtAverage, edtRequiredExams;
     TextView txtDepartment, txtThesisName, txtTypology, txtStudent;
     Button btnSave, btnAddMaterial;
-    Spinner spinnerCorrelators;
-    CheckBox checkAvg, checkExams;
+    Spinner spinnerCorrelator;
+    CheckBox averageCheck, examCheck;
     LinearLayout layoutMaterialsList, layoutAvgConstraint, layoutExamsConstraint;
     Uri fileUri;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
+
 
     ArrayList<String> correlators = new ArrayList<>();
     ArrayList<Uri> newMaterials = new ArrayList<>();
@@ -85,13 +86,13 @@ public class EditThesisFragment extends Fragment {
         txtDepartment = view.findViewById(R.id.txtDepartment);
         txtStudent = view.findViewById(R.id.txtStudent);
         edtTime = view.findViewById(R.id.edtTime);
-        spinnerCorrelators = view.findViewById(R.id.spinnerCorrelator);
+        spinnerCorrelator = view.findViewById(R.id.spinnerCorrelator);
         edtDescription = view.findViewById(R.id.edtDescription);
         txtThesisName = view.findViewById(R.id.txtNameTitle);
         edtRelatedProjects = view.findViewById(R.id.edtRelatedProjects);
         btnSave = view.findViewById(R.id.btnSave);
-        checkAvg = view.findViewById(R.id.averageCheck);
-        checkExams = view.findViewById(R.id.requiredExamsCheck);
+        averageCheck = view.findViewById(R.id.averageCheck);
+        examCheck = view.findViewById(R.id.requiredExamsCheck);
         edtAverage = view.findViewById(R.id.edtAverage);
         edtRequiredExams = view.findViewById(R.id.edtRequiredExams);
         btnAddMaterial = view.findViewById(R.id.buttonAdd);
@@ -104,9 +105,35 @@ public class EditThesisFragment extends Fragment {
         mUser = mAuth.getCurrentUser();
 
 
+        averageCheck.setOnCheckedChangeListener((compoundButton, isChecked) ->
+                edtAverage.setEnabled(isChecked));
+
+        examCheck.setOnCheckedChangeListener((buttonView, isChecked) ->
+                edtRequiredExams.setEnabled(isChecked));
+
 
         if (getArguments() != null)
             getThesisData();
+
+
+        if(savedInstanceState != null){
+            edtTime.setText(savedInstanceState.getString("est_time"));
+            edtDescription.setText(savedInstanceState.getString("description"));
+            edtRelatedProjects.setText(savedInstanceState.getString("projects"));
+            correlator = savedInstanceState.getString("correlator");
+
+            averageCheck.setChecked(savedInstanceState.getBoolean("avg_check"));
+
+            edtAverage.setText(savedInstanceState.getString("avg_value"));
+
+            examCheck.setChecked(savedInstanceState.getBoolean("exams_check"));
+
+            edtRequiredExams.setText(savedInstanceState.getString("exams_value"));
+
+            newMaterials = savedInstanceState.getParcelableArrayList("new_materials");
+            deletedOldMaterials = savedInstanceState.getStringArrayList("deleted_materials");
+        }
+
 
 
         setCorrelatorSpinner(correlator);
@@ -114,18 +141,14 @@ public class EditThesisFragment extends Fragment {
         if(txtStudent.toString().isEmpty())
             txtStudent.setText(R.string.none);
 
-        checkAvg.setOnCheckedChangeListener((compoundButton, isChecked) ->
-                edtAverage.setEnabled(isChecked));
 
-        checkExams.setOnCheckedChangeListener((buttonView, isChecked) ->
-                edtRequiredExams.setEnabled(isChecked));
 
         if (!edtAverage.getText().toString().equals("")) {
-            checkAvg.setChecked(true);
+            averageCheck.setChecked(true);
             edtAverage.setEnabled(true);
         } else {
             if(txtStudent.getText().toString().isEmpty()){
-                checkAvg.setChecked(false);
+                averageCheck.setChecked(false);
                 edtAverage.setEnabled(false);
             }
             else
@@ -133,11 +156,11 @@ public class EditThesisFragment extends Fragment {
         }
 
         if (!edtRequiredExams.getText().toString().equals("")) {
-            checkExams.setChecked(true);
+            examCheck.setChecked(true);
             edtRequiredExams.setEnabled(true);
         } else {
             if(txtStudent.getText().toString().isEmpty()){
-                checkExams.setChecked(false);
+                examCheck.setChecked(false);
                 edtRequiredExams.setEnabled(false);
             }
             else
@@ -148,8 +171,11 @@ public class EditThesisFragment extends Fragment {
 
         storage.getReference().child(txtThesisName.getText().toString()).listAll().addOnSuccessListener(listResult -> {
 
-            for (StorageReference item : listResult.getItems())
-                addExistentMaterial(item.getName());
+            for (StorageReference item : listResult.getItems()){
+                if(!deletedOldMaterials.contains(item.getName()))
+                    addExistentMaterial(item.getName());
+            }
+
 
 
         }).addOnFailureListener(exception -> Log.w("info", getString(R.string.error_file), exception));
@@ -158,6 +184,10 @@ public class EditThesisFragment extends Fragment {
 
         btnSave.setOnClickListener(view1 -> saveChanges());
 
+        if(!newMaterials.isEmpty()){
+            for(Uri uri : newMaterials)
+                addNewMaterial(uri);
+        }
 
         return view;
     }
@@ -206,13 +236,13 @@ public class EditThesisFragment extends Fragment {
         String avgMarks = edtAverage.getText().toString();
         String requiredExams = edtRequiredExams.getText().toString();
 
-        if (checkAvg.isChecked() && (avgMarks.isEmpty()))
+        if (averageCheck.isChecked() && (avgMarks.isEmpty()))
             edtAverage.setError(getString(R.string.error_average));
 
         else if (!(avgMarks.isEmpty()) && (Integer.parseInt(avgMarks) > 30 || Integer.parseInt(avgMarks) < 18))
             edtAverage.setError(getString(R.string.average_range));
 
-        else if (checkExams.isChecked() && requiredExams.isEmpty())
+        else if (examCheck.isChecked() && requiredExams.isEmpty())
             edtRequiredExams.setError(getString(R.string.required_subjects));
 
         else if (edtTime.getText().toString().isEmpty())
@@ -233,7 +263,7 @@ public class EditThesisFragment extends Fragment {
             infoTesi.put("Estimated Time", edtTime.getText().toString());
             infoTesi.put("Related Projects", edtRelatedProjects.getText().toString());
 
-            String correlator = spinnerCorrelators.getSelectedItem().toString();
+            String correlator = spinnerCorrelator.getSelectedItem().toString();
             if(correlator.equals(getResources().getString(R.string.none)))
                 infoTesi.put("Correlator", "");
             else
@@ -244,16 +274,16 @@ public class EditThesisFragment extends Fragment {
             updates.put("Estimated Time", edtTime.getText().toString());
             updates.put("Description", edtDescription.getText().toString());
             updates.put("Related Projects", edtRelatedProjects.getText().toString());
-            updates.put("Correlator", spinnerCorrelators.getSelectedItem().toString());
+            updates.put("Correlator", spinnerCorrelator.getSelectedItem().toString());
 
-            if (checkAvg.isChecked()) {
+            if (averageCheck.isChecked()) {
                 updates.put("Average", edtAverage.getText().toString());
                 infoTesi.put("Average", edtAverage.getText().toString());
             } else {
                 updates.put("Average", "");
                 infoTesi.put("Average", "");
             }
-            if (checkExams.isChecked()) {
+            if (examCheck.isChecked()) {
                 updates.put("Required Exam", edtRequiredExams.getText().toString());
                 infoTesi.put("Required Exam", edtRequiredExams.getText().toString());
             } else {
@@ -304,12 +334,12 @@ public class EditThesisFragment extends Fragment {
 
                 ArrayAdapter<String> adapterProf = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, correlators);
                 adapterProf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerCorrelators.setAdapter(adapterProf);
+                spinnerCorrelator.setAdapter(adapterProf);
 
                 if (!currentCorrelator.equals(""))
-                    spinnerCorrelators.setSelection(adapterProf.getPosition(currentCorrelator));
+                    spinnerCorrelator.setSelection(adapterProf.getPosition(currentCorrelator));
                 else
-                    spinnerCorrelators.setSelection(adapterProf.getPosition(getResources().getString(R.string.none)));
+                    spinnerCorrelator.setSelection(adapterProf.getPosition(getResources().getString(R.string.none)));
 
             } else {
                 Log.d(TAG, getString(R.string.error_documents), task.getException());
@@ -401,5 +431,27 @@ public class EditThesisFragment extends Fragment {
         return fileName;
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        outState.putString("est_time" ,edtTime.getText().toString());
+        outState.putString("description", edtDescription.getText().toString());
+        outState.putString("projects", edtRelatedProjects.getText().toString());
+
+        outState.putString("correlator", spinnerCorrelator.getSelectedItem().toString());
+
+        outState.putBoolean("avg_check", averageCheck.isChecked());
+
+        outState.putString("avg_value", edtAverage.getText().toString());
+
+        outState.putBoolean("exams_check", examCheck.isChecked());
+
+        outState.putString("exams_value", edtRequiredExams.getText().toString());
+
+        outState.putParcelableArrayList("new_materials", newMaterials);
+        outState.putStringArrayList("deleted_materials", deletedOldMaterials);
+    }
 }
+
+

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ public class EditTaskFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button btnSave;
     String state;
+    RadioGroup radioGroup;
 
     @Nullable
     @Override
@@ -45,6 +47,7 @@ public class EditTaskFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_edit_task, container, false);
 
+        radioGroup = view.findViewById(R.id.radioGroup);
         layoutStud = view.findViewById(R.id.layoutStudent);
         txtTaskTitle = view.findViewById(R.id.txtTaskTitle);
         txtThesis = view.findViewById(R.id.txtThesis);
@@ -93,6 +96,11 @@ public class EditTaskFragment extends Fragment {
 
         btnSave.setOnClickListener(view1 -> saveTask());
 
+        if(savedInstanceState != null){
+            edtDescription.setText(savedInstanceState.getString("description"));
+            radioGroup.check(savedInstanceState.getInt("selected_id"));
+        }
+
         return view;
     }
 
@@ -126,5 +134,13 @@ public class EditTaskFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(MainActivity.account.getAccountType().equals("Professor"))
+            outState.putString("description", edtDescription.getText().toString());
+        int selectedRadioBtnId = radioGroup.getCheckedRadioButtonId();
+        outState.putInt("selected_id", selectedRadioBtnId);
+    }
 
 }

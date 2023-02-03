@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/bordered_white_layout">
 
         <TextView
             android:id="@+id/txtNameTitle"
@@ -25,13 +26,13 @@
             android:textAllCaps="true"
             android:textColor="#00213A"
             android:textSize="28sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginVertical="5sp"/>
 
         <!--        lineetta divisiva      -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginHorizontal="10sp"
             android:background="#4D000000" />
 
         <LinearLayout
@@ -43,11 +44,10 @@
                 android:id="@+id/txtTypologyTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_weight="40"
                 android:fontFamily="@font/roboto"
                 android:gravity="end"
-                android:padding="10sp"
+                android:paddingHorizontal="10sp"
                 android:text="@string/thesis_type"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -79,7 +79,7 @@
                 android:layout_weight="40"
                 android:fontFamily="@font/roboto"
                 android:gravity="end"
-                android:padding="10sp"
+                android:paddingHorizontal="10sp"
                 android:text="@string/department"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -110,7 +110,7 @@
                 android:layout_weight="40"
                 android:fontFamily="@font/roboto"
                 android:gravity="end"
-                android:padding="10sp"
+                android:paddingHorizontal="10sp"
                 android:text="@string/correlator"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -119,7 +119,7 @@
             <RelativeLayout
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="65">
+                android:layout_weight="60">
 
                 <Spinner
                     android:id="@+id/spinnerCorrelator"
@@ -146,7 +146,7 @@
                 android:layout_weight="40"
                 android:fontFamily="@font/roboto"
                 android:gravity="end"
-                android:padding="10sp"
+                android:paddingHorizontal="10sp"
                 android:text="@string/student_edit_thesis"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -176,17 +176,18 @@
                 android:layout_gravity="center"
                 android:layout_weight="40"
                 android:gravity="end"
-                android:padding="10sp"
+                android:paddingHorizontal="10sp"
                 android:text="@string/estimated_time"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:fontFamily="@font/roboto"/>
+                android:fontFamily="@font/roboto"
+                android:labelFor="@id/edtTime"/>
 
             <LinearLayout
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="65"
+                android:layout_weight="60"
                 android:orientation="horizontal">
 
                 <EditText
@@ -196,7 +197,8 @@
                     android:inputType="number"
                     android:textAlignment="center"
                     android:textSize="20sp"
-                    android:fontFamily="@font/roboto_light"/>
+                    android:fontFamily="@font/roboto_light"
+                    android:autofillHints="" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -227,7 +229,8 @@
                 android:padding="10sp"
                 android:text="@string/description"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:labelFor="@id/edtDescription"/>
 
             <EditText
                 android:id="@+id/edtDescription"
@@ -235,14 +238,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="60"
-                android:autofillHints=""
-                android:hint="@string/type_description"
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
-                android:textColorHint="#78909C"
                 android:textSize="20sp"
-                tools:ignore="DuplicateSpeakableTextCheck" />
+                tools:ignore="DuplicateSpeakableTextCheck"
+                android:autofillHints="" />
 
         </LinearLayout>
 
@@ -262,7 +263,8 @@
                 android:padding="10sp"
                 android:text="@string/related_projects"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:labelFor="@id/edtRelatedProjects"/>
 
             <EditText
                 android:id="@+id/edtRelatedProjects"
@@ -270,13 +272,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="60"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:text=""
                 android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:hint="@string/type_description"
-                android:textColorHint="#78909C"/>
+                android:autofillHints="" />
 
         </LinearLayout>
 
@@ -298,25 +299,32 @@
                 android:padding="10sp"
                 android:text="@string/average_marks"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:labelFor="@id/averageCheck"/>
 
-            <CheckBox
-                android:id="@+id/averageCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:id="@+id/edtAverage"
+            <LinearLayout
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="58"
-                android:hint="@string/average_marks_hint"
-                android:inputType="number"
-                android:fontFamily="@font/roboto_light"
-                android:textColorHint="#78909C"
-                android:textSize="20sp">
+                android:layout_weight="60">
 
-            </EditText>
+                <CheckBox
+                    android:id="@+id/averageCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/edtAverage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:fontFamily="@font/roboto_light"
+                    android:textColorHint="#78909C"
+                    android:textSize="20sp"
+                    android:autofillHints="">
+
+                </EditText>
+            </LinearLayout>
+
 
 
         </LinearLayout>
@@ -338,7 +346,13 @@
                 android:padding="10sp"
                 android:text="@string/required_exams"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:labelFor="@id/requiredExamsCheck"/>
+
+            <LinearLayout
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="60">
 
             <CheckBox
                 android:id="@+id/requiredExamsCheck"
@@ -347,19 +361,16 @@
 
             <EditText
                 android:id="@+id/edtRequiredExams"
-                android:layout_width="0sp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:layout_weight="58"
                 android:autofillHints=""
-                android:hint="@string/type_required_exams"
                 android:fontFamily="@font/roboto_light"
                 android:inputType="textMultiLine"
-                android:textSize="20sp"
-                android:textColorHint="#78909C">
+                android:textSize="20sp">
 
             </EditText>
-
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -373,7 +384,7 @@
                 android:id="@+id/txtMaterialsTitle"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_weight="36"
+                android:layout_weight="40"
                 android:fontFamily="@font/roboto"
                 android:gravity="end"
                 android:padding="10sp"
@@ -407,7 +418,8 @@
                         app:icon="@drawable/ic_upload"
                         app:iconGravity="textStart"
                         app:iconSize="20sp"
-                        android:text="@string/button_add_material" />
+                        android:text="@string/button_add_material"
+                        android:backgroundTint="#B31C4F7E" />
 
                 </LinearLayout>
 
@@ -428,7 +440,8 @@
                 android:textSize="16sp"
                 app:icon="@drawable/ic_save"
                 app:iconSize="20sp"
-                app:iconGravity="textStart"/>
+                app:iconGravity="textStart"
+                android:layout_marginTop="10sp"/>
 
         </LinearLayout>
 
