@@ -6,7 +6,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -164,9 +163,9 @@ public class AvailableThesesListFragment extends Fragment {
                                     assert faculty != null;
                                     if (faculty.equals(MainActivity.account.getFaculty())) {
                                         addCheckConstraint(document);
-                                        dialogFilter.dismiss();
                                     }
                                 }
+                                dialogFilter.dismiss();
                             }
                         });
             });
@@ -231,8 +230,7 @@ public class AvailableThesesListFragment extends Fragment {
                             String faculty = document.getString("Faculty");
                             assert faculty != null;
                             if (faculty.equals(MainActivity.account.getFaculty()) &&
-                                    Objects.requireNonNull(document.get("Name")).toString().toLowerCase().contains(newText.trim().toLowerCase()) &&
-                                    (Objects.equals(document.getString("Student"), "") || Objects.equals(document.getString("Student"), MainActivity.account.getEmail()))) {
+                                    Objects.requireNonNull(document.get("Name")).toString().toLowerCase().contains(newText.trim().toLowerCase())) {
                                 addCheckConstraint(document);
                             }
                         }
@@ -244,6 +242,18 @@ public class AvailableThesesListFragment extends Fragment {
 
         if(savedInstanceState != null)
             searchView.setQuery(savedInstanceState.getString("search"), true);
+
+        examsCheckbox = new CheckBox(requireContext());
+        db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
+            layout_lista_tesi.removeAllViews();
+            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                String studentMail = document.getString("Student");
+                assert studentMail != null;
+                if ((studentMail.equals(MainActivity.account.getEmail()) || (Objects.equals(studentMail, ""))) && Objects.equals(document.getString("Faculty"), MainActivity.account.getFaculty())) {
+                    addCheckConstraint(document);
+                }
+            }
+        });
 
         return view;
     }
@@ -262,7 +272,10 @@ public class AvailableThesesListFragment extends Fragment {
             thesisAverage = Integer.parseInt(Objects.requireNonNull(document.getString("Average")));
         }
 
-        if (thesisAverage <= seekBarValue) {
+        if (thesisAverage <= seekBarValue &&
+                Objects.equals(document.getString("Faculty"), MainActivity.account.getFaculty()) &&
+                (Objects.equals(document.getString("Student"), "") || Objects.equals(document.getString("Student"), MainActivity.account.getEmail()))) {
+
             if (examsCheckbox.isChecked() && Objects.equals(document.getString("Required Exam"), "")) {
                 addCardThesis(document);
             } else if (!examsCheckbox.isChecked()) {
@@ -271,22 +284,6 @@ public class AvailableThesesListFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        examsCheckbox = new CheckBox(requireContext());
-        db.collection("Tesi").get().addOnSuccessListener(queryDocumentSnapshots -> {
-            layout_lista_tesi.removeAllViews();
-            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                String studentMail = document.getString("Student");
-                assert studentMail != null;
-                if (studentMail.equals(MainActivity.account.getEmail()) || (Objects.equals(studentMail, "") && Objects.equals(document.getString("Faculty"), MainActivity.account.getFaculty()))) {
-                    addCheckConstraint(document);
-                }
-            }
-        });
-
-        super.onResume();
-    }
 
     private void addCardThesis(QueryDocumentSnapshot document) {
         @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.card_available_thesis, null);
@@ -345,7 +342,7 @@ public class AvailableThesesListFragment extends Fragment {
             qrImageView.setImageBitmap(QrGenerator.createQr(thesisName));
 
             Button buttonShare = dialogQr.findViewById(R.id.share_button);
-            buttonShare.setOnClickListener(view12 -> btnShareOnClick(thesisName));
+            buttonShare.setOnClickListener(view12 -> openShareDialog(thesisName));
 
             Button dismissButton = dialogQr.findViewById(R.id.dismiss_button);
             dismissButton.setOnClickListener(view14 -> dialogQr.dismiss());
@@ -386,7 +383,7 @@ public class AvailableThesesListFragment extends Fragment {
         layout_lista_tesi.addView(view);
     }
 
-    private void btnShareOnClick(String thesisName) {
+    private void openShareDialog(String thesisName) {
 
         final Dialog dialogQr = new Dialog(requireContext());
         dialogQr.setContentView(R.layout.dialog_qr);
