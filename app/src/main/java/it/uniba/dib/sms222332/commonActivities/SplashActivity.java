@@ -33,6 +33,9 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        LanguageManager lang = new LanguageManager(this);
+        lang.updateResource(lang.getLang());
+
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         Objects.requireNonNull(getSupportActionBar()).hide();
 

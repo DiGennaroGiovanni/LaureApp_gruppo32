@@ -22,6 +22,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -64,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         ImageButton en = findViewById(R.id.btn_eng);
         ImageButton it = findViewById(R.id.btn_it);
         LanguageManager lang = new LanguageManager(this);
-        lang.updateResource(lang.getLang());
+        /*lang.updateResource(lang.getLang());*/
 
         en.setOnClickListener(v -> {
             Intent intent = getIntent();
