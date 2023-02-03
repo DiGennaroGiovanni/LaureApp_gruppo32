@@ -30,12 +30,16 @@ import it.uniba.dib.sms222332.student.ThesisDescriptionStudentFragment;
 public class FavoritesFragment extends Fragment {
     FavoritesAdapter adapter;
     TextView txtNoFavorites;
+    RecyclerView recyclerView;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Objects.requireNonNull(( (AppCompatActivity) requireActivity() ).getSupportActionBar()).setTitle(getResources().getString(R.string.favoritesToolbar));
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
+
+        recyclerView = view.findViewById(R.id.recycler_view);
+        txtNoFavorites = view.findViewById(R.id.noFavorites);
 
 
         if(MainActivity.theses.isEmpty())
@@ -51,8 +55,6 @@ public class FavoritesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-        txtNoFavorites = view.findViewById(R.id.noFavorites);
 
         adapter = new FavoritesAdapter(MainActivity.theses,requireActivity());
         adapter.setOnClickListener(view1 -> {

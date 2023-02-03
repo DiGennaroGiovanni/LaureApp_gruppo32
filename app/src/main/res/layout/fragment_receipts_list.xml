@@ -20,25 +20,25 @@
 
             <TextView
                 android:id="@+id/txtProfessor"
+
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto"
                 android:gravity="end"
                 android:text="@string/student"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/txtStudentEmail"
-                android:layout_width="0dp"
+
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_weight="1"
                 android:fontFamily="@font/roboto_light"
                 android:text="@string/student_name_"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:layout_marginHorizontal="4sp"/>
+                android:layout_marginHorizontal="6sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -52,19 +52,18 @@
                 android:gravity="end"
                 android:text="@string/thesis"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
 
             <TextView
                 android:id="@+id/txtThesisName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:fontFamily="@font/roboto_light"
                 android:text="@string/thesis_name_"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:layout_marginHorizontal="4sp"/>
+                android:layout_marginHorizontal="6sp"/>
 
         </LinearLayout>
 
@@ -75,7 +74,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/btnNewReceipt"
         android:layout_below="@+id/studInfo"
-        android:background="#0808275A"
+        android:background="@drawable/pattern3"
         android:contentDescription="@string/message_list">
 
         <LinearLayout

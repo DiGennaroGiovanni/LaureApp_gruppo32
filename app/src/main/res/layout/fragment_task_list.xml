@@ -73,7 +73,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/studInfo"
         android:layout_above="@+id/addTaskButton"
-        android:background="#0808275A"
+        android:background="@drawable/pattern3"
         android:contentDescription="@string/message_list">
 
         <LinearLayout

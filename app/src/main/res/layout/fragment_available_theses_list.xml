@@ -58,7 +58,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#0808275A"
+        android:background="@drawable/pattern3"
         android:contentDescription="@string/list_available_thesis">
 
         <LinearLayout
