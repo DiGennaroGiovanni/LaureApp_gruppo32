@@ -14,16 +14,14 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_weight="20"
             android:adjustViewBounds="false"
             android:contentDescription="@string/menu_profile"
-            android:minWidth="200dp"
-            android:minHeight="200dp"
             android:src="@drawable/ic_account_deleted" />
 
         <TextView
@@ -34,7 +32,7 @@
             android:layout_weight="20"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/account_deleted"
-            android:textSize="28sp"
+            android:textSize="45sp"
             android:textColor="@color/black"/>
 
         <TextView
@@ -45,7 +43,7 @@
             android:layout_weight="20"
             android:gravity="center"
             android:text="@string/we_are_sorry_to_see_you_leave"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:textColor="@color/black"
             android:fontFamily="@font/roboto" />
 
@@ -57,7 +55,7 @@
             android:layout_weight="20"
             android:gravity="center"
             android:text="@string/you_are_always_welocome_to_join_laureapp_again"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:textColor="@color/black"
             android:fontFamily="@font/roboto" />
 
@@ -67,11 +65,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/back_to_login"
-            android:textSize="16sp"
+            android:textSize="32sp"
             app:icon="@drawable/ic_back"
             android:fontFamily="@font/roboto_medium"
             app:iconGravity="textStart"
-            app:iconSize="20sp"
+            app:iconSize="40sp"
             />
 
     </LinearLayout>

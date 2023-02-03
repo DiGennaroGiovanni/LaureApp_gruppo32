@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/txtTaskName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_task_background"
+        android:layout_margin="2dp"
+        android:paddingVertical="4sp"
+        android:paddingHorizontal="10sp"
+        android:text="@string/task_name"
+        android:textColor="#B308275A"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="40sp"
+        android:elevation="2dp"/>
+
+</RelativeLayout>

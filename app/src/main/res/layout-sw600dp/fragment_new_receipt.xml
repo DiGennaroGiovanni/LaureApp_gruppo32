@@ -1,16 +1,15 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0808275A"
-    android:padding="5dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#0808275A">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/bordered_white_layout">
+        android:padding="10dp">
 
 
         <TextView
@@ -24,7 +23,7 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#00213A"
-            android:textSize="28sp"
+            android:textSize="56sp"
 
             />
 
@@ -32,33 +31,33 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginHorizontal="10sp"
             android:background="#4D000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#4DD3D3D3">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:gravity="end"
                 android:paddingHorizontal="10sp"
+                android:gravity="end"
                 android:text="@string/student"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/txtStudentEmail"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
-                android:fontFamily="@font/roboto_light"
                 android:text=""
+                android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
         </LinearLayout>
 
@@ -71,11 +70,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:gravity="end"
                 android:paddingHorizontal="10sp"
+                android:gravity="end"
                 android:text="@string/date_message"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
 
             <RelativeLayout
@@ -89,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_light"
                     android:text="@string/select_date"
-                    android:textSize="20sp" />
+                    android:textSize="40sp" />
             </RelativeLayout>
 
 
@@ -97,19 +96,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#4DD3D3D3">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:gravity="end"
                 android:paddingHorizontal="10sp"
+                android:gravity="end"
                 android:text="@string/receipt_starting_time"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <RelativeLayout
                 android:layout_width="0sp"
@@ -123,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_light"
                     android:text="@string/select_start_time"
-                    android:textSize="20sp" />
+                    android:textSize="40sp" />
 
             </RelativeLayout>
 
@@ -139,11 +137,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:gravity="end"
                 android:paddingHorizontal="10sp"
+                android:gravity="end"
                 android:text="@string/receipt_ending_time"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <RelativeLayout
                 android:layout_width="0sp"
@@ -157,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_light"
                     android:text="@string/select_end_time"
-                    android:textSize="20sp" />
+                    android:textSize="40sp" />
 
             </RelativeLayout>
 
@@ -166,19 +164,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#4DD3D3D3">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:gravity="end"
                 android:paddingHorizontal="10sp"
+                android:gravity="end"
                 android:text="@string/description"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <EditText
                 android:id="@+id/edtDescription"
@@ -190,7 +187,7 @@
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
         </LinearLayout>
 
@@ -205,11 +202,11 @@
                 android:layout_gravity="center"
                 android:layout_weight="35"
                 android:fontFamily="@font/roboto"
-                android:gravity="end"
                 android:paddingHorizontal="10sp"
+                android:gravity="end"
                 android:text="@string/addressed_tasks"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <LinearLayout
                 android:id="@+id/layoutAddressedTasks"
@@ -222,24 +219,20 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#4DD3D3D3"
-            android:gravity="center">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAddReceipt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="@font/roboto_medium"
-                android:padding="10dp"
-                android:text="@string/add_receipt"
-                android:textSize="16sp"
-                app:icon="@drawable/icon_plus"
-                app:iconSize="20sp" />
-        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddReceipt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/add_receipt"
+            android:textSize="32sp"
+            app:icon="@drawable/icon_plus"
+            app:iconSize="40sp"/>
+
     </LinearLayout>
 
 </ScrollView>

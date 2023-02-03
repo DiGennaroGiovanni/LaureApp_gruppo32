@@ -16,20 +16,22 @@
         android:gravity="center">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/newThesisBtn"
+            android:id="@+id/allThesisBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_gravity="center"
             android:padding="40dp"
-            android:text="@string/add_thesis_button"
+            android:text="@string/all_thesis_button"
             app:iconGravity="textStart"
             android:textSize="68sp"
             app:iconSize="80dp"
             android:fontFamily="@font/roboto_medium"
-            app:icon="@drawable/add_thesis_icon"/>
+            app:icon="@drawable/icon_available_theses"/>
+
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="600dp"
@@ -39,7 +41,7 @@
         android:gravity="center">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/receiptsBtn"
+            android:id="@+id/myThesisBtn"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_marginStart="20dp"
@@ -47,13 +49,12 @@
             android:layout_marginEnd="20dp"
             android:layout_gravity="center"
             android:padding="40dp"
-            android:text="@string/requests_button"
+            android:text="@string/your_thesis_button"
             android:textSize="68sp"
             app:iconSize="80dp"
             app:iconGravity="textStart"
-            app:icon="@drawable/icon_check"/>
+            app:icon="@drawable/ic_your_thesis"/>
 
     </LinearLayout>
 
 </LinearLayout>
-

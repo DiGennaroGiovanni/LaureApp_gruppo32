@@ -14,17 +14,15 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="400sp"
+            android:layout_height="400sp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_weight="20"
             android:adjustViewBounds="false"
             android:contentDescription="@string/menu_profile"
-            android:minWidth="200dp"
-            android:minHeight="200dp"
-            android:src="@drawable/ic_account_deleted" />
+            android:src="@drawable/no_internet" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,9 +31,9 @@
             android:layout_marginBottom="20dp"
             android:layout_weight="20"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/account_deleted"
-            android:textSize="28sp"
-            android:textColor="@color/black"/>
+            android:text="@string/no_internet_connection"
+            android:textColor="@color/black"
+            android:textSize="45sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,10 +42,10 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="20"
             android:gravity="center"
-            android:text="@string/we_are_sorry_to_see_you_leave"
-            android:textSize="20sp"
+            android:text="@string/no_internet_connection_first_message"
+            android:fontFamily="@font/roboto"
             android:textColor="@color/black"
-            android:fontFamily="@font/roboto" />
+            android:textSize="40sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,23 +54,23 @@
             android:layout_marginBottom="30dp"
             android:layout_weight="20"
             android:gravity="center"
-            android:text="@string/you_are_always_welocome_to_join_laureapp_again"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:textColor="@color/black"
-            android:fontFamily="@font/roboto" />
+            android:text="@string/no_internet_connection_second_message"
+            android:fontFamily="@font/roboto"
+             />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContinue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/back_to_login"
-            android:textSize="16sp"
-            app:icon="@drawable/ic_back"
+            android:text="@string/try_again"
+            android:textSize="32sp"
             android:fontFamily="@font/roboto_medium"
+            app:icon="@drawable/ic_refresh"
             app:iconGravity="textStart"
-            app:iconSize="20sp"
-            />
+            app:iconSize="40sp"  />
 
     </LinearLayout>
 
