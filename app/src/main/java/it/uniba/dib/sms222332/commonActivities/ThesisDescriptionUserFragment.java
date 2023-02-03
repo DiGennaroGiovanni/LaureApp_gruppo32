@@ -38,6 +38,7 @@ public class ThesisDescriptionUserFragment extends Fragment {
         txtRelatedProjects = view.findViewById(R.id.txtRelatedProjects);
         txtAverageMarks = view.findViewById(R.id.txtAverageMarks);
         txtRequiredExams = view.findViewById(R.id.txtRequiredExams);
+        txtProfessor = view.findViewById(R.id.txtProfessor);
 
         if (getArguments() != null) {
             getDataFromPreviousFragment();

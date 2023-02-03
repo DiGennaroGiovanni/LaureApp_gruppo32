@@ -107,6 +107,37 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtProfessorTitle"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="end"
+                    android:paddingHorizontal="10sp"
+                    android:text="@string/professor_message"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtProfessor"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="60"
+                    android:fontFamily="@font/roboto_light"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
                     android:id="@+id/txtCorrelatorTitle"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
@@ -132,36 +163,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtStudentTitle"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_weight="40"
-                    android:fontFamily="@font/roboto"
-                    android:gravity="end"
-                    android:paddingHorizontal="10sp"
-                    android:text="@string/student"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/txtStudent"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="60"
-                    android:fontFamily="@font/roboto_light"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
